@@ -281,3 +281,71 @@ export const infusionSub = [
   { label: "How it works", icon: "how", page: "https://infusion.restorationmedical.ca" },
   { label: "Pricing", icon: "price", page: "https://infusion.restorationmedical.ca/pricing" },
 ] as const;
+
+/** Copy shared by the division page shell (prototype division template). */
+export const divisionPageCopy = {
+  home: "Home",
+  offerTitle: "What we offer.",
+  compareAll: "Compare all",
+  book: "Book",
+  learnMore: "Learn more",
+} as const;
+
+/** Infusion Therapy page: header tagline, hero and the "under one roof" grid (prototype isInfusion branch). */
+export const infusionPage = {
+  tagline: "at Restoration Medical",
+  hero: {
+    pill: "Physician-led, nurse-administered",
+    h2: "Come as you are.",
+    h2em: "Leave feeling restored.",
+    p: "From everyday energy to clinically indicated iron infusions, our therapies meet your body where it is. Reviewed by our physician, given by our nurses.",
+    cta: "Book a consult",
+    cta2: "Explore drips & shots",
+    cta3: "Iron therapy",
+    note: "Thornhill, with Maple coming soon",
+    alt: "Guest relaxing during an infusion",
+  },
+  grid: {
+    title: "Wellness and clinical, under one roof.",
+    note: "Two paths, one standard of care. Wellness is elective; iron therapy may be clinically indicated.",
+    wellness: {
+      k: "Wellness infusions & shots",
+      t: "Energy, immunity, skin, recovery, healthy aging.",
+      d: "Personalized to you, given in a calm clinical setting. Elective, and designed around how you want to feel.",
+      cta: "Browse drips & shots",
+    },
+    iron: { k: "Clinical infusion", tag: "Lab-reviewed", t: "Iron therapy", d: "For low ferritin and iron deficiency. When supplements have not been enough.", cta: "Book an assessment" },
+    how: { k: "How it works", t: "Three simple steps", d: "Consult & screen, personalize, relax." },
+    concerns: { k: "Browse by how you feel", t: "Every drip and shot, on the Infusion site.", cta: "infusion.restorationmedical.ca" },
+  },
+} as const;
+
+/** Concern chips on the Infusion page (prototype `concerns`). */
+export const infusionConcerns = [
+  "Low energy & fatigue",
+  "Seasonal wellness",
+  "Skin, hair & nails",
+  "Recovery & performance",
+  "Longevity & healthy aging",
+  "Weight & metabolism",
+  "Iron deficiency",
+  "Hydration & travel",
+] as const;
+
+/** About page: teaching clinic block (prototype isAboutDiv). */
+export const aboutTeaching = {
+  eyebrow: "A teaching clinic",
+  title: "Learners in the building. Supervision in the room.",
+  p: "Restoration Medical hosts medical, nursing and laboratory learners on placement. A learner may take part in your visit, always under the direct supervision of a licensed clinician. We tell you when a learner is involved, and you can ask for the clinician only at any time. Your care and your chart are unchanged.",
+  cards: [
+    { k: "Physician learners", v: "Preceptor: Dr. Johnny Nguyen, Medical Director" },
+    { k: "Laboratory learners", v: "Preceptor: Lab Manager" },
+  ],
+  link: "Read our supervision standard",
+  partnersLabel: "Placement partners",
+  partners: [
+    { name: "Toronto Metropolitan University", logo: images.logos.tmu, maxHeight: 72 },
+    { name: "Anderson College of Health, Business and Technology", logo: images.logos.anderson, maxHeight: 40 },
+  ],
+  partnersNote: "Toronto Metropolitan University and Anderson College. Students are placed through their program, not hired by the clinic.",
+} as const;

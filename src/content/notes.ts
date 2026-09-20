@@ -253,3 +253,23 @@ export const noteBySlug = (slug: string): HealthNote | undefined => healthNotes.
 
 /** Author byline as displayed ("Dr. Johnny Nguyen, with a TMU medical learner"). */
 export const noteByline = (n: HealthNote): string => (n.coAuthor ? n.author + ", " + n.coAuthor : n.author);
+
+/** Page-level copy for /health-notes and the article page. */
+export const notesPage = {
+  eyebrow: "Health notes",
+  title: "Notes from your doctors.",
+  lead: "Short, plain-language notes on what to expect, when to see us and how to prepare. Written and reviewed by our physicians. They are for general education and do not replace a visit.",
+  readSuffix: "min read",
+  band: {
+    title: "Have a question a note did not answer?",
+    sub: "Book a visit and ask your doctor directly.",
+    cta: "Book an appointment",
+  },
+  article: {
+    back: "All health notes",
+    reviewed: "Reviewed by a physician",
+    disclaimer: "This note is for general education and does not replace medical advice. If you have symptoms or questions, book a visit. If this is an emergency, call 911.",
+    cta: "Book an appointment",
+    more: "More notes",
+  },
+} as const;

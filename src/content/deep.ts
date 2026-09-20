@@ -757,3 +757,53 @@ export const deepFootDefaults: Partial<Record<DivisionKey, { footCta: string; ct
 };
 
 export const deepFootFallback = { footCta: "Ready when you are.", cta: "Book an appointment" } as const;
+
+/** Copy for the division deep-dive modules (prototype deep template). */
+export const deepModuleCopy = {
+  painHint: "Tap the figure, or pick from the list",
+  painMapLabel: "Where it hurts",
+  amIDue: {
+    eyebrow: "Am I due?",
+    title: "Two answers. See what screening applies to you.",
+    iAm: "I am",
+    sexes: ["Female", "Male"],
+    age: "My age",
+    ageMin: 18,
+    ageMax: 85,
+    ageDefault: 45,
+    note: "Based on Ontario screening guidelines. Your doctor tailors these to your history.",
+    coverage: "All OHIP-insured",
+    cta: "Book a checkup and catch up",
+  },
+  compare: { title: "A medical clinic, not a drip bar.", us: "Restoration Medical", them: "Typical IV lounge" },
+  ladder: { eyebrow: "How we think", title: "Lightest option first. Step up only if you want to.", note: "Tap a rung to see what it involves. Most people start on the first.", step: "Step" },
+  coverage: { eyebrow: "What will I pay?", title: "Pick how you are covered.", payLabel: "You pay at the desk" },
+  handoff: {
+    eyebrow: "The full menu lives on its own site",
+    title: "Drips, shots, ingredients and pricing.",
+    p: "Our Infusion Therapy site has every drip and shot, the ingredient library, pricing and memberships, and a journal. Same physicians, same nurses, same booking.",
+    cta: "Explore the Infusion site",
+    cta2: "Book a consult",
+  },
+} as const;
+
+/** "Am I due?" result title (prototype `famDueTitle`). */
+export function amIDueTitle(count: number, age: number): string {
+  return `${count} things to keep up with at ${age}`;
+}
+
+/**
+ * Build-your-own-drip picker. The prototype defines the state (`drips`,
+ * `dripTime`, `dripTotal`, `dripNote`) but no markup, so this heading copy
+ * was written for the composed section.
+ */
+export const dripBuilderCopy = {
+  eyebrow: "Build your own drip",
+  title: "Pick what goes in, see the time and the price.",
+  intro: "Tap the drips and add-ons you want. We add the nurse screening and show the total before you book.",
+  summary: "Your visit",
+  time: "Time",
+  total: "Total",
+  addOn: "Add-on",
+  cta: "Book a consult",
+} as const;

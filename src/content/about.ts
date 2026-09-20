@@ -258,3 +258,38 @@ export const locationsCopy = {
     register: "Register as a new patient",
   },
 } as const;
+
+/** Page-level copy for /about/story (prototype isStory section). */
+export const storyPage = {
+  crumb: "Our story",
+  title: "Built because the system kept losing people.",
+  lead: "Restoration Medical started as one pain clinic and grew into five divisions for one reason: patients should not have to carry their own story from building to building. Here, one chart and one physician-led standard follow you from the family doctor to the procedure room to rehab.",
+  imgAlt: "Restoration Medical team in the Thornhill clinic",
+  timelineEyebrow: "How we got here",
+  timelineTitle: "Ten years, one address.",
+  valuesTitle: "What we will not compromise on.",
+  band: {
+    title: "Meet the people who make it work.",
+    sub: "Physicians, nurses, therapists and the front desk. All on one page.",
+    cta: "Our team",
+    cta2: "Standards of care",
+  },
+} as const;
+
+/** Page-level copy for /about/standards (prototype isStandards section). */
+export const standardsPage = {
+  crumb: "Standards of care",
+  title: "The rules we hold ourselves to.",
+  lead: "Eight commitments that apply in every room, whether the visit is OHIP-insured or elective. Reviewed each September by the Medical Director.",
+  colleges: [
+    { k: "Physicians", v: "Registered with the College of Physicians and Surgeons of Ontario (CPSO). Verify any physician at cpso.on.ca." },
+    { k: "Nurses", v: "Registered with the College of Nurses of Ontario (CNO). IV and injection competencies renewed yearly." },
+    { k: "Therapists", v: "Physiotherapists, chiropractors, massage therapists and kinesiologists hold registration with their Ontario college." },
+  ],
+  band: {
+    title: "A concern about your care?",
+    sub: "Speak to the clinic manager at any visit, call 905-709-3222, or write to the Medical Director. Acknowledged within two business days.",
+    cta: "Contact the clinic",
+    link: "Patient rights",
+  },
+} as const;

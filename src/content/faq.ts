@@ -282,3 +282,28 @@ export const faqItems: FaqItem[] = [
     linkPage: "book",
   },
 ];
+
+/** Copy on the /about/faq page that lives in the prototype markup. */
+export const faqCopy = {
+  crumb: "About › Frequently asked questions",
+  title: "Questions, answered plainly.",
+  lead: "What people ask before their first visit, and a few things worth knowing after. Anything not here, call 905-709-3222.",
+  searchPlaceholder: "Search questions, e.g. parking, OHIP, results",
+  searchLabel: "Search questions",
+  still: {
+    title: "Still stuck?",
+    body: "Call during clinic hours or send a message. We reply within one business day.",
+    cta: "Contact us",
+  },
+  empty: {
+    title: "Nothing matched that.",
+    body: "Try a shorter word, or send us the question and we will answer it directly.",
+    cta: "Ask us",
+  },
+  band: {
+    title: "Ready when you are.",
+    sub: "Register as a new patient or book a visit. Both take a couple of minutes.",
+    cta: "Book a visit",
+    link: "Register as a new patient",
+  },
+} as const;

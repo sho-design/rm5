@@ -51,7 +51,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
       onBlur={() => setPaused(false)}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      className="relative mx-3 mt-3 flex min-h-[440px] select-none items-end overflow-hidden rounded-card md:mx-gutter md:mt-6 md:min-h-[620px] md:rounded-block"
+      className="relative mx-3 mt-3 flex min-h-[440px] select-none items-end overflow-hidden rounded-card bg-ink text-white md:mx-gutter md:mt-6 md:min-h-[620px] md:rounded-block"
       style={{ touchAction: "pan-y" }}
     >
       {slides.map((s, i) => {
