@@ -427,3 +427,75 @@ export const chronicFaq: QA[] = [
   { q: "What about chronic pain?", a: "Chronic pain is coordinated with the Pain Centre down the hall. Your family doctor refers you, the pain physician does procedures, and everything stays in one chart." },
   { q: "Can family come to the visit?", a: "Yes. For complex care we encourage it. A second set of ears helps, and Vietnamese-speaking staff can join." },
 ];
+
+/* ---------------------------------------------------- Women’s and men’s page copy */
+
+/** Section copy for the Women’s health page (prototype `isWomen` block). */
+export const womenCopy = {
+  hero: {
+    page: "Women’s health",
+    title: "Care for every stage, with the same doctor.",
+    lead: "Pap tests, contraception, pregnancy planning, prenatal care, perimenopause and menopause. Handled by your family doctor, in a room where nothing is rushed and nothing is awkward to ask.",
+    cta: "Book a visit",
+    cta2: "Register as a patient",
+    coverage: "Insured visits are covered by OHIP. Bring your health card and any recent results.",
+    alt: "Family doctor speaking with a patient",
+    pills: ["OHIP covered", "Female or male physician, your choice", "EN / Tiếng Việt"],
+  },
+  chooser: {
+    eyebrow: "What brings you in?",
+    title: "Start with the stage you are in.",
+    intro: "Pick the closest match and see what the visit covers, how long it takes and what to bring.",
+    link: "Build your screening year",
+  },
+  screen: {
+    eyebrow: "Screening",
+    title: "The checks that keep pace with your age.",
+    note: "Ontario guidelines for adults without known risk factors. Your doctor adjusts these to your history.",
+  },
+  faq: {
+    title: "Questions we hear often.",
+    sub: "Anything else, ask at the visit. Nothing is too small.",
+  },
+  band: {
+    title: "One doctor for you, your partner and your kids.",
+    body: "Register the household in one form. Screenings for both adults land on a shared reminder, and children see the same physician.",
+    cta: "Register your family",
+    link: "Children and youth",
+  },
+} as const;
+
+/** Section copy for the Men’s health page (prototype `isMen` block). */
+export const menCopy = {
+  hero: {
+    page: "Men’s health",
+    title: "Show up once a year. We do the rest.",
+    lead: "Blood pressure, cholesterol, sugars, prostate and testicular health, mood, sleep and the things men tend to put off. A yearly checkup with a doctor who remembers last year.",
+    cta: "Book a checkup",
+    cta2: "Register as a patient",
+    coverage: "Covered by OHIP. Bloodwork is drawn on site so it is one trip.",
+    alt: "Family doctor with a patient",
+    pills: ["OHIP covered", "Bloodwork on site", "EN / Tiếng Việt"],
+  },
+  chooser: {
+    eyebrow: "What brings you in?",
+    title: "Pick the closest match.",
+    intro: "We show what the visit covers, what gets tested and how long it takes.",
+    link: "Know your numbers",
+  },
+  decades: {
+    eyebrow: "By decade",
+    title: "What changes as you get older.",
+    note: "A rough guide to what your doctor adds at each stage. Your history may move things earlier.",
+  },
+  faq: {
+    title: "Straight answers.",
+    sub: "Call 905-709-3222 if you would rather ask before booking.",
+  },
+  band: {
+    title: "Book the checkup you keep meaning to book.",
+    body: "Twenty minutes, bloodwork drawn on the way out, results back to your doctor within a week.",
+    cta: "Book a checkup",
+    link: "Build your screening year",
+  },
+} as const;

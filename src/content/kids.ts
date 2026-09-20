@@ -265,3 +265,79 @@ export const kidsSick: KidsSickCard[] = [
     action: "Call 911",
   },
 ];
+
+/** Section copy for the Children and youth page (prototype `isKids` block). */
+export const kidsCopy = {
+  hero: {
+    page: "Children and youth",
+    title: "One doctor from the first checkup to the last school form.",
+    lead: "Well-baby visits, vaccines, growth checks, same-week sick visits and every form a school or camp asks for. Care in English or Tiếng Việt, covered by OHIP.",
+    cta: "Register your child",
+    cta2: "Book a sick visit",
+    coverage: "Children can be registered with a parent or on their own. Bring the health card and immunization record.",
+    alt: "Family doctor with a young child",
+    pills: ["OHIP covered", "Same-week sick visits", "EN / Tiếng Việt"],
+  },
+  sick: {
+    eyebrow: "When they are unwell",
+    title: "Where to go, and when.",
+    note: "If your child is struggling to breathe, is very drowsy or has a seizure, call 911. This guide is for everything else.",
+  },
+  ages: {
+    eyebrow: "How old is your child?",
+    title: "Care that changes as they grow.",
+    intro: "Pick an age and see what a visit covers, how often we like to see them and what to bring.",
+    link: "Register a child",
+  },
+  imm: {
+    eyebrow: "Immunizations",
+    title: "Which vaccines are due at this age?",
+    note: "Ontario publicly funded schedule. All routine vaccines are given in clinic and recorded on the yellow card.",
+    whereLabel: "Where it happens",
+    whereNote: "Bring the yellow immunization card and health card. We update the record and can print a copy for school or daycare.",
+    catchTitle: "Behind on a few?",
+    catchBody: "Catch-up is common after a move or a gap in care. Bring whatever records you have and we plan the rest.",
+    catchCta: "Book a vaccine visit",
+    footnote: "Based on the Ontario publicly funded immunization schedule. Timing is adjusted for children with medical conditions or who started their series elsewhere. Your doctor confirms what is due at the visit.",
+  },
+  forms: {
+    eyebrow: "Forms and notes",
+    title: "Bring the form. We fill it in during the visit.",
+    body: "Most forms are completed in one short appointment. Some carry an uninsured fee, which we tell you before the visit and give you a receipt for.",
+    cta: "Book a forms visit",
+  },
+  docs: {
+    eyebrow: "Who your child will see",
+    title: "Two family doctors, one chart.",
+    body: "Your child is rostered to one physician and sees the same face each visit. The other covers when they are away, from the same record.",
+    link: "Meet the whole team",
+  },
+  path: {
+    eyebrow: "Your child's first visit",
+    title: "From the form to the yellow card.",
+    cta: "Register your child",
+  },
+  vi: {
+    eyebrow: "Chăm sóc bằng tiếng Việt",
+    title: "Grandparents can bring the kids. We speak their language.",
+    body: "Front desk, nurses and physicians speak Vietnamese and English. Forms, vaccine records and instructions can be explained in either, so whoever brings your child leaves knowing the plan.",
+    cta: "Xem trang tiếng Việt",
+    cta2: "Đăng ký cho con",
+  },
+  teens: {
+    eyebrow: "For teenagers",
+    title: "Part of every teen visit is private.",
+    body: "Teens can book on their own and speak with the doctor without a parent in the room. What is discussed stays confidential within the limits of the law, and we explain those limits plainly.",
+    cta: "Book a teen visit",
+  },
+  faq: {
+    title: "Questions parents ask.",
+    sub: "Not here? Call 905-709-3222 and ask for the family medicine desk.",
+  },
+  band: {
+    title: "Register the whole household in one form.",
+    body: "Children, parents and grandparents can share one family doctor and one chart. Appointments can be booked back to back so one trip covers everyone.",
+    cta: "Register your family",
+    link: "See the family screening year",
+  },
+} as const;
