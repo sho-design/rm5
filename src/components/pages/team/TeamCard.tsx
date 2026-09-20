@@ -16,7 +16,7 @@ export function TeamCard({ m }: { m: TeamMember }) {
         <span className="text-[16px] font-semibold">{m.name}</span>
         <span className="text-[12px] text-muted">{m.role}</span>
         <span className="pt-1 text-[12px] font-semibold text-link">{m.divisions.join(", ")}</span>
-        {m.preceptorTag ? <span className="mt-1.5 self-start rounded-chip bg-sun-tint px-[9px] py-[5px] text-[11px] font-semibold leading-none text-[color:var(--rm-sun-ink)]">{m.preceptorTag}</span> : null}
+        {m.preceptorTag ? <span className="mt-1.5 self-start rounded-chip bg-sun-tint px-[9px] py-[5px] text-[11px] font-semibold leading-[1.2] text-[color:var(--rm-sun-ink)]">{m.preceptorTag}</span> : null}
       </div>
     </div>
   );
