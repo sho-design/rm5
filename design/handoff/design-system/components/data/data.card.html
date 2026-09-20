@@ -1,0 +1,11 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Data" subtitle="Comparison and fee tables" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><style>body{margin:0;padding:16px;font-family:var(--font-ui);background:var(--bg-page);color:var(--text-primary)}</style>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script><script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><script src="../../_ds_bundle.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const NS = Object.values(window).find(v => v && typeof v === "object" && v.Table) || {};
+const { Table } = NS;
+ReactDOM.createRoot(document.getElementById("root")).render(<div style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: 12 }}>
+  <Table columns={["", "Restoration Medical", "Typical IV lounge"]} highlight={1} rows={[["Who screens you", "Registered nurse, physician on site", "Often a nurse only"], ["Iron infusions", "Physician-reviewed bloodwork first", "Rarely offered"], ["If something goes wrong", "Doctor in the building", "Call 911"]]} />
+  <Table columns={["Uninsured service", "Fee"]} rows={[["Sick note", "$30"], ["School or camp form", "$40"], ["Travel consultation", "$80"], ["Driver medical", "$120"]]} />
+</div>);
+</script></body></html>

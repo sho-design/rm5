@@ -1,0 +1,27 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Forms" subtitle="Field, Input, Textarea, Select, Checkbox, Segmented, Chip, Range with all states" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><style>body{margin:0;padding:16px;font-family:var(--font-ui);background:var(--bg-page);color:var(--text-primary)}</style>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script><script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><script src="../../_ds_bundle.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const NS = Object.values(window).find(v => v && typeof v === 'object' && v.Input && v.Chip) || {};
+const { Field, Input, Textarea, Select, Checkbox, Segmented, Chip, Range } = NS;
+function Demo() {
+  const [who, setWho] = React.useState('New patient'); const [sym, setSym] = React.useState([1]); const [age, setAge] = React.useState(45); const [ok, setOk] = React.useState(false); const [f, setF] = React.useState('All');
+  return <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}><Field label="First name"><Input placeholder="Linh" /></Field><Field label="Phone" error="Enter 10 digits"><Input invalid defaultValue="905" /></Field></div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}><Field label="Health card" optional helper="Green card, 10 digits"><Input placeholder="1234 567 890" /></Field><Field label="Disabled"><Input disabled value="Thornhill" /></Field></div>
+      <Field label="Insurer"><Select placeholder="Choose" options={['Sun Life', 'Manulife', 'Canada Life', 'Green Shield', 'Other']} /></Field>
+      <Field label="Anything we should know?" optional><Textarea rows={2} placeholder="Please do not include test results" /></Field>
+      <Checkbox checked={ok} onChange={setOk}>Send me appointment reminders by email or text. Optional, unsubscribe any time.</Checkbox>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Field label="Segmented"><Segmented options={['New patient', 'Existing patient']} value={who} onChange={setWho} /></Field>
+      <Segmented options={[{ value: 't', label: 'Thornhill' }, { value: 'm', label: 'Maple', hint: 'soon', disabled: true }]} value="t" />
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>{['All', 'Family Medicine', 'Pain Centre', 'Infusion'].map(l => <Chip key={l} size="sm" selected={f === l} onClick={() => setF(l)}>{l}</Chip>)}</div>
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>{['Always cold', 'Brain fog', 'Restless legs'].map((l, i) => <Chip key={l} tone="sage" check selected={sym.includes(i)} onClick={() => setSym(s => s.includes(i) ? s.filter(x => x !== i) : [...s, i])}>{l}</Chip>)}</div>
+      <div style={{ background: 'var(--rm-ink)', borderRadius: 16, padding: 14 }}><Range label="My age" min={18} max={85} value={age} onChange={setAge} inverse /></div>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>

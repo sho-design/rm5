@@ -1,0 +1,6 @@
+import React from 'react';
+export function UtilityBar({ phone = '905-709-3222', status, open, links, right, style }) {
+  return React.createElement('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, padding: '0 24px', height: 36, background: 'var(--rm-ink)', color: '#fff', fontSize: 12, fontFamily: 'var(--font-ui)', ...style } },
+    React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 14 } }, React.createElement('a', { href: 'tel:' + phone.split('-').join(''), style: { color: '#fff', fontWeight: 600, textDecoration: 'none' } }, 'Thornhill: ' + phone), status ? React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 6, color: 'rgba(255,255,255,.8)' } }, React.createElement('span', { style: { width: 7, height: 7, borderRadius: 999, background: open ? 'var(--status-open)' : 'var(--rm-terracotta)' } }), status) : null),
+    React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 14 } }, links ? links.map(l => React.createElement('a', { key: l.label, onClick: l.onClick, style: { color: l.accent ? 'var(--rm-sun)' : 'rgba(255,255,255,.8)', fontWeight: 600, cursor: 'pointer' } }, l.label)) : null, right));
+}

@@ -1,0 +1,54 @@
+/* Fraunces 500 for display, Instrument Sans for everything else. Sizes are the ones used on the site; do not invent in-betweens. */
+:root {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-ui: 'Instrument Sans', system-ui, sans-serif;
+
+  /* Display (Fraunces 500, tight tracking) */
+  --display-hero: 84px;      /* division page H1 */
+  --display-xl: 76px;        /* landing hero */
+  --display-lg: 72px;        /* page H1 */
+  --display-md: 56px;        /* photo-hero headline */
+  --display-sm: 48px;        /* section H2 */
+  --display-xs: 44px;        /* subsection H2 */
+  --display-2xs: 40px;       /* card feature title */
+  --title-lg: 30px;          /* CTA band title */
+  --title-md: 26px;          /* card title */
+  --title-sm: 24px;          /* compact card title */
+  --title-xs: 22px;          /* list row title */
+  --numeral-lg: 64px;        /* big number in benefit / coverage cards */
+  --numeral-md: 52px;        /* price */
+
+  --display-weight: 500;
+  --display-tracking-tight: -0.025em;
+  --display-tracking: -0.02em;
+  --display-leading-tight: 0.96;
+  --display-leading: 1.02;
+  --display-leading-card: 1.05;
+
+  /* UI (Instrument Sans) */
+  --text-lg: 18px;   /* lead paragraph */
+  --text-md: 17px;   /* article body */
+  --text-base: 16px; /* body */
+  --text-sm: 15px;   /* card body, buttons */
+  --text-xs: 14px;   /* secondary, links */
+  --text-2xs: 13px;  /* eyebrow, meta, chips */
+  --text-3xs: 12px;  /* labels, tags */
+  --text-4xs: 11px;  /* status bar, tiny tags */
+
+  --leading-tight: 1.35;
+  --leading-body: 1.5;
+  --leading-relaxed: 1.55;
+  --leading-article: 1.65;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  /* Semantic */
+  --eyebrow-size: var(--text-2xs);
+  --eyebrow-weight: var(--weight-semibold);
+  --button-size: var(--text-sm);
+  --button-weight: var(--weight-semibold);
+  --label-size: var(--text-3xs);
+  --label-weight: var(--weight-semibold);
+}

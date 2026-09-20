@@ -1,0 +1,13 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Actions" subtitle="Button variants, sizes, states; IconButton" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><style>body{margin:0;padding:16px;font-family:var(--font-ui);background:var(--bg-page);color:var(--text-primary)}</style>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script><script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><script src="../../_ds_bundle.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const NS = Object.values(window).find(v => v && typeof v === 'object' && v.Button && v.IconButton) || {};
+const { Button, IconButton } = NS;
+const Row = ({ label, children, dark }) => <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', borderRadius: 14, background: dark ? 'var(--rm-ink)' : 'transparent', marginBottom: 6 }}><span style={{ width: 70, fontSize: 11, color: dark ? 'rgba(255,255,255,.6)' : 'var(--text-muted)' }}>{label}</span>{children}</div>;
+ReactDOM.createRoot(document.getElementById('root')).render(<div>
+  <Row label="Variants"><Button>Book</Button><Button variant="secondary">Continue ›</Button><Button variant="outline">‹ Back</Button><Button variant="ghost" trailing>Learn more</Button><Button disabled>Choose a time</Button></Row>
+  <Row label="On navy" dark><Button variant="accent">Start with step one</Button><Button variant="inverse">Book</Button><IconButton label="Smaller" inverse>A−</IconButton><IconButton label="Default" inverse active>A</IconButton><IconButton label="Larger" inverse>A+</IconButton></Row>
+  <Row label="Sizes"><Button size="sm">Book</Button><Button size="md">Book</Button><Button size="lg">Book an iron assessment</Button><IconButton label="Menu">☰</IconButton><IconButton label="Close" active>×</IconButton></Row>
+</div>);
+</script></body></html>

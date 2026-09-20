@@ -1,0 +1,133 @@
+/* Restoration Medical colour system. Light is default; [data-theme="dark"] and [data-theme="contrast"] are first-class themes. */
+:root {
+  /* Base palette */
+  --rm-ink: #0F1F2E;
+  --rm-ink-2: #3C4A57;
+  --rm-ink-3: #5A6B7B;
+  --rm-sky: #2F7FD1;
+  --rm-sky-soft: #EEF5FC;
+  --rm-sun: #FFD84D;
+  --rm-sun-soft: #FFE58A;
+  --rm-sun-tint: #FFF3C4;
+  --rm-sun-ink: #2A2000;
+  --rm-terracotta: #E07A5F;
+  --rm-terracotta-deep: #C4573A;
+  --rm-terracotta-tint: #FDE8E4;
+  --rm-sage: #7FC8A9;
+  --rm-sage-deep: #3D9B78;
+  --rm-sage-tint: #E6F4EA;
+  --rm-sage-ink: #2C4A3A;
+  --rm-lilac: #C9A0DC;
+  --rm-lilac-deep: #8E5FB5;
+  --rm-lilac-tint: #F3ECF8;
+  --rm-amber-deep: #B8860B;
+  --rm-paper: #FFFFFF;
+  --rm-paper-2: #F5F8FB;
+  --rm-line: #E2E9F0;
+  --rm-canvas: #E9E7E2;
+
+  /* Division tints (one per service line) */
+  --div-family: var(--rm-sky-soft);       --div-family-accent: var(--rm-sky);
+  --div-pain: var(--rm-terracotta-tint);  --div-pain-accent: var(--rm-terracotta-deep);
+  --div-infusion: var(--rm-sage-tint);    --div-infusion-accent: var(--rm-sage-deep);
+  --div-aesthetics: var(--rm-lilac-tint); --div-aesthetics-accent: var(--rm-lilac-deep);
+  --div-rehab: var(--rm-sun-tint);        --div-rehab-accent: var(--rm-amber-deep);
+
+  /* Semantic */
+  --bg-page: var(--rm-paper);
+  --bg-canvas: var(--rm-canvas);
+  --surface-card: var(--rm-paper-2);
+  --surface-raised: var(--rm-paper);
+  --surface-inverse: var(--rm-ink);
+  --surface-accent: var(--rm-sun-soft);
+  --border-default: var(--rm-line);
+  --border-strong: var(--rm-ink);
+  --text-primary: var(--rm-ink);
+  --text-secondary: var(--rm-ink-2);
+  --text-muted: var(--rm-ink-3);
+  --text-on-inverse: #FFFFFF;
+  --text-on-inverse-muted: rgba(255,255,255,.72);
+  --text-on-accent: var(--rm-sun-ink);
+  --text-link: var(--rm-sky);
+  --action-primary-bg: var(--rm-ink);
+  --action-primary-fg: #FFFFFF;
+  --action-secondary-bg: var(--rm-sky);
+  --action-secondary-fg: #FFFFFF;
+  --action-accent-bg: var(--rm-sun);
+  --action-accent-fg: var(--rm-sun-ink);
+  --focus-ring: var(--rm-sky);
+  --status-open: var(--rm-sage);
+  --status-success-bg: var(--rm-sage-tint);   --status-success-fg: var(--rm-sage-deep);
+  --status-warning-bg: var(--rm-sun-tint);    --status-warning-fg: var(--rm-amber-deep);
+  --status-error-bg: var(--rm-terracotta-tint); --status-error-fg: var(--rm-terracotta-deep);
+  --status-info-bg: var(--rm-sky-soft);       --status-info-fg: var(--rm-sky);
+  --field-bg: #FFFFFF;
+  --field-border: var(--rm-line);
+  --field-border-focus: var(--rm-sky);
+  --field-border-error: var(--rm-terracotta-deep);
+  --field-placeholder: var(--rm-ink-3);
+  --field-disabled-bg: var(--rm-paper-2);
+  --field-disabled-fg: #9AA7B3;
+  --overlay-scrim: rgba(15,31,46,.55);
+  --photo-protection: linear-gradient(180deg, rgba(10,20,30,0) 38%, rgba(10,20,30,.72) 100%);
+}
+
+/* Dark mode: navy paper, same accents, tints become translucent inks. */
+[data-theme="dark"] {
+  --bg-page: #0F1F2E;
+  --bg-canvas: #0A141E;
+  --surface-card: #16283A;
+  --surface-raised: #1C3146;
+  --surface-inverse: #FFFFFF;
+  --surface-accent: #FFD84D;
+  --border-default: rgba(255,255,255,.14);
+  --border-strong: #FFFFFF;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255,255,255,.82);
+  --text-muted: rgba(255,255,255,.62);
+  --text-on-inverse: #0F1F2E;
+  --text-on-inverse-muted: rgba(15,31,46,.72);
+  --text-link: #7FB8F0;
+  --action-primary-bg: #FFFFFF;
+  --action-primary-fg: #0F1F2E;
+  --action-secondary-bg: #7FB8F0;
+  --action-secondary-fg: #0F1F2E;
+  --focus-ring: #FFD84D;
+  --div-family: rgba(47,127,209,.18);      --div-family-accent: #7FB8F0;
+  --div-pain: rgba(224,122,95,.18);        --div-pain-accent: #F0A08A;
+  --div-infusion: rgba(127,200,169,.18);   --div-infusion-accent: #7FC8A9;
+  --div-aesthetics: rgba(201,160,220,.18); --div-aesthetics-accent: #D9B8EA;
+  --div-rehab: rgba(255,216,77,.16);       --div-rehab-accent: #FFD84D;
+  --status-success-bg: rgba(127,200,169,.18); --status-success-fg: #7FC8A9;
+  --status-warning-bg: rgba(255,216,77,.16);  --status-warning-fg: #FFD84D;
+  --status-error-bg: rgba(224,122,95,.18);    --status-error-fg: #F0A08A;
+  --status-info-bg: rgba(47,127,209,.18);     --status-info-fg: #7FB8F0;
+  --field-bg: #16283A;
+  --field-border: rgba(255,255,255,.18);
+  --field-border-focus: #7FB8F0;
+  --field-placeholder: rgba(255,255,255,.5);
+  --field-disabled-bg: #12202E;
+  --field-disabled-fg: rgba(255,255,255,.35);
+  --overlay-scrim: rgba(0,0,0,.65);
+}
+
+/* High contrast: pure ink on white, tints removed, 2px borders. Drives the utility bar toggle. */
+[data-theme="contrast"] {
+  --bg-page: #FFFFFF;
+  --bg-canvas: #FFFFFF;
+  --surface-card: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --surface-accent: #FFD84D;
+  --border-default: #0F1F2E;
+  --text-secondary: #0F1F2E;
+  --text-muted: #1F2F3E;
+  --text-link: #0B4FA8;
+  --action-secondary-bg: #0B4FA8;
+  --focus-ring: #0B4FA8;
+  --div-family: #FFFFFF; --div-pain: #FFFFFF; --div-infusion: #FFFFFF; --div-aesthetics: #FFFFFF; --div-rehab: #FFFFFF;
+  --div-family-accent: #0B4FA8; --div-pain-accent: #8A2E14; --div-infusion-accent: #1F6B4E; --div-aesthetics-accent: #5D2E85; --div-rehab-accent: #6B4B00;
+  --status-success-fg: #1F6B4E; --status-warning-fg: #6B4B00; --status-error-fg: #8A2E14; --status-info-fg: #0B4FA8;
+  --field-border: #0F1F2E;
+  --field-placeholder: #1F2F3E;
+  --border-width: 2px;
+}

@@ -1,0 +1,21 @@
+/* Motion: short, eased, never bouncy. Icons get a per-icon hover animation; everything else fades or slides a few pixels. */
+:root {
+  --ease-standard: cubic-bezier(.2,.8,.2,1);
+  --ease-linear: linear;
+  --duration-fast: 200ms;    /* colour, border, background */
+  --duration-base: 250ms;    /* selection state, chevron rotate */
+  --duration-slow: 300ms;    /* expand / collapse */
+  --duration-slower: 400ms;  /* accordion rows, hero slide */
+  --duration-hero: 5500ms;   /* hero auto-advance interval */
+
+  --transition-color: background-color var(--duration-base) var(--ease-standard), border-color var(--duration-base) var(--ease-standard), color var(--duration-base) var(--ease-standard);
+  --transition-all: all var(--duration-base) var(--ease-standard);
+  --transition-expand: all var(--duration-slow) var(--ease-standard);
+
+  --hover-lift: translateY(-1px);
+  --press-scale: scale(.98);
+  --selected-scale: scale(1.15); /* body-map hotspot */
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --duration-fast: 0ms; --duration-base: 0ms; --duration-slow: 0ms; --duration-slower: 0ms; }
+}

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E9E7E2;font-family:'Instrument Sans',sans-serif}
+a{color:inherit;text-decoration:none;cursor:pointer}a:hover{opacity:.85}
+*{box-sizing:border-box}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:20px;padding:32px;min-height:100vh">
+
+<!-- prototype controls -->
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:0 4px">
+  <div style="display:flex;gap:6px;flex-wrap:wrap">
+    <sc-for list="{{ pages }}" as="p" hint-placeholder-count="9">
+      <a onClick="{{ p.go }}" style="font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;background:{{ p.bg }};color:{{ p.fg }};border:1px solid #cfcdc7">{{ p.label }}</a>
+    </sc-for>
+  </div>
+  <div style="display:flex;gap:6px">
+    <a onClick="{{ toggleView }}" style="font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;border:1px solid #cfcdc7;background:#fff">{{ viewLabel }}</a>
+    <a onClick="{{ toggleTheme }}" style="font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;border:1px solid #1c1c1a;background:#1c1c1a;color:#fff">{{ themeLabel }}</a>
+  </div>
+</div>
+
+<!-- ================= DESKTOP ================= -->
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="{{ page }}" style="width:1280px;margin:0 auto;background:{{ t.bg }};color:{{ t.ink }};font-family:'Instrument Sans',sans-serif;box-shadow:0 30px 80px rgba(0,0,0,.14);border-radius:4px;overflow:hidden">
+
+  <!-- NAV -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 32px;position:relative">
+    <a onClick="{{ goHome }}" style="display:flex;flex-direction:column;line-height:1.05"><span style="font-size:20px;font-weight:600;letter-spacing:-.02em">Infusion Therapy</span><span style="font-size:11px;color:{{ t.muted }};letter-spacing:.04em">at Restoration Medical</span></a>
+    <div style="display:flex;gap:4px;padding:4px;border-radius:999px;background:{{ t.card }};border:1px solid {{ t.line }};font-size:14px;font-weight:500">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="6">
+        <a onClick="{{ n.go }}" style="padding:8px 16px;border-radius:999px;background:{{ n.bg }};color:{{ n.fg }};display:flex;align-items:center;gap:7px"><sc-if value="{{ n.dot }}" hint-placeholder-val="{{ false }}"><span style="width:7px;height:7px;border-radius:50%;background:{{ t.accent }}"></span></sc-if>{{ n.label }}</a>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:8px;font-size:14px;font-weight:500;align-items:center">
+      <a href="tel:905-709-3222" style="padding: 10px 16px; border-radius: 999px; border: 1.5px solid {{ t.line }}; font-weight: 700">905-709-3222</a>
+      <a onClick="{{ goBook }}" style="background:{{ t.ink }};color:{{ t.bg }};padding:10px 18px;border-radius:999px">Book a consult</a>
+    </div>
+  </div>
+
+  <!-- ===== HOME ===== -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div style="margin:6px 24px 0;position:relative;border-radius:28px;overflow:hidden;min-height:640px;display:flex;align-items:flex-end">
+      <img src="{{ heroImg }}" alt="Guest relaxing during an infusion" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,30,0) 38%,rgba(10,20,30,.72) 100%)"></div>
+      <div style="position:relative;padding:48px;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;width:100%;gap:40px">
+        <div style="display:flex;flex-direction:column;gap:20px;max-width:760px">
+          <span style="display:inline-flex;align-self:flex-start;background:{{ t.sunDeep }};color:#2A2000;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600">Physician-led, nurse-administered</span>
+          <h1 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:80px;line-height:.98;letter-spacing:-.025em;text-wrap:balance">Come as you are. <em style="font-weight:400">Leave feeling restored.</em></h1>
+          <p style="margin:0;font-size:19px;line-height:1.5;color:rgba(255,255,255,.85);max-width:600px;text-wrap:pretty">From everyday energy to clinically indicated iron infusions, our therapies meet your body where it is. Reviewed by our physician, given by our nurses.</p>
+          <div style="display:flex;gap:10px"><a onClick="{{ goBook }}" style="background:#fff;color:#0F1F2E;padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600">Book a consult</a><a onClick="{{ goDrips }}" style="border:1.5px solid rgba(255,255,255,.6);padding:14px 24px;border-radius:999px;font-size:15px;font-weight:500">Explore drips &amp; shots</a><a onClick="{{ goIron }}" style="border:1.5px solid rgba(255,255,255,.6);padding:14px 24px;border-radius:999px;font-size:15px;font-weight:500">Iron therapy</a></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;white-space:nowrap"><span style="font-size:13px;color:rgba(255,255,255,.8)">Physician-led. Nurse-administered.</span><span style="font-size:13px;color:rgba(255,255,255,.7)">Thornhill, with Maple coming soon</span></div>
+      </div>
+    </div>
+
+    <div style="padding:64px 32px 24px;display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px"><h2 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:44px;letter-spacing:-.025em;line-height:1.02;max-width:640px;text-wrap:balance">Wellness and clinical, under one roof.</h2><span style="font-size:14px;color:{{ t.muted }};max-width:320px;text-wrap:pretty">Two paths, one standard of care. Wellness is elective; iron therapy may be clinically indicated.</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:14px">
+        <a onClick="{{ goDrips }}" style="grid-column:span 2;grid-row:1;border-radius:24px;background:{{ t.navy }};color:{{ t.onNavy }};padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:80px;min-height:360px;position:relative;overflow:hidden">
+          <span style="font-size:13px;font-weight:600;position:relative">Wellness infusions &amp; shots</span>
+          <div style="display:flex;flex-direction:column;gap:10px;position:relative"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:34px;font-weight:500;letter-spacing:-.02em;line-height:1.05">Energy, immunity, skin, recovery, healthy aging.</span><span style="font-size:15px;color:{{ t.navyMuted }}">Personalized to you, given in a calm clinical setting. Elective, and designed around how you want to feel.</span><span style="font-size:15px;font-weight:600">Browse drips &amp; shots →</span></div>
+        </a>
+        <a onClick="{{ goIron }}" style="grid-column:3;grid-row:1;border-radius:24px;background:{{ t.accent }};color:{{ t.onAccent }};padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;position:relative;overflow:hidden;min-height:360px" style-hover="opacity:.92">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260903_071606_44b313fa-3033-44bf-a024-17701e5927ec.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;mix-blend-mode:luminosity">
+          <div style="position:relative;display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;font-weight:600">Clinical infusion</span><span style="font-size:11px;font-weight:600;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.22)">Lab-reviewed</span></div>
+          <div style="position:relative;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:34px;font-weight:500;letter-spacing:-.02em;line-height:1.02">Iron therapy</span><span style="font-size:15px;opacity:.9;line-height:1.45">For low ferritin and iron deficiency. When supplements have not been enough.</span><span style="font-size:15px;font-weight:600">Book an assessment →</span></div>
+        </a>
+        <a onClick="{{ goHow }}" style="grid-row:2;border-radius:24px;background:{{ t.sun }};padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:40px">
+          <span style="font-size:13px;font-weight:600">How it works</span>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:24px;font-weight:500;letter-spacing:-.02em;line-height:1.1">Three simple steps</span><span style="font-size:14px;opacity:.75">Consult &amp; screen, personalize, relax.</span></div>
+        </a>
+        <a onClick="{{ goConcerns }}" style="grid-column:span 2;grid-row:2;border-radius:24px;background:{{ t.card }};border:1px solid {{ t.line }};padding:28px;display:grid;grid-template-columns:1fr 1.3fr;gap:24px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:600;color:{{ t.muted }}">Start with how you feel</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:24px;font-weight:500;letter-spacing:-.02em;line-height:1.1">Browse by concern</span><span style="font-size:14px;color:{{ t.muted }}">Most people arrive with a feeling, not a product name.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ concerns }}" as="c" hint-placeholder-count="8"><span style="background:{{ t.chip }};border:1px solid {{ t.line }};border-radius:999px;padding:7px 12px;font-size:12px;font-weight:500">{{ c.t }}</span></sc-for></div>
+        </a>
+      </div>
+    </div>
+
+    <div style="padding:56px 32px 24px;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch">
+      <div style="border-radius:24px;overflow:hidden;position:relative;min-height:520px"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260910_054249_aa04c993-2044-4934-bef8-15c42a540d2c.png" alt="Registered nurse" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><div style="position:absolute;left:20px;bottom:20px;background:rgba(255,255,255,.9);color:#0F1F2E;border-radius:14px;padding:12px 16px;font-size:13px;font-weight:600">Registered nurses place and monitor every infusion</div></div>
+      <div style="border-radius:24px;background:{{ t.card }};border:1px solid {{ t.line }};padding:40px;display:flex;flex-direction:column;justify-content:space-between;gap:32px">
+        <div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:13px;font-weight:600;color:{{ t.accent }}">Why physician-led matters</span><h2 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:40px;letter-spacing:-.025em;line-height:1.02">A real clinic, not a drip bar.</h2><p style="margin:0;font-size:16px;line-height:1.55;color:{{ t.muted }};text-wrap:pretty">The difference matters. Screening, real medical oversight, and nurses who do this every day.</p></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <sc-for list="{{ why }}" as="w" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:16px;background:{{ t.bg }};border:1px solid {{ t.line }}"><span style="font-size:15px;font-weight:600">{{ w.t }}</span><span style="font-size:13px;line-height:1.5;color:{{ t.muted }}">{{ w.d }}</span></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:56px 32px 24px;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:40px;letter-spacing:-.025em">The honest menu</h2><span style="font-size:14px;color:{{ t.muted }}">What a drip bar promises. What we say.</span></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <sc-for list="{{ claims }}" as="c" hint-placeholder-count="3"><div style="padding:28px;border-radius:24px;background:{{ t.card }};border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:14px"><span style="font-size:20px;font-weight:600;letter-spacing:-.02em;text-decoration:line-through;text-decoration-color:{{ t.accent }};text-decoration-thickness:3px">{{ c.p }}</span><span style="font-size:14px;line-height:1.55;color:{{ t.muted }}">{{ c.s }}</span></div></sc-for>
+      </div>
+    </div>
+
+    <div style="margin:56px 24px 24px;padding:56px;border-radius:28px;background:{{ t.sun }};display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:48px;letter-spacing:-.025em;line-height:1">Care that begins with you.</h2><p style="margin:0;font-size:17px;line-height:1.5;opacity:.8;max-width:600px;text-wrap:pretty">Wellness or clinical, the standard of care is the same. A consult confirms what is right for you. No pricing surprises, no pressure.</p></div>
+      <div style="display:flex;gap:10px"><a onClick="{{ goBook }}" style="background:{{ t.ink }};color:{{ t.bg }};padding:16px 28px;border-radius:999px;font-size:15px;font-weight:600;white-space:nowrap">Book a consult</a><a onClick="{{ goHow }}" style="border:1.5px solid {{ t.ink }};padding:15px 26px;border-radius:999px;font-size:15px;font-weight:500;white-space:nowrap">Is this right for me?</a></div>
+    </div>
+  </sc-if>
+
+  <!-- ===== DRIPS & SHOTS ===== -->
+  <sc-if value="{{ isDrips }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px 32px 24px;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:16px"><span style="font-size:13px;font-weight:600;color:{{ t.accent }}">Browse our drips &amp; shots</span><h1 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:64px;letter-spacing:-.025em;line-height:.98;text-wrap:balance">Our drips and shots.</h1><p style="margin:0;font-size:17px;line-height:1.55;color:{{ t.muted }};max-width:560px;text-wrap:pretty">Each treatment family carries its own accent, drawn from its ingredients. Pick a family to narrow the list, or browse everything.</p></div>
+      <div style="border-radius:24px;overflow:hidden;aspect-ratio:16/10;position:relative"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260910_054250_31de6503-6523-4afa-8563-bc39049d49d5.png" alt="Guests in the lounge" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
+    </div>
+    <div style="padding:16px 32px 0;display:flex;gap:6px;flex-wrap:wrap">
+      <sc-for list="{{ families }}" as="f" hint-placeholder-count="6"><a onClick="{{ f.go }}" style="display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;font-size:13px;font-weight:500;background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ t.line }}"><span style="width:10px;height:10px;border-radius:50%;background:{{ f.c }}"></span>{{ f.label }}</a></sc-for>
+    </div>
+    <div style="padding:24px 32px 0;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:28px;letter-spacing:-.02em">Signature drips</h2><span style="font-size:13px;color:{{ t.muted }}">{{ dripCount }} drips, about 45 minutes in the chair</span></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <sc-for list="{{ dripsFiltered }}" as="d" hint-placeholder-count="12">
+          <a onClick="{{ goDrip }}" style="display:flex;flex-direction:column;justify-content:space-between;gap:36px;padding:22px;border-radius:20px;min-height:190px;background:{{ t.card }};border:1px solid {{ t.line }}" style-hover="border-color:{{ t.ink }}">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:{{ t.muted }}"><span style="width:10px;height:10px;border-radius:50%;background:{{ d.c }}"></span>{{ d.f }}</span><span style="font-size:11px;font-weight:600;padding:4px 8px;border-radius:999px;background:{{ t.chip }};border:1px solid {{ t.line }}">{{ d.ev }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:21px;font-weight:600;letter-spacing:-.02em;line-height:1.1">{{ d.t }}</span><span style="font-size:13px;line-height:1.45;color:{{ t.muted }}">{{ d.d }}</span></div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+    <div style="padding:48px 32px 24px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:28px;letter-spacing:-.02em">Shots: The Injection Bar</h2><span style="font-size:13px;color:{{ t.muted }}">10 shots, about 10 minutes</span></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
+        <sc-for list="{{ shots }}" as="s" hint-placeholder-count="10"><a onClick="{{ goBook }}" style="display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:16px;background:{{ t.sun }}" style-hover="opacity:.85"><span style="font-size:17px;font-weight:600;letter-spacing:-.01em">{{ s.t }}</span><span style="font-size:12px;opacity:.75">{{ s.d }}</span></a></sc-for>
+      </div>
+    </div>
+    <div style="margin:48px 24px 24px;padding:40px 48px;border-radius:28px;background:{{ t.navy }};color:{{ t.onNavy }};display:flex;justify-content:space-between;align-items:center;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:28px;font-weight:500;letter-spacing:-.02em">Build your own</span><span style="font-size:15px;color:{{ t.navyMuted }}">Choose a base and add-ons with your nurse, after a quick screening.</span></div>
+      <a onClick="{{ goBook }}" style="background:{{ t.onNavy }};color:{{ t.navy }};padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600;white-space:nowrap">Start with a consult</a>
+    </div>
+  </sc-if>
+
+  <!-- ===== SINGLE DRIP ===== -->
+  <sc-if value="{{ isDrip }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:32px 32px 0"><a onClick="{{ goDrips }}" style="font-size:14px;font-weight:500;color:{{ t.muted }}">← All drips</a></div>
+    <div style="padding:24px 32px 0;display:grid;grid-template-columns:1fr 480px;gap:32px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:{{ t.muted }}"><span style="width:10px;height:10px;border-radius:50%;background:#7FC8A9"></span>Foundation &amp; Healing, IV drip</span>
+        <h1 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:72px;letter-spacing:-.025em;line-height:.96">Healing (Myers')</h1>
+        <p style="margin:0;font-size:20px;line-height:1.5;color:{{ t.muted }};max-width:560px;text-wrap:pretty">A classic blend of B vitamins, vitamin C, magnesium and calcium.</p>
+        <div style="display:flex;gap:10px"><a onClick="{{ goBook }}" style="background:{{ t.ink }};color:{{ t.bg }};padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600">Book a consult</a><a onClick="{{ goHow }}" style="border:1.5px solid {{ t.line }};padding:14px 24px;border-radius:999px;font-size:15px;font-weight:500">Is this right for me?</a></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;padding-top:8px"><span style="font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;background:{{ t.card }};border:1px solid {{ t.line }}">~45 min</span><span style="font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;background:{{ t.card }};border:1px solid {{ t.line }}">Elective wellness</span><span style="font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;background:{{ t.card }};border:1px solid {{ t.line }}">Kidney health screened</span></div>
+      </div>
+      <div style="border-radius:24px;overflow:hidden;aspect-ratio:4/5;position:relative"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260903_071606_e93b5635-c730-41f6-9453-61ab50a17a4d.png" alt="IV bag" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
+    </div>
+    <div style="padding:48px 32px 0;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="padding:32px;border-radius:24px;background:{{ t.card }};border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:14px"><span style="font-size:13px;font-weight:600;color:{{ t.accent }}">What it is</span><p style="margin:0;font-size:17px;line-height:1.55;text-wrap:pretty">Our take on the classic Myers' cocktail, a well-known blend of B vitamins, vitamin C, magnesium, and calcium. A go-to when you feel run down and want to reset.</p></div>
+      <div style="padding:32px;border-radius:24px;background:{{ t.sun }};display:flex;flex-direction:column;gap:14px"><span style="font-size:13px;font-weight:600">Designed to support</span><div style="display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5"><span>May support recovery when you feel run down.</span><span>Contains B vitamins, vitamin C, magnesium and calcium.</span><span>Helps maintain hydration.</span></div></div>
+    </div>
+    <div style="padding:48px 32px 0;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:32px;letter-spacing:-.02em">What's inside</h2><span style="font-size:13px;color:{{ t.muted }}">A consult and screening confirm the final blend for you.</span></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
+        <sc-for list="{{ ingredients }}" as="i" hint-placeholder-count="5"><div style="padding:20px;border-radius:18px;background:{{ t.card }};border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:8px;min-height:150px"><span style="font-size:17px;font-weight:600;letter-spacing:-.01em">{{ i.t }}</span><span style="font-size:13px;line-height:1.45;color:{{ t.muted }}">{{ i.d }}</span></div></sc-for>
+      </div>
+    </div>
+    <div style="padding:48px 32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+      <div style="padding:28px;border-radius:24px;border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;font-weight:600;color:{{ t.muted }}">Recommended add-ons</span><span style="font-size:16px;line-height:1.5">Glutathione, zinc, amino blend</span><span style="font-size:13px;color:{{ t.muted }}">Your nurse can include any after a quick screening, on clinical grounds.</span></div>
+      <div style="padding:28px;border-radius:24px;border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;font-weight:600;color:{{ t.muted }}">What to expect</span><span style="font-size:15px;line-height:1.5">Around forty-five minutes in the chair. The magnesium can bring a gentle warmth, which your nurse paces for comfort.</span></div>
+      <div style="padding:28px;border-radius:24px;border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;font-weight:600;color:{{ t.muted }}">Helps with</span><div style="display:flex;flex-wrap:wrap;gap:6px"><a onClick="{{ goConcerns }}" style="background:{{ t.chip }};border:1px solid {{ t.line }};border-radius:999px;padding:7px 12px;font-size:12px;font-weight:500">Low energy &amp; fatigue</a><a onClick="{{ goConcerns }}" style="background:{{ t.chip }};border:1px solid {{ t.line }};border-radius:999px;padding:7px 12px;font-size:12px;font-weight:500">Seasonal wellness</a><a onClick="{{ goConcerns }}" style="background:{{ t.chip }};border:1px solid {{ t.line }};border-radius:999px;padding:7px 12px;font-size:12px;font-weight:500">Hydration &amp; travel</a></div></div>
+    </div>
+    <div style="margin:48px 24px 24px;padding:40px 48px;border-radius:28px;background:{{ t.navy }};color:{{ t.onNavy }};display:flex;justify-content:space-between;align-items:center;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:28px;font-weight:500;letter-spacing:-.02em">A consult confirms this is right for you.</span><span style="font-size:15px;color:{{ t.navyMuted }}">An elective wellness service. Results vary. Not a treatment for any disease.</span></div>
+      <a onClick="{{ goBook }}" style="background:{{ t.onNavy }};color:{{ t.navy }};padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600;white-space:nowrap">Book a consult</a>
+    </div>
+  </sc-if>
+
+  <!-- ===== BY CONCERN ===== -->
+  <sc-if value="{{ isConcerns }}" hint-placeholder-val="{{ false }}">
+    <div style="margin:6px 24px 0;position:relative;border-radius:28px;overflow:hidden;min-height:420px;display:flex;align-items:flex-end">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260903_070010_ffe990c9-3b94-4cb2-a455-7ec0f77d895d.png" alt="Mother and daughter" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,30,0) 30%,rgba(10,20,30,.72) 100%)"></div>
+      <div style="position:relative;padding:48px;color:#fff;display:flex;flex-direction:column;gap:14px;max-width:760px"><span style="font-size:13px;font-weight:600;color:{{ t.sunDeep }}">Find your starting point</span><h1 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:64px;letter-spacing:-.025em;line-height:.98">Start with how you feel.</h1><p style="margin:0;font-size:18px;line-height:1.5;color:rgba(255,255,255,.85);text-wrap:pretty">Tell us how you want to feel. We will help you find the right support. Most people arrive with a feeling, not a product name.</p></div>
+    </div>
+    <div style="padding:40px 32px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+      <sc-for list="{{ concernsFull }}" as="c" hint-placeholder-count="8">
+        <a onClick="{{ goDrips }}" style="display:flex;flex-direction:column;justify-content:space-between;gap:40px;padding:24px;border-radius:22px;min-height:230px;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ t.line }}" style-hover="transform:translateY(-3px)">
+          <span style="font-size:12px;font-weight:600;opacity:.7">{{ c.n }} {{ c.tag }}</span>
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:22px;font-weight:500;letter-spacing:-.02em;line-height:1.1">{{ c.t }}</span><span style="font-size:13px;line-height:1.45;opacity:.8">{{ c.d }}</span><span style="font-size:13px;font-weight:600;padding-top:4px">{{ c.cta }} →</span></div>
+        </a>
+      </sc-for>
+    </div>
+    <div style="margin:32px 24px 24px;padding:40px 48px;border-radius:28px;background:{{ t.card }};border:1px solid {{ t.line }};display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:13px;font-weight:600;color:{{ t.accent }}">Not sure where you fit?</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:32px;font-weight:500;letter-spacing:-.02em;line-height:1.05">Tell us in your own words.</span><span style="font-size:15px;line-height:1.5;color:{{ t.muted }}">A consult starts with how you feel. Our physician reviews, our nurse tailors, and we only suggest what is right for you.</span></div>
+      <div style="display:flex;justify-content:flex-end"><a onClick="{{ goBook }}" style="background:{{ t.ink }};color:{{ t.bg }};padding:16px 28px;border-radius:999px;font-size:15px;font-weight:600">Book a consult</a></div>
+    </div>
+  </sc-if>
+
+  <!-- ===== IRON THERAPY ===== -->
+  <sc-if value="{{ isIron }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px 32px 0;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="display:inline-flex;align-self:flex-start;background:{{ t.accent }};color:{{ t.onAccent }};padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600">Clinical infusion</span>
+        <h1 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:60px;letter-spacing:-.025em;line-height:.98;text-wrap:balance">Iron therapy, when your body needs more than supplements.</h1>
+        <p style="margin:0;font-size:17px;line-height:1.55;color:{{ t.muted }};text-wrap:pretty">This is a clinical infusion, not a wellness drip. It is lab-reviewed, physician-directed, and given with monitoring, for when low iron is holding you back and tablets have not been enough.</p>
+        <div style="display:flex;gap:10px"><a onClick="{{ goBook }}" style="background:{{ t.ink }};color:{{ t.bg }};padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600">Book an assessment</a><a href="tel:905-709-3222" style="border:1.5px solid {{ t.line }};padding:14px 24px;border-radius:999px;font-size:15px;font-weight:500">Talk to us about iron</a></div>
+      </div>
+      <div style="border-radius:28px;overflow:hidden;aspect-ratio:5/4;position:relative"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260903_071606_44b313fa-3033-44bf-a024-17701e5927ec.png" alt="Woman by the window" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
+    </div>
+    <div style="padding:56px 32px 0;display:grid;grid-template-columns:1fr 1.6fr;gap:14px">
+      <div style="padding:32px;border-radius:24px;background:{{ t.sun }};display:flex;flex-direction:column;gap:14px"><span style="font-size:13px;font-weight:600">Who it is for</span><div style="display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:1.45"><span>Low ferritin or diagnosed iron deficiency</span><span>Iron-deficiency anemia</span><span>Fatigue related to low iron</span><span>Heavy menstrual bleeding</span><span>Iron supplements that have not worked or are not tolerated</span></div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <sc-for list="{{ ironSteps }}" as="s" hint-placeholder-count="4"><div style="padding:26px;border-radius:22px;background:{{ t.card }};border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:10px"><span style="width:32px;height:32px;border-radius:50%;background:{{ t.accent }};color:{{ t.onAccent }};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">{{ s.n }}</span><span style="font-size:19px;font-weight:600;letter-spacing:-.02em">{{ s.t }}</span><span style="font-size:14px;line-height:1.5;color:{{ t.muted }}">{{ s.d }}</span></div></sc-for>
+      </div>
+    </div>
+    <div style="padding:40px 32px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+      <div style="padding:28px;border-radius:22px;border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:10px"><span style="font-size:17px;font-weight:600">Safety and monitoring</span><span style="font-size:14px;line-height:1.55;color:{{ t.muted }}">Modern intravenous iron is well tolerated, and we treat it with the seriousness it deserves. You are screened first and monitored throughout. We will not proceed if it is not the right or safe choice for you.</span></div>
+      <div style="padding:28px;border-radius:22px;border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:10px"><span style="font-size:17px;font-weight:600">On coverage, honestly</span><span style="font-size:14px;line-height:1.55;color:{{ t.muted }}">Unlike elective wellness services, iron therapy may be clinically indicated. Some private plans may help with cost, and we will guide you through what to ask. We cannot promise coverage.</span></div>
+      <div style="padding:28px;border-radius:22px;border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:10px"><span style="font-size:17px;font-weight:600">Already a Restoration patient?</span><span style="font-size:14px;line-height:1.55;color:{{ t.muted }}">If your bloodwork flags low iron, you can be referred in-house. Ask your physician, or mention it when you book, and we will arrange the pathway.</span></div>
+    </div>
+    <div style="margin:48px 24px 24px;padding:40px 48px;border-radius:28px;background:{{ t.navy }};color:{{ t.onNavy }};display:flex;justify-content:space-between;align-items:center;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:28px;font-weight:500;letter-spacing:-.02em">Let us look at your iron, properly.</span><span style="font-size:15px;color:{{ t.navyMuted }}">Bring recent bloodwork if you have it. We will assess, explain your options clearly, and only proceed when it is the right call.</span></div>
+      <a onClick="{{ goBook }}" style="background:{{ t.onNavy }};color:{{ t.navy }};padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600;white-space:nowrap">Book an assessment</a>
+    </div>
+  </sc-if>
+
+  <!-- ===== PRICING ===== -->
+  <sc-if value="{{ isPricing }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px 32px 0;display:flex;flex-direction:column;gap:16px;max-width:820px"><span style="font-size:13px;font-weight:600;color:{{ t.accent }}">How pricing works</span><h1 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:64px;letter-spacing:-.025em;line-height:.98">Clear costs, no surprises.</h1><p style="margin:0;font-size:17px;line-height:1.55;color:{{ t.muted }};text-wrap:pretty">We keep pricing simple and honest: a consult first, clear costs before you decide, and no pressure. Here is how it works, and how memberships can help.</p></div>
+    <div style="padding:40px 32px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+      <sc-for list="{{ pricingPrinciples }}" as="p" hint-placeholder-count="4"><div style="padding:26px;border-radius:22px;background:{{ t.card }};border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:10px;min-height:220px"><span style="font-size:13px;font-weight:600;color:{{ t.muted }}">{{ p.n }}</span><span style="font-size:20px;font-weight:600;letter-spacing:-.02em;line-height:1.1">{{ p.t }}</span><span style="font-size:14px;line-height:1.5;color:{{ t.muted }}">{{ p.d }}</span></div></sc-for>
+    </div>
+    <div style="padding:48px 32px 0;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch">
+      <div style="padding:40px;border-radius:28px;background:{{ t.navy }};color:{{ t.onNavy }};display:flex;flex-direction:column;justify-content:space-between;gap:40px">
+        <div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:13px;font-weight:600">Memberships</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:40px;font-weight:500;letter-spacing:-.025em;line-height:1">Regular care, made simpler.</span><span style="font-size:15px;line-height:1.5;color:{{ t.navyMuted }}">If wellness is part of your routine, a membership makes it easier to keep a steady rhythm, without changing the standard of care.</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.45">
+          <span style="padding:12px 16px;border-radius:12px;background:rgba(255,255,255,.1)">A simple way to keep a regular wellness routine consistent.</span>
+          <span style="padding:12px 16px;border-radius:12px;background:rgba(255,255,255,.1)">A consistent treatment-plan price on drips and shots, with a predictable monthly rhythm.</span>
+          <span style="padding:12px 16px;border-radius:12px;background:rgba(255,255,255,.1)">Priority booking and the same physician oversight on every visit.</span>
+          <span style="padding:12px 16px;border-radius:12px;background:rgba(255,255,255,.1)">No long lock-ins. Your health, your pace.</span>
+        </div>
+        <span style="font-size:13px;color:{{ t.navyMuted }}">Membership details and current pricing are shared at your consult as they are finalised.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="border-radius:28px;overflow:hidden;position:relative;flex:1;min-height:320px"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260903_070010_2a3c33c3-2784-4d36-8fc8-46b9af7b87da.png" alt="Guest reading" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
+        <div style="padding:32px;border-radius:24px;background:{{ t.sun }};display:flex;justify-content:space-between;align-items:center;gap:24px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:22px;font-weight:500;letter-spacing:-.02em">Have a question about cost?</span><span style="font-size:14px;opacity:.75">Ask us, plainly. A consult gets you clear, personalised numbers, with no obligation.</span></div><a onClick="{{ goBook }}" style="background:{{ t.ink }};color:{{ t.bg }};padding:14px 24px;border-radius:999px;font-size:14px;font-weight:600;white-space:nowrap">Book a consult</a></div>
+      </div>
+    </div>
+    <div style="height:24px"></div>
+  </sc-if>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <sc-if value="{{ isHow }}" hint-placeholder-val="{{ false }}">
+    <div style="margin:6px 24px 0;position:relative;border-radius:28px;overflow:hidden;min-height:460px;display:flex;align-items:flex-end">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260910_054249_e51edb22-85dc-40cd-8a40-29bdce7042ff.png" alt="Nurse placing a line" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,30,0) 30%,rgba(10,20,30,.7) 100%)"></div>
+      <div style="position:relative;padding:48px;color:#fff;display:flex;flex-direction:column;gap:14px;max-width:760px"><span style="font-size:13px;font-weight:600;color:{{ t.sunDeep }}">How it works</span><h1 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:64px;letter-spacing:-.025em;line-height:.98">How it works, in three steps.</h1><p style="margin:0;font-size:18px;line-height:1.5;color:rgba(255,255,255,.85);text-wrap:pretty">We stay with you from the first drop to the last.</p></div>
+    </div>
+    <div style="padding:40px 32px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3"><div style="padding:32px;border-radius:24px;background:{{ t.card }};border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:14px;min-height:260px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:48px;font-weight:500;letter-spacing:-.025em;line-height:1;color:{{ t.accent }}">{{ s.n }}</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:24px;font-weight:500;letter-spacing:-.02em">{{ s.t }}</span><span style="font-size:15px;line-height:1.55;color:{{ t.muted }}">{{ s.d }}</span></div></sc-for>
+    </div>
+    <div style="padding:40px 32px 0;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="padding:32px;border-radius:24px;background:{{ t.sun }};display:flex;flex-direction:column;gap:12px"><span style="font-size:13px;font-weight:600">Is this right for me?</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:24px;font-weight:500;letter-spacing:-.02em;line-height:1.1">We screen first, and we will adjust or decline on clinical grounds.</span><span style="font-size:14px;line-height:1.5;opacity:.75">Wellness infusions are elective and not covered by OHIP. Iron therapy may be clinically indicated. Results vary from person to person.</span></div>
+      <div style="padding:32px;border-radius:24px;border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:12px"><span style="font-size:13px;font-weight:600;color:{{ t.muted }}">Where the evidence is still developing</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:24px;font-weight:500;letter-spacing:-.02em;line-height:1.1">We label it Emerging, right on the ingredient.</span><span style="font-size:14px;line-height:1.5;color:{{ t.muted }}">Every ingredient page says what the evidence supports, and what we will and will not claim.</span></div>
+    </div>
+    <div style="margin:48px 24px 24px;padding:40px 48px;border-radius:28px;background:{{ t.navy }};color:{{ t.onNavy }};display:flex;justify-content:space-between;align-items:center;gap:32px">
+      <span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:28px;font-weight:500;letter-spacing:-.02em">Ready when you are.</span>
+      <a onClick="{{ goBook }}" style="background:{{ t.onNavy }};color:{{ t.navy }};padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600;white-space:nowrap">Book a consult</a>
+    </div>
+  </sc-if>
+
+  <!-- ===== BOOK ===== -->
+  <sc-if value="{{ isBook }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px 32px 40px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;flex-direction:column;gap:14px"><span style="font-size:13px;font-weight:600;color:{{ t.accent }}">Begin</span><h1 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:60px;letter-spacing:-.025em;line-height:.98">Book a consult.</h1><p style="margin:0;font-size:17px;line-height:1.55;color:{{ t.muted }};text-wrap:pretty">Tell us how you want to feel. A consult confirms what is right for you. No pricing surprises, no pressure.</p></div>
+        <div style="border-radius:28px;overflow:hidden;aspect-ratio:16/10;position:relative"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260910_054249_827089e8-0c06-4cd4-8bf6-a5c62209099d.png" alt="Reception" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="padding:20px;border-radius:18px;background:{{ t.card }};border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:600">Thornhill</span><span style="font-size:13px;color:{{ t.muted }};line-height:1.45">700 Centre St (Inside Walmart), Thornhill, ON L4J 0A7</span></div>
+          <div style="padding:20px;border-radius:18px;background:{{ t.card }};border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:600">Maple (coming soon)</span><span style="font-size:13px;color:{{ t.muted }};line-height:1.45">2620 Rutherford Rd, Unit 105-107, Vaughan, ON L4K 0H1</span></div>
+        </div>
+      </div>
+      <div style="padding:36px;border-radius:28px;background:{{ t.card }};border:1px solid {{ t.line }};display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;font-weight:600;color:{{ t.muted }}">Step 1 of 2</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:24px;font-weight:500;letter-spacing:-.02em">What brings you in?</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ interests }}" as="i" hint-placeholder-count="5"><a onClick="{{ i.pick }}" style="padding:12px 18px;border-radius:999px;font-size:14px;font-weight:500;background:{{ i.bg }};color:{{ i.fg }};border:1.5px solid {{ i.border }}">{{ i.label }}</a></sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:600;color:{{ t.muted }}">First name</span><div style="height:48px;border-radius:12px;background:{{ t.bg }};border:1.5px solid {{ t.line }}"></div></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:600;color:{{ t.muted }}">Last name</span><div style="height:48px;border-radius:12px;background:{{ t.bg }};border:1.5px solid {{ t.line }}"></div></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:600;color:{{ t.muted }}">Email</span><div style="height:48px;border-radius:12px;background:{{ t.bg }};border:1.5px solid {{ t.line }}"></div></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:600;color:{{ t.muted }}">Phone</span><div style="height:48px;border-radius:12px;background:{{ t.bg }};border:1.5px solid {{ t.line }}"></div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:600;color:{{ t.muted }}">Anything we should know?</span><div style="min-height:96px;border-radius:12px;background:{{ t.bg }};border:1.5px solid {{ t.line }};padding:14px;font-size:14px;color:{{ t.muted }}">{{ prefill }}</div></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:600;color:{{ t.muted }}">Preferred location</span><div style="display:flex;gap:8px"><span style="flex:1;padding:12px;border-radius:12px;text-align:center;font-size:14px;font-weight:600;background:{{ t.ink }};color:{{ t.bg }}">Thornhill</span><span style="flex:1;padding:12px;border-radius:12px;text-align:center;font-size:14px;font-weight:500;border:1.5px solid {{ t.line }};color:{{ t.muted }}">Maple (soon)</span></div></div>
+        <a onClick="{{ goHome }}" style="background:{{ t.accent }};color:{{ t.onAccent }};padding:16px;border-radius:999px;font-size:15px;font-weight:600;text-align:center">Continue to choose a time →</a>
+        <span style="font-size:12px;line-height:1.5;color:{{ t.muted }};text-align:center">Every treatment is physician-reviewed and nurse-administered. Information on this site is educational and is not medical advice.</span>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===== TEAM ===== -->
+  <sc-if value="{{ isTeam }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:40px 32px 0;display:flex;flex-direction:column;gap:16px;max-width:820px"><span style="font-size:13px;font-weight:600;color:{{ t.accent }}">Our team</span><h1 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:64px;letter-spacing:-.025em;line-height:.98">The people behind your care.</h1><p style="margin:0;font-size:17px;line-height:1.55;color:{{ t.muted }};text-wrap:pretty">Infusion therapy here is delivered by people, not a counter. A physician reviews every plan; registered nurses give every treatment. Calm, careful, and accountable.</p></div>
+    <div style="padding:40px 32px 0;display:grid;grid-template-columns:420px 1fr;gap:14px;align-items:stretch">
+      <div style="border-radius:28px;overflow:hidden;position:relative;min-height:520px;background:repeating-linear-gradient(135deg,{{ t.card }} 0 12px,{{ t.bg2 }} 12px 24px);border:1px solid {{ t.line }};display:flex;align-items:center;justify-content:center;text-align:center;padding:24px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:{{ t.muted }}">Dr. Nguyen portrait<br>(from restorationmedical.ca)</span></div>
+      <div style="padding:40px;border-radius:28px;background:{{ t.card }};border:1px solid {{ t.line }};display:flex;flex-direction:column;justify-content:space-between;gap:28px">
+        <div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:13px;font-weight:600;color:{{ t.accent }}">Medical Director</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:40px;font-weight:500;letter-spacing:-.025em;line-height:1">Dr. Johnny Nguyen</span><span style="font-size:15px;color:{{ t.muted }}">Interventional Pain Physician, University of Toronto MD</span><p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty;padding-top:8px">Over a decade of combined experience as a family doctor, emergency doctor, and pain-management physician. Owner of Restoration Medical Thornhill and Restoration Medical (Vaughan), centres for comprehensive, compassionate, multidisciplinary care.</p></div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:12px;font-weight:600;padding:8px 12px;border-radius:999px;background:{{ t.sun }}">Family medicine residency</span><span style="font-size:12px;font-weight:600;padding:8px 12px;border-radius:999px;background:{{ t.sun }}">Emergency medicine fellowship</span><span style="font-size:12px;font-weight:600;padding:8px 12px;border-radius:999px;background:{{ t.sun }}">Advanced Diplomate, Interventional Pain</span></div>
+      </div>
+    </div>
+    <div style="padding:48px 32px 0;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-weight:500;font-size:32px;letter-spacing:-.02em">At the chair</h2><span style="font-size:13px;color:{{ t.muted }}">Photographs are added as each team member joins the public page.</span></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
+        <sc-for list="{{ team }}" as="m" hint-placeholder-count="10">
+          <div style="display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:20px;background:{{ t.card }};border:1px solid {{ t.line }}">
+            <div style="aspect-ratio:1;border-radius:16px;background:{{ m.bg }};display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:600;color:{{ m.fg }}"><span>{{ m.initial }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:16px;font-weight:600">{{ m.name }}</span><span style="font-size:12px;color:{{ t.muted }}">{{ m.role }}</span></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="margin:48px 24px 24px;padding:40px 48px;border-radius:28px;background:{{ t.sun }};display:flex;justify-content:space-between;align-items:center;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:28px;font-weight:500;letter-spacing:-.02em">Care you can put a face to.</span><span style="font-size:15px;opacity:.75">Book a consult and meet the team. We take the time to understand what you need before we suggest anything.</span></div>
+      <a onClick="{{ goBook }}" style="background:{{ t.ink }};color:{{ t.bg }};padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600;white-space:nowrap">Book a consult</a>
+    </div>
+  </sc-if>
+
+  <!-- FOOTER -->
+  <div style="margin:24px 24px 24px;padding:48px;border-radius:28px;background:{{ t.card }};border:1px solid {{ t.line }};display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:20px;font-weight:600;letter-spacing:-.02em">Infusion Therapy</span><span style="font-size:14px;line-height:1.5;color:{{ t.muted }};max-width:300px">at Restoration Medical. Refined by Medicine. Wellness and clinical care, built around how you want to feel.</span><span style="font-size:13px;color:{{ t.muted }};padding-top:12px">905-709-3222, Thornhill, with Maple coming soon</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:14px"><span style="font-weight:600;margin-bottom:4px">Treatments</span><a onClick="{{ goDrips }}">All drips</a><a onClick="{{ goDrips }}">The Injection Bar</a><a onClick="{{ goDrips }}">Ingredient library</a><a onClick="{{ goBook }}">Build your own</a></div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:14px"><span style="font-weight:600;margin-bottom:4px">Clinical</span><a onClick="{{ goIron }}">Iron therapy</a><a onClick="{{ goDrips }}">Metabolic program</a><a onClick="{{ goHow }}">Safety &amp; screening</a><a onClick="{{ goHow }}">How it works</a></div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:14px"><span style="font-weight:600;margin-bottom:4px">Clinic</span><a onClick="{{ goConcerns }}">By concern</a><a onClick="{{ goPricing }}">Pricing &amp; memberships</a><a onClick="{{ goTeam }}">Our team</a><a onClick="{{ goBook }}">Contact</a></div>
+    <span style="grid-column:1/-1;font-size:12px;line-height:1.55;color:{{ t.muted }};padding-top:16px;border-top:1px solid {{ t.line }}">Wellness infusion services are elective and are not covered by OHIP. Iron therapy may be clinically indicated. Every treatment is physician-reviewed and nurse-administered. Information on this site is educational and is not medical advice. Results vary from person to person. A consult confirms what is right for you. © 2026 Restoration Medical.</span>
+  </div>
+</div>
+</sc-if>
+
+<!-- ================= MOBILE ================= -->
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:32px;justify-content:center;align-items:flex-start;flex-wrap:wrap">
+
+  <!-- mobile home -->
+  <div data-screen-label="Mobile Home" style="width:390px;background:{{ t.bg }};color:{{ t.ink }};border-radius:40px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.18);border:8px solid #1c1c1a">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:52px 20px 12px"><span style="font-size:17px;font-weight:600;letter-spacing:-.02em">Infusion Therapy</span><div style="display:flex;gap:6px"><a onClick="{{ goBook }}" style="background:{{ t.ink }};color:{{ t.bg }};padding:9px 14px;border-radius:999px;font-size:13px;font-weight:600">Book</a><span style="width:38px;height:38px;border-radius:999px;border:1.5px solid {{ t.line }};display:flex;align-items:center;justify-content:center;font-size:14px">☰</span></div></div>
+    <div style="margin:0 12px;position:relative;border-radius:24px;overflow:hidden;min-height:480px;display:flex;align-items:flex-end">
+      <img src="{{ heroImg }}" alt="Guest relaxing" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,30,0) 30%,rgba(10,20,30,.8) 100%)"></div>
+      <div style="position:relative;padding:22px;color:#fff;display:flex;flex-direction:column;gap:12px"><span style="display:inline-flex;align-self:flex-start;background:{{ t.sunDeep }};color:#2A2000;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:600">Physician-led, nurse-administered</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:38px;font-weight:500;line-height:.98;letter-spacing:-.025em">Come as you are. <em style="font-weight:400">Leave feeling restored.</em></span><span style="font-size:14px;line-height:1.45;color:rgba(255,255,255,.85)">Reviewed by our physician, given by our nurses.</span><div style="display:flex;gap:8px;padding-top:4px"><a onClick="{{ goBook }}" style="background:#fff;color:#0F1F2E;padding:13px 18px;border-radius:999px;font-size:14px;font-weight:600;flex:1;text-align:center">Book a consult</a><a onClick="{{ goDrips }}" style="border:1.5px solid rgba(255,255,255,.6);padding:12px 16px;border-radius:999px;font-size:14px;font-weight:500;flex:1;text-align:center;white-space:nowrap">Drips &amp; shots</a></div></div>
+    </div>
+    <div style="padding:28px 20px 0;display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:26px;font-weight:500;letter-spacing:-.02em;line-height:1.05">Wellness and clinical, under one roof.</span>
+      <a onClick="{{ goDrips }}" style="border-radius:20px;background:{{ t.navy }};color:{{ t.onNavy }};padding:22px;display:flex;flex-direction:column;gap:40px"><span style="font-size:12px;font-weight:600">Wellness infusions &amp; shots</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:22px;font-weight:500;letter-spacing:-.02em;line-height:1.05">Energy, immunity, skin, recovery, healthy aging.</span></a>
+      <a onClick="{{ goIron }}" style="border-radius:20px;background:{{ t.accent }};color:{{ t.onAccent }};padding:22px;display:flex;flex-direction:column;gap:32px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:600">Clinical infusion</span><span style="font-size:11px;font-weight:600;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.22)">Lab-reviewed</span></div><div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:24px;font-weight:500;letter-spacing:-.02em;line-height:1.02">Iron therapy</span><span style="font-size:13px;opacity:.9;line-height:1.4">For low ferritin and iron deficiency. Book an assessment →</span></div></a>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a onClick="{{ goConcerns }}" style="border-radius:20px;background:{{ t.bg2 }};border:1px solid {{ t.line }};padding:18px;display:flex;flex-direction:column;gap:24px"><span style="font-size:12px;font-weight:600;color:{{ t.muted }}">Start here</span><span style="font-size:18px;font-weight:600;letter-spacing:-.02em">By concern</span></a><a onClick="{{ goHow }}" style="border-radius:20px;background:{{ t.sun }};padding:18px;display:flex;flex-direction:column;gap:24px"><span style="font-size:12px;font-weight:600">How it works</span><span style="font-size:18px;font-weight:600;letter-spacing:-.02em">Three simple steps</span></a></div>
+    </div>
+    <div style="padding:28px 20px 32px;display:flex;flex-direction:column;gap:12px">
+      <span style="font-size:20px;font-weight:600;letter-spacing:-.02em">Start with how you feel</span>
+      <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ concerns }}" as="c" hint-placeholder-count="8"><a onClick="{{ goConcerns }}" style="background:{{ t.card }};border:1px solid {{ t.line }};border-radius:999px;padding:10px 14px;font-size:13px;font-weight:500">{{ c.t }}</a></sc-for></div>
+    </div>
+  </div>
+
+  <!-- mobile drips -->
+  <div data-screen-label="Mobile Drips" style="width:390px;background:{{ t.bg }};color:{{ t.ink }};border-radius:40px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.18);border:8px solid #1c1c1a">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:52px 20px 12px"><a onClick="{{ goHome }}" style="font-size:14px;font-weight:500;color:{{ t.muted }}">← Home</a><span style="font-size:15px;font-weight:600">Drips &amp; shots</span><span style="width:38px;height:38px;border-radius:999px;border:1.5px solid {{ t.line }};display:flex;align-items:center;justify-content:center;font-size:14px">☰</span></div>
+    <div style="padding:12px 20px 0;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:34px;font-weight:500;letter-spacing:-.025em;line-height:.98">Our drips and shots.</span><span style="font-size:14px;line-height:1.45;color:{{ t.muted }}">Each treatment family carries its own accent, drawn from its ingredients.</span></div>
+    <div style="padding:16px 20px 0;display:flex;gap:6px;overflow:hidden">
+      <sc-for list="{{ families }}" as="f" hint-placeholder-count="4"><a onClick="{{ f.go }}" style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:500;background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ t.line }};white-space:nowrap"><span style="width:8px;height:8px;border-radius:50%;background:{{ f.c }}"></span>{{ f.label }}</a></sc-for>
+    </div>
+    <div style="padding:16px 20px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <sc-for list="{{ dripsMobile }}" as="d" hint-placeholder-count="6">
+        <a onClick="{{ goDrip }}" style="display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:16px;border-radius:18px;min-height:150px;background:{{ t.card }};border:1px solid {{ t.line }}"><span style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:{{ t.muted }}"><span style="width:8px;height:8px;border-radius:50%;background:{{ d.c }}"></span>{{ d.f }}</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:17px;font-weight:600;letter-spacing:-.02em;line-height:1.1">{{ d.t }}</span><span style="font-size:12px;line-height:1.4;color:{{ t.muted }}">{{ d.d }}</span></div></a>
+      </sc-for>
+    </div>
+    <div style="padding:24px 20px 32px;display:flex;flex-direction:column;gap:10px"><span style="font-size:18px;font-weight:600;letter-spacing:-.02em">Shots: The Injection Bar</span><div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ shots }}" as="s" hint-placeholder-count="10"><span style="background:{{ t.sun }};border-radius:999px;padding:9px 13px;font-size:13px;font-weight:600">{{ s.t }}</span></sc-for></div></div>
+  </div>
+
+  <!-- mobile book -->
+  <div data-screen-label="Mobile Book" style="width:390px;background:{{ t.bg }};color:{{ t.ink }};border-radius:40px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.18);border:8px solid #1c1c1a">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:52px 20px 12px"><a onClick="{{ goHome }}" style="font-size:14px;font-weight:500;color:{{ t.muted }}">← Home</a><span style="font-size:15px;font-weight:600">Book a consult</span><span style="width:38px"></span></div>
+    <div style="padding:12px 20px 0;display:flex;flex-direction:column;gap:8px"><span style="font-size:12px;font-weight:600;color:{{ t.muted }}">Step 1 of 2</span><span style="font-family:'Fraunces',serif;font-optical-sizing:auto;font-variation-settings:'SOFT' 50;font-size:30px;font-weight:500;letter-spacing:-.025em;line-height:1">What brings you in?</span><span style="font-size:14px;line-height:1.45;color:{{ t.muted }}">A consult confirms what is right for you. No pressure, no pricing surprises.</span></div>
+    <div style="padding:20px 20px 0;display:flex;flex-direction:column;gap:8px">
+      <sc-for list="{{ interests }}" as="i" hint-placeholder-count="5"><a onClick="{{ i.pick }}" style="padding:16px 18px;border-radius:16px;font-size:15px;font-weight:500;background:{{ i.bg }};color:{{ i.fg }};border:1.5px solid {{ i.border }};display:flex;justify-content:space-between"><span>{{ i.label }}</span><span>{{ i.mark }}</span></a></sc-for>
+    </div>
+    <div style="padding:20px 20px 0;display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:600;color:{{ t.muted }}">Preferred location</span><div style="display:flex;gap:8px"><span style="flex:1;padding:13px;border-radius:12px;text-align:center;font-size:14px;font-weight:600;background:{{ t.ink }};color:{{ t.bg }}">Thornhill</span><span style="flex:1;padding:13px;border-radius:12px;text-align:center;font-size:14px;font-weight:500;border:1.5px solid {{ t.line }};color:{{ t.muted }}">Maple (soon)</span></div></div>
+    <div style="padding:20px 20px 28px;display:flex;flex-direction:column;gap:10px"><a onClick="{{ goHome }}" style="background:{{ t.accent }};color:{{ t.onAccent }};padding:17px;border-radius:999px;font-size:15px;font-weight:600;text-align:center">Continue →</a><a href="tel:905-709-3222" style="border:1.5px solid {{ t.line }};padding:16px;border-radius:999px;font-size:15px;font-weight:500;text-align:center">Or call 905-709-3222</a></div>
+  </div>
+
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light' | 'dark'&quot;,&quot;section&quot;:&quot;Appearance&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'home', theme: null, view: 'desktop', family: 'all', interest: 'How I feel' };
+
+  renderVals() {
+    const S = this.state;
+    const theme = S.theme ?? this.props.theme ?? 'light';
+    const dark = theme === 'dark';
+    const t = dark ? {
+      bg: '#0C0D0F', bg2: '#15171B', card: '#17191D', chip: 'rgba(241,237,230,.08)', line: 'rgba(241,237,230,.12)',
+      ink: '#F1EDE6', muted: 'rgba(241,237,230,.62)', accent: '#E0A458', onAccent: '#0C0D0F',
+      sun: '#2B2416', sunDeep: '#E0A458', navy: '#E0A458', onNavy: '#0C0D0F', navyMuted: 'rgba(12,13,15,.7)'
+    } : {
+      bg: '#FFFFFF', bg2: '#EEF5FC', card: '#F5F8FB', chip: '#FFFFFF', line: '#E2E9F0',
+      ink: '#0F1F2E', muted: '#5A6B7B', accent: '#2F7FD1', onAccent: '#FFFFFF',
+      sun: '#FFE58A', sunDeep: '#FFD84D', navy: '#0F1F2E', onNavy: '#FFFFFF', navyMuted: 'rgba(255,255,255,.72)'
+    };
+    const go = p => () => this.setState({ page: p });
+    const pageDefs = [['home', 'Home'], ['drips', 'Drips & shots'], ['drip', 'Single drip'], ['concerns', 'By concern'], ['iron', 'Iron therapy'], ['pricing', 'Pricing'], ['how', 'How it works'], ['book', 'Book'], ['team', 'Team']];
+    const pages = pageDefs.map(([id, label]) => ({ label, go: go(id), bg: S.page === id ? '#1c1c1a' : '#fff', fg: S.page === id ? '#fff' : '#1c1c1a' }));
+    const navDefs = [['concerns', 'Concerns'], ['drips', 'Drips & shots'], ['iron', 'Iron therapy'], ['pricing', 'Pricing'], ['how', 'How it works'], ['team', 'Team']];
+    const navItems = navDefs.map(([id, label]) => ({ label, go: go(id), bg: S.page === id || (id === 'drips' && S.page === 'drip') ? t.ink : 'transparent', fg: S.page === id || (id === 'drips' && S.page === 'drip') ? t.bg : t.ink, dot: id === 'iron' && S.page !== 'iron' }));
+
+    const concernsRaw = [
+      ['Low energy & fatigue', 'Running low more often than you would like.', 'Explore', 'Wellness'],
+      ['Seasonal wellness', 'Support through a demanding season.', 'Explore', 'Wellness'],
+      ['Skin, hair & nails', 'Caring for how you look from within.', 'Explore', 'Wellness'],
+      ['Recovery & performance', 'Training hard and recovering harder.', 'Explore', 'Wellness'],
+      ['Longevity & healthy aging', 'Investing in how you age.', 'Explore', 'Wellness'],
+      ['Weight & metabolism', 'Physician-supervised medical weight management.', 'Explore', 'Program'],
+      ['Iron deficiency & low ferritin', 'When fatigue may be about iron.', 'Clinical pathway', 'Clinical'],
+      ['Hydration & travel', 'Resetting after the road.', 'Explore', 'Wellness'],
+    ];
+    const cBg = dark ? [t.card, t.card, t.card, t.card, t.card, t.card, t.accent, t.card] : ['#EEF5FC', '#FFF3C4', '#FDE8E4', '#E6F4EA', '#EEE9FA', '#FFF3C4', '#0F1F2E', '#E6F4EA'];
+    const cFg = dark ? [t.ink, t.ink, t.ink, t.ink, t.ink, t.ink, '#0C0D0F', t.ink] : ['#0F1F2E', '#0F1F2E', '#0F1F2E', '#0F1F2E', '#0F1F2E', '#0F1F2E', '#FFFFFF', '#0F1F2E'];
+    const concerns = concernsRaw.map(c => ({ t: c[0] }));
+    const concernsFull = concernsRaw.map((c, i) => ({ n: String(i + 1).padStart(2, '0'), t: c[0], d: c[1], cta: c[2], tag: c[3], bg: cBg[i], fg: cFg[i] }));
+
+    const famColor = { 'Foundation & Healing': '#7FC8A9', 'Radiance & Beauty': '#D9A6E0', 'Seasonal': '#F5C451', 'Energy & Longevity': '#F0955C', 'Metabolic': '#6FB4E8', 'Recovery': '#9BD0E0' };
+    const dripsRaw = [
+      ['Foundation', 'Foundation & Healing', 'Hydration and core nutrients to start from.', 'Established'],
+      ['Healing (Myers\u2019)', 'Foundation & Healing', 'A classic blend of B vitamins, vitamin C, magnesium and calcium.', 'Established'],
+      ['Radiance', 'Radiance & Beauty', 'Antioxidant and skin-radiance support.', 'Supported'],
+      ['Hair & Nails', 'Radiance & Beauty', 'Biotin-forward support for hair and nails.', 'Supported'],
+      ['Beauty Elixir', 'Radiance & Beauty', 'Complete beauty-from-within support.', 'Supported'],
+      ['Seasonal Support', 'Seasonal', 'Vitamin C, zinc and B vitamins.', 'Supported'],
+      ['Kingmaker', 'Energy & Longevity', 'Vitality support for men.', 'Supported'],
+      ['Recover', 'Recovery', 'Post-exertion rehydration and repair.', 'Supported'],
+      ['Revive', 'Recovery', 'A reset after travel or a long week.', 'Supported'],
+      ['NAD+ Longevity', 'Energy & Longevity', 'Cellular energy and healthy-aging support.', 'Emerging'],
+      ['Metabolic', 'Metabolic', 'Part of our physician-supervised medical weight management program.', 'Emerging'],
+      ['Pregnancy Care', 'Foundation & Healing', 'Gentle, physician-supervised hydration through pregnancy.', 'Supervised'],
+    ];
+    const drips = dripsRaw.map(d => ({ t: d[0], f: d[1], d: d[2], ev: d[3], c: famColor[d[1]] }));
+    const dripsFiltered = S.family === 'all' ? drips : drips.filter(d => d.f === S.family);
+    const famList = ['all', ...Object.keys(famColor)];
+    const families = famList.map(f => ({ label: f === 'all' ? 'All families' : f, c: f === 'all' ? t.ink : famColor[f], go: () => this.setState({ family: f }), bg: S.family === f ? t.ink : t.card, fg: S.family === f ? t.bg : t.ink }));
+
+    const shots = [['B12', 'Steady energy'], ['B-Complex', 'Energy metabolism'], ['Vitamin D', 'Bones & mood'], ['Glutathione', 'Antioxidant'], ['Vitamin C + Zinc', 'Seasonal support'], ['MIC blend', 'Program add-on'], ['L-Carnitine', 'Program add-on'], ['Amino blend', 'Recovery'], ['NAD+', 'Cellular energy'], ['Biotin', 'Hair & nails']].map(s => ({ t: s[0], d: s[1] }));
+
+    const interestsRaw = ['How I feel', 'A specific drip or shot', 'Iron therapy', 'Metabolic program', 'Something else'];
+    const interests = interestsRaw.map(l => ({ label: l, pick: () => this.setState({ interest: l }), bg: S.interest === l ? t.ink : t.bg, fg: S.interest === l ? t.bg : t.ink, border: S.interest === l ? t.ink : t.line, mark: S.interest === l ? '✓' : '' }));
+    const prefillMap = { 'A specific drip or shot': 'I\u2019d like to book a consult about the Healing (Myers\u2019) drip.', 'Iron therapy': 'My recent bloodwork showed low ferritin. I\u2019d like an assessment.', 'Metabolic program': 'I\u2019m interested in the physician-guided metabolic program.' };
+
+    const nurses = ['Michelle', 'Anh', 'Kim', 'Marika', 'Kelly', 'Tiffany', 'Rose', 'Hillary', 'Aastha'];
+    const pal = dark ? ['#2B2416', '#1F2A2E', '#2A1F2E'] : ['#EEF5FC', '#FFF3C4', '#E6F4EA'];
+    const team = [...nurses.map((n, i) => ({ name: n, role: 'Registered Nurse', initial: n[0], bg: pal[i % 3], fg: t.ink })), { name: 'Karen', role: 'Lab Technician', initial: 'K', bg: pal[0], fg: t.ink }];
+
+    const heroImg = dark
+      ? 'https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260903_070010_073b7393-87d3-4065-af11-5bc25f2335e1.png'
+      : 'https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/hf_20260903_065035_4eb86c4d-cbea-4406-bab0-68391c4f0fe6.png';
+
+    return {
+      t, heroImg, pages, navItems, page: pageDefs.find(p => p[0] === S.page)[1],
+      isDesktop: S.view === 'desktop', isMobile: S.view === 'mobile',
+      isHome: S.page === 'home', isDrips: S.page === 'drips', isDrip: S.page === 'drip', isConcerns: S.page === 'concerns', isIron: S.page === 'iron', isPricing: S.page === 'pricing', isHow: S.page === 'how', isBook: S.page === 'book', isTeam: S.page === 'team',
+      goHome: go('home'), goDrips: go('drips'), goDrip: go('drip'), goConcerns: go('concerns'), goIron: go('iron'), goPricing: go('pricing'), goHow: go('how'), goBook: go('book'), goTeam: go('team'),
+      toggleTheme: () => this.setState({ theme: dark ? 'light' : 'dark' }), themeLabel: dark ? 'Dark theme: switch to light' : 'Light theme: switch to dark',
+      toggleView: () => this.setState({ view: S.view === 'desktop' ? 'mobile' : 'desktop' }), viewLabel: S.view === 'desktop' ? 'Desktop: show mobile' : 'Mobile: show desktop',
+      concerns, concernsFull, drips, dripsFiltered, dripsMobile: drips.slice(0, 6), dripCount: dripsFiltered.length, families, shots, interests, prefill: prefillMap[S.interest] || 'Tell us how you want to feel.',
+      team,
+      why: [
+        { t: 'Physician oversight', d: 'Every treatment is reviewed by our physician, not sold from a counter.' },
+        { t: 'RN administration', d: 'Your infusion is placed and monitored by a registered nurse.' },
+        { t: 'Honest screening', d: 'We screen first, and we will adjust or decline on clinical grounds.' },
+        { t: 'Sourcing standards', d: 'Pharmaceutical-grade ingredients, prepared to clinical standards.' },
+      ],
+      claims: [
+        { p: '\u201CDetoxes and melts fat.\u201D', s: 'Metabolic support happens inside a physician-guided program, with real screening and follow-up. No miracles, and we say so.' },
+        { p: '\u201CBoosts your defences.\u201D', s: 'We list what is in the bag and the dose. We do not make treatment or prevention claims that the evidence does not support.' },
+        { p: '\u201CPrevent illness before it starts.\u201D', s: 'We cannot promise you will not get sick. Preventing disease is not a claim we make, and we will not make it.' },
+      ],
+      steps: [
+        { n: '01', t: 'Consult & screen', d: 'We talk through how you want to feel and review your health, so any treatment is safe and right for you.' },
+        { n: '02', t: 'Personalize your treatment', d: 'Our physician reviews and our nurse tailors the drip or shot to you. No fixed menu, no pressure.' },
+        { n: '03', t: 'Relax while we care for you', d: 'Settle into the chair in a calm clinical setting. We stay with you from the first drop to the last.' },
+      ],
+      ironSteps: [
+        { n: '1', t: 'Assessment', d: 'A clinical review of your symptoms, history, and recent bloodwork. Recent iron studies are required before any infusion.' },
+        { n: '2', t: 'A directed protocol', d: 'Ferritin and iron studies guide the dose and schedule. The physician directs the plan, not a fixed package.' },
+        { n: '3', t: 'Monitoring throughout', d: 'You are monitored before, during, and after the infusion. Our nurses watch for and manage any reaction.' },
+        { n: '4', t: 'Follow-up', d: 'We confirm how you respond and plan any repeat studies, so the treatment stays guided by your labs.' },
+      ],
+      pricingPrinciples: [
+        { n: '01', t: 'A consult first', d: 'We confirm what is right for you before anything else. You will know what is involved, and what it costs, before you decide.' },
+        { n: '02', t: 'Personalised, so priced that way', d: 'Because we tailor and screen, the right plan differs from person to person. We share clear, itemised costs at your consult.' },
+        { n: '03', t: 'No pressure, no upsell', d: 'We would rather you do less, more thoughtfully. We will never push add-ons you do not need.' },
+        { n: '04', t: 'Elective, and clear about it', d: 'Wellness infusions are elective and not covered by OHIP. Clinically indicated care, like iron therapy, may be different.' },
+      ],
+      ingredients: [
+        { t: 'B-Complex', d: 'A full B-vitamin team for energy metabolism.' },
+        { t: 'Vitamin C', d: 'An antioxidant vitamin. Dose listed at your consult.' },
+        { t: 'Magnesium', d: 'Supports muscle function and recovery.' },
+        { t: 'Calcium', d: 'Supports bones and muscle function.' },
+        { t: 'B12 (methylcobalamin)', d: 'Supports steady energy and a healthy nervous system.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+/* Spacing, radius, borders and shadow. Values are the literals used on the site. */
+:root {
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 8px;
+  --space-4: 10px;
+  --space-5: 12px;
+  --space-6: 14px;
+  --space-7: 16px;
+  --space-8: 20px;
+  --space-9: 24px;
+  --space-10: 28px;
+  --space-11: 32px;
+  --space-12: 40px;
+  --space-13: 48px;
+  --space-14: 56px;
+  --space-15: 64px;
+  --space-16: 72px;
+
+  /* Layout */
+  --page-gutter: 24px;        /* margin for full-bleed rounded blocks */
+  --content-gutter: 32px;     /* padding for text sections */
+  --card-gap: 12px;           /* grid gap between cards */
+  --block-gap: 14px;          /* gap between large blocks */
+  --section-gap: 72px;        /* vertical rhythm between sections */
+  --section-gap-tight: 56px;
+  --content-max: 820px;       /* intro / prose max width */
+  --prose-max: 720px;
+  --mobile-width: 390px;
+
+  /* Radius */
+  --radius-block: 28px;   /* full-width rounded blocks, heroes, footer */
+  --radius-card: 24px;    /* cards */
+  --radius-card-sm: 22px;
+  --radius-tile: 18px;    /* small tiles, quick actions */
+  --radius-row: 16px;     /* list rows, option rows */
+  --radius-field: 12px;   /* inputs, small tiles */
+  --radius-chip: 999px;   /* pills, buttons, tags */
+
+  /* Borders */
+  --border-width: 1px;
+  --border-width-interactive: 1.5px;
+  --border-width-selected: 2px;
+
+  /* Shadow: one soft shadow, used sparingly (result cards, phones, sticky CTA) */
+  --shadow-card: 0 24px 60px -30px rgba(15,31,46,.25);
+  --shadow-sticky: 0 10px 30px rgba(15,31,46,.25);
+  --shadow-phone: 0 30px 80px rgba(0,0,0,.18);
+  --shadow-hotspot: 0 6px 16px -6px rgba(15,31,46,.35);
+
+  /* Hit targets */
+  --hit-min: 44px;
+  --field-height: 48px;
+  --field-height-sm: 46px;
+  --button-height: 48px;
+  --button-height-sm: 38px;
+}
