@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Display, Input, StateCard, Textarea } from "@/components/ui";
-import { contactCopy, contactTopics } from "@/content/booking";
+import { contactCopy, contactTopics, formFailedLine } from "@/content/booking";
 import { submitForm } from "@/lib/forms";
 import { ConsentRow, FieldLabel, Panel, PillChip, SubmitButton } from "../book/FormBits";
 
@@ -72,7 +72,7 @@ export function ContactForm() {
         </ConsentRow>
         {error ? (
           <p role="alert" className="text-[13px] font-semibold text-[color:var(--status-error-fg)]">
-            {contactCopy.failed}
+            {formFailedLine}
           </p>
         ) : null}
         <SubmitButton busy={busy} trailing={false}>

@@ -204,3 +204,6 @@ export const contactCopy = {
   gettingHereTitle: "Getting here",
   gettingHere: "Free parking in the Walmart lot. YRT routes 2 and 77 stop at Centre and Dufferin. Step-free entrance.",
 } as const;
+
+/** Inline error line under a form that could not be sent (not in the prototype, needed for a live form). */
+export const formFailedLine = "That did not go through. Try again, or call 905-709-3222.";

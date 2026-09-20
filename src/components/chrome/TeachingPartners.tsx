@@ -17,10 +17,10 @@ export function TeachingPartners() {
           A teaching clinic. What that means for your visit ›
         </Link>
       </div>
-      <div className="flex items-center gap-6 md:gap-11">
-        <Image src={images.logos.tmu} alt="Toronto Metropolitan University" width={160} height={56} className="h-11 w-auto md:h-14" />
-        <span aria-hidden className="h-10 w-px bg-border" />
-        <Image src={images.logos.anderson} alt="Anderson College of Health, Business and Technology" width={220} height={34} className="h-7 w-auto md:h-[34px]" />
+      <div className="flex min-w-0 max-w-full flex-wrap items-center gap-4 md:gap-11">
+        <Image src={images.logos.tmu} alt="Toronto Metropolitan University" width={160} height={56} className="h-9 w-auto max-w-[45vw] object-contain md:h-14" />
+        <span aria-hidden className="hidden h-10 w-px bg-border sm:block" />
+        <Image src={images.logos.anderson} alt="Anderson College of Health, Business and Technology" width={220} height={34} className="h-6 w-auto max-w-[45vw] object-contain md:h-[34px]" />
       </div>
     </div>
   );

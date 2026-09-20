@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Button, Display, Eyebrow, Input, Lead, SmartLink, StateCard } from "@/components/ui";
-import { registerCopy, registerFamily, registerLanguages, registerSteps } from "@/content/booking";
+import { formFailedLine, registerCopy, registerFamily, registerLanguages, registerSteps } from "@/content/booking";
 import { submitForm } from "@/lib/forms";
 import { cn } from "@/lib/cn";
 import { Choice, ConsentRow, FieldLabel, OutcomeTile, Panel, PillChip, SubmitButton } from "../book/FormBits";
@@ -175,7 +175,7 @@ export function RegisterForm() {
             </ConsentRow>
             {error ? (
               <p role="alert" className="text-[13px] font-semibold text-[color:var(--status-error-fg)]">
-                {registerCopy.failed}
+                {formFailedLine}
               </p>
             ) : null}
             <SubmitButton busy={busy}>{registerCopy.submit}</SubmitButton>
