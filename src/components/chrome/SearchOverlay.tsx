@@ -32,7 +32,7 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
     else router.push(url);
   };
   return (
-    <div className={mobile ? "flex min-h-[640px] flex-col gap-4 bg-card p-4" : "flex flex-col gap-6 border-t border-border bg-card px-4 pb-10 pt-6 md:px-8 md:pt-8"} role="search">
+    <div className={mobile ? "flex min-h-[640px] flex-col gap-4 bg-card p-4" : "flex flex-col gap-6 bg-card px-4 pb-10 pt-6 md:px-8 md:pt-8"} role="search">
       <div className={mobile ? "flex h-[52px] items-center gap-2.5 rounded-[14px] border-[1.5px] border-sky bg-raised px-3.5" : "flex h-[60px] items-center gap-3.5 rounded-row border-[1.5px] border-border bg-raised px-5 focus-within:border-sky"}>
         <Icon name="search" size={mobile ? 18 : 20} stroke={2} color="var(--rm-ink-3)" />
         <input

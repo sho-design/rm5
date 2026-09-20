@@ -14,7 +14,7 @@ export function MegaMenu({ menuKey, onNavigate }: { menuKey: NavKey; onNavigate:
   const d = divisions[menuKey];
   const bookTo = menuKey === "about" ? routes.locations : routes.book;
   return (
-    <div className="grid grid-cols-1 gap-8 border-t border-border bg-card px-8 pb-12 pt-10 lg:grid-cols-[1.3fr_1fr_1fr] lg:gap-10" role="region" aria-label={`${d.label} menu`}>
+    <div className="grid grid-cols-1 gap-8 bg-card px-8 pb-12 pt-10 lg:grid-cols-[1.3fr_1fr_1fr] lg:gap-10" role="region" aria-label={`${d.label} menu`}>
       <div className="flex flex-col gap-[18px]">
         <span className="text-[12px] font-semibold text-muted">Explore {d.label}</span>
         <div className="flex flex-col gap-2.5">

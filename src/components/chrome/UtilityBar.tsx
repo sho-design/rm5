@@ -23,7 +23,8 @@ export function UtilityBar() {
     return () => clearInterval(t);
   }, []);
   return (
-    <div className="flex h-[38px] items-center justify-between bg-ink px-4 text-[12px] font-medium text-white md:px-8">
+    <div className="bg-ink text-white">
+    <div className="mx-auto flex h-[38px] w-full max-w-[1440px] items-center justify-between px-4 text-[12px] font-medium md:px-8">
       <span className="flex min-w-0 items-center gap-2" aria-live="polite">
         <span aria-hidden className="h-[7px] w-[7px] shrink-0 rounded-full" style={{ background: status.open ? "var(--status-open)" : "rgba(255,255,255,.45)" }} />
         <span className="truncate">{status.text}</span>
@@ -46,6 +47,7 @@ export function UtilityBar() {
           </>
         ) : null}
       </div>
+    </div>
     </div>
   );
 }
