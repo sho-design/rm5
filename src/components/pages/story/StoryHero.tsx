@@ -17,7 +17,7 @@ export function StoryHero({ img }: { img: string }) {
         </div>
         <p className="pretty text-[17px] leading-[1.55] text-secondary lg:text-[18px]">{c.lead}</p>
       </header>
-      <Photo src={img} alt={c.imgAlt} radius="block" priority sizes="100vw" className="mx-3 mt-8 min-h-[260px] md:mx-gutter md:mt-10 md:min-h-[480px]" />
+      <Photo src={img} alt={c.imgAlt} radius="block" tint="var(--rm-paper-2)" priority sizes="100vw" className="mx-3 mt-8 min-h-[260px] md:mx-gutter md:mt-10 md:min-h-[480px]" />
     </>
   );
 }

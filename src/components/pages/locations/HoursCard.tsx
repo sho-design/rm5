@@ -14,7 +14,10 @@ export function HoursCard({ hours, live }: { hours: [string, string][]; live: bo
   const [status, setStatus] = useState<{ text: string; open: boolean; today: number } | null>(null);
 
   useEffect(() => {
-    if (!live) return;
+    if (!live) {
+      setStatus(null);
+      return;
+    }
     const tick = () => {
       const now = torontoNow();
       setStatus({ ...openStatus(now), today: (now.getDay() + 6) % 7 });

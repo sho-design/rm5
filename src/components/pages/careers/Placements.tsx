@@ -26,9 +26,9 @@ export function Placements() {
         ))}
         <a
           href={`mailto:${site.placementsEmail}`}
-          className="mt-1.5 inline-flex max-w-full self-start rounded-chip bg-ink px-5 py-3 text-[14px] font-semibold leading-[1.3] text-white transition-opacity hover:opacity-90 active:scale-[.98]"
+          className="mt-1.5 inline-flex max-w-full self-start rounded-chip bg-ink px-5 py-3 text-[14px] font-semibold leading-[1.3] text-white transition-opacity hover:opacity-90 active:scale-[.98] sm:whitespace-nowrap"
         >
-          <span className="break-all">
+          <span>
             {p.cta}
             {site.placementsEmail}
           </span>
