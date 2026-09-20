@@ -101,9 +101,9 @@ export function RegisterForm() {
           actions={
             <>
               <Button to="notes">{registerCopy.done.notes}</Button>
-              <Button to="home" variant="ghost" className="text-ink">
+              <SmartLink to="home" className="inline-flex h-12 items-center px-[22px] text-[14px] font-semibold text-ink hover:opacity-80">
                 {registerCopy.done.home}
-              </Button>
+              </SmartLink>
             </>
           }
         >

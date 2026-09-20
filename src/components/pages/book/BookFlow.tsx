@@ -18,6 +18,9 @@ interface Details {
   notes: string;
 }
 
+/** Ink text action beside the pills in an outcome card. */
+const ghost = "inline-flex h-12 items-center px-[22px] text-[14px] font-semibold text-ink hover:opacity-80";
+
 const emptyDetails: Details = { first: "", last: "", email: "", phone: "", card: "", notes: "" };
 
 /** Step indicator: done steps show ✓ on sage, the current step sits on ink with a sunshine dot. */
@@ -305,9 +308,9 @@ export function BookFlow({ divisions }: { divisions: string[] }) {
                 <Button to="locations" variant="inverse">
                   {bookingCopy.confirmed.directions}
                 </Button>
-                <Button variant="ghost" onClick={reset} className="text-ink">
+                <button type="button" onClick={reset} className={ghost}>
                   {bookingCopy.confirmed.reset}
-                </Button>
+                </button>
               </>
             }
           >
@@ -334,9 +337,9 @@ export function BookFlow({ divisions }: { divisions: string[] }) {
             actions={
               <>
                 <Button onClick={() => setState(2)}>{bookingCopy.waitlisted.bookAnyway}</Button>
-                <Button variant="ghost" onClick={reset} className="text-ink">
+                <button type="button" onClick={reset} className={ghost}>
                   {bookingCopy.waitlisted.leave}
-                </Button>
+                </button>
               </>
             }
           >
