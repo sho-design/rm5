@@ -31,7 +31,7 @@ export function Hero({
   helper?: ReactNode;
 }) {
   return (
-    <section className="relative mx-3 mt-4 flex min-h-[360px] items-end overflow-hidden rounded-[22px] md:mx-gutter md:mt-8 md:min-h-[520px] md:rounded-block">
+    <section className="relative mx-3 mt-4 flex bg-ink-2 min-h-[360px] items-end overflow-hidden rounded-[22px] md:mx-gutter md:mt-8 md:min-h-[520px] md:rounded-block">
       <div className="absolute inset-0">
         <Photo src={img} alt={alt} radius="none" protect className="h-full w-full" priority sizes="100vw" />
       </div>

@@ -117,7 +117,7 @@ export function DivisionHero({
   minHeight?: number;
 }) {
   return (
-    <section className="relative mx-3 mt-3 flex items-end overflow-hidden rounded-block md:mx-gutter md:mt-6" style={{ minHeight }}>
+    <section className="relative mx-3 mt-3 flex items-end overflow-hidden rounded-block bg-ink-2 md:mx-gutter md:mt-6" style={{ minHeight }}>
       <Photo src={img} alt={imgAlt} radius="none" protect className="absolute inset-0" priority sizes="100vw" />
       <div className="relative flex w-full flex-col gap-5 p-6 text-white md:p-10 lg:p-12">
         {eyebrow ? <Eyebrow tone="sun">{eyebrow}</Eyebrow> : null}
