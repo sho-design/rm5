@@ -12,7 +12,13 @@ npx tsc --noEmit
 npm run build
 ```
 
-Copy `.env.example` to `.env.local` to configure form destinations, GTM and the Vietnamese toggle. Without form endpoints the API routes answer with a simulated success so the flows can be exercised locally.
+Copy `.env.example` to `.env.local` and set `PAYLOAD_SECRET`. Then seed the content and create the first admin:
+
+```bash
+ADMIN_EMAIL=you@clinic.ca ADMIN_PASSWORD='at least 12 characters' npm run seed
+```
+
+The admin panel is at http://localhost:3000/admin. Without form endpoints the form API routes answer with a simulated success so the flows can be exercised locally.
 
 ## Layout of the repo
 
@@ -24,7 +30,10 @@ Copy `.env.example` to `.env.local` to configure form destinations, GTM and the 
 | `src/fonts/` | Fraunces and Instrument Sans variable fonts (OFL). |
 | `src/lib/routes.ts` | Prototype page key to URL map. Every internal link goes through it. |
 | `src/content/` | Typed content modules: divisions, site facts and locations, choosers, FAQ, jobs, team, notes, legal, search index. |
-| `src/lib/cms.ts` | Read façade for the collections destined for the CMS (notes, jobs, team, FAQ, locations, announcements, legal). |
+| `src/payload.config.ts`, `src/payload/` | Payload CMS: collections (health notes, jobs, team, FAQ, clinics, announcements, legal pages, images, page SEO), site settings, access rules, audit log and revalidation hooks. See `docs/cms.md`. |
+| `src/app/(payload)/` | The admin panel (`/admin`) and its API (`/cms-api`). |
+| `src/lib/cms.ts` | Read façade over Payload with a fallback to the typed content in `src/content`, so the site builds without a database. |
+| `src/lib/seo.ts` | Merges per-page SEO saved in the admin over each page's built-in metadata. |
 | `src/components/ui/` | Shared primitives: Button, headings, Section and Block, Photo, cards, Chooser, Faq, PathSteps, CtaBand, heroes, Icon, form fields, StateCard. |
 | `src/components/chrome/` | Utility bar, header with mega menu and search, mobile menu, footer, teaching partners strip, analytics loader. |
 | `src/components/pages/` | Page-specific sections. |
@@ -32,7 +41,7 @@ Copy `.env.example` to `.env.local` to configure form destinations, GTM and the 
 
 ## Decisions and open items
 
-- **CMS.** The handoff decides on Payload CMS 3 with Postgres on Neon. This repo ships the CMS collections as typed content modules behind `src/lib/cms.ts` so the site builds without a database. Wiring Payload replaces the bodies of that one file.
+- **CMS.** Payload CMS 3 is embedded at `/admin`. Locally it uses SQLite (`data/payload.db`); production uses Postgres on Neon and Vercel Blob for uploads, configured by environment variables. Setup, roles, security model and the migration steps are in `docs/cms.md`.
 - **Images.** All photography is generated placeholder art served from the prototype's CDN, mapped in `src/content/images.ts`. Replace with real clinic photography before launch (dress and casting rules in `CLAUDE.md`).
 - **Forms.** Destinations (Ocean, Jane, ATS, mailboxes) are unconfirmed; set the `FORM_ENDPOINT_*` variables when the clinic confirms.
 - **Vietnamese.** The EN / Tiếng Việt toggle is hidden until Vietnamese copy exists (`NEXT_PUBLIC_VI_ENABLED`).

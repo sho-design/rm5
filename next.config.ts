@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withPayload } from "@payloadcms/next/withPayload";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -6,7 +7,7 @@ const csp = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://d8j0ntlcm91z4.cloudfront.net https://www.googletagmanager.com https://www.google-analytics.com",
+  "img-src 'self' data: blob: https://*.public.blob.vercel-storage.com https://d8j0ntlcm91z4.cloudfront.net https://www.googletagmanager.com https://www.google-analytics.com",
   "font-src 'self' data:",
   "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com",
   "frame-ancestors 'none'",
@@ -27,7 +28,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "d8j0ntlcm91z4.cloudfront.net" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "d8j0ntlcm91z4.cloudfront.net" },
+      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+    ],
   },
   async headers() {
     return [
@@ -41,4 +45,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig, { devBundleServerPackages: false });

@@ -108,6 +108,10 @@ export interface TeamMember {
   preceptorTag?: string;
   initial: string;
   tint: string;
+  /** Headshot URL when one has been uploaded in the CMS. */
+  photo?: string;
+  bio?: string;
+  credentials?: string[];
 }
 
 export interface LegalSection {

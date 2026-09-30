@@ -1,0 +1,10 @@
+/* Admin panel accents in the clinic's palette. Payload's own theme handles the rest. */
+:root {
+  --theme-elevation-0: #ffffff;
+  --color-success-500: #3d9b78;
+  --color-warning-500: #b8860b;
+  --color-error-500: #c4573a;
+}
+html[data-theme="light"] {
+  --theme-bg: #f5f8fb;
+}
