@@ -41,7 +41,8 @@ The admin panel is at http://localhost:3000/admin. Without form endpoints the fo
 
 ## Decisions and open items
 
-- **CMS.** Payload CMS 3 is embedded at `/admin`. Locally it uses SQLite (`data/payload.db`); production uses Postgres on Neon and Vercel Blob for uploads, configured by environment variables. Setup, roles, security model and the migration steps are in `docs/cms.md`.
+- **CMS.** Payload CMS 3 is embedded at `/admin`. Locally it uses SQLite (`data/payload.db`); production uses Postgres on Neon and Vercel Blob for uploads, configured by environment variables. `npm run build` applies migrations (and seeds, when `SEED_ON_BUILD=1`) before `next build`. Setup, roles, security model and the Vercel steps are in `docs/cms.md`.
+- **Hosting.** Vercel project `rm5`, production branch `claude/new-session-kp96am`, live at https://rm5-nine.vercel.app (Vercel sign-in required while deployment protection is on).
 - **Images.** All photography is generated placeholder art served from the prototype's CDN, mapped in `src/content/images.ts`. Replace with real clinic photography before launch (dress and casting rules in `CLAUDE.md`).
 - **Forms.** Destinations (Ocean, Jane, ATS, mailboxes) are unconfirmed; set the `FORM_ENDPOINT_*` variables when the clinic confirms.
 - **Vietnamese.** The EN / Tiếng Việt toggle is hidden until Vietnamese copy exists (`NEXT_PUBLIC_VI_ENABLED`).

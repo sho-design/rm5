@@ -5,7 +5,9 @@
  *   ADMIN_EMAIL=... ADMIN_PASSWORD=... npm run seed   # also creates the first admin
  *
  * Safe to re-run: existing documents are matched by slug, key or title and
- * updated rather than duplicated. Run once against Neon before launch.
+ * updated rather than duplicated. With SEED_FILL_ONLY=1 (used by the
+ * production build when SEED_ON_BUILD=1) existing documents are left
+ * untouched and only missing ones are added, so editors' changes survive.
  */
 import { getPayload } from "payload";
 import config from "../src/payload.config";
@@ -18,6 +20,7 @@ import { locations, announcements } from "../src/content/site";
 import { blocksToLexical } from "../src/lib/lexical";
 
 process.env.PAYLOAD_SEED = "1";
+const fillOnly = process.env.SEED_FILL_ONLY === "1";
 
 type Where = Record<string, { equals: string }>;
 
@@ -29,6 +32,7 @@ async function main() {
     const existing = await payload.find({ collection: collection as never, where: where as never, limit: 1, overrideAccess: true });
     const found = existing.docs[0] as { id: string | number } | undefined;
     if (found) {
+      if (fillOnly) return found.id;
       await payload.update({ collection: collection as never, id: found.id, data: data as never, overrideAccess: true, context: { disableRevalidate: true } });
       return found.id;
     }

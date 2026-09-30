@@ -67,19 +67,20 @@ Local data lives in `data/payload.db` (SQLite) and uploads in `public/media`. Bo
 
 ### Production (Vercel + Neon)
 
-1. Create a Neon Postgres database (Canada central or us-east-1) and copy its connection string to `DATABASE_URL`.
-2. Create a Vercel Blob store and copy its token to `BLOB_READ_WRITE_TOKEN`.
-3. Set `PAYLOAD_SECRET` and `NEXT_PUBLIC_SITE_URL`.
-4. Generate the first migration against Neon from your machine, commit it, and add `payload migrate` before `next build` in the Vercel build command:
+The site deploys from the `claude/new-session-kp96am` branch and is live at `https://rm5-nine.vercel.app`. The public pages work with no configuration. The admin at `/admin` shows a short "not set up yet" notice until the variables below exist, then becomes the sign-in screen.
 
-```bash
-DATABASE_URL=... npm run migrate:create   # writes src/payload/migrations/*
-# Vercel > Settings > Build command:  npm run migrate && next build
-```
+1. **Database.** In the Vercel project open Storage, choose Neon (Postgres) and create a database in a US East or Canada region. Vercel adds `DATABASE_URL` to the project. Alternatively create it at neon.tech and paste the pooled connection string as `DATABASE_URL`.
+2. **Uploads.** In Storage, create a Blob store and connect it to the project. Vercel adds `BLOB_READ_WRITE_TOKEN`.
+3. **Variables.** In Settings, Environment Variables, add for Production:
+   - `PAYLOAD_SECRET`: a long random string (`openssl rand -base64 48`). Mark it sensitive.
+   - `NEXT_PUBLIC_SITE_URL`: the public origin, for example `https://rm5-nine.vercel.app`, later `https://restorationmedical.ca`. Cookies, CSRF and canonical links use it.
+   - `ADMIN_EMAIL`, `ADMIN_PASSWORD` (12 characters or more) and `SEED_ON_BUILD=1` to create the first admin and fill the empty database with the site's current content during the next build.
+4. **Redeploy** (Deployments, latest, Redeploy). `npm run build` runs `scripts/build.mjs`, which applies the migrations in `src/payload/migrations`, seeds when asked, then builds the site. No custom build command is needed.
+5. Sign in at `/admin`, then remove `ADMIN_PASSWORD` from the project. `SEED_ON_BUILD` can stay on: it only adds documents that are missing and never overwrites an edit.
 
-5. Seed once from your machine against Neon: `DATABASE_URL=... ADMIN_EMAIL=... ADMIN_PASSWORD=... npm run seed`.
+Deployment protection is on for the `*.vercel.app` URLs, so visitors are asked to sign in to Vercel. Turn it off in Settings, Deployment Protection, or attach the clinic's domain, which is never protected.
 
-Schema changes in production only ever go through migrations (`push` is disabled for Postgres).
+Schema changes in production only ever go through migrations (`push` is disabled for Postgres). After changing a collection run `DATABASE_URL=... npm run migrate:create` and commit the new files in `src/payload/migrations`. `migrate:create` does not connect to the database, so any Postgres URL will do for generating the file.
 
 ## Editing workflow
 
@@ -91,4 +92,4 @@ Schema changes in production only ever go through migrations (`push` is disabled
 
 ## Adding a field or collection
 
-Edit the collection in `src/payload/collections`, run `npm run generate:types`, map the new field in `src/lib/cms.ts`, and, for Postgres, `npm run migrate:create`. Commit the migration with the code.
+Edit the collection in `src/payload/collections`, run `npm run generate:types`, map the new field in `src/lib/cms.ts`, then `DATABASE_URL=postgres://x:y@localhost/x npm run migrate:create <name>`. Commit the migration with the code; the build applies it on the next deploy.
