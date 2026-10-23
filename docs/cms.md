@@ -39,6 +39,8 @@ Anything left blank in Page SEO or missing from a collection falls back to the b
 
 - **No public sign-up.** The first admin is created by the seed (or the one-time `/admin/create-first-user` screen on an empty database). After that only admins create accounts.
 - **Two roles.** `editor` edits content and Page SEO. `admin` also manages staff accounts and Site settings and can read the audit log.
+- **Two-factor sign-in.** Everyone signs in with a password and a six-digit code from an authenticator app (Google Authenticator, Microsoft Authenticator, 1Password or any TOTP app). The first sign-in shows a QR code to set it up. The code is checked at `/admin-mfa`; until it is, the admin panel redirects there and every `/cms-api` call from that sign-in answers 401. Each code works once. Five wrong codes lock the step for 15 minutes. The pass is tied to that one sign-in and lasts at most 12 hours. Secrets are encrypted in the database with a key derived from `PAYLOAD_SECRET` and are never returned by the API.
+- **Lost phone.** An admin opens the person's staff account, ticks **Reset two-factor** and saves; the person sets it up again at their next sign-in. If the only admin is locked out, run `DATABASE_URL=... PAYLOAD_SECRET=... npm run reset-2fa -- person@clinic.ca` from a trusted machine. `ADMIN_2FA=off` turns the requirement off entirely; use it only in an emergency and remove it straight after.
 - **Account lockout.** Five failed logins lock the account for 15 minutes. Passwords must be at least 12 characters. Sessions expire after two hours; cookies are `HttpOnly`, `Secure` in production, `SameSite=Lax`.
 - **Rate limiting.** `src/middleware.ts` limits login and password-reset calls to 10 per minute per IP and marks `/admin` and `/cms-api` as `noindex` and `no-store`. The counter is per server instance; add a WAF rate-limit rule for `/admin` and `/cms-api` at the host for a shared limit.
 - **Audit log.** Every create, update and delete in the panel is recorded with the user, time, collection, document and changed fields. Entries cannot be edited or deleted through the panel or API.
@@ -48,7 +50,7 @@ Anything left blank in Page SEO or missing from a collection falls back to the b
 
 ### Recommended at the hosting layer
 
-- Put `/admin` behind an identity layer with SSO and two-factor (Cloudflare Access or Vercel's deployment protection for the admin path). Payload does not ship built-in TOTP; edge SSO is the simplest way to meet the "2FA enforced" requirement in the handoff without adding unaudited plugins.
+- Optional extra layer: put `/admin` behind an identity provider (Cloudflare Access, or Google Workspace SSO) so the sign-in page is not public at all. Two-factor is already enforced in the app.
 - Turn on the platform's attack challenge mode and a rate-limit rule for `/admin/*` and `/cms-api/users/*`.
 - Keep `PAYLOAD_SECRET` and `DATABASE_URL` in the host's encrypted environment variables only.
 
@@ -76,7 +78,7 @@ The site deploys from the `claude/new-session-kp96am` branch and is live at `htt
    - `NEXT_PUBLIC_SITE_URL`: the public origin, for example `https://rm5-nine.vercel.app`, later `https://restorationmedical.ca`. Cookies, CSRF and canonical links use it.
    - `ADMIN_EMAIL`, `ADMIN_PASSWORD` (12 characters or more) and `SEED_ON_BUILD=1` to create the first admin and fill the empty database with the site's current content during the next build.
 4. **Redeploy** (Deployments, latest, Redeploy). `npm run build` runs `scripts/build.mjs`, which applies the migrations in `src/payload/migrations`, seeds when asked, then builds the site. No custom build command is needed.
-5. Sign in at `/admin`, then remove `ADMIN_PASSWORD` from the project. `SEED_ON_BUILD` can stay on: it only adds documents that are missing and never overwrites an edit.
+5. Sign in at `/admin`, scan the QR code with an authenticator app and enter the code. Then remove `ADMIN_PASSWORD` from the project. `SEED_ON_BUILD` can stay on: it only adds documents that are missing and never overwrites an edit.
 
 Deployment protection is on for the `*.vercel.app` URLs, so visitors are asked to sign in to Vercel. Turn it off in Settings, Deployment Protection, or attach the clinic's domain, which is never protected.
 

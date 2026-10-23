@@ -32,3 +32,6 @@ export const isAdminField: FieldAccess = ({ req }) => roleOf(req) === "admin";
 
 /** Nobody through the API. Used for the audit log, which only hooks write. */
 export const nobody: Access = () => false;
+
+/** Field nobody can read or write through the API (server code uses overrideAccess). */
+export const nobodyField: FieldAccess = () => false;

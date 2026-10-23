@@ -793,6 +793,16 @@ export interface User {
   id: number;
   name: string;
   role: 'editor' | 'admin';
+  twoFactorEnabled?: boolean | null;
+  /**
+   * Tick and save if this person has a new phone or lost their authenticator. They set it up again at their next sign-in.
+   */
+  resetTwoFactor?: boolean | null;
+  totpSecret?: string | null;
+  totpPending?: string | null;
+  totpLastStep?: number | null;
+  totpFailures?: number | null;
+  totpLockedUntil?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -1184,6 +1194,13 @@ export interface PageSeoSelect<T extends boolean = true> {
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
   role?: T;
+  twoFactorEnabled?: T;
+  resetTwoFactor?: T;
+  totpSecret?: T;
+  totpPending?: T;
+  totpLastStep?: T;
+  totpFailures?: T;
+  totpLockedUntil?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
