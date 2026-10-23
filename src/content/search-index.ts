@@ -1,5 +1,8 @@
 import type { SearchEntry } from "./types";
 import { divisions, navOrder } from "./divisions";
+import { topics } from "./topics";
+import { infusionPages, signatureDrips } from "./infusion-site";
+import { dripRoute } from "@/lib/routes";
 
 /**
  * Site search index, built the same way as the prototype's INDEX:
@@ -11,10 +14,17 @@ const generated: SearchEntry[] = navOrder.flatMap((k) => {
   const d = divisions[k];
   return [
     { kind: "Service", label: d.label, sub: d.tag, page: k },
-    ...d.explore.slice(1).map((e) => ({ kind: d.label, label: e.label, sub: "Explore", page: k })),
-    ...(d.services ?? []).map((s) => ({ kind: d.label, label: s.title, sub: s.desc, page: k })),
+    ...d.explore.slice(1).map((e) => ({ kind: d.label, label: e.label, sub: "Explore", page: e.page })),
+    ...(d.services ?? []).map((s) => ({ kind: d.label, label: s.title, sub: s.desc, page: s.page })),
   ];
 });
+
+/** One row per topic page, infusion page and signature drip. */
+const pages: SearchEntry[] = [
+  ...topics.map((t) => ({ kind: divisions[t.division].label, label: t.page, sub: t.lead, page: t.key })),
+  ...infusionPages.map((p) => ({ kind: divisions.infusion.label, label: p.title, sub: p.description, page: p.key })),
+  ...signatureDrips.map((d) => ({ kind: "Drip", label: d.t, sub: d.d, page: dripRoute(d.slug) })),
+];
 
 const handWritten: SearchEntry[] = [
   { kind: "About", label: "Teaching clinic", sub: "TMU and Anderson College placements, supervision", page: "about" },
@@ -45,7 +55,10 @@ const handWritten: SearchEntry[] = [
   { kind: "Book", label: "Book an appointment", sub: "Any service", page: "book" },
 ];
 
-export const searchIndex: SearchEntry[] = [...generated, ...handWritten];
+/** Same label and destination appear once (menu rows and page rows overlap). */
+export const searchIndex: SearchEntry[] = [...generated, ...pages, ...handWritten].filter(
+  (r, i, all) => all.findIndex((x) => x.label.toLowerCase() === r.label.toLowerCase() && x.page === r.page) === i,
+);
 
 /** Top 8 entries whose label, sub or kind contains the query (case-insensitive). */
 export function searchIndexFilter(q: string): SearchEntry[] {

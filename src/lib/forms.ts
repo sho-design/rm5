@@ -46,6 +46,10 @@ export async function forwardForm(kind: FormKind, request: Request): Promise<Nex
       body: JSON.stringify({ kind, submittedAt: new Date().toISOString(), data: body }),
       cache: "no-store",
     });
+    if (res.status === 409) {
+      // The destination says the requested time is no longer free (booking only).
+      return NextResponse.json({ ok: false, taken: true, error: "Slot no longer available" }, { status: 409, headers: noStore });
+    }
     if (!res.ok) {
       return NextResponse.json({ ok: false, error: "Destination rejected the request" }, { status: 502, headers: noStore });
     }
@@ -55,11 +59,19 @@ export async function forwardForm(kind: FormKind, request: Request): Promise<Nex
   }
 }
 
-/** Client helper: POST JSON to /api/<kind>. Resolves to { ok, simulated? } and never throws. */
-export async function submitForm(kind: FormKind, data: Record<string, unknown>): Promise<{ ok: boolean; simulated?: boolean; error?: string }> {
+export interface FormResult {
+  ok: boolean;
+  simulated?: boolean;
+  /** The destination answered 409: the requested booking time is no longer free. */
+  taken?: boolean;
+  error?: string;
+}
+
+/** Client helper: POST JSON to /api/<kind>. Resolves to a FormResult and never throws. */
+export async function submitForm(kind: FormKind, data: Record<string, unknown>): Promise<FormResult> {
   try {
     const res = await fetch(`/api/${kind}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data), cache: "no-store" });
-    const json = (await res.json()) as { ok: boolean; simulated?: boolean; error?: string };
+    const json = (await res.json()) as FormResult;
     return json;
   } catch {
     return { ok: false, error: "Network error" };

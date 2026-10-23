@@ -47,4 +47,6 @@ The admin panel is at http://localhost:3000/admin. Without form endpoints the fo
 - **Forms.** Destinations (Ocean, Jane, ATS, mailboxes) are unconfirmed; set the `FORM_ENDPOINT_*` variables when the clinic confirms.
 - **Vietnamese.** The EN / Tiếng Việt toggle is hidden until Vietnamese copy exists (`NEXT_PUBLIC_VI_ENABLED`).
 - **Logos.** Written permission from TMU and Anderson College is required before launch.
+- **Topic and Infusion pages.** Every mega-menu link has its own page: Pain Centre, Aesthetics, Rehab, Family Medicine and About topics (`src/content/topics.ts`, one template in `src/components/pages/topic/`) and the Infusion pages, which now live on this site rather than infusion.restorationmedical.ca (`src/content/infusion-site.ts`). New wording awaiting clinic approval is listed in `docs/content-review.md`.
+- **Search.** Location-led title tags (`src/content/seo-titles.ts`), canonical links on every page, schema.org JSON-LD (`src/lib/schema.ts`: clinic, physicians, breadcrumbs, FAQ, articles) and `/llms.txt`, all generated from the content modules.
 - See `design/handoff/README.md` for the full caveat list (team names, sample jobs, legal drafts, unconfirmed prices and wait times).

@@ -23,8 +23,8 @@ export function divisionMetadata(k: NavKey): Metadata {
  * One template for the five division pages and the About landing page:
  * H1 + icon sub-nav, photo hero, "What we offer" bento, then the division's
  * deep dive (or, for About, the teaching clinic block and its closing band).
- * Infusion renders its own hero, grid and drip builder and links out to the
- * Infusion site for drips and shots.
+ * Infusion renders its own hero, grid and drip builder, with links to the
+ * drips, shots, concern and pricing pages under /infusion-therapy.
  */
 export function DivisionPage({ k }: { k: NavKey }) {
   const d = divisions[k];

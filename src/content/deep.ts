@@ -779,10 +779,11 @@ export const deepModuleCopy = {
   ladder: { eyebrow: "How we think", title: "Lightest option first. Step up only if you want to.", note: "Tap a rung to see what it involves. Most people start on the first.", step: "Step" },
   coverage: { eyebrow: "What will I pay?", title: "Pick how you are covered.", payLabel: "You pay at the desk" },
   handoff: {
-    eyebrow: "The full menu lives on its own site",
+    // Wording changed when the Infusion pages moved onto this site (needs clinic approval).
+    eyebrow: "The full menu",
     title: "Drips, shots, ingredients and pricing.",
-    p: "Our Infusion Therapy site has every drip and shot, the ingredient library, pricing and memberships, and a journal. Same physicians, same nurses, same booking.",
-    cta: "Explore the Infusion site",
+    p: "Every drip and shot, the ingredient library, pricing and memberships. Same physicians, same nurses, same booking.",
+    cta: "Explore drips and shots",
     cta2: "Book a consult",
   },
 } as const;

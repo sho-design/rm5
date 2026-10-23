@@ -4,10 +4,12 @@ import { divisionList, divisions } from "@/content/divisions";
 import { legalOrder } from "@/content/legal";
 import type { LinkTarget } from "@/content/types";
 import { Display, Eyebrow, SmartLink } from "@/components/ui";
+import { topicsFor } from "@/content/topics";
+import { href } from "@/lib/routes";
 
 const baseMetadata: Metadata = {
   title: "Sitemap",
-  description: "Every page on the Restoration Medical website: services, family medicine sub-pages, about, health notes and policies.",
+  description: "Every page on the Restoration Medical website: services and their topic pages, infusion drips and shots, about, health notes and policies.",
 };
 
 interface Group {
@@ -29,7 +31,18 @@ function groups(): Group[] {
         { label: "Our team", page: "team" },
       ],
     },
-    ...divisionList.map((d) => ({ label: d.label, page: d.key as LinkTarget, links: d.explore.slice(1) })),
+    ...divisionList.map((d) => {
+      // Explore links, then any topic or infusion page the menu reaches that Explore does not.
+      const seen = new Set(d.explore.map((e) => href(e.page)));
+      const extra = [...d.book, ...d.more].filter((l) => {
+        const url = href(l.page);
+        if (url.includes("#") || url.includes("?") || seen.has(url) || !url.startsWith(href(d.key))) return false;
+        seen.add(url);
+        return true;
+      });
+      const topicExtra = topicsFor(d.key).filter((t) => !seen.has(href(t.key))).map((t) => ({ label: t.page, page: t.key as LinkTarget }));
+      return { label: d.label, page: d.key as LinkTarget, links: [...d.explore.slice(1), ...extra, ...topicExtra] };
+    }),
     {
       label: "About",
       page: "about",
@@ -38,6 +51,7 @@ function groups(): Group[] {
         { label: "Our clinics", page: "locations" },
         { label: "FAQ", page: "faq" },
         ...about.explore.slice(3).filter((l) => l.label !== "FAQ"),
+        ...topicsFor("about").map((t) => ({ label: t.page, page: t.key as LinkTarget })),
       ],
     },
     {

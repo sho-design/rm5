@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LegalPage } from "@/components/pages/legal/LegalPage";
 import { getLegalPage, getLegalPages } from "@/lib/cms";
+import { pageMetadata } from "@/lib/seo";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const page = await getLegalPage(slug);
   if (!page) return {};
-  return { title: page.title, description: page.intro };
+  return pageMetadata(`/legal/${page.slug}`, { title: page.title, description: page.intro });
 }
 
 export default async function Page({ params }: Params) {

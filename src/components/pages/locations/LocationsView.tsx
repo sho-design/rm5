@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Block, Button, Display, Photo, SmartLink } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { locationsCopy } from "@/content/about";
@@ -20,6 +20,20 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
   const c = locationsCopy;
   const phone = loc.phone ?? site.phone;
   const phoneHref = `tel:${phone.replace(/\D/g, "")}`;
+
+  // /about/clinics#maple or #thornhill opens that tab (mega menu links).
+  useEffect(() => {
+    const select = () => {
+      const n = locations.findIndex((l) => `#${l.key}` === window.location.hash);
+      if (n >= 0) {
+        setI(n);
+        setWaitlist(false);
+      }
+    };
+    select();
+    window.addEventListener("hashchange", select);
+    return () => window.removeEventListener("hashchange", select);
+  }, [locations]);
 
   function pick(n: number) {
     setI(n);

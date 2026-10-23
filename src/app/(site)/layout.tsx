@@ -4,6 +4,8 @@ import "../globals.css";
 import { site } from "@/content/site";
 import { SiteChrome } from "@/components/chrome/SiteChrome";
 import { ThemeScript } from "@/components/chrome/ThemeScript";
+import { JsonLd } from "@/components/JsonLd";
+import { siteGraph } from "@/lib/schema";
 
 const fraunces = localFont({
   src: [
@@ -45,6 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeScript />
       </head>
       <body>
+        <JsonLd data={siteGraph()} />
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>

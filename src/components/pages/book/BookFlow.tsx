@@ -21,6 +21,15 @@ interface Details {
 /** Ink text action beside the pills in an outcome card. */
 const ghost = "inline-flex h-12 items-center px-[22px] text-[14px] font-semibold text-ink hover:opacity-80";
 
+/** ?service= keys accepted on /book, mapped to the service labels shown in step 1. */
+const serviceLabels: Record<string, string> = {
+  family: "Family Medicine",
+  pain: "Pain Centre",
+  infusion: "Infusion Therapy",
+  aesthetics: "Medical Aesthetics",
+  rehab: "Rehab & Recovery",
+};
+
 const emptyDetails: Details = { first: "", last: "", email: "", phone: "", card: "", notes: "" };
 
 /** Step indicator: done steps show ✓ on sage, the current step sits on ink with a sunshine dot. */
@@ -69,7 +78,8 @@ function icsFor(day: BookingDay, slot: number, division: string): string {
 
 /**
  * Three-step booking flow (Details, Time, Confirm) with confirmed, waitlist
- * and slot-taken outcomes, as the prototype's book page. Days and slots are
+ * and slot-taken outcomes, as the prototype's book page. The outcome comes
+ * from the booking destination's response, never from the slot chosen. Days and slots are
  * computed on the client so the calendar follows the Toronto date.
  */
 export function BookFlow({ divisions }: { divisions: string[] }) {
@@ -86,7 +96,11 @@ export function BookFlow({ divisions }: { divisions: string[] }) {
 
   useEffect(() => {
     setDays(bookingDays());
-  }, []);
+    // Menu "Book" links pass ?service=<division key> (family, pain, infusion, aesthetics, rehab).
+    const key = new URLSearchParams(window.location.search).get("service");
+    const label = key ? serviceLabels[key] : undefined;
+    if (label && divisions.includes(label)) setDivision(label);
+  }, [divisions]);
 
   const day = days[dayIdx];
   const slots = useMemo(() => day?.slots ?? [], [day]);
@@ -114,16 +128,11 @@ export function BookFlow({ divisions }: { divisions: string[] }) {
 
   const confirm = async () => {
     if (slot == null || !day) return;
-    // Prototype demo: the second slot of the third day is always "just taken".
-    if (dayIdx === 2 && slot === slots[1]) {
-      setFailed(false);
-      setState("e");
-      return;
-    }
     setBusy(true);
     const res = await submitForm("book", payload());
     setBusy(false);
-    setFailed(!res.ok);
+    // "Just taken" only when the booking system says so (HTTP 409); any other failure offers a retry.
+    setFailed(!res.ok && !res.taken);
     setState(res.ok ? 3 : "e");
   };
 

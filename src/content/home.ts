@@ -243,7 +243,7 @@ export const infusionLinks: InfusionLink[] = [
     t: "Thirteen drips, one standard",
     d: "Foundation, Healing, Radiance, Recover, NAD+ Longevity and more, each physician-reviewed.",
     cta: "Browse drips",
-    href: "https://infusion.restorationmedical.ca/drips",
+    href: "drips",
   },
   {
     k: "The Injection Bar",
@@ -251,7 +251,7 @@ export const infusionLinks: InfusionLink[] = [
     t: "Shots in ten minutes",
     d: "B12, vitamin D, glutathione and other quick shots between visits.",
     cta: "See the shots",
-    href: "https://infusion.restorationmedical.ca/shots",
+    href: "shots",
   },
   {
     k: "Ingredients",
@@ -259,7 +259,7 @@ export const infusionLinks: InfusionLink[] = [
     t: "Know what is in the bag",
     d: "Every ingredient explained, with the evidence labelled honestly.",
     cta: "Ingredient library",
-    href: "https://infusion.restorationmedical.ca/ingredients",
+    href: "ingredients",
   },
   {
     k: "Pricing",
@@ -267,6 +267,6 @@ export const infusionLinks: InfusionLink[] = [
     t: "Prices and memberships",
     d: "Clear per-visit pricing and optional memberships, HST included.",
     cta: "See pricing",
-    href: "https://infusion.restorationmedical.ca/pricing",
+    href: "infusionPricing",
   },
 ];

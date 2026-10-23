@@ -56,10 +56,10 @@ export interface Division {
   footCta?: string;
   /** Mega menu: first column (first entry is "All ...") */
   explore: { label: string; page: LinkTarget }[];
-  /** Mega menu: second column, all go to /book (or /about/clinics for About) */
-  book: string[];
-  /** Mega menu: third column, all go to the division page */
-  more: string[];
+  /** Mega menu: second column, booking routes (/book?service=..., or clinics and contact for About) */
+  book: { label: string; page: LinkTarget }[];
+  /** Mega menu: third column, related pages */
+  more: { label: string; page: LinkTarget }[];
   sub?: SubNavItem[];
   services?: DivisionService[];
 }

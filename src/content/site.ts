@@ -154,7 +154,6 @@ export const announcements: Announcement[] = [
 
 export const network = [
   { t: "Restoration Medical", d: "Family medicine, pain, rehab and aesthetics", tag: "You are here", href: external.mainSite },
-  { t: "Infusion Therapy", d: "Drips, shots, iron therapy", tag: "infusion.restorationmedical.ca", href: external.infusionSite },
   { t: "Canada Knee Clinic", d: "Knee and joint care", tag: "canadakneeclinic.com", href: external.kneeClinic },
 ] as const;
 
@@ -170,5 +169,5 @@ export const popularSearches: { label: string; page: string }[] = [
   { label: "New patients", page: "register" },
   { label: "Hours & directions", page: "locations" },
   { label: "Our team", page: "team" },
-  { label: "Pricing", page: "https://infusion.restorationmedical.ca/pricing" },
+  { label: "Pricing", page: "infusionPricing" },
 ];

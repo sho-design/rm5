@@ -3,6 +3,8 @@ import { pageMetadata } from "@/lib/seo";
 import { FaqPage } from "@/components/pages/faq/FaqPage";
 import { faqCopy } from "@/content/faq";
 import { getFaq } from "@/lib/cms";
+import { faqPage } from "@/lib/schema";
+import { JsonLd } from "@/components/JsonLd";
 
 const baseMetadata: Metadata = {
   title: faqCopy.title,
@@ -15,5 +17,10 @@ export async function generateMetadata() {
 
 export default async function Page() {
   const { items, categories } = await getFaq();
-  return <FaqPage items={items} categories={categories} />;
+  return (
+    <>
+      <JsonLd data={faqPage(items)} />
+      <FaqPage items={items} categories={categories} />
+    </>
+  );
 }

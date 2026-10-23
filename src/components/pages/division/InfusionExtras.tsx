@@ -4,9 +4,7 @@ import { deepModuleCopy } from "@/content/deep";
 import type { CompareRow } from "@/content/deep";
 import type { InfusionLink } from "@/content/home";
 import { images } from "@/content/images";
-import { external } from "@/lib/routes";
-
-const concernsUrl = `${external.infusionSite}/concerns`;
+import { bookFor } from "@/lib/routes";
 
 /** Infusion hero: photo block, sunshine pill, Fraunces 72 headline with italic phrase, three CTAs, location note. */
 export function InfusionHero() {
@@ -23,10 +21,10 @@ export function InfusionHero() {
           </h2>
           <p className="pretty max-w-[600px] text-[14px] leading-[1.5] text-white/85 md:text-[19px]">{ip.hero.p}</p>
           <div className="flex flex-wrap gap-2.5">
-            <Button to="book" variant="inverse">
+            <Button to={bookFor("infusion")} variant="inverse">
               {ip.hero.cta}
             </Button>
-            <Button to={external.infusionDrips} variant="outline-inverse">
+            <Button to="drips" variant="outline-inverse">
               {ip.hero.cta2}
             </Button>
             <Button to="iron" variant="outline-inverse">
@@ -52,7 +50,7 @@ export function InfusionGrid() {
         <span className="pretty max-w-[320px] text-[14px] text-muted">{g.note}</span>
       </div>
       <div className="grid grid-cols-1 gap-block md:grid-cols-3">
-        <SmartLink to={external.infusionDrips} className="flex min-h-[280px] flex-col justify-between gap-10 rounded-card bg-inverse p-6 text-on-inverse transition-opacity hover:opacity-95 md:col-span-2 md:min-h-[360px] md:gap-20 md:p-8">
+        <SmartLink to="drips" className="flex min-h-[280px] flex-col justify-between gap-10 rounded-card bg-inverse p-6 text-on-inverse transition-opacity hover:opacity-95 md:col-span-2 md:min-h-[360px] md:gap-20 md:p-8">
           <span className="text-[13px] font-semibold">{g.wellness.k}</span>
           <span className="flex flex-col gap-2.5">
             <span className="display-tight text-[28px] md:text-[34px]">{g.wellness.t}</span>
@@ -77,7 +75,7 @@ export function InfusionGrid() {
           </span>
         </SmartLink>
 
-        <SmartLink to={external.infusionSite} className="flex flex-col justify-between gap-10 rounded-card bg-sun-soft p-6 text-ink transition-opacity hover:opacity-95 md:p-7">
+        <SmartLink to="infusionHow" className="flex flex-col justify-between gap-10 rounded-card bg-sun-soft p-6 text-ink transition-opacity hover:opacity-95 md:p-7">
           <span className="text-[13px] font-semibold">{g.how.k}</span>
           <span className="flex flex-col gap-1.5">
             <span className="display-tight text-[24px] leading-[1.1]">{g.how.t}</span>
@@ -85,7 +83,7 @@ export function InfusionGrid() {
           </span>
         </SmartLink>
 
-        <SmartLink to={concernsUrl} className="grid grid-cols-1 items-center gap-5 rounded-card border border-border bg-card p-6 transition-colors hover:border-sky md:col-span-2 md:grid-cols-[1fr_1.3fr] md:gap-6 md:p-7">
+        <SmartLink to="concerns" className="grid grid-cols-1 items-center gap-5 rounded-card border border-border bg-card p-6 transition-colors hover:border-sky md:col-span-2 md:grid-cols-[1fr_1.3fr] md:gap-6 md:p-7">
           <span className="flex flex-col gap-1.5">
             <span className="text-[13px] font-semibold text-muted">{g.concerns.k}</span>
             <span className="display-tight text-[24px] md:text-[28px]">{g.concerns.t}</span>
@@ -145,7 +143,7 @@ export function CompareTable({ rows }: { rows: CompareRow[] }) {
   );
 }
 
-/** Deep dive, infusion only: navy handoff to the external Infusion site with four link cards. */
+/** Deep dive, infusion only: navy block linking to the drips, shots, ingredients and pricing pages. */
 export function InfusionHandoff({ links }: { links: InfusionLink[] }) {
   const h = deepModuleCopy.handoff;
   return (
@@ -157,10 +155,10 @@ export function InfusionHandoff({ links }: { links: InfusionLink[] }) {
           {h.p}
         </Lead>
         <div className="flex flex-wrap gap-2.5">
-          <Button to={external.infusionSite} variant="accent" trailing>
+          <Button to="drips" variant="accent" trailing>
             {h.cta}
           </Button>
-          <Button to="book" variant="outline-inverse">
+          <Button to={bookFor("infusion")} variant="outline-inverse">
             {h.cta2}
           </Button>
         </div>

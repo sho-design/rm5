@@ -18,6 +18,40 @@ export const routes = {
   year: "/family-medicine/your-year",
   numbers: "/family-medicine/know-your-numbers",
   iron: "/infusion-therapy/iron-therapy",
+  rx: "/family-medicine/prescription-renewals",
+  labs: "/family-medicine/lab-results",
+  painBack: "/pain-centre/back-neck",
+  painJoints: "/pain-centre/joint-pain",
+  painNerve: "/pain-centre/nerve-blocks",
+  painTrigger: "/pain-centre/trigger-point-injections",
+  painFirstVisit: "/pain-centre/first-visit",
+  painOhip: "/pain-centre/ohip-coverage",
+  drips: "/infusion-therapy/drips",
+  shots: "/infusion-therapy/injection-bar",
+  concerns: "/infusion-therapy/by-concern",
+  metabolic: "/infusion-therapy/metabolic-program",
+  infusionHow: "/infusion-therapy/how-it-works",
+  honest: "/infusion-therapy/honest-menu",
+  ingredients: "/infusion-therapy/ingredients",
+  infusionPricing: "/infusion-therapy/pricing",
+  infusionTeam: "/infusion-therapy/team",
+  aesInjectables: "/medical-aesthetics/injectables",
+  aesSkin: "/medical-aesthetics/skin-treatments",
+  aesLaser: "/medical-aesthetics/laser",
+  aesPlans: "/medical-aesthetics/skin-health-plans",
+  aesMen: "/medical-aesthetics/mens-aesthetics",
+  aesPricing: "/medical-aesthetics/pricing",
+  aesPhotos: "/medical-aesthetics/before-and-after",
+  aesGift: "/medical-aesthetics/gift-cards",
+  rehabPhysio: "/rehab-recovery/physiotherapy",
+  rehabChiro: "/rehab-recovery/chiropractic",
+  rehabMassage: "/rehab-recovery/massage-therapy",
+  rehabKines: "/rehab-recovery/kinesiology",
+  rehabMva: "/rehab-recovery/motor-vehicle-accidents",
+  rehabWsib: "/rehab-recovery/wsib",
+  rehabBilling: "/rehab-recovery/insurance-billing",
+  rehabBring: "/rehab-recovery/what-to-bring",
+  rehabHome: "/rehab-recovery/home-program",
   referrals: "/for-physicians",
   about: "/about",
   team: "/about/team",
@@ -25,6 +59,8 @@ export const routes = {
   story: "/about/story",
   standards: "/about/standards",
   careers: "/about/careers",
+  forms: "/about/patient-forms",
+  billing: "/about/insurance-billing",
   faq: "/about/faq",
   contact: "/about/contact",
   notes: "/health-notes",
@@ -42,12 +78,10 @@ export type PageKey = keyof typeof routes;
 
 export const noteRoute = (slug: string) => `${routes.notes}/${slug}`;
 
+/** One page per signature drip, under the drips list. */
+export const dripRoute = (slug: string) => `${routes.drips}/${slug}`;
+
 export const external = {
-  infusionSite: "https://infusion.restorationmedical.ca",
-  infusionDrips: "https://infusion.restorationmedical.ca/drips",
-  infusionShots: "https://infusion.restorationmedical.ca/shots",
-  infusionIngredients: "https://infusion.restorationmedical.ca/ingredients",
-  infusionPricing: "https://infusion.restorationmedical.ca/pricing",
   instagram: "https://www.instagram.com/restorationmedicalofficial/",
   facebook: "https://www.facebook.com/restorationmedicalofficial/",
   thornhillMaps:
@@ -59,6 +93,9 @@ export const external = {
   kneeClinic: "https://canadakneeclinic.com",
   mainSite: "https://restorationmedical.ca",
 } as const;
+
+/** /book with a service preselected (division key: family, pain, infusion, aesthetics, rehab). */
+export const bookFor = (division: string) => `${routes.book}?service=${division}`;
 
 /** Resolve a prototype page key (or an already-built path) to an href. */
 export function href(key: PageKey | string): string {

@@ -29,7 +29,7 @@ export function DripBuilder() {
   const toggle = (i: number) => setSel((s) => (s.includes(i) ? s.filter((x) => x !== i) : [...s, i]));
   const tint = deepDives.infusion.tint;
   return (
-    <Block tone="tint" style={{ background: tint }} className="grid grid-cols-1 gap-8 p-5 md:p-10 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-12 lg:px-12 lg:py-14">
+    <Block id="build" tone="tint" style={{ background: tint }} className="scroll-mt-6 grid grid-cols-1 gap-8 p-5 md:p-10 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-12 lg:px-12 lg:py-14">
       <div className="flex flex-col gap-5">
         <Eyebrow tone="inherit" style={{ color: deepDives.infusion.accent }}>
           {c.eyebrow}
