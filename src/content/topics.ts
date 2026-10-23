@@ -69,6 +69,8 @@ export interface Topic {
   related?: { title: string; items: { t: string; d: string; page: string }[] };
   /** Small print under the page content. */
   note?: string;
+  /** An interactive block rendered before the FAQ. */
+  extra?: "renewal";
   band: { title: string; sub?: string; cta: string; ctaTo: string; cta2?: string; cta2To?: string };
 }
 
@@ -628,12 +630,13 @@ const family: Topic[] = [
     title: draft("Prescription renewals"),
     lead: fq("How do I renew a prescription?").a,
     description: fit(`Prescription renewals at Restoration Medical in Thornhill. ${fq("How do I renew a prescription?").a}`),
-    cta: "Book a visit",
-    ctaTo: bookFor("family"),
-    cta2: fq("Are you accepting new patients?").linkLabel,
-    cta2To: "register",
+    cta: draft("Request a renewal"),
+    ctaTo: "#request",
+    cta2: "Book a visit",
+    cta2To: bookFor("family"),
     img: images.services.family[1],
     imgAlt: draft("Family physician reviewing a medication list with a patient"),
+    extra: "renewal",
     faq: [fq("How do I renew a prescription?"), fq("Can you send prescriptions to any pharmacy?"), fq("Do you offer phone or video visits?")],
     band: familyBand,
   },
@@ -689,7 +692,7 @@ const about: Topic[] = [
       items: [
         { t: draft("New patient registration"), d: approved(fq("Are you accepting new patients?").a, "Register online and we confirm within two business days."), link: fq("Are you accepting new patients?").linkLabel, page: "register" },
         { t: draft("Copies of your records"), d: fq("Can I get a copy of my records?").a, link: fq("Can I get a copy of my records?").linkLabel, page: "privacy" },
-        { t: draft("Third-party forms"), d: fq("Do you charge for forms and notes?").a },
+        { t: draft("Third-party forms"), d: fq("Do you charge for forms and notes?").a, link: draft("Uninsured services and fees"), page: "fees" },
         { t: "Refer a patient", d: draft(`For physicians: Ocean eReferral, fax ${site.fax} or ${site.referralsEmail}.`), link: "Refer a patient", page: "referrals" },
       ],
     },
@@ -718,6 +721,7 @@ const about: Topic[] = [
         { t: RD.label, d: fq("Is rehab covered?").a, link: draft("Insurance and direct billing"), page: "rehabBilling" },
         { t: divisions.infusion.label, d: fq("Are drips covered by OHIP?").a, link: divisions.infusion.label, page: "infusionPricing" },
         { t: AD.label, d: dq("aesthetics", "Is any of this covered by OHIP?").a, link: AD.label, page: "aesPricing" },
+        { t: draft("Forms and notes"), d: fq("Do you charge for forms and notes?").a, link: draft("Uninsured services and fees"), page: "fees" },
       ],
     },
     faq: [fq("What if I do not have OHIP?"), fq("Do you charge for forms and notes?"), fq("Is rehab covered?")],

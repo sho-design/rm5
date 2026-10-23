@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 /**
  * Read-side façade for CMS content. Pages call these functions only.
  *
@@ -167,6 +168,8 @@ function toLocation(d: Doc): Location {
     footSub: str(d.footSub),
     phone: str(d.phone) || undefined,
     fax: str(d.fax) || undefined,
+    findingUs: str(d.findingUs) || fallback?.findingUs,
+    findingUsImg: mediaUrl(d.findingUsImage, str(d.findingUsImageUrl)) || fallback?.findingUsImg,
   };
 }
 
@@ -236,6 +239,50 @@ export interface SiteSettingsData {
   defaultDescription: string;
   defaultOgImage?: string;
   gtmId?: string;
+  gaId?: string;
+}
+
+export interface UninsuredFee {
+  service: string;
+  fee: string;
+  note?: string;
+}
+
+/** Redirects saved in the admin, by lower-case old path. Cached and refreshed when one is saved. */
+const loadRedirects = unstable_cache(
+  async (): Promise<Record<string, { to: string; permanent: boolean }>> => {
+    const p = await cms();
+    if (!p) return {};
+    try {
+      const res = await p.find({ collection: "redirects" as never, limit: 1000, depth: 0, overrideAccess: true });
+      const map: Record<string, { to: string; permanent: boolean }> = {};
+      for (const d of res.docs as Doc[]) map[str(d.from)] = { to: str(d.to), permanent: d.permanent !== false };
+      return map;
+    } catch {
+      return {};
+    }
+  },
+  ["cms-redirects"],
+  { tags: ["cms"], revalidate: 600 },
+);
+
+export async function getRedirect(path: string): Promise<{ to: string; permanent: boolean } | null> {
+  const key = (path.replace(/\/+$/, "") || "/").toLowerCase();
+  return (await loadRedirects())[key] ?? null;
+}
+
+/** Uninsured services and fees from Site settings; empty until the clinic fills them in. */
+export async function getUninsuredFees(): Promise<UninsuredFee[]> {
+  const p = await cms();
+  if (!p) return [];
+  try {
+    const g = (await p.findGlobal({ slug: "site-settings" as never, depth: 0 })) as Doc;
+    return arr<Doc>(g.uninsuredFees)
+      .map((f) => ({ service: str(f.service), fee: str(f.fee), note: str(f.note) || undefined }))
+      .filter((f) => f.service && f.fee);
+  } catch {
+    return [];
+  }
 }
 
 export async function getSiteSettings(): Promise<SiteSettingsData | null> {
@@ -243,7 +290,7 @@ export async function getSiteSettings(): Promise<SiteSettingsData | null> {
   if (!p) return null;
   try {
     const g = (await p.findGlobal({ slug: "site-settings" as never, depth: 1 })) as Doc;
-    return { siteName: str(g.siteName, "Restoration Medical"), titleSuffix: str(g.titleSuffix, " | Restoration Medical"), defaultDescription: str(g.defaultDescription), defaultOgImage: mediaUrl(g.defaultOgImage) || undefined, gtmId: str(g.gtmId) || undefined };
+    return { siteName: str(g.siteName, "Restoration Medical"), titleSuffix: str(g.titleSuffix, " | Restoration Medical"), defaultDescription: str(g.defaultDescription), defaultOgImage: mediaUrl(g.defaultOgImage) || undefined, gtmId: str(g.gtmId) || undefined, gaId: str(g.gaId) || undefined };
   } catch {
     return null;
   }

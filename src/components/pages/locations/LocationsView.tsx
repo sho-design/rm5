@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Block, Button, Display, Photo, SmartLink } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { locationsCopy } from "@/content/about";
+import { wayfindingCopy } from "@/content/patient-help";
 import { site } from "@/content/site";
 import { HoursCard } from "./HoursCard";
 import { WaitlistForm } from "./WaitlistForm";
@@ -110,6 +111,15 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
                 <span className="text-[12px] font-semibold text-white/60">{c.access}</span>
                 <span className="text-[15px] leading-[1.45] text-white/80">{loc.access}</span>
               </div>
+              {loc.findingUs ? (
+                <div className="flex flex-col gap-1">
+                  <span className="text-[12px] font-semibold text-white/60">{wayfindingCopy.title}</span>
+                  <span className="whitespace-pre-line text-[15px] leading-[1.45] text-white/80">{loc.findingUs}</span>
+                </div>
+              ) : null}
+              {loc.findingUsImg ? (
+                <Photo src={loc.findingUsImg} alt={`${wayfindingCopy.title}: ${loc.name}`} radius="card" ratio="16 / 10" sizes="(max-width: 1024px) 100vw, 40vw" />
+              ) : null}
               <div className="flex flex-wrap gap-2 pt-1.5">
                 {loc.soon ? (
                   <Button variant="inverse" onClick={openWaitlist} aria-expanded={waitlist} aria-controls="waitlist">

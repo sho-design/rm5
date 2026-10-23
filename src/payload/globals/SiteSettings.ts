@@ -33,13 +33,29 @@ export const SiteSettings: GlobalConfig = {
           ],
         },
         {
+          label: "Fees",
+          description: "Uninsured services and their fees, shown on /about/fees. Leave empty to show \"ask the front desk\" instead.",
+          fields: [
+            {
+              name: "uninsuredFees",
+              type: "array",
+              labels: { singular: "Fee", plural: "Fees" },
+              fields: [
+                { type: "row", fields: [{ name: "service", type: "text", required: true, admin: { width: "60%", description: "For example: Sick note for work" } }, { name: "fee", type: "text", required: true, admin: { width: "40%", description: "For example: $25, HST included" } }] },
+                { name: "note", type: "text", admin: { description: "Optional short line, for example: Free for medical care" } },
+              ],
+            },
+          ],
+        },
+        {
           label: "Search defaults",
           fields: [
             { name: "siteName", type: "text", defaultValue: "Restoration Medical" },
             { name: "titleSuffix", type: "text", defaultValue: " | Restoration Medical", admin: { description: "Added after every page title" } },
             { name: "defaultDescription", type: "textarea", defaultValue: "Family medicine, pain care, infusion therapy, aesthetics and rehab, under one physician-led standard of care. Care in English and Tiếng Việt." },
             { name: "defaultOgImage", type: "upload", relationTo: "media", label: "Default social share image" },
-            { name: "gtmId", type: "text", label: "Google Tag Manager container ID", admin: { description: "GTM-XXXXXXX. Leave blank to keep analytics off. Never loads on booking, register, contact, referral or careers pages." } },
+            { name: "gtmId", type: "text", label: "Google Tag Manager container ID", admin: { description: "GTM-XXXXXXX. Leave blank to keep analytics off. Never loads on booking, register, contact, referral, careers or renewal pages." } },
+            { name: "gaId", type: "text", label: "Google Analytics 4 measurement ID", admin: { description: "G-XXXXXXXXXX. Use this or Tag Manager, not both. Loads only after a visitor accepts analytics in the cookie banner." } },
           ],
         },
       ],

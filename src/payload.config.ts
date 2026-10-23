@@ -12,6 +12,7 @@ import { Media } from "./payload/collections/Media";
 import { Announcements, Faq, HealthNotes, Jobs, LegalPages, Locations, Team } from "./payload/collections/content";
 import { PageSeo } from "./payload/collections/PageSeo";
 import { AuditLog } from "./payload/collections/AuditLog";
+import { Redirects } from "./payload/collections/Redirects";
 import { SiteSettings } from "./payload/globals/SiteSettings";
 
 const filename = fileURLToPath(import.meta.url);
@@ -51,7 +52,7 @@ export default buildConfig({
     dateFormat: "d MMM yyyy HH:mm",
     avatar: "default",
   },
-  collections: [HealthNotes, Jobs, Team, Faq, Locations, Announcements, LegalPages, Media, PageSeo, Users, AuditLog],
+  collections: [HealthNotes, Jobs, Team, Faq, Locations, Announcements, LegalPages, Media, PageSeo, Redirects, Users, AuditLog],
   globals: [SiteSettings],
   editor: lexicalEditor(),
   db: database(),

@@ -61,6 +61,7 @@ export const routes = {
   careers: "/about/careers",
   forms: "/about/patient-forms",
   billing: "/about/insurance-billing",
+  fees: "/about/fees",
   faq: "/about/faq",
   contact: "/about/contact",
   notes: "/health-notes",

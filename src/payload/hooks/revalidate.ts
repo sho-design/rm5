@@ -26,6 +26,7 @@ const pathsFor: Record<string, string[]> = {
   announcements: ["/"],
   "legal-pages": ["/legal/privacy", "/legal/accessibility", "/legal/patient-rights", "/legal/terms"],
   "page-seo": ["/"],
+  redirects: [],
   media: [],
 };
 

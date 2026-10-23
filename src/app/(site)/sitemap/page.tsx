@@ -52,6 +52,7 @@ function groups(): Group[] {
         { label: "FAQ", page: "faq" },
         ...about.explore.slice(3).filter((l) => l.label !== "FAQ"),
         ...topicsFor("about").map((t) => ({ label: t.page, page: t.key as LinkTarget })),
+        { label: "Uninsured services and fees", page: "fees" },
       ],
     },
     {

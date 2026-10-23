@@ -38,6 +38,8 @@ const handWritten: SearchEntry[] = [
   { kind: "Prevention", label: "Know your numbers", sub: "Ferritin, A1c, cholesterol, blood pressure explained", page: "numbers" },
   { kind: "New patients", label: "Register as a patient", sub: "Two minutes, we confirm in 2 days", page: "register" },
   { kind: "Contact", label: "Contact us", sub: "905-709-3222, fax, email, hours", page: "contact" },
+  { kind: "About", label: "Uninsured services and fees", sub: "Forms, notes and services OHIP does not cover", page: "fees" },
+  { kind: "Family Medicine", label: "Request a prescription renewal", sub: "Existing patients, allow two business days", page: "/family-medicine/prescription-renewals#request" },
   { kind: "Infusion Therapy", label: "Iron therapy", sub: "Tired of being tired? Iron infusions in Thornhill", page: "iron" },
   { kind: "Referrals", label: "Refer a patient", sub: "For referring doctors, fax 905-761-7306", page: "referrals" },
   { kind: "Referrals", label: "Iron infusion referral", sub: "Referrals", page: "referrals" },

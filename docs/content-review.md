@@ -94,6 +94,17 @@ Source: `src/content/infusion-site.ts`
 - What a drip bar promises, and what a physician-led clinic says instead. Screening first, real medical oversight and registered nurses.
 - The ingredients in our drips and shots, what each one is for, and where the evidence is still developing.
 
+## Patient helpers (added before launch)
+
+Source: `src/content/patient-help.ts` and `src/content/consent.ts`. All new wording.
+
+- Emergency note on booking, registration, contact and the renewal form: "Is this an emergency? Call 911 or go to the nearest emergency department. For health advice any time, day or night, call Health811 at 811 or visit health811.ontario.ca. Online requests are read during clinic hours."
+- Prescription renewal request form on `/family-medicine/prescription-renewals`: labels, the "existing patient" and contact consent lines, the success message ("Request sent. Allow two business days. If a visit is needed first, we call you to book one.") and the failure line.
+- Uninsured fees page `/about/fees`: heading, "Ask us for the current list." and the receipts line. The fee list itself is entered by the clinic in the admin (Site settings > Fees); no fees are written in code.
+- "Finding us" on the clinics page: shown only when the clinic writes it in the admin (Clinics > Finding us), with an optional photo.
+- Cookie banner: "Can we count visits?" and its body, "Allow analytics", "No thanks", "Cookie settings".
+- The privacy policy should add one paragraph on Google Analytics: used only with consent, never on form pages, no health information, how to change the choice.
+
 ## Other wording changes
 
 - Infusion page, "Browse by how you feel" card: was "Every drip and shot, on the Infusion site." / "infusion.restorationmedical.ca", now "Start with how you feel." / "Browse by concern" (both from the Infusion design file).

@@ -10,6 +10,9 @@ import { homeTitle, seoTitles } from "@/content/seo-titles";
  * titles come from content/seo-titles.ts when the admin has not set one.
  * Adds the canonical URL and Open Graph fields every page should carry.
  */
+/** Generated brand share image (src/app/(site)/og.png/route.tsx). */
+export const defaultShareImage = { url: "/og.png", alt: "Restoration Medical, physician-led clinic in Thornhill, Ontario" };
+
 export async function pageMetadata(key: PageKey | string, defaults: Metadata): Promise<Metadata> {
   const path = key in routes ? routes[key as PageKey] : key;
   const override = (await getPageSeo(path)) ?? {};
@@ -25,7 +28,8 @@ export async function pageMetadata(key: PageKey | string, defaults: Metadata): P
     title,
     description,
     alternates: { ...(defaults.alternates ?? {}), canonical },
-    openGraph: { ...(defaults.openGraph ?? {}), title: ogTitle, description: description ?? undefined, url: canonical, ...(ogImage ? { images: [{ url: ogImage, width: 1200, height: 630 }] } : {}) },
+    openGraph: { ...(defaults.openGraph ?? {}), title: ogTitle, description: description ?? undefined, url: canonical, images: [{ url: ogImage ?? defaultShareImage.url, width: 1200, height: 630, alt: ogImage ? undefined : defaultShareImage.alt }] },
+    twitter: { card: "summary_large_image", title: ogTitle, description: description ?? undefined, images: [ogImage ?? defaultShareImage.url] },
     robots: override.noIndex ? { index: false, follow: false } : defaults.robots,
   };
 }

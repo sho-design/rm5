@@ -151,6 +151,8 @@ export const Locations: CollectionConfig = {
     },
     { name: "hours", type: "array", fields: [{ type: "row", fields: [{ name: "day", type: "text", required: true, admin: { width: "50%" } }, { name: "time", type: "text", required: true, admin: { width: "50%" } }] }], admin: { description: 'Seven rows for an open clinic ("Monday", "9:00 am to 4:00 pm"). Write "Closed" for closed days.' } },
     { name: "access", type: "textarea", label: "Accessibility, parking and transit" },
+    { name: "findingUs", type: "textarea", label: "Finding us", admin: { description: "How to find the clinic once you arrive: which entrance, and where it is inside the store. Shown on the clinics page when filled in." } },
+    ...imageFields("findingUsImage", "Finding us photo"),
     { name: "services", type: "select", hasMany: true, options: [{ label: "Family Medicine", value: "family" }, { label: "Pain Centre", value: "pain" }, { label: "Infusion Therapy", value: "infusion" }, { label: "Medical Aesthetics", value: "aesthetics" }, { label: "Rehab & Recovery", value: "rehab" }] },
     ...imageFields("image", "Exterior photo"),
     { name: "comingSoon", type: "checkbox", defaultValue: false },

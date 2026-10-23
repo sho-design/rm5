@@ -24,12 +24,13 @@ The site's editable content and search settings live in Payload CMS, embedded in
 | Job postings | Roles with location, type, schedule, requirements, featured flag, open or closed | `/about/careers` |
 | Team members | Names, roles, divisions, headshots, credentials, preceptor tag, order | `/about/team` |
 | FAQ | Question, answer, category, optional link | `/about/faq` |
-| Clinics | Address, hours, phone, fax, access notes, services, coming-soon flag | `/about/clinics`, footer, contact |
+| Clinics | Address, hours, phone, fax, access notes, "Finding us" text and photo, services, coming-soon flag | `/about/clinics`, footer, contact |
 | Announcements | "What's new" strip items with start and end dates | Home |
 | Legal pages | Privacy, accessibility, patient rights, terms | `/legal/[slug]` |
 | Images | Uploads, resized to thumbnail, card and hero sizes | Anywhere an image field is set |
 | Page SEO | Title tag, meta description, social image, canonical, hide from search, per page | Every page's `<head>` |
-| Site settings (admins) | Phone, fax, emails, social links, search defaults, GTM container ID | Global |
+| Site settings (admins) | Phone, fax, emails, social links, search defaults, analytics ID (Tag Manager or GA4), uninsured fees list | Global, `/about/fees` |
+| Redirects | Old address to new page, for links from the previous website or print | Any address with no page |
 
 Service pages, choosers, pricing tables and the immunization schedule stay in code. They change rarely and carry compliance wording that needs clinic approval; see `design/handoff/README.md`.
 
@@ -83,6 +84,14 @@ The site deploys from the `claude/new-session-kp96am` branch and is live at `htt
 Deployment protection is on for the `*.vercel.app` URLs, so visitors are asked to sign in to Vercel. Turn it off in Settings, Deployment Protection, or attach the clinic's domain, which is never protected.
 
 Schema changes in production only ever go through migrations (`push` is disabled for Postgres). After changing a collection run `DATABASE_URL=... npm run migrate:create` and commit the new files in `src/payload/migrations`. `migrate:create` does not connect to the database, so any Postgres URL will do for generating the file.
+
+## Analytics
+
+Paste the Google Tag Manager container ID (GTM-...) or the GA4 measurement ID (G-...) into Site settings > Search defaults and save; every page picks it up within a minute. Nothing loads until a visitor presses "Allow analytics" in the cookie banner, advertising storage is always denied, and analytics is switched off on booking, registration, contact, referral, careers and the renewal form. "Cookie settings" in the footer reopens the banner. With Tag Manager, keep the container to analytics tags only; do not add advertising pixels (Meta, TikTok) on a health site.
+
+## Redirects
+
+Old addresses are handled in three places: the infusion.restorationmedical.ca paths and a list of likely old main-site paths in `src/content/redirects.ts` (deployed with the code), and the Redirects collection in the admin for anything else. Admin redirects are checked only when no page matches, so they can never hide a real page. Before launch, export the old site's sitemap and add any address that is not covered.
 
 ## Editing workflow
 

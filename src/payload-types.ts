@@ -76,6 +76,7 @@ export interface Config {
     'legal-pages': LegalPage;
     media: Media;
     'page-seo': PageSeo;
+    redirects: Redirect;
     users: User;
     'audit-log': AuditLog;
     'payload-kv': PayloadKv;
@@ -94,6 +95,7 @@ export interface Config {
     'legal-pages': LegalPagesSelect<false> | LegalPagesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'page-seo': PageSeoSelect<false> | PageSeoSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'audit-log': AuditLogSelect<false> | AuditLogSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -255,6 +257,7 @@ export interface HealthNote {
       | 'careers'
       | 'forms'
       | 'billing'
+      | 'fees'
       | 'faq'
       | 'contact'
       | 'notes'
@@ -489,6 +492,7 @@ export interface Faq {
         | 'careers'
         | 'forms'
         | 'billing'
+        | 'fees'
         | 'faq'
         | 'contact'
         | 'notes'
@@ -535,6 +539,18 @@ export interface Location {
       }[]
     | null;
   access?: string | null;
+  /**
+   * How to find the clinic once you arrive: which entrance, and where it is inside the store. Shown on the clinics page when filled in.
+   */
+  findingUs?: string | null;
+  /**
+   * Upload a photo. Follow the dress and casting rules in CLAUDE.md.
+   */
+  findingUsImage?: (number | null) | Media;
+  /**
+   * Used when no upload is set. Placeholder photography lives here until real photos are shot.
+   */
+  findingUsImageUrl?: string | null;
   services?: ('family' | 'pain' | 'infusion' | 'aesthetics' | 'rehab')[] | null;
   /**
    * Upload a photo. Follow the dress and casting rules in CLAUDE.md.
@@ -631,6 +647,7 @@ export interface Announcement {
         | 'careers'
         | 'forms'
         | 'billing'
+        | 'fees'
         | 'faq'
         | 'contact'
         | 'notes'
@@ -700,6 +717,7 @@ export interface PageSeo {
     | '/about/clinics'
     | '/about/contact'
     | '/about/faq'
+    | '/about/fees'
     | '/about/insurance-billing'
     | '/about/patient-forms'
     | '/about/standards'
@@ -782,6 +800,33 @@ export interface PageSeo {
    * Internal notes for the team. Not shown on the site.
    */
   notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Send an old address to a page on this site. Use for links from the previous website or printed material.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: number;
+  /**
+   * Path only, for example /contact-us
+   */
+  from: string;
+  /**
+   * A path on this site, for example /about/contact, or a full https:// link
+   */
+  to: string;
+  /**
+   * Leave on for moved pages (tells search engines to update).
+   */
+  permanent?: boolean | null;
+  /**
+   * Why this exists, for example: old site page
+   */
+  note?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -909,6 +954,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'page-seo';
         value: number | PageSeo;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: number | Redirect;
       } | null)
     | ({
         relationTo: 'users';
@@ -1068,6 +1117,9 @@ export interface LocationsSelect<T extends boolean = true> {
         id?: T;
       };
   access?: T;
+  findingUs?: T;
+  findingUsImage?: T;
+  findingUsImageUrl?: T;
   services?: T;
   image?: T;
   imageUrl?: T;
@@ -1189,6 +1241,18 @@ export interface PageSeoSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  from?: T;
+  to?: T;
+  permanent?: T;
+  note?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -1300,6 +1364,23 @@ export interface SiteSetting {
    * Leave blank until the Maple profile exists
    */
   googleMapsMaple?: string | null;
+  uninsuredFees?:
+    | {
+        /**
+         * For example: Sick note for work
+         */
+        service: string;
+        /**
+         * For example: $25, HST included
+         */
+        fee: string;
+        /**
+         * Optional short line, for example: Free for medical care
+         */
+        note?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   siteName?: string | null;
   /**
    * Added after every page title
@@ -1308,9 +1389,13 @@ export interface SiteSetting {
   defaultDescription?: string | null;
   defaultOgImage?: (number | null) | Media;
   /**
-   * GTM-XXXXXXX. Leave blank to keep analytics off. Never loads on booking, register, contact, referral or careers pages.
+   * GTM-XXXXXXX. Leave blank to keep analytics off. Never loads on booking, register, contact, referral, careers or renewal pages.
    */
   gtmId?: string | null;
+  /**
+   * G-XXXXXXXXXX. Use this or Tag Manager, not both. Loads only after a visitor accepts analytics in the cookie banner.
+   */
+  gaId?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1330,11 +1415,20 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   facebook?: T;
   googleMaps?: T;
   googleMapsMaple?: T;
+  uninsuredFees?:
+    | T
+    | {
+        service?: T;
+        fee?: T;
+        note?: T;
+        id?: T;
+      };
   siteName?: T;
   titleSuffix?: T;
   defaultDescription?: T;
   defaultOgImage?: T;
   gtmId?: T;
+  gaId?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

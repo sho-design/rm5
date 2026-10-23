@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export type FormKind = "book" | "register" | "contact" | "referral" | "careers";
+export type FormKind = "book" | "register" | "contact" | "referral" | "careers" | "renewal";
 
 const envKey: Record<FormKind, string> = {
   book: "FORM_ENDPOINT_BOOK",
@@ -8,15 +8,24 @@ const envKey: Record<FormKind, string> = {
   contact: "FORM_ENDPOINT_CONTACT",
   referral: "FORM_ENDPOINT_REFERRAL",
   careers: "FORM_ENDPOINT_CAREERS",
+  renewal: "FORM_ENDPOINT_RENEWAL",
 };
+
+/**
+ * Pretend an unconnected form was sent: only in development, or when
+ * FORM_SIMULATE=1 is set on purpose (a demo deployment). A production site
+ * must never tell a patient their request went through when it went nowhere.
+ */
+const simulate = () => process.env.NODE_ENV !== "production" || process.env.FORM_SIMULATE === "1";
 
 const noStore = { "Cache-Control": "no-store" };
 
 /**
  * Forward a form submission to its destination system. The site stores
  * nothing: no database, no logging of the body. When the destination is not
- * configured (local development) the handler answers with a simulated
- * success so the flows can be exercised.
+ * configured, development answers with a simulated success so the flows can
+ * be exercised; production answers 503 so the page shows its "call us"
+ * error state.
  */
 export async function forwardForm(kind: FormKind, request: Request): Promise<NextResponse> {
   let body: unknown;
@@ -34,7 +43,8 @@ export async function forwardForm(kind: FormKind, request: Request): Promise<Nex
   }
   const endpoint = process.env[envKey[kind]];
   if (!endpoint) {
-    return NextResponse.json({ ok: true, simulated: true }, { headers: noStore });
+    if (simulate()) return NextResponse.json({ ok: true, simulated: true }, { headers: noStore });
+    return NextResponse.json({ ok: false, error: "This form is not connected yet" }, { status: 503, headers: noStore });
   }
   try {
     const res = await fetch(endpoint, {

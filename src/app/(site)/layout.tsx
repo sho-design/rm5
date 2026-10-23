@@ -6,6 +6,7 @@ import { SiteChrome } from "@/components/chrome/SiteChrome";
 import { ThemeScript } from "@/components/chrome/ThemeScript";
 import { JsonLd } from "@/components/JsonLd";
 import { siteGraph } from "@/lib/schema";
+import { defaultShareImage } from "@/lib/seo";
 
 const fraunces = localFont({
   src: [
@@ -30,7 +31,8 @@ export const metadata: Metadata = {
   title: { default: "Restoration Medical", template: "%s | Restoration Medical" },
   description: site.description,
   applicationName: "Restoration Medical",
-  openGraph: { siteName: "Restoration Medical", type: "website", locale: "en_CA" },
+  openGraph: { siteName: "Restoration Medical", type: "website", locale: "en_CA", images: [{ url: defaultShareImage.url, width: 1200, height: 630, alt: defaultShareImage.alt }] },
+  twitter: { card: "summary_large_image", images: [defaultShareImage.url] },
   robots: { index: true, follow: true },
 };
 

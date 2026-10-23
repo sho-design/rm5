@@ -1,5 +1,6 @@
 import { BenefitCard, CtaBand, Display, Faq, FactGrid, Grid, PathSteps, Section, SectionHeader, SmartLink, SubPageHero } from "@/components/ui";
 import { CoverageChecker } from "@/components/pages/division/CoverageChecker";
+import { RenewalForm } from "@/components/pages/help/RenewalForm";
 import { Ladder } from "@/components/pages/division/Ladder";
 import { aestheticsLadder, rehabCoverage } from "@/content/deep";
 import { divisionAccent, divisionTint, divisions, tints } from "@/content/divisions";
@@ -122,6 +123,8 @@ export function TopicPage({ t }: { t: Topic }) {
           </div>
         </Section>
       ) : null}
+
+      {t.extra === "renewal" ? <RenewalForm /> : null}
 
       {t.faq && t.faq.length ? <Faq items={t.faq} /> : null}
 

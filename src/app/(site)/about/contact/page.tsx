@@ -7,6 +7,7 @@ import { contactCopy } from "@/content/booking";
 import { images } from "@/content/images";
 import { site, thornhillHours } from "@/content/site";
 import { external } from "@/lib/routes";
+import { EmergencyNote } from "@/components/pages/help/EmergencyNote";
 
 const baseMetadata: Metadata = {
   title: contactCopy.title,
@@ -54,7 +55,10 @@ export default function ContactPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 px-4 pb-8 pt-6 md:px-content md:pt-10 md:pb-10 lg:grid-cols-2 lg:items-start lg:gap-8">
-        <ContactForm />
+        <div className="flex flex-col gap-3.5">
+          <EmergencyNote />
+          <ContactForm />
+        </div>
         <div className="flex flex-col gap-3.5">
           <Photo src={images.division.about} alt={contactCopy.mapAlt} radius="block" ratio="16 / 10" sizes="(max-width: 1024px) 100vw, 50vw">
             <a href={external.thornhillMapsShort} target="_blank" rel="noopener" className="absolute bottom-4 left-4 rounded-chip bg-white px-4 py-2.5 text-[13px] font-semibold text-ink shadow-card hover:opacity-90">

@@ -78,6 +78,9 @@ export interface Location {
   services: DivisionKey[];
   footCta: string;
   footSub: string;
+  /** Wayfinding once you arrive (entrance, where inside the store). Clinic to supply. */
+  findingUs?: string;
+  findingUsImg?: string;
   phone?: string;
   fax?: string;
 }

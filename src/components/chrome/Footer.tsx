@@ -5,6 +5,7 @@ import { external, href, routes } from "@/lib/routes";
 import { Wordmark } from "./Wordmark";
 import { FooterIcons } from "./SocialIcons";
 import { TextControls } from "./TextControls";
+import { ConsentSettingsLink } from "./ConsentBanner";
 
 const legalLinks: [string, string][] = [
   ["FAQ", routes.faq],
@@ -13,6 +14,7 @@ const legalLinks: [string, string][] = [
   ["Your year", routes.year],
   ["Know your numbers", routes.numbers],
   ["For referring doctors", routes.referrals],
+  ["Fees", routes.fees],
   ["Privacy policy", routes.privacy],
   ["Accessibility statement", routes.accessibility],
   ["Patient rights", routes.rights],
@@ -25,7 +27,7 @@ const legalLinks: [string, string][] = [
  * with hours and fax, network row, six link columns, legal links with text
  * size and contrast controls, and the sign-off line.
  */
-export function Footer() {
+export function Footer({ analytics = false }: { analytics?: boolean }) {
   const [thornhill, maple] = locations;
   return (
     <footer className="m-3 flex flex-col gap-10 rounded-block border border-border bg-card p-6 md:m-gutter md:p-12">
@@ -125,6 +127,7 @@ export function Footer() {
                 {label}
               </Link>
             ))}
+            {analytics ? <ConsentSettingsLink className="hover:text-primary" /> : null}
           </div>
           <TextControls />
         </div>

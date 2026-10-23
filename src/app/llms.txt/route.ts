@@ -62,6 +62,8 @@ function body(): string {
     link("Frequently asked questions", routes.faq),
     link(seoTitles[routes.referrals] ?? "Refer a patient", routes.referrals, "Ocean eReferral, fax or email"),
     ...topicsFor("about").map((t) => link(t.page, href(t.key), t.lead)),
+    link("Uninsured services and fees", routes.fees),
+    link("Request a prescription renewal", routes.rx, "Existing patients, allow two business days"),
     "",
     "## About",
     "",
