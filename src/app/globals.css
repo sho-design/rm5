@@ -183,6 +183,9 @@
 :root[data-text] .rm-day-strip { flex-wrap: wrap; overflow-x: visible; }
 :root[data-text] .rm-day-strip > * { min-width: 64px; }
 
+/* The phone menu is inside the header's layer; hide the cookie banner while the menu is open. */
+:root[data-menu="open"] [data-consent-banner] { display: none; }
+
 /* High contrast: eyebrows drawn in division accents (often set inline) become solid ink. */
 :root[data-theme="contrast"] .eyebrow { color: var(--text-primary) !important; }
 

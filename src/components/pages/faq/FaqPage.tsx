@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { keepInView } from "@/lib/a11y";
-import { keepPhones } from "@/components/ui/Phones";
+import { linkPhones } from "@/components/ui/Phones";
 import { Block, Button, ChipRow, Display, SmartLink } from "@/components/ui";
 import type { FaqItem } from "@/content/types";
 import { faqCopy } from "@/content/faq";
@@ -66,7 +66,7 @@ export function FaqPage({ items, categories }: Props) {
           <Display as="h1" size="lg">
             {faqCopy.title}
           </Display>
-          <p className="pretty max-w-[560px] text-[16px] leading-[1.55] text-muted lg:text-[18px]">{keepPhones(faqCopy.lead)}</p>
+          <p className="pretty max-w-[560px] text-[16px] leading-[1.55] text-muted lg:text-[18px]">{linkPhones(faqCopy.lead)}</p>
         </div>
         <label className="flex h-14 items-center gap-2.5 rounded-row border-[1.5px] border-border bg-card px-[18px] transition-colors focus-within:border-sky">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="shrink-0 text-muted" aria-hidden>

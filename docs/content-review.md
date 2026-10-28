@@ -159,6 +159,7 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - Women's health day card: "Testing and screening done by our nurses..." and "Both of our physicians are men. On women's health day, our nurses do the testing." Women's hero pill: "Care in English and Tiếng Việt".
 - Rehab prices now show totals: "$135 plus HST ($152.55 total)", "$100 plus HST ($113 total)" (13% HST).
 - Registration: the relationship hint is now "For example parent, adult child, partner or caregiver."; the "Book a first visit" button was removed.
+- Booking: "Choose how you are paying.", "Your details" (screen reader group name). Children and youth: "On this page", "Sick visits", "Care by age", "Vaccines by age", "School forms", "Our doctors".
 
 ## Facts to confirm
 

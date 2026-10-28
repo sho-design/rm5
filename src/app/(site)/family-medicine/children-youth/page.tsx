@@ -1,4 +1,5 @@
 import { bookFor } from "@/lib/routes";
+import { KidsJumpLinks } from "@/components/pages/kids/KidsJumpLinks";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { Faq, SubPageHero } from "@/components/ui";
@@ -43,6 +44,7 @@ export default function ChildrenYouthPage() {
         imgAlt={kidsCopy.hero.alt}
         pills={[...kidsCopy.hero.pills]}
       />
+      <KidsJumpLinks />
       <KidsSick />
       <KidsInteractive ages={kidsAges} stages={immunizations} tint="var(--rm-sun-tint)" accent="var(--rm-amber-deep)" copy={kidsCopy.ages} />
       <KidsForms />

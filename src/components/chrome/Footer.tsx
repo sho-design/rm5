@@ -41,7 +41,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
           <FooterIcons />
         </div>
         <div className="flex flex-col gap-3 rounded-[20px] border border-border bg-raised px-6 py-[22px] text-[13px] leading-[1.5] text-muted">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
             <span className="display text-[20px] text-primary">{thornhill.name}</span>
             <OpenBadge className="text-primary" />
           </div>

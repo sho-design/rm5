@@ -24,8 +24,11 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    // Lets the cookie banner step aside while the menu is open (it sits above the header's layer).
+    document.documentElement.dataset.menu = "open";
     return () => {
       document.body.style.overflow = prev;
+      delete document.documentElement.dataset.menu;
     };
   }, []);
   return (

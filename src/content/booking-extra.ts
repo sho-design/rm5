@@ -29,6 +29,8 @@ export const bookingExtra = {
   statusLabel: draft("Patient status"),
   patientTitle: draft("About the patient"),
   contactTitle: draft("Your contact details"),
+  contactTitleSelf: draft("Your details"),
+  paymentError: draft("Choose how you are paying."),
   fields: {
     patientFirst: draft("Their first name"),
     patientLast: draft("Their last name"),

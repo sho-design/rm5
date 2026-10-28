@@ -11,12 +11,13 @@ import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
 import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
 import { cn } from "@/lib/cn";
-import { Choice, ConsentRow, FieldLabel, OutcomeTile, Panel, PillChip, selClass, SubmitButton } from "./FormBits";
+import { linkPhones } from "@/components/ui/Phones";
+import { Choice, ConsentRow, FieldError, FieldLabel, OutcomeTile, Panel, PillChip, selClass, SubmitButton } from "./FormBits";
 
 type Details = Record<string, string | boolean>;
 
 /** Ink text action beside the pills in an outcome card. */
-const ghost = "inline-flex h-12 items-center px-[22px] text-[14px] font-semibold text-ink hover:opacity-80";
+const ghost = "inline-flex h-12 items-center px-1 text-[14px] font-semibold text-ink hover:opacity-80 sm:px-[22px]";
 
 /** Step indicator: done steps show ✓ on sage, the current step sits on ink with a sunshine dot. */
 function Steps({ state, className }: { state: BookingState; className?: string }) {
@@ -88,7 +89,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [visitKey, setVisitKey] = useState<string>(services[0]?.visits[0]?.key ?? "");
   const [forOther, setForOther] = useState(0);
   const [who, setWho] = useState(0);
-  const [payment, setPayment] = useState(0);
+  /** -1 until chosen: no default, so a rushed self-payer cannot send "insurance" by accident. */
+  const [payment, setPayment] = useState(-1);
   const [language, setLanguage] = useState(0);
   /** 0 Ontario health card, 1 card from another province, 2 no health card. */
   const [card, setCard] = useState(0);
@@ -207,7 +209,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     healthCardLast4: str("card"),
     notes: str("notes"),
     claim: claimDetails() ?? null,
-    payment: visit?.payment ? (payments[payment]?.label ?? null) : null,
+    payment: visit?.payment && payment >= 0 ? (payments[payment]?.label ?? null) : null,
     benefitsInsurer: visit?.payment && payment === 0 ? str("benefitsInsurer") : null,
     reminders,
     updates: details.updates === true,
@@ -217,9 +219,12 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     e.preventDefault();
     const form = e.currentTarget;
     const errs = formErrors(form);
+    const needPayment = !!visit?.payment && payment < 0;
+    if (needPayment) errs["book-payment"] = x.paymentError;
     setErrors(errs);
     if (Object.keys(errs).length) {
-      focusFirstError(form, errs);
+      if (needPayment && Object.keys(errs).length === 1) form.querySelector<HTMLElement>('#book-payment [role="radio"]')?.focus();
+      else focusFirstError(form, errs);
       return;
     }
     setDetails(readForm(form));
@@ -269,7 +274,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     );
   };
 
-  const callLine = <span className="text-[12px] leading-[1.5] text-muted md:text-[13px]">{bookingCopy.callLine}</span>;
+  const callLine = <span className="text-[12px] leading-[1.5] text-muted md:text-[13px]">{linkPhones(bookingCopy.callLine)}</span>;
   const stepBox = (label: string) => ({ ref: setReveal, tabIndex: -1, role: "group" as const, "aria-label": label, className: "flex scroll-mt-20 flex-col gap-4 outline-none" });
 
   const reviewRows: [string, string][] = [
@@ -299,7 +304,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
         <Lead size="md" tone="muted">
           {lead}
         </Lead>
-        <dl aria-labelledby="book-summary" className="mt-3 hidden flex-col gap-2.5 rounded-card-sm border border-border bg-card px-6 py-[22px] text-[14px] leading-[1.5] lg:flex">
+        <dl aria-labelledby="book-summary" className={cn("mt-3 hidden flex-col gap-2.5 rounded-card-sm border border-border bg-card px-6 py-[22px] text-[14px] leading-[1.5]", (state === 1 || state === 2) && "lg:flex")}>
           <h2 id="book-summary" className="text-[12px] font-semibold text-muted">
             {bookingCopy.summaryTitle}
           </h2>
@@ -394,7 +399,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               ) : null}
 
               <fieldset className="flex flex-col gap-2">
-                {forOther ? <legend className="mb-2 text-[13px] font-semibold text-primary">{x.contactTitle}</legend> : null}
+                <legend className={cn("mb-2 text-[13px] font-semibold text-primary", !forOther && "sr-only")}>{forOther ? x.contactTitle : x.contactTitleSelf}</legend>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
                   {field("first", forOther ? x.fields.first : bookingCopy.fields.first, { autoComplete: "given-name", required: true, "data-error": x.missing.first } as InputHTMLAttributes<HTMLInputElement>)}
                   {field("last", forOther ? x.fields.last : bookingCopy.fields.last, { autoComplete: "family-name", required: true, "data-error": x.missing.last } as InputHTMLAttributes<HTMLInputElement>)}
@@ -441,7 +446,22 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               {visit?.payment ? (
                 <div className="flex flex-col gap-2">
                   <GroupLabel>{x.paymentTitle}</GroupLabel>
-                  <Choice options={payments.map((p) => p.label)} value={payment} onChange={setPayment} ariaLabel={x.paymentTitle} />
+                  <div id="book-payment" aria-describedby={errors["book-payment"] ? "book-payment-error" : undefined}>
+                    <Choice
+                      options={payments.map((p) => p.label)}
+                      value={payment}
+                      onChange={(i) => {
+                        setPayment(i);
+                        setErrors((er) => {
+                          const next = { ...er };
+                          delete next["book-payment"];
+                          return next;
+                        });
+                      }}
+                      ariaLabel={x.paymentTitle}
+                    />
+                  </div>
+                  <FieldError id="book-payment" error={errors["book-payment"]} />
                   {payment === 0 ? field("benefitsInsurer", x.fields.benefitsInsurer, { autoComplete: "off" }, { hint: x.benefitsHint }) : null}
                 </div>
               ) : null}
@@ -563,8 +583,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
             <dl className="flex flex-col divide-y divide-border rounded-row border border-border bg-white text-[14px] leading-[1.5]">
               {reviewRows.map(([k, v]) => (
                 <div key={k} className="flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:justify-between sm:gap-4">
-                  <dt className="text-muted">{k}</dt>
-                  <dd className="font-semibold sm:text-right">{v}</dd>
+                  <dt className="shrink-0 text-muted">{k}</dt>
+                  <dd className={cn("font-semibold", v.length < 60 && "sm:text-right")}>{v}</dd>
                 </div>
               ))}
             </dl>

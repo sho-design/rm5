@@ -66,6 +66,7 @@ export function ConsentBanner({ enabled }: { enabled: boolean }) {
   return (
     <div
       ref={box}
+      data-consent-banner
       role="region"
       aria-label={consentCopy.label}
       onKeyDown={(e) => {

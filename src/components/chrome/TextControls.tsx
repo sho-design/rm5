@@ -20,7 +20,7 @@ export function TextControls({ inverse, compact, className }: { inverse?: boolea
       <button type="button" onClick={reset} aria-label="Reset text size" aria-pressed={step === 0} className={btn}>
         A
       </button>
-      <button type="button" onClick={up} aria-label="Increase text size" disabled={step === 2} className={cn(btn, "disabled:opacity-50")}>
+      <button type="button" onClick={up} aria-label={step === 2 ? "Increase text size (already the largest)" : "Increase text size"} aria-disabled={step === 2 || undefined} className={cn(btn, step === 2 && (inverse ? "bg-white text-ink" : "bg-ink text-white"))}>
         A+
       </button>
       <button

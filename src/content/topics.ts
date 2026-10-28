@@ -770,7 +770,7 @@ const family: Topic[] = [
         { t: draft("Children and youth"), d: draft("Well-baby visits and vaccines"), page: "kids" },
       ],
     },
-    faq: [womenFaqQA("Do you follow pregnancies?"), womenFaqQA("Can I ask for a female physician?")],
+    faq: [womenFaqQA("Can I ask for a female physician?")],
     band: familyBand,
   },
 ];

@@ -265,6 +265,19 @@ All 10 would use the site again. The new content worked: the physio and chiro pr
 - **Sticky Book bar** slides away while you scroll down and returns on scroll up (four testers said it covered what they were reading).
 - **Other:** no Book buttons on About tiles (story, standards); the teaching partners link opens the teaching section; rehab "Compare all" (to the insurance page) removed; the notes box is taller and resizable.
 
+Second pass on round 5, the smaller items:
+
+- "How are you paying?" has no default; booking asks for a choice instead of quietly sending "insurance" (Hassan).
+- The left "Your booking" summary shows only while choosing; on review and confirmation it repeated the main panel (Emma, Margaret, Daniel). Long review values such as a note read left-aligned and labels no longer wrap.
+- Phone numbers in the booking call line and FAQ intros are tap-to-call links that never split across lines (Greg).
+- Contact fields always have a group name for screen readers (Greg).
+- Children and youth has "On this page" links (sick visits, care by age, vaccines by age, school forms, doctors), since the page is about 21 phone screens at large text (Lucy, Fatima).
+- The pregnancy page no longer repeats its intro as the first FAQ (Greg).
+- At the largest text size, A+ shows as selected instead of fading out (Lucy).
+- The footer's live status wraps under the clinic name instead of squeezing (Lucy); "Reschedule or cancel" lines up with the buttons on phones (Priscilla, Thi).
+- The cookie banner no longer sits over an open phone menu on a slow phone (Hassan).
+- Search now ranks Vaccines first for "shingles" and "pneumonia", and physio and chiro first for "back pain" and "neck pain".
+
 ### Round 5 findings for the clinic
 
 - **Physio or chiro for back pain:** a short "which one is for me" answer (Daniel, failed task).
