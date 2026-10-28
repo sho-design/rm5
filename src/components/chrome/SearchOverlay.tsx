@@ -42,8 +42,8 @@ const isExternal = (url: string) => /^https?:/.test(url);
 export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile?: boolean }) {
   const [q, setQ] = useState("");
   // The long hint is cut off on a phone (and at larger text); use the short one there.
-  const [narrow, setNarrow] = useState(false);
-  useEffect(() => setNarrow(window.innerWidth < 560), []);
+  // The overlay only renders in the browser (loaded on open), so the width is known on first render.
+  const [narrow] = useState(() => typeof window !== "undefined" && window.innerWidth < 560);
   const [docs, setDocs] = useState<SearchDoc[]>(baseSearchDocs);
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
