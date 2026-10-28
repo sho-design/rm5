@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { radioKeys, rovingTab } from "@/lib/a11y";
 
 export interface OptionItem {
   label: string;
@@ -32,7 +33,7 @@ export function OptionList({
   ariaLabel?: string;
 }) {
   return (
-    <div role="radiogroup" aria-label={ariaLabel} className={cn("flex flex-col gap-1.5", className)}>
+    <div role="radiogroup" aria-label={ariaLabel} onKeyDown={radioKeys} className={cn("flex flex-col gap-1.5", className)}>
       {options.map((o, i) => {
         const on = value === i;
         return (
@@ -41,6 +42,7 @@ export function OptionList({
             type="button"
             role="radio"
             aria-checked={on}
+            tabIndex={rovingTab(on, i, value >= 0 && value < options.length)}
             onClick={() => onChange(i)}
             className={cn(
               "flex items-center justify-between gap-3.5 text-left transition-all duration-[250ms]",

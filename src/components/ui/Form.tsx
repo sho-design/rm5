@@ -2,6 +2,7 @@
 
 import { forwardRef, type ComponentProps, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { radioKeys, rovingTab } from "@/lib/a11y";
 
 /** Label + control + hint/error wrapper. */
 export function Field({ label, hint, error, required, htmlFor, children, className }: { label: string; hint?: string; error?: string; required?: boolean; htmlFor?: string; children: ReactNode; className?: string }) {
@@ -23,7 +24,7 @@ export function Field({ label, hint, error, required, htmlFor, children, classNa
   );
 }
 
-const control = "h-12 w-full rounded-field border-[1.5px] border-[color:var(--field-border)] bg-[var(--field-bg)] px-4 text-[15px] text-primary outline-none transition-colors placeholder:text-[var(--field-placeholder)] focus:border-[color:var(--field-border-focus)] disabled:bg-[var(--field-disabled-bg)] disabled:text-[var(--field-disabled-fg)] aria-[invalid=true]:border-[color:var(--field-border-error)]";
+const control = "h-12 w-full rounded-field border-[1.5px] border-[color:var(--field-border)] bg-[var(--field-bg)] px-4 text-[15px] text-primary outline-none transition-colors placeholder:text-[var(--field-placeholder)] focus:border-[color:var(--field-border-focus)] focus-visible:shadow-[0_0_0_3px_var(--focus-ring)] disabled:bg-[var(--field-disabled-bg)] disabled:text-[var(--field-disabled-fg)] aria-[invalid=true]:border-[color:var(--field-border-error)]";
 
 export const Input = forwardRef<HTMLInputElement, ComponentProps<"input">>(function Input({ className, ...rest }, ref) {
   return <input ref={ref} className={cn(control, className)} {...rest} />;
@@ -63,7 +64,7 @@ export function Checkbox({ label, sub, className, ...rest }: ComponentProps<"inp
  */
 export function Segmented({ options, value, onChange, className, ariaLabel, fullWidth }: { options: string[]; value: number; onChange: (i: number) => void; className?: string; ariaLabel?: string; fullWidth?: boolean }) {
   return (
-    <div role="radiogroup" aria-label={ariaLabel} className={cn("flex flex-wrap gap-1.5", className)}>
+    <div role="radiogroup" aria-label={ariaLabel} onKeyDown={radioKeys} className={cn("flex flex-wrap gap-1.5", className)}>
       {options.map((o, i) => {
         const on = value === i;
         return (
@@ -72,6 +73,7 @@ export function Segmented({ options, value, onChange, className, ariaLabel, full
             type="button"
             role="radio"
             aria-checked={on}
+            tabIndex={rovingTab(on, i, value >= 0)}
             onClick={() => onChange(i)}
             className={cn("rounded-chip border-[1.5px] px-[18px] py-[11px] text-[14px] font-semibold transition-all duration-[250ms]", fullWidth && "flex-1", on ? "border-ink bg-ink text-white" : "border-border bg-white text-primary hover:border-sky")}
           >

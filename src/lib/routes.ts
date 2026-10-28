@@ -96,7 +96,15 @@ export const external = {
 } as const;
 
 /** /book with a service preselected (division key: family, pain, infusion, aesthetics, rehab). */
-export const bookFor = (division: string) => `${routes.book}?service=${division}`;
+/**
+ * Booking link with the service (division key) and optionally the visit type
+ * preselected: /book?service=rehab&visit=physio. Visit keys per division:
+ * family: concern, checkup, renewal, flu, bloodwork; pain: followup, procedure;
+ * infusion: iron, drip, shot, consult; aesthetics: consult, injectables, skin, laser;
+ * rehab: assessment, physio, chiro, massage, kines, mva, wsib.
+ * Unknown keys are ignored by the booking page.
+ */
+export const bookFor = (division: string, visit?: string) => `${routes.book}?service=${division}${visit ? `&visit=${visit}` : ""}`;
 
 /** Resolve a prototype page key (or an already-built path) to an href. */
 export function href(key: PageKey | string): string {

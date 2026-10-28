@@ -2,6 +2,7 @@
 
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { radioKeys, rovingTab } from "@/lib/a11y";
 
 /** Selected / idle styles for the prototype's `sel()` chips: ink fill when on, white with a line border when off. */
 export const selClass = (on: boolean) => (on ? "border-ink bg-ink text-white" : "border-border bg-white text-primary hover:border-sky");
@@ -9,7 +10,7 @@ export const selClass = (on: boolean) => (on ? "border-ink bg-ink text-white" : 
 /** 12px-radius segmented choice that fills its row (New patient / Existing patient, English / Tiếng Việt). */
 export function Choice({ options, value, onChange, ariaLabel, className }: { options: readonly string[]; value: number; onChange: (i: number) => void; ariaLabel: string; className?: string }) {
   return (
-    <div role="radiogroup" aria-label={ariaLabel} className={cn("flex gap-1.5 md:gap-2", className)}>
+    <div role="radiogroup" aria-label={ariaLabel} onKeyDown={radioKeys} className={cn("flex gap-1.5 md:gap-2", className)}>
       {options.map((o, i) => {
         const on = value === i;
         return (
@@ -18,6 +19,7 @@ export function Choice({ options, value, onChange, ariaLabel, className }: { opt
             type="button"
             role="radio"
             aria-checked={on}
+            tabIndex={rovingTab(on, i, value >= 0)}
             onClick={() => onChange(i)}
             className={cn("flex-1 rounded-field border-[1.5px] px-2 py-[11px] text-center text-[13px] font-semibold transition-all duration-[250ms] md:py-3 md:text-[14px]", selClass(on))}
           >
@@ -49,21 +51,36 @@ export function PillChip({ on, children, size = "md", role = "radio", ...rest }:
 }
 
 /** 12px muted label over a control, as the prototype's form fields. */
-export function FieldLabel({ label, hint, children, className, htmlFor }: { label: string; hint?: string; children: ReactNode; className?: string; htmlFor: string }) {
+export function FieldLabel({ label, hint, error, children, className, htmlFor }: { label: string; hint?: string; error?: string; children: ReactNode; className?: string; htmlFor: string }) {
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
       <label htmlFor={htmlFor} className="text-[12px] font-semibold text-muted">
         {label}
       </label>
       {children}
-      {hint ? <span className="text-[12px] text-muted">{hint}</span> : null}
+      {hint ? (
+        <span id={`${htmlFor}-hint`} className="text-[12px] text-muted">
+          {hint}
+        </span>
+      ) : null}
+      <FieldError id={htmlFor} error={error} />
     </div>
   );
 }
 
-/** Consent row: 18px tile checkbox with rich label text (links inside). */
-export function ConsentRow({ children, className, ...rest }: ComponentProps<"input"> & { children: ReactNode }) {
+/** Inline error under a field, linked to it by `${id}-error` (see errorProps in lib/validate). */
+export function FieldError({ id, error }: { id: string; error?: string }) {
+  if (!error) return null;
   return (
+    <span id={`${id}-error`} className="text-[12px] font-semibold text-[color:var(--status-error-fg)]">
+      {error}
+    </span>
+  );
+}
+
+/** Consent row: 18px tile checkbox with rich label text (links inside). */
+export function ConsentRow({ children, className, error, ...rest }: ComponentProps<"input"> & { children: ReactNode; error?: string }) {
+  const row = (
     <label className={cn("flex cursor-pointer items-start gap-3 text-[13px] leading-[1.5] text-secondary", className)}>
       <input type="checkbox" className="peer sr-only" {...rest} />
       <span aria-hidden className="mt-0.5 flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-[5px] border-[1.5px] border-border bg-white text-[11px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
@@ -71,6 +88,13 @@ export function ConsentRow({ children, className, ...rest }: ComponentProps<"inp
       </span>
       <span>{children}</span>
     </label>
+  );
+  if (!error || !rest.id) return row;
+  return (
+    <div className="flex flex-col gap-1">
+      {row}
+      <FieldError id={rest.id} error={error} />
+    </div>
   );
 }
 
