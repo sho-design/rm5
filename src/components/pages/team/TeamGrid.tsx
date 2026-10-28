@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChipRow, Grid } from "@/components/ui";
 import type { TeamMember } from "@/content/types";
 import { TeamCard } from "./TeamCard";
@@ -8,6 +8,12 @@ import { TeamCard } from "./TeamCard";
 /** Division filter chips and the five-column member grid. */
 export function TeamGrid({ team, filters, note }: { team: TeamMember[]; filters: string[]; note: string }) {
   const [i, setI] = useState(0);
+  // Menu links such as "Our clinicians" open the page filtered: /about/team?service=Medical%20Aesthetics
+  useEffect(() => {
+    const want = new URLSearchParams(window.location.search).get("service");
+    const n = want ? filters.indexOf(want) : -1;
+    if (n > 0) setI(n);
+  }, [filters]);
   const label = filters[i];
   const shown = label === "All" ? team : team.filter((m) => m.divisions.includes(label));
   return (

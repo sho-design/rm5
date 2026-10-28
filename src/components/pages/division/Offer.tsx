@@ -9,7 +9,7 @@ const tintFor = (i: number) => tints[(i + 1) % tints.length];
 
 function Tile({ s, tint, big, book }: { s: DivisionService; tint: string; big?: boolean; book: string }) {
   return (
-    <div className={cn("relative flex flex-col justify-end overflow-hidden rounded-card", big ? "min-h-[600px] p-7" : "min-h-[200px] p-[22px]")} style={{ background: tint }}>
+    <div className={cn("relative flex flex-col justify-end overflow-hidden rounded-card", big ? "min-h-[600px] p-7" : "min-h-[200px] p-[22px]")} style={{ background: s.image ? "var(--rm-ink)" : tint }}>
       {s.image ? (
         <div className="absolute inset-0">
           <Photo src={s.image} alt="" radius="none" protect className="h-full w-full" sizes={big ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 40vw"} />

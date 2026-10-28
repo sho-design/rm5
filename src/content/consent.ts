@@ -11,4 +11,6 @@ export const consentCopy = {
   accept: "Allow analytics",
   decline: "No thanks",
   settings: "Cookie settings",
+  /** Shown when the banner is reopened from the footer (new wording). */
+  current: (choice: string) => `Your current choice: ${choice}.`,
 } as const;

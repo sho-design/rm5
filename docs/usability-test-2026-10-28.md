@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (40 simulated patients)
+# Usability test, 28 October 2026 (60 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -164,6 +164,71 @@ What held up: booking opened with the right service and visit every time; the re
 - On a slow phone the booking form briefly shows Family Medicine before switching to the linked service (the page is static; the service is read from the link once scripts load).
 - Buttons are inert until scripts load (about 10 seconds on the throttled test phone). Less JavaScript now, but a full fix needs a deeper performance pass.
 - A blank strip briefly above the sticky header while scrolling (3 testers) was not reproduced; it may be screenshots taken mid-scroll.
+
+## Round 4: 20 testers in new areas
+
+Same method on the round 3 build, at about 2:40am Toronto time. This round went where earlier rounds had not: aesthetics prices, pregnancy, vaccines, a referring physician, a nursing student and an RMT applying for jobs, a complaint and records request, an out-of-province student, 200% browser zoom, dark mode with colour blindness, and Maple.
+
+| Tester | Device | Goal | Ease /7 | Trust /7 | Done | With difficulty | Failed |
+|---|---|---|---|---|---|---|---|
+| Minh, 45, prefers Vietnamese | Phone | Vietnamese, injectables price and risks, book | 5 | 5 | 1 | 2 | 0 |
+| Grace, 52, menopause | Desktop | Menopause, cervical screening, evening visit | 6 | 5 | 2 | 1 | 0 |
+| Omar, 35, migraines | Phone | Red flags, nerve blocks, referral details | 5 | 5 | 1 | 2 | 0 |
+| Elena, 64, knee arthritis | Desktop | Options and OHIP, physio or injection, book | 5 | 4 | 1 | 1 | 1 |
+| Chris, 27, IV drip | Phone | Energy drip, price, book | 5 | 5 | 1 | 2 | 0 |
+| Patricia, 70, vaccines | Tablet | Flu shot, shingles and RSV, book | 5 | 5 | 1 | 2 | 0 |
+| Dr. Daniel, referring physician | Desktop | Fax, wait times, refer online, consult notes | 6 | 6 | 2 | 1 | 0 |
+| Mei Ling, 32, pregnant | Phone | Pregnancy care, become a patient, book | 5 | 5 | 2 | 1 | 0 |
+| Ravi, 50, sick note | Phone | Fees, how to get the note, book | 4 | 4 | 0 | 2 | 1 |
+| Jessica, 23, nursing student | Desktop | Placements, jobs and pay, apply | 6 | 6 | 2 | 1 | 0 |
+| Ahmad, 39, existing WSIB claim | Phone | Switch providers, book, reports | 5 | 6 | 1 | 2 | 0 |
+| Linda, 55, Botox and a gift card | Desktop | Unit price, results, gift card | 4 | 5 | 1 | 1 | 1 |
+| Tom, 80, 200% zoom, hard of hearing | Desktop | Contact in writing, send message, zoom | 5 | 6 | 2 | 1 | 0 |
+| Nadia, 31, complaint and records | Desktop | Complaint, records, privacy policy | 4 | 4 | 1 | 2 | 0 |
+| Jake, 19, Alberta student | Phone | No OHIP cost, same day, book | 5 | 3 | 2 | 1 | 0 |
+| Sara, 46, Maple | Phone | Opening, waitlist, register | 5 | 5 | 1 | 2 | 0 |
+| Bilal, 42, dark mode, colour blind | Phone | Hours, shoulder care price, book massage | 6 | 6 | 3 | 0 | 0 |
+| Karen, 36, son's vaccines | Phone | Vaccines at 4, register Leo, book for him | 5 | 6 | 1 | 2 | 0 |
+| Victor, 57, RMT applicant | Phone | Openings and pay, apply with resume, next steps | 5 | 5 | 1 | 2 | 0 |
+| Hoa, 28, iron deficiency | Phone (4G) | Referral and cost, infusion day, book | 6 | 6 | 2 | 1 | 0 |
+| **Round 4** | | | **5.1** | **5.1** | **28 of 60** | **29 of 60** | **3 of 60** |
+
+All 20 would use the site again (Linda: "maybe"). Scores sit a little below round 3 because this round asked mostly about money, policy and edge cases, where the answers are clinic content: unit prices, drip prices, fees for notes and forms, gift cards, the privacy policy, opening dates, pay. The three failures were all missing information (a unit price, a forms fee, physio versus injection advice), not broken flows. Booking itself was completed by every tester who tried it.
+
+What held up: booking from any page opened with the right service and visit; review step; inline errors; Tiếng Việt choice; caregiver booking; family registration; WSIB and MVA claim fields; the status bar; nothing relied on colour alone; the site reflowed at 200% zoom with no sideways scrolling; same-day slots.
+
+### Round 4 findings fixed in code
+
+- **Coverage told people the wrong thing:** booking now asks about the health card (Ontario, another province, none) and never shows "OHIP-insured" without one (Jake, Mei Ling). A "Form or note" visit shows the uninsured fee (Ravi). Physio and assessment self-pay show "$120 assessment, $95 follow-up" instead of "from $95" (Elena). "Book a consult" on aesthetics pages books the complimentary consult, not an injectables appointment (Minh).
+- **Booking says why you are coming:** new visit types for vaccines, pregnancy care and a form or note; choosers pass the option picked ("Perimenopause and menopause") into the booking, review and confirmation (Grace, Karen, Mei Ling, Ravi). Screening cards on the family page now book the matching visit (Patricia).
+- **Bring lists:** no longer ask for a claim number, employer or date the person already typed (Derek, Ahmad); no Ontario card line without one; the confirmation shows the preferred language.
+- **Wrong links:** "See the fee list" opened the privacy policy (Ravi); the Maple FAQ link opened Thornhill with no form (Sara); "Referral from your doctor" opened the OHIP page (Omar); "Register a child" started as "Me" (Karen); "Our clinicians" showed the whole team (Linda). All fixed. Job search results open that job.
+- **Referrals:** the referral form PDF link (a 404) is hidden until the clinic supplies the file (`NEXT_PUBLIC_REFERRAL_FORM_URL`); "Upload a referral" now reads "Send a referral online"; the form has an optional phone number and an "Urgent" box (Omar, Dr. Daniel).
+- **Contact:** a "How should we reply?" choice with "Email only, please do not call" (Tom), and "A concern or complaint" topic (Nadia). Phone menu has "Contact us" next to Call.
+- **Registration:** links from the children's page start as "Someone I care for"; email and phone say to use your own for a child; caregiver consent wording; the confirmation offers "Book a first visit".
+- **Careers:** the form says which role you are applying for, the licence field explains what to enter, and the form no longer hides under the header.
+- **Search:** finds "alberta", "out of province", "no health card", "complaint" (patient rights and legal pages are now indexed), "vaccine", "shingles", "migraine" (the headache note first), "knee arthritis", "OHIP physio", "sick note", "disability form". FAQ result lines show enough of the answer to make sense ("Yes." alone did not). Short "Search the site" hint on phones.
+- **Phone menu:** tapping a section name expands it (three testers expected that); "All ..." is the first link.
+- **Clinics page:** #maple scrolls to Maple's details; services at Maple have no Book buttons until it opens.
+- **Cookie banner:** a mouse or touch "No thanks" no longer shows the "Skip to content" pill (four testers; a side effect of a round 3 fix); reopening shows your current choice.
+- **Layout:** the date strip fits seven days on a phone again; the round Back button; dark base under photo headings so white text stays readable if a photo is slow; the sticky bar steps aside for the drip price total and the clinic card.
+- **Not a real issue:** the "blank strip above the header" six testers saw was reproduced only when a script jumps the page and the screenshot catches the smooth scroll mid-way; touch and mouse scrolling are not affected.
+
+### Round 4 findings for the clinic
+
+- **Accuracy first.** The FAQ answers "Can I ask for a female physician?" with "Yes", but both physicians listed are men (Mei Ling). Cervical screening still says "Pap test every 3 years" (Grace, again). "Thirteen drips" versus 12 listed; iron "from $250" versus "Iron (Venofer) $400" in the drip builder (Chris). "Eight commitments" heads nine cards (Nadia). Dr. Nguyen's bio says "Woodbridge"; his team photo is a placeholder.
+- **Prices people came for:** neurotoxin per unit or per area (Linda, Minh); a price on each drip page and real numbers on the infusion pricing page (Chris); forms and sick note fees (Ravi); uninsured visit fee, since the FAQ says "posted rates" (Jake); records copy fee (Nadia); massage and chiro by session length (Bilal); gift card amounts, delivery and whether you can buy by phone (Linda).
+- **Vaccines:** a vaccines section (flu now, shingles, RSV, children's schedule); say flu shots are in stock and free; "funded 65 to 70" at exactly 70 (Patricia).
+- **Pregnancy:** a pregnancy care path and whether to register or book first when pregnant (Mei Ling).
+- **Privacy and complaints:** add Google Analytics and cookies to the privacy policy; name the Privacy Officer; put the complaint timeline on Patient rights; "reviewed within ten" business days (Nadia).
+- **Careers:** pay or ranges, shift times and hours, whether new graduates or RPNs are considered, how soon applicants hear back (Jessica, Victor).
+- **Pain Centre:** which headache types are treated (migraine?) (Omar); wait time per service on the physician page (Dr. Daniel); physio versus injection for knee arthritis and which knee injections OHIP covers (Elena).
+- **Infusion and iron:** how to send outside lab results before a visit (the site stores no patient files) (Hoa); the iron fees on the physician card.
+- **Aesthetics:** risks and side effects for injectables (Minh); rename "Before & after" (there are none) (Linda).
+- **Rehab and WSIB:** switching an existing WSIB claim from another provider; what the employer sees (Ahmad).
+- **Maple:** an opening month or season; whether the waitlist and pre-registration are the same; where first visits happen until it opens (Sara, Anjali).
+- **Writing only:** a non-phone option for same-day issues for people who cannot use the phone (Tom).
+- **Dark mode:** requested again (Bilal); still needs a design pass before it can follow the phone setting.
 
 ## What worked
 

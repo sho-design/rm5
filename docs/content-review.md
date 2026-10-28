@@ -131,6 +131,15 @@ New wording from the fixes after the 30-tester usability test. Every new string 
 - Family Medicine menu: "Request a prescription renewal".
 - Search: "Close search" (button name).
 
+## Usability fixes, round 4
+
+- Booking: "Health card", "Ontario health card", "From another province", "No health card", "ending", the two notes ("That is fine. Coverage for a card from another province depends on the service...", "That is fine. Without a health card the visit is uninsured...") and coverage lines, "Photo ID, and your health card from another province if you have one."; visit types "Vaccines", "Pregnancy care", "A form or note"; "Self-pay: $120 assessment, $95 follow-up, HST included" (figures from the rehab coverage checker).
+- Registration: "Book a first visit", "Use your own email and phone if they do not have one.", and the caregiver consent line "I consent to Restoration Medical collecting this information to register the person named above as a patient, as described in the ".
+- Contact: "How should we reply?", "Email or phone", "Email only, please do not call", "A concern or complaint".
+- Careers: "You are applying for (role). Add your details below. We keep applications for 12 months.", licence hint.
+- Referrals: "Send a referral online" (was "Upload a referral"; there is no upload), "Send a referral." (title while there is no PDF form), "Your phone (optional)", "Urgent", "We review urgent referrals first. Please also call the referral line."
+- Phone menu: "Contact us". Search: "Search the site". Cookie banner: "Your current choice: No thanks."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.
@@ -146,3 +155,5 @@ New wording from the fixes after the 30-tester usability test. Every new string 
 - **Wait times and consult lengths** quoted from the prototype (for example "two to three weeks", "20 min" versus "30 minute consult") still need confirmation.
 - **Vietnamese FAQ.** The answer to "Do you speak Vietnamese?" mentions a language switch at the top of the site. The switch stays hidden until the Vietnamese pages are ready (`NEXT_PUBLIC_VI_ENABLED`), so reword the answer or launch the translation.
 - **Rehab self-pay floor.** The booking coverage line "Self-pay, from $95, HST included" comes from the rehab coverage checker. Confirm it covers chiro and massage too.
+- **Female physician FAQ.** "Can I ask for a female physician? Yes" while both listed physicians are men. Correct the answer or name who is available.
+- **Out-of-province patients.** Booking now says coverage for a card from another province "depends on the service" and is confirmed before the visit. Confirm whether the clinic bills other provinces (reciprocal billing) so this can be stated plainly.

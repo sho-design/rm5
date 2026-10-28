@@ -49,18 +49,17 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
             const on = open === k;
             return (
               <div key={k} className="flex flex-col border-b border-white/12">
-                <div className="grid grid-cols-[1fr_44px] items-center">
-                  <Link href={href(k)} onClick={onClose} className="display py-4 text-[26px] leading-none">
-                    {d.label}
-                  </Link>
-                  <button type="button" aria-label={on ? `Collapse ${d.label}` : `Expand ${d.label}`} aria-expanded={on} onClick={() => setOpen(on ? null : k)} className="flex h-11 w-11 items-center justify-center text-[22px] text-white/70">
+                {/* The whole row expands the section (people expect that on a phone); "All ..." is its first link. */}
+                <button type="button" aria-expanded={on} onClick={() => setOpen(on ? null : k)} className="grid grid-cols-[1fr_44px] items-center text-left">
+                  <span className="display py-4 text-[26px] leading-none">{d.label}</span>
+                  <span aria-hidden className="flex h-11 w-11 items-center justify-center text-[22px] text-white/70">
                     {on ? "−" : "+"}
-                  </button>
-                </div>
+                  </span>
+                </button>
                 {on ? (
                   <div className="flex flex-col pb-3">
                     {/* Every link the desktop mega menu offers: explore, book, then more. */}
-                    {[d.explore.slice(1), d.book, d.more].map((group, gi) => (
+                    {[d.explore, d.book, d.more].map((group, gi) => (
                       <div key={gi} className={cn("flex flex-col", gi > 0 && "mt-2 border-t border-white/12 pt-2")}>
                         {gi > 0 ? <span className="pb-1 pt-2 text-[11px] font-semibold tracking-[.04em] text-white/70">{gi === 1 ? menuHeadings.book(d) : menuHeadings.more(d)}</span> : null}
                         {group.map((e) => (
@@ -113,6 +112,9 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
           )}
           <SocialIcons size={44} />
         </div>
+        <Link href={routes.contact} onClick={onClose} className="text-[15px] font-semibold text-white">
+          {menuHeadings.contact} ›
+        </Link>
         <Link href={routes.referrals} onClick={onClose} className="text-[13px] font-semibold text-sun">
           For referring doctors ›
         </Link>

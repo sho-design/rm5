@@ -7,7 +7,7 @@ import { contactExtraCopy } from "@/content/forms-copy";
 import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
 import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
-import { ConsentRow, FieldLabel, Panel, PillChip, SubmitButton } from "../book/FormBits";
+import { Choice, ConsentRow, FieldLabel, Panel, PillChip, SubmitButton } from "../book/FormBits";
 
 /**
  * Contact form: topic chips, name, email or phone, message, optional clinic
@@ -17,6 +17,9 @@ import { ConsentRow, FieldLabel, Panel, PillChip, SubmitButton } from "../book/F
  */
 export function ContactForm() {
   const [topic, setTopic] = useState(0);
+  const [replyBy, setReplyBy] = useState(0);
+  /** The approved topics plus "A concern or complaint", so complaints have a clear place. */
+  const topics = [...contactTopics, contactExtraCopy.complaintTopic];
   const [errors, setErrors] = useState<FormErrors>({});
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
@@ -36,7 +39,7 @@ export function ContactForm() {
     const v = readForm(form);
     setBusy(true);
     setError(false);
-    const res = await submitForm("contact", { topic: contactTopics[topic], name: v.name, email: v.contact, message: v.message, updates: v.updates === true });
+    const res = await submitForm("contact", { topic: topics[topic], name: v.name, email: v.contact, message: v.message, replyBy: contactExtraCopy.replyOptions[replyBy], updates: v.updates === true });
     setBusy(false);
     if (res.ok) setDone(true);
     else setError(true);
@@ -69,7 +72,7 @@ export function ContactForm() {
           {contactCopy.formTitle}
         </Display>
         <div role="radiogroup" aria-label="Topic" onKeyDown={radioKeys} className="flex flex-wrap gap-1.5">
-          {contactTopics.map((t, i) => (
+          {topics.map((t, i) => (
             <PillChip key={t} on={topic === i} tabIndex={rovingTab(topic === i, i, true)} size="sm" onClick={() => setTopic(i)}>
               {t}
             </PillChip>
@@ -86,7 +89,10 @@ export function ContactForm() {
         <FieldLabel label={contactCopy.fields.message} htmlFor="contact-message" hint={contactCopy.messageHint} error={errors["contact-message"]}>
           <Textarea id="contact-message" name="message" required {...errorProps(errors, "contact-message")} />
         </FieldLabel>
-        <p className="text-[13px] leading-[1.5] text-secondary">{contactExtraCopy.reply}</p>
+        <div className="flex flex-col gap-1.5">
+          <span className="text-[12px] font-semibold text-muted">{contactExtraCopy.replyLabel}</span>
+          <Choice options={contactExtraCopy.replyOptions} value={replyBy} onChange={setReplyBy} ariaLabel={contactExtraCopy.replyLabel} />
+        </div>
         <ConsentRow id="contact-updates" name="updates">
           {contactExtraCopy.updates}
         </ConsentRow>

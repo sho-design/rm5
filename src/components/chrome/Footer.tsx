@@ -9,7 +9,6 @@ import { TextControls } from "./TextControls";
 import { ConsentSettingsLink } from "./ConsentBanner";
 
 const legalLinks: [string, string][] = [
-  ["FAQ", routes.faq],
   ["Contact", routes.contact],
   ["New patients", routes.register],
   ["Your year", routes.year],

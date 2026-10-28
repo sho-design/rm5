@@ -123,7 +123,9 @@ export function SubChooser({
   titleSize?: "md" | "sm" | "xs";
   id?: string;
 }) {
-  const results: ChooserResult[] = items.map((it) => ({ title: it.title, p: it.p, facts: it.facts, tags: it.tags, cta: it.cta, link, linkPage: linkTo }));
+  // Booking buttons carry the option chosen ("Perimenopause and menopause") so the booking says why you are coming.
+  const withReason = (label: string) => (ctaTo.startsWith("/book") ? `${ctaTo}${ctaTo.includes("?") ? "&" : "?"}reason=${encodeURIComponent(label)}` : undefined);
+  const results: ChooserResult[] = items.map((it) => ({ title: it.title, p: it.p, facts: it.facts, tags: it.tags, cta: it.cta, ctaPage: withReason(it.label), link, linkPage: linkTo }));
   return (
     <Chooser
       id={id}

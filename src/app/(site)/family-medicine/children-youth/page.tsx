@@ -1,3 +1,4 @@
+import { bookFor } from "@/lib/routes";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { Faq, SubPageHero } from "@/components/ui";
@@ -32,9 +33,9 @@ export default function ChildrenYouthPage() {
         title={kidsCopy.hero.title}
         lead={kidsCopy.hero.lead}
         cta={kidsCopy.hero.cta}
-        ctaTo="register"
+        ctaTo="/register?for=someone"
         cta2={kidsCopy.hero.cta2}
-        cta2To="book"
+        cta2To={bookFor("family", "concern")}
         coverage={kidsCopy.hero.coverage}
         tint={divisionTint.family}
         accent={divisionAccent.family}
@@ -49,7 +50,7 @@ export default function ChildrenYouthPage() {
       <KidsPath />
       <KidsLanguage />
       <Faq title={kidsCopy.faq.title} sub={kidsCopy.faq.sub} items={kidsFaq} />
-      <TintBand tint="var(--rm-sage-tint)" title={kidsCopy.band.title} body={kidsCopy.band.body} bodyClass="text-sage-ink" cta={kidsCopy.band.cta} ctaTo="register" link={kidsCopy.band.link} linkTo="year" />
+      <TintBand tint="var(--rm-sage-tint)" title={kidsCopy.band.title} body={kidsCopy.band.body} bodyClass="text-sage-ink" cta={kidsCopy.band.cta} ctaTo="/register?for=someone" link={kidsCopy.band.link} linkTo="year" />
     </>
   );
 }

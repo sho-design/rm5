@@ -70,12 +70,14 @@ export function DripBuilder() {
         ) : (
           <p className="text-[15px] leading-[1.5] text-muted">{dripCopy.empty}</p>
         )}
-        <FactGrid
-          facts={[
-            { k: c.time, v: formatTime(mins, chosen.length > 0) },
-            { k: c.total, v: `$${total}` },
-          ]}
-        />
+        <div data-keep-clear>
+          <FactGrid
+            facts={[
+              { k: c.time, v: formatTime(mins, chosen.length > 0) },
+              { k: c.total, v: `$${total}` },
+            ]}
+          />
+        </div>
         <p className="text-[13px] leading-[1.5] text-muted" aria-live="polite">
           {sel.includes(dripIronIndex) ? dripCopy.ironNote : dripCopy.note}
         </p>

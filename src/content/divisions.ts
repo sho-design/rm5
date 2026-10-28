@@ -74,7 +74,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Join the roster", page: "register" },
     ],
     more: [
-      { label: "Our physicians", page: "team" },
+      { label: "Our physicians", page: "/about/team?service=Family%20Medicine" },
       { label: "Referrals", page: "referrals" },
       { label: "Prescription renewals", page: "rx" },
       { label: "Lab results", page: "labs" },
@@ -127,7 +127,7 @@ export const divisions: Record<NavKey, Division> = {
     ],
     book: [
       { label: "Book a family medicine assessment", page: bookFor("family", "concern") },
-      { label: "Referral from your doctor", page: "painOhip" },
+      { label: "Referral from your doctor", page: "painFirstVisit" },
       { label: "Follow-up visit", page: bookFor("pain", "followup") },
       { label: "Procedure visit", page: bookFor("pain", "procedure") },
     ],
@@ -211,7 +211,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Laser consult", page: bookFor("aesthetics", "laser") },
     ],
     more: [
-      { label: "Our clinicians", page: "team" },
+      { label: "Our clinicians", page: "/about/team?service=Medical%20Aesthetics" },
       { label: "Before & after", page: "aesPhotos" },
       { label: "Safety standards", page: "standards" },
       { label: "Pricing", page: "aesPricing" },
@@ -260,7 +260,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "WSIB intake", page: bookFor("rehab", "wsib") },
     ],
     more: [
-      { label: "Our therapists", page: "team" },
+      { label: "Our therapists", page: "/about/team?service=Rehab%20%26%20Recovery" },
       { label: "Insurance & direct billing", page: "rehabBilling" },
       { label: "What to bring", page: "rehabBring" },
       { label: "Home exercise portal", page: "rehabHome" },
@@ -355,6 +355,8 @@ export const infusionSub = [
 export const menuHeadings = {
   book: (d: Division) => (d.key === "about" ? draft("Get in touch") : `Book ${d.label}`),
   more: (d: Division) => `More from ${d.label}`,
+  /** Phone menu: a written way to reach the clinic, next to the Call button. */
+  contact: "Contact us",
 };
 
 /** Copy shared by the division page shell (prototype division template). */

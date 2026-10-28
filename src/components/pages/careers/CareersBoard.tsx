@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Display, Icon } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { careersCopy } from "@/content/about";
@@ -22,6 +22,12 @@ export function CareersBoard({ jobs, placements }: { jobs: BoardJob[]; placement
   const [open, setOpen] = useState<string | null>(null);
   const [role, setRole] = useState("");
   const c = careersCopy.board;
+
+  // Search results link to /about/careers?job=<id>#roles: open that role in the list.
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("job");
+    if (id && jobs.some((j) => j.id === id)) setOpen(id);
+  }, [jobs]);
 
   const list = useMemo(() => {
     const q = f.q.trim().toLowerCase();

@@ -2,10 +2,10 @@ import { Button } from "@/components/ui";
 import { referralsPage, type RefStep } from "@/content/referrals";
 
 /**
- * Referral form PDF. The clinic supplies the file at public/for-physicians/
- * referral-form.pdf; the prototype button was a placeholder.
+ * Referral form PDF. Set NEXT_PUBLIC_REFERRAL_FORM_URL once the clinic
+ * supplies its form; until then the download button is hidden (it was a 404).
  */
-const REFERRAL_FORM_PDF = "/for-physicians/referral-form.pdf";
+const REFERRAL_FORM_PDF = process.env.NEXT_PUBLIC_REFERRAL_FORM_URL;
 
 /**
  * "How a referral moves": numbered steps on a paper card left; download
@@ -33,12 +33,14 @@ export function ReferralProcess({ steps }: { steps: RefStep[] }) {
       </div>
       <div className="grid grid-rows-[auto_1fr] gap-block">
         <div className="flex flex-col gap-3.5 rounded-card bg-sun-soft p-6 text-ink md:p-8">
-          <h2 className="display-tight text-[26px] leading-[1.05] tracking-[-.02em]">{c.download.title}</h2>
+          <h2 className="display-tight text-[26px] leading-[1.05] tracking-[-.02em]">{REFERRAL_FORM_PDF ? c.download.title : c.download.titleNoForm}</h2>
           <p className="text-[14px] leading-[1.5] text-ink/75">{c.download.sub}</p>
           <div className="flex flex-wrap gap-2.5">
-            <a href={REFERRAL_FORM_PDF} className="inline-flex items-center justify-center rounded-chip bg-ink px-[22px] py-3 text-[14px] font-semibold leading-none text-white transition-all hover:opacity-90 active:scale-[.98]">
-              {c.download.pdf}
-            </a>
+            {REFERRAL_FORM_PDF ? (
+              <a href={REFERRAL_FORM_PDF} className="inline-flex items-center justify-center rounded-chip bg-ink px-[22px] py-3 text-[14px] font-semibold leading-none text-white transition-all hover:opacity-90 active:scale-[.98]">
+                {c.download.pdf}
+              </a>
+            ) : null}
             <Button to="#refer" variant="inverse" size="sm" className="h-auto px-[22px] py-3 text-[14px]">
               {c.download.upload}
             </Button>

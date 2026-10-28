@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { bookFor } from "@/lib/routes";
 import { Button, Display, Eyebrow, Input, Lead, SmartLink, StateCard } from "@/components/ui";
 import { formFailedLine, registerCopy, registerFamily, registerLanguages, registerSteps } from "@/content/booking";
 import { registerExtraCopy as x } from "@/content/forms-copy";
@@ -93,6 +94,11 @@ export function RegisterForm() {
 
   const caregiver = forWhom === 1;
 
+  // "Register a child" and similar links pass ?for=someone: start on "Someone I care for".
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("for") === "someone") setForWhom(1);
+  }, []);
+
   const toggle = (r: Relation) => {
     if (people[r].length) {
       setPeople((p) => ({ ...p, [r]: [] }));
@@ -173,7 +179,10 @@ export function RegisterForm() {
             title={registerCopy.done.title}
             actions={
               <>
-                <Button to="notes">{registerCopy.done.notes}</Button>
+                <Button to={bookFor("family")}>{x.done.book}</Button>
+                <Button to="notes" variant="inverse">
+                  {registerCopy.done.notes}
+                </Button>
                 <SmartLink to="home" className="inline-flex h-12 items-center px-[22px] text-[14px] font-semibold text-ink hover:opacity-80">
                   {registerCopy.done.home}
                 </SmartLink>
@@ -243,7 +252,7 @@ export function RegisterForm() {
               <FieldLabel label={registerCopy.fields.card} htmlFor="reg-card">
                 <Input id="reg-card" name="card" inputMode="numeric" autoComplete="off" />
               </FieldLabel>
-              <FieldLabel label={registerCopy.fields.email} htmlFor="reg-email" {...err("reg-email")}>
+              <FieldLabel label={registerCopy.fields.email} htmlFor="reg-email" hint={caregiver ? x.helper.contactHint : undefined} {...err("reg-email")}>
                 <Input id="reg-email" name="email" type="email" autoComplete="email" inputMode="email" required {...errorProps(errors, "reg-email")} />
               </FieldLabel>
               <FieldLabel label={registerCopy.fields.phone} htmlFor="reg-phone" {...err("reg-phone")}>
@@ -299,7 +308,7 @@ export function RegisterForm() {
               <Input id="reg-previous" name="previous" />
             </FieldLabel>
             <ConsentRow id="reg-consent" name="consent" required error={errors["reg-consent"]} {...errorProps(errors, "reg-consent")}>
-              {registerCopy.consent}
+              {caregiver ? x.helper.consent : registerCopy.consent}
               <SmartLink to="privacy" className="font-semibold text-link">
                 {registerCopy.consentLink}
               </SmartLink>

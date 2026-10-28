@@ -68,8 +68,11 @@ function staticPageText(): Record<string, string> {
   return t;
 }
 
+/** Opening of an answer for the result line: whole sentences until it says something ("Yes." alone does not). */
 const firstSentence = (s: string, max = 120) => {
-  const one = s.split(/(?<=\.)\s/)[0] ?? s;
+  const parts = s.split(/(?<=\.)\s/);
+  let one = parts[0] ?? s;
+  for (let i = 1; one.length < 50 && i < parts.length; i++) one += ` ${parts[i]}`;
   return one.length > max ? `${one.slice(0, max - 1).replace(/\s+\S*$/, "")}…` : one;
 };
 
@@ -130,11 +133,17 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
     kind: "Careers",
     label: j.title,
     sub: `${j.location}, ${j.type}`,
-    page: href("careers"),
+    page: `${href("careers")}?job=${encodeURIComponent(j.id)}#roles`,
     group: `job:${j.id}`,
     weight: 0.75,
     words: wordsOf(`${j.division} ${j.schedule} ${j.summary} ${j.requirements.join(" ")}`),
   }));
 
-  return [...rows, ...faqRows, ...noteRows, ...teamRows, ...jobRows];
+  // Privacy policy, patient rights, terms and accessibility had no rows of their own, so "complaint" or
+  // "cookies" could not find them.
+  const legalRows: SearchDoc[] = legal
+    .filter((p) => !rows.some((r) => r.page === p.key || r.page === href(p.key)))
+    .map((p) => ({ kind: "About", label: p.title, sub: firstSentence(p.intro), page: p.key, keys: aliasesFor(p.key), words: wordsOf(text[p.key] ?? "") }));
+
+  return [...rows, ...legalRows, ...faqRows, ...noteRows, ...teamRows, ...jobRows];
 }

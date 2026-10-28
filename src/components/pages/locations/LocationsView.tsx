@@ -23,14 +23,20 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
   const phone = loc.phone ?? site.phone;
   const phoneHref = `tel:${phone.replace(/\D/g, "")}`;
 
-  // /about/clinics#maple or #thornhill opens that tab (mega menu links).
+  // /about/clinics#maple or #thornhill opens that tab and scrolls to its details (menu links);
+  // #maple-waitlist also opens the waitlist form (FAQ "Join the Maple list").
   useEffect(() => {
     const select = () => {
-      const n = locations.findIndex((l) => `#${l.key}` === window.location.hash);
-      if (n >= 0) {
-        setI(n);
-        setWaitlist(false);
-      }
+      const hash = window.location.hash;
+      const wantsList = hash.endsWith("-waitlist");
+      const n = locations.findIndex((l) => `#${l.key}` === hash || `#${l.key}-waitlist` === hash);
+      if (n < 0) return;
+      setI(n);
+      setWaitlist(false);
+      window.setTimeout(() => {
+        if (wantsList && locations[n].soon) openWaitlist();
+        else document.getElementById(`loc-panel-${locations[n].key}`)?.scrollIntoView({ block: "start" });
+      }, 60);
     };
     select();
     window.addEventListener("hashchange", select);
@@ -87,14 +93,14 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
         })}
       </div>
 
-      <div role="tabpanel" id={`loc-panel-${loc.key}`} aria-labelledby={`loc-tab-${loc.key}`}>
+      <div role="tabpanel" id={`loc-panel-${loc.key}`} aria-labelledby={`loc-tab-${loc.key}`} className="scroll-mt-20">
         {/* Photo + detail */}
         <div className="grid grid-cols-1 items-stretch gap-block px-3 pt-6 md:px-content lg:grid-cols-[1.2fr_1fr]">
           <Photo src={loc.img} alt={loc.name} radius="block" className="min-h-[300px] md:min-h-[420px] lg:min-h-[480px]" sizes="(max-width: 1024px) 100vw, 55vw" priority>
             {loc.soon ? <span className="absolute left-5 top-5 rounded-chip bg-sun px-3.5 py-[7px] text-[13px] font-semibold text-sun-ink">{c.soonPill}</span> : null}
           </Photo>
           <div className="flex flex-col gap-block">
-            <div className="flex flex-1 flex-col gap-[18px] rounded-card bg-inverse p-6 text-on-inverse md:p-8">
+            <div data-keep-clear className="flex flex-1 flex-col gap-[18px] rounded-card bg-inverse p-6 text-on-inverse md:p-8">
               <Display as="h2" size="2xs" tight className="text-white">
                 {loc.name}
               </Display>
@@ -163,10 +169,13 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
                   <span className="text-[13px] leading-[1.45] text-muted">{s.tag}</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-3 px-1 text-[14px] font-semibold">
-                  <Button to={bookFor(s.key)} variant="secondary" size="sm" className="h-auto px-5 py-[11px] text-[14px]">
-                    {c.book}
-                    <span className="sr-only"> {s.label}</span>
-                  </Button>
+                  {/* No booking at a clinic that is not open yet. */}
+                  {loc.soon ? null : (
+                    <Button to={bookFor(s.key)} variant="secondary" size="sm" className="h-auto px-5 py-[11px] text-[14px]">
+                      {c.book}
+                      <span className="sr-only"> {s.label}</span>
+                    </Button>
+                  )}
                   <SmartLink to={s.key} className="text-link">
                     {c.learn}
                     <span className="sr-only"> about {s.label}</span> ›

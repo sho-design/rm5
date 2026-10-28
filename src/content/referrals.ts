@@ -1,3 +1,4 @@
+import { draft } from "./review";
 /** Services listed on the For physicians (referrals) page. */
 export interface RefService {
   title: string;
@@ -81,9 +82,12 @@ export const referralsPage = {
   stepsTitle: "How a referral moves.",
   download: {
     title: "Download the referral form.",
+    /** Shown until the clinic supplies its PDF form. */
+    titleNoForm: draft("Send a referral."),
     sub: "One form for all services. Tick the service, attach relevant results and fax or upload.",
     pdf: "Referral form (PDF)",
-    upload: "Upload a referral",
+    // There is no file upload; the button opens the online referral form.
+    upload: draft("Send a referral online"),
   },
   physiciansLabel: "Physicians",
   physicians: [

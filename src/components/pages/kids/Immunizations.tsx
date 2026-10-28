@@ -1,4 +1,5 @@
 import { Button, ChipRow, Section } from "@/components/ui";
+import { bookFor } from "@/lib/routes";
 import { immunizationCount, kidsCopy, type ImmunizationStage } from "@/content/kids";
 import { SubHeader } from "./FamilySubBits";
 
@@ -40,7 +41,7 @@ export function Immunizations({ stages, value, onChange }: { stages: Immunizatio
               <span className="display text-[24px] leading-[1.05]">{kidsCopy.imm.catchTitle}</span>
               <span className="text-[14px] leading-[1.5] text-ink/75">{kidsCopy.imm.catchBody}</span>
             </div>
-            <Button to="book" className="self-start">
+            <Button to={bookFor("family", "vaccine")} className="self-start">
               {kidsCopy.imm.catchCta}
             </Button>
           </div>

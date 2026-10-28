@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type FormEvent } from "react";
+import { careersExtraCopy } from "@/content/forms-copy";
 import { Button, Display, Field, Input, Select, StateCard, Textarea } from "@/components/ui";
 import { careersCopy } from "@/content/about";
 import { site } from "@/content/site";
@@ -51,10 +52,11 @@ export function ApplyForm({ roles, role, onRoleChange }: { roles: string[]; role
   }
 
   return (
-    <section id="apply" className="grid scroll-mt-6 grid-cols-1 items-start gap-8 px-4 pb-10 pt-12 md:px-content md:pt-section lg:grid-cols-2">
+    <section id="apply" className="grid scroll-mt-20 grid-cols-1 items-start gap-8 px-4 pb-10 pt-12 md:px-content md:pt-section lg:grid-cols-2">
       <div className="flex flex-col gap-3.5 lg:sticky lg:top-6">
         <Display size="xs">{f.title}</Display>
-        <Lead16>{f.body}</Lead16>
+        {/* With a role picked from the board, say so instead of "No matching role yet?". */}
+        <Lead16>{role ? careersExtraCopy.applyingFor(role) : f.body}</Lead16>
         <span className="text-[13px] text-muted">
           {f.emailLine}
           <a href={`mailto:${site.careersEmail}`} className="font-semibold text-link">
@@ -125,7 +127,7 @@ export function ApplyForm({ roles, role, onRoleChange }: { roles: string[]; role
                 <option value={f.roleGeneral}>{f.roleGeneral}</option>
               </Select>
             </Field>
-            <Field label={f.licence} htmlFor="ap-licence">
+            <Field label={f.licence} htmlFor="ap-licence" hint={careersExtraCopy.licenceHint}>
               <Input id="ap-licence" name="licence" autoComplete="off" />
             </Field>
             <Field label={f.note} htmlFor="ap-note">

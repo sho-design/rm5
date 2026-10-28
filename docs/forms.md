@@ -13,6 +13,8 @@ Each form posts JSON to `/api/<kind>`, which forwards `{ kind, submittedAt, data
 | `patient` | `{ first, last, relationship }` when booking for someone else, else `null` |
 | `who` | "New patient" or "Existing patient" |
 | `language` | Preferred language: "English" or "Tiếng Việt" |
+| `healthCard` | "Ontario health card", "From another province" or "No health card" |
+| `reason` | Why they are coming, carried from the page they booked from (for example "Perimenopause and menopause"), or `null` |
 | `day`, `slot` | Toronto calendar date `YYYY-MM-DD` and time, for example "9:30 am" |
 | `name`, `phone`, `email`, `healthCardLast4`, `notes` | Contact details (the booker's when booking for someone else) |
 | `claim` | MVA or WSIB: `{ type, number, insurerOrEmployer, date }`, all optional, else `null` |
@@ -33,7 +35,13 @@ Visit keys accepted in booking links (`/book?service=rehab&visit=physio`) are li
 ## contact
 
 - `updates` comes only from the separate "clinic updates" checkbox. Replies use the contact details given.
+- `replyBy`: "Email or phone" or "Email only, please do not call".
+- `topic` can also be "A concern or complaint".
 
-## renewal, careers, referral, Maple waitlist
+## referral
+
+- New: `phone` (optional) and `urgent` (boolean).
+
+## renewal, careers, Maple waitlist
 
 Same keys as before.

@@ -90,6 +90,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [who, setWho] = useState(0);
   const [payment, setPayment] = useState(0);
   const [language, setLanguage] = useState(0);
+  /** 0 Ontario health card, 1 card from another province, 2 no health card. */
+  const [card, setCard] = useState(0);
+  /** Why they are coming, carried from the page they booked from (?reason=Perimenopause and menopause). */
+  const [reason, setReason] = useState("");
   const [details, setDetails] = useState<Details>({});
   const [errors, setErrors] = useState<FormErrors>({});
   const [days, setDays] = useState<BookingDay[]>([]);
@@ -120,22 +124,32 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     const params = new URLSearchParams(window.location.search);
     const key = params.get("service");
     if (key && services.some((s) => s.key === key)) chooseService(key, params.get("visit") ?? undefined);
+    const why = params.get("reason")?.trim().slice(0, 80);
+    if (why) setReason(why);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [services]);
 
   const str = (k: string) => (typeof details[k] === "string" ? (details[k] as string) : "");
   const day = days[dayIdx];
   const slots = useMemo(() => day?.slots ?? [], [day]);
-  const coverage = visit?.coverage ?? (visit?.payment ? payments[payment]?.coverage : service.coverage) ?? bookingCoverageFallback;
+  const baseCoverage = visit?.coverage ?? (visit?.payment ? (payment === 1 && visit.selfPay ? visit.selfPay : payments[payment]?.coverage) : service.coverage) ?? bookingCoverageFallback;
+  // Without an Ontario health card, OHIP does not pay: never show "OHIP-insured" on their booking.
+  const coverage = card > 0 && /OHIP/.test(baseCoverage) ? x.card.coverage[card - 1] : baseCoverage;
   const slotLabel = day && slot != null && day.open ? `${DOW[day.date.getDay()]} ${MON[day.date.getMonth()]} ${day.date.getDate()}, ${fmtTime(slot)}` : bookingConfirmLabel.slotNotChosen;
-  const serviceLine = visit ? `${service.label}, ${visit.label}` : service.label;
+  const serviceLine = [visit ? `${service.label}, ${visit.label}` : service.label, reason ? `(${reason})` : ""].filter(Boolean).join(" ");
   const patientName = forOther ? `${str("patientFirst")} ${str("patientLast")}`.trim() : "";
   const contactName = `${str("first")} ${str("last")}`.trim();
   const reminders = details.reminders === true;
   const { title, lead } = bookingTitleFor(state);
 
+  // Do not ask people to bring what they already typed (claim number, insurer, employer, date),
+  // and no Ontario card line for someone without one.
+  const typed = (line: string) =>
+    (!!str("claimNumber") && /claim number/i.test(line)) || (!!str("employer") && /employer/i.test(line)) || (!!str("eventDate") && /date of the/i.test(line));
+  const ontarioLine = (line: string) => card > 0 && /Ontario health card/i.test(line);
   const bring = [
-    ...(visit?.bring ?? []),
+    ...(visit?.bring ?? []).filter((l) => !typed(l) && !ontarioLine(l)),
+    ...(card > 0 ? [x.card.bring] : []),
     ...(visit?.payment ? (payments[payment]?.bring ?? []) : []),
     ...(visit?.fasting && slot != null ? [slot < 10 ? config.fasting.early : config.fasting.late] : []),
     ...(visit?.fastingMaybe && slot != null && slot < 10 ? [`${x.fastingIf} ${config.fasting.early}`] : []),
@@ -166,6 +180,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     patient: forOther ? { first: str("patientFirst"), last: str("patientLast"), relationship: str("relationship") } : null,
     who: bookingWho[who],
     language: registerLanguages[language],
+    healthCard: x.card.options[card],
+    reason: reason || null,
     day: day ? day.iso : null,
     slot: slot != null ? fmtTime(slot) : null,
     name: contactName,
@@ -244,6 +260,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     ...(forOther ? ([[x.review.keys.for, [patientName ? `${patientName}.` : "", str("relationship") ? x.youAreTheir(str("relationship")) : ""].filter(Boolean).join(" ")]] as [string, string][]) : []),
     [x.review.keys.status, bookingWho[who]],
     [registerCopy.fields.language, registerLanguages[language]],
+    [x.card.label, card === 0 && str("card") ? `${x.card.options[0]}, ${x.card.endsIn} ${str("card")}` : x.card.options[card]],
     [x.review.keys.time, slotLabel],
     [x.review.keys.clinic, bookingCopy.clinic],
     [x.review.keys.coverage, coverage],
@@ -364,7 +381,15 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   {field("last", forOther ? x.fields.last : bookingCopy.fields.last, { autoComplete: "family-name", required: true, "data-error": x.missing.last } as InputHTMLAttributes<HTMLInputElement>)}
                   {field("email", bookingCopy.fields.email, { type: "email", autoComplete: "email", inputMode: "email", required: true })}
                   {field("phone", bookingCopy.fields.phone, { type: "tel", autoComplete: "tel", inputMode: "tel", required: true })}
-                  {field("card", forOther ? x.fields.cardSomeoneElse : bookingCopy.fields.card, { inputMode: "numeric", pattern: "[0-9]{4}", maxLength: 4, autoComplete: "off", "data-error": x.cardError } as InputHTMLAttributes<HTMLInputElement>, { className: "sm:col-span-2" })}
+                </div>
+                <div className="mt-2 flex flex-col gap-2">
+                  <GroupLabel>{x.card.label}</GroupLabel>
+                  <Choice options={x.card.options} value={card} onChange={setCard} ariaLabel={x.card.label} className="flex-wrap" />
+                  {card === 0 ? (
+                    field("card", forOther ? x.fields.cardSomeoneElse : bookingCopy.fields.card, { inputMode: "numeric", pattern: "[0-9]{4}", maxLength: 4, autoComplete: "off", "data-error": x.cardError } as InputHTMLAttributes<HTMLInputElement>)
+                  ) : (
+                    <p className="text-[13px] leading-[1.5] text-secondary">{x.card.notes[card - 1]}</p>
+                  )}
                 </div>
               </fieldset>
 
@@ -432,7 +457,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                       setDayIdx(i);
                       setSlot(null);
                     }}
-                    className={cn("flex min-w-[46px] flex-1 flex-col items-center gap-0.5 rounded-[12px] border-[1.5px] px-1.5 py-2 transition-all duration-[250ms] md:rounded-[14px] md:px-1 md:py-2.5", selClass(on), !d.open && !on && "border-dashed text-muted")}
+                    className={cn("flex min-w-[40px] flex-1 flex-col items-center gap-0.5 rounded-[12px] border-[1.5px] px-0.5 py-2 transition-all duration-[250ms] md:rounded-[14px] md:px-1 md:py-2.5", selClass(on), !d.open && !on && "border-dashed text-muted")}
                   >
                     <span className="text-[10px] font-semibold opacity-70 md:text-[11px]">{d.today ? x.todayShort : d.dow}</span>
                     <span className="font-display text-[17px] md:text-[20px]">{d.num}</span>
@@ -468,7 +493,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
             )}
             {visit?.fasting ? <p className="text-[13px] leading-[1.5] text-secondary">{config.fasting.late}</p> : null}
             <div className="flex gap-2 md:gap-2.5">
-              <button type="button" onClick={() => setState(1)} className="rounded-chip border-[1.5px] border-ink px-[18px] py-[14px] text-[14px] font-semibold transition-all hover:bg-white active:scale-[.98] md:px-[22px] md:py-4 md:text-[15px]">
+              <button type="button" onClick={() => setState(1)} className="min-w-[52px] shrink-0 self-center rounded-chip border-[1.5px] border-ink px-[18px] py-[14px] text-[14px] font-semibold transition-all hover:bg-white active:scale-[.98] md:px-[22px] md:py-4 md:text-[15px]">
                 ‹ <span className="sr-only md:not-sr-only">{bookingCopy.back}</span>
               </button>
               <button
@@ -557,6 +582,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 <OutcomeTile k={bookingCopy.confirmed.when}>
                   <span className="text-[16px] font-semibold">{slotLabel}</span>
                   {forOther && patientName ? <span className="text-[13px] text-muted">{`${x.confirmed.for} ${patientName}`}</span> : null}
+                  <span className="text-[13px] text-muted">{`${registerCopy.fields.language}: ${registerLanguages[language]}`}</span>
                 </OutcomeTile>
                 <OutcomeTile k={bookingCopy.confirmed.where}>
                   <span className="text-[16px] font-semibold">{bookingCopy.confirmed.whereValue}</span>

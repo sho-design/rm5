@@ -19,7 +19,7 @@ export function KidsInteractive({ ages, stages, tint, accent, copy }: { ages: Ki
   };
   return (
     <>
-      <SubChooser id="ages" eyebrow={copy.eyebrow} title={copy.title} intro={copy.intro} items={ages} tint={tint} accent={accent} link={copy.link} linkTo="register" value={age} onChange={pickAge} titleSize="md" />
+      <SubChooser id="ages" eyebrow={copy.eyebrow} title={copy.title} intro={copy.intro} items={ages} tint={tint} accent={accent} link={copy.link} linkTo="/register?for=someone" value={age} onChange={pickAge} titleSize="md" />
       <Immunizations stages={stages} value={imm} onChange={setImm} />
     </>
   );

@@ -55,7 +55,7 @@ export function StickyBook() {
       }
       setCovered(seen.size > 0);
     });
-    document.querySelectorAll('main a[href^="/book"], main form').forEach((el) => watch.observe(el));
+    document.querySelectorAll('main a[href^="/book"], main form, main [data-keep-clear]').forEach((el) => watch.observe(el));
     return () => {
       document.removeEventListener("focusin", onIn);
       document.removeEventListener("focusout", onOut);

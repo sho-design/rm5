@@ -6,9 +6,10 @@ export const topicVisit: Record<string, string> = {
   painTrigger: "concern",
   painFirstVisit: "concern",
   painOhip: "concern",
-  aesInjectables: "injectables",
-  aesSkin: "skin",
-  aesLaser: "laser",
+  // These pages' buttons say "Book a consult", so they book the consult.
+  aesInjectables: "consult",
+  aesSkin: "consult",
+  aesLaser: "consult",
   aesPlans: "consult",
   aesMen: "consult",
   aesPricing: "consult",

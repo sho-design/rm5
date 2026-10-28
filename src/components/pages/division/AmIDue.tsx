@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import { bookFor } from "@/lib/routes";
-import { Button, Display, Eyebrow } from "@/components/ui";
+import { Button, Display, Eyebrow, SmartLink } from "@/components/ui";
 import { amIDueTitle, deepModuleCopy } from "@/content/deep";
 import { screeningDue } from "@/content/prevention";
 import { cn } from "@/lib/cn";
@@ -63,11 +63,16 @@ export function AmIDue() {
         </div>
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
           {rows.map((r) => (
-            <div key={r.t} className="flex flex-col gap-1.5 rounded-tile bg-sky-soft px-5 py-[18px]">
+            // Each card books it: flu shot and vaccines as their own visits, the rest as a checkup, with the reason carried over.
+            <SmartLink
+              key={r.t}
+              to={`${bookFor("family", /flu/i.test(r.t) ? "flu" : /vaccine/i.test(r.t) ? "vaccine" : "checkup")}&reason=${encodeURIComponent(r.t)}`}
+              className="flex flex-col gap-1.5 rounded-tile bg-sky-soft px-5 py-[18px] transition-colors hover:bg-[color:var(--div-family)]"
+            >
               <span className="text-[16px] font-semibold">{r.t}</span>
               <span className="text-[13px] leading-[1.45] text-secondary">{r.d}</span>
-              <span className="pt-1 text-[12px] font-semibold text-link">{r.how}</span>
-            </div>
+              <span className="pt-1 text-[12px] font-semibold text-link">{r.how} ›</span>
+            </SmartLink>
           ))}
         </div>
         <div className="mt-auto pt-2">

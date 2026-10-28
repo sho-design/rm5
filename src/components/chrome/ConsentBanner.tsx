@@ -47,10 +47,12 @@ export function ConsentBanner({ enabled }: { enabled: boolean }) {
   // Analytics never runs on the booking and form pages, so do not ask there.
   const excluded = analyticsExcluded.some((r) => pathname === r || pathname.startsWith(`${r}/`));
   if (!enabled || !open || (excluded && !reopened)) return null;
-  const choose = (c: "granted" | "denied") => {
+  const current = readConsent();
+  const choose = (c: "granted" | "denied", viaKeyboard = true) => {
     // If the choice was made from inside the banner, do not leave focus on the page body:
     // go back to the footer link it was opened from, or to "Skip to content" on first visit.
-    const hadFocus = !!box.current?.contains(document.activeElement);
+    // Mouse and touch users do not need focus moved (it would show the "Skip to content" pill).
+    const hadFocus = viaKeyboard && !!box.current?.contains(document.activeElement);
     writeConsent(c);
     setOpen(false);
     setReopened(false);
@@ -84,12 +86,13 @@ export function ConsentBanner({ enabled }: { enabled: boolean }) {
               {consentCopy.privacy} ›
             </Link>
           </p>
+          {reopened && current ? <p className="text-[13px] font-semibold text-primary">{consentCopy.current(current === "granted" ? consentCopy.accept : consentCopy.decline)}</p> : null}
         </div>
         <div className="flex gap-2">
-          <button type="button" onClick={() => choose("granted")} className={`${btn} bg-ink text-white hover:opacity-90`}>
+          <button type="button" onClick={(e) => choose("granted", e.detail === 0)} className={`${btn} bg-ink text-white hover:opacity-90`}>
             {consentCopy.accept}
           </button>
-          <button type="button" onClick={() => choose("denied")} className={`${btn} border-[1.5px] border-ink text-ink hover:bg-card`}>
+          <button type="button" onClick={(e) => choose("denied", e.detail === 0)} className={`${btn} border-[1.5px] border-ink text-ink hover:bg-card`}>
             {consentCopy.decline}
           </button>
         </div>

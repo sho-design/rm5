@@ -21,7 +21,7 @@ const loadFullIndex = () =>
 
 const copy = {
   placeholder: "Search services, team, locations, FAQs",
-  placeholderShort: "Search services, team, locations",
+  placeholderShort: draft("Search the site"),
   label: "Search the site",
   count: (n: number) => (n === 1 ? "1 result" : `${n} results`),
   none: `Nothing matched. Try a service, a symptom or a clinician name, or call ${site.phone}.`,
@@ -41,6 +41,9 @@ const isExternal = (url: string) => /^https?:/.test(url);
  */
 export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile?: boolean }) {
   const [q, setQ] = useState("");
+  // The long hint is cut off on a phone (and at larger text); use the short one there.
+  const [narrow, setNarrow] = useState(false);
+  useEffect(() => setNarrow(window.innerWidth < 560), []);
   const [docs, setDocs] = useState<SearchDoc[]>(baseSearchDocs);
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
@@ -117,7 +120,7 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
           value={q}
           onChange={(e) => setQ(e.target.value)}
           onKeyDown={onInputKey}
-          placeholder={mobile ? copy.placeholderShort : copy.placeholder}
+          placeholder={mobile || narrow ? copy.placeholderShort : copy.placeholder}
           aria-label={copy.label}
           aria-controls="search-results"
           enterKeyHint="search"

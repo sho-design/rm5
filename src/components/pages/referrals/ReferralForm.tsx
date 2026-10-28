@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, type FormEvent } from "react";
-import { Button, Display, Eyebrow, Field, Input, Select, StateCard, Textarea } from "@/components/ui";
+import { Button, Display, Eyebrow, Field, Input, Select, StateCard, Textarea, Checkbox } from "@/components/ui";
 import { referralsPage } from "@/content/referrals";
 import { site } from "@/content/site";
 import { referralExtraCopy } from "@/content/forms-copy";
@@ -42,6 +42,8 @@ export function ReferralForm({ services }: { services: string[] }) {
       physician: v.physician,
       clinic: v.clinic,
       fax: v.fax,
+      phone: v.phone,
+      urgent: v.urgent === true,
       patientDob: v.dob,
       service: v.service,
       reason: v.reason,
@@ -52,7 +54,7 @@ export function ReferralForm({ services }: { services: string[] }) {
   const ep = (id: string) => errorProps(errors, id);
 
   return (
-    <section id="refer" className="grid scroll-mt-6 grid-cols-1 items-start gap-8 px-4 pt-10 md:px-content md:pt-12 lg:grid-cols-[1fr_1.4fr] lg:gap-10">
+    <section id="refer" className="grid scroll-mt-20 grid-cols-1 items-start gap-8 px-4 pt-10 md:px-content md:pt-12 lg:grid-cols-[1fr_1.4fr] lg:gap-10">
       <div className="flex flex-col gap-3.5 lg:sticky lg:top-6">
         <Eyebrow tone="sky">{f.eyebrow}</Eyebrow>
         <Display size="xs">{f.title}</Display>
@@ -101,6 +103,10 @@ export function ReferralForm({ services }: { services: string[] }) {
                 <Input id="ref-fax" name="fax" type="tel" inputMode="tel" autoComplete="off" required {...ep("ref-fax")} />
                 <FieldError id="ref-fax" error={errors["ref-fax"]} />
               </Field>
+              {/* The hint says we call for identifying details, so ask for a number to call. */}
+              <Field label={referralExtraCopy.phone} htmlFor="ref-phone">
+                <Input id="ref-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" />
+              </Field>
               <Field label={f.fields.dob} htmlFor="ref-dob" required>
                 <Input id="ref-dob" name="dob" data-error={referralExtraCopy.dobError} type="date" autoComplete="off" required {...ep("ref-dob")} />
                 <FieldError id="ref-dob" error={errors["ref-dob"]} />
@@ -123,6 +129,7 @@ export function ReferralForm({ services }: { services: string[] }) {
               <Textarea id="ref-reason" name="reason" rows={5} required {...ep("ref-reason")} />
               <FieldError id="ref-reason" error={errors["ref-reason"]} />
             </Field>
+            <Checkbox name="urgent" label={referralExtraCopy.urgent} sub={referralExtraCopy.urgentSub} />
             <div className="flex flex-wrap items-center gap-3.5 pt-1">
               <Button type="submit" disabled={status === "sending"}>
                 {status === "sending" ? f.sending : f.submit}

@@ -9,7 +9,7 @@ import { bookFor } from "@/lib/routes";
 /** Infusion hero: photo block, sunshine pill, Fraunces 72 headline with italic phrase, three CTAs, location note. */
 export function InfusionHero() {
   return (
-    <section className="relative mx-3 mt-4 flex min-h-[420px] items-end overflow-hidden rounded-[22px] md:mx-gutter md:mt-8 md:min-h-[620px] md:rounded-block">
+    <section className="relative mx-3 mt-4 flex min-h-[420px] items-end overflow-hidden rounded-[22px] bg-ink md:mx-gutter md:mt-8 md:min-h-[620px] md:rounded-block">
       <div className="absolute inset-0">
         <Photo src={divisions.infusion.img} alt={ip.hero.alt} radius="none" protect className="h-full w-full" priority sizes="100vw" />
       </div>
