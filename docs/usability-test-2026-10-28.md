@@ -46,8 +46,8 @@ All ten said they would use the site again; Kevin, Jenna and Amira added they wo
 | Sam, 36, colour blind, dark mode | Phone | Drip families, open status, pick a time | 5 | 5 | 2 | 1 | 0 |
 | Tara, 34, slow 3G phone | Phone | Hours, book, search "cough" | 4 | 4 | 1 | 1 | 1 |
 | Mike, 62, massage on benefits | Small laptop | Prices, direct billing, book massage | 5 | 5 | 1 | 2 | 0 |
-| **Round 2** | | | **4.7** | **5.2** | **22 of 60** | **33 of 60** | **5 of 60** |
-| **All 30 testers** | | | **4.6** | **5.2** | **35 of 90** | **46 of 90** | **9 of 90** |
+| **Round 2** | | | **4.7** | **5.2** | **23 of 60** | **32 of 60** | **5 of 60** |
+| **All 30 testers** | | | **4.6** | **5.2** | **36 of 90** | **45 of 90** | **9 of 90** |
 
 29 of 30 would use the site again. Ben would not, for gift cards.
 
