@@ -99,7 +99,7 @@ export const external = {
 /**
  * Booking link with the service (division key) and optionally the visit type
  * preselected: /book?service=rehab&visit=physio. Visit keys per division:
- * family: concern, checkup, renewal, flu, bloodwork; pain: followup, procedure;
+ * family: concern, checkup, renewal, flu, bloodwork; pain: referral, followup, procedure;
  * infusion: iron, drip, shot, consult; aesthetics: consult, injectables, skin, laser;
  * rehab: assessment, physio, chiro, massage, kines, mva, wsib.
  * Unknown keys are ignored by the booking page.

@@ -1,3 +1,4 @@
+import { bookFor } from "@/lib/routes";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { Faq, SubChooser, SubPageHero } from "@/components/ui";
@@ -39,6 +40,7 @@ export default function ChronicCarePage() {
       />
 
       <SubChooser
+        ctaTo={bookFor("family", "concern")}
         eyebrow="What are you managing?"
         title="Pick a condition to see how we follow it."
         intro="How often we meet, what gets checked, what to bring and what is covered."

@@ -73,7 +73,7 @@ export function DivisionPage({ k }: { k: NavKey }) {
             cta2To={d.cta2Page}
             helper={painHelper}
           />
-          <Offer services={d.services ?? []} />
+          <Offer services={d.services ?? []} division={k} />
         </>
       )}
 

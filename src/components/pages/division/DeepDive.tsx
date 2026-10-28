@@ -3,6 +3,7 @@ import type { DeepDive as DeepDiveData } from "@/content/deep";
 import { aestheticsLadder, deepFootDefaults, deepFootFallback, infusionCompareRows, rehabCoverage } from "@/content/deep";
 import { infusionLinks } from "@/content/home";
 import type { Division, DivisionKey } from "@/content/types";
+import { bookFor } from "@/lib/routes";
 import { AmIDue } from "./AmIDue";
 import { CoverageChecker } from "./CoverageChecker";
 import { DeepDiveChooser } from "./DeepDiveChooser";
@@ -17,6 +18,7 @@ export function DeepDive({ k, division, dive }: { k: DivisionKey; division: Divi
   const foot = deepFootDefaults[k];
   const footCta = division.footCta ?? foot?.footCta ?? deepFootFallback.footCta;
   const cta = division.cta ?? foot?.cta ?? deepFootFallback.cta;
+  const ctaTo = division.ctaPage ?? bookFor(k);
   return (
     <>
       <DeepDiveChooser k={k} dive={dive} />
@@ -36,11 +38,11 @@ export function DeepDive({ k, division, dive }: { k: DivisionKey; division: Divi
         </Grid>
       </Section>
 
-      <PathSteps title={dive.pathTitle} steps={dive.path} cta={cta} />
+      <PathSteps title={dive.pathTitle} steps={dive.path} cta={cta} ctaTo={ctaTo} />
 
       <Faq items={dive.faq} />
 
-      <CtaBand title={footCta} sub={dive.closing} cta={cta} />
+      <CtaBand title={footCta} sub={dive.closing} cta={cta} ctaTo={ctaTo} />
     </>
   );
 }

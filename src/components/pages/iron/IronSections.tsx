@@ -1,6 +1,7 @@
 import type { IronPrice } from "@/content/iron";
 import type { PathStep, TintCard } from "@/content/types";
 import { Block, Button, Display, Eyebrow, Photo, Section, SmartLink } from "@/components/ui";
+import { bookFor } from "@/lib/routes";
 
 /** "Often the people we see." Four tinted 22px cards. */
 export function IronWho({ cards }: { cards: TintCard[] }) {
@@ -27,7 +28,7 @@ export function IronSteps({ steps }: { steps: PathStep[] }) {
         <Display size="sm" className="max-w-[600px]">
           Three steps. One good afternoon.
         </Display>
-        <Button to="book" variant="accent">
+        <Button to={bookFor("infusion", "iron")} variant="accent">
           Start with step one
         </Button>
       </div>

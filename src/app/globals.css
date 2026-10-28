@@ -99,9 +99,12 @@
 }
 
 @layer base {
-  /* Text size steps set by the footer controls. */
-  :root[data-text="1"] { font-size: 112.5%; }
-  :root[data-text="2"] { font-size: 125%; }
+  /* Text size steps set by the A- / A+ controls. Most sizes on the site are
+     in px (from the design tokens), so a root font-size change would miss
+     them; zoom scales every size, spacing and the status bar together and
+     the layout reflows inside the narrower effective width. */
+  :root[data-text="1"] body { zoom: 1.125; }
+  :root[data-text="2"] body { zoom: 1.25; }
 
   html {
     font-optical-sizing: auto;
@@ -145,6 +148,16 @@
   .scroll-x { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
   .scroll-x::-webkit-scrollbar { display: none; }
 }
+
+/* High contrast: secondary text on navy and tints is drawn at partial
+   opacity (text-white/60, text-ink/75, opacity-70). Make it solid so labels
+   keep full contrast. Unlayered so it wins over the utilities. */
+:root[data-theme="contrast"] [class*="text-white/"] { color: #FFFFFF; }
+:root[data-theme="contrast"] [class*="text-ink/"] { color: var(--rm-ink); }
+:root[data-theme="contrast"] .opacity-60,
+:root[data-theme="contrast"] .opacity-70,
+:root[data-theme="contrast"] .opacity-75,
+:root[data-theme="contrast"] .opacity-80 { opacity: 1; }
 
 /* Icon hover animations from the prototype. */
 @keyframes rmWiggle { 0%, 100% { transform: rotate(0) } 25% { transform: rotate(-8deg) } 75% { transform: rotate(8deg) } }

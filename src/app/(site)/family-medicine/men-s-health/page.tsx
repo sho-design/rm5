@@ -1,3 +1,4 @@
+import { bookFor } from "@/lib/routes";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { Faq, SubChooser, SubPageHero } from "@/components/ui";
@@ -27,7 +28,7 @@ export default function MensHealthPage() {
         title={menCopy.hero.title}
         lead={menCopy.hero.lead}
         cta={menCopy.hero.cta}
-        ctaTo="book"
+        ctaTo={bookFor("family", "checkup")}
         cta2={menCopy.hero.cta2}
         cta2To="register"
         coverage={menCopy.hero.coverage}
@@ -37,10 +38,10 @@ export default function MensHealthPage() {
         imgAlt={menCopy.hero.alt}
         pills={[...menCopy.hero.pills]}
       />
-      <SubChooser id="visit" eyebrow={menCopy.chooser.eyebrow} title={menCopy.chooser.title} intro={menCopy.chooser.intro} items={menOptions} tint={tint} accent={accent} link={menCopy.chooser.link} linkTo="numbers" titleSize="md" />
+      <SubChooser ctaTo={bookFor("family", "checkup")} id="visit" eyebrow={menCopy.chooser.eyebrow} title={menCopy.chooser.title} intro={menCopy.chooser.intro} items={menOptions} tint={tint} accent={accent} link={menCopy.chooser.link} linkTo="numbers" titleSize="md" />
       <MenDecades />
       <Faq title={menCopy.faq.title} sub={menCopy.faq.sub} items={menFaq} />
-      <TintBand tint={tint} title={menCopy.band.title} body={menCopy.band.body} bodyClass="text-secondary" cta={menCopy.band.cta} ctaTo="book" link={menCopy.band.link} linkTo="year" />
+      <TintBand tint={tint} title={menCopy.band.title} body={menCopy.band.body} bodyClass="text-secondary" cta={menCopy.band.cta} ctaTo={bookFor("family", "checkup")} link={menCopy.band.link} linkTo="year" />
     </>
   );
 }

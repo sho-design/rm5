@@ -1,6 +1,7 @@
 import type { Division, DivisionKey, NavKey } from "./types";
 import { images } from "./images";
 import { bookFor } from "@/lib/routes";
+import { draft } from "./review";
 
 /** Tint cycle used across the prototype for cards in a row. */
 export const tints = ["#EEF5FC", "#FFF3C4", "#E6F4EA", "#FDE8E4", "#EEE9FA"] as const;
@@ -67,8 +68,8 @@ export const divisions: Record<NavKey, Division> = {
     ],
     book: [
       { label: "Book a visit", page: bookFor("family") },
-      { label: "Same-day sick visit", page: bookFor("family") },
-      { label: "Annual physical", page: bookFor("family") },
+      { label: "Same-day sick visit", page: bookFor("family", "concern") },
+      { label: "Annual physical", page: bookFor("family", "checkup") },
       { label: "Join the roster", page: "register" },
     ],
     more: [
@@ -110,9 +111,9 @@ export const divisions: Record<NavKey, Division> = {
     blurb:
       "Nerve blocks, trigger point and joint injections performed by a physician, with family medicine and rehab in the same building. With a physician referral and a valid Ontario health card, the assessment and OHIP-listed injections cost you nothing. No family doctor? Our family medicine team can assess you and refer you within the same clinic.",
     cta: "Book a family medicine assessment",
-    ctaPage: "book",
+    ctaPage: bookFor("family", "concern"),
     cta2: "Send a referral",
-    cta2Page: "referrals",
+    cta2Page: "/for-physicians#refer",
     footCta: "Start with a referral or an assessment.",
     explore: [
       { label: "All Pain Centre", page: "pain" },
@@ -120,14 +121,14 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Joint pain", page: "painJoints" },
       { label: "Nerve blocks", page: "painNerve" },
       { label: "Trigger point injections", page: "painTrigger" },
-      { label: "No family doctor?", page: "register" },
+      { label: "No family doctor?", page: bookFor("family", "concern") },
       { label: "Refer a patient", page: "referrals" },
     ],
     book: [
-      { label: "Book a family medicine assessment", page: bookFor("family") },
+      { label: "Book a family medicine assessment", page: bookFor("family", "concern") },
       { label: "Referral from your doctor", page: "painOhip" },
-      { label: "Follow-up visit", page: bookFor("pain") },
-      { label: "Procedure visit", page: bookFor("pain") },
+      { label: "Follow-up visit", page: bookFor("pain", "followup") },
+      { label: "Procedure visit", page: bookFor("pain", "procedure") },
     ],
     more: [
       { label: "What we treat", page: "/pain-centre#chooser" },
@@ -167,8 +168,8 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Metabolic program", page: "metabolic" },
     ],
     book: [
-      { label: "Book a consult", page: bookFor("infusion") },
-      { label: "Iron assessment", page: "iron" },
+      { label: "Book a consult", page: bookFor("infusion", "consult") },
+      { label: "Iron assessment", page: bookFor("infusion", "iron") },
       { label: "Build your own drip", page: "/infusion-therapy#build" },
       { label: "Memberships", page: "/infusion-therapy/pricing#memberships" },
     ],
@@ -192,7 +193,7 @@ export const divisions: Record<NavKey, Division> = {
     blurb:
       "Non-surgical aesthetic treatments in a calm setting, personalized to your skin and planned following medical assessment by an authorized prescriber. Individual results vary.",
     cta: "Book a consult",
-    ctaPage: "book",
+    ctaPage: bookFor("aesthetics", "consult"),
     footCta: "Curious where to start?",
     explore: [
       { label: "All Medical Aesthetics", page: "aesthetics" },
@@ -204,9 +205,9 @@ export const divisions: Record<NavKey, Division> = {
     ],
     book: [
       { label: "Book online (Ocean)", page: bookFor("aesthetics") },
-      { label: "Injectables appointment", page: bookFor("aesthetics") },
-      { label: "Skin consult", page: bookFor("aesthetics") },
-      { label: "Laser consult", page: bookFor("aesthetics") },
+      { label: "Injectables appointment", page: bookFor("aesthetics", "injectables") },
+      { label: "Skin consult", page: bookFor("aesthetics", "skin") },
+      { label: "Laser consult", page: bookFor("aesthetics", "laser") },
     ],
     more: [
       { label: "Our clinicians", page: "team" },
@@ -241,7 +242,7 @@ export const divisions: Record<NavKey, Division> = {
     headline: "Recovery, with a team behind you.",
     blurb: "Physiotherapy, chiropractic, massage and kinesiology, coordinated with your physician under one roof.",
     cta: "Book a session",
-    ctaPage: "book",
+    ctaPage: bookFor("rehab"),
     footCta: "Ready to start recovering?",
     explore: [
       { label: "All Rehab & Recovery", page: "rehab" },
@@ -253,9 +254,9 @@ export const divisions: Record<NavKey, Division> = {
     ],
     book: [
       { label: "Book a session", page: bookFor("rehab") },
-      { label: "Initial assessment", page: bookFor("rehab") },
-      { label: "MVA claim intake", page: "rehabMva" },
-      { label: "WSIB intake", page: "rehabWsib" },
+      { label: "Initial assessment", page: bookFor("rehab", "assessment") },
+      { label: "MVA claim intake", page: bookFor("rehab", "mva") },
+      { label: "WSIB intake", page: bookFor("rehab", "wsib") },
     ],
     more: [
       { label: "Our therapists", page: "team" },
@@ -348,6 +349,12 @@ export const infusionSub = [
   { label: "How it works", icon: "how", page: "infusionHow" },
   { label: "Pricing", icon: "price", page: "infusionPricing" },
 ] as const;
+
+/** Mega menu and phone menu column headings. About has no bookings, so its middle column reads "Get in touch". */
+export const menuHeadings = {
+  book: (d: Division) => (d.key === "about" ? draft("Get in touch") : `Book ${d.label}`),
+  more: (d: Division) => `More from ${d.label}`,
+};
 
 /** Copy shared by the division page shell (prototype division template). */
 export const divisionPageCopy = {

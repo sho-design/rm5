@@ -57,6 +57,9 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
   };
 
   const hero = slides[idx];
+  // The page heading must not change as slides rotate: the first slide's headline is the h1,
+  // and each slide's headline is shown as display text (read with the slide when stopped).
+  const lead = slides[0];
 
   return (
     <section
@@ -73,6 +76,9 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
       className="relative mx-3 mt-3 flex min-h-[440px] select-none items-end overflow-hidden rounded-card bg-ink text-white md:mx-gutter md:mt-6 md:min-h-[620px] md:rounded-block"
       style={{ touchAction: "pan-y" }}
     >
+      <h1 className="sr-only">
+        {lead.h1} {lead.h1em}
+      </h1>
       {slides.map((s, i) => {
         const on = i === idx;
         return (
@@ -98,9 +104,9 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
             Slide {idx + 1} of {n}
           </span>
           <span className="inline-flex self-start rounded-chip bg-sun px-2.5 py-[5px] text-[11px] font-semibold text-sun-ink md:px-3.5 md:py-[7px] md:text-[13px]">{hero.eyebrow}</span>
-          <h1 className="display-tight balance text-[34px] md:text-[56px] lg:text-[78px]">
+          <p className="display-tight balance text-[34px] md:text-[56px] lg:text-[78px]" aria-hidden={idx === 0 || undefined}>
             {hero.h1} <em>{hero.h1em}</em>
-          </h1>
+          </p>
           <p className="pretty max-w-[620px] text-[13px] leading-[1.45] text-white/85 md:text-[19px] md:leading-[1.5]">{hero.p}</p>
           <div className="mt-1 flex flex-wrap gap-2.5 md:mt-0">
             <Button to={hero.page} variant="inverse">

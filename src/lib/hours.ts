@@ -1,8 +1,22 @@
 import { openingHours, thornhillHours } from "@/content/site";
 
-/** Current time in the clinic's time zone. */
+const torontoParts = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Toronto", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric", hourCycle: "h23" });
+
+/**
+ * Current time in the clinic's time zone, as a Date whose local fields
+ * (getFullYear, getHours...) read Toronto wall-clock time whatever the
+ * visitor's own time zone is. Built from formatToParts, which every browser
+ * parses the same way.
+ */
 export function torontoNow(date = new Date()): Date {
-  return new Date(date.toLocaleString("en-US", { timeZone: "America/Toronto" }));
+  const p: Record<string, number> = {};
+  for (const part of torontoParts.formatToParts(date)) if (part.type !== "literal") p[part.type] = Number(part.value);
+  return new Date(p.year, p.month - 1, p.day, p.hour % 24, p.minute, p.second);
+}
+
+/** Calendar date of a wall-clock Date as YYYY-MM-DD (no UTC conversion, so the day never shifts). */
+export function ymd(d: Date): string {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
 const short = (s: string) => s.replace(/:00/g, "").replace(/ (am|pm)/g, "$1");
@@ -41,24 +55,39 @@ export function fmtTime(t: number): string {
 }
 
 export interface BookingDay {
+  /** Toronto wall-clock date (local fields read Toronto time). */
   date: Date;
+  /** Toronto calendar date, YYYY-MM-DD. */
+  iso: string;
   dow: string;
   num: number;
   open: boolean;
+  today: boolean;
   slots: number[];
 }
 
-/** The next seven days with the slots the prototype offers (respects clinic hours; Friday closed). */
-export function bookingDays(now = torontoNow()): BookingDay[] {
-  return [0, 1, 2, 3, 4, 5, 6].map((i) => {
-    const d = new Date(now);
-    d.setDate(now.getDate() + 1 + i);
+/**
+ * The next seven clinic days in Toronto time, with the slots the prototype
+ * offers (respects clinic hours; Friday closed). Today is included only
+ * while it still has a slot at least an hour away, so a past time is never
+ * offered.
+ */
+export function bookingDays(now = torontoNow(), count = 7): BookingDay[] {
+  const nowHours = now.getHours() + now.getMinutes() / 60;
+  const out: BookingDay[] = [];
+  for (let i = 0; out.length < count && i <= count; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
     const h = openingHours[d.getDay()];
-    const slots = h
+    let slots = h
       ? Array.from({ length: (h[1] - h[0]) * 2 }, (_, j) => h[0] + j / 2)
           .filter((_, j) => (j * 7 + i * 3) % 5 !== 1)
           .slice(0, 12)
       : [];
-    return { date: d, dow: DOW[d.getDay()], num: d.getDate(), open: !!h, slots };
-  });
+    if (i === 0) {
+      slots = slots.filter((t) => t >= nowHours + 1);
+      if (!slots.length) continue;
+    }
+    out.push({ date: d, iso: ymd(d), dow: DOW[d.getDay()], num: d.getDate(), open: !!h, today: i === 0, slots });
+  }
+  return out;
 }

@@ -1,82 +1,184 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
-import { searchIndexFilter } from "@/content/search-index";
-import { popularSearches } from "@/content/site";
+import { baseSearchDocs } from "@/content/search-index";
+import { emergencyCopy } from "@/content/patient-help";
+import { draft } from "@/content/review";
+import { popularSearches, site } from "@/content/site";
 import { href } from "@/lib/routes";
+import { isEmergencyQuery, searchDocs, type SearchDoc } from "@/lib/search";
+import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
 
+/** The full index (page text, FAQ answers, notes, team) is fetched once per visit, the first time search opens. */
+let fullIndex: Promise<SearchDoc[] | null> | null = null;
+const loadFullIndex = () =>
+  (fullIndex ??= fetch("/search-index.json")
+    .then((r) => (r.ok ? (r.json() as Promise<SearchDoc[]>) : null))
+    .catch(() => null));
+
+const copy = {
+  placeholder: "Search services, team, locations, FAQs",
+  placeholderShort: "Search services, team, locations",
+  label: "Search the site",
+  count: (n: number) => (n === 1 ? "1 result" : `${n} results`),
+  none: `Nothing matched. Try a service, a symptom or a clinician name, or call ${site.phone}.`,
+  popular: "Popular",
+  close: draft("Close"),
+  escHint: draft(", close search"),
+};
+
+const isExternal = (url: string) => /^https?:/.test(url);
+
 /**
- * Search overlay under the header: instant filter over the build-time index,
- * top 8, grouped by kind label. Esc closes.
+ * Search overlay under the header. Matches every word of the query against
+ * the built-in index straight away, then against the full index once it has
+ * loaded. Top 8 results as links; arrow keys move through them, Enter opens
+ * the first. Emergency words bring up the 911 and Health811 note first.
+ * Esc closes (the Esc key hint shows only with a mouse; touch gets Close).
  */
 export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile?: boolean }) {
   const [q, setQ] = useState("");
+  const [docs, setDocs] = useState<SearchDoc[]>(baseSearchDocs);
   const router = useRouter();
-  const ref = useRef<HTMLInputElement>(null);
+  const input = useRef<HTMLInputElement>(null);
+  const list = useRef<HTMLUListElement>(null);
+
   useEffect(() => {
-    ref.current?.focus();
-    const onKey = (e: KeyboardEvent) => {
+    input.current?.focus();
+    const onKey = (e: globalThis.KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    let live = true;
+    loadFullIndex().then((full) => {
+      if (live && full && full.length) setDocs(full);
+    });
+    return () => {
+      live = false;
+      window.removeEventListener("keydown", onKey);
+    };
   }, [onClose]);
-  const ql = q.trim().toLowerCase();
-  const results = ql ? searchIndexFilter(ql) : [];
-  const go = (page: string) => {
-    onClose();
+
+  const query = q.trim();
+  const results = useMemo(() => (query ? searchDocs(docs, query) : []), [docs, query]);
+  const emergency = query ? isEmergencyQuery(query) : false;
+
+  const open = (page: string) => {
     const url = href(page);
-    if (url.startsWith("http")) window.open(url, "_blank", "noopener");
+    onClose();
+    if (isExternal(url)) window.open(url, "_blank", "noopener");
     else router.push(url);
   };
+
+  const links = () => Array.from(list.current?.querySelectorAll<HTMLAnchorElement>("a") ?? []);
+  const onInputKey = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && results[0]) {
+      e.preventDefault();
+      open(results[0].page);
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      links()[0]?.focus();
+    }
+  };
+  const onListKey = (e: KeyboardEvent<HTMLUListElement>) => {
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+    e.preventDefault();
+    const all = links();
+    const i = all.indexOf(document.activeElement as HTMLAnchorElement);
+    const next = e.key === "ArrowDown" ? i + 1 : i - 1;
+    if (next < 0) input.current?.focus();
+    else all[Math.min(next, all.length - 1)]?.focus();
+  };
+
+  const rowClass = cn(
+    "flex flex-col gap-0.5 rounded-field border border-border bg-raised px-3.5 py-3 text-left transition-colors hover:border-sky",
+    !mobile && "md:grid md:grid-cols-[140px_1fr_auto] md:items-center md:gap-4 md:px-4 md:py-3.5",
+  );
+
   return (
-    <div className={mobile ? "flex min-h-[640px] flex-col gap-4 bg-card p-4" : "flex flex-col gap-6 bg-card px-4 pb-10 pt-6 md:px-8 md:pt-8"} role="search">
-      <div className={mobile ? "flex h-[52px] items-center gap-2.5 rounded-[14px] border-[1.5px] border-sky bg-raised px-3.5" : "flex h-[60px] items-center gap-3.5 rounded-row border-[1.5px] border-border bg-raised px-5 focus-within:border-sky"}>
-        <Icon name="search" size={mobile ? 18 : 20} stroke={2} color="var(--rm-ink-3)" />
+    <div className={cn("flex flex-col gap-4 bg-card p-4", !mobile && "md:gap-6 md:px-8 md:pb-10 md:pt-8")} role="search">
+      <div className={cn("flex h-[52px] items-center gap-2.5 rounded-[14px] border-[1.5px] border-border bg-raised px-3.5 focus-within:border-sky", !mobile && "md:h-[60px] md:gap-3.5 md:rounded-row md:px-5")}>
+        <Icon name="search" size={18} stroke={2} color="var(--rm-ink-3)" />
         <input
-          ref={ref}
+          ref={input}
+          type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && results[0]) go(results[0].page);
-          }}
-          placeholder={mobile ? "Search services, team, locations" : "Search services, team, locations, FAQs"}
-          aria-label="Search the site"
-          className={mobile ? "flex-1 bg-transparent text-[15px] outline-none" : "flex-1 bg-transparent text-[18px] outline-none"}
+          onKeyDown={onInputKey}
+          placeholder={mobile ? copy.placeholderShort : copy.placeholder}
+          aria-label={copy.label}
+          aria-controls="search-results"
+          enterKeyHint="search"
+          autoComplete="off"
+          className={cn("min-w-0 flex-1 bg-transparent text-[16px] outline-none", !mobile && "md:text-[18px]")}
         />
-        {!mobile ? (
-          <button type="button" onClick={onClose} className="rounded-[8px] border border-border px-2.5 py-1.5 text-[13px] font-semibold text-muted">
-            Esc
-          </button>
-        ) : null}
+        <button type="button" onClick={onClose} className="hidden rounded-[8px] border border-border px-2.5 py-1.5 text-[13px] font-semibold text-muted pointer-fine:inline-flex">
+          Esc<span className="sr-only">{copy.escHint}</span>
+        </button>
+        <button type="button" onClick={onClose} className="shrink-0 px-1 py-1.5 text-[14px] font-semibold text-link pointer-fine:hidden">
+          {copy.close}
+        </button>
       </div>
-      {ql ? (
+
+      {query ? (
         <div className="flex flex-col gap-1.5">
-          <span className="text-[12px] font-semibold text-muted">{results.length} results</span>
-          {results.map((r, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => go(r.page)}
-              className={mobile ? "flex flex-col gap-0.5 rounded-field border border-border bg-raised px-3.5 py-3 text-left" : "grid grid-cols-[120px_1fr_auto] items-center gap-4 rounded-field border border-border bg-raised px-4 py-3.5 text-left transition-colors hover:border-sky md:grid-cols-[140px_1fr_auto]"}
-            >
-              <span className="text-[12px] font-semibold text-link">{r.kind}</span>
-              <span className={mobile ? "text-[14px] font-medium" : "text-[15px] font-medium"}>{r.label}</span>
-              {!mobile ? <span className="text-[13px] text-muted">{r.sub} ›</span> : null}
-            </button>
-          ))}
-          {results.length === 0 ? <span className="py-3 text-[14px] text-muted">Nothing matched. Try a service, a symptom or a clinician name, or call 905-709-3222.</span> : null}
+          {emergency ? (
+            <aside aria-label={emergencyCopy.title} className="mb-1.5 flex flex-col gap-1.5 rounded-tile border border-border bg-[color:var(--div-pain)] px-5 py-4 text-ink">
+              <span className="text-[15px] font-semibold">{emergencyCopy.title}</span>
+              <p className="pretty text-[14px] leading-[1.5] text-ink-2">
+                {emergencyCopy.body}{" "}
+                <a href={emergencyCopy.link} target="_blank" rel="noopener" className="font-semibold text-link">
+                  {emergencyCopy.linkLabel} ›
+                </a>
+              </p>
+            </aside>
+          ) : null}
+          <span className="text-[12px] font-semibold text-muted" aria-live="polite" aria-atomic="true">
+            {copy.count(results.length)}
+          </span>
+          {results.length ? (
+            <ul id="search-results" ref={list} onKeyDown={onListKey} className="flex flex-col gap-1.5" aria-label={copy.count(results.length)}>
+              {results.map((r) => {
+                const url = href(r.page);
+                const inner = (
+                  <>
+                    <span className="text-[15px] font-semibold md:col-start-2 md:row-start-1 md:font-medium">{r.label}</span>
+                    {r.sub ? <span className={cn("pretty text-[13px] leading-[1.45] text-muted", !mobile && "md:col-start-3 md:row-start-1 md:max-w-[420px] md:text-right")}>{r.sub} ›</span> : null}
+                    <span className="order-first text-[12px] font-semibold text-link md:order-none md:col-start-1 md:row-start-1">{r.kind}</span>
+                  </>
+                );
+                return (
+                  <li key={`${r.group ?? r.page}|${r.label}`}>
+                    {isExternal(url) ? (
+                      <a href={url} target="_blank" rel="noopener" onClick={onClose} className={rowClass}>
+                        {inner}
+                      </a>
+                    ) : (
+                      <Link href={url} onClick={onClose} className={rowClass}>
+                        {inner}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <span id="search-results" className="py-3 text-[14px] text-muted">
+              {copy.none}
+            </span>
+          )}
         </div>
       ) : (
         <div className="flex flex-col gap-2.5">
-          <span className="text-[12px] font-semibold text-muted">Popular</span>
+          <span className="text-[12px] font-semibold text-muted">{copy.popular}</span>
           <div className="flex flex-wrap gap-2">
             {popularSearches.map((p) => (
-              <button key={p.label} type="button" onClick={() => go(p.page)} className="rounded-chip border border-border bg-raised px-3.5 py-[9px] text-[13px] font-medium transition-colors hover:border-sky">
+              <Link key={p.label} href={href(p.page)} onClick={onClose} className="rounded-chip border border-border bg-raised px-3.5 py-[9px] text-[13px] font-medium transition-colors hover:border-sky">
                 {p.label}
-              </button>
+              </Link>
             ))}
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { bookFor } from "@/lib/routes";
 import { Button, Display, Eyebrow } from "@/components/ui";
 import { amIDueTitle, deepModuleCopy } from "@/content/deep";
 import { screeningDue } from "@/content/prevention";
@@ -70,7 +71,7 @@ export function AmIDue() {
           ))}
         </div>
         <div className="mt-auto pt-2">
-          <Button to="book">{c.cta}</Button>
+          <Button to={bookFor("family", "checkup")}>{c.cta}</Button>
         </div>
       </div>
     </section>

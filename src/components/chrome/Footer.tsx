@@ -3,6 +3,7 @@ import { divisions, navOrder } from "@/content/divisions";
 import { locations, network, site } from "@/content/site";
 import { external, href, routes } from "@/lib/routes";
 import { Wordmark } from "./Wordmark";
+import { OpenBadge } from "./OpenBadge";
 import { FooterIcons } from "./SocialIcons";
 import { TextControls } from "./TextControls";
 import { ConsentSettingsLink } from "./ConsentBanner";
@@ -43,10 +44,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
         <div className="flex flex-col gap-3 rounded-[20px] border border-border bg-raised px-6 py-[22px] text-[13px] leading-[1.5] text-muted">
           <div className="flex items-center justify-between gap-3">
             <span className="display text-[20px] text-primary">{thornhill.name}</span>
-            <span className="flex items-center gap-1.5 text-[12px] font-semibold text-primary">
-              <span aria-hidden className="h-[7px] w-[7px] rounded-full bg-sage" />
-              Open
-            </span>
+            <OpenBadge className="text-primary" />
           </div>
           <a href={external.thornhillMaps} target="_blank" rel="noopener" className="hover:text-primary">
             {thornhill.addressLines[0]}
@@ -79,7 +77,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
             {maple.addressLines[1]}
           </a>
           <span className="flex-1">Family Medicine, Pain Centre, Infusion Therapy and Rehab. Pre-registration is open now.</span>
-          <Link href={routes.locations} className="w-full border-t border-border pt-1.5 font-semibold text-link">
+          <Link href={`${routes.locations}#maple`} className="w-full border-t border-border pt-1.5 font-semibold text-link">
             Join the Maple waitlist ›
           </Link>
         </div>

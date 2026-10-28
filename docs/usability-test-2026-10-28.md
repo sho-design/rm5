@@ -92,6 +92,29 @@ A consent check was run separately because two testers saw a blocked Google Tag 
     - **Privacy and complaints.** A visible complaints process; cookies and analytics in the privacy policy.
     - **Content gaps.** Nursing learners on the standards page; ingredients for 11 drips; the Maple services note on aesthetics.
 
+## Fixes made after the test (code)
+
+Checked in a production build with Playwright on desktop (1440x900) and phone (iPhone 13), visitor clock set to UTC.
+
+| # | Finding | Status |
+|---|---|---|
+| 1 | Search misses obvious words | Fixed. Every word matched in any order, light stemming, synonyms for the words testers typed, FAQ answers, topic text, notes, team, jobs and fees indexed (static `/search-index.json`, read through the CMS layer). Results are links to the exact page or note; FAQ results open the question. Emergency words pin the 911 and Health811 note. "1 result". Results stack on phones; "Close" instead of "Esc" on touch. |
+| 2 | Open or closed contradicts itself | Fixed. One live Toronto-time status (`useOpenStatus`) drives the utility bar, phone menu, footer, contact and referral pages. The status bar links to hours and shortens on phones. The clinics intro no longer says "open now". |
+| 3 | Booking forgets context | Fixed. Every booking link passes service and visit type (`bookFor(service, visit)`); booking adds "What is the visit for?", someone-else booking, MVA and WSIB claim fields, insurer for direct billing. Confirmation repeats service, visit, coverage and a visit-specific "Bring" list (fasting line only for early bloodwork, "arrive early" only for new patients). |
+| 4 | Result of a step off screen | Fixed. Booking steps and every form confirmation scroll into view and take focus. |
+| 5 | Prices and facts missing | Clinic. Not changed in code. |
+| 6 | Links to the wrong place | Fixed. Home renewal tile and Family chooser go to the renewal form; "No family doctor?" books a family assessment; MVA and WSIB intake book those visits; "Send a referral" opens the referral form; "Compare all" only where a comparison page exists; health note cards book the matching visit; Maple cards open the Maple tab; "Book a WSIB visit" replaces "Start a WSIB claim". Chooser results now each have their own destination (they all went to booking before, including "Register as a patient"). |
+| 7 | No review step, bundled consent | Fixed. Details, Time, Review, then confirmed; only "Confirm booking" sends. Reminders and clinic updates are separate checkboxes on booking, registration and contact; the confirmation only promises a reminder when asked for. |
+| 8 | Sticky bar covers content | Fixed. It books the service of the page you are on, steps aside while typing and when the footer is in view, and is hidden on form pages. |
+| 9 | Phone menu hides links, "Book About" | Fixed. Phone menu lists every Explore, Book and More link. About column reads "Get in touch". |
+| 10 | Accessibility | Fixed: cookie banner never takes focus on load, is first in tab order, Escape declines; mega menus no longer open on focus, have a toggle after each link, sit next to it in tab order and close with Escape; the home h1 is stable; radio groups use arrow keys with one Tab stop; inline form errors (no browser pop-ups) linked to fields; "Book" and "Learn more" links name their service; 3px input focus ring; FAQ rows stay in view; text size scales the whole page (status bar, footer, hours) and is also in the utility bar and phone menu; high contrast persists and makes faded labels solid; closed days say "Closed". Not done: automatic dark mode (see below). |
+| 11 | Registration family members | Fixed. Partner, children (up to 6) and parents (up to 2) get name, date of birth and health card fields; "Someone I care for" asks for the helper's details; Thornhill or Maple choice. |
+| 12 | Slow phones | Fixed. Fonts are WOFF2 subsets (about 170 KB instead of about 1.1 MB). Text typed before the page finishes loading is kept (checked with delayed scripts). |
+| 13 | Booking time bugs | Fixed. Dates follow Toronto time, today is offered only with slots at least an hour away, and the date sent is the Toronto date. |
+| 14 | Content to correct | Clinic. Not changed in code. |
+
+**Dark mode is not switched on.** The dark theme in the design tokens is not finished across the site (several buttons and chips render white on white, the logo disappears), so following the phone's dark setting would make pages unreadable. It needs a design pass before it can follow the system setting.
+
 ## What worked
 
 - Coverage answers: Pain Centre framing (referral, OHIP, no family doctor route) and the MVA "$0" chooser were understood at once.

@@ -1,25 +1,40 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { Button, Display, Field, Input, Select, StateCard, Textarea } from "@/components/ui";
 import { careersCopy } from "@/content/about";
 import { site } from "@/content/site";
 import { submitForm } from "@/lib/forms";
+import { useRevealOnChange } from "@/lib/a11y";
+import { errorProps, focusFirstError, formErrors, type FormErrors } from "@/lib/validate";
+import { FieldError } from "../book/FormBits";
 
 type Status = "form" | "sending" | "done" | "error";
 
 /**
  * Application form. Only text fields are posted to /api/careers; the CV file
- * input is never read or uploaded by the site (it belongs to the ATS).
+ * input is never read or uploaded by the site (it belongs to the ATS). Text
+ * fields are uncontrolled so typing before the page finishes loading is kept;
+ * errors show inline under each field.
  */
 export function ApplyForm({ roles, role, onRoleChange }: { roles: string[]; role: string; onRoleChange: (r: string) => void }) {
   const f = careersCopy.form;
   const [status, setStatus] = useState<Status>("form");
-  const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const formRef = useRef<HTMLFormElement>(null);
+  const outcomeRef = useRevealOnChange<HTMLDivElement>(status === "done" || status === "error" ? status : "form");
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    if (status === "sending") return;
+    const form = e.currentTarget;
+    const errs = formErrors(form);
+    setErrors(errs);
+    if (Object.keys(errs).length) {
+      focusFirstError(form, errs);
+      return;
+    }
+    const fd = new FormData(form);
     const text = (k: string) => String(fd.get(k) ?? "").trim();
     const data = {
       role: role || text("role"),
@@ -30,11 +45,6 @@ export function ApplyForm({ roles, role, onRoleChange }: { roles: string[]; role
       licence: text("licence"),
       note: text("note"),
     };
-    if (!data.firstName || !data.lastName || !data.email) {
-      setError(f.required);
-      return;
-    }
-    setError(null);
     setStatus("sending");
     const res = await submitForm("careers", data);
     setStatus(res.ok ? "done" : "error");
@@ -55,74 +65,80 @@ export function ApplyForm({ roles, role, onRoleChange }: { roles: string[]; role
       </div>
 
       {status === "done" ? (
-        <StateCard state="success" title={f.doneTitle} actions={<Button to="team">{f.doneCta}</Button>}>
-          <p>{f.doneBody}</p>
-        </StateCard>
-      ) : status === "error" ? (
-        <StateCard
-          state="error"
-          title={f.errorTitle}
-          actions={
-            <Button variant="outline" onClick={() => setStatus("form")}>
-              {f.retry}
-            </Button>
-          }
-        >
-          <p>
-            {f.errorBody}
-            <a href={`mailto:${site.careersEmail}`} className="font-semibold text-link">
-              {site.careersEmail}
-            </a>
-            .
-          </p>
-        </StateCard>
+        <div ref={outcomeRef} tabIndex={-1} className="scroll-mt-24 outline-none">
+          <StateCard state="success" title={f.doneTitle} actions={<Button to="team">{f.doneCta}</Button>}>
+            <p>{f.doneBody}</p>
+          </StateCard>
+        </div>
       ) : (
-        <form onSubmit={onSubmit} noValidate className="flex flex-col gap-[22px] rounded-block border border-border bg-card p-5 md:p-9" aria-busy={status === "sending"}>
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-            <Field label={f.firstName} htmlFor="ap-first" required>
-              <Input id="ap-first" name="firstName" autoComplete="given-name" required />
-            </Field>
-            <Field label={f.lastName} htmlFor="ap-last" required>
-              <Input id="ap-last" name="lastName" autoComplete="family-name" required />
-            </Field>
-          </div>
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-            <Field label={f.email} htmlFor="ap-email" required>
-              <Input id="ap-email" name="email" type="email" autoComplete="email" inputMode="email" required />
-            </Field>
-            <Field label={f.phone} htmlFor="ap-phone">
-              <Input id="ap-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" />
-            </Field>
-          </div>
-          <Field label={f.role} htmlFor="ap-role">
-            <Select id="ap-role" name="role" value={role} onChange={(e) => onRoleChange(e.target.value)}>
-              <option value="">{f.rolePlaceholder}</option>
-              {roles.map((r) => (
-                <option key={r} value={r}>
-                  {r}
-                </option>
-              ))}
-              <option value={f.roleGeneral}>{f.roleGeneral}</option>
-            </Select>
-          </Field>
-          <Field label={f.licence} htmlFor="ap-licence">
-            <Input id="ap-licence" name="licence" autoComplete="off" />
-          </Field>
-          <Field label={f.note} htmlFor="ap-note">
-            <Textarea id="ap-note" name="note" className="min-h-[110px]" />
-          </Field>
-          <Field label={f.cv} htmlFor="ap-cv" hint={f.cvHint}>
-            <input id="ap-cv" type="file" accept=".pdf,application/pdf" className="text-[14px] file:mr-3 file:rounded-chip file:border-[1.5px] file:border-border file:bg-white file:px-3.5 file:py-2 file:text-[13px] file:font-semibold file:text-primary" />
-          </Field>
-          {error ? (
-            <span role="alert" className="text-[13px] font-semibold text-[color:var(--status-error-fg)]">
-              {error}
-            </span>
+        <div className="flex flex-col gap-4">
+          {status === "error" ? (
+            <div ref={outcomeRef} tabIndex={-1} className="scroll-mt-24 outline-none">
+              <StateCard
+                state="error"
+                title={f.errorTitle}
+                actions={
+                  <Button variant="outline" onClick={() => formRef.current?.requestSubmit()}>
+                    {f.retry}
+                  </Button>
+                }
+              >
+                <p>
+                  {f.errorBody}
+                  <a href={`mailto:${site.careersEmail}`} className="font-semibold text-link">
+                    {site.careersEmail}
+                  </a>
+                  .
+                </p>
+              </StateCard>
+            </div>
           ) : null}
-          <Button type="submit" variant="secondary" size="lg" fullWidth disabled={status === "sending"}>
-            {status === "sending" ? f.sending : f.submit}
-          </Button>
-        </form>
+          <form ref={formRef} onSubmit={onSubmit} noValidate className="flex flex-col gap-[22px] rounded-block border border-border bg-card p-5 md:p-9" aria-busy={status === "sending"}>
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              <Field label={f.firstName} htmlFor="ap-first" required>
+                <Input id="ap-first" name="firstName" autoComplete="given-name" required {...errorProps(errors, "ap-first")} />
+                <FieldError id="ap-first" error={errors["ap-first"]} />
+              </Field>
+              <Field label={f.lastName} htmlFor="ap-last" required>
+                <Input id="ap-last" name="lastName" autoComplete="family-name" required {...errorProps(errors, "ap-last")} />
+                <FieldError id="ap-last" error={errors["ap-last"]} />
+              </Field>
+            </div>
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              <Field label={f.email} htmlFor="ap-email" required>
+                <Input id="ap-email" name="email" type="email" autoComplete="email" inputMode="email" required {...errorProps(errors, "ap-email")} />
+                <FieldError id="ap-email" error={errors["ap-email"]} />
+              </Field>
+              <Field label={f.phone} htmlFor="ap-phone">
+                <Input id="ap-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" {...errorProps(errors, "ap-phone")} />
+                <FieldError id="ap-phone" error={errors["ap-phone"]} />
+              </Field>
+            </div>
+            <Field label={f.role} htmlFor="ap-role">
+              <Select id="ap-role" name="role" value={role} onChange={(e) => onRoleChange(e.target.value)}>
+                <option value="">{f.rolePlaceholder}</option>
+                {roles.map((r) => (
+                  <option key={r} value={r}>
+                    {r}
+                  </option>
+                ))}
+                <option value={f.roleGeneral}>{f.roleGeneral}</option>
+              </Select>
+            </Field>
+            <Field label={f.licence} htmlFor="ap-licence">
+              <Input id="ap-licence" name="licence" autoComplete="off" />
+            </Field>
+            <Field label={f.note} htmlFor="ap-note">
+              <Textarea id="ap-note" name="note" className="min-h-[110px]" />
+            </Field>
+            <Field label={f.cv} htmlFor="ap-cv" hint={f.cvHint}>
+              <input id="ap-cv" type="file" accept=".pdf,application/pdf" className="text-[14px] file:mr-3 file:rounded-chip file:border-[1.5px] file:border-border file:bg-white file:px-3.5 file:py-2 file:text-[13px] file:font-semibold file:text-primary" />
+            </Field>
+            <Button type="submit" variant="secondary" size="lg" fullWidth disabled={status === "sending"}>
+              {status === "sending" ? f.sending : f.submit}
+            </Button>
+          </form>
+        </div>
       )}
     </section>
   );

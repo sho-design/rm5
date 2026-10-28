@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { divisionList } from "@/content/divisions";
 import { Section, SectionHeader, SmartLink, Photo } from "@/components/ui";
+import { bookFor } from "@/lib/routes";
 
 /**
  * "Explore our services." Five portrait photo cards on desktop, tinted rows
@@ -22,11 +23,11 @@ export function ExploreServices() {
               <span className="text-[13px] leading-[1.45] text-muted">{d.tag}</span>
             </div>
             <div className="flex items-center gap-3 px-1 text-[14px] font-semibold">
-              <SmartLink to="book" className="rounded-chip bg-sky px-5 py-[11px] leading-none text-white transition-opacity hover:opacity-90 active:scale-[.98]">
-                Book
+              <SmartLink to={bookFor(d.key)} className="rounded-chip bg-sky px-5 py-[11px] leading-none text-white transition-opacity hover:opacity-90 active:scale-[.98]">
+                Book<span className="sr-only"> {d.label}</span>
               </SmartLink>
               <SmartLink to={d.key} className="text-link">
-                Learn more ›
+                Learn more<span className="sr-only"> about {d.label}</span> ›
               </SmartLink>
             </div>
           </div>

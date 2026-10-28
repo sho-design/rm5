@@ -1,12 +1,13 @@
 import { Button, Photo, SectionHeader, SmartLink } from "@/components/ui";
-import type { DivisionService } from "@/content/types";
+import type { DivisionService, NavKey } from "@/content/types";
+import { bookFor } from "@/lib/routes";
 import { divisionPageCopy, tints } from "@/content/divisions";
 import { cn } from "@/lib/cn";
 
 /** Service tint cycle from the prototype: tints[(i + 1) % 5]. */
 const tintFor = (i: number) => tints[(i + 1) % tints.length];
 
-function Tile({ s, tint, big }: { s: DivisionService; tint: string; big?: boolean }) {
+function Tile({ s, tint, big, book }: { s: DivisionService; tint: string; big?: boolean; book: string }) {
   return (
     <div className={cn("relative flex flex-col justify-end overflow-hidden rounded-card", big ? "min-h-[600px] p-7" : "min-h-[200px] p-[22px]")} style={{ background: tint }}>
       {s.image ? (
@@ -18,11 +19,13 @@ function Tile({ s, tint, big }: { s: DivisionService; tint: string; big?: boolea
         <span className={cn("display-tight", big ? "text-[32px] lg:text-[40px]" : "text-[22px] lg:text-[24px]")}>{s.title}</span>
         <span className="text-[15px] leading-[1.5] text-white/85">{s.desc}</span>
         <div className="flex items-center gap-3.5 pt-1.5 text-[14px] font-semibold">
-          <Button to="book" variant="inverse" size="sm">
+          <Button to={book} variant="inverse" size="sm">
             {divisionPageCopy.book}
+            <span className="sr-only"> {s.title}</span>
           </Button>
           <SmartLink to={s.page} className="text-white">
-            {divisionPageCopy.learnMore} ›
+            {divisionPageCopy.learnMore}
+            <span className="sr-only"> about {s.title}</span> ›
           </SmartLink>
         </div>
       </div>
@@ -35,18 +38,22 @@ function Tile({ s, tint, big }: { s: DivisionService; tint: string; big?: boolea
  * photo feature on the left, the rest stacked as equal photo rows on the
  * right. On mobile the services become tinted link rows (Mobile Service frame).
  */
-export function Offer({ services }: { services: DivisionService[] }) {
+/** Pages that compare a division's services side by side ("Compare all ›"). */
+const comparePage: Partial<Record<NavKey, string>> = { aesthetics: "aesPricing", infusion: "drips", rehab: "rehabBilling" };
+
+export function Offer({ services, division }: { services: DivisionService[]; division: NavKey }) {
+  const book = division === "about" ? "book" : bookFor(division);
   if (!services.length) return null;
   const [first, ...rest] = services;
   return (
     <section className="flex flex-col gap-4 px-4 pt-10 md:gap-6 md:px-content md:pt-16">
-      <SectionHeader title={divisionPageCopy.offerTitle} actionLabel={divisionPageCopy.compareAll} actionTo="book" />
+      <SectionHeader title={divisionPageCopy.offerTitle} actionLabel={comparePage[division] ? divisionPageCopy.compareAll : undefined} actionTo={comparePage[division]} />
 
       <div className="hidden grid-cols-2 gap-card md:grid">
-        <Tile s={first} tint={tintFor(0)} big />
+        <Tile s={first} tint={tintFor(0)} big book={book} />
         <div className="grid auto-rows-fr gap-card">
           {rest.map((s, i) => (
-            <Tile key={s.title} s={s} tint={tintFor(i + 1)} />
+            <Tile key={s.title} s={s} tint={tintFor(i + 1)} book={book} />
           ))}
         </div>
       </div>

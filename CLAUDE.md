@@ -5,7 +5,7 @@ Public website for Restoration Medical, a physician-led multi-service clinic in 
 ## Where things live
 - `design/handoff/` is the design reference: `README.md` (tech decisions, routes, CMS model, form destinations, caveats), `Restoration Medical.dc.html` (single-file prototype, the source of truth for copy and layout), `design-system/` (tokens, component specs, guidelines, `readme.md` with clinic facts and visual rules). Do not ship anything from this folder.
 - `src/styles/tokens/*.css` are the design tokens, copied verbatim from the handoff. Import them, never restate hex values in components; use the CSS variables or the Tailwind theme names in `src/app/globals.css`.
-- `src/fonts/` self-hosted Fraunces and Instrument Sans (OFL), loaded with `next/font/local` in `src/app/layout.tsx`.
+- `src/fonts/` self-hosted Fraunces and Instrument Sans (OFL), loaded with `next/font/local` in `src/app/(site)/layout.tsx` as WOFF2 subsets built from the variable TTFs by `scripts/build-fonts.py`.
 - `src/content/` typed content modules. Collections the handoff assigns to the CMS (health notes, jobs, team, FAQ, locations, announcements, legal) are read only through `src/lib/cms.ts` so they can move to Payload CMS without touching pages.
 - `src/lib/routes.ts` maps every prototype page key to its URL. Always link with these helpers.
 - `src/components/ui/` shared primitives (Button, Eyebrow, headings, cards, Chooser, Faq, PathSteps, CtaBand, Photo). `src/components/chrome/` utility bar, header, mega menu, search, mobile menu, footer.

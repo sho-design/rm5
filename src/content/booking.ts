@@ -1,3 +1,5 @@
+import { draft } from "./review";
+
 /** Coverage line shown on the booking form, keyed by division label (prototype `COVER`). */
 export const bookingCoverage: Record<string, string> = {
   "Family Medicine": "OHIP-insured",
@@ -15,29 +17,31 @@ export interface BookingStep {
   label: string;
 }
 
+/** "Review" replaces the prototype's "Confirm": the third step is a check before anything is sent. */
 export const bookingSteps: BookingStep[] = [
   { n: 1, label: "Details" },
   { n: 2, label: "Time" },
-  { n: 3, label: "Confirm" },
+  { n: 3, label: draft("Review") },
 ];
 
 export const bookingWho = ["New patient", "Existing patient"] as const;
 export type BookingWho = (typeof bookingWho)[number];
 
 /**
- * Booking flow state: 1 details, 2 time, 3 confirmed, 'w' waitlist, 'e' slot taken.
+ * Booking flow state: 1 details, 2 time, 3 review, 'c' confirmed, 'w' waitlist, 'e' slot taken or failed.
  * Title and lead copy per state, as the prototype's `bookTitle` / `bookLead` resolve.
  */
-export type BookingState = 1 | 2 | 3 | "w" | "e";
+export type BookingState = 1 | 2 | 3 | "c" | "w" | "e";
 
 export interface BookingTitle {
   title: string;
   lead: string;
 }
 
-export const bookingTitles: Record<"step1" | "step2" | "step3" | "waitlist" | "error", BookingTitle> = {
+export const bookingTitles: Record<"step1" | "step2" | "review" | "step3" | "waitlist" | "error", BookingTitle> = {
   step1: { title: "Book an appointment.", lead: "Tell us which service you need and who you are. Two minutes." },
   step2: { title: "Book an appointment.", lead: "Openings at Thornhill for the next seven days." },
+  review: { title: "Book an appointment.", lead: draft("Check the details, then confirm. Nothing is booked until you do.") },
   step3: { title: "See you soon.", lead: "Everything you need for the visit is below." },
   waitlist: { title: "We will call you.", lead: "Everything you need for the visit is below." },
   error: { title: "Book an appointment.", lead: "Everything you need for the visit is below." },
@@ -46,7 +50,8 @@ export const bookingTitles: Record<"step1" | "step2" | "step3" | "waitlist" | "e
 export function bookingTitleFor(state: BookingState): BookingTitle {
   if (state === 1) return bookingTitles.step1;
   if (state === 2) return bookingTitles.step2;
-  if (state === 3) return bookingTitles.step3;
+  if (state === 3) return bookingTitles.review;
+  if (state === "c") return bookingTitles.step3;
   if (state === "w") return bookingTitles.waitlist;
   return bookingTitles.error;
 }
@@ -54,6 +59,8 @@ export function bookingTitleFor(state: BookingState): BookingTitle {
 /** Confirm button labels on the time step. */
 export const bookingConfirmLabel = {
   noSlot: "Choose a time above",
+  /** Time step: goes on to the review step (nothing is sent yet). */
+  review: draft("Review your booking"),
   ready: "Confirm booking",
   slotNotChosen: "Not chosen yet",
 } as const;

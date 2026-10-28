@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
+import { keepInView } from "@/lib/a11y";
 import type { QA } from "@/content/types";
 import { cn } from "@/lib/cn";
 import { Display, Lead } from "./Text";
@@ -45,6 +46,7 @@ export function Faq({
 /** The accordion rows alone (used inside the site FAQ page and cards). */
 export function FaqList({ items, defaultOpen = 0, className, compact }: { items: FaqRowItem[]; defaultOpen?: number; className?: string; compact?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
+  const uid = useId();
   return (
     <div className={cn("flex flex-col", className)}>
       {items.map((f, i) => {
@@ -54,7 +56,11 @@ export function FaqList({ items, defaultOpen = 0, className, compact }: { items:
             <button
               type="button"
               aria-expanded={on}
-              onClick={() => setOpen(on ? -1 : i)}
+              aria-controls={`${uid}-${i}`}
+              onClick={(e) => {
+                setOpen(on ? -1 : i);
+                keepInView(e.currentTarget);
+              }}
               className={cn("flex w-full items-center justify-between gap-5 text-left", compact ? "py-4" : "py-5")}
             >
               <span className={cn("font-semibold tracking-[-.01em]", compact ? "text-[16px]" : "text-[17px] lg:text-[18px]")}>{f.q}</span>
@@ -67,7 +73,7 @@ export function FaqList({ items, defaultOpen = 0, className, compact }: { items:
               </span>
             </button>
             {on ? (
-              <div className="flex flex-col gap-3 pb-[22px]">
+              <div id={`${uid}-${i}`} className="flex flex-col gap-3 pb-[22px]">
                 <p className="pretty max-w-[640px] text-[16px] leading-[1.6] text-muted">{f.a}</p>
                 {f.linkLabel && f.linkPage ? (
                   <SmartLink to={f.linkPage} className="text-[13px] font-semibold text-link">

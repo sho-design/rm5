@@ -1,3 +1,4 @@
+import { bookFor } from "@/lib/routes";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { Faq, SubChooser, SubPageHero } from "@/components/ui";
@@ -28,7 +29,7 @@ export default function WomensHealthPage() {
         title={womenCopy.hero.title}
         lead={womenCopy.hero.lead}
         cta={womenCopy.hero.cta}
-        ctaTo="book"
+        ctaTo={bookFor("family", "checkup")}
         cta2={womenCopy.hero.cta2}
         cta2To="register"
         coverage={womenCopy.hero.coverage}
@@ -38,7 +39,7 @@ export default function WomensHealthPage() {
         imgAlt={womenCopy.hero.alt}
         pills={[...womenCopy.hero.pills]}
       />
-      <SubChooser id="stage" eyebrow={womenCopy.chooser.eyebrow} title={womenCopy.chooser.title} intro={womenCopy.chooser.intro} items={womenOptions} tint={tint} accent={accent} link={womenCopy.chooser.link} linkTo="year" titleSize="md" />
+      <SubChooser ctaTo={bookFor("family", "concern")} id="stage" eyebrow={womenCopy.chooser.eyebrow} title={womenCopy.chooser.title} intro={womenCopy.chooser.intro} items={womenOptions} tint={tint} accent={accent} link={womenCopy.chooser.link} linkTo="year" titleSize="md" />
       <WomenScreening />
       <Faq title={womenCopy.faq.title} sub={womenCopy.faq.sub} items={womenFaq} />
       <TintBand tint={tint} title={womenCopy.band.title} body={womenCopy.band.body} bodyClass="text-secondary" cta={womenCopy.band.cta} ctaTo="register" link={womenCopy.band.link} linkTo="kids" />

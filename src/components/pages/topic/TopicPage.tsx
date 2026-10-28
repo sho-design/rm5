@@ -7,6 +7,9 @@ import { divisionAccent, divisionTint, divisions, tints } from "@/content/divisi
 import type { Topic } from "@/content/topics";
 import { cn } from "@/lib/cn";
 import { href } from "@/lib/routes";
+import { topicVisit } from "@/content/topic-visits";
+
+const withVisit = (to: string | undefined, visit: string | undefined) => (to && visit && to.startsWith("/book?service=") && !to.includes("&visit=") ? `${to}&visit=${visit}` : to);
 import { breadcrumbs } from "@/lib/schema";
 import { JsonLd } from "@/components/JsonLd";
 
@@ -19,6 +22,8 @@ import { JsonLd } from "@/components/JsonLd";
  */
 export function TopicPage({ t }: { t: Topic }) {
   const d = divisions[t.division];
+  const visit = topicVisit[t.key];
+  const band = { ...t.band, ctaTo: withVisit(t.band.ctaTo, visit) ?? t.band.ctaTo, cta2To: withVisit(t.band.cta2To, visit) };
   const tint = divisionTint[t.division];
   const accent = divisionAccent[t.division];
   return (
@@ -36,9 +41,9 @@ export function TopicPage({ t }: { t: Topic }) {
         title={t.title}
         lead={t.lead}
         cta={t.cta}
-        ctaTo={t.ctaTo}
+        ctaTo={withVisit(t.ctaTo, visit) ?? t.ctaTo}
         cta2={t.cta2}
-        cta2To={t.cta2To}
+        cta2To={withVisit(t.cta2To, visit)}
         coverage={t.coverage}
         tint={tint}
         accent={accent}
@@ -103,7 +108,7 @@ export function TopicPage({ t }: { t: Topic }) {
         </Section>
       ) : null}
 
-      {t.path ? <PathSteps title={t.path.title} steps={t.path.steps} /> : null}
+      {t.path ? <PathSteps title={t.path.title} steps={t.path.steps} ctaTo={band.ctaTo} /> : null}
 
       {t.related ? (
         <Section className="flex flex-col gap-5">
@@ -134,7 +139,7 @@ export function TopicPage({ t }: { t: Topic }) {
         </Section>
       ) : null}
 
-      <CtaBand title={t.band.title} sub={t.band.sub} cta={t.band.cta} ctaTo={t.band.ctaTo} cta2={t.band.cta2} cta2To={t.band.cta2To} />
+      <CtaBand title={band.title} sub={band.sub} cta={band.cta} ctaTo={band.ctaTo} cta2={band.cta2} cta2To={band.cta2To} />
     </>
   );
 }

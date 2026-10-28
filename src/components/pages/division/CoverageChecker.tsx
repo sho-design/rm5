@@ -35,7 +35,7 @@ export function CoverageChecker({ options }: { options: CoverageOption[] }) {
           <p className="pretty text-[16px] leading-[1.55] text-white/80">{cov.p}</p>
         </div>
         <FactGrid facts={cov.facts} inverse />
-        <Button to="book" variant="inverse" fullWidth>
+        <Button to={cov.ctaPage} variant="inverse" fullWidth>
           {cov.cta}
         </Button>
       </div>

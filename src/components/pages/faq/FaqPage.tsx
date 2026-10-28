@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { keepInView } from "@/lib/a11y";
 import { Block, Button, ChipRow, Display, SmartLink } from "@/components/ui";
 import type { FaqItem } from "@/content/types";
 import { faqCopy } from "@/content/faq";
@@ -20,6 +21,24 @@ export function FaqPage({ items, categories }: Props) {
   const [query, setQuery] = useState("");
   const [cat, setCat] = useState(0);
   const [open, setOpen] = useState(0);
+
+  // Site search links here as /about/faq?q=<question>: open that answer, or filter by the words.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q")?.trim();
+    if (!q) return;
+    const n = items.findIndex((x) => x.q.toLowerCase() === q.toLowerCase());
+    if (n >= 0) {
+      setOpen(n);
+      requestAnimationFrame(() => {
+        const el = document.getElementById(`faq-q-${n}`);
+        el?.scrollIntoView({ block: "center" });
+        el?.querySelector("button")?.focus({ preventScroll: true });
+      });
+    } else {
+      setQuery(q);
+      setOpen(-1);
+    }
+  }, [items]);
 
   const counts = useMemo(() => categories.map((c, i) => (i === 0 ? items.length : items.filter((x) => x.category === c).length)), [categories, items]);
 
@@ -110,15 +129,24 @@ export function FaqPage({ items, categories }: Props) {
                 {g.items.map((f) => {
                   const on = open === f.id;
                   return (
-                    <div key={f.id} className="border-t border-border">
-                      <button type="button" aria-expanded={on} onClick={() => setOpen(on ? -1 : f.id)} className="flex w-full items-center justify-between gap-5 py-4 text-left md:py-5">
+                    <div key={f.id} id={`faq-q-${f.id}`} className="border-t border-border">
+                      <button
+                        type="button"
+                        aria-expanded={on}
+                        aria-controls={`faq-a-${f.id}`}
+                        onClick={(e) => {
+                          setOpen(on ? -1 : f.id);
+                          keepInView(e.currentTarget);
+                        }}
+                        className="flex w-full items-center justify-between gap-5 py-4 text-left md:py-5"
+                      >
                         <span className="text-[16px] font-semibold leading-[1.3] md:text-[17px]">{f.q}</span>
                         <span aria-hidden className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border-[1.5px] border-border text-[17px] transition-transform duration-[250ms]" style={{ transform: on ? "rotate(45deg)" : "rotate(0deg)" }}>
                           +
                         </span>
                       </button>
                       {on ? (
-                        <div className="mb-[22px] flex max-w-[640px] flex-col gap-3">
+                        <div id={`faq-a-${f.id}`} className="mb-[22px] flex max-w-[640px] flex-col gap-3">
                           <p className="pretty text-[16px] leading-[1.6] text-secondary">{f.a}</p>
                           {f.linkLabel && f.linkPage ? (
                             <SmartLink to={f.linkPage} className="text-[14px] font-semibold text-link">

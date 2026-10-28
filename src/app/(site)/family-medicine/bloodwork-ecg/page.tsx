@@ -1,3 +1,4 @@
+import { bookFor } from "@/lib/routes";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { Faq, SubChooser, SubPageHero } from "@/components/ui";
@@ -41,6 +42,7 @@ export default function BloodworkPage() {
       />
 
       <SubChooser
+        ctaTo={bookFor("family", "bloodwork")}
         eyebrow="Which kind of test?"
         title="Know what to expect before you come in."
         intro="Pick the closest match. We show whether to fast, how long it takes and when results arrive."

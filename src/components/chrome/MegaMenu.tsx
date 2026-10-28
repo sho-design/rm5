@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { NavKey } from "@/content/types";
-import { divisions } from "@/content/divisions";
+import { divisions, menuHeadings } from "@/content/divisions";
 import { href } from "@/lib/routes";
 
 /**
@@ -25,7 +25,7 @@ export function MegaMenu({ menuKey, onNavigate }: { menuKey: NavKey; onNavigate:
         </div>
       </div>
       <div className="flex flex-col gap-[18px]">
-        <span className="text-[12px] font-semibold text-muted">Book {d.label}</span>
+        <span className="text-[12px] font-semibold text-muted">{menuHeadings.book(d)}</span>
         <div className="flex flex-col gap-3 text-[14px] font-semibold">
           {d.book.map((b) => (
             <Link key={b.label} href={href(b.page)} onClick={onNavigate} className="hover:text-sky">
@@ -35,7 +35,7 @@ export function MegaMenu({ menuKey, onNavigate }: { menuKey: NavKey; onNavigate:
         </div>
       </div>
       <div className="flex flex-col gap-[18px]">
-        <span className="text-[12px] font-semibold text-muted">More from {d.label}</span>
+        <span className="text-[12px] font-semibold text-muted">{menuHeadings.more(d)}</span>
         <div className="flex flex-col gap-3 text-[14px] font-semibold">
           {d.more.map((m) => (
             <Link key={m.label} href={href(m.page)} onClick={onNavigate} className="hover:text-sky">

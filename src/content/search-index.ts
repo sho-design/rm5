@@ -2,7 +2,9 @@ import type { SearchEntry } from "./types";
 import { divisions, navOrder } from "./divisions";
 import { topics } from "./topics";
 import { infusionPages, signatureDrips } from "./infusion-site";
-import { dripRoute } from "@/lib/routes";
+import { dripRoute, noteRoute, routes } from "@/lib/routes";
+import { searchDocs, type SearchDoc } from "@/lib/search";
+import { aliasesFor, searchExtras } from "./search-synonyms";
 
 /**
  * Site search index, built the same way as the prototype's INDEX:
@@ -27,7 +29,7 @@ const pages: SearchEntry[] = [
 ];
 
 const handWritten: SearchEntry[] = [
-  { kind: "About", label: "Teaching clinic", sub: "TMU and Anderson College placements, supervision", page: "about" },
+  { kind: "About", label: "Teaching clinic", sub: "TMU and Anderson College placements, supervision", page: `${routes.about}#teaching` },
   { kind: "About", label: "Frequently asked questions", sub: "Visits, coverage, results, parking", page: "faq" },
   { kind: "Family Medicine", label: "Women’s health", sub: "Pap, contraception, pregnancy, menopause", page: "women" },
   { kind: "Family Medicine", label: "Men’s health", sub: "Yearly checkup, prostate, heart, mood", page: "men" },
@@ -44,9 +46,9 @@ const handWritten: SearchEntry[] = [
   { kind: "Referrals", label: "Refer a patient", sub: "For referring doctors, fax 905-761-7306", page: "referrals" },
   { kind: "Referrals", label: "Iron infusion referral", sub: "Referrals", page: "referrals" },
   { kind: "Health notes", label: "Health notes", sub: "Notes from your doctors", page: "notes" },
-  { kind: "Health note", label: "What to expect at an iron infusion", sub: "Infusion Therapy", page: "notes" },
-  { kind: "Health note", label: "Flu shot questions, answered", sub: "Family Medicine", page: "notes" },
-  { kind: "Health note", label: "When a headache needs a doctor", sub: "Pain Centre", page: "notes" },
+  { kind: "Health note", label: "What to expect at an iron infusion", sub: "Infusion Therapy", page: noteRoute("iron-infusion") },
+  { kind: "Health note", label: "Flu shot questions, answered", sub: "Family Medicine", page: noteRoute("flu-shot-faq") },
+  { kind: "Health note", label: "When a headache needs a doctor", sub: "Pain Centre", page: noteRoute("headache-when-to-see") },
   { kind: "About", label: "Our story", sub: "Why one clinic, one standard of care", page: "story" },
   { kind: "About", label: "Standards of care", sub: "Physician oversight, consent, pricing, complaints", page: "standards" },
   { kind: "About", label: "Careers", sub: "Open roles in Thornhill and Maple", page: "careers" },
@@ -62,11 +64,18 @@ export const searchIndex: SearchEntry[] = [...generated, ...pages, ...handWritte
   (r, i, all) => all.findIndex((x) => x.label.toLowerCase() === r.label.toLowerCase() && x.page === r.page) === i,
 );
 
-/** Top 8 entries whose label, sub or kind contains the query (case-insensitive). */
-export function searchIndexFilter(q: string): SearchEntry[] {
-  const ql = q.trim().toLowerCase();
-  if (!ql) return [];
-  return searchIndex
-    .filter((r) => (r.label + " " + r.sub + " " + r.kind).toLowerCase().includes(ql))
-    .slice(0, 8);
+/**
+ * The small index built into the page: labels, summaries and search
+ * aliases. The overlay uses it straight away and swaps in the full index
+ * (page text, FAQ answers, health notes, team) from /search-index.json
+ * once that has loaded.
+ */
+export const baseSearchDocs: SearchDoc[] = [
+  ...searchIndex.map((r) => ({ kind: r.kind, label: r.label, sub: r.sub, page: r.page, keys: aliasesFor(r.page) })),
+  ...searchExtras,
+];
+
+/** Top 8 matches in the built-in index. */
+export function searchIndexFilter(q: string): SearchDoc[] {
+  return searchDocs(baseSearchDocs, q);
 }

@@ -8,20 +8,23 @@ import { JsonLd } from "@/components/JsonLd";
 import { siteGraph } from "@/lib/schema";
 import { defaultShareImage } from "@/lib/seo";
 
+/*
+  Fonts are compressed WOFF2 subsets built from the OFL variable TTFs in
+  src/fonts (Latin, Latin Extended and Vietnamese, with the weights the site
+  uses): about 175 KB in all instead of about 1.1 MB. Rebuild with
+  `/usr/bin/python3 scripts/build-fonts.py` after changing the source fonts.
+*/
 const fraunces = localFont({
   src: [
-    { path: "../../fonts/Fraunces-Variable.ttf", style: "normal", weight: "100 900" },
-    { path: "../../fonts/Fraunces-Italic-Variable.ttf", style: "italic", weight: "100 900" },
+    { path: "../../fonts/Fraunces.woff2", style: "normal", weight: "400 600" },
+    { path: "../../fonts/Fraunces-Italic.woff2", style: "italic", weight: "400" },
   ],
   variable: "--font-fraunces",
   display: "swap",
 });
 
 const instrument = localFont({
-  src: [
-    { path: "../../fonts/InstrumentSans-Variable.ttf", style: "normal", weight: "400 700" },
-    { path: "../../fonts/InstrumentSans-Italic-Variable.ttf", style: "italic", weight: "400 700" },
-  ],
+  src: [{ path: "../../fonts/InstrumentSans.woff2", style: "normal", weight: "400 700" }],
   variable: "--font-instrument",
   display: "swap",
 });

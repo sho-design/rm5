@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { BookFlow } from "@/components/pages/book/BookFlow";
 import { bookingTitles } from "@/content/booking";
-import { divisionList } from "@/content/divisions";
+import { bookingConfig } from "@/content/booking-visits";
 import { EmergencyNote } from "@/components/pages/help/EmergencyNote";
 
 const baseMetadata: Metadata = {
@@ -18,7 +18,7 @@ export async function generateMetadata() {
 export default function BookPage() {
   return (
     <>
-      <BookFlow divisions={divisionList.map((d) => d.label)} />
+      <BookFlow config={bookingConfig()} />
       <div className="px-4 pb-6 md:px-content">
         <EmergencyNote className="max-w-[760px]" />
       </div>

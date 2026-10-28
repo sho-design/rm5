@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { bookFor } from "@/lib/routes";
 import { Block, Button, CheckChip, Display, Eyebrow, FactGrid, Lead } from "@/components/ui";
 import { deepDives, dripBuilderCopy as c, dripCopy, dripIronIndex, drips } from "@/content/deep";
 
@@ -79,7 +80,7 @@ export function DripBuilder() {
           {sel.includes(dripIronIndex) ? dripCopy.ironNote : dripCopy.note}
         </p>
         <div className="border-t border-border pt-4">
-          <Button to="book">{c.cta}</Button>
+          <Button to={bookFor("infusion", "drip")}>{c.cta}</Button>
         </div>
       </div>
     </Block>

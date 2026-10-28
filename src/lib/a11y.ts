@@ -58,3 +58,18 @@ export function useRevealOnChange<T extends HTMLElement>(key: unknown) {
   }, [key]);
   return ref;
 }
+
+/**
+ * After an accordion row opens and the row above it closes, the button that
+ * was pressed can end up above the viewport (under the sticky header). Bring
+ * it back into view on the next frame, only when it is actually hidden.
+ */
+export function keepInView(el: HTMLElement | null, topOffset = 72) {
+  if (!el) return;
+  requestAnimationFrame(() => {
+    const r = el.getBoundingClientRect();
+    if (r.top < topOffset || r.bottom > window.innerHeight) {
+      window.scrollBy({ top: r.top - topOffset - 8, behavior: reducedMotion() ? "auto" : "smooth" });
+    }
+  });
+}

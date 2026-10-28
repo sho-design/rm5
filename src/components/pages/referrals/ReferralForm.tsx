@@ -1,44 +1,55 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { Button, Display, Eyebrow, Field, Input, Select, StateCard, Textarea } from "@/components/ui";
 import { referralsPage } from "@/content/referrals";
 import { site } from "@/content/site";
+import { referralExtraCopy } from "@/content/forms-copy";
 import { submitForm } from "@/lib/forms";
+import { useRevealOnChange } from "@/lib/a11y";
+import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
+import { FieldError } from "../book/FormBits";
 
 type Status = "form" | "sending" | "done" | "error";
 
 /**
  * Online referral (handoff "Refer a patient": physician, patient DOB, reason).
  * Posts to /api/referral, which forwards and stores nothing. Attachments go
- * by fax or secure email; no patient name is collected here.
+ * by fax or secure email; no patient name is collected here. Fields are
+ * uncontrolled so typing before the page finishes loading is kept; errors
+ * show inline and a failed send keeps the form filled in.
  */
 export function ReferralForm({ services }: { services: string[] }) {
   const f = referralsPage.form;
   const [status, setStatus] = useState<Status>("form");
-  const [missing, setMissing] = useState<string[]>([]);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const formRef = useRef<HTMLFormElement>(null);
+  const outcomeRef = useRevealOnChange<HTMLDivElement>(status === "done" || status === "error" ? status : "form");
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const text = (k: string) => String(fd.get(k) ?? "").trim();
-    const data = {
-      physician: text("physician"),
-      clinic: text("clinic"),
-      fax: text("fax"),
-      patientDob: text("dob"),
-      service: text("service"),
-      reason: text("reason"),
-    };
-    const req = (["physician", "fax", "patientDob", "service", "reason"] as const).filter((k) => !data[k]);
-    setMissing(req);
-    if (req.length) return;
+    if (status === "sending") return;
+    const form = e.currentTarget;
+    const errs = formErrors(form);
+    setErrors(errs);
+    if (Object.keys(errs).length) {
+      focusFirstError(form, errs);
+      return;
+    }
+    const v = readForm(form);
     setStatus("sending");
-    const res = await submitForm("referral", data);
+    const res = await submitForm("referral", {
+      physician: v.physician,
+      clinic: v.clinic,
+      fax: v.fax,
+      patientDob: v.dob,
+      service: v.service,
+      reason: v.reason,
+    });
     setStatus(res.ok ? "done" : "error");
   }
 
-  const err = (k: string) => (missing.includes(k) ? "Required" : undefined);
+  const ep = (id: string) => errorProps(errors, id);
 
   return (
     <section id="refer" className="grid scroll-mt-6 grid-cols-1 items-start gap-8 px-4 pt-10 md:px-content md:pt-12 lg:grid-cols-[1fr_1.4fr] lg:gap-10">
@@ -55,58 +66,70 @@ export function ReferralForm({ services }: { services: string[] }) {
       </div>
 
       {status === "done" ? (
-        <StateCard state="success" title={f.success.title} actions={<Button to="referrals">Back to the top</Button>}>
-          <p>{f.success.body}</p>
-        </StateCard>
-      ) : status === "error" ? (
-        <StateCard
-          state="error"
-          title={f.error.title}
-          actions={
-            <Button variant="outline" onClick={() => setStatus("form")}>
-              Try again
-            </Button>
-          }
-        >
-          <p>{f.error.body}</p>
-        </StateCard>
+        <div ref={outcomeRef} tabIndex={-1} className="scroll-mt-24 outline-none">
+          <StateCard state="success" title={f.success.title} actions={<Button to="referrals">Back to the top</Button>}>
+            <p>{f.success.body}</p>
+          </StateCard>
+        </div>
       ) : (
-        <form onSubmit={onSubmit} noValidate aria-busy={status === "sending"} className="flex flex-col gap-[22px] rounded-block border border-border bg-card p-5 md:p-9">
-          <div className="grid grid-cols-1 gap-[18px] sm:grid-cols-2">
-            <Field label={f.fields.physician} htmlFor="ref-physician" required error={err("physician")}>
-              <Input id="ref-physician" name="physician" autoComplete="name" aria-invalid={!!err("physician")} />
-            </Field>
-            <Field label={f.fields.clinic} htmlFor="ref-clinic">
-              <Input id="ref-clinic" name="clinic" autoComplete="organization" />
-            </Field>
-            <Field label={f.fields.fax} htmlFor="ref-fax" required error={err("fax")}>
-              <Input id="ref-fax" name="fax" type="tel" inputMode="tel" autoComplete="off" aria-invalid={!!err("fax")} />
-            </Field>
-            <Field label={f.fields.dob} htmlFor="ref-dob" required error={err("patientDob")}>
-              <Input id="ref-dob" name="dob" type="date" autoComplete="off" aria-invalid={!!err("patientDob")} />
-            </Field>
-          </div>
-          <Field label={f.fields.service} htmlFor="ref-service" required error={err("service")}>
-            <Select id="ref-service" name="service" defaultValue="" aria-invalid={!!err("service")}>
-              <option value="" disabled>
-                {f.servicePlaceholder}
-              </option>
-              {services.map((s) => (
-                <option key={s} value={s}>
-                  {s}
+        <div className="flex flex-col gap-4">
+          {status === "error" ? (
+            <div ref={outcomeRef} tabIndex={-1} className="scroll-mt-24 outline-none">
+              <StateCard
+                state="error"
+                title={f.error.title}
+                actions={
+                  <Button variant="outline" onClick={() => formRef.current?.requestSubmit()}>
+                    Try again
+                  </Button>
+                }
+              >
+                <p>{f.error.body}</p>
+              </StateCard>
+            </div>
+          ) : null}
+          <form ref={formRef} onSubmit={onSubmit} noValidate aria-busy={status === "sending"} className="flex flex-col gap-[22px] rounded-block border border-border bg-card p-5 md:p-9">
+            <div className="grid grid-cols-1 gap-[18px] sm:grid-cols-2">
+              <Field label={f.fields.physician} htmlFor="ref-physician" required>
+                <Input id="ref-physician" name="physician" autoComplete="name" required {...ep("ref-physician")} />
+                <FieldError id="ref-physician" error={errors["ref-physician"]} />
+              </Field>
+              <Field label={f.fields.clinic} htmlFor="ref-clinic">
+                <Input id="ref-clinic" name="clinic" autoComplete="organization" />
+              </Field>
+              <Field label={f.fields.fax} htmlFor="ref-fax" required>
+                <Input id="ref-fax" name="fax" type="tel" inputMode="tel" autoComplete="off" required {...ep("ref-fax")} />
+                <FieldError id="ref-fax" error={errors["ref-fax"]} />
+              </Field>
+              <Field label={f.fields.dob} htmlFor="ref-dob" required>
+                <Input id="ref-dob" name="dob" data-error={referralExtraCopy.dobError} type="date" autoComplete="off" required {...ep("ref-dob")} />
+                <FieldError id="ref-dob" error={errors["ref-dob"]} />
+              </Field>
+            </div>
+            <Field label={f.fields.service} htmlFor="ref-service" required>
+              <Select id="ref-service" name="service" data-error={referralExtraCopy.serviceError} defaultValue="" required {...ep("ref-service")}>
+                <option value="" disabled>
+                  {f.servicePlaceholder}
                 </option>
-              ))}
-            </Select>
-          </Field>
-          <Field label={f.fields.reason} htmlFor="ref-reason" required hint={f.reasonHint} error={err("reason")}>
-            <Textarea id="ref-reason" name="reason" rows={5} aria-invalid={!!err("reason")} />
-          </Field>
-          <div className="flex flex-wrap items-center gap-3.5 pt-1">
-            <Button type="submit" disabled={status === "sending"}>
-              {status === "sending" ? f.sending : f.submit}
-            </Button>
-          </div>
-        </form>
+                {services.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </Select>
+              <FieldError id="ref-service" error={errors["ref-service"]} />
+            </Field>
+            <Field label={f.fields.reason} htmlFor="ref-reason" required hint={f.reasonHint}>
+              <Textarea id="ref-reason" name="reason" rows={5} required {...ep("ref-reason")} />
+              <FieldError id="ref-reason" error={errors["ref-reason"]} />
+            </Field>
+            <div className="flex flex-wrap items-center gap-3.5 pt-1">
+              <Button type="submit" disabled={status === "sending"}>
+                {status === "sending" ? f.sending : f.submit}
+              </Button>
+            </div>
+          </form>
+        </div>
       )}
     </section>
   );

@@ -21,11 +21,11 @@ export function SeasonCalendar({ month }: { month: number }) {
           <p className="pretty text-[15px] leading-[1.5] text-ink/75">{season.p}</p>
         </div>
         <div className="flex flex-wrap items-center gap-3 text-[14px] font-semibold">
-          <Button to="book" size="sm" className="!h-[41px] !px-[22px]">
+          <Button to={season.book ?? "book"} size="sm" className="!h-[41px] !px-[22px]">
             {season.cta}
           </Button>
           <SmartLink to={season.page} className="text-ink">
-            Learn more ›
+            Learn more<span className="sr-only"> about {season.eyebrow.toLowerCase()}</span> ›
           </SmartLink>
         </div>
       </div>

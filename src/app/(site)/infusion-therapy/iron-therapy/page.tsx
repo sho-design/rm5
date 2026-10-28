@@ -4,7 +4,7 @@ import { CtaBand, Faq, SubPageHero } from "@/components/ui";
 import { divisions } from "@/content/divisions";
 import { images } from "@/content/images";
 import { ironFaq, ironPrices, ironSteps, ironSymptoms, ironVisit, ironVisitImg, ironWho } from "@/content/iron";
-import { noteRoute } from "@/lib/routes";
+import { bookFor, noteRoute } from "@/lib/routes";
 import { IronCheck } from "@/components/pages/iron/IronCheck";
 import { IronPrices, IronSteps, IronVisit, IronWho } from "@/components/pages/iron/IronSections";
 
@@ -29,6 +29,7 @@ export default function IronTherapyPage() {
         title={title}
         lead={lead}
         cta="Book an iron assessment"
+        ctaTo={bookFor("infusion", "iron")}
         cta2="Do I need one?"
         cta2To="#iron-check"
         coverage="Physician-led. Nurse-administered. Thornhill, Tue, Sat and Sun."
@@ -55,6 +56,7 @@ export default function IronTherapyPage() {
         title="Find out in one blood test."
         sub="Book an iron assessment. If your levels are low and tablets are not the answer, we can usually infuse the same week."
         cta="Book an iron assessment"
+        ctaTo={bookFor("infusion", "iron")}
       />
     </>
   );

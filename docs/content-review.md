@@ -112,6 +112,18 @@ Source: `src/content/patient-help.ts` and `src/content/consent.ts`. All new word
 - Footer "Our network" no longer lists infusion.restorationmedical.ca.
 - Infusion design copy: "personalised", "itemised" and "finalised" spelled with -ize to match the rest of the site.
 
+## Usability fixes (October 2026)
+
+New wording from the fixes after the 30-tester usability test. Every new string is wrapped in `draft()` in these files, so the full list is in the code:
+
+- `src/content/booking-extra.ts` and `src/content/booking-visits.ts`: booking visit types per service ("What is the visit for?", "A health concern", "Bloodwork or ECG", "Flu shot", "First visit with a referral", "An IV drip", "A shot from the Injection Bar" and others), "Who is this appointment for?", claim and insurer fields, the Review step ("Check your booking.", "Nothing is sent until you confirm."), separate reminder and clinic-update checkboxes, the confirmation line when reminders are off, "Closed" and "Today" on the date strip, coverage lines ("Private or work insurance, billed directly", "Self-pay, from $95, HST included") and the per-visit "Bring" lines. Most labels and bring lines reuse approved copy and fail the build if that copy changes.
+- `src/content/forms-copy.ts`: registration for someone else, clinic choice, family member blocks, split consent lines, and the contact form's reply line.
+- `src/content/forms.ts`: inline form error messages ("Add your first name.", "Check the email address...").
+- `src/content/search-synonyms.ts` and the search overlay: "Health advice after hours", "Health811 at 811, any time, day or night", "Close".
+- Menus: the About menu column heading "Get in touch" (was "Book About").
+- Rehab: "Book a WSIB visit" replaces "Start a WSIB claim" (people who already have a claim thought it was not for them).
+- Clinics page: "Thornhill is open now." now reads "Thornhill is seeing patients." (it read as a live open-now status); same change in the Maple waitlist confirmation.
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.
@@ -125,3 +137,5 @@ Source: `src/content/patient-help.ts` and `src/content/consent.ts`. All new word
 - **Referral form.** `/for-physicians` links to `referral-form.pdf`, which does not exist yet. Supply the clinic's form.
 - **Search titles.** Location-led title tags live in `src/content/seo-titles.ts` (for example "Family doctor in Thornhill"). Page headings are unchanged.
 - **Wait times and consult lengths** quoted from the prototype (for example "two to three weeks", "20 min" versus "30 minute consult") still need confirmation.
+- **Vietnamese FAQ.** The answer to "Do you speak Vietnamese?" mentions a language switch at the top of the site. The switch stays hidden until the Vietnamese pages are ready (`NEXT_PUBLIC_VI_ENABLED`), so reword the answer or launch the translation.
+- **Rehab self-pay floor.** The booking coverage line "Self-pay, from $95, HST included" comes from the rehab coverage checker. Confirm it covers chiro and massage too.

@@ -229,7 +229,8 @@ export const careersCopy = {
 export const locationsCopy = {
   eyebrow: "Our clinics",
   h1: "Two clinics, one standard of care.",
-  lead: "Thornhill is open now. Maple is coming soon. Same team, same physician-led care.",
+  // "open now" read as a live status; reworded (draft, docs/content-review.md).
+  lead: "Thornhill is seeing patients. Maple is coming soon. Same team, same physician-led care.",
   soonTab: " (coming soon)",
   soonPill: "Opening soon",
   address: "Address",
@@ -249,7 +250,7 @@ export const locationsCopy = {
     submit: "Join the list",
     sending: "Sending",
     doneTitle: "You are on the list.",
-    doneBody: "We will be in touch once Maple opens. Thornhill is open now if you need care sooner.",
+    doneBody: "We will be in touch once Maple opens. Thornhill is seeing patients if you need care sooner.",
     doneCta: "Book at Thornhill",
     errorTitle: "We could not add you.",
     errorBody: "Please try again in a moment, or call 905-709-3222.",

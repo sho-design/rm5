@@ -1,4 +1,6 @@
 import type { Benefit, ChooserOption, ChooserResult, DivisionKey, Fact, PathStep, QA } from "./types";
+import { bookFor } from "@/lib/routes";
+import { draft } from "./review";
 
 /** Division deep-dive content (prototype `DEEP`): chooser, results, benefits, path, FAQ. */
 export interface DeepDive {
@@ -52,6 +54,8 @@ export interface CoverageOption {
   p: string;
   facts: Fact[];
   cta: string;
+  /** Booking link with the matching visit type preselected. */
+  ctaPage: string;
 }
 
 /** Infusion "clinic vs lounge" comparison row. */
@@ -89,6 +93,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["New patients", "OHIP"],
         cta: "Register as a patient",
+        ctaPage: "register",
         link: "How registration works",
         linkPage: "register",
       },
@@ -103,6 +108,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Same week", "OHIP"],
         cta: "Book a visit",
+        ctaPage: bookFor("family", "concern"),
         link: "See our hours",
         linkPage: "locations",
       },
@@ -117,6 +123,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Existing patients"],
         cta: "Request a renewal",
+        ctaPage: "/family-medicine/prescription-renewals#request",
         link: "For referring doctors",
         linkPage: "referrals",
       },
@@ -131,6 +138,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Preventive", "OHIP"],
         cta: "Book a checkup",
+        ctaPage: bookFor("family", "checkup"),
         link: "Know your numbers",
         linkPage: "numbers",
       },
@@ -145,6 +153,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Uninsured"],
         cta: "Book a form visit",
+        ctaPage: bookFor("family", "concern"),
         link: "See the fee list",
         linkPage: "legal",
       },
@@ -199,6 +208,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Head", "OHIP"],
         cta: "Book a family medicine assessment",
+        ctaPage: bookFor("family", "concern"),
         link: "Read the health note",
         linkPage: "notes",
       },
@@ -213,6 +223,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Back and neck", "OHIP"],
         cta: "Book a family medicine assessment",
+        ctaPage: bookFor("family", "concern"),
         link: "Refer a patient",
         linkPage: "referrals",
       },
@@ -227,6 +238,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Joints", "OHIP"],
         cta: "Book a family medicine assessment",
+        ctaPage: bookFor("family", "concern"),
         link: "Rehab and Recovery",
         linkPage: "rehab",
       },
@@ -241,6 +253,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Muscle", "OHIP"],
         cta: "Book a family medicine assessment",
+        ctaPage: bookFor("family", "concern"),
         link: "Refer a patient",
         linkPage: "referrals",
       },
@@ -255,6 +268,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Nerve", "OHIP"],
         cta: "Book a family medicine assessment",
+        ctaPage: bookFor("family", "concern"),
         link: "Preparing for a nerve block",
         linkPage: "notes",
       },
@@ -312,6 +326,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Iron", "Physician first"],
         cta: "Book an iron assessment",
+        ctaPage: bookFor("infusion", "iron"),
         link: "Read about iron therapy",
         linkPage: "iron",
       },
@@ -326,6 +341,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Hydration"],
         cta: "Book a consult",
+        ctaPage: bookFor("infusion", "consult"),
         link: "See all drips on the Infusion site",
         linkPage: "infusion",
       },
@@ -340,6 +356,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Rehydration"],
         cta: "Call to book today",
+        ctaPage: "tel:9057093222",
         link: "See our hours",
         linkPage: "locations",
       },
@@ -354,6 +371,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Recovery"],
         cta: "Book a drip",
+        ctaPage: bookFor("infusion", "drip"),
         link: "Rehab & Recovery",
         linkPage: "rehab",
       },
@@ -368,6 +386,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Physician first"],
         cta: "Book a visit",
+        ctaPage: bookFor("infusion", "consult"),
         link: "Family Medicine",
         linkPage: "family",
       },
@@ -422,6 +441,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Injectable"],
         cta: "Book a consult",
+        ctaPage: bookFor("aesthetics", "consult"),
         link: "Our standards of care",
         linkPage: "about",
       },
@@ -436,6 +456,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Injectable"],
         cta: "Book a consult",
+        ctaPage: bookFor("aesthetics", "consult"),
         link: "Meet the team",
         linkPage: "team",
       },
@@ -450,6 +471,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Skin"],
         cta: "Book a consult",
+        ctaPage: bookFor("aesthetics", "consult"),
         link: "Skin care notes",
         linkPage: "notes",
       },
@@ -464,6 +486,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Medical first"],
         cta: "Book a consult",
+        ctaPage: bookFor("aesthetics", "consult"),
         link: "Family Medicine",
         linkPage: "family",
       },
@@ -478,6 +501,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Consult"],
         cta: "Book a consult",
+        ctaPage: bookFor("aesthetics", "consult"),
         link: "Our approach",
         linkPage: "about",
       },
@@ -532,6 +556,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Physio", "Direct billing"],
         cta: "Book an assessment",
+        ctaPage: bookFor("rehab", "assessment"),
         link: "Pain Centre",
         linkPage: "pain",
       },
@@ -546,6 +571,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Physio"],
         cta: "Book an assessment",
+        ctaPage: bookFor("rehab", "assessment"),
         link: "Meet the team",
         linkPage: "team",
       },
@@ -560,6 +586,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["MVA", "No upfront cost"],
         cta: "Start an MVA claim",
+        ctaPage: bookFor("rehab", "mva"),
         link: "Refer a patient",
         linkPage: "referrals",
       },
@@ -573,7 +600,8 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
           { k: "Goal", v: "Safe, staged return" },
         ],
         tags: ["WSIB"],
-        cta: "Start a WSIB claim",
+        cta: draft("Book a WSIB visit"),
+        ctaPage: bookFor("rehab", "wsib"),
         link: "For referring doctors",
         linkPage: "referrals",
       },
@@ -588,6 +616,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         ],
         tags: ["Physio", "Chiro"],
         cta: "Book an assessment",
+        ctaPage: bookFor("rehab", "assessment"),
         link: "Headache note",
         linkPage: "notes",
       },
@@ -700,6 +729,7 @@ export const rehabCoverage: CoverageOption[] = [
       { k: "Direct billing", v: "Most insurers" },
     ],
     cta: "Book an assessment",
+    ctaPage: bookFor("rehab", "assessment"),
   },
   {
     label: "Car accident (MVA)",
@@ -712,6 +742,7 @@ export const rehabCoverage: CoverageOption[] = [
       { k: "Physician", v: "Assessment on site" },
     ],
     cta: "Start an MVA claim",
+    ctaPage: bookFor("rehab", "mva"),
   },
   {
     label: "Workplace injury (WSIB)",
@@ -723,7 +754,8 @@ export const rehabCoverage: CoverageOption[] = [
       { k: "Plan", v: "Return to work in stages" },
       { k: "Cost to you", v: "None" },
     ],
-    cta: "Start a WSIB claim",
+    cta: draft("Book a WSIB visit"),
+    ctaPage: bookFor("rehab", "wsib"),
   },
   {
     label: "Paying myself",
@@ -736,6 +768,7 @@ export const rehabCoverage: CoverageOption[] = [
       { k: "Receipts", v: "Always" },
     ],
     cta: "Book an assessment",
+    ctaPage: bookFor("rehab", "assessment"),
   },
 ];
 

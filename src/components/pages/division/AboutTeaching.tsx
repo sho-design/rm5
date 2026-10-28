@@ -5,7 +5,7 @@ import { aboutTeaching as t } from "@/content/divisions";
 /** About only: the teaching clinic block (sky tint, supervision copy, preceptor cards, placement partner logos). */
 export function AboutTeaching() {
   return (
-    <Block tone="tint" className="grid grid-cols-1 gap-8 bg-sky-soft p-6 md:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-start lg:gap-12 lg:px-12 lg:py-14">
+    <Block id="teaching" tone="tint" className="scroll-mt-24 grid grid-cols-1 gap-8 bg-sky-soft p-6 md:p-10 lg:grid-cols-[1.1fr_1fr] lg:items-start lg:gap-12 lg:px-12 lg:py-14">
       <div className="flex flex-col gap-[18px]">
         <Eyebrow tone="sky">{t.eyebrow}</Eyebrow>
         <Display size="xs">{t.title}</Display>

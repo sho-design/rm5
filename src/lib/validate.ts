@@ -6,7 +6,8 @@ export type FormErrors = Record<string, string>;
 
 const labelFor = (form: HTMLFormElement, id: string) => {
   const raw = form.querySelector(`label[for="${CSS.escape(id)}"]`)?.textContent ?? "";
-  return raw.replace(/\s*\(optional\)\s*/i, "").trim();
+  // "Your phone" becomes "phone" so messages read "Add your phone." rather than "Add your your phone."
+  return raw.replace(/\s*\((optional|required)\)\s*/i, "").replace(/^(your|their)\s+/i, "").trim();
 };
 
 /**

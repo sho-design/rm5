@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Block, Button, Display, Photo, SmartLink } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import { bookFor } from "@/lib/routes";
 import { locationsCopy } from "@/content/about";
 import { wayfindingCopy } from "@/content/patient-help";
 import { site } from "@/content/site";
@@ -162,11 +163,13 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
                   <span className="text-[13px] leading-[1.45] text-muted">{s.tag}</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-3 px-1 text-[14px] font-semibold">
-                  <Button to="book" variant="secondary" size="sm" className="h-auto px-5 py-[11px] text-[14px]">
+                  <Button to={bookFor(s.key)} variant="secondary" size="sm" className="h-auto px-5 py-[11px] text-[14px]">
                     {c.book}
+                    <span className="sr-only"> {s.label}</span>
                   </Button>
                   <SmartLink to={s.key} className="text-link">
-                    {c.learn} ›
+                    {c.learn}
+                    <span className="sr-only"> about {s.label}</span> ›
                   </SmartLink>
                 </div>
               </div>

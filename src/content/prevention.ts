@@ -1,4 +1,5 @@
 import type { LinkTarget } from "./types";
+import { bookFor } from "@/lib/routes";
 
 export interface NumberCard {
   name: string;
@@ -77,7 +78,7 @@ export const numbers: NumberCard[] = [
     ifHigh: "Often dehydration or smoking. We repeat the test.",
     often: "With your regular bloodwork.",
     cta: "Book bloodwork",
-    page: "book",
+    page: bookFor("family", "bloodwork"),
   },
   {
     name: "A1c",
@@ -95,7 +96,7 @@ export const numbers: NumberCard[] = [
     ifHigh: "6.0 to 6.4 is prediabetes; 6.5 and up is diabetes. We build a plan around food, movement and, if needed, medication.",
     often: "Every 3 years from 40, yearly if prediabetic.",
     cta: "Book a checkup",
-    page: "book",
+    page: bookFor("family", "checkup"),
   },
   {
     name: "LDL cholesterol",
@@ -113,7 +114,7 @@ export const numbers: NumberCard[] = [
     ifHigh: "We calculate your 10-year risk and discuss lifestyle first, then medication if the risk warrants it.",
     often: "Every 3 to 5 years from 40, sooner with family history.",
     cta: "Book a checkup",
-    page: "book",
+    page: bookFor("family", "checkup"),
   },
   {
     name: "Blood pressure",
@@ -131,7 +132,7 @@ export const numbers: NumberCard[] = [
     ifHigh: "We confirm with home readings, then lifestyle and medication if it stays up.",
     often: "Every visit, at least every 2 years.",
     cta: "Book a visit",
-    page: "book",
+    page: bookFor("family", "concern"),
   },
   {
     name: "Vitamin D",
@@ -149,7 +150,7 @@ export const numbers: NumberCard[] = [
     ifHigh: "Rare, from over-supplementing. We adjust the dose.",
     often: "Not routinely covered by OHIP. Once, or with bone or muscle concerns.",
     cta: "Ask at your visit",
-    page: "book",
+    page: bookFor("family", "checkup"),
   },
   {
     name: "TSH",
@@ -167,7 +168,7 @@ export const numbers: NumberCard[] = [
     ifHigh: "May mean an underactive thyroid, common and treatable with a daily tablet.",
     often: "With symptoms, or yearly if on thyroid medication.",
     cta: "Book bloodwork",
-    page: "book",
+    page: bookFor("family", "bloodwork"),
   },
 ];
 

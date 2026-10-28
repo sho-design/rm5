@@ -169,5 +169,6 @@ export const popularSearches: { label: string; page: string }[] = [
   { label: "New patients", page: "register" },
   { label: "Hours & directions", page: "locations" },
   { label: "Our team", page: "team" },
-  { label: "Pricing", page: "infusionPricing" },
+  { label: "Prescription renewals", page: "rx" },
+  { label: "Pricing", page: "fees" },
 ];

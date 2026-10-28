@@ -1,4 +1,5 @@
 import type { LinkTarget } from "./types";
+import { bookFor } from "@/lib/routes";
 
 export interface CarePathStep {
   svc: string;
@@ -41,6 +42,8 @@ export interface Season {
   p: string;
   cta: string;
   page: LinkTarget;
+  /** Where the season's button books (defaults to /book). */
+  book?: LinkTarget;
   bg: string;
 }
 
@@ -73,7 +76,7 @@ export const carePaths: CarePath[] = [
     label: "Low energy",
     outcome: "One chart, one team: the doctor who orders the test is the one who reads it and books the fix.",
     cta: "Start with a visit",
-    page: "family",
+    page: bookFor("family", "concern"),
     steps: [
       { svc: "Family Medicine", time: "Week 1", t: "Visit and bloodwork", d: "Ferritin, thyroid, B12 and sugars drawn on site.", page: "family", link: "Family Medicine" },
       { svc: "Family Medicine", time: "Day 3", t: "Results, explained", d: "A call or results visit. If iron is low and tablets are not right, we book step three.", page: "numbers", link: "Know your numbers" },
@@ -97,7 +100,7 @@ export const carePaths: CarePath[] = [
     label: "After a car accident",
     outcome: "You focus on recovering. We handle the OCF forms, the insurer and the reports.",
     cta: "Start an MVA claim",
-    page: "rehab",
+    page: bookFor("rehab", "mva"),
     steps: [
       { svc: "Family Medicine", time: "Day 1 to 3", t: "Physician assessment", d: "Injuries documented, imaging ordered if needed.", page: "family", link: "Family Medicine" },
       { svc: "Rehab & Recovery", time: "Day 3", t: "Claim opened", d: "We complete OCF-18 and 23 and bill your insurer directly.", page: "rehab", link: "Coverage checker" },
@@ -109,7 +112,7 @@ export const carePaths: CarePath[] = [
     label: "Turning 50",
     outcome: "One checkup sets up a decade of quiet prevention, with reminders so you never track it alone.",
     cta: "Book a checkup",
-    page: "year",
+    page: bookFor("family", "checkup"),
     steps: [
       { svc: "Family Medicine", time: "This month", t: "Preventive checkup", d: "Blood pressure, cholesterol, sugars, and a screening plan.", page: "family", link: "Family Medicine" },
       { svc: "Family Medicine", time: "This month", t: "Screening kit and requisitions", d: "FIT test, mammogram or PSA conversation, bloodwork on site.", page: "year", link: "Your year" },
@@ -121,7 +124,7 @@ export const carePaths: CarePath[] = [
     label: "Skin that looks tired",
     outcome: "Medical causes are ruled out first, then the lightest cosmetic step that fits, with prices in writing.",
     cta: "Book a consult",
-    page: "aesthetics",
+    page: bookFor("aesthetics", "consult"),
     steps: [
       { svc: "Family Medicine", time: "Week 1", t: "Rule out the medical", d: "Thyroid, iron and sleep can all show on the skin. Bloodwork on site.", page: "family", link: "Family Medicine" },
       { svc: "Medical Aesthetics", time: "Week 1", t: "Complimentary consult", d: "Skin assessment and a written plan with prices.", page: "aesthetics", link: "How we think" },
@@ -157,7 +160,7 @@ export const familyTiles: FamilyTile[] = [
 
 export const quickActions: QuickAction[] = [
   { label: "Book an appointment", sub: "Any service, Thornhill", page: "book", icon: ["M4 6h16v14H4z", "M4 10h16", "M8 3v4", "M16 3v4"] },
-  { label: "Renew a prescription", sub: "Existing patients", page: "family", icon: ["M6 3h9l3 3v15H6z", "M9 12h6", "M12 9v6"] },
+  { label: "Renew a prescription", sub: "Existing patients", page: "/family-medicine/prescription-renewals#request", icon: ["M6 3h9l3 3v15H6z", "M9 12h6", "M12 9v6"] },
   { label: "Refer a patient", sub: "For referring doctors", page: "referrals", icon: ["M5 12h12", "M13 7l5 5-5 5"] },
   {
     label: "Join the Maple waitlist",
@@ -175,6 +178,7 @@ export const seasons: Season[] = [
     p: "Flu shots, back-to-school checkups and a good time to review chronic care plans before winter.",
     cta: "Book a flu shot",
     page: "family",
+    book: bookFor("family", "flu"),
     bg: "#FFE58A",
   },
   {
