@@ -91,7 +91,12 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [who, setWho] = useState(0);
   /** -1 until chosen: no default, so a rushed self-payer cannot send "insurance" by accident. */
   const [payment, setPayment] = useState(-1);
+  /** 0 English, 1 Tiếng Việt, 2 another language (named in a text box). */
   const [language, setLanguage] = useState(0);
+  /** Results and follow-ups: 0 at the clinic, 1 by phone, 2 by video. */
+  const [mode, setMode] = useState(0);
+  /** This tab already booked (Back then Forward remounts the page on an empty form). Only a flag, no details. */
+  const [bookedBefore, setBookedBefore] = useState(false);
   /** 0 Ontario health card, 1 card from another province, 2 no health card. */
   const [card, setCard] = useState(0);
   /** Province or territory of a card from another province ("" until chosen). */
@@ -134,6 +139,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     if (why) setReason(why);
     // Links from children's pages pass &for=someone: the booking is for a child, not the parent.
     if (params.get("for") === "someone") setForOther(1);
+    try {
+      setBookedBefore(sessionStorage.getItem("rm-booked") === "1");
+    } catch {
+      /* storage blocked: no notice */
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [services]);
 
@@ -154,7 +164,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   useEffect(() => {
     setDayIdx(0);
     setSlot(null);
-  }, [visit?.key]);
+    setMode(0);
+    // Follow-ups and procedures are for people already seen here.
+    if (visit?.existing) setWho(1);
+  }, [visit?.key, visit?.existing]);
+  const languageName = language === 2 ? str("languageOther") || x.otherLanguage : registerLanguages[language];
   const slots = useMemo(() => day?.slots ?? [], [day]);
   const baseCoverage = visit?.coverage ?? (visit?.payment ? (payment === 1 && visit.selfPay ? visit.selfPay : payments[payment]?.coverage) : service.coverage) ?? bookingCoverageFallback;
   // Without an Ontario health card, OHIP does not pay: never show "OHIP-insured" on their booking.
@@ -183,7 +197,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     ...(visit?.fasting && slot != null ? [slot < 10 ? x.fastingBooked : config.fasting.late] : []),
     ...(visit?.fastingMaybe && slot != null && slot < 10 ? [`${x.fastingIf} ${x.fastingBooked}`] : []),
     ...(who === 0 ? [config.firstVisit] : []),
-  ];
+  ].map((l) => (forOther ? l.replace(/^(?:Your )?(Ontario )?health card/i, (_m, on: string | undefined) => `Their ${on ?? ""}health card`) : l));
 
   const claimDetails = () => {
     if (!visit?.claim) return undefined;
@@ -208,7 +222,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     forSomeoneElse: forOther === 1,
     patient: forOther ? { first: str("patientFirst"), last: str("patientLast"), relationship: str("relationship") } : null,
     who: bookingWho[who],
-    language: registerLanguages[language],
+    language: languageName,
+    mode: visit?.modes ? x.modes[mode] : null,
     healthCard: card === 1 && province ? `${x.card.options[1]}: ${province}` : x.card.options[card],
     reason: reason || null,
     day: day ? day.iso : null,
@@ -256,6 +271,13 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     // "Just taken" only when the booking system says so (HTTP 409); any other failure offers a retry.
     setFailed(!res.ok && !res.taken);
     setState(res.ok ? "c" : "e");
+    if (res.ok) {
+      try {
+        sessionStorage.setItem("rm-booked", "1");
+      } catch {
+        /* storage blocked */
+      }
+    }
   };
 
   const waitlist = async () => {
@@ -267,6 +289,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   };
 
   const reset = () => {
+    setBookedBefore(false);
     setState(1);
     setSlot(null);
     setFailed(false);
@@ -291,7 +314,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     [x.review.keys.service, serviceLine],
     ...(forOther ? ([[x.review.keys.for, [patientName ? `${patientName}.` : "", str("relationship") ? x.youAreTheir(str("relationship")) : ""].filter(Boolean).join(" ")]] as [string, string][]) : []),
     [x.review.keys.status, bookingWho[who]],
-    [registerCopy.fields.language, registerLanguages[language]],
+    [registerCopy.fields.language, languageName],
+    ...(visit?.modes ? ([[x.modeLabel, x.modes[mode]]] as [string, string][]) : []),
     [x.card.label, card === 0 && str("card") ? `${x.card.options[0]}, ${x.card.endsIn} ${str("card")}` : card === 1 && province ? `${x.card.options[1]}: ${province}` : x.card.options[card]],
     [x.review.keys.time, slotLabel],
     [x.review.keys.clinic, bookingCopy.clinic],
@@ -340,6 +364,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
           <Panel>
             <form method="post" onSubmit={onDetails} onInput={onInput} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
               <Steps state={state} className="hidden lg:flex" />
+              {bookedBefore ? (
+                <p role="status" className="rounded-row border border-border bg-white px-4 py-3 text-[13px] leading-[1.5] text-secondary">
+                  {linkPhones(`${x.alreadyBooked} ${site.phone}.`)}
+                </p>
+              ) : null}
               <h2 ref={setReveal} tabIndex={-1} className="scroll-mt-20 text-[13px] font-semibold outline-none md:font-display md:text-[26px] md:font-medium md:tracking-[-.02em]">
                 {bookingCopy.step1Title}
               </h2>
@@ -360,6 +389,12 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                     </PillChip>
                   ))}
                 </div>
+                {visit?.modes ? (
+                  <div className="flex flex-col gap-2 pt-1">
+                    <GroupLabel>{x.modeLabel}</GroupLabel>
+                    <Choice options={[...x.modes]} value={mode} onChange={setMode} ariaLabel={x.modeLabel} />
+                  </div>
+                ) : null}
                 {visit?.hint ? (
                   <p className="text-[13px] leading-[1.5] text-secondary">
                     {visit.hint.text}{" "}
@@ -370,7 +405,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                     ) : null}
                   </p>
                 ) : null}
-                {service.note ? (
+                {service.note && !visit?.noServiceNote ? (
                   <div className="flex flex-col gap-2 rounded-row bg-[color:var(--div-pain)] px-4 py-3.5 text-[13px] leading-[1.5] text-ink">
                     <span>{service.note.text}</span>
                     {service.note.action && service.note.switchTo ? (
@@ -402,8 +437,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               </div>
               <div className="flex flex-col gap-2">
                 <GroupLabel>{registerCopy.fields.language}</GroupLabel>
-                <Choice options={registerLanguages} value={language} onChange={setLanguage} ariaLabel={registerCopy.fields.language} />
+                <Choice options={[...registerLanguages, x.otherLanguage]} value={language} onChange={setLanguage} ariaLabel={registerCopy.fields.language} />
                 {language === 1 ? <span className="text-[12px] text-muted">{x.languageHint}</span> : null}
+                {language === 2 ? field("languageOther", x.otherLanguageField, { autoComplete: "off" }, { hint: x.otherLanguageHint }) : null}
               </div>
 
               {forOther ? (
@@ -543,6 +579,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
             <span className="sr-only" aria-live="polite">
               {day && day.open ? x.timesFor(`${day.dow} ${MON[day.date.getMonth()]} ${day.num}`, slots.length) : ""}
             </span>
+            {day && day.open ? (
+              <span aria-hidden className="text-[13px] font-semibold text-secondary">
+                {x.timesOn(`${day.today ? x.todayShort : day.dow} ${MON[day.date.getMonth()]} ${day.num}`)}
+              </span>
+            ) : null}
             {day && !day.open ? (
               <div role="status" className="flex flex-col gap-2 rounded-row border border-border bg-white p-4 text-[13px] leading-[1.5] text-muted md:p-6 md:text-[14px]">
                 <span className="font-semibold text-primary">{bookingCopy.closedTitle}</span>
@@ -654,16 +695,23 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.confirmed.service}>
                   <span className="text-[16px] font-semibold">{service.label}</span>
-                  {visit ? <span className="text-[13px] text-muted">{visit.label}</span> : null}
+                  {/* With the reason carried from the page ("Perimenopause and menopause"), as on the review. */}
+                  {visit ? <span className="text-[13px] text-muted">{reason ? `${visit.label} (${reason})` : visit.label}</span> : null}
                 </OutcomeTile>
                 <OutcomeTile k={bookingCopy.confirmed.when}>
                   <span className="text-[16px] font-semibold">{slotLabel}</span>
                   {forOther && patientName ? <span className="text-[13px] text-muted">{`${x.confirmed.for} ${patientName}`}</span> : null}
-                  <span className="text-[13px] text-muted">{`${registerCopy.fields.language}: ${registerLanguages[language]}`}</span>
+                  <span className="text-[13px] text-muted">{`${registerCopy.fields.language}: ${languageName}`}</span>
                 </OutcomeTile>
                 <OutcomeTile k={bookingCopy.confirmed.where}>
-                  <span className="text-[16px] font-semibold">{bookingCopy.confirmed.whereValue}</span>
-                  <span className="text-[13px] text-muted">{bookingCopy.confirmed.whereSub}</span>
+                  {visit?.modes && mode > 0 ? (
+                    <span className="text-[16px] font-semibold">{x.modeWhere[mode]}</span>
+                  ) : (
+                    <>
+                      <span className="text-[16px] font-semibold">{bookingCopy.confirmed.whereValue}</span>
+                      <span className="text-[13px] text-muted">{bookingCopy.confirmed.whereSub}</span>
+                    </>
+                  )}
                 </OutcomeTile>
                 <OutcomeTile k={x.confirmed.coverage}>
                   <span className="text-[16px] font-semibold">{coverage}</span>

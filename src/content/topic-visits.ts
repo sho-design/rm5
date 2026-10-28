@@ -15,8 +15,9 @@ export const topicVisit: Record<string, string> = {
   aesPricing: "consult",
   aesPhotos: "consult",
   aesGift: "consult",
-  rehabPhysio: "physio",
-  rehabChiro: "chiro",
+  // Their buttons say "Book an assessment": a first visit with physio or chiro.
+  rehabPhysio: "assessment",
+  rehabChiro: "assessment",
   rehabMassage: "massage",
   rehabKines: "kines",
   rehabMva: "mva",
@@ -25,7 +26,8 @@ export const topicVisit: Record<string, string> = {
   rehabBring: "assessment",
   rehabHome: "assessment",
   rx: "concern",
-  labs: "bloodwork",
+  // Lab results: "Book a visit" is to go over results, not a new draw.
+  labs: "results",
   vaccines: "vaccine",
   pregnancy: "pregnancy",
 };

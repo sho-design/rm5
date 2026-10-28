@@ -513,6 +513,8 @@ const rehab: Topic[] = [
     lead: svc(RD, 2).desc,
     description: fit(`Massage therapy in Thornhill. ${svc(RD, 2).desc}`, "Direct billing to most insurers, part of one rehab plan."),
     ...rehabHero,
+    // The shared rehab button says "Book an assessment", which reads as physio or chiro here.
+    cta: draft("Book a massage"),
     img: images.services.rehab[2],
     imgAlt: draft("Registered massage therapist treating a patient's shoulder"),
     glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Massage therapy"), directBilling] },

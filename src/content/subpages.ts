@@ -173,6 +173,7 @@ export const menOptions: SubChooserItem[] = [
       { k: "Also", v: "Partner testing arranged" },
     ],
     cta: "Book a confidential visit",
+    visit: "concern",
   },
 ];
 

@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (90 simulated patients)
+# Usability test, 28 October 2026 (110 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -359,6 +359,70 @@ Average ease 5.4, trust 5.5 (round 5: 5.2 and 5.4). All 20 finished the main boo
 - **Booking two people:** the site cannot book two people at once; say "book each person, or call" if that is the policy (Anh).
 - **Vietnamese pages:** the footer and FAQ promise Tiếng Việt; the translation is still off (Tuan).
 - **Dark mode:** still off until the dark theme is finished (Dev).
+
+## Round 8: 20 testers, harder areas
+
+Run about 9:20am on a Wednesday (clinic open). Areas: same-day sick visit as a non-patient, menopause, diabetes, a caregiver for a parent with dementia, Sun Life physio at 1024px, migraine injections, search with typos on a slow phone, largest text on an iPhone SE, a 16 year old, B12 shots, phone and video visits, a skeptic checking credentials, two children's vaccines, a Pain Centre follow-up, a records transfer, a men's physical, the weight program, a massage gift, a UX designer's tour, and a female clinician and Arabic.
+
+| Tester | Device | Ease /7 | Trust /7 | Failed |
+|---|---|---|---|---|
+| Bao, sore throat, not a patient | iPhone 12 | 5 | 6 | 0 |
+| Carol, menopause | Desktop | 6 | 6 | 0 |
+| Femi, diabetes | Galaxy S9+ | 5 | 6 | 0 |
+| Gloria, caregiver | iPad | 5 | 6 | 0 |
+| Hiro, Sun Life physio | Desktop 1024 | 6 | 5 | 0 |
+| Ines, migraine | Pixel 7 | 4 | 6 | Botox for migraine |
+| Jamal, search, slow phone | Moto G4 | 5 | 6 | 0 |
+| Kim, 74, largest text | iPhone SE | 5 | 4 | 0 |
+| Leo, 16 | iPhone 13 | 5 | 4 | 0 |
+| Maria, B12 | Galaxy S8 | 5 | 4 | B12 coverage |
+| Nina, phone or video visit | Desktop | 4 | 5 | Messaging a doctor |
+| Oscar, skeptic | Desktop 1920 | 5 | 4 | 0 |
+| Phuong, two children's vaccines | iPhone 12 | 6 | 6 | 0 |
+| Raj, Pain Centre follow-up | Pixel 5 | 4 | 5 | RFA for patients |
+| Susan, records transfer | Desktop | 5 | 4 | 0 |
+| Tam, men's physical | iPhone 14 Pro Max | 6 | 6 | 0 |
+| Ursula, weight program | iPhone 15 | 4 | 5 | Program cost |
+| Vince, massage gift | Desktop | 4 | 6 | 0 |
+| Wendy, UX tour | Galaxy S9+ | 6 | 5 | 0 |
+| Yusuf, booking for his wife | Pixel 7 | 5 | 5 | 0 |
+
+Average ease 5.0, trust 5.2. Every booking and form was finished; 19 of 20 would use the site again (Maria: maybe). All five failed tasks were missing clinic information.
+
+### Round 8 findings fixed in code
+
+- Booking buttons book the right visit: massage pages say "Book a massage" and book massage (Vince); physio and chiro "Book an assessment" book an initial assessment (Wendy); Lab results books the new "Results or follow-up" visit (Nina); the men's "Book a confidential visit" books a health concern, not an annual physical (Jamal).
+- New "Results or follow-up" visit with "How would you like the visit?": at the clinic, by phone or by video, as the FAQ already offers to existing patients. The review and confirmation say "By phone. We call you at the number you gave us." or the video line (Nina).
+- Pain Centre follow-up and procedure visits start on "Existing patient" and no longer show the referral note (Raj).
+- Vaccine bookings no longer say "OHIP-insured" (shingles is funded only 65 to 70); they use the vaccines page line (Kim).
+- Preferred language has "Another language" with a box and an interpreter note (Yusuf).
+- The confirmation keeps the reason ("A health concern (Perimenopause and menopause)") (Carol), says "Their Ontario health card" when booking for someone else (Yusuf), and massage brings "Comfortable clothing." instead of the physio clothing tip (Vince). The no-reminder line says email only and no longer says "You chose not to get reminders" (Leo, Jamal).
+- Review reads "Your relationship: husband." and the hint lists spouse (Yusuf, Vince).
+- "Times on Thu Oct 29" above the times, so at larger text they do not look like Tuesday's (Kim).
+- Back then Forward after booking shows "You booked an appointment in this tab..." instead of a blank form, so nobody books twice. Only a flag is kept in the tab, no details (Wendy).
+- Largest text on a small phone: the header shows the R tile only, so search and the menu button fit (Kim).
+- Know your numbers opens on the number in the link (#a1c); chronic care links to A1c (Femi).
+- Search: "std test" finds Men's health; "dementia", "senior", "caregiver" find Chronic care; "facet" and "radiofrequency" find Back and neck; "migraine" finds Nerve blocks; "physio price" finds Physiotherapy; "anxiety" finds Family Medicine and Children and youth. Menu result rows show a description, not "Explore". The browser's clear button no longer covers long queries (Jamal, Leo, Gloria, Raj, Ines).
+- Standards says "Nine commitments", counted from the list (Oscar).
+- About menu: the second FAQ link is now Fees (Wendy).
+- What's new stacks on phones instead of cutting off mid-word (Bao).
+
+### Round 8 findings for the clinic
+
+- **Online services:** is there a patient portal or online messaging? Several pages mention "the portal" with no link (Nina).
+- **Prices:** sick notes, records transfer, B12 shot (and whether a prescribed one is covered), drips, the weight program, shingles after 70, massage length and HST (Bao, Susan, Maria, Ursula, Kim, Vince).
+- **Weight program:** whether it includes medication such as GLP-1; it sits under Infusion Therapy and reads like drips (Ursula).
+- **Migraine:** whether Botox for migraine or headache procedures are offered to patients, and under which division (Ines).
+- **Pain Centre:** patient information on facet injections and RFA, when to follow up, and driving home (one page says most people drive, the nerve block note says arrange a ride) (Raj).
+- **Women's care:** whether a female clinician can be requested, and whether women's health day covers a concern or only testing (Yusuf, Carol).
+- **Consent:** what a caregiver or substitute decision-maker needs to speak for a patient; what parents can see of a teen's care, and "part of every teen visit is private" vs "attend alone" (Gloria, Leo).
+- **Privacy:** a named Privacy Officer with their own email; records transfer steps and consent form (Susan).
+- **Team and story:** CPSO numbers, Dr. Truong's bio, the portrait placeholder, Woodbridge vs Maple, the award chip that does not match the bio, the 10+ / ten / 11 years and the story timeline (Oscar).
+- **Drips:** "we list what is in the bag and the dose" vs doses at the consult; "No fixed menu" under a menu of 12; define Established, Supported, Emerging (Oscar, Marco).
+- **Direct billing:** a list of insurers billed directly, for example Sun Life (Hiro).
+- **Fasting:** a plain answer for a first physical, and a caution for people on diabetes medication; an A1c target for people with diabetes (Tam, Femi).
+- **Same-day:** the Family Medicine menu says "Same-day" while the card says "Same-week visit" (Bao).
+- **Content gaps:** teen page written to teens, older adults and caregivers, headache and migraine, gift cards for massage.
 
 ## What worked
 

@@ -124,9 +124,10 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
           placeholder={mobile || narrow ? copy.placeholderShort : copy.placeholder}
           aria-label={copy.label}
           aria-controls="search-results"
+          // The browser clear (x) sat over the end of long queries; Esc and Close already clear.
           enterKeyHint="search"
           autoComplete="off"
-          className={cn("min-w-0 flex-1 bg-transparent text-[16px] outline-none", !mobile && "md:text-[18px]")}
+          className={cn("min-w-0 flex-1 bg-transparent text-[16px] outline-none [&::-webkit-search-cancel-button]:hidden", !mobile && "md:text-[18px]")}
         />
         <button type="button" onClick={onClose} aria-label={copy.closeLabel} className="hidden rounded-[8px] border border-border px-2.5 py-1.5 text-[13px] font-semibold text-muted pointer-fine:inline-flex">
           Esc

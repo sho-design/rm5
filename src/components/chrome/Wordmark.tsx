@@ -8,7 +8,7 @@ export function Wordmark({ size = "md", inverse, className }: { size?: "sm" | "m
   return (
     <Link href="/" aria-label="Restoration Medical home" className={cn("flex items-center gap-2.5", className)}>
       <span className={cn("flex items-center justify-center font-display font-medium", tile, inverse ? "bg-white text-ink" : "bg-ink text-white")}>R</span>
-      <span className={cn("whitespace-nowrap font-semibold tracking-[-.02em]", text)}>Restoration Medical</span>
+      <span className={cn("rm-wordmark-text whitespace-nowrap font-semibold tracking-[-.02em]", text)}>Restoration Medical</span>
     </Link>
   );
 }

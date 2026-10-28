@@ -281,7 +281,8 @@ export const storyPage = {
 export const standardsPage = {
   crumb: "Standards of care",
   title: "The rules we hold ourselves to.",
-  lead: "Eight commitments that apply in every room, whether the visit is OHIP-insured or elective. Reviewed each September by the Medical Director.",
+  // The count follows the list (the prototype said "Eight" over nine items).
+  lead: `${["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"][standardsList.length] ?? standardsList.length} commitments that apply in every room, whether the visit is OHIP-insured or elective. Reviewed each September by the Medical Director.`,
   colleges: [
     { k: "Physicians", v: "Registered with the College of Physicians and Surgeons of Ontario (CPSO). Verify any physician at cpso.on.ca." },
     { k: "Nurses", v: "Registered with the College of Nurses of Ontario (CNO). IV and injection competencies renewed yearly." },

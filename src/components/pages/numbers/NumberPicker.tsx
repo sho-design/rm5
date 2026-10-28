@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { NumberCard } from "@/content/prevention";
 import { Button } from "@/components/ui";
 import { cn } from "@/lib/cn";
@@ -12,6 +12,12 @@ import { cn } from "@/lib/cn";
  */
 export function NumberPicker({ numbers }: { numbers: NumberCard[] }) {
   const [pick, setPick] = useState(0);
+  // #a1c, #ferritin...: links from a condition (chronic care, diabetes) open on that number.
+  useEffect(() => {
+    const want = decodeURIComponent(window.location.hash.slice(1)).toLowerCase();
+    const i = want ? numbers.findIndex((n) => n.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") === want) : -1;
+    if (i > 0) setPick(i);
+  }, [numbers]);
   const num = numbers[pick] ?? numbers[0];
   return (
     <div className="grid grid-cols-1 items-start gap-block px-0 pt-8 md:px-content md:pt-10 lg:grid-cols-[320px_1fr]">

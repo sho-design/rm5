@@ -318,7 +318,8 @@ export const divisions: Record<NavKey, Division> = {
     more: [
       { label: "Patient forms", page: "forms" },
       { label: "Insurance & billing", page: "billing" },
-      { label: "FAQ", page: "faq" },
+      // FAQ is already under Explore; this column gets the fees list instead.
+      { label: "Fees", page: "fees" },
       { label: "Privacy", page: "privacy" },
       { label: "Accessibility", page: "accessibility" },
     ],

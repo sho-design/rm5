@@ -206,6 +206,8 @@ export interface SubChooserItem {
   p: string;
   facts: Fact[];
   cta: string;
+  /** Booking visit key when this option is not the page's usual visit (sexual health is not an annual physical). */
+  visit?: string;
 }
 
 export interface PathStep {

@@ -40,6 +40,12 @@ export interface BookingVisit {
   selfPay?: string;
   /** Only bookable on set days: "womensday" = the last Sunday of the month. */
   days?: "womensday";
+  /** For people already seen here: starts on "Existing patient". */
+  existing?: boolean;
+  /** Can be in clinic, by phone or by video (FAQ: follow-ups, results and renewals with existing patients). */
+  modes?: boolean;
+  /** Hide the service note (the Pain Centre referral note does not apply to follow-ups). */
+  noServiceNote?: boolean;
 }
 
 export interface BookingService {
@@ -96,6 +102,8 @@ const menuLabel = (k: DivisionKey, l: string) => {
 const bring = bookingCopy.confirmed.bringValue;
 const familyBring = approved(bring, "Ontario health card, medication list, any recent results.");
 const healthCard = draft("Your Ontario health card.");
+// Shingles is only publicly funded 65 to 70: never promise "OHIP-insured" on a vaccine booking.
+const vaccineCoverage = draft("Publicly funded vaccines are free with your Ontario health card. We tell you before the visit if one is not.");
 
 const [insured, mva, wsib, selfPay] = rehabCoverage;
 const rehabWear = faqA("rehab", "What should I wear?");
@@ -121,10 +129,12 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
     visits: [
       { key: "concern", label: draft("A health concern"), bring: [familyBring] },
       { key: "checkup", label: menuLabel("family", "Annual physical"), bring: [familyBring], fastingMaybe: true },
+      // Phone and video visits are for existing patients (FAQ "Do you offer phone or video visits?").
+      { key: "results", label: draft("Results or follow-up"), bring: [familyBring], existing: true, modes: true },
       { key: "bloodwork", label: draft("Bloodwork or ECG"), bring: [draft("Your Ontario health card, and your requisition if another clinic wrote one.")], fasting: true },
       // One visit can cover several vaccines: "Vaccines, including flu" for more than one, "Flu shot only" for just the flu shot.
       { key: "flu", label: draft("Flu shot only"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
-      { key: "vaccine", label: draft("Vaccines, including flu"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
+      { key: "vaccine", label: draft("Vaccines, including flu"), coverage: vaccineCoverage, bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
       { key: "pregnancy", label: draft("Pregnancy care"), bring: [familyBring] },
       { key: "womensday", label: womensHealthDay.visitLabel, bring: [womensHealthDay.bring], days: "womensday" },
       { key: "forms", label: draft("A form or note"), coverage: uninsured, bring: [`${fact(resultsFact("family", formsTitle), "Bring")}.`, healthCard] },
@@ -145,8 +155,8 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
     },
     visits: [
       { key: "referral", label: draft("First visit with a referral"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")] },
-      { key: "followup", label: menuLabel("pain", "Follow-up visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")] },
-      { key: "procedure", label: menuLabel("pain", "Procedure visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")] },
+      { key: "followup", label: menuLabel("pain", "Follow-up visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")], existing: true, noServiceNote: true },
+      { key: "procedure", label: menuLabel("pain", "Procedure visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")], existing: true, noServiceNote: true },
     ],
   },
   infusion: {
@@ -178,7 +188,8 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
       { key: "assessment", label: menuLabel("rehab", "Initial assessment"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay, hint: { text: draft("Your first visit with physio or chiro. Choose this if you are new to rehab here.") } },
       { key: "physio", label: menuLabel("rehab", "Physiotherapy"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
       { key: "chiro", label: menuLabel("rehab", "Chiropractic"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
-      { key: "massage", label: menuLabel("rehab", "Massage therapy"), bring: [rehabWear], payment: true, selfPay: massageSelfPay },
+      // The rehab "what to wear" answer is about knee, hip and shoulder treatment, not massage.
+      { key: "massage", label: menuLabel("rehab", "Massage therapy"), bring: [draft("Comfortable clothing.")], payment: true, selfPay: massageSelfPay },
       { key: "kines", label: menuLabel("rehab", "Kinesiology"), bring: [rehabWear], payment: true },
       {
         key: "mva",

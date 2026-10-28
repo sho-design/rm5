@@ -25,7 +25,7 @@ export const bookingExtra = {
   fastingBooked: draft("Fast 8 to 12 hours before your visit. Nothing to eat after midnight, water is fine. Take your usual medications unless your doctor said otherwise."),
   fastingIf: draft("If your doctor asked for fasting bloodwork with this visit:"),
   /** Review line for someone else's booking: "Thu Tran. You are their daughter." */
-  youAreTheir: (relationship: string) => draft(`You are their ${relationship.toLowerCase()}.`),
+  youAreTheir: (relationship: string) => draft(`Your relationship: ${relationship.toLowerCase()}.`),
   visitTitle: draft("What is the visit for?"),
   forTitle: draft("Who is this appointment for?"),
   forOptions: [draft("Me"), draft("Someone I care for")] as const,
@@ -38,7 +38,7 @@ export const bookingExtra = {
     patientFirst: draft("Their first name"),
     patientLast: draft("Their last name"),
     relationship: draft("Your relationship to them (optional)"),
-    relationshipHint: draft("For example parent, adult child or caregiver."),
+    relationshipHint: draft("For example parent, spouse, adult child or caregiver."),
     first: draft("Your first name"),
     last: draft("Your last name"),
     cardSomeoneElse: draft("Their Ontario health card, last 4 digits (optional)"),
@@ -78,6 +78,18 @@ export const bookingExtra = {
   updates: draft("Send me clinic updates by email. Optional, unsubscribe any time. See our "),
   closedShort: draft("Closed"),
   todayShort: draft("Today"),
+  /** Shown above the times, so the times read as belonging to the chosen day (the day strip wraps at larger text). */
+  timesOn: (day: string) => draft(`Times on ${day}`),
+  /** Phone and video visits (results and follow-ups). */
+  modeLabel: draft("How would you like the visit?"),
+  modes: [draft("At the clinic"), draft("By phone"), draft("By video")] as const,
+  modeWhere: [null, draft("By phone. We call you at the number you gave us."), draft("By video. We email you a link before the visit.")] as const,
+  /** Third language choice, with a box to name it. */
+  otherLanguage: draft("Another language"),
+  otherLanguageField: draft("Which language?"),
+  otherLanguageHint: draft("Tell us and we will arrange an interpreter where we can."),
+  /** Shown when this tab already booked and the page was opened again with Back or Forward. */
+  alreadyBooked: draft("You booked an appointment in this tab. Your confirmation is in your email. To change it, call us."),
   /** Read out (not shown) when the day changes, so screen reader users know the times changed. */
   timesFor: (day: string, n: number) => (n === 1 ? draft(`1 time on ${day}.`) : draft(`${n} times on ${day}.`)),
   review: {
@@ -104,7 +116,8 @@ export const bookingExtra = {
     changeTime: draft("Change time"),
   },
   confirmed: {
-    noReminders: draft("A confirmation is on its way to your email and phone. You chose not to get reminders, so add the visit to your calendar."),
+    // Teens on a shared family phone asked where messages go: say email only, and no "you chose" for an unticked box.
+    noReminders: draft("A confirmation is on its way to the email you gave us. We will not send reminders, so add the visit to your calendar."),
     service: "Service",
     for: draft("For"),
     coverage: "Coverage",

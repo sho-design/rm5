@@ -187,6 +187,13 @@
 }
 
 /* Larger text: the booking date strip wraps instead of cutting off the last days. */
+/* Larger text on a small phone: the zoomed name, search and menu buttons do not fit
+   in about 260px, and the menu button was pushed off screen. Keep the R tile only
+   (the link keeps its "Restoration Medical home" label). */
+@media (max-width: 479px) {
+  :root[data-text] .rm-wordmark-text { display: none; }
+}
+
 :root[data-text] .rm-day-strip { flex-wrap: wrap; overflow-x: visible; }
 :root[data-text] .rm-day-strip > * { min-width: 64px; }
 

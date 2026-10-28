@@ -12,18 +12,6 @@ import { aliasesFor, searchExtras } from "./search-synonyms";
  * (after the "All ..." entry), one row per service card, then the
  * hand-written rows below.
  */
-// Menu rows say what the page is about (its topic lead) rather than just "Explore".
-const leadFor = (page: string) => topics.find((t) => t.key === page)?.lead;
-
-const generated: SearchEntry[] = navOrder.flatMap((k) => {
-  const d = divisions[k];
-  return [
-    { kind: "Service", label: d.label, sub: d.tag, page: k },
-    ...d.explore.slice(1).map((e) => ({ kind: d.label, label: e.label, sub: leadFor(e.page) ?? "Explore", page: e.page })),
-    ...(d.services ?? []).map((s) => ({ kind: d.label, label: s.title, sub: s.desc, page: s.page })),
-  ];
-});
-
 /** One row per topic page, infusion page and signature drip. */
 const pages: SearchEntry[] = [
   ...topics.map((t) => ({ kind: divisions[t.division].label, label: t.page, sub: t.lead, page: t.key })),
@@ -61,6 +49,19 @@ const handWritten: SearchEntry[] = [
   { kind: "Team", label: "Our team", sub: "Physicians, nurses, therapists", page: "team" },
   { kind: "Book", label: "Book an appointment", sub: "Any service", page: "book" },
 ];
+
+// Menu rows say what the page is about (its topic lead, or the hand-written row) rather than just "Explore".
+const leadFor = (page: string) => topics.find((t) => t.key === page)?.lead ?? handWritten.find((h) => h.page === page)?.sub;
+
+const generated: SearchEntry[] = navOrder.flatMap((k) => {
+  const d = divisions[k];
+  return [
+    { kind: "Service", label: d.label, sub: d.tag, page: k },
+    ...d.explore.slice(1).map((e) => ({ kind: d.label, label: e.label, sub: leadFor(e.page) ?? "Explore", page: e.page })),
+    ...(d.services ?? []).map((s) => ({ kind: d.label, label: s.title, sub: s.desc, page: s.page })),
+  ];
+});
+
 
 /** Same label and destination appear once (menu rows and page rows overlap). */
 export const searchIndex: SearchEntry[] = [...generated, ...pages, ...handWritten].filter(

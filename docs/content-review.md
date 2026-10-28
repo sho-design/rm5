@@ -173,6 +173,15 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - FAQ "Still stuck?": "We reply within 2 business days" (was "one business day", the contact form says 2).
 - Rehab menu: "WSIB and work injuries".
 
+## Usability fixes, round 8
+
+- Booking: visit "Results or follow-up"; "How would you like the visit?" with "At the clinic", "By phone", "By video"; "By phone. We call you at the number you gave us." and "By video. We email you a link before the visit." **Confirm the clinic does phone and video visits this way.**
+- Booking: "Another language", "Which language?", "Tell us and we will arrange an interpreter where we can." **Confirm interpreters.**
+- Booking: "Times on <day>", "Your relationship: <relationship>." (was "You are their ..."), relationship hint adds spouse, "Comfortable clothing." for massage, vaccine coverage "Publicly funded vaccines are free with your Ontario health card. We tell you before the visit if one is not." (same as the vaccines page), "You booked an appointment in this tab. Your confirmation is in your email. To change it, call us.", no-reminder line "A confirmation is on its way to the email you gave us. We will not send reminders, so add the visit to your calendar."
+- Massage page button: "Book a massage".
+- Standards lead: the count now follows the list ("Nine commitments").
+- About menu: "Fees" replaces the second "FAQ".
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.
