@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent, type InputHTMLAttributes, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent, type InputHTMLAttributes, type ReactNode } from "react";
 import { Button, Display, Input, Lead, SmartLink, StateCard, Textarea } from "@/components/ui";
-import { bookingConfirmLabel, bookingCopy, bookingCoverageFallback, bookingSteps, bookingTitleFor, bookingWho, type BookingState } from "@/content/booking";
+import { bookingConfirmLabel, bookingCopy, bookingCoverageFallback, bookingSteps, bookingTitleFor, bookingWho, registerCopy, registerLanguages, type BookingState } from "@/content/booking";
 import { bookingExtra as x } from "@/content/booking-extra";
 import type { BookingConfig, BookingService, BookingVisit } from "@/content/booking-visits";
 import { site } from "@/content/site";
@@ -89,6 +89,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [forOther, setForOther] = useState(0);
   const [who, setWho] = useState(0);
   const [payment, setPayment] = useState(0);
+  const [language, setLanguage] = useState(0);
   const [details, setDetails] = useState<Details>({});
   const [errors, setErrors] = useState<FormErrors>({});
   const [days, setDays] = useState<BookingDay[]>([]);
@@ -96,7 +97,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [slot, setSlot] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
-  const reveal = useRevealOnChange<HTMLElement>(state);
+  // On each step change, scroll the whole flow (so the step title stays visible) and focus the step heading.
+  const root = useRef<HTMLDivElement>(null);
+  const reveal = useRevealOnChange<HTMLElement>(state, root);
   const setReveal = (el: HTMLElement | null) => {
     reveal.current = el;
   };
@@ -135,6 +138,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     ...(visit?.bring ?? []),
     ...(visit?.payment ? (payments[payment]?.bring ?? []) : []),
     ...(visit?.fasting && slot != null ? [slot < 10 ? config.fasting.early : config.fasting.late] : []),
+    ...(visit?.fastingMaybe && slot != null && slot < 10 ? [`${x.fastingIf} ${config.fasting.early}`] : []),
     ...(who === 0 ? [config.firstVisit] : []),
   ];
 
@@ -147,7 +151,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const claimLine = () => {
     const c = claimDetails();
     if (!c) return "";
-    return [c.claimNumber, "insurer" in c ? c.insurer : c.employer, "accidentDate" in c ? c.accidentDate : c.injuryDate].filter(Boolean).join(", ");
+    const date = ("accidentDate" in c ? c.accidentDate : c.injuryDate) ?? "";
+    // Same date style as the appointment ("Oct 21, 2026"), not the raw form value.
+    const nice = /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${MON[Number(date.slice(5, 7)) - 1]} ${Number(date.slice(8, 10))}, ${date.slice(0, 4)}` : date;
+    return [c.claimNumber, "insurer" in c ? c.insurer : c.employer, nice].filter(Boolean).join(", ");
   };
 
   const payload = () => ({
@@ -158,6 +165,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     forSomeoneElse: forOther === 1,
     patient: forOther ? { first: str("patientFirst"), last: str("patientLast"), relationship: str("relationship") } : null,
     who: bookingWho[who],
+    language: registerLanguages[language],
     day: day ? day.iso : null,
     slot: slot != null ? fmtTime(slot) : null,
     name: contactName,
@@ -233,19 +241,21 @@ export function BookFlow({ config }: { config: BookingConfig }) {
 
   const reviewRows: [string, string][] = [
     [x.review.keys.service, serviceLine],
-    ...(forOther ? ([[x.review.keys.for, [patientName, str("relationship")].filter(Boolean).join(", ")]] as [string, string][]) : []),
+    ...(forOther ? ([[x.review.keys.for, [patientName ? `${patientName}.` : "", str("relationship") ? x.youAreTheir(str("relationship")) : ""].filter(Boolean).join(" ")]] as [string, string][]) : []),
     [x.review.keys.status, bookingWho[who]],
+    [registerCopy.fields.language, registerLanguages[language]],
     [x.review.keys.time, slotLabel],
     [x.review.keys.clinic, bookingCopy.clinic],
     [x.review.keys.coverage, coverage],
-    ...(visit?.payment ? ([[x.review.keys.payment, [payments[payment]?.label, payment === 0 ? str("benefitsInsurer") : ""].filter(Boolean).join(", ")]] as [string, string][]) : []),
+    ...(visit?.payment && payment === 0 && str("benefitsInsurer") ? ([[x.review.keys.insurer, str("benefitsInsurer")]] as [string, string][]) : []),
     ...(visit?.claim && claimLine() ? ([[x.review.keys.claim, claimLine()]] as [string, string][]) : []),
     [x.review.keys.contact, [contactName, str("phone"), str("email")].filter(Boolean).join(", ")],
+    ...(str("notes") ? ([[x.review.keys.notes, str("notes")]] as [string, string][]) : []),
     [x.review.keys.reminders, reminders ? x.review.yes : x.review.no],
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-4 px-4 pb-8 pt-5 md:px-content md:pt-16 md:pb-10 lg:grid-cols-2 lg:items-start lg:gap-8">
+    <div ref={root} className="grid grid-cols-1 gap-4 px-4 pb-8 pt-5 md:px-content md:pt-16 md:pb-10 lg:grid-cols-2 lg:items-start lg:gap-8">
       {/* Left: title, lead, live summary */}
       <div className="flex flex-col gap-3 lg:sticky lg:top-[80px] lg:gap-3.5">
         <Steps state={state} className="lg:hidden" />
@@ -255,8 +265,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
         <Lead size="md" tone="muted">
           {lead}
         </Lead>
-        <dl className="mt-3 hidden flex-col gap-2.5 rounded-card-sm border border-border bg-card px-6 py-[22px] text-[14px] leading-[1.5] lg:flex">
-          <span className="text-[12px] font-semibold text-muted">{bookingCopy.summaryTitle}</span>
+        <dl aria-labelledby="book-summary" className="mt-3 hidden flex-col gap-2.5 rounded-card-sm border border-border bg-card px-6 py-[22px] text-[14px] leading-[1.5] lg:flex">
+          <h2 id="book-summary" className="text-[12px] font-semibold text-muted">
+            {bookingCopy.summaryTitle}
+          </h2>
           {[
             [bookingCopy.summaryKeys.service, service.label],
             [x.review.keys.visit, visit?.label ?? ""],
@@ -277,7 +289,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
       <div className="flex flex-col gap-4">
         {state === 1 ? (
           <Panel>
-            <form onSubmit={onDetails} onInput={onInput} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
+            <form method="post" onSubmit={onDetails} onInput={onInput} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
               <Steps state={state} className="hidden lg:flex" />
               <h2 ref={setReveal} tabIndex={-1} className="scroll-mt-20 text-[13px] font-semibold outline-none md:font-display md:text-[26px] md:font-medium md:tracking-[-.02em]">
                 {bookingCopy.step1Title}
@@ -328,6 +340,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <div className="flex flex-col gap-2">
                 <GroupLabel>{x.statusLabel}</GroupLabel>
                 <Choice options={bookingWho} value={who} onChange={setWho} ariaLabel={x.statusLabel} />
+              </div>
+              <div className="flex flex-col gap-2">
+                <GroupLabel>{registerCopy.fields.language}</GroupLabel>
+                <Choice options={registerLanguages} value={language} onChange={setLanguage} ariaLabel={registerCopy.fields.language} />
               </div>
 
               {forOther ? (
@@ -401,7 +417,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               </h2>
               <span className="text-[13px] text-muted">{bookingCopy.step2Sub}</span>
             </div>
-            <div role="radiogroup" aria-label="Day" onKeyDown={radioKeys} className="flex gap-1 md:gap-1.5">
+            <div role="radiogroup" aria-label="Day" onKeyDown={radioKeys} className="scroll-x -mx-1 flex gap-1 px-1 py-0.5 md:gap-1.5">
               {days.map((d, i) => {
                 const on = dayIdx === i;
                 return (
@@ -416,7 +432,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                       setDayIdx(i);
                       setSlot(null);
                     }}
-                    className={cn("flex flex-1 flex-col items-center gap-0.5 rounded-[12px] border-[1.5px] px-0.5 py-2 transition-all duration-[250ms] md:rounded-[14px] md:px-1 md:py-2.5", selClass(on), !d.open && !on && "border-dashed text-muted")}
+                    className={cn("flex min-w-[46px] flex-1 flex-col items-center gap-0.5 rounded-[12px] border-[1.5px] px-1.5 py-2 transition-all duration-[250ms] md:rounded-[14px] md:px-1 md:py-2.5", selClass(on), !d.open && !on && "border-dashed text-muted")}
                   >
                     <span className="text-[10px] font-semibold opacity-70 md:text-[11px]">{d.today ? x.todayShort : d.dow}</span>
                     <span className="font-display text-[17px] md:text-[20px]">{d.num}</span>
@@ -426,7 +442,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               })}
             </div>
             {day && !day.open ? (
-              <div className="flex flex-col gap-2 rounded-row border border-border bg-white p-4 text-[13px] leading-[1.5] text-muted md:p-6 md:text-[14px]">
+              <div role="status" className="flex flex-col gap-2 rounded-row border border-border bg-white p-4 text-[13px] leading-[1.5] text-muted md:p-6 md:text-[14px]">
                 <span className="font-semibold text-primary">{bookingCopy.closedTitle}</span>
                 {bookingCopy.closedBody}
               </div>
@@ -451,24 +467,26 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               </div>
             )}
             {visit?.fasting ? <p className="text-[13px] leading-[1.5] text-secondary">{config.fasting.late}</p> : null}
-            <div className="flex flex-col gap-2.5 rounded-row bg-sun-tint px-5 py-[18px] text-[14px] leading-[1.5] text-ink">
-              <span className="font-semibold">{bookingCopy.waitlistTitle}</span>
-              <span className="text-secondary">{bookingCopy.waitlistBody}</span>
-              <button type="button" onClick={waitlist} disabled={busy} className="self-start border-b-[1.5px] border-ink font-semibold text-ink disabled:opacity-60">
-                {bookingCopy.waitlistLink} ›
-              </button>
-            </div>
             <div className="flex gap-2 md:gap-2.5">
               <button type="button" onClick={() => setState(1)} className="rounded-chip border-[1.5px] border-ink px-[18px] py-[14px] text-[14px] font-semibold transition-all hover:bg-white active:scale-[.98] md:px-[22px] md:py-4 md:text-[15px]">
                 ‹ <span className="sr-only md:not-sr-only">{bookingCopy.back}</span>
               </button>
               <button
                 type="button"
-                onClick={() => setState(3)}
-                disabled={slot == null}
+                onClick={() => {
+                  if (slot != null) setState(3);
+                }}
+                aria-disabled={slot == null || undefined}
                 className={cn("flex-1 rounded-chip py-[14px] text-center text-[14px] font-semibold transition-all md:py-4 md:text-[15px]", slot == null ? "cursor-not-allowed bg-line text-muted" : "bg-sky text-white hover:opacity-90 active:scale-[.98]")}
               >
                 {slot == null ? bookingConfirmLabel.noSlot : bookingConfirmLabel.review}
+              </button>
+            </div>
+            <div className="flex flex-col gap-2.5 rounded-row bg-sun-tint px-5 py-[18px] text-[14px] leading-[1.5] text-ink">
+              <span className="font-semibold">{bookingCopy.waitlistTitle}</span>
+              <span className="text-secondary">{bookingCopy.waitlistBody}</span>
+              <button type="button" onClick={waitlist} disabled={busy} className="self-start border-b-[1.5px] border-ink font-semibold text-ink disabled:opacity-60">
+                {bookingCopy.waitlistLink} ›
               </button>
             </div>
           </Panel>

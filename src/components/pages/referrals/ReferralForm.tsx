@@ -88,7 +88,7 @@ export function ReferralForm({ services }: { services: string[] }) {
               </StateCard>
             </div>
           ) : null}
-          <form ref={formRef} onSubmit={onSubmit} noValidate aria-busy={status === "sending"} className="flex flex-col gap-[22px] rounded-block border border-border bg-card p-5 md:p-9">
+          <form method="post" ref={formRef} onSubmit={onSubmit} noValidate aria-busy={status === "sending"} className="flex flex-col gap-[22px] rounded-block border border-border bg-card p-5 md:p-9">
             <div className="grid grid-cols-1 gap-[18px] sm:grid-cols-2">
               <Field label={f.fields.physician} htmlFor="ref-physician" required>
                 <Input id="ref-physician" name="physician" autoComplete="name" required {...ep("ref-physician")} />

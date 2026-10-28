@@ -13,7 +13,7 @@ export function TextControls({ inverse, compact, className }: { inverse?: boolea
   const btn = cn("rounded-[6px] border transition-colors", compact ? "px-1.5 py-0.5" : "px-2 py-1", inverse ? "border-white/35 hover:border-white" : "border-border hover:border-sky");
   return (
     <div role="group" aria-label="Text size and contrast" className={cn("flex items-center gap-1.5", inverse ? "text-white" : "text-muted", className)}>
-      <span className={cn("mr-1", compact && "sr-only")}>Text size</span>
+      <span className="mr-1">Text size</span>
       <button type="button" onClick={down} aria-label="Decrease text size" disabled={step === 0} className={cn(btn, "disabled:opacity-50")}>
         A-
       </button>

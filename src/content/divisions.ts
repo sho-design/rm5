@@ -70,6 +70,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Book a visit", page: bookFor("family") },
       { label: "Same-day sick visit", page: bookFor("family", "concern") },
       { label: "Annual physical", page: bookFor("family", "checkup") },
+      { label: draft("Request a prescription renewal"), page: "/family-medicine/prescription-renewals#request" },
       { label: "Join the roster", page: "register" },
     ],
     more: [

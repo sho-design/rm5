@@ -124,6 +124,13 @@ New wording from the fixes after the 30-tester usability test. Every new string 
 - Rehab: "Book a WSIB visit" replaces "Start a WSIB claim" (people who already have a claim thought it was not for them).
 - Clinics page: "Thornhill is open now." now reads "Thornhill is seeing patients." (it read as a live open-now status); same change in the Maple waitlist confirmation.
 
+## Usability fixes, round 3
+
+- Booking: "Insurer", "Your note", "If your doctor asked for fasting bloodwork with this visit:" (before the approved fasting line on morning checkups), "You are their daughter." style caregiver line, the insurance coverage line now "Private or work insurance, we bill most plans directly" (was "billed directly"), and the preferred language choice (approved "Preferred language", "English", "Tiếng Việt").
+- Registration confirmation: "Registered", "Registered, 2 people", "Clinic".
+- Family Medicine menu: "Request a prescription renewal".
+- Search: "Close search" (button name).
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

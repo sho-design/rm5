@@ -32,6 +32,8 @@ export interface BookingVisit {
   payment?: boolean;
   /** Fasting bloodwork: show the fasting line for morning slots. */
   fasting?: boolean;
+  /** A visit that often includes fasting bloodwork (checkups): show the fasting line as conditional. */
+  fastingMaybe?: boolean;
 }
 
 export interface BookingService {
@@ -107,7 +109,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
     coverage: bookingCoverage[label("family")],
     visits: [
       { key: "concern", label: draft("A health concern"), bring: [familyBring] },
-      { key: "checkup", label: menuLabel("family", "Annual physical"), bring: [familyBring] },
+      { key: "checkup", label: menuLabel("family", "Annual physical"), bring: [familyBring], fastingMaybe: true },
       { key: "bloodwork", label: draft("Bloodwork or ECG"), bring: [draft("Your Ontario health card, and your requisition if another clinic wrote one.")], fasting: true },
       { key: "flu", label: draft("Flu shot"), bring: [healthCard] },
       {
@@ -184,7 +186,7 @@ export function bookingConfig(): BookingConfig {
   return {
     services: divisionOrder.map((k) => ({ key: k, label: label(k), ...services[k] })),
     payments: [
-      { label: insured.label, coverage: draft("Private or work insurance, billed directly"), bring: [`${fact(insured.facts, "Bring")}.`] },
+      { label: insured.label, coverage: draft("Private or work insurance, we bill most plans directly"), bring: [`${fact(insured.facts, "Bring")}.`] },
       { label: selfPay.label, coverage: draft("Self-pay, from $95, HST included"), bring: [] },
     ],
     firstVisit: approved(bring, "Arrive 10 minutes early for your first visit."),

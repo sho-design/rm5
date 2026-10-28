@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { TeachingPartners } from "./TeachingPartners";
 import { StickyBook } from "./StickyBook";
+import { RouteFocus } from "./RouteFocus";
 import { Analytics } from "./Analytics";
 import { ConsentBanner } from "./ConsentBanner";
 import { getSiteSettings } from "@/lib/cms";
@@ -30,13 +31,15 @@ export async function SiteChrome({ children }: { children: ReactNode }) {
       <UtilityBar />
       <Header />
       <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col">
-        <main id="main" className="flex flex-1 flex-col">
+        {/* tabIndex -1 so the skip link and page changes can move focus here. */}
+        <main id="main" tabIndex={-1} className="flex flex-1 flex-col outline-none">
           {children}
         </main>
         <TeachingPartners />
         <Footer analytics={analytics} />
       </div>
       <StickyBook />
+      <RouteFocus />
       <Analytics gtmId={gtmId} gaId={gaId} />
     </div>
   );

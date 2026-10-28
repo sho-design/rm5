@@ -6,6 +6,7 @@ import type { QA } from "@/content/types";
 import { cn } from "@/lib/cn";
 import { Display, Lead } from "./Text";
 import { SmartLink } from "./SmartLink";
+import { keepPhones } from "./Phones";
 
 export interface FaqRowItem extends QA {
   linkLabel?: string;
@@ -36,7 +37,9 @@ export function Faq({
     <section id={id} className={cn("grid grid-cols-1 gap-6 px-4 pt-12 md:px-content md:pt-section lg:grid-cols-[1fr_1.6fr] lg:gap-12 lg:items-start", className)}>
       <div className="flex flex-col gap-3 lg:sticky lg:top-6">
         <Display size="xs">{title}</Display>
-        <Lead size="sm" tone="muted">{sub}</Lead>
+        <Lead size="sm" tone="muted">
+          {keepPhones(sub)}
+        </Lead>
       </div>
       <FaqList items={items} defaultOpen={defaultOpen} />
     </section>

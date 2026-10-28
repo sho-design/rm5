@@ -105,8 +105,12 @@
      the layout reflows inside the narrower effective width. */
   :root[data-text="1"] body { zoom: 1.125; }
   :root[data-text="2"] body { zoom: 1.25; }
+  /* Never scroll sideways, whatever the text size (clip keeps sticky working). */
+  html, body { overflow-x: clip; }
 
   html {
+    /* Anchors, scrollIntoView and route changes stop below the 56px sticky header. */
+    scroll-padding-top: 72px;
     font-optical-sizing: auto;
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
@@ -158,6 +162,26 @@
 :root[data-theme="contrast"] .opacity-70,
 :root[data-theme="contrast"] .opacity-75,
 :root[data-theme="contrast"] .opacity-80 { opacity: 1; }
+
+/* Larger text on desktop: the zoomed header needs about 1250px for the full
+   division menu and phone pill. Below that, use the phone menu instead so
+   nothing is cut off. Media queries see the real window width, not the
+   zoomed one, hence the larger breakpoints. */
+@media (max-width: 1439px) {
+  :root[data-text="1"] .rm-desktop-nav { display: none; }
+  :root[data-text="1"] .rm-menu-btn { display: flex; }
+}
+@media (max-width: 1599px) {
+  :root[data-text="2"] .rm-desktop-nav { display: none; }
+  :root[data-text="2"] .rm-menu-btn { display: flex; }
+}
+@media (max-width: 1023px) {
+  :root[data-text] .rm-header-phone { display: none; }
+}
+
+/* High contrast: the sky action buttons use the darker contrast blue. */
+:root[data-theme="contrast"] .bg-sky { background-color: var(--action-secondary-bg); }
+:root[data-theme="contrast"] .hover\:opacity-90:hover { opacity: 1; }
 
 /* Icon hover animations from the prototype. */
 @keyframes rmWiggle { 0%, 100% { transform: rotate(0) } 25% { transform: rotate(-8deg) } 75% { transform: rotate(8deg) } }

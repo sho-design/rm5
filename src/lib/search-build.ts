@@ -10,7 +10,7 @@ import * as referrals from "@/content/referrals";
 import { numbers, screeningDue, yearSeasons } from "@/content/prevention";
 import { feesCopy, wayfindingCopy } from "@/content/patient-help";
 import { baseSearchDocs } from "@/content/search-index";
-import { aliasesFor } from "@/content/search-synonyms";
+import { aliasesFor, faqAliases } from "@/content/search-synonyms";
 import { getFaq, getHealthNotes, getJobs, getLegalPages, getLocations, getTeam, getUninsuredFees } from "@/lib/cms";
 import { href, noteRoute, routes } from "@/lib/routes";
 import { wordsOf, type SearchDoc } from "@/lib/search";
@@ -102,7 +102,8 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
     sub: firstSentence(f.a),
     page: `${routes.faq}?q=${encodeURIComponent(f.q)}#faq-${encodeURIComponent(f.category)}`,
     words: wordsOf(f.a),
-    weight: 0.75,
+    keys: faqAliases[f.q],
+    weight: 0.9,
   }));
 
   const noteRows: SearchDoc[] = notes.map((n) => ({

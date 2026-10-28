@@ -10,7 +10,7 @@ import { images } from "@/content/images";
  */
 export function TeachingPartners() {
   return (
-    <div className="mx-3 mt-6 flex flex-wrap items-center justify-between gap-x-12 gap-y-6 rounded-[20px] border border-border bg-raised px-6 py-6 md:mx-gutter md:mt-12 md:px-10 md:py-7">
+    <section aria-label="Teaching partners" className="mx-3 mt-6 flex flex-wrap items-center justify-between gap-x-12 gap-y-6 rounded-[20px] border border-border bg-raised px-6 py-6 md:mx-gutter md:mt-12 md:px-10 md:py-7">
       <div className="flex flex-col gap-1">
         <span className="text-[12px] font-semibold text-muted">Teaching partners</span>
         <Link href={routes.about} className="text-[14px] font-semibold text-link">
@@ -22,6 +22,6 @@ export function TeachingPartners() {
         <span aria-hidden className="hidden h-10 w-px bg-border sm:block" />
         <Image src={images.logos.anderson} alt="Anderson College of Health, Business and Technology" width={220} height={34} className="h-6 w-auto max-w-[45vw] object-contain md:h-[34px]" />
       </div>
-    </div>
+    </section>
   );
 }

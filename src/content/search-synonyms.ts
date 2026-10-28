@@ -9,7 +9,7 @@ import { draft } from "./review";
  * aliases are never shown on screen.
  */
 export const searchAliases: Record<string, string> = {
-  book: "appointment appointments visit schedule reserve booking waitlist wait list wait time cancellation",
+  book: "appointment appointments visit schedule reserve booking waitlist wait list cancellation",
   register: "new patient accepting patients family doctor roster rostered register join sign up",
   family: "doctor gp physician sick cough cold fever flu sore throat rash infection concern walk in walkin checkup physical",
   rx: "refill refills prescription prescriptions renew renewal medication medications meds pharmacy run out ran out",
@@ -38,9 +38,9 @@ export const searchAliases: Record<string, string> = {
   aesLaser: "laser hair removal ipl resurfacing",
   aesGift: "gift card gift cards gift certificate voucher present",
   rehab: "rehab rehabilitation injury injuries",
-  rehabPhysio: "physio physiotherapy physiotherapist physical therapy pt acl surgery post surgical sports injury",
-  rehabChiro: "chiro chiropractor chiropractic adjustment",
-  rehabMassage: "massage rmt",
+  rehabPhysio: "physio physiotherapy physiotherapist physical therapy pt acl surgery post surgical sports injury shoulder knee hip ankle neck back sore stiff sprain strain",
+  rehabChiro: "chiro chiropractor chiropractic adjustment back neck shoulder posture spine",
+  rehabMassage: "massage rmt shoulder neck back sore tight tension knots",
   rehabKines: "kinesiology kinesiologist exercise",
   rehabMva: "mva car accident motor vehicle accident collision crash auto insurance",
   rehabWsib: "wsib work injury workplace injury workers compensation",
@@ -48,7 +48,7 @@ export const searchAliases: Record<string, string> = {
   billing: "insurance billing benefits sun life manulife direct billing",
   fees: "price prices cost costs fee fees uninsured sick note note form forms letter charge charges",
   forms: "forms patient forms records medical records transfer chart",
-  locations: "maple waitlist hours directions address parking map walmart thornhill maple vaughan woodbridge wheelchair accessible accessibility step free entrance bus transit open closed",
+  locations: "maple waitlist hours directions address parking map walmart thornhill maple vaughan woodbridge step free entrance bus transit open closed",
   contact: "phone call email fax contact message",
   careers: "job jobs career careers hiring work nurse rn apply employment",
   standards: "student students placement placements learner learners teaching nursing student supervision complaint complaints",
@@ -61,6 +61,14 @@ export const searchAliases: Record<string, string> = {
   [noteRoute("flu-shot-faq")]: "flu shot flu shots vaccine influenza",
   [noteRoute("headache-when-to-see")]: "headache migraine",
   [noteRoute("iron-infusion")]: "iron infusion",
+};
+
+/** Words patients type for an FAQ answer, keyed by the exact question. */
+export const faqAliases: Record<string, string> = {
+  "Is the clinic accessible?": "wheelchair walker scooter stroller step free ramp elevator mobility disability",
+  "Where do I park?": "parking car lot free",
+  "How long is the wait?": "wait time waiting list how soon pain centre referral",
+  "How do I renew a prescription?": "refill run out ran out running out medication pills prescription",
 };
 
 /** Keywords for a destination, by page key or by the path it resolves to. */

@@ -12,6 +12,7 @@ Each form posts JSON to `/api/<kind>`, which forwards `{ kind, submittedAt, data
 | `forSomeoneElse` | `true` when a caregiver books for someone |
 | `patient` | `{ first, last, relationship }` when booking for someone else, else `null` |
 | `who` | "New patient" or "Existing patient" |
+| `language` | Preferred language: "English" or "Tiếng Việt" |
 | `day`, `slot` | Toronto calendar date `YYYY-MM-DD` and time, for example "9:30 am" |
 | `name`, `phone`, `email`, `healthCardLast4`, `notes` | Contact details (the booker's when booking for someone else) |
 | `claim` | MVA or WSIB: `{ type, number, insurerOrEmployer, date }`, all optional, else `null` |

@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (30 simulated patients)
+# Usability test, 28 October 2026 (40 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -114,6 +114,56 @@ Checked in a production build with Playwright on desktop (1440x900) and phone (i
 | 14 | Content to correct | Clinic. Not changed in code. |
 
 **Dark mode is not switched on.** The dark theme in the design tokens is not finished across the site (several buttons and chips render white on white, the logo disappears), so following the phone's dark setting would make pages unreadable. It needs a design pass before it can follow the system setting.
+
+## Round 3: 10 testers on the fixed build
+
+Same method, run on the build with the round 1 and 2 fixes, at about 1:30am Toronto time. Several personas retried journeys that had failed before (keyboard only, screen reader, slow phone, large text, caregiver booking, family registration).
+
+| Tester | Device | Goal | Ease /7 | Trust /7 | Done | With difficulty | Failed |
+|---|---|---|---|---|---|---|---|
+| Lan, 67, prefers Vietnamese, large text | Phone | Vietnamese speaker, Sunday hours, weekend visit | 5 | 6 | 2 | 1 | 0 |
+| Derek, 45, car accident | Phone | MVA cost, book with claim, what to bring | 6 | 5 | 3 | 0 | 0 |
+| Anjali, 34, family of four | Desktop | New patients, register all four, next steps | 6 | 6 | 2 | 1 | 0 |
+| Marcus, 52, keyboard only | Desktop | Menu to chiro, book with benefits, search access | 5 | 6 | 1 | 2 | 0 |
+| Rosa, 29, back pain, no family doctor | Phone | OHIP pain care, first step, wait time | 6 | 6 | 2 | 1 | 0 |
+| Kevin, 38, renewal at 1:30am | Phone | Renewal, what if it is late, hours | 5 | 5 | 2 | 0 | 1 |
+| Helen, 74, low vision | Desktop | Large text and contrast, iron cost, book | 4 | 6 | 1 | 2 | 0 |
+| Jamal, 26, blind, screen reader | Desktop | Landmarks, search flu shot, book with an error | 6 | 6 | 3 | 0 | 0 |
+| Sophie, 41, booking for her mother | Tablet | Fasting checkup for mother, fasting, A1c | 6 | 6 | 1 | 2 | 0 |
+| Tyler, 31, slow 3G | Phone | Massage price and Sun Life, book, search | 3 | 4 | 0 | 3 | 0 |
+| **Round 3** | | | **5.2** | **5.6** | **17 of 30** | **12 of 30** | **1 of 30** |
+
+Compared with rounds 1 and 2 (30 testers): ease 4.6 to 5.2, trust 5.2 to 5.6, tasks done smoothly 40% to 57%, failed 10% to 3%. All 10 would use the site again.
+
+What held up: booking opened with the right service and visit every time; the review step; inline errors that move focus to the field; focus moving to each new step; the status bar; menus and radio groups by keyboard; caregiver booking; family registration; typed text surviving a slow load; large text and contrast remembered.
+
+### Round 3 findings fixed in code
+
+- **Blocker (slow phone):** pressing Continue before the page finished loading did a plain browser submit, wiping the form and putting name, contact and health notes in the address bar. Site forms can no longer submit natively (`method="post"` and a submit guard in the head script), so nothing reaches the URL and typed text stays.
+- **Large text on desktop:** the header ran off screen and the page scrolled sideways; Continue then slid the page 260px. At larger text the header now switches to the menu button below 1440px (1600px at the largest step), and the page can never scroll sideways.
+- **Focus:** after choosing a page from the menu, focus now starts at the main content; Escape in search returns to the Search button; declining cookies moves to "Skip to content"; the skip link now moves focus.
+- **Search:** "wheelchair", "wait time", "run out", "shoulder" now find the accessibility, wait time, renewal and physio or massage answers; FAQ answers rank higher; the result count is announced once typing pauses; the close button reads "Close search". Search and the phone menu load only when opened (home page JavaScript 139 KB to 128 KB).
+- **Booking:** the step title stays in view on each step; "Review your booking" sits right under the times (waitlist below it) and can be reached with Tab before a time is chosen; closed days are announced; the review shows your note and preferred language and no longer repeats coverage as "Paying by"; claim dates read "Oct 21, 2026"; caregiver lines read "Thu Tran. You are their daughter."; morning checkups show the fasting line as "If your doctor asked for fasting bloodwork"; a preferred language choice (English or Tiếng Việt) was added; the date strip has room for "Today" and "Closed" at large text; confirmation details are a list for screen readers.
+- **Registration:** the confirmation lists everyone registered and the clinic chosen.
+- **Sticky Book bar:** steps aside while a form or another booking button is on screen and has an outline so it shows on navy.
+- **Other:** cookie banner not shown on booking and form pages (analytics never runs there); "Coming soon" instead of "Opening 2026" in the phone menu; text size controls labelled and at the top of the phone menu; "Request a prescription renewal" in the Family Medicine menu; long card buttons wrap; phone numbers never split across lines; high contrast uses the darker blue for action buttons; landmarks for the status bar and teaching partners; duplicate photo links hidden from keyboard and screen readers.
+
+### Round 3 findings for the clinic
+
+- **Running out of medication** (Kevin, failed): the renewal page says "allow two business days" with no plan B. Say what to do if you will run out sooner (call at opening, ask your pharmacist about an emergency supply) and whether the form can be marked urgent. The hint "Do not include anything you need today" confused him.
+- **Car accidents** (Derek): "No upfront cost" reads as "a bill later". Say plainly whether patients ever pay and what happens if the insurer declines. The MVA bring list could add photo ID and the auto policy card.
+- **Language** (Lan): the FAQ promises a Tiếng Việt switch that is hidden; the team page should say who speaks Vietnamese.
+- **Sun Life and other insurers** (Tyler): name the plans billed directly; give massage prices by session length.
+- **Diabetes and fasting** (Sophie): add advice on diabetes medication when fasting; reconcile "bloodwork the week before" (chronic care) with "requisition at the visit"; A1c "every 3 months" chip versus "three to six months" text.
+- **Pain Centre wait time** (Rosa): show it on the Pain Centre page, say when the count starts after an internal referral, and the FAQ's "Refer a patient" link is a doctors' link in a patient answer.
+- **Registration** (Anjali): say Maple is in Vaughan; whether first visits happen at Thornhill until Maple opens; one first visit per person; why the health card is optional for family members; "New patients" versus "Join the roster".
+- **Sky blue buttons** (Helen): white on the brand sky blue is about 4:1, below the 4.5:1 AA level for normal text. A design decision for the token owner; the high contrast theme now uses the darker blue.
+
+### Not fixed
+
+- On a slow phone the booking form briefly shows Family Medicine before switching to the linked service (the page is static; the service is read from the link once scripts load).
+- Buttons are inert until scripts load (about 10 seconds on the throttled test phone). Less JavaScript now, but a full fix needs a deeper performance pass.
+- A blank strip briefly above the sticky header while scrolling (3 testers) was not reproduced; it may be screenshots taken mid-scroll.
 
 ## What worked
 

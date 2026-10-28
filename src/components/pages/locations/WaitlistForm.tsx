@@ -64,7 +64,7 @@ export function WaitlistForm() {
           </StateCard>
         </div>
       ) : null}
-      <form ref={formRef} onSubmit={onSubmit} noValidate aria-busy={status === "sending"} className="grid grid-cols-1 gap-6 rounded-card border border-border bg-card p-5 md:p-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10">
+      <form method="post" ref={formRef} onSubmit={onSubmit} noValidate aria-busy={status === "sending"} className="grid grid-cols-1 gap-6 rounded-card border border-border bg-card p-5 md:p-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10">
         <div className="flex flex-col gap-3">
           <Display size="title-lg" as="h2">
             {w.title}

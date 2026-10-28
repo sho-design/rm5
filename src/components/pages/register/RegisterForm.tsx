@@ -86,6 +86,8 @@ export function RegisterForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
+  /** What was sent, repeated on the confirmation: who is registered and at which clinic. */
+  const [sent, setSent] = useState<{ names: string[]; clinic: string } | null>(null);
   const [error, setError] = useState(false);
   const doneRef = useRevealOnChange<HTMLDivElement>(done);
 
@@ -143,8 +145,10 @@ export function RegisterForm() {
       updates: v.updates === true,
     });
     setBusy(false);
-    if (res.ok) setDone(true);
-    else setError(true);
+    if (res.ok) {
+      setSent({ names: [`${s("first")} ${s("last")}`.trim(), ...family.map((m) => `${m.first} ${m.last}`.trim())].filter(Boolean), clinic: clinic === 0 ? "Thornhill" : "Maple" });
+      setDone(true);
+    } else setError(true);
   };
 
   const err = (id: string) => ({ error: errors[id] });
@@ -177,6 +181,21 @@ export function RegisterForm() {
             }
           >
             <p>{registerCopy.done.body}</p>
+            {sent ? (
+              <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                <OutcomeTile k={x.done.people(sent.names.length)}>
+                  <ul className="flex flex-col text-[15px] font-semibold">
+                    {sent.names.map((n) => (
+                      <li key={n}>{n}</li>
+                    ))}
+                  </ul>
+                </OutcomeTile>
+                <OutcomeTile k={x.done.clinic}>
+                  <span className="text-[15px] font-semibold">{sent.clinic}</span>
+                  {sent.clinic === "Maple" ? <span className="text-[13px] leading-[1.5] text-muted">{x.clinic.mapleNote}</span> : null}
+                </OutcomeTile>
+              </div>
+            ) : null}
             <OutcomeTile k={registerCopy.done.waitTitle}>
               <span className="text-[14px] leading-[1.5]">{registerCopy.done.waitBody}</span>
             </OutcomeTile>
@@ -184,7 +203,7 @@ export function RegisterForm() {
         </div>
       ) : (
         <Panel>
-          <form onSubmit={submit} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
+          <form method="post" onSubmit={submit} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
             <div className="flex flex-col gap-1.5">
               <span className="text-[12px] font-semibold text-muted">{x.forWhom.label}</span>
               <Choice options={x.forWhom.options} value={forWhom} onChange={setForWhom} ariaLabel={x.forWhom.label} />

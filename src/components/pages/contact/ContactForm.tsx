@@ -64,7 +64,7 @@ export function ContactForm() {
 
   return (
     <Panel>
-      <form onSubmit={submit} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
+      <form method="post" onSubmit={submit} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
         <Display as="h2" size="title-md" balance={false}>
           {contactCopy.formTitle}
         </Display>

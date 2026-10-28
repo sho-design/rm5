@@ -55,7 +55,12 @@ export function ResultCard({
       {children}
       {cta || link ? (
         <div className="flex flex-wrap items-center gap-3.5 border-t border-border pt-4 text-[15px] font-semibold">
-          {cta ? <Button to={ctaTo}>{cta}</Button> : null}
+          {/* Long CTAs ("Book a family medicine assessment") wrap inside the card on narrow screens. */}
+          {cta ? (
+            <Button to={ctaTo} className="!h-auto min-h-12 max-w-full !whitespace-normal py-3 text-center !leading-tight">
+              {cta}
+            </Button>
+          ) : null}
           {link && linkTo ? (
             <SmartLink to={linkTo} className="text-link">
               {link} ›

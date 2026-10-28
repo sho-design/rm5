@@ -27,14 +27,15 @@ function bookingFor(pathname: string): string {
 
 /**
  * Mobile sticky Book button. It books the service of the section you are in,
- * steps aside while you type in a form or once the footer is on screen (so
- * it never covers form buttons or the last rows of a page), and is hidden on
- * pages that are already a booking or contact form.
+ * and steps aside while you type in a form, while a form or another booking
+ * button is on screen (it would only cover it), and once the footer is in
+ * view. Hidden on pages that are already a booking or contact form.
  */
 export function StickyBook() {
   const pathname = usePathname();
   const [typing, setTyping] = useState(false);
   const [footer, setFooter] = useState(false);
+  const [covered, setCovered] = useState(false);
 
   useEffect(() => {
     const isField = (el: EventTarget | null) => el instanceof HTMLElement && el.matches("input, textarea, select, [contenteditable]");
@@ -45,18 +46,29 @@ export function StickyBook() {
     const foot = document.querySelector("footer");
     const io = foot ? new IntersectionObserver(([e]) => setFooter(e.isIntersecting), { rootMargin: "0px 0px 80px 0px" }) : null;
     if (foot && io) io.observe(foot);
+    // Booking buttons and forms already on screen: the bar would duplicate or cover them.
+    const seen = new Set<Element>();
+    const watch = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) seen.add(e.target);
+        else seen.delete(e.target);
+      }
+      setCovered(seen.size > 0);
+    });
+    document.querySelectorAll('main a[href^="/book"], main form').forEach((el) => watch.observe(el));
     return () => {
       document.removeEventListener("focusin", onIn);
       document.removeEventListener("focusout", onOut);
       io?.disconnect();
+      watch.disconnect();
     };
   }, [pathname]);
 
   if (hiddenOn.some((p) => pathname.startsWith(p))) return null;
-  const away = typing || footer;
+  const away = typing || footer || covered;
   return (
     <div className={`pointer-events-none fixed inset-x-0 bottom-0 z-30 px-4 pb-4 transition-transform duration-300 motion-reduce:transition-none sm:hidden ${away ? "translate-y-[120%]" : ""}`}>
-      <Link href={bookingFor(pathname)} tabIndex={away ? -1 : undefined} aria-hidden={away || undefined} className="pointer-events-auto block rounded-chip bg-ink py-[15px] text-center text-[15px] font-semibold text-white shadow-sticky">
+      <Link href={bookingFor(pathname)} tabIndex={away ? -1 : undefined} aria-hidden={away || undefined} className="pointer-events-auto block rounded-chip bg-ink py-[15px] text-center text-[15px] font-semibold text-white shadow-sticky outline outline-1 outline-white/50">
         Book an appointment
       </Link>
     </div>

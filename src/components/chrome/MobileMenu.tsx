@@ -42,6 +42,7 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
         </div>
       </div>
       <div className="flex flex-1 flex-col gap-[18px] overflow-y-auto px-4 pb-4 pt-1">
+        <TextControls inverse className="flex-wrap text-[13px]" />
         <div className="flex flex-col">
           {navOrder.map((k) => {
             const d = divisions[k];
@@ -89,7 +90,7 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
               {l.soon ? (
                 <span className="flex items-center gap-1.5 whitespace-nowrap text-[12px] font-semibold text-sun">
                   <span aria-hidden className="h-[7px] w-[7px] rounded-full bg-sun" />
-                  Opening 2026
+                  Coming soon
                 </span>
               ) : (
                 <OpenBadge inverse className="whitespace-nowrap text-white" />
@@ -112,13 +113,12 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
           )}
           <SocialIcons size={44} />
         </div>
-        <TextControls inverse className="flex-wrap text-[13px]" />
         <Link href={routes.referrals} onClick={onClose} className="text-[13px] font-semibold text-sun">
           For referring doctors ›
         </Link>
       </div>
       <div className="flex shrink-0 gap-2 border-t border-white/12 bg-ink px-4 pb-4 pt-3">
-        <Link href={routes.book} onClick={onClose} className="flex-[1.4] rounded-chip bg-sun py-[15px] text-center text-[15px] font-semibold text-sun-ink">
+        <Link href={routes.book} onClick={onClose} className="flex-[1.4] rounded-chip bg-sun px-3 py-[15px] text-center text-[15px] font-semibold leading-tight text-sun-ink">
           Book an appointment
         </Link>
         <a href={site.phoneHref} className="flex-1 rounded-chip border-[1.5px] border-white/35 py-[15px] text-center text-[15px] font-semibold">

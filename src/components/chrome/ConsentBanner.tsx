@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { analyticsExcluded } from "./Analytics";
 import Link from "next/link";
 import { routes } from "@/lib/routes";
 import { OPEN_SETTINGS_EVENT, readConsent, writeConsent } from "@/lib/consent";
@@ -18,14 +20,19 @@ import { consentCopy } from "@/content/consent";
  * Escape inside the banner declines.
  */
 export function ConsentBanner({ enabled }: { enabled: boolean }) {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [reopened, setReopened] = useState(false);
   const title = useRef<HTMLSpanElement>(null);
+  const box = useRef<HTMLDivElement>(null);
+  /** Where focus was when the banner was reopened from the footer, to return there after a choice. */
+  const returnTo = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!enabled) return;
     if (readConsent() === null) setOpen(true);
     const reopen = () => {
+      returnTo.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       setReopened(true);
       setOpen(true);
     };
@@ -37,15 +44,26 @@ export function ConsentBanner({ enabled }: { enabled: boolean }) {
     if (open && reopened) title.current?.focus({ preventScroll: true });
   }, [open, reopened]);
 
-  if (!enabled || !open) return null;
+  // Analytics never runs on the booking and form pages, so do not ask there.
+  const excluded = analyticsExcluded.some((r) => pathname === r || pathname.startsWith(`${r}/`));
+  if (!enabled || !open || (excluded && !reopened)) return null;
   const choose = (c: "granted" | "denied") => {
+    // If the choice was made from inside the banner, do not leave focus on the page body:
+    // go back to the footer link it was opened from, or to "Skip to content" on first visit.
+    const hadFocus = !!box.current?.contains(document.activeElement);
     writeConsent(c);
     setOpen(false);
     setReopened(false);
+    if (hadFocus) {
+      const target = returnTo.current ?? document.querySelector<HTMLElement>('a[href="#main"]');
+      requestAnimationFrame(() => target?.focus());
+    }
+    returnTo.current = null;
   };
   const btn = "inline-flex h-11 flex-1 items-center justify-center rounded-chip px-5 text-[14px] font-semibold sm:flex-none";
   return (
     <div
+      ref={box}
       role="region"
       aria-label={consentCopy.label}
       onKeyDown={(e) => {

@@ -33,12 +33,17 @@ export function rovingTab(on: boolean, index: number, anySelected: boolean): 0 |
   return !anySelected && index === 0 ? 0 : -1;
 }
 
-/** Scroll an element into view (instant when motion is reduced) and move focus to it. */
-export function focusAndReveal(el: HTMLElement | null) {
+/**
+ * Move focus to an element and scroll it into view (instant when motion is
+ * reduced). Pass `scrollTo` to scroll a wider block instead, for example the
+ * whole booking flow so its title stays visible above the new step.
+ * Scrolling honours the page's scroll-padding-top (the sticky header).
+ */
+export function focusAndReveal(el: HTMLElement | null, scrollTo?: HTMLElement | null) {
   if (!el) return;
   if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
   el.focus({ preventScroll: true });
-  el.scrollIntoView({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
+  (scrollTo ?? el).scrollIntoView({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
 }
 
 /**
@@ -46,7 +51,7 @@ export function focusAndReveal(el: HTMLElement | null) {
  * `key` changes after the first render, the element is scrolled into view
  * and focused, so people see the result and screen readers announce it.
  */
-export function useRevealOnChange<T extends HTMLElement>(key: unknown) {
+export function useRevealOnChange<T extends HTMLElement>(key: unknown, scrollTo?: { current: HTMLElement | null }) {
   const ref = useRef<T>(null);
   const first = useRef(true);
   useEffect(() => {
@@ -54,7 +59,8 @@ export function useRevealOnChange<T extends HTMLElement>(key: unknown) {
       first.current = false;
       return;
     }
-    focusAndReveal(ref.current);
+    focusAndReveal(ref.current, scrollTo?.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
   return ref;
 }

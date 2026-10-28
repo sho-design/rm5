@@ -15,7 +15,8 @@ export function ExploreServices() {
       <div className="hidden grid-cols-3 gap-card md:grid lg:grid-cols-5">
         {divisionList.map((d) => (
           <div key={d.key} className="flex flex-col gap-3.5">
-            <SmartLink to={d.key} className="block transition-opacity hover:opacity-95">
+            {/* The photo repeats the card's own link, so it is hidden from keyboard and screen readers. */}
+            <SmartLink to={d.key} tabIndex={-1} aria-hidden className="block transition-opacity hover:opacity-95">
               <Photo src={d.img} alt={d.label} ratio="4/5" radius="card-sm" tint={d.tint} sizes="(max-width: 1024px) 33vw, 240px" />
             </SmartLink>
             <div className="flex flex-1 flex-col gap-1.5 px-1">

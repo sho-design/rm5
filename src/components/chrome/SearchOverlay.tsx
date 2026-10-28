@@ -27,7 +27,7 @@ const copy = {
   none: `Nothing matched. Try a service, a symptom or a clinician name, or call ${site.phone}.`,
   popular: "Popular",
   close: draft("Close"),
-  escHint: draft(", close search"),
+  closeLabel: draft("Close search"),
 };
 
 const isExternal = (url: string) => /^https?:/.test(url);
@@ -64,6 +64,12 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
 
   const query = q.trim();
   const results = useMemo(() => (query ? searchDocs(docs, query) : []), [docs, query]);
+  // Announce the count only once typing pauses, so screen readers do not read "0 results" mid-word.
+  const [announced, setAnnounced] = useState("");
+  useEffect(() => {
+    const t = window.setTimeout(() => setAnnounced(query ? copy.count(results.length) : ""), 700);
+    return () => window.clearTimeout(t);
+  }, [query, results.length]);
   const emergency = query ? isEmergencyQuery(query) : false;
 
   const open = (page: string) => {
@@ -100,6 +106,9 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
 
   return (
     <div className={cn("flex flex-col gap-4 bg-card p-4", !mobile && "md:gap-6 md:px-8 md:pb-10 md:pt-8")} role="search">
+      <span className="sr-only" aria-live="polite" aria-atomic="true">
+        {announced}
+      </span>
       <div className={cn("flex h-[52px] items-center gap-2.5 rounded-[14px] border-[1.5px] border-border bg-raised px-3.5 focus-within:border-sky", !mobile && "md:h-[60px] md:gap-3.5 md:rounded-row md:px-5")}>
         <Icon name="search" size={18} stroke={2} color="var(--rm-ink-3)" />
         <input
@@ -115,8 +124,8 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
           autoComplete="off"
           className={cn("min-w-0 flex-1 bg-transparent text-[16px] outline-none", !mobile && "md:text-[18px]")}
         />
-        <button type="button" onClick={onClose} className="hidden rounded-[8px] border border-border px-2.5 py-1.5 text-[13px] font-semibold text-muted pointer-fine:inline-flex">
-          Esc<span className="sr-only">{copy.escHint}</span>
+        <button type="button" onClick={onClose} aria-label={copy.closeLabel} className="hidden rounded-[8px] border border-border px-2.5 py-1.5 text-[13px] font-semibold text-muted pointer-fine:inline-flex">
+          Esc
         </button>
         <button type="button" onClick={onClose} className="shrink-0 px-1 py-1.5 text-[14px] font-semibold text-link pointer-fine:hidden">
           {copy.close}
@@ -136,7 +145,7 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
               </p>
             </aside>
           ) : null}
-          <span className="text-[12px] font-semibold text-muted" aria-live="polite" aria-atomic="true">
+          <span className="text-[12px] font-semibold text-muted" aria-hidden>
             {copy.count(results.length)}
           </span>
           {results.length ? (

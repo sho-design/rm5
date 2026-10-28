@@ -7,6 +7,10 @@ import { draft } from "./review";
  * docs/content-review.md.
  */
 export const bookingExtra = {
+  /** Before the approved fasting line on morning checkups. */
+  fastingIf: draft("If your doctor asked for fasting bloodwork with this visit:"),
+  /** Review line for someone else's booking: "Thu Tran. You are their daughter." */
+  youAreTheir: (relationship: string) => draft(`You are their ${relationship.toLowerCase()}.`),
   visitTitle: draft("What is the visit for?"),
   forTitle: draft("Who is this appointment for?"),
   forOptions: [draft("Me"), draft("Someone I care for")] as const,
@@ -57,7 +61,8 @@ export const bookingExtra = {
       coverage: "Coverage",
       contact: draft("Contact"),
       claim: draft("Claim"),
-      payment: draft("Paying by"),
+      insurer: draft("Insurer"),
+      notes: draft("Your note"),
       reminders: draft("Reminders"),
     },
     you: draft("You"),

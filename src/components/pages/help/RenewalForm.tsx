@@ -75,7 +75,7 @@ export function RenewalForm() {
         </div>
       ) : (
         <Panel>
-          <form onSubmit={submit} noValidate className="flex flex-col gap-[14px] md:gap-[18px]">
+          <form method="post" onSubmit={submit} noValidate className="flex flex-col gap-[14px] md:gap-[18px]">
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
               <FieldLabel label={c.fields.first} htmlFor="rx-first" error={errors["rx-first"]}>
                 <Input {...text("first")} autoComplete="given-name" />

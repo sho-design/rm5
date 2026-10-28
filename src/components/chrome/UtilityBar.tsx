@@ -18,7 +18,7 @@ export function UtilityBar() {
   const status = useOpenStatus();
   const [lang, setLang] = useState<"en" | "vi">("en");
   return (
-    <div className="bg-ink text-white">
+    <div role="region" aria-label="Clinic status and display settings" className="bg-ink text-white">
     <div className="mx-auto flex h-[38px] w-full max-w-[1440px] items-center justify-between px-4 text-[12px] font-medium md:px-8">
       <Link href={`${routes.locations}#thornhill`} className="flex min-w-0 items-center gap-2 hover:underline" aria-label={status.ready ? `${status.text}. See hours` : "Thornhill hours"}>
         <span aria-hidden className="h-[7px] w-[7px] shrink-0 rounded-full" style={{ background: status.open ? "var(--status-open)" : "rgba(255,255,255,.45)" }} />
@@ -26,10 +26,10 @@ export function UtilityBar() {
         <span className="hidden truncate sm:inline">{status.text}</span>
       </Link>
       <div className="flex items-center gap-1">
-        <TextControls inverse compact className="mr-3 hidden text-[12px] md:flex" />
+        <TextControls inverse compact className="mr-3 hidden text-[13px] md:flex" />
         <SocialIcons className="hidden sm:flex" />
         <span aria-hidden className="mx-2.5 hidden h-4 w-px bg-white/25 sm:block" />
-        <Link href={routes.referrals} className="whitespace-nowrap font-semibold text-sun hover:text-sun-soft">
+        <Link href={routes.referrals} className="hidden whitespace-nowrap font-semibold text-sun hover:text-sun-soft min-[400px]:inline">
           For referring doctors ›
         </Link>
         {viEnabled ? (

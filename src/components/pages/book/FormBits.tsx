@@ -122,9 +122,9 @@ export function Panel({ children, className }: { children: ReactNode; className?
 /** White tile inside an outcome card ("When", "Where", "Bring"). */
 export function OutcomeTile({ k, children, className }: { k: string; children: ReactNode; className?: string }) {
   return (
-    <div className={cn("flex flex-col gap-1 rounded-row bg-white px-5 py-[18px] text-primary", className)}>
-      <span className="text-[12px] font-semibold text-muted">{k}</span>
-      {children}
-    </div>
+    <dl className={cn("flex flex-col gap-1 rounded-row bg-white px-5 py-[18px] text-primary", className)}>
+      <dt className="text-[12px] font-semibold text-muted">{k}</dt>
+      <dd className="flex flex-col gap-1">{children}</dd>
+    </dl>
   );
 }

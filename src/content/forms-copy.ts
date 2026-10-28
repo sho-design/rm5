@@ -42,6 +42,10 @@ export const registerExtraCopy = {
   },
   reminders: draft("Send me appointment reminders by email or text. Optional."),
   updates: draft("Send me clinic updates by email. Optional, unsubscribe any time."),
+  done: {
+    people: (n: number) => (n === 1 ? draft("Registered") : draft(`Registered, ${n} people`)),
+    clinic: draft("Clinic"),
+  },
 };
 
 export const contactExtraCopy = {

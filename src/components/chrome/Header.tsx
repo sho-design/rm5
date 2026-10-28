@@ -10,8 +10,12 @@ import { href, routes } from "@/lib/routes";
 import { cn } from "@/lib/cn";
 import { Wordmark } from "./Wordmark";
 import { MegaMenu } from "./MegaMenu";
-import { SearchOverlay } from "./SearchOverlay";
-import { MobileMenu } from "./MobileMenu";
+import dynamic from "next/dynamic";
+
+// Search (with its index) and the phone menu load only when opened, so they do not delay
+// the first page on a slow phone.
+const SearchOverlay = dynamic(() => import("./SearchOverlay").then((m) => m.SearchOverlay), { ssr: false });
+const MobileMenu = dynamic(() => import("./MobileMenu").then((m) => m.MobileMenu), { ssr: false });
 import { Icon } from "@/components/ui/Icon";
 
 /**
@@ -50,7 +54,15 @@ export function Header() {
   const onBlur = (e: FocusEvent<HTMLElement>) => {
     if (menu && !e.currentTarget.contains(e.relatedTarget as Node | null)) setMenu(null);
   };
-  const closeSearch = useCallback(() => setSearch(false), []);
+  const searchButton = useRef<HTMLButtonElement>(null);
+  // Closing search (Esc, Close) puts focus back on the Search button instead of the page body.
+  const closeSearch = useCallback(() => {
+    setSearch(false);
+    requestAnimationFrame(() => {
+      const a = document.activeElement;
+      if (!a || a === document.body) searchButton.current?.focus();
+    });
+  }, []);
 
   const active = navOrder.find((k) => pathname === href(k) || (k !== "about" ? pathname.startsWith(href(k) + "/") : pathname.startsWith("/about")));
 
@@ -60,7 +72,7 @@ export function Header() {
         <div onMouseEnter={closeMenu}>
           <Wordmark />
         </div>
-        <nav className="hidden gap-1 text-[14px] lg:flex" aria-label="Primary">
+        <nav className="rm-desktop-nav hidden gap-1 text-[14px] lg:flex" aria-label="Primary">
           {navOrder.map((k) => {
             const on = menu === k;
             return (
@@ -104,6 +116,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-1.5 text-[14px] font-medium md:gap-2" onMouseEnter={closeMenu}>
           <button
+            ref={searchButton}
             type="button"
             onClick={() => {
               setSearch((s) => !s);
@@ -115,7 +128,7 @@ export function Header() {
           >
             <Icon name="search" size={16} stroke={2} />
           </button>
-          <a href={site.phoneHref} className="hidden whitespace-nowrap rounded-chip border-[1.5px] border-border px-3.5 py-[9px] transition-colors hover:border-sky md:block">
+          <a href={site.phoneHref} className="rm-header-phone hidden whitespace-nowrap rounded-chip border-[1.5px] border-border px-3.5 py-[9px] transition-colors hover:border-sky md:block">
             {site.phone}
           </a>
           <Link href={routes.book} className="hidden rounded-chip bg-ink px-4 py-[9px] text-white hover:opacity-90 sm:block">
@@ -126,7 +139,7 @@ export function Header() {
             onClick={() => setMobile(true)}
             aria-label="Menu"
             aria-expanded={mobile}
-            className="flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-border text-[16px] lg:hidden"
+            className="rm-menu-btn flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-border text-[16px] lg:hidden"
           >
             ☰
           </button>

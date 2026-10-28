@@ -93,7 +93,7 @@ export function ApplyForm({ roles, role, onRoleChange }: { roles: string[]; role
               </StateCard>
             </div>
           ) : null}
-          <form ref={formRef} onSubmit={onSubmit} noValidate className="flex flex-col gap-[22px] rounded-block border border-border bg-card p-5 md:p-9" aria-busy={status === "sending"}>
+          <form method="post" ref={formRef} onSubmit={onSubmit} noValidate className="flex flex-col gap-[22px] rounded-block border border-border bg-card p-5 md:p-9" aria-busy={status === "sending"}>
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
               <Field label={f.firstName} htmlFor="ap-first" required>
                 <Input id="ap-first" name="firstName" autoComplete="given-name" required {...errorProps(errors, "ap-first")} />
