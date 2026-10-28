@@ -6,6 +6,7 @@ import { HoursLead } from "@/components/pages/contact/HoursLead";
 import { contactCopy } from "@/content/booking";
 import { images } from "@/content/images";
 import { site, thornhillHours } from "@/content/site";
+import { shortRange } from "@/lib/hours";
 import { external } from "@/lib/routes";
 import { EmergencyNote } from "@/components/pages/help/EmergencyNote";
 
@@ -44,7 +45,11 @@ export default function ContactPage() {
         </div>
         <a href={`mailto:${site.email}`} className={`${tile} border border-border bg-card hover:border-sky`}>
           <span className="text-[12px] text-muted">{contactCopy.tiles.email.k}</span>
-          <span className="break-all text-[15px] font-semibold md:text-[16px]">{site.email}</span>
+          {/* Wrap at the @ on narrow tiles, never mid-word. */}
+          <span className="break-words text-[15px] font-semibold md:text-[16px]">
+            {site.email.split("@")[0]}
+            <wbr />@{site.email.split("@")[1]}
+          </span>
           <span className="text-[13px] text-muted">{contactCopy.tiles.email.sub}</span>
         </a>
         <SmartLink to="locations" className={`${tile} bg-sun-soft text-ink hover:opacity-95`}>
@@ -75,7 +80,7 @@ export default function ContactPage() {
                       <th scope="row" className="py-0.5 pr-3 text-left font-normal text-secondary">
                         {d}
                       </th>
-                      <td className="py-0.5 text-right tabular-nums sm:text-left">{h}</td>
+                      <td className="whitespace-nowrap py-0.5 text-right tabular-nums sm:text-left">{shortRange(h)}</td>
                     </tr>
                   ))}
                 </tbody>

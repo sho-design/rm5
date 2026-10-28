@@ -71,6 +71,7 @@ export function ReferralForm({ services }: { services: string[] }) {
         <div ref={outcomeRef} tabIndex={-1} className="scroll-mt-24 outline-none">
           <StateCard state="success" title={f.success.title} actions={<Button to="referrals">Back to the top</Button>}>
             <p>{f.success.body}</p>
+            <p>{f.success.match}</p>
           </StateCard>
         </div>
       ) : (

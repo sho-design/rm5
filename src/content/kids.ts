@@ -1,4 +1,5 @@
 import type { PathStep, QA, SubChooserItem, TintCard } from "./types";
+import { draft } from "./review";
 
 /** Age band chooser entry. `immIndex` selects the matching immunization tab. */
 export interface KidsAge extends SubChooserItem {
@@ -35,6 +36,8 @@ export interface KidsSickCard {
   bg: string;
   items: string[];
   action: string;
+  /** Makes the action a link (Health811 is a phone call: tel:811). */
+  actionHref?: string;
 }
 
 export const kidsAges: KidsAge[] = [
@@ -245,17 +248,20 @@ export const kidsForms: TintCard[] = [
 export const kidsSick: KidsSickCard[] = [
   {
     tag: "Call us",
-    t: "Book a same-week visit with us",
+    // Was "Book a same-week visit with us": parents read it as "not today" while booking shows today's times.
+    t: draft("Call or book a visit with us"),
     bg: "#EEF5FC",
     items: ["Fever for more than two days", "Ear pain, sore throat or a cough that lingers", "Rashes, tummy pain or vomiting that is settling", "Any worry that does not feel urgent"],
     action: "905-709-3222",
   },
   {
-    tag: "Same day",
+    // Was "Same day", which made the walk-in sound faster than us.
+    tag: draft("When we cannot see you"),
     t: "Call Health811 or visit a walk-in",
     bg: "#FFF3C4",
     items: ["We are closed or fully booked", "A fever in a child under 3 months", "Vomiting or diarrhea with fewer wet diapers", "You want advice tonight"],
     action: "Health811 is free, 24 hours",
+    actionHref: "tel:811",
   },
   {
     tag: "Emergency",

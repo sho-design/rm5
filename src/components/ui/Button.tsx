@@ -24,9 +24,9 @@ const variants: Record<ButtonVariant, string> = {
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "h-[38px] px-4 text-[14px]",
-  md: "h-12 px-6 text-[15px]",
-  lg: "h-14 px-8 text-[16px]",
+  sm: "min-h-[38px] px-4 py-2 text-[14px]",
+  md: "min-h-12 px-6 py-3 text-[15px]",
+  lg: "min-h-14 px-8 py-3.5 text-[16px]",
 };
 
 type Base = {
@@ -47,12 +47,14 @@ export type ButtonProps = AsLink | AsButton;
 /**
  * Pill button for every call to action. Primary is ink, secondary is sky,
  * accent is sunshine (on navy), outline and ghost for secondary paths.
- * Never uppercase, never more than one primary per block.
+ * Never uppercase, never more than one primary per block. Labels stay on
+ * one line from the small breakpoint up; on a narrow phone a long label
+ * ("Book a family medicine assessment") wraps instead of running off the card.
  */
 export function Button(props: ButtonProps) {
   const { variant = "primary", size = "md", trailing, fullWidth, className, children } = props;
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-chip border-[1.5px] font-semibold leading-none whitespace-nowrap transition-all active:scale-[.98] disabled:opacity-45 disabled:cursor-not-allowed",
+    "inline-flex items-center justify-center gap-2 rounded-chip border-[1.5px] font-semibold leading-[1.15] max-w-full text-center text-balance sm:whitespace-nowrap transition-all active:scale-[.98] disabled:opacity-45 disabled:cursor-not-allowed",
     variant === "ghost" ? "text-[15px]" : sizes[size],
     variants[variant],
     fullWidth && "w-full",

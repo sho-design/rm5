@@ -12,11 +12,14 @@ import { aliasesFor, searchExtras } from "./search-synonyms";
  * (after the "All ..." entry), one row per service card, then the
  * hand-written rows below.
  */
+// Menu rows say what the page is about (its topic lead) rather than just "Explore".
+const leadFor = (page: string) => topics.find((t) => t.key === page)?.lead;
+
 const generated: SearchEntry[] = navOrder.flatMap((k) => {
   const d = divisions[k];
   return [
     { kind: "Service", label: d.label, sub: d.tag, page: k },
-    ...d.explore.slice(1).map((e) => ({ kind: d.label, label: e.label, sub: "Explore", page: e.page })),
+    ...d.explore.slice(1).map((e) => ({ kind: d.label, label: e.label, sub: leadFor(e.page) ?? "Explore", page: e.page })),
     ...(d.services ?? []).map((s) => ({ kind: d.label, label: s.title, sub: s.desc, page: s.page })),
   ];
 });

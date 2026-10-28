@@ -254,6 +254,8 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Massage therapy", page: "rehabMassage" },
       { label: "Kinesiology", page: "rehabKines" },
       { label: "Motor vehicle accidents", page: "rehabMva" },
+      // WSIB only had a booking link here; people wanted to read about cost first.
+      { label: draft("WSIB and work injuries"), page: "rehabWsib" },
     ],
     book: [
       { label: "Book a session", page: bookFor("rehab") },
@@ -389,7 +391,8 @@ export const infusionPage = {
     note: "Two paths, one standard of care. Wellness is elective; iron therapy may be clinically indicated.",
     wellness: {
       k: "Wellness infusions & shots",
-      t: "Energy, immunity, skin, recovery, healthy aging.",
+      // No immunity claims (RM-HB-COMMS).
+      t: draft("Energy, skin, recovery, healthy aging."),
       d: "Personalized to you, given in a calm clinical setting. Elective, and designed around how you want to feel.",
       cta: "Browse drips & shots",
     },

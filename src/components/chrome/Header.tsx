@@ -72,7 +72,7 @@ export function Header() {
         <div onMouseEnter={closeMenu}>
           <Wordmark />
         </div>
-        <nav className="rm-desktop-nav hidden gap-1 text-[14px] lg:flex" aria-label="Primary">
+        <nav className="rm-desktop-nav hidden gap-1 text-[14px] xl:flex" aria-label="Primary">
           {navOrder.map((k) => {
             const on = menu === k;
             return (
@@ -139,7 +139,7 @@ export function Header() {
             onClick={() => setMobile(true)}
             aria-label="Menu"
             aria-expanded={mobile}
-            className="rm-menu-btn flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-border text-[16px] lg:hidden"
+            className="rm-menu-btn flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-border text-[16px] xl:hidden"
           >
             ☰
           </button>

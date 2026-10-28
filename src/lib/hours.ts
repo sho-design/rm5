@@ -28,6 +28,13 @@ const toMinutes = (s: string) => {
   return hh * 60 + +m[2];
 };
 
+/** "9:00 am to 4:00 pm" (as stored) shown in the site style, "9am to 4pm". "Closed" and anything unparsed pass through. */
+export function shortRange(range: string): string {
+  const parts = range.split(" to ");
+  if (parts.length !== 2 || !parts.every((p) => /^\d{1,2}:\d{2}\s*(am|pm)$/i.test(p.trim()))) return range;
+  return `${short(parts[0].trim())} to ${short(parts[1].trim())}`;
+}
+
 /** "Thornhill open now until 4pm" style status for the utility bar. */
 export function openStatus(now = torontoNow()): { text: string; open: boolean } {
   const di = (now.getDay() + 6) % 7; // Monday first

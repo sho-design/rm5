@@ -30,9 +30,10 @@ export const Input = forwardRef<HTMLInputElement, ComponentProps<"input">>(funct
   return <input ref={ref} className={cn(control, className)} {...rest} />;
 });
 
+/** Native select with a chevron, drawn by .rm-select in globals.css. */
 export const Select = forwardRef<HTMLSelectElement, ComponentProps<"select">>(function Select({ className, children, ...rest }, ref) {
   return (
-    <select ref={ref} className={cn(control, "appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%230F1F2E%22 stroke-width=%222%22 stroke-linecap=%22round%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-[length:12px] bg-[right_16px_center] bg-no-repeat pr-10", className)} {...rest}>
+    <select ref={ref} className={cn(control, "rm-select appearance-none pr-10", className)} {...rest}>
       {children}
     </select>
   );

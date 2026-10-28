@@ -72,7 +72,8 @@ export const refSteps: RefStep[] = [
 export const referralsPage = {
   eyebrow: "For referring physicians and nurse practitioners",
   title: "Refer a patient.",
-  lead: "Fax or upload a referral and we will contact your patient directly to book. You receive a consult note after the first visit and a procedure note after each treatment.",
+  // There is no upload: referrals come by fax, Ocean or the online form.
+  lead: draft("Fax a referral or send it online, and we will contact your patient directly to book. You receive a consult note after the first visit and a procedure note after each treatment."),
   contactLabels: { fax: "Referral fax", line: "Referral line", email: "Secure email", also: "Also accepted" },
   alsoAccepted: "Ocean eReferral, OTN",
   servicesTitle: "What we accept referrals for.",
@@ -84,7 +85,7 @@ export const referralsPage = {
     title: "Download the referral form.",
     /** Shown until the clinic supplies its PDF form. */
     titleNoForm: draft("Send a referral."),
-    sub: "One form for all services. Tick the service, attach relevant results and fax or upload.",
+    sub: draft("One form for all services. Tick the service, then fax it with any relevant results."),
     pdf: "Referral form (PDF)",
     // There is no file upload; the button opens the online referral form.
     upload: draft("Send a referral online"),
@@ -97,7 +98,7 @@ export const referralsPage = {
   goodToKnowLabel: "Good to know",
   goodToKnow: [
     "Reports are faxed to the referring provider within 5 business days of each visit.",
-    "Urgent referrals: write URGENT on the form and call the referral line.",
+    draft("Urgent referrals: tick Urgent online or write URGENT on a faxed form, and call the referral line."),
     "Care available in English and Vietnamese.",
   ],
   /** Online referral form (handoff README, "Refer a patient": physician, patient DOB, reason). */
@@ -120,6 +121,8 @@ export const referralsPage = {
     success: {
       title: "Referral received.",
       body: "We will fax an acknowledgement within 2 business days and contact you for your patient's details before we book.",
+      // Physicians asked how faxed imaging is matched to an online referral (no patient name is collected online).
+      match: draft("Faxing imaging or notes for this patient? Write \"online referral\" and the patient's date of birth on the cover page so we can match them."),
     },
     error: {
       title: "We could not send that.",

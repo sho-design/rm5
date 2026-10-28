@@ -1,4 +1,5 @@
 import type { FaqItem } from "./types";
+import { draft } from "./review";
 
 export const faqCategories = ["All", "Visits", "Coverage", "Results", "Prescriptions", "Clinic", "Privacy", "Pain Centre", "Infusion", "Aesthetics", "Rehab"];
 
@@ -300,7 +301,8 @@ export const faqCopy = {
   searchLabel: "Search questions",
   still: {
     title: "Still stuck?",
-    body: "Call during clinic hours or send a message. We reply within one business day.",
+    // Matches the contact form ("We reply within 2 business days").
+    body: draft("Call during clinic hours or send a message. We reply within 2 business days."),
     cta: "Contact us",
   },
   empty: {

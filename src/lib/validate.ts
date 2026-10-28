@@ -60,3 +60,9 @@ export function readForm(form: HTMLFormElement): Record<string, string | boolean
   }
   return out;
 }
+
+/** Show a 10 digit North American number as "416-555-0142"; anything else is shown as typed. */
+export function fmtPhone(raw: string): string {
+  const d = raw.replace(/\D/g, "").replace(/^1(?=\d{10}$)/, "");
+  return d.length === 10 ? `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}` : raw;
+}

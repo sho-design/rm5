@@ -652,7 +652,8 @@ export const drips: Drip[] = [
   { name: "Recovery", desc: "Amino acids and electrolytes", mins: 60, price: 200 },
   { name: "Anti-nausea add-on", desc: "Added to any drip", mins: 0, price: 40 },
   { name: "Vitamin C add-on", desc: "Added to any drip", mins: 0, price: 40 },
-  { name: "Iron (Venofer)", desc: "Requires physician assessment first", mins: 120, price: 400 },
+  // Clinic price: $550 per visit with clinic-supplied Monoferric 500 mg (see the iron therapy page).
+  { name: "Iron (Monoferric 500 mg)", desc: "Requires physician assessment first", mins: 90, price: 550 },
 ];
 
 /** Index of the drip that requires a physician assessment first (Iron). */

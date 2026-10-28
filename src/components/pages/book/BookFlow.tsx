@@ -9,7 +9,7 @@ import { site } from "@/content/site";
 import { bookingDays, fmtTime, womensDayBookingDays, DOW, MON, type BookingDay } from "@/lib/hours";
 import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
-import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
+import { errorProps, fmtPhone, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
 import { cn } from "@/lib/cn";
 import { linkPhones } from "@/components/ui/Phones";
 import { Choice, ConsentRow, FieldError, FieldLabel, OutcomeTile, Panel, PillChip, selClass, SubmitButton } from "./FormBits";
@@ -137,6 +137,16 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [services]);
 
+  // The tab title says when the booking is done, so it is not still "Book an appointment".
+  useEffect(() => {
+    if (state !== "c") return;
+    const before = document.title;
+    document.title = `${bookingCopy.confirmed.title} ${before}`;
+    return () => {
+      document.title = before;
+    };
+  }, [state]);
+
   const str = (k: string) => (typeof details[k] === "string" ? (details[k] as string) : "");
   // Women's health day is only on the last Sunday of the month: offer those dates instead of the next 7 days.
   const dayList = visit?.days === "womensday" ? womensDays : days;
@@ -168,10 +178,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const ontarioLine = (line: string) => card > 0 && /Ontario health card/i.test(line);
   const bring = [
     ...(visit?.bring ?? []).filter((l) => !typed(l) && !ontarioLine(l)),
-    ...(card > 0 ? [x.card.bring] : []),
+    ...(card === 1 ? [x.card.bring] : card === 2 ? [x.card.bringNone] : []),
     ...(visit?.payment ? (payments[payment]?.bring ?? []) : []),
-    ...(visit?.fasting && slot != null ? [slot < 10 ? config.fasting.early : config.fasting.late] : []),
-    ...(visit?.fastingMaybe && slot != null && slot < 10 ? [`${x.fastingIf} ${config.fasting.early}`] : []),
+    ...(visit?.fasting && slot != null ? [slot < 10 ? x.fastingBooked : config.fasting.late] : []),
+    ...(visit?.fastingMaybe && slot != null && slot < 10 ? [`${x.fastingIf} ${x.fastingBooked}`] : []),
     ...(who === 0 ? [config.firstVisit] : []),
   ];
 
@@ -282,13 +292,13 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     ...(forOther ? ([[x.review.keys.for, [patientName ? `${patientName}.` : "", str("relationship") ? x.youAreTheir(str("relationship")) : ""].filter(Boolean).join(" ")]] as [string, string][]) : []),
     [x.review.keys.status, bookingWho[who]],
     [registerCopy.fields.language, registerLanguages[language]],
-    [x.card.label, card === 0 && str("card") ? `${x.card.options[0]}, ${x.card.endsIn} ${str("card")}` : x.card.options[card]],
+    [x.card.label, card === 0 && str("card") ? `${x.card.options[0]}, ${x.card.endsIn} ${str("card")}` : card === 1 && province ? `${x.card.options[1]}: ${province}` : x.card.options[card]],
     [x.review.keys.time, slotLabel],
     [x.review.keys.clinic, bookingCopy.clinic],
     [x.review.keys.coverage, coverage],
     ...(visit?.payment && payment === 0 && str("benefitsInsurer") ? ([[x.review.keys.insurer, str("benefitsInsurer")]] as [string, string][]) : []),
     ...(visit?.claim && claimLine() ? ([[x.review.keys.claim, claimLine()]] as [string, string][]) : []),
-    [x.review.keys.contact, [contactName, str("phone"), str("email")].filter(Boolean).join(", ")],
+    [x.review.keys.contact, [contactName, fmtPhone(str("phone")), str("email")].filter(Boolean).join(", ")],
     ...(str("notes") ? ([[x.review.keys.notes, str("notes")]] as [string, string][]) : []),
     [x.review.keys.reminders, reminders ? x.review.yes : x.review.no],
   ];
@@ -380,6 +390,15 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 <GroupLabel>{x.statusLabel}</GroupLabel>
                 <Choice options={bookingWho} value={who} onChange={setWho} ariaLabel={x.statusLabel} />
                 <span className="text-[12px] text-muted">{x.statusHint}</span>
+                {/* Booking is one visit; registering makes us your family doctor. New patients asked which to do. */}
+                {who === 0 && service.key === "family" ? (
+                  <span className="text-[12px] text-muted">
+                    {x.registerHint}{" "}
+                    <SmartLink to="register" className="font-semibold text-link">
+                      {x.registerLink} ›
+                    </SmartLink>
+                  </span>
+                ) : null}
               </div>
               <div className="flex flex-col gap-2">
                 <GroupLabel>{registerCopy.fields.language}</GroupLabel>
@@ -504,6 +523,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                     type="button"
                     role="radio"
                     aria-checked={on}
+                    aria-disabled={d.open ? undefined : true}
                     tabIndex={rovingTab(on, i, true)}
                     aria-label={`${d.today ? `${x.todayShort}, ` : ""}${d.dow} ${MON[d.date.getMonth()]} ${d.num}${d.open ? "" : `, ${x.closedShort.toLowerCase()}`}`}
                     onClick={() => {
@@ -520,6 +540,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 );
               })}
             </div>
+            <span className="sr-only" aria-live="polite">
+              {day && day.open ? x.timesFor(`${day.dow} ${MON[day.date.getMonth()]} ${day.num}`, slots.length) : ""}
+            </span>
             {day && !day.open ? (
               <div role="status" className="flex flex-col gap-2 rounded-row border border-border bg-white p-4 text-[13px] leading-[1.5] text-muted md:p-6 md:text-[14px]">
                 <span className="font-semibold text-primary">{bookingCopy.closedTitle}</span>
@@ -644,6 +667,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 </OutcomeTile>
                 <OutcomeTile k={x.confirmed.coverage}>
                   <span className="text-[16px] font-semibold">{coverage}</span>
+                  {visit?.claim && claimLine() ? <span className="text-[13px] text-muted">{`${x.review.keys.claim}: ${claimLine()}`}</span> : null}
                 </OutcomeTile>
               </div>
               {str("notes") ? (

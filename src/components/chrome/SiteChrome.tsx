@@ -28,6 +28,10 @@ export async function SiteChrome({ children }: { children: ReactNode }) {
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-chip focus:bg-ink focus:px-4 focus:py-2 focus:text-white">
         Skip to content
       </a>
+      {/* Contact, hours and cookie settings live in the footer, about 75 Tabs down on a long page. */}
+      <a href="#footer" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-chip focus:bg-ink focus:px-4 focus:py-2 focus:text-white">
+        Skip to footer
+      </a>
       <UtilityBar />
       <Header />
       <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col">

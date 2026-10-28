@@ -1,8 +1,9 @@
 import { Section } from "@/components/ui";
 import { kidsCopy, kidsSick } from "@/content/kids";
+import { linkPhones } from "@/components/ui/Phones";
 import { SubHeader } from "./FamilySubBits";
 
-/** "Where to go, and when": three tinted triage cards (call us, same day, emergency). */
+/** "Where to go, and when": three tinted triage cards (call or book us, when we cannot see you, emergency). */
 export function KidsSick() {
   return (
     <Section tight className="flex flex-col gap-5" id="sick">
@@ -20,7 +21,13 @@ export function KidsSick() {
                 </li>
               ))}
             </ul>
-            <span className="text-[14px] font-semibold">{s.action}</span>
+            {s.actionHref ? (
+              <a href={s.actionHref} className="self-start text-[14px] font-semibold text-link">
+                {s.action} ›
+              </a>
+            ) : (
+              <span className="text-[14px] font-semibold">{linkPhones(s.action)}</span>
+            )}
           </div>
         ))}
       </div>

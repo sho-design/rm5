@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Dot } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { locationsCopy } from "@/content/about";
-import { openStatus, torontoNow } from "@/lib/hours";
+import { openStatus, shortRange, torontoNow } from "@/lib/hours";
 
 /**
  * Hours table. For the open clinic it also shows a live open-now dot and
@@ -43,7 +43,7 @@ export function HoursCard({ hours, live }: { hours: [string, string][]; live: bo
         return (
           <div key={d} className={cn("flex justify-between gap-4 text-[14px]", today && "font-semibold")}>
             <span className="font-medium">{d}</span>
-            <span className={cn("text-right", today && t !== "Closed" ? "text-primary" : "text-muted")}>{t}</span>
+            <span className={cn("whitespace-nowrap text-right", today && t !== "Closed" ? "text-primary" : "text-muted")}>{shortRange(t)}</span>
           </div>
         );
       })}

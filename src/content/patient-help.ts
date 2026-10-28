@@ -1,3 +1,4 @@
+import { draft } from "./review";
 /**
  * Patient helpers added before launch: emergency guidance, the
  * prescription renewal request form, the uninsured fees page and the
@@ -45,6 +46,10 @@ export const feesCopy = {
   tableService: "Service",
   tableFee: "Fee",
   receipts: "Fees are told to you before the service, and every payment comes with a receipt.",
+  knownTitle: draft("Prices on our service pages"),
+  knownSub: draft("These are already published with each service. HST is shown as on the service page."),
+  ironPrefix: draft("Iron therapy"),
+  details: draft("Details"),
 } as const;
 
 export const wayfindingCopy = {

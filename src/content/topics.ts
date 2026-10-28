@@ -294,8 +294,11 @@ const pain: Topic[] = [
 /* Medical Aesthetics                                                  */
 /* ------------------------------------------------------------------ */
 
-const aesBand: Topic["band"] = { title: AD.footCta ?? "", sub: A.closing, cta: AD.cta ?? "", ctaTo: bookFor("aesthetics") };
-const aesHero = { cta: AD.cta ?? "", ctaTo: bookFor("aesthetics"), coverage: approved(AD.blurb ?? "", "Individual results vary.") };
+// Pages for one kind of consult (skin, laser) open booking on that consult; the rest on "A consult".
+const aesBandFor = (visit = "consult"): Topic["band"] => ({ title: AD.footCta ?? "", sub: A.closing, cta: AD.cta ?? "", ctaTo: bookFor("aesthetics", visit) });
+const aesHeroFor = (visit = "consult") => ({ cta: AD.cta ?? "", ctaTo: bookFor("aesthetics", visit), coverage: approved(AD.blurb ?? "", "Individual results vary.") });
+const aesBand = aesBandFor();
+const aesHero = aesHeroFor();
 const aesPath = { title: A.pathTitle, steps: A.path };
 const rung = (i: number): TopicCard => {
   const r = aestheticsLadder[i];
@@ -330,14 +333,14 @@ const aesthetics: Topic[] = [
     title: svc(AD, 1).title,
     lead: svc(AD, 1).desc,
     description: fit(svc(AD, 1).desc, "Planned after a medical assessment at Restoration Medical in Thornhill. Individual results vary."),
-    ...aesHero,
+    ...aesHeroFor("skin"),
     img: images.services.aesthetics[1],
     imgAlt: draft("Aesthetic nurse preparing a skin treatment"),
     pills: result(A, 2).tags,
     cards: { title: A.chooser.title, items: [asCard(result(A, 2)), asCard(result(A, 3)), rung(0), rung(1)] },
     path: aesPath,
     faq: [fq("Is there downtime?"), dq("aesthetics", "Is any of this covered by OHIP?"), dq("aesthetics", "Is a consult free?")],
-    band: aesBand,
+    band: aesBandFor("skin"),
   },
   {
     key: "aesLaser",
@@ -347,13 +350,13 @@ const aesthetics: Topic[] = [
     title: svc(AD, 2).title,
     lead: svc(AD, 2).desc,
     description: fit(`Laser for ${svc(AD, 2).desc.toLowerCase()}`, "Planned after a consult at Restoration Medical in Thornhill. Individual results vary."),
-    ...aesHero,
+    ...aesHeroFor("laser"),
     img: images.services.aesthetics[2],
     imgAlt: draft("Treatment room prepared for a laser consult"),
     cards: { title: A.chooser.title, items: [asCard(result(A, 4))] },
     path: aesPath,
     faq: [fq("Do I need a consultation first?"), fq("Is there downtime?"), fq("How is pricing set?"), fq("Who performs treatments?")],
-    band: aesBand,
+    band: aesBandFor("laser"),
   },
   {
     key: "aesPlans",
@@ -739,7 +742,8 @@ const family: Topic[] = [
     ctaTo: bookFor("family", "pregnancy"),
     cta2: "Register as a patient",
     cta2To: "register",
-    coverage: draft("OHIP-insured. Bring your health card."),
+    // Newcomers with a card from another province asked whether they count.
+    coverage: draft("OHIP-insured. Bring your health card. Card from another province? We may be able to bill your home province."),
     img: images.services.family[3],
     imgAlt: draft("Family physician talking with a pregnant patient"),
     glance: {
@@ -750,6 +754,7 @@ const family: Topic[] = [
         { k: draft("Bloodwork"), v: draft("Drawn on site") },
         { k: draft("Referral"), v: approved(womenResult("Planning a pregnancy"), "Referral to obstetrics or midwifery by 12 weeks") },
         { k: draft("After the baby"), v: draft("Well-baby visits here") },
+        { k: draft("Who you see"), v: draft("One of our physicians, with our nurses for testing") },
       ],
     },
     path: {
@@ -770,7 +775,7 @@ const family: Topic[] = [
         { t: draft("Children and youth"), d: draft("Well-baby visits and vaccines"), page: "kids" },
       ],
     },
-    faq: [womenFaqQA("Can I ask for a female physician?")],
+    faq: [womenFaqQA("Can I ask for a female physician?"), ...faqItems.filter((f) => f.q === "I have a health card from another province. Can I be seen?").map(({ q, a }) => ({ q, a }))],
     band: familyBand,
   },
 ];

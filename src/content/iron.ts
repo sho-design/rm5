@@ -1,5 +1,6 @@
 import type { PathStep, QA, TintCard } from "./types";
 import { images } from "./images";
+import { draft } from "./review";
 
 export interface IronSymptom {
   label: string;
@@ -62,7 +63,8 @@ export const ironPrices: IronPrice[] = [
     t: "Administration only",
     price: "$250",
     d: "We write the prescription, you fill it at your pharmacy and bring it in. Most private drug plans cover the iron. We supply the nursing, supplies and monitoring.",
-    note: "Per visit, HST included",
+    // Course total added to match the clinic-supplied card (3 visits per course).
+    note: draft("Per visit, HST included. Course of 3: $750, plus the iron from your pharmacy"),
     bg: "#fff",
   },
   {

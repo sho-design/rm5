@@ -163,6 +163,13 @@
 :root[data-theme="contrast"] .opacity-75,
 :root[data-theme="contrast"] .opacity-80 { opacity: 1; }
 
+/* The full division menu, search, phone pill and Book need about 1380px.
+   From 1280px the menu shows (nav switches from the phone menu at xl);
+   until 1380px the phone pill steps aside (the number is in the utility bar). */
+@media (min-width: 1280px) and (max-width: 1379px) {
+  .rm-header-phone { display: none !important; }
+}
+
 /* Larger text on desktop: the zoomed header needs about 1250px for the full
    division menu and phone pill. Below that, use the phone menu instead so
    nothing is cut off. Media queries see the real window width, not the
@@ -210,3 +217,11 @@
 @keyframes rmSwing { 0%, 100% { transform: rotate(0) } 30% { transform: rotate(-12deg) } 70% { transform: rotate(8deg) } }
 @keyframes rmBeat { 0%, 100% { transform: scale(1) } 20% { transform: scale(1.12) } 40% { transform: scale(1) } 60% { transform: scale(1.08) } }
 @keyframes rmDash { from { stroke-dashoffset: 40 } to { stroke-dashoffset: 0 } }
+
+/* Select chevron, ink stroke. */
+.rm-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230F1F2E' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 12px;
+  background-position: right 16px center;
+}

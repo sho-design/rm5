@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (70 simulated patients)
+# Usability test, 28 October 2026 (90 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -287,6 +287,78 @@ Second pass on round 5, the smaller items:
 - **Team page:** "Dr. Nguyen portrait (from restorationmedical.ca)" placeholder, "Woodbridge" in his bio, no bio for Dr. Truong (Emma, Priscilla).
 - **One action, four names:** "New patients", "Join the roster", "Join our roster", "Register as a patient" (Emma).
 - **Massage price:** still "From $95" from the prototype; the self-pay headline shows it (Daniel).
+
+## Rounds 6 and 7: 20 testers, run side by side
+
+Run about 8:20am on a Wednesday (clinic closed until 9am). New areas: iron costs, aesthetics and laser prices, physician referrals, MVA and WSIB, registering two people, keyboard only, screen reader, careers, high contrast, out-of-province pregnancy, renewals, IV drips, a sick child on a phone, fees, complaints, and dark mode with reduced motion.
+
+| Tester | Device | Goal | Ease /7 | Trust /7 | Failed |
+|---|---|---|---|---|---|
+| Anh, 34, Vietnamese first | iPhone 12 | Flu shots for her and her mother | 5 | 6 | Booking two people at once |
+| Robert, 71, largest text | Desktop | Iron infusion cost and booking | 6 | 6 | 0 |
+| Sofia, 29 | iPhone 13 | Frown lines consult | 6 | 6 | Injectables price |
+| Dr. Patel, family physician | Desktop | Urgent Pain Centre referral | 5 | 5 | 0 |
+| Kevin, 40 | Pixel 7 | Car accident rehab | 6 | 5 | 0 |
+| Jasmine, 26 | Galaxy S9+ | Register herself and partner, Maple | 5 | 6 | 0 |
+| Paul, 58, keyboard only | Desktop | Fasting bloodwork, cookie settings | 6 | 6 | 0 |
+| Linh, 45, RN | iPad | Weekend nursing job | 5 | 5 | 0 |
+| Mark, 63, high contrast | Desktop | Directions, Sunday hours, women's day for his wife | 6 | 6 | 0 |
+| Chloe, 31, Alberta card | iPhone 14 Pro Max | Pregnancy care, contact, booking | 6 | 5 | 0 |
+| Tuan, 64 | iPhone SE | Knee injection without a referral | 6 | 6 | 0 |
+| Helen, 77 | Desktop 1024 | Prescription renewal | 5 | 5 | What to do if pills run out |
+| Marco, 35 | Pixel 5 | Saturday IV drip | 5 | 5 | 0 |
+| Aisha, 38, one thumb | Galaxy S8 | Sick child today, school note fee | 5 | 6 | 0 |
+| Bev, 55 | Desktop 1920 | Form fees, driver's medical | 5 | 3 | Fees list, form and driver's fees |
+| Jordan, 30, screen reader | Desktop | Physio with benefits | 6 | 6 | 0 |
+| Quynh, 24 | iPhone 15 | Laser hair removal | 5 | 5 | Laser hair removal, laser price |
+| Sam, 46 | Moto G4 | WSIB back injury | 5 | 6 | 0 |
+| Rita, 59 | iPad Mini | Complaint, cancel, privacy | 4 | 5 | How to cancel |
+| Dev, 33, dark mode | Pixel 7 | Chest pain search, register, Tuesday evening | 6 | 6 | 0 |
+
+Average ease 5.4, trust 5.5 (round 5: 5.2 and 5.4). All 20 finished the main booking or form and would use the site again. Every failed task was missing clinic information, not a broken flow.
+
+### Rounds 6 and 7 findings fixed in code
+
+- Long buttons wrap on narrow phones instead of running off the card ("Book a family medicine assessm", Tuan, iPhone SE). Applies to every Button.
+- The header no longer pushes Search, the phone pill and Book off screen between 1024 and 1280px (Rita, iPad landscape): the phone menu is used below 1280px, and the phone pill steps aside until 1380px.
+- "Join the Maple waitlist" on the home page and footer opens the Maple tab and its form, not Thornhill (Jasmine).
+- Booking:
+  - Arrow keys skip closed days, and the new times are announced when the day changes (Jordan).
+  - The review names the province ("From another province: Alberta") and shows the phone as 416-555-0142 (Chloe, Paul, Bev).
+  - After a morning fasting draw the confirmation gives the fasting instructions instead of "Book a slot before 10am" (Paul).
+  - No "photo ID if you do not have one" for someone with a card; "Photo ID." only for no card (Chloe).
+  - The confirmation repeats the claim number for MVA and WSIB (Sam).
+  - The tab title starts "You are booked." after booking (Jordan).
+  - New family medicine patients see "Booking is for one visit. To have us as your family doctor, register as well." with a link (Jasmine).
+- The select chevron was never drawn (the Tailwind class did not compile); province and other selects now show it (Chloe).
+- Skin and Laser pages open booking on "Skin consult" and "Laser consult" (Quynh). Other aesthetics pages open on "A consult".
+- The rehab menu has a WSIB page link, not only the booking intake (Sam).
+- Children and youth: the triage card reads "Call or book a visit with us" (was "same-week", while booking offered today), the walk-in card is tagged "When we cannot see you" (was "Same day"), and "Health811 is free, 24 hours" calls 811 (Aisha).
+- Pregnancy care: the coverage line mentions cards from another province, the glance says who you see, and the out-of-province FAQ is on the page (Chloe).
+- Fees page: lists the prices the site already publishes (iron, physio and chiro, massage) with links, and the phone number is a link (Bev, Robert).
+- Iron: the bring-your-own card shows the course total, "Course of 3: $750, plus the iron from your pharmacy" (Robert).
+- Infusion: the drip builder's "Iron (Venofer) $400" now matches the clinic price, Monoferric 500 mg $550 for a 90 minute visit. "Thirteen drips" is "Twelve drips". "Energy, immunity, skin..." drops "immunity" (no immunity claims) (Marco).
+- Referrals: "Fax or upload" no longer promises an upload; urgent wording matches the Urgent checkbox; the confirmation tells physicians how to label faxed imaging so it can be matched (Dr. Patel).
+- Contact: the email wraps at the @, not mid-word; hours read "9am to 4pm" and never split; the FAQ reply time matches the form, 2 business days (Rita).
+- Search: menu rows show the page's description instead of "Explore" (Quynh).
+- "Skip to footer" link after "Skip to content", for the 75-Tab trip to cookie settings (Paul).
+
+### Rounds 6 and 7 findings for the clinic
+
+- **Fees (blocker for Bev, trust 3/7):** the fee list itself (Site settings > Fees in the admin), including forms, school and sick notes, chart transfers, late cancellation and missed visits, and whether driver's medicals are offered.
+- **Aesthetics:** a "from" price for neuromodulator injections; whether laser hair removal is offered, with sessions and price; what "Skin health plans" include (Sofia, Quynh).
+- **Iron:** whether private plans or the Ontario Drug Benefit cover the iron in the $550 option, and whether a course can be other than 3 visits (Robert).
+- **Pain Centre:** wait times to quote to referring physicians (Dr. Patel).
+- **Renewals:** what to do if pills run out before the renewal is ready (Friday closed), how patients hear back, and the "portal" mentioned on the page (Helen).
+- **Directions:** which Walmart entrance and where the clinic is inside the store (Mark).
+- **MVA:** what OCF-1 and MIG mean for the patient and whether they can ever be charged; an adjuster field on the booking form if wanted (Kevin).
+- **Cancelling:** how to cancel or reschedule (phone, form or email) and the fee (Rita).
+- **Privacy:** whether contact form messages and complaints are kept, and for how long; who reads complaints, shown on the contact form (Rita).
+- **Out of province:** what happens, and the fee, if the home province cannot be billed (Chloe).
+- **Careers:** pay ranges, shift times and benefits (Linh).
+- **Booking two people:** the site cannot book two people at once; say "book each person, or call" if that is the policy (Anh).
+- **Vietnamese pages:** the footer and FAQ promise Tiếng Việt; the translation is still off (Tuan).
+- **Dark mode:** still off until the dark theme is finished (Dev).
 
 ## What worked
 

@@ -30,7 +30,7 @@ const legalLinks: [string, string][] = [
 export function Footer({ analytics = false }: { analytics?: boolean }) {
   const [thornhill, maple] = locations;
   return (
-    <footer className="m-3 flex flex-col gap-10 rounded-block border border-border bg-card p-6 md:m-gutter md:p-12">
+    <footer id="footer" tabIndex={-1} className="m-3 flex outline-none flex-col gap-10 rounded-block border border-border bg-card p-6 md:m-gutter md:p-12">
       <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[1.1fr_1fr_1fr]">
         <div className="flex flex-col gap-3.5 lg:pr-6">
           <Wordmark size="lg" />
@@ -76,7 +76,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
             {maple.addressLines[1]}
           </a>
           <span className="flex-1">Family Medicine, Pain Centre, Infusion Therapy and Rehab. Pre-registration is open now.</span>
-          <Link href={`${routes.locations}#maple`} className="w-full border-t border-border pt-1.5 font-semibold text-link">
+          <Link href={`${routes.locations}#maple-waitlist`} className="w-full border-t border-border pt-1.5 font-semibold text-link">
             Join the Maple waitlist ›
           </Link>
         </div>

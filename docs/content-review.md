@@ -161,6 +161,18 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - Registration: the relationship hint is now "For example parent, adult child, partner or caregiver."; the "Book a first visit" button was removed.
 - Booking: "Choose how you are paying.", "Your details" (screen reader group name). Children and youth: "On this page", "Sick visits", "Care by age", "Vaccines by age", "School forms", "Our doctors".
 
+## Usability fixes, rounds 6 and 7
+
+- Booking: "Booking is for one visit. To have us as your family doctor, register as well." and "Register as a patient"; "Your health card from another province." and "Photo ID." (replaces "Your health card from another province, or photo ID if you do not have one."); after a morning fasting draw, "Fast 8 to 12 hours before your visit. Nothing to eat after midnight, water is fine. Take your usual medications unless your doctor said otherwise."; screen reader only "N times on <day>.".
+- Children and youth triage: "Call or book a visit with us" (was "Book a same-week visit with us"), tag "When we cannot see you" (was "Same day"). Confirm whether sick children can often be seen the same day.
+- Pregnancy care: coverage "OHIP-insured. Bring your health card. Card from another province? We may be able to bill your home province."; glance "Who you see: One of our physicians, with our nurses for testing".
+- Fees page: "Prices on our service pages", "These are already published with each service. HST is shown as on the service page.", "Iron therapy".
+- Iron: "Per visit, HST included. Course of 3: $750, plus the iron from your pharmacy" on the bring-your-own card (3 x $250).
+- Infusion: "Twelve drips, one standard" (was "Thirteen", there are 12 drip pages); "Energy, skin, recovery, healthy aging." (was "Energy, immunity, skin...", no immunity claims); drip builder iron is "Iron (Monoferric 500 mg)", $550, 90 minutes (was "Iron (Venofer)", $400, 120 minutes), to match the iron page.
+- Referrals: "Fax a referral or send it online, and we will contact your patient directly to book...", "One form for all services. Tick the service, then fax it with any relevant results.", "Urgent referrals: tick Urgent online or write URGENT on a faxed form, and call the referral line.", and on the confirmation "Faxing imaging or notes for this patient? Write "online referral" and the patient's date of birth on the cover page so we can match them."
+- FAQ "Still stuck?": "We reply within 2 business days" (was "one business day", the contact form says 2).
+- Rehab menu: "WSIB and work injuries".
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

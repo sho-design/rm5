@@ -7,21 +7,25 @@ const reducedMotion = () => typeof window !== "undefined" && window.matchMedia("
 /**
  * Arrow keys for a role="radiogroup" container: Left/Up and Right/Down move
  * to the previous or next radio, focus it and select it (WAI-ARIA radio
- * group pattern). Home and End jump to the ends. Put it on the container's
+ * group pattern). Home and End jump to the ends. Radios marked
+ * aria-disabled (a closed day) are skipped. Put it on the container's
  * onKeyDown; pair with rovingTab() on each radio.
  */
 export function radioKeys(e: KeyboardEvent<HTMLElement>) {
   const keys = ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp", "Home", "End"];
   if (!keys.includes(e.key)) return;
-  const radios = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('[role="radio"]:not([disabled])'));
-  if (!radios.length) return;
-  const cur = radios.indexOf(document.activeElement as HTMLElement);
+  const all = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('[role="radio"]:not([disabled])'));
+  const cur = all.indexOf(document.activeElement as HTMLElement);
   if (cur === -1) return;
+  const usable = (el: HTMLElement) => el.getAttribute("aria-disabled") !== "true";
+  if (!all.some(usable)) return;
   e.preventDefault();
-  const n = radios.length;
-  const next = e.key === "Home" ? 0 : e.key === "End" ? n - 1 : e.key === "ArrowRight" || e.key === "ArrowDown" ? (cur + 1) % n : (cur - 1 + n) % n;
-  radios[next].focus();
-  radios[next].click();
+  const n = all.length;
+  const step = e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "Home" ? 1 : -1;
+  let next = e.key === "Home" ? 0 : e.key === "End" ? n - 1 : (cur + step + n) % n;
+  while (!usable(all[next])) next = (next + step + n) % n;
+  all[next].focus();
+  all[next].click();
 }
 
 /**

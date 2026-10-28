@@ -17,9 +17,12 @@ export const bookingExtra = {
       draft("That is fine. Without a health card the visit is uninsured. We tell you the fee before the visit and give you a receipt."),
     ],
     coverage: [draft("Card from another province, we may bill your province directly"), draft("Uninsured, fee told to you before the visit, receipt provided")],
-    bring: draft("Your health card from another province, or photo ID if you do not have one."),
+    bring: draft("Your health card from another province."),
+    bringNone: draft("Photo ID."),
   },
   /** Before the approved fasting line on morning checkups. */
+  /** After booking a morning fasting draw (the page line says "Book a slot before 10am", which no longer applies). */
+  fastingBooked: draft("Fast 8 to 12 hours before your visit. Nothing to eat after midnight, water is fine. Take your usual medications unless your doctor said otherwise."),
   fastingIf: draft("If your doctor asked for fasting bloodwork with this visit:"),
   /** Review line for someone else's booking: "Thu Tran. You are their daughter." */
   youAreTheir: (relationship: string) => draft(`You are their ${relationship.toLowerCase()}.`),
@@ -55,6 +58,8 @@ export const bookingExtra = {
   },
   cardError: draft("Use the last 4 digits of the number, without the letters, or leave it blank."),
   statusHint: draft("Registered but not seen yet? Choose New patient."),
+  registerHint: draft("Booking is for one visit. To have us as your family doctor, register as well."),
+  registerLink: draft("Register as a patient"),
   // Approved FAQ wording ("Do you speak Vietnamese?"), copied: this file ships to the browser, the FAQ module does not.
   languageHint: "Both physicians and several staff speak Vietnamese.",
   womensDayLead: draft("Women’s health days at Thornhill, the last Sunday of each month."),
@@ -73,6 +78,8 @@ export const bookingExtra = {
   updates: draft("Send me clinic updates by email. Optional, unsubscribe any time. See our "),
   closedShort: draft("Closed"),
   todayShort: draft("Today"),
+  /** Read out (not shown) when the day changes, so screen reader users know the times changed. */
+  timesFor: (day: string, n: number) => (n === 1 ? draft(`1 time on ${day}.`) : draft(`${n} times on ${day}.`)),
   review: {
     title: draft("Check your booking."),
     sub: draft("Nothing is sent until you confirm."),
