@@ -760,11 +760,12 @@ export const rehabCoverage: CoverageOption[] = [
   {
     label: "Paying myself",
     upfront: "From $95",
-    p: "Clear per-visit prices, HST included, with a receipt you can claim later or use for a health spending account.",
+    // Physio and chiro prices from the clinic, October 2026 (plus HST). Massage price still to confirm.
+    p: draft("Clear per-visit prices, plus HST, with a receipt you can claim later or use for a health spending account."),
     facts: [
-      { k: "Physio assessment", v: "$120" },
-      { k: "Physio follow-up", v: "$95" },
-      { k: "Chiro / massage", v: "From $95" },
+      { k: draft("Physio or chiro assessment"), v: draft("$135 plus HST") },
+      { k: draft("Physio or chiro treatment"), v: draft("$100 plus HST") },
+      { k: draft("Massage therapy"), v: "From $95" },
       { k: "Receipts", v: "Always" },
     ],
     cta: "Book an assessment",

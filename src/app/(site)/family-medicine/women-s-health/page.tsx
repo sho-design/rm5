@@ -5,6 +5,7 @@ import { Faq, SubChooser, SubPageHero } from "@/components/ui";
 import { subpageHero, womenCopy, womenFaq, womenOptions } from "@/content/subpages";
 import { divisions } from "@/content/divisions";
 import { WomenScreening } from "@/components/pages/women/WomenScreening";
+import { WomensHealthDay } from "@/components/pages/women/WomensHealthDay";
 import { TintBand } from "@/components/pages/kids/FamilySubBits";
 
 const tint = "var(--rm-terracotta-tint)";
@@ -40,6 +41,7 @@ export default function WomensHealthPage() {
         pills={[...womenCopy.hero.pills]}
       />
       <SubChooser ctaTo={bookFor("family", "concern")} id="stage" eyebrow={womenCopy.chooser.eyebrow} title={womenCopy.chooser.title} intro={womenCopy.chooser.intro} items={womenOptions} tint={tint} accent={accent} link={womenCopy.chooser.link} linkTo="year" titleSize="md" />
+      <WomensHealthDay />
       <WomenScreening />
       <Faq title={womenCopy.faq.title} sub={womenCopy.faq.sub} items={womenFaq} />
       <TintBand tint={tint} title={womenCopy.band.title} body={womenCopy.band.body} bodyClass="text-secondary" cta={womenCopy.band.cta} ctaTo="register" link={womenCopy.band.link} linkTo="kids" />

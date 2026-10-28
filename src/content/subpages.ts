@@ -93,7 +93,8 @@ export const womenScreen: TintCard[] = [
 ];
 
 export const womenFaq: QA[] = [
-  { q: "Can I ask for a female physician?", a: "Yes. Tell us when booking. Both physicians provide women’s health care, and a female nurse is present for examinations if you prefer." },
+  // Corrected October 2026: there is no female physician yet (clinic confirmed). New wording, see docs/content-review.md.
+  { q: "Can I ask for a female physician?", a: "Not yet. Both of our physicians are men. Our nurses take care of much of our women’s health care, including testing on our women’s health day, the last Sunday of every month. A female nurse is present for examinations if you prefer." },
   { q: "Do I still need a Pap if I have had the HPV vaccine?", a: "Yes. The vaccine covers the most common strains, not all. Screening every three years from 25 continues." },
   { q: "Do you insert IUDs in clinic?", a: "Yes. A first visit to choose and prescribe, an insertion visit, and a check at six weeks." },
   { q: "Do you follow pregnancies?", a: "We confirm the pregnancy, order first-trimester tests and care for you until you are settled with obstetrics or midwifery, then stay your family doctor throughout." },
@@ -440,7 +441,7 @@ export const womenCopy = {
     cta2: "Register as a patient",
     coverage: "Insured visits are covered by OHIP. Bring your health card and any recent results.",
     alt: "Family doctor speaking with a patient",
-    pills: ["OHIP covered", "Female or male physician, your choice", "EN / Tiếng Việt"],
+    pills: ["OHIP covered", "Women’s health with our nurses", "EN / Tiếng Việt"],
   },
   chooser: {
     eyebrow: "What brings you in?",

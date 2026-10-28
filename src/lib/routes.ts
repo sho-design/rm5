@@ -20,6 +20,8 @@ export const routes = {
   iron: "/infusion-therapy/iron-therapy",
   rx: "/family-medicine/prescription-renewals",
   labs: "/family-medicine/lab-results",
+  vaccines: "/family-medicine/vaccines",
+  pregnancy: "/family-medicine/pregnancy-care",
   painBack: "/pain-centre/back-neck",
   painJoints: "/pain-centre/joint-pain",
   painNerve: "/pain-centre/nerve-blocks",
@@ -99,7 +101,7 @@ export const external = {
 /**
  * Booking link with the service (division key) and optionally the visit type
  * preselected: /book?service=rehab&visit=physio. Visit keys per division:
- * family: concern, checkup, renewal, flu, bloodwork; pain: referral, followup, procedure;
+ * family: concern, checkup, renewal, flu, bloodwork, vaccine, pregnancy, forms, womensday; pain: referral, followup, procedure;
  * infusion: iron, drip, shot, consult; aesthetics: consult, injectables, skin, laser;
  * rehab: assessment, physio, chiro, massage, kines, mva, wsib.
  * Unknown keys are ignored by the booking page.

@@ -11,6 +11,8 @@ export const seoTitles: Record<string, string> = {
   "/family-medicine": "Family doctor in Thornhill",
   "/family-medicine/children-youth": "Children and youth care in Thornhill",
   "/family-medicine/women-s-health": "Women’s health in Thornhill",
+  "/family-medicine/vaccines": "Vaccines and flu shots in Thornhill",
+  "/family-medicine/pregnancy-care": "Pregnancy care in Thornhill",
   "/family-medicine/men-s-health": "Men’s health in Thornhill",
   "/family-medicine/chronic-care": "Chronic disease care in Thornhill",
   "/family-medicine/bloodwork-ecg": "Bloodwork and ECG in Thornhill",

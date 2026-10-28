@@ -20,6 +20,9 @@ import { aestheticsLadder, deepDives, deepModuleCopy, rehabCoverage } from "./de
 import { divisions } from "./divisions";
 import { faqItems } from "./faq";
 import { images } from "./images";
+import { kidsCopy } from "./kids";
+import { womenFaq, womenOptions } from "./subpages";
+import { womensHealthDay } from "./womens-day";
 import { locations, site } from "./site";
 
 export interface TopicFaq {
@@ -127,6 +130,19 @@ const PD = divisions.pain;
 const AD = divisions.aesthetics;
 const RD = divisions.rehab;
 const FD = divisions.family;
+/** Approved answers from the women's health page, by exact question. */
+function womenFaqQA(q: string) {
+  const f = womenFaq.find((x) => x.q === q);
+  if (!f) throw new Error(`topics.ts: women's FAQ "${q}" missing`);
+  return f;
+}
+const womenFaqA = (q: string) => womenFaqQA(q).a;
+/** Approved text of a women's health chooser result, by its option label. */
+function womenResult(label: string) {
+  const o = womenOptions.find((x) => x.label === label);
+  if (!o) throw new Error(`topics.ts: women's option "${label}" missing`);
+  return [o.title, o.p, ...o.facts.map((f) => `${f.k} ${f.v}`)].join(" ");
+}
 const svc = (d: { services?: { title: string; desc: string }[] }, i: number) => {
   const s = d.services?.[i];
   if (!s) throw new Error("topics.ts: missing division service card");
@@ -461,7 +477,7 @@ const rehab: Topic[] = [
     img: images.services.rehab[0],
     imgAlt: draft("Physiotherapist assessing a patient's knee"),
     pills: result(R, 0).tags,
-    glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Physio assessment"), priceFact("Physio follow-up"), directBilling, cov(3).facts[3] ?? directBilling] },
+    glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Physio or chiro assessment"), priceFact("Physio or chiro treatment"), directBilling, cov(3).facts[3] ?? directBilling] },
     cards: { title: R.chooser.title, items: [asCard(result(R, 0)), asCard(result(R, 1)), asCard(result(R, 4))] },
     benefits: { title: R.benefitsTitle, items: R.benefits },
     path: rehabPath,
@@ -479,7 +495,7 @@ const rehab: Topic[] = [
     ...rehabHero,
     img: images.services.rehab[1],
     imgAlt: draft("Chiropractor working with a patient"),
-    glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Chiro / massage"), directBilling] },
+    glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Physio or chiro assessment"), priceFact("Physio or chiro treatment"), directBilling] },
     cards: { title: R.chooser.title, items: [asCard(result(R, 4)), asCard(result(R, 2))] },
     path: rehabPath,
     faq: [dq("rehab", "Do I need a doctor's referral?"), dq("rehab", "Do you bill my insurance directly?"), dq("rehab", "What should I wear?")],
@@ -496,7 +512,7 @@ const rehab: Topic[] = [
     ...rehabHero,
     img: images.services.rehab[2],
     imgAlt: draft("Registered massage therapist treating a patient's shoulder"),
-    glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Chiro / massage"), directBilling] },
+    glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Massage therapy"), directBilling] },
     cards: { title: R.chooser.title, items: [asCard(result(R, 4)), asCard(result(R, 2))] },
     path: rehabPath,
     faq: [dq("rehab", "Do I need a doctor's referral?"), dq("rehab", "Do you bill my insurance directly?"), dq("rehab", "What should I wear?")],
@@ -662,6 +678,99 @@ const family: Topic[] = [
         { t: "How to read your lab requisition", d: "Health note", page: "/health-notes/reading-requisition" },
       ],
     },
+    band: familyBand,
+  },
+  {
+    key: "vaccines",
+    slug: "vaccines",
+    division: "family",
+    page: draft("Vaccines"),
+    title: draft("Vaccines for every age."),
+    lead: draft("Flu shots, routine vaccines for children and adults, and catch-up doses, given in clinic and recorded in your chart."),
+    description: fit(draft("Vaccines in Thornhill: flu shots, children's routine vaccines, shingles and catch-up doses at Restoration Medical. OHIP-insured visits, given in clinic.")),
+    cta: approved(kidsCopy.imm.catchCta, "Book a vaccine visit"),
+    ctaTo: bookFor("family", "vaccine"),
+    cta2: draft("Book a flu shot"),
+    cta2To: bookFor("family", "flu"),
+    coverage: draft("Publicly funded vaccines are free with your Ontario health card. We tell you before the visit if one is not."),
+    img: images.services.family[6],
+    imgAlt: draft("Nurse preparing a vaccine for a patient"),
+    glance: {
+      title: draft("At a glance"),
+      p: approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card."),
+      facts: [
+        { k: draft("Flu shot"), v: draft("From October, every fall") },
+        { k: draft("Shingles"), v: draft("Publicly funded 65 to 70") },
+        { k: draft("Children"), v: draft("Ontario routine schedule") },
+        { k: draft("Records"), v: draft("Added to your chart") },
+      ],
+    },
+    cards: {
+      title: draft("What we give."),
+      sub: draft("Funding rules change from season to season. We confirm what is covered for you at the visit."),
+      items: [
+        { t: draft("Flu shot"), d: draft("Every fall from October, for everyone 6 months and older. Book a short visit or add it to your next appointment."), meta: draft("Every fall"), link: draft("Flu shot questions, answered"), page: "/health-notes/flu-shot-faq" },
+        { t: draft("Children and teens"), d: approved(kidsCopy.imm.note, "All routine vaccines are given in clinic and recorded on the yellow card."), meta: draft("Birth to 18"), link: draft("See the schedule by age"), page: "/family-medicine/children-youth#immunizations" },
+        { t: draft("Shingles"), d: draft("Publicly funded from 65 to 70. Outside that range, ask us about the cost before your visit."), meta: draft("65 to 70") },
+        { t: draft("Pregnancy"), d: draft("Some vaccines are recommended in every pregnancy, such as the flu shot and whooping cough (Tdap). We go through them at your prenatal visits."), meta: draft("Each pregnancy"), link: draft("Pregnancy care"), page: "pregnancy" },
+        { t: draft("RSV and pneumonia"), d: draft("Older adults and people with some health conditions may qualify for publicly funded RSV and pneumonia vaccines. Ask us whether you are eligible."), meta: draft("Ask us") },
+        { t: draft("Catch-up and records"), d: approved(kidsCopy.imm.catchBody, "Catch-up is common after a move or a gap in care. Bring whatever records you have and we plan the rest."), meta: draft("Any age") },
+      ],
+    },
+    related: {
+      title: draft("Related."),
+      items: [
+        { t: draft("Children and youth"), d: draft("Vaccines by age and school forms"), page: "kids" },
+        { t: draft("Pregnancy care"), d: draft("From the first visit to the referral"), page: "pregnancy" },
+        { t: draft("Your year of staying well"), d: draft("Screenings and vaccines by age"), page: "year" },
+      ],
+    },
+    band: { title: draft("Due for a vaccine?"), sub: draft("Book a short visit, or ask at your next appointment."), cta: approved(kidsCopy.imm.catchCta, "Book a vaccine visit"), ctaTo: bookFor("family", "vaccine"), cta2: draft("Book a flu shot"), cta2To: bookFor("family", "flu") },
+  },
+  {
+    key: "pregnancy",
+    slug: "pregnancy-care",
+    division: "family",
+    page: draft("Pregnancy care"),
+    title: draft("Pregnancy care, from the first visit."),
+    lead: womenFaqA("Do you follow pregnancies?"),
+    description: fit(`Pregnancy care in Thornhill. ${womenFaqA("Do you follow pregnancies?")}`),
+    cta: draft("Book a pregnancy visit"),
+    ctaTo: bookFor("family", "pregnancy"),
+    cta2: "Register as a patient",
+    cta2To: "register",
+    coverage: draft("OHIP-insured. Bring your health card."),
+    img: images.services.family[3],
+    imgAlt: draft("Family physician talking with a pregnant patient"),
+    glance: {
+      title: draft("What to expect"),
+      p: draft("Book as soon as you know you are pregnant. If you are new to us, register as well so we can stay your family doctor after the baby arrives."),
+      facts: [
+        { k: draft("First visit"), v: draft("Confirm the pregnancy, first tests") },
+        { k: draft("Bloodwork"), v: draft("Drawn on site") },
+        { k: draft("Referral"), v: approved(womenResult("Planning a pregnancy"), "Referral to obstetrics or midwifery by 12 weeks") },
+        { k: draft("After the baby"), v: draft("Well-baby visits here") },
+      ],
+    },
+    path: {
+      title: draft("Your first trimester with us."),
+      steps: [
+        { n: "1", time: draft("As soon as you know"), t: draft("First visit"), d: draft("We confirm the pregnancy, go through your health and medications, and answer your questions.") },
+        { n: "2", time: draft("Same week"), t: draft("First-trimester tests"), d: draft("Bloodwork drawn on site and any other tests your doctor orders.") },
+        { n: "3", time: draft("By 12 weeks"), t: draft("Referral"), d: draft("We refer you to obstetrics or midwifery, your choice where it fits, and share your results.") },
+        { n: "4", time: draft("Throughout"), t: draft("Still your family doctor"), d: draft("We stay your family doctor during the pregnancy and see your baby for well-baby visits after.") },
+      ],
+    },
+    related: {
+      title: draft("Related."),
+      items: [
+        { t: draft("Vaccines in pregnancy"), d: draft("Flu shot and whooping cough (Tdap)"), page: "vaccines" },
+        { t: draft("Women's health"), d: draft("Screening, contraception and menopause"), page: "women" },
+        { t: draft("Women's health day"), d: womensHealthDay.when, page: "/family-medicine/women-s-health#womens-day" },
+        { t: draft("Children and youth"), d: draft("Well-baby visits and vaccines"), page: "kids" },
+      ],
+    },
+    faq: [womenFaqQA("Do you follow pregnancies?"), womenFaqQA("Can I ask for a female physician?")],
     band: familyBand,
   },
 ];

@@ -5,6 +5,7 @@ import { deepDives, rehabCoverage } from "./deep";
 import { divisionOrder, divisions } from "./divisions";
 import { ironSteps } from "./iron";
 import { kidsCopy } from "./kids";
+import { womensHealthDay } from "./womens-day";
 import { bloodOptions, menFaq } from "./subpages";
 import { routes } from "@/lib/routes";
 
@@ -37,6 +38,8 @@ export interface BookingVisit {
   fastingMaybe?: boolean;
   /** Rehab: the self-pay coverage line for this visit (its own price instead of the "from" price). */
   selfPay?: string;
+  /** Only bookable on set days: "womensday" = the last Sunday of the month. */
+  days?: "womensday";
 }
 
 export interface BookingService {
@@ -107,8 +110,9 @@ const painCoverage = fact(resultsFact("pain", deepDives.pain.results[0].title), 
 const uninsured = "Uninsured fee, receipt provided";
 const formsTitle = deepDives.family.results.find((r) => r.cta === "Book a form visit")?.title ?? "";
 const selfPayFacts = rehabCoverage.find((o) => o.label === "Paying myself")?.facts ?? [];
-/** "Self-pay: $120 assessment, $95 follow-up, HST included", from the rehab coverage checker. */
-const physioSelfPay = draft(`Self-pay: ${fact(selfPayFacts, "Physio assessment")} assessment, ${fact(selfPayFacts, "Physio follow-up")} follow-up, HST included`);
+/** Self-pay lines from the rehab coverage checker: "$135 plus HST" assessments, "$100 plus HST" treatments. */
+const physioChiroSelfPay = draft(`Self-pay: ${fact(selfPayFacts, "Physio or chiro assessment")} for an assessment, ${fact(selfPayFacts, "Physio or chiro treatment")} per treatment`);
+const massageSelfPay = draft(`Self-pay: massage ${fact(selfPayFacts, "Massage therapy").toLowerCase()}`);
 const painBlurb = divisions.pain.blurb ?? "";
 
 const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
@@ -121,6 +125,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
       { key: "flu", label: draft("Flu shot"), bring: [healthCard] },
       { key: "vaccine", label: draft("Vaccines"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
       { key: "pregnancy", label: draft("Pregnancy care"), bring: [familyBring] },
+      { key: "womensday", label: womensHealthDay.visitLabel, bring: [womensHealthDay.bring], days: "womensday" },
       { key: "forms", label: draft("A form or note"), coverage: uninsured, bring: [`${fact(resultsFact("family", formsTitle), "Bring")}.`, healthCard] },
       {
         key: "renewal",
@@ -169,10 +174,10 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
   rehab: {
     coverage: bookingCoverage[label("rehab")],
     visits: [
-      { key: "assessment", label: menuLabel("rehab", "Initial assessment"), bring: [rehabWear], payment: true, selfPay: physioSelfPay },
-      { key: "physio", label: menuLabel("rehab", "Physiotherapy"), bring: [rehabWear], payment: true, selfPay: physioSelfPay },
-      { key: "chiro", label: menuLabel("rehab", "Chiropractic"), bring: [rehabWear], payment: true },
-      { key: "massage", label: menuLabel("rehab", "Massage therapy"), bring: [rehabWear], payment: true },
+      { key: "assessment", label: menuLabel("rehab", "Initial assessment"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
+      { key: "physio", label: menuLabel("rehab", "Physiotherapy"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
+      { key: "chiro", label: menuLabel("rehab", "Chiropractic"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
+      { key: "massage", label: menuLabel("rehab", "Massage therapy"), bring: [rehabWear], payment: true, selfPay: massageSelfPay },
       { key: "kines", label: menuLabel("rehab", "Kinesiology"), bring: [rehabWear], payment: true },
       {
         key: "mva",
@@ -197,7 +202,7 @@ export function bookingConfig(): BookingConfig {
     services: divisionOrder.map((k) => ({ key: k, label: label(k), ...services[k] })),
     payments: [
       { label: insured.label, coverage: draft("Private or work insurance, we bill most plans directly"), bring: [`${fact(insured.facts, "Bring")}.`] },
-      { label: selfPay.label, coverage: draft("Self-pay, from $95, HST included"), bring: [] },
+      { label: selfPay.label, coverage: draft("Self-pay, prices plus HST, receipt provided"), bring: [] },
     ],
     firstVisit: approved(bring, "Arrive 10 minutes early for your first visit."),
     fasting: {

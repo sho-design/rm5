@@ -140,6 +140,18 @@ New wording from the fixes after the 30-tester usability test. Every new string 
 - Referrals: "Send a referral online" (was "Upload a referral"; there is no upload), "Send a referral." (title while there is no PDF form), "Your phone (optional)", "Urgent", "We review urgent referrals first. Please also call the referral line."
 - Phone menu: "Contact us". Search: "Search the site". Cookie banner: "Your current choice: No thanks."
 
+## Clinic answers, October 2026
+
+New and changed wording after the clinic's answers (all wrapped in `draft()`):
+
+- **Female physician FAQ** (women's health page): "Not yet. Both of our physicians are men. Our nurses take care of much of our women's health care, including testing on our women's health day, the last Sunday of every month. A female nurse is present for examinations if you prefer." The hero pill "Female or male physician, your choice" is now "Women's health with our nurses".
+- **Out-of-province cards:** new FAQ "I have a health card from another province. Can I be seen?" ("Yes. We may be able to bill your home province directly. Bring your health card and we confirm coverage, and any fee, before the visit."); booking note and coverage line say the same.
+- **Physio and chiro prices:** "Physio or chiro assessment $135 plus HST", "Physio or chiro treatment $100 plus HST"; the self-pay intro now says "plus HST". **Massage stays "From $95" from the prototype: confirm the massage price and whether it includes HST.**
+- **Women's health day** (`src/content/womens-day.ts`): a section on the women's health page with the next date, a "Women's health day" visit type that only offers the last Sunday of each month (8am to 2pm), an announcement on the home page, and a link from pregnancy care. Wording: "The last Sunday of every month.", "Testing and screening with our nurses at Thornhill, 8am to 2pm. Book a spot, and tell us what you would like done so we can have everything ready." Confirm the hours and which tests are offered.
+- **Vaccines page** `/family-medicine/vaccines`: flu shot (from October, everyone 6 months and older), children and teens (Ontario schedule, links to the schedule by age), shingles (publicly funded 65 to 70), pregnancy (flu and whooping cough, Tdap), RSV and pneumonia ("ask us whether you are eligible"), catch-up and records. Coverage line: "Publicly funded vaccines are free with your Ontario health card. We tell you before the visit if one is not." **A physician should review the eligibility wording; funding rules change by season.**
+- **Pregnancy care page** `/family-medicine/pregnancy-care`: built from the approved answer "Do you follow pregnancies?" and the women's health chooser ("Referral to obstetrics or midwifery by 12 weeks"), plus a four-step first trimester path (first visit, tests drawn on site, referral by 12 weeks, still your family doctor), "Book a pregnancy visit", and links to vaccines, women's health and children.
+- Booking visit types "Vaccines", "Pregnancy care" and "Women's health day" are in the Family Medicine list.
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.
@@ -155,5 +167,3 @@ New wording from the fixes after the 30-tester usability test. Every new string 
 - **Wait times and consult lengths** quoted from the prototype (for example "two to three weeks", "20 min" versus "30 minute consult") still need confirmation.
 - **Vietnamese FAQ.** The answer to "Do you speak Vietnamese?" mentions a language switch at the top of the site. The switch stays hidden until the Vietnamese pages are ready (`NEXT_PUBLIC_VI_ENABLED`), so reword the answer or launch the translation.
 - **Rehab self-pay floor.** The booking coverage line "Self-pay, from $95, HST included" comes from the rehab coverage checker. Confirm it covers chiro and massage too.
-- **Female physician FAQ.** "Can I ask for a female physician? Yes" while both listed physicians are men. Correct the answer or name who is available.
-- **Out-of-province patients.** Booking now says coverage for a card from another province "depends on the service" and is confirmed before the visit. Confirm whether the clinic bills other provinces (reciprocal billing) so this can be stated plainly.

@@ -77,6 +77,8 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Our physicians", page: "/about/team?service=Family%20Medicine" },
       { label: "Referrals", page: "referrals" },
       { label: "Prescription renewals", page: "rx" },
+      { label: draft("Vaccines"), page: "vaccines" },
+      { label: draft("Pregnancy care"), page: "pregnancy" },
       { label: "Lab results", page: "labs" },
       { label: "Hours & location", page: "locations" },
     ],

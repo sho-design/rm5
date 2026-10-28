@@ -6,7 +6,7 @@ import { bookingConfirmLabel, bookingCopy, bookingCoverageFallback, bookingSteps
 import { bookingExtra as x } from "@/content/booking-extra";
 import type { BookingConfig, BookingService, BookingVisit } from "@/content/booking-visits";
 import { site } from "@/content/site";
-import { bookingDays, fmtTime, DOW, MON, type BookingDay } from "@/lib/hours";
+import { bookingDays, fmtTime, womensDayBookingDays, DOW, MON, type BookingDay } from "@/lib/hours";
 import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
 import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
@@ -97,6 +97,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [details, setDetails] = useState<Details>({});
   const [errors, setErrors] = useState<FormErrors>({});
   const [days, setDays] = useState<BookingDay[]>([]);
+  const [womensDays, setWomensDays] = useState<BookingDay[]>([]);
   const [dayIdx, setDayIdx] = useState(0);
   const [slot, setSlot] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
@@ -120,6 +121,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
 
   useEffect(() => {
     setDays(bookingDays());
+    setWomensDays(womensDayBookingDays());
     // Links pass ?service=<division key>&visit=<visit key> (bookFor in lib/routes). Unknown keys are ignored.
     const params = new URLSearchParams(window.location.search);
     const key = params.get("service");
@@ -130,7 +132,13 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   }, [services]);
 
   const str = (k: string) => (typeof details[k] === "string" ? (details[k] as string) : "");
-  const day = days[dayIdx];
+  // Women's health day is only on the last Sunday of the month: offer those dates instead of the next 7 days.
+  const dayList = visit?.days === "womensday" ? womensDays : days;
+  const day = dayList[dayIdx];
+  useEffect(() => {
+    setDayIdx(0);
+    setSlot(null);
+  }, [visit?.key]);
   const slots = useMemo(() => day?.slots ?? [], [day]);
   const baseCoverage = visit?.coverage ?? (visit?.payment ? (payment === 1 && visit.selfPay ? visit.selfPay : payments[payment]?.coverage) : service.coverage) ?? bookingCoverageFallback;
   // Without an Ontario health card, OHIP does not pay: never show "OHIP-insured" on their booking.
@@ -440,10 +448,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <h2 ref={setReveal} tabIndex={-1} className="display-tight scroll-mt-20 text-[26px] outline-none">
                 {bookingCopy.step2Title}
               </h2>
-              <span className="text-[13px] text-muted">{bookingCopy.step2Sub}</span>
+              <span className="text-[13px] text-muted">{visit?.days === "womensday" ? x.womensDaySub : bookingCopy.step2Sub}</span>
             </div>
             <div role="radiogroup" aria-label="Day" onKeyDown={radioKeys} className="scroll-x -mx-1 flex gap-1 px-1 py-0.5 md:gap-1.5">
-              {days.map((d, i) => {
+              {dayList.map((d, i) => {
                 const on = dayIdx === i;
                 return (
                   <button

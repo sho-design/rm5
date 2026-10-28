@@ -1,4 +1,5 @@
 import { openingHours, thornhillHours } from "@/content/site";
+import { nextWomensDays } from "@/content/womens-day";
 
 const torontoParts = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Toronto", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric", hourCycle: "h23" });
 
@@ -72,6 +73,24 @@ export interface BookingDay {
  * while it still has a slot at least an hour away, so a past time is never
  * offered.
  */
+/**
+ * The next women's health days (last Sunday of the month) as bookable days,
+ * with Sunday clinic hours. Today only while a slot an hour away is left.
+ */
+export function womensDayBookingDays(now = torontoNow(), count = 3): BookingDay[] {
+  const nowHours = now.getHours() + now.getMinutes() / 60;
+  const h = openingHours[0];
+  return nextWomensDays(now, count + 1)
+    .map((d, i) => {
+      const today = ymd(d) === ymd(now);
+      let slots = h ? Array.from({ length: (h[1] - h[0]) * 2 }, (_, j) => h[0] + j / 2).filter((_, j) => (j * 5 + i * 3) % 6 !== 2) : [];
+      if (today) slots = slots.filter((t) => t >= nowHours + 1);
+      return { date: d, iso: ymd(d), dow: DOW[d.getDay()], num: d.getDate(), open: !!h, today, slots };
+    })
+    .filter((d) => d.slots.length)
+    .slice(0, count);
+}
+
 export function bookingDays(now = torontoNow(), count = 7): BookingDay[] {
   const nowHours = now.getHours() + now.getMinutes() / 60;
   const out: BookingDay[] = [];

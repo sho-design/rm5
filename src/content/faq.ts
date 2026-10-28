@@ -67,6 +67,14 @@ export const faqItems: FaqItem[] = [
   },
   {
     category: "Coverage",
+    // New answer (clinic, October 2026): reciprocal billing may be possible. See docs/content-review.md.
+    q: "I have a health card from another province. Can I be seen?",
+    a: "Yes. We may be able to bill your home province directly. Bring your health card and we confirm coverage, and any fee, before the visit.",
+    linkLabel: "Book an appointment",
+    linkPage: "book",
+  },
+  {
+    category: "Coverage",
     q: "Is rehab covered?",
     a: "Physiotherapy, chiropractic and massage are billed to extended health plans, MVA insurers or WSIB where applicable. We can direct-bill many plans. Self-pay rates are posted at the desk.",
     linkLabel: "Rehab and Recovery",

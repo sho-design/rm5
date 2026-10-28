@@ -12,9 +12,11 @@ export const searchAliases: Record<string, string> = {
   book: "appointment appointments visit schedule reserve booking waitlist wait list cancellation",
   register: "new patient accepting patients family doctor roster rostered register join sign up",
   family: "doctor gp physician sick cough cold fever flu sore throat rash infection concern walk in walkin checkup physical",
+  vaccines: "vaccine vaccines vaccination immunization immunizations shot shots flu shot shingles shingrix rsv pneumonia tdap whooping cough",
+  pregnancy: "pregnant pregnancy prenatal antenatal obstetrics obstetrician midwife midwifery baby expecting first trimester",
   rx: "refill refills prescription prescriptions renew renewal medication medications meds pharmacy run out ran out",
   labs: "results result bloodwork lab tests test results",
-  women: "pap smear pap test cervical screening hpv menopause perimenopause hot flashes contraception birth control iud pregnancy prenatal period periods",
+  women: "pap smear pap test cervical screening hpv menopause perimenopause hot flashes contraception birth control iud period periods womens health day women's health day last sunday testing nurse nurses",
   men: "prostate psa testosterone checkup physical",
   chronic: "diabetes diabetic a1c sugar blood sugar glucose blood pressure hypertension cholesterol asthma thyroid copd kidney heart",
   blood: "bloodwork blood test fasting ecg ekg lab draw requisition",
@@ -68,7 +70,8 @@ export const faqAliases: Record<string, string> = {
   "Is the clinic accessible?": "wheelchair walker scooter stroller step free ramp elevator mobility disability",
   "Where do I park?": "parking car lot free",
   "How long is the wait?": "wait time waiting list how soon pain centre referral",
-  "What if I do not have OHIP?": "alberta british columbia bc quebec manitoba saskatchewan nova scotia out of province uhip international student no health card without ohip visitor tourist",
+  "What if I do not have OHIP?": "uhip international student no health card without ohip visitor tourist",
+  "I have a health card from another province. Can I be seen?": "alberta british columbia bc quebec manitoba saskatchewan nova scotia new brunswick newfoundland pei out of province reciprocal billing student",
   "How do I renew a prescription?": "refill run out ran out running out medication pills prescription",
 };
 

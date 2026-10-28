@@ -31,7 +31,7 @@ Apply to every generated photo of clinic staff or clinic interiors:
 - No text in images. No stethoscope on nurses unless relevant.
 
 ## Clinic facts (do not invent numbers)
-Thornhill: 700 Centre St (inside Walmart), L4J 0A7; 905-709-3222; fax 905-761-7306; referrals@restorationmedical.ca; contact@restorationmedical.ca. Hours Mon, Wed, Thu 9am to 4pm; Tue 3pm to 9pm; Sat 8am to 4pm; Sun 8am to 2pm; Fri closed. Maple: 2620 Rutherford Rd, Unit 105 to 107, L4K 0H1, coming soon. Physicians: Dr. Johnny Nguyen (Medical Director), Dr. Joseph Truong. Iron therapy: $250 administration only, $550 per visit clinic-supplied Monoferric 500 mg, 3 visits per course; assessment and bloodwork OHIP. Sign-off: "Refined by Medicine."
+Thornhill: 700 Centre St (inside Walmart), L4J 0A7; 905-709-3222; fax 905-761-7306; referrals@restorationmedical.ca; contact@restorationmedical.ca. Hours Mon, Wed, Thu 9am to 4pm; Tue 3pm to 9pm; Sat 8am to 4pm; Sun 8am to 2pm; Fri closed. Maple: 2620 Rutherford Rd, Unit 105 to 107, L4K 0H1, coming soon. Physicians: Dr. Johnny Nguyen (Medical Director), Dr. Joseph Truong. Iron therapy: $250 administration only, $550 per visit clinic-supplied Monoferric 500 mg, 3 visits per course; assessment and bloodwork OHIP. Physio and chiro: assessment $135 plus HST, treatment $100 plus HST. No female physicians yet; nurses take care of much of women's health. Women's health day: last Sunday of every month (Sunday hours), testing with our nurses. Out-of-province health cards: reciprocal billing may be possible, confirmed before the visit. Sign-off: "Refined by Medicine."
 
 ## Engineering conventions
 - Content pages are static (server components). Client components only for choosers, search, job board, booking, forms, carousel and menus.

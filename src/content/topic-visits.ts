@@ -26,4 +26,6 @@ export const topicVisit: Record<string, string> = {
   rehabHome: "assessment",
   rx: "concern",
   labs: "bloodwork",
+  vaccines: "vaccine",
+  pregnancy: "pregnancy",
 };

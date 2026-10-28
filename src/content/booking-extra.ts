@@ -7,16 +7,17 @@ import { draft } from "./review";
  * docs/content-review.md.
  */
 export const bookingExtra = {
+  womensDaySub: draft("Women’s health days at Thornhill"),
   card: {
     label: draft("Health card"),
     options: [draft("Ontario health card"), draft("From another province"), draft("No health card")],
     endsIn: draft("ending"),
     notes: [
-      draft("That is fine. Coverage for a card from another province depends on the service. We confirm it, and any fee, before the visit."),
+      draft("That is fine. We may be able to bill your home province directly. Bring your health card and we confirm coverage, and any fee, before the visit."),
       draft("That is fine. Without a health card the visit is uninsured. We tell you the fee before the visit and give you a receipt."),
     ],
-    coverage: [draft("Card from another province, coverage confirmed before the visit"), draft("Uninsured, fee told to you before the visit, receipt provided")],
-    bring: draft("Photo ID, and your health card from another province if you have one."),
+    coverage: [draft("Card from another province, we may bill your province directly"), draft("Uninsured, fee told to you before the visit, receipt provided")],
+    bring: draft("Your health card from another province, or photo ID if you do not have one."),
   },
   /** Before the approved fasting line on morning checkups. */
   fastingIf: draft("If your doctor asked for fasting bloodwork with this visit:"),
