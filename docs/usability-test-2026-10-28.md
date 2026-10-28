@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (60 simulated patients)
+# Usability test, 28 October 2026 (70 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -229,6 +229,51 @@ What held up: booking from any page opened with the right service and visit; rev
 - **Maple:** an opening month or season; whether the waitlist and pre-registration are the same; where first visits happen until it opens (Sara, Anjali).
 - **Writing only:** a non-phone option for same-day issues for people who cannot use the phone (Tom).
 - **Dark mode:** requested again (Bilal); still needs a design pass before it can follow the phone setting.
+
+## Round 5: 10 testers on the clinic's answers
+
+Run on the build with the clinic's October answers (vaccines and pregnancy care pages, women's health day, out-of-province cards, new physio and chiro prices, corrected female physician answer), at about 3:35am Toronto time.
+
+| Tester | Device | Goal | Ease /7 | Trust /7 | Done | With difficulty | Failed |
+|---|---|---|---|---|---|---|---|
+| Thi, 29, 9 weeks pregnant, prefers Vietnamese | Phone | Pregnancy care, vaccines in pregnancy, book in Tiếng Việt | 5 | 6 | 2 | 1 | 0 |
+| Margaret, 66 | Desktop | Vaccines at 66, flu and shingles together, book | 5 | 6 | 1 | 1 | 1 |
+| Priscilla, 41, wants a female clinician | Phone | Female doctor, women's health day, book it | 5 | 5 | 2 | 1 | 0 |
+| Noah, 22, Quebec card | Phone | Seen with a Quebec card, book, coverage shown | 6 | 4 | 1 | 2 | 0 |
+| Daniel, 45, self-pay back pain | Desktop | Physio and chiro prices, which one, book chiro | 5 | 6 | 1 | 1 | 1 |
+| Fatima, 34, newborn | Phone | Baby vaccines, register baby, book her vaccines | 5 | 5 | 1 | 2 | 0 |
+| Greg, 60, blind, screen reader | Desktop | Vaccines by menu, book flu shot with an error, pregnancy page | 6 | 6 | 3 | 0 | 0 |
+| Lucy, 38, low vision, largest text | Phone | Settings, vaccines at 5, book for her son | 5 | 6 | 2 | 1 | 0 |
+| Hassan, 52, slow 3G | Phone | Chiro price with tax, book, search "neck" | 5 | 5 | 1 | 2 | 0 |
+| Emma, 30, new patient | Desktop | New patients, register, what next and anything unfinished | 5 | 5 | 2 | 1 | 0 |
+| **Round 5** | | | **5.2** | **5.4** | **16 of 30** | **12 of 30** | **2 of 30** |
+
+All 10 would use the site again. The new content worked: the physio and chiro prices matched from page to booking to confirmation; the women's health day booking offered only the right Sundays and confirmed November 29; the corrected female physician answer was called "honest" by two testers; pregnancy care and vaccines were found and booked; typed text survived a slow phone. The two failures were missing answers (physio or chiro for back pain; whether several vaccines can be given at one visit).
+
+### Round 5 findings fixed in code
+
+- **Register, then book:** the "Book a first visit" button added to the registration confirmation in round 4 contradicted "we call or email to book your first visit" (Emma, Fatima). Removed. Booking explains "Registered but not seen yet? Choose New patient."
+- **Out-of-province cards:** booking asks which province; Quebec, which does not take part in reciprocal billing for doctor visits, gets "you pay at the visit and claim it back from RAMQ with the receipt we give you" (Noah). The confirmation no longer promises "a reminder the day before" for a visit that day.
+- **Your note:** shown on the confirmation, so requests like "a female nurse, please" or "all three vaccines" are visibly received (Priscilla, Margaret, Thi).
+- **Vaccines:** "Vaccines, including flu" and "Flu shot only" replace two separate choices, so one visit can cover several (Margaret); the flu card says it is publicly funded and to tell us about other vaccines due; "Book a vaccine visit" from the children's pages books for the child (Fatima); the age buttons wrap instead of running off the screen (Lucy).
+- **Women's health day:** the card says plainly that both physicians are men and the nurses do the testing; the date buttons show the month and the lead no longer says "the next seven days" (Priscilla).
+- **Pregnancy care and vaccines** are now in the main Family Medicine menu list, not only under "More" (Thi). The women's hero pill "EN / Tiếng Việt" read like a language switch and now says "Care in English and Tiếng Việt". Choosing Tiếng Việt in booking shows "Both physicians and several staff speak Vietnamese."
+- **Prices with tax:** "$135 plus HST ($152.55 total)", "$100 plus HST ($113 total)" (Daniel, Hassan). "Initial assessment" explains it is the first physio or chiro visit.
+- **Search:** "back pain" and "neck pain" also find physio and chiro; the results panel scrolls on small phones (results 6 to 8 were unreachable, Hassan); results read title, section, then summary (Greg).
+- **Screen readers:** vaccine and topic cards have headings; path steps are an ordered list with headings; the booking step bar announces the current step (Greg).
+- **Large text and contrast:** the booking date strip wraps; eyebrows drawn in division colours are solid in high contrast (Lucy).
+- **Sticky Book bar** slides away while you scroll down and returns on scroll up (four testers said it covered what they were reading).
+- **Other:** no Book buttons on About tiles (story, standards); the teaching partners link opens the teaching section; rehab "Compare all" (to the insurance page) removed; the notes box is taller and resizable.
+
+### Round 5 findings for the clinic
+
+- **Physio or chiro for back pain:** a short "which one is for me" answer (Daniel, failed task).
+- **Vaccines:** whether several vaccines can be given at one visit, and whether pneumonia vaccines are free at 65 and older (Margaret, failed task). The flu card now says "publicly funded"; confirm.
+- **Quebec cards:** confirm the pay-and-claim-back wording; and the uninsured visit fee, since "posted rates" are not posted (Noah, Jake).
+- **Women's health:** "A female nurse is present for examinations if you prefer" reads as a chaperone; say whether a nurse does the Pap test itself (Priscilla). The hero "Care for every stage, with the same doctor" sits oddly next to nurse-led testing (Emma). The teaching clinic note under booking worried Priscilla before an intimate exam; consider stating the opt-out there.
+- **Team page:** "Dr. Nguyen portrait (from restorationmedical.ca)" placeholder, "Woodbridge" in his bio, no bio for Dr. Truong (Emma, Priscilla).
+- **One action, four names:** "New patients", "Join the roster", "Join our roster", "Register as a patient" (Emma).
+- **Massage price:** still "From $95" from the prototype; the self-pay headline shows it (Daniel).
 
 ## What worked
 

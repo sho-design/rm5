@@ -29,6 +29,7 @@ export function WomensHealthDay() {
             {c.title}
           </h2>
           <p className="pretty max-w-[560px] text-[16px] leading-[1.55] text-ink-2">{c.body}</p>
+          <p className="pretty max-w-[560px] text-[14px] font-semibold leading-[1.5]">{c.who}</p>
         </div>
         <div className="flex flex-col gap-4 rounded-card bg-white/70 p-6">
           <span className="text-[12px] font-semibold text-muted">{c.next}</span>

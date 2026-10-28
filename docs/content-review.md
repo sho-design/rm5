@@ -152,6 +152,14 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Pregnancy care page** `/family-medicine/pregnancy-care`: built from the approved answer "Do you follow pregnancies?" and the women's health chooser ("Referral to obstetrics or midwifery by 12 weeks"), plus a four-step first trimester path (first visit, tests drawn on site, referral by 12 weeks, still your family doctor), "Book a pregnancy visit", and links to vaccines, women's health and children.
 - Booking visit types "Vaccines", "Pregnancy care" and "Women's health day" are in the Family Medicine list.
 
+## Usability fixes, round 5
+
+- Booking: "Registered but not seen yet? Choose New patient.", "Which province or territory?", the Quebec note ("Quebec cards cannot be billed directly for doctor visits. You pay at the visit and claim it back from RAMQ with the receipt we give you. We tell you the fee before the visit.") and its coverage line, "Your appointment is today, so there is no reminder.", "Your note", "Current step: ", "Women's health days at Thornhill, the last Sunday of each month.", "Your first visit with physio or chiro. Choose this if you are new to rehab here.", visit labels "Vaccines, including flu" and "Flu shot only". The Tiếng Việt hint reuses the approved FAQ line "Both physicians and several staff speak Vietnamese."
+- Vaccines page, flu card: "Publicly funded, so no cost to you. Due for other vaccines too? Tell us when you book and we plan them together."
+- Women's health day card: "Testing and screening done by our nurses..." and "Both of our physicians are men. On women's health day, our nurses do the testing." Women's hero pill: "Care in English and Tiếng Việt".
+- Rehab prices now show totals: "$135 plus HST ($152.55 total)", "$100 plus HST ($113 total)" (13% HST).
+- Registration: the relationship hint is now "For example parent, adult child, partner or caregiver."; the "Book a first visit" button was removed.
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.
@@ -167,3 +175,4 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Wait times and consult lengths** quoted from the prototype (for example "two to three weeks", "20 min" versus "30 minute consult") still need confirmation.
 - **Vietnamese FAQ.** The answer to "Do you speak Vietnamese?" mentions a language switch at the top of the site. The switch stays hidden until the Vietnamese pages are ready (`NEXT_PUBLIC_VI_ENABLED`), so reword the answer or launch the translation.
 - **Rehab self-pay floor.** The booking coverage line "Self-pay, from $95, HST included" comes from the rehab coverage checker. Confirm it covers chiro and massage too.
+- **Quebec cards.** Booking says Quebec cards cannot be billed directly for doctor visits (Quebec is not part of reciprocal medical billing) and patients pay and claim back from RAMQ. Confirm this matches how the clinic handles Quebec patients.

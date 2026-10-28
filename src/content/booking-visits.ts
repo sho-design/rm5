@@ -122,8 +122,9 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
       { key: "concern", label: draft("A health concern"), bring: [familyBring] },
       { key: "checkup", label: menuLabel("family", "Annual physical"), bring: [familyBring], fastingMaybe: true },
       { key: "bloodwork", label: draft("Bloodwork or ECG"), bring: [draft("Your Ontario health card, and your requisition if another clinic wrote one.")], fasting: true },
-      { key: "flu", label: draft("Flu shot"), bring: [healthCard] },
-      { key: "vaccine", label: draft("Vaccines"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
+      // One visit can cover several vaccines: "Vaccines, including flu" for more than one, "Flu shot only" for just the flu shot.
+      { key: "flu", label: draft("Flu shot only"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
+      { key: "vaccine", label: draft("Vaccines, including flu"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
       { key: "pregnancy", label: draft("Pregnancy care"), bring: [familyBring] },
       { key: "womensday", label: womensHealthDay.visitLabel, bring: [womensHealthDay.bring], days: "womensday" },
       { key: "forms", label: draft("A form or note"), coverage: uninsured, bring: [`${fact(resultsFact("family", formsTitle), "Bring")}.`, healthCard] },
@@ -174,7 +175,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
   rehab: {
     coverage: bookingCoverage[label("rehab")],
     visits: [
-      { key: "assessment", label: menuLabel("rehab", "Initial assessment"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
+      { key: "assessment", label: menuLabel("rehab", "Initial assessment"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay, hint: { text: draft("Your first visit with physio or chiro. Choose this if you are new to rehab here.") } },
       { key: "physio", label: menuLabel("rehab", "Physiotherapy"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
       { key: "chiro", label: menuLabel("rehab", "Chiropractic"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
       { key: "massage", label: menuLabel("rehab", "Massage therapy"), bring: [rehabWear], payment: true, selfPay: massageSelfPay },

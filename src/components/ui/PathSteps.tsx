@@ -52,18 +52,20 @@ export function PathSteps({
 export function StepRow({ steps, inverse, cols, className }: { steps: PathStep[]; inverse?: boolean; cols?: 3 | 4; className?: string }) {
   const n = cols ?? (steps.length === 3 ? 3 : 4);
   return (
-    <div className={cn("relative grid grid-cols-1 gap-8 md:grid-cols-2", n === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4", "lg:gap-0", className)}>
+    <div className={cn("relative", className)}>
       <div aria-hidden className={cn("absolute left-6 right-6 top-[22px] hidden h-px lg:block", inverse ? "bg-white/18" : "bg-border")} />
+      <ol className={cn("relative grid grid-cols-1 gap-8 md:grid-cols-2", n === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4", "lg:gap-0")}>
       {steps.map((s) => (
-        <div key={s.n} className="relative flex flex-col gap-4 lg:pr-6">
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-sun font-display text-[18px] font-medium text-sun-ink">{s.n}</span>
+        <li key={s.n} className="relative flex flex-col gap-4 lg:pr-6">
+          <span aria-hidden className="flex h-11 w-11 items-center justify-center rounded-full bg-sun font-display text-[18px] font-medium text-sun-ink">{s.n}</span>
           <div className="flex flex-col gap-1.5">
             <span className={cn("text-[12px] font-semibold", inverse ? "text-white/55" : "text-muted")}>{s.time}</span>
-            <span className="display text-[22px] leading-[1.05] lg:text-[24px]">{s.t}</span>
+            <h3 className="display text-[22px] leading-[1.05] lg:text-[24px]">{s.t}</h3>
             <span className={cn("text-[14px] leading-[1.5]", inverse ? "text-white/75" : "text-secondary")}>{s.d}</span>
           </div>
-        </div>
+        </li>
       ))}
+      </ol>
     </div>
   );
 }

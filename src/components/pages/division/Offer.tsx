@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 /** Service tint cycle from the prototype: tints[(i + 1) % 5]. */
 const tintFor = (i: number) => tints[(i + 1) % tints.length];
 
-function Tile({ s, tint, big, book }: { s: DivisionService; tint: string; big?: boolean; book: string }) {
+function Tile({ s, tint, big, book }: { s: DivisionService; tint: string; big?: boolean; book?: string }) {
   return (
     <div className={cn("relative flex flex-col justify-end overflow-hidden rounded-card", big ? "min-h-[600px] p-7" : "min-h-[200px] p-[22px]")} style={{ background: s.image ? "var(--rm-ink)" : tint }}>
       {s.image ? (
@@ -19,10 +19,12 @@ function Tile({ s, tint, big, book }: { s: DivisionService; tint: string; big?: 
         <span className={cn("display-tight", big ? "text-[32px] lg:text-[40px]" : "text-[22px] lg:text-[24px]")}>{s.title}</span>
         <span className="text-[15px] leading-[1.5] text-white/85">{s.desc}</span>
         <div className="flex items-center gap-3.5 pt-1.5 text-[14px] font-semibold">
-          <Button to={book} variant="inverse" size="sm">
-            {divisionPageCopy.book}
-            <span className="sr-only"> {s.title}</span>
-          </Button>
+          {book ? (
+            <Button to={book} variant="inverse" size="sm">
+              {divisionPageCopy.book}
+              <span className="sr-only"> {s.title}</span>
+            </Button>
+          ) : null}
           <SmartLink to={s.page} className="text-white">
             {divisionPageCopy.learnMore}
             <span className="sr-only"> about {s.title}</span> ›
@@ -39,10 +41,11 @@ function Tile({ s, tint, big, book }: { s: DivisionService; tint: string; big?: 
  * right. On mobile the services become tinted link rows (Mobile Service frame).
  */
 /** Pages that compare a division's services side by side ("Compare all ›"). */
-const comparePage: Partial<Record<NavKey, string>> = { aesthetics: "aesPricing", infusion: "drips", rehab: "rehabBilling" };
+const comparePage: Partial<Record<NavKey, string>> = { aesthetics: "aesPricing", infusion: "drips" };
 
 export function Offer({ services, division }: { services: DivisionService[]; division: NavKey }) {
-  const book = division === "about" ? "book" : bookFor(division);
+  // About pages (story, standards, team) are not bookable, so their tiles have no Book button.
+  const book = division === "about" ? undefined : bookFor(division);
   if (!services.length) return null;
   const [first, ...rest] = services;
   return (

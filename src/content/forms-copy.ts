@@ -18,7 +18,7 @@ export const registerExtraCopy = {
     note: draft("We will call you if we have questions. The fields below are for the person being registered."),
     name: draft("Your name"),
     relation: draft("Your relationship to them"),
-    relationHint: draft("For example daughter, son, partner or caregiver."),
+    relationHint: draft("For example parent, adult child, partner or caregiver."),
     phone: draft("Your phone"),
     nameError: draft("Add your name."),
     phoneError: draft("Add a phone number we can reach you at."),
@@ -46,7 +46,6 @@ export const registerExtraCopy = {
   reminders: draft("Send me appointment reminders by email or text. Optional."),
   updates: draft("Send me clinic updates by email. Optional, unsubscribe any time."),
   done: {
-    book: draft("Book a first visit"),
     people: (n: number) => (n === 1 ? draft("Registered") : draft(`Registered, ${n} people`)),
     clinic: draft("Clinic"),
   },

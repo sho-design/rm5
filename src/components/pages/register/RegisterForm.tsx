@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { bookFor } from "@/lib/routes";
 import { Button, Display, Eyebrow, Input, Lead, SmartLink, StateCard } from "@/components/ui";
 import { formFailedLine, registerCopy, registerFamily, registerLanguages, registerSteps } from "@/content/booking";
 import { registerExtraCopy as x } from "@/content/forms-copy";
@@ -179,10 +178,8 @@ export function RegisterForm() {
             title={registerCopy.done.title}
             actions={
               <>
-                <Button to={bookFor("family")}>{x.done.book}</Button>
-                <Button to="notes" variant="inverse">
-                  {registerCopy.done.notes}
-                </Button>
+                {/* No "book" button here: the clinic calls or emails to book the first visit, and a second path confused testers. */}
+                <Button to="notes">{registerCopy.done.notes}</Button>
                 <SmartLink to="home" className="inline-flex h-12 items-center px-[22px] text-[14px] font-semibold text-ink hover:opacity-80">
                   {registerCopy.done.home}
                 </SmartLink>

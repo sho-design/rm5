@@ -13,7 +13,8 @@ export function Immunizations({ stages, value, onChange }: { stages: Immunizatio
   return (
     <Section id="immunizations" className="flex flex-col gap-6">
       <SubHeader eyebrow={kidsCopy.imm.eyebrow} accentClass="text-sage-deep" title={kidsCopy.imm.title} note={kidsCopy.imm.note} />
-      <ChipRow items={stages.map((s) => s.label)} value={value} onChange={onChange} ariaLabel="Age" />
+      {/* Wraps instead of scrolling sideways, so "4 to 6 years" is never off screen. */}
+      <ChipRow items={stages.map((s) => s.label)} value={value} onChange={onChange} ariaLabel="Age" scroll={false} />
       <div className="grid grid-cols-1 gap-block lg:grid-cols-[1.4fr_1fr] lg:items-stretch">
         <div role="tabpanel" aria-live="polite" className="flex flex-col gap-5 rounded-card bg-sage-tint p-6 text-ink md:p-9">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-5">
@@ -41,7 +42,7 @@ export function Immunizations({ stages, value, onChange }: { stages: Immunizatio
               <span className="display text-[24px] leading-[1.05]">{kidsCopy.imm.catchTitle}</span>
               <span className="text-[14px] leading-[1.5] text-ink/75">{kidsCopy.imm.catchBody}</span>
             </div>
-            <Button to={bookFor("family", "vaccine")} className="self-start">
+            <Button to={`${bookFor("family", "vaccine")}&for=someone`} className="self-start">
               {kidsCopy.imm.catchCta}
             </Button>
           </div>

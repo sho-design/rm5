@@ -179,6 +179,13 @@
   :root[data-text] .rm-header-phone { display: none; }
 }
 
+/* Larger text: the booking date strip wraps instead of cutting off the last days. */
+:root[data-text] .rm-day-strip { flex-wrap: wrap; overflow-x: visible; }
+:root[data-text] .rm-day-strip > * { min-width: 64px; }
+
+/* High contrast: eyebrows drawn in division accents (often set inline) become solid ink. */
+:root[data-theme="contrast"] .eyebrow { color: var(--text-primary) !important; }
+
 /* High contrast: the sky action buttons use the darker contrast blue. */
 :root[data-theme="contrast"] .bg-sky { background-color: var(--action-secondary-bg); }
 :root[data-theme="contrast"] .hover\:opacity-90:hover { opacity: 1; }

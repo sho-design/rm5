@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type FormEvent, type InputHTMLAttributes, type ReactNode } from "react";
-import { Button, Display, Input, Lead, SmartLink, StateCard, Textarea } from "@/components/ui";
+import { Button, Display, Input, Lead, Select, SmartLink, StateCard, Textarea } from "@/components/ui";
 import { bookingConfirmLabel, bookingCopy, bookingCoverageFallback, bookingSteps, bookingTitleFor, bookingWho, registerCopy, registerLanguages, type BookingState } from "@/content/booking";
 import { bookingExtra as x } from "@/content/booking-extra";
 import type { BookingConfig, BookingService, BookingVisit } from "@/content/booking-visits";
@@ -35,7 +35,7 @@ function Steps({ state, className }: { state: BookingState; className?: string }
             <span className={cn("flex h-[18px] w-[18px] items-center justify-center rounded-full text-[10px] md:h-5 md:w-5 md:text-[11px]", on ? "bg-sun text-sun-ink" : done ? "bg-sage-deep text-white" : "bg-line text-muted")} aria-hidden>
               {done ? "✓" : n}
             </span>
-            {done ? <span className="sr-only">Done: </span> : null}
+            {done ? <span className="sr-only">Done: </span> : on ? <span className="sr-only">{x.current}</span> : null}
             {label}
           </li>
         );
@@ -92,6 +92,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [language, setLanguage] = useState(0);
   /** 0 Ontario health card, 1 card from another province, 2 no health card. */
   const [card, setCard] = useState(0);
+  /** Province or territory of a card from another province ("" until chosen). */
+  const [province, setProvince] = useState("");
   /** Why they are coming, carried from the page they booked from (?reason=Perimenopause and menopause). */
   const [reason, setReason] = useState("");
   const [details, setDetails] = useState<Details>({});
@@ -128,6 +130,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     if (key && services.some((s) => s.key === key)) chooseService(key, params.get("visit") ?? undefined);
     const why = params.get("reason")?.trim().slice(0, 80);
     if (why) setReason(why);
+    // Links from children's pages pass &for=someone: the booking is for a child, not the parent.
+    if (params.get("for") === "someone") setForOther(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [services]);
 
@@ -142,13 +146,18 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const slots = useMemo(() => day?.slots ?? [], [day]);
   const baseCoverage = visit?.coverage ?? (visit?.payment ? (payment === 1 && visit.selfPay ? visit.selfPay : payments[payment]?.coverage) : service.coverage) ?? bookingCoverageFallback;
   // Without an Ontario health card, OHIP does not pay: never show "OHIP-insured" on their booking.
-  const coverage = card > 0 && /OHIP/.test(baseCoverage) ? x.card.coverage[card - 1] : baseCoverage;
+  // Quebec does not take part in reciprocal billing for doctor visits: pay and claim back from RAMQ.
+  const quebec = card === 1 && province === "Quebec";
+  const coverage = card > 0 && /OHIP/.test(baseCoverage) ? (quebec ? x.quebecCoverage : x.card.coverage[card - 1]) : baseCoverage;
   const slotLabel = day && slot != null && day.open ? `${DOW[day.date.getDay()]} ${MON[day.date.getMonth()]} ${day.date.getDate()}, ${fmtTime(slot)}` : bookingConfirmLabel.slotNotChosen;
   const serviceLine = [visit ? `${service.label}, ${visit.label}` : service.label, reason ? `(${reason})` : ""].filter(Boolean).join(" ");
   const patientName = forOther ? `${str("patientFirst")} ${str("patientLast")}`.trim() : "";
   const contactName = `${str("first")} ${str("last")}`.trim();
   const reminders = details.reminders === true;
-  const { title, lead } = bookingTitleFor(state);
+  const titles = bookingTitleFor(state);
+  const { title } = titles;
+  // Women's health day dates run over several months, not "the next seven days".
+  const lead = state === 2 && visit?.days === "womensday" ? x.womensDayLead : titles.lead;
 
   // Do not ask people to bring what they already typed (claim number, insurer, employer, date),
   // and no Ontario card line for someone without one.
@@ -188,7 +197,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     patient: forOther ? { first: str("patientFirst"), last: str("patientLast"), relationship: str("relationship") } : null,
     who: bookingWho[who],
     language: registerLanguages[language],
-    healthCard: x.card.options[card],
+    healthCard: card === 1 && province ? `${x.card.options[1]}: ${province}` : x.card.options[card],
     reason: reason || null,
     day: day ? day.iso : null,
     slot: slot != null ? fmtTime(slot) : null,
@@ -365,10 +374,12 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <div className="flex flex-col gap-2">
                 <GroupLabel>{x.statusLabel}</GroupLabel>
                 <Choice options={bookingWho} value={who} onChange={setWho} ariaLabel={x.statusLabel} />
+                <span className="text-[12px] text-muted">{x.statusHint}</span>
               </div>
               <div className="flex flex-col gap-2">
                 <GroupLabel>{registerCopy.fields.language}</GroupLabel>
                 <Choice options={registerLanguages} value={language} onChange={setLanguage} ariaLabel={registerCopy.fields.language} />
+                {language === 1 ? <span className="text-[12px] text-muted">{x.languageHint}</span> : null}
               </div>
 
               {forOther ? (
@@ -396,7 +407,21 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   {card === 0 ? (
                     field("card", forOther ? x.fields.cardSomeoneElse : bookingCopy.fields.card, { inputMode: "numeric", pattern: "[0-9]{4}", maxLength: 4, autoComplete: "off", "data-error": x.cardError } as InputHTMLAttributes<HTMLInputElement>)
                   ) : (
-                    <p className="text-[13px] leading-[1.5] text-secondary">{x.card.notes[card - 1]}</p>
+                    <>
+                      {card === 1 ? (
+                        <FieldLabel label={x.provinceLabel} htmlFor="book-province">
+                          <Select id="book-province" value={province} onChange={(e) => setProvince(e.target.value)}>
+                            <option value="" />
+                            {x.provinces.map((pv) => (
+                              <option key={pv}>{pv}</option>
+                            ))}
+                          </Select>
+                        </FieldLabel>
+                      ) : null}
+                      <p className="text-[13px] leading-[1.5] text-secondary" aria-live="polite">
+                        {quebec ? x.quebecNote : x.card.notes[card - 1]}
+                      </p>
+                    </>
                   )}
                 </div>
               </fieldset>
@@ -422,7 +447,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               ) : null}
 
               <FieldLabel label={bookingCopy.fields.notes} htmlFor="book-notes">
-                <Textarea id="book-notes" name="notes" defaultValue={str("notes")} style={{ minHeight: 80, height: 80 }} />
+                <Textarea id="book-notes" name="notes" defaultValue={str("notes")} rows={4} className="resize-y" />
               </FieldLabel>
               <div className="flex flex-col gap-2.5">
                 <ConsentRow name="reminders" defaultChecked={details.reminders === true}>
@@ -450,7 +475,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               </h2>
               <span className="text-[13px] text-muted">{visit?.days === "womensday" ? x.womensDaySub : bookingCopy.step2Sub}</span>
             </div>
-            <div role="radiogroup" aria-label="Day" onKeyDown={radioKeys} className="scroll-x -mx-1 flex gap-1 px-1 py-0.5 md:gap-1.5">
+            <div role="radiogroup" aria-label="Day" onKeyDown={radioKeys} className="rm-day-strip scroll-x -mx-1 flex gap-1 px-1 py-0.5 md:gap-1.5">
               {dayList.map((d, i) => {
                 const on = dayIdx === i;
                 return (
@@ -469,6 +494,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   >
                     <span className="text-[10px] font-semibold opacity-70 md:text-[11px]">{d.today ? x.todayShort : d.dow}</span>
                     <span className="font-display text-[17px] md:text-[20px]">{d.num}</span>
+                    {visit?.days === "womensday" ? <span className="text-[10px] font-semibold md:text-[11px]">{MON[d.date.getMonth()]}</span> : null}
                     <span className="text-[9px] font-semibold md:text-[10px]">{d.open ? " " : x.closedShort}</span>
                   </button>
                 );
@@ -581,7 +607,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 </>
               }
             >
-              <p>{reminders ? bookingCopy.confirmed.body : x.confirmed.noReminders}</p>
+              <p>{reminders ? (day?.today ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.todayReminder}` : bookingCopy.confirmed.body) : x.confirmed.noReminders}</p>
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.confirmed.service}>
                   <span className="text-[16px] font-semibold">{service.label}</span>
@@ -600,6 +626,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   <span className="text-[16px] font-semibold">{coverage}</span>
                 </OutcomeTile>
               </div>
+              {str("notes") ? (
+                <OutcomeTile k={x.confirmNote}>
+                  <span className="whitespace-pre-line text-[14px] leading-[1.5]">{str("notes")}</span>
+                </OutcomeTile>
+              ) : null}
               <OutcomeTile k={bookingCopy.confirmed.bring}>
                 <ul className="flex list-disc flex-col gap-1 pl-5 text-[14px] leading-[1.5]">
                   {bring.map((b) => (

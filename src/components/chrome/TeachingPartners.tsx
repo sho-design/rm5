@@ -13,7 +13,7 @@ export function TeachingPartners() {
     <section aria-label="Teaching partners" className="mx-3 mt-6 flex flex-wrap items-center justify-between gap-x-12 gap-y-6 rounded-[20px] border border-border bg-raised px-6 py-6 md:mx-gutter md:mt-12 md:px-10 md:py-7">
       <div className="flex flex-col gap-1">
         <span className="text-[12px] font-semibold text-muted">Teaching partners</span>
-        <Link href={routes.about} className="text-[14px] font-semibold text-link">
+        <Link href={`${routes.about}#teaching`} className="text-[14px] font-semibold text-link">
           A teaching clinic. What that means for your visit ›
         </Link>
       </div>

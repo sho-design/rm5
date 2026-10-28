@@ -9,7 +9,9 @@ export const womensHealthDay = {
   eyebrow: draft("Women’s health day"),
   title: draft("The last Sunday of every month."),
   when: draft("Last Sunday of the month, 8am to 2pm"),
-  body: draft("Testing and screening with our nurses at Thornhill, 8am to 2pm. Book a spot, and tell us what you would like done so we can have everything ready."),
+  body: draft("Testing and screening done by our nurses at Thornhill, 8am to 2pm. Book a spot, and tell us what you would like done so we can have everything ready."),
+  /** Shown on the card: there is no female physician yet (clinic, October 2026). */
+  who: draft("Both of our physicians are men. On women’s health day, our nurses do the testing."),
   next: draft("Next one"),
   cta: draft("Book a spot"),
   visitLabel: draft("Women’s health day"),

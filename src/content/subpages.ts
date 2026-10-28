@@ -441,7 +441,7 @@ export const womenCopy = {
     cta2: "Register as a patient",
     coverage: "Insured visits are covered by OHIP. Bring your health card and any recent results.",
     alt: "Family doctor speaking with a patient",
-    pills: ["OHIP covered", "Women’s health with our nurses", "EN / Tiếng Việt"],
+    pills: ["OHIP covered", "Women’s health with our nurses", "Care in English and Tiếng Việt"],
   },
   chooser: {
     eyebrow: "What brings you in?",

@@ -108,7 +108,8 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
   );
 
   return (
-    <div className={cn("flex flex-col gap-4 bg-card p-4", !mobile && "md:gap-6 md:px-8 md:pb-10 md:pt-8")} role="search">
+    // Scrolls on its own: on a small phone the results are taller than the screen under the sticky header.
+    <div className={cn("flex max-h-[calc(100dvh-56px)] flex-col gap-4 overflow-y-auto overscroll-contain bg-card p-4", !mobile && "md:gap-6 md:px-8 md:pb-10 md:pt-8")} role="search">
       <span className="sr-only" aria-live="polite" aria-atomic="true">
         {announced}
       </span>
@@ -157,9 +158,14 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
                 const url = href(r.page);
                 const inner = (
                   <>
+                    {/* Read as: title, section, then summary (screen readers heard the whole summary before the section). */}
                     <span className="text-[15px] font-semibold md:col-start-2 md:row-start-1 md:font-medium">{r.label}</span>
+                    <span className="order-first text-[12px] font-semibold text-link md:order-none md:col-start-1 md:row-start-1">
+                      <span className="sr-only">, </span>
+                      {r.kind}
+                      <span className="sr-only">, </span>
+                    </span>
                     {r.sub ? <span className={cn("pretty text-[13px] leading-[1.45] text-muted", !mobile && "md:col-start-3 md:row-start-1 md:max-w-[420px] md:text-right")}>{r.sub} ›</span> : null}
-                    <span className="order-first text-[12px] font-semibold text-link md:order-none md:col-start-1 md:row-start-1">{r.kind}</span>
                   </>
                 );
                 return (

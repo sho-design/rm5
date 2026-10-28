@@ -709,7 +709,7 @@ const family: Topic[] = [
       title: draft("What we give."),
       sub: draft("Funding rules change from season to season. We confirm what is covered for you at the visit."),
       items: [
-        { t: draft("Flu shot"), d: draft("Every fall from October, for everyone 6 months and older. Book a short visit or add it to your next appointment."), meta: draft("Every fall"), link: draft("Flu shot questions, answered"), page: "/health-notes/flu-shot-faq" },
+        { t: draft("Flu shot"), d: draft("Every fall from October, for everyone 6 months and older. Publicly funded, so no cost to you. Due for other vaccines too? Tell us when you book and we plan them together."), meta: draft("Every fall"), link: draft("Flu shot questions, answered"), page: "/health-notes/flu-shot-faq" },
         { t: draft("Children and teens"), d: approved(kidsCopy.imm.note, "All routine vaccines are given in clinic and recorded on the yellow card."), meta: draft("Birth to 18"), link: draft("See the schedule by age"), page: "/family-medicine/children-youth#immunizations" },
         { t: draft("Shingles"), d: draft("Publicly funded from 65 to 70. Outside that range, ask us about the cost before your visit."), meta: draft("65 to 70") },
         { t: draft("Pregnancy"), d: draft("Some vaccines are recommended in every pregnancy, such as the flu shot and whooping cough (Tdap). We go through them at your prenatal visits."), meta: draft("Each pregnancy"), link: draft("Pregnancy care"), page: "pregnancy" },
