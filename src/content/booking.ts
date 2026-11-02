@@ -99,6 +99,8 @@ export const bookingCopy = {
   /** Top of the booking form: a tester short of breath found the 911 box three screens down, after Continue. */
   urgentLine: draft("Chest pain, trouble breathing or signs of a stroke? Do not book. Call 911 now."),
   urgentMore: draft("Not sure? More help"),
+  /** Mental health crisis on the same top line (a tester found 988 only below the form). */
+  urgentCrisis: draft("Thoughts of suicide or self-harm? Call or text 988."),
   callLine: "Prefer to call? 905-709-3222 during clinic hours. For emergencies call 911.",
   step1Title: "Which service?",
   fields: {

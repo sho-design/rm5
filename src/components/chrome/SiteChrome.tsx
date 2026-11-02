@@ -25,11 +25,11 @@ export async function SiteChrome({ children }: { children: ReactNode }) {
     <div className="relative flex min-h-screen w-full flex-col bg-page text-primary">
       {/* First in the tab order so keyboard users meet the choice before the page. */}
       <ConsentBanner enabled={analytics} />
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-chip focus:bg-ink focus:px-4 focus:py-2 focus:text-white">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-chip focus:bg-sun focus:px-4 focus:py-2 focus:font-semibold focus:text-sun-ink">
         Skip to content
       </a>
       {/* Contact, hours and cookie settings live in the footer, about 75 Tabs down on a long page. */}
-      <a href="#footer" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-chip focus:bg-ink focus:px-4 focus:py-2 focus:text-white">
+      <a href="#footer" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-chip focus:bg-sun focus:px-4 focus:py-2 focus:font-semibold focus:text-sun-ink">
         Skip to footer
       </a>
       <UtilityBar />

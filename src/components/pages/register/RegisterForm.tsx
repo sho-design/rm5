@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { Button, Display, Eyebrow, Input, Lead, SmartLink, StateCard } from "@/components/ui";
 import { formFailedLine, registerCopy, registerFamily, registerLanguages, registerSteps } from "@/content/booking";
 import { registerExtraCopy as x } from "@/content/forms-copy";
+import { bookingExtra as bx } from "@/content/booking-extra";
 import { submitForm } from "@/lib/forms";
 import { useRevealOnChange } from "@/lib/a11y";
 import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
@@ -95,7 +96,10 @@ export function RegisterForm() {
 
   // "Register a child" and similar links pass ?for=someone: start on "Someone I care for".
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("for") === "someone") setForWhom(1);
+    const q = new URLSearchParams(window.location.search);
+    if (q.get("for") === "someone") setForWhom(1);
+    // From the Maple list: start on Maple (a tester nearly registered at Thornhill by default).
+    if (q.get("clinic") === "maple") setClinic(1);
   }, []);
 
   const toggle = (r: Relation) => {
@@ -140,7 +144,7 @@ export function RegisterForm() {
       email: s("email"),
       phone: s("phone"),
       address: s("address"),
-      language: registerLanguages[lang],
+      language: lang === 2 ? s("languageOther") || bx.otherLanguage : registerLanguages[lang],
       clinic: clinic === 0 ? "Thornhill" : "Maple",
       submittedBy: caregiver ? { name: s("helperName"), relationship: s("helperRelation"), phone: s("helperPhone") } : null,
       family,
@@ -187,6 +191,7 @@ export function RegisterForm() {
             }
           >
             <p>{registerCopy.done.body}</p>
+            <p>{x.done.alreadyBooked}</p>
             {sent ? (
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.done.people(sent.names.length)}>
@@ -246,7 +251,7 @@ export function RegisterForm() {
               <FieldLabel label={registerCopy.fields.dob} htmlFor="reg-dob" {...err("reg-dob")}>
                 <DobInput id="reg-dob" name="dob" label={registerCopy.fields.dob} autoComplete={caregiver ? "off" : "bday"} required {...errorProps(errors, "reg-dob")} />
               </FieldLabel>
-              <FieldLabel label={registerCopy.fields.card} htmlFor="reg-card">
+              <FieldLabel label={registerCopy.fields.card} htmlFor="reg-card" hint={x.cardHint}>
                 <Input id="reg-card" name="card" inputMode="numeric" autoComplete="off" />
               </FieldLabel>
               <FieldLabel label={registerCopy.fields.email} htmlFor="reg-email" hint={caregiver ? x.helper.contactHint : undefined} {...err("reg-email")}>
@@ -266,7 +271,13 @@ export function RegisterForm() {
             </div>
             <div className="flex flex-col gap-1.5">
               <span className="text-[12px] font-semibold text-muted">{registerCopy.fields.language}</span>
-              <Choice options={registerLanguages} value={lang} onChange={setLang} ariaLabel={registerCopy.fields.language} />
+              {/* "Another language" as on booking: a Mandarin speaker could only pick English or Tiếng Việt here. */}
+              <Choice options={[...registerLanguages, bx.otherLanguage]} value={lang} onChange={setLang} ariaLabel={registerCopy.fields.language} />
+              {lang === 2 ? (
+                <FieldLabel label={bx.otherLanguageField} htmlFor="reg-language-other" hint={bx.otherLanguageHint}>
+                  <Input id="reg-language-other" name="languageOther" autoComplete="off" />
+                </FieldLabel>
+              ) : null}
             </div>
             <div className="flex flex-col gap-2">
               <span id="reg-family" className="text-[12px] font-semibold text-muted">

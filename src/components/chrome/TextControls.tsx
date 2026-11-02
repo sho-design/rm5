@@ -18,11 +18,12 @@ export function TextControls({ inverse, compact, className }: { inverse?: boolea
       <button type="button" onClick={down} aria-label="Decrease text size" disabled={step === 0} className={cn(btn, "disabled:opacity-50")}>
         A-
       </button>
-      <button type="button" onClick={reset} aria-label="Reset text size" aria-pressed={step === 0} className={btn}>
+      <button type="button" onClick={reset} aria-label="Reset text size" aria-pressed={step === 0} className={cn(btn, step === 0 && (inverse ? "bg-white text-ink" : "bg-ink text-white"))}>
         A
       </button>
-      <button type="button" onClick={up} aria-label={step === 2 ? "Increase text size (already the largest)" : "Increase text size"} aria-disabled={step === 2 || undefined} className={cn(btn, step === 2 && (inverse ? "bg-white text-ink" : "bg-ink text-white"))}>
-        A+
+      <button type="button" onClick={up} aria-label={step === 2 ? "Increase text size (already the largest)" : "Increase text size"} aria-disabled={step === 2 || undefined} className={cn(btn, step > 0 && (inverse ? "bg-white text-ink" : "bg-ink text-white"))}>
+        {/* Shows the level: testers could not tell whether a second press worked. */}
+        {step === 2 ? "A++" : "A+"}
       </button>
       <button
         type="button"

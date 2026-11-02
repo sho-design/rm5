@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (190 simulated patients)
+# Usability test, 28 October 2026 (210 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -568,6 +568,50 @@ Average ease 5.2, trust 5.4 (38 of 40 scored in their reports; round 10 was 4.8 
 - **Vietnamese pages** (Bà Mai, Hoa) and Chinese (Wei).
 - **Thin pages and labels** (Zoe): Gift cards and Lab results are stubs. "Dr. Johnny Nguyen" opens the team page. "Home exercise portal" has no portal. "Book online (Ocean)" names a vendor.
 - **Dark mode (follow-up, code):** a light-sensitive tester (Ivy) asked for it. The dark tokens exist, but components hard-code white backgrounds (68 places) and navy text, so a dark theme needs its own pass before it can follow the phone's setting.
+
+## Round 12: 20 testers, retest of round 11, Monday 2 November 7:50am
+
+Average ease 5.5, trust 5.8 across all 20 (round 11 was 5.2 and 5.4); every booking went through. Lowest: Wei 4 for ease (Mandarin, registration language), Maya 4 for trust (teen messages), Marie 4 for price transparency.
+
+Retests that now work: one tap to 911 from the top bar, the 988 line, the mood and skin spot search rows, Chinese search pointing to a free interpreter, teens booking as themselves, newborn card advice, the vaccine coverage line without a card, referral patients told not to book, the "first visit stays booked" note, the complaint hint, "Not sure where to start?", and the Maple list leading to registration.
+
+### Round 12 findings fixed in code
+
+- **911 while scrolling:** the phone header shows a "911" button once the top bar has scrolled away (Linh). The top bar's 911 link is taller.
+- **Date of birth:** the month box shrank to its arrow and hid the chosen month (Ed, Kevin, Hal). Day and Month now share a row and Year wraps below; the day and year fields take digits only.
+- **Registration:**
+  - "Another language" with a "Which language?" field, as on booking (Wei).
+  - The health card hint says "Optional. Newborn whose card has not arrived yet? Leave it blank." (Kim).
+  - The confirmation says to keep a visit already booked and mention it when we call (Wei, Kim, Kevin).
+  - Coming from the Maple list starts on Maple (Kevin).
+- **Booking:**
+  - The top line adds "Thoughts of suicide or self-harm? Call or text 988." (Sam).
+  - Choosing Physiotherapy or Chiropractic as a new patient suggests the initial assessment (Tara).
+  - Existing patients see a claim hint that does not mention "the first visit" (Tony).
+  - "Book another visit" is an outlined button.
+  - The 24 hours notice line reads more plainly.
+  - Review values no longer break phone numbers.
+- **Phone menu:** Escape closes it. At larger text, 911, Book and Call share one row. The clinic status wraps instead of running off the screen (Bà Mai).
+- **Text size:** the active size is filled, and the largest reads "A++" (Bà Mai, Zoe).
+- **Readability:**
+  - Division heroes (Family Medicine, Pain Centre) get a side and bottom shade, and the eyebrow sits on a dark chip (Bob, Ana).
+  - "What we offer" cards have an even shade (Bob).
+  - Skip links are sunshine pills.
+- **Children and youth (please review first):** "A fever in a baby under 3 months" moved from the Health811 or walk-in card to the Emergency card (Kim). The teen panel links "Birth control and sexual health: confidential at any age" (Maya).
+- **Other:**
+  - "Flu shots are available now" replaces "available from October" (Zoe).
+  - Renewal errors move focus to the field once it is drawn (Hal).
+
+### Round 12 findings for the clinic
+
+- A visitor or uninsured visit fee or range, and payment methods (Luis, Omar).
+- What confirmation and reminder messages say, and a discreet option for teens (Maya). What "within the limits of the law" means.
+- Booking a series of WSIB sessions (Tony).
+- Whether someone who has just registered may use the renewal form (Hal).
+- Prices for the Injection Bar, injectables, laser and kinesiology. Fees is not in the header or About menu (Marie).
+- A short Family Medicine line on mood, anxiety and sleep (Sam). Headache in Vietnamese search ("đau đầu").
+- The Iron therapy hero says "Thornhill, Tue, Sat and Sun" while assessments book any day (Bob).
+- Dark mode, as before.
 
 ## What worked
 

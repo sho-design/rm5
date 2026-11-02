@@ -30,7 +30,7 @@ export function RenewalForm() {
     const errs = formErrors(form);
     setErrors(errs);
     if (Object.keys(errs).length) {
-      focusFirstError(form, errs);
+      requestAnimationFrame(() => focusFirstError(form, errs));
       return;
     }
     const v = readForm(form);

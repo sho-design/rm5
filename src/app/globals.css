@@ -266,3 +266,8 @@
 @media (max-width: 379px) {
   .rm-header[data-scrolled] .rm-wordmark-text { display: none; }
 }
+
+/* Phone menu at larger text: 911, Book and Call share one row so the list keeps most of the screen. */
+:root[data-text] .rm-menu-foot { flex-direction: row; }
+:root[data-text] .rm-menu-foot .rm-911-long { display: none; }
+:root[data-text] .rm-menu-foot .rm-911-short { display: inline; }

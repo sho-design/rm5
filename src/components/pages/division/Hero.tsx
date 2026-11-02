@@ -34,9 +34,15 @@ export function Hero({
     <section className="relative mx-3 mt-4 flex bg-ink-2 min-h-[360px] items-end overflow-hidden rounded-[22px] md:mx-gutter md:mt-8 md:min-h-[520px] md:rounded-block">
       <div className="absolute inset-0">
         <Photo src={img} alt={alt} radius="none" protect className="h-full w-full" priority sizes="100vw" />
+        {/* Side and bottom shade: low-vision testers could not read the headline or eyebrow on bright window light. */}
+        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(90deg, color-mix(in srgb, var(--rm-ink) 60%, transparent) 0%, transparent 75%), linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--rm-ink) 55%, transparent) 100%)" }} />
       </div>
       <div className="relative flex max-w-[760px] flex-col gap-2 p-[18px] text-white md:gap-4 md:p-12">
-        {eyebrow ? <span className="text-[11px] font-semibold text-sun md:text-[13px]">{eyebrow}</span> : null}
+        {eyebrow ? (
+          <span className="self-start rounded-chip px-2.5 py-1 text-[12px] font-semibold text-sun md:px-3 md:py-1.5 md:text-[13px]" style={{ background: "color-mix(in srgb, var(--rm-ink) 75%, transparent)" }}>
+            {eyebrow}
+          </span>
+        ) : null}
         <h2 className="display-tight balance text-[28px] md:text-[44px] lg:text-[56px]">{headline}</h2>
         {blurb ? <p className="pretty text-[13px] leading-[1.45] text-white/85 md:text-[18px] md:leading-[1.5]">{blurb}</p> : null}
         {cta && ctaTo ? (

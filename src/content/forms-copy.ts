@@ -45,7 +45,11 @@ export const registerExtraCopy = {
   },
   reminders: draft("Send me appointment reminders by email or text. Optional."),
   updates: draft("Send me clinic updates by email. Optional, unsubscribe any time."),
+  /** Newborns: the card arrives weeks after birth (a parent did not know blank was allowed). */
+  cardHint: draft("Optional. Newborn whose card has not arrived yet? Leave it blank."),
   done: {
+    /** Testers had already booked a visit, then read "we book your first visit" and feared two first visits. */
+    alreadyBooked: draft("Already booked a visit online? Keep it, and mention it when we call so we do not book you twice."),
     people: (n: number) => (n === 1 ? draft("Registered") : draft(`Registered, ${n} people`)),
     clinic: draft("Clinic"),
   },

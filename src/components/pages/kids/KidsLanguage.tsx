@@ -1,3 +1,5 @@
+import { bookFor } from "@/lib/routes";
+import { SmartLink } from "@/components/ui/SmartLink";
 import { Button, Display, Eyebrow, Section } from "@/components/ui";
 import { kidsCopy } from "@/content/kids";
 
@@ -33,9 +35,15 @@ export function KidsLanguage() {
           <h2 className="display-tight balance text-[28px] lg:text-[32px]">{kidsCopy.teens.title}</h2>
           <p className="pretty text-[15px] leading-[1.55] text-secondary">{kidsCopy.teens.body}</p>
         </div>
-        <Button to="book" className="self-start">
-          {kidsCopy.teens.cta}
-        </Button>
+        <div className="flex flex-col gap-3">
+          <Button to={bookFor("family", "concern")} className="self-start">
+            {kidsCopy.teens.cta}
+          </Button>
+          {/* A 17-year-old found "Confidential, any age" only on Women's health, not here. */}
+          <SmartLink to="women" className="text-[14px] font-semibold text-link">
+            {kidsCopy.teens.contraception} ›
+          </SmartLink>
+        </div>
       </div>
     </Section>
   );

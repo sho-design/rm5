@@ -14,7 +14,7 @@ function Tile({ s, tint, big, book }: { s: DivisionService; tint: string; big?: 
         <div className="absolute inset-0">
           <Photo src={s.image} alt="" radius="none" protect className="h-full w-full" sizes={big ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 40vw"} />
           {/* A deeper shade under the text: a low-vision tester could not read white text on the bright photos. */}
-          <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 20%, color-mix(in srgb, var(--rm-ink) 80%, transparent) 100%)" }} />
+          <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, color-mix(in srgb, var(--rm-ink) 45%, transparent) 0%, color-mix(in srgb, var(--rm-ink) 85%, transparent) 100%)" }} />
         </div>
       ) : null}
       <div className="relative flex max-w-[520px] flex-col gap-2.5 text-white">

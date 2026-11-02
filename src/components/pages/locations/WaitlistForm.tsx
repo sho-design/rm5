@@ -46,7 +46,7 @@ export function WaitlistForm() {
           title={w.doneTitle}
           actions={
             <>
-              <Button to="register">{w.doneRegisterCta}</Button>
+              <Button to="/register?clinic=maple">{w.doneRegisterCta}</Button>
               <Button to="book" variant="outline">
                 {w.doneCta}
               </Button>

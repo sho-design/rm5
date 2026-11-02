@@ -17,7 +17,7 @@ import { Choice, ConsentRow, FieldError, FieldLabel, OutcomeTile, Panel, PillChi
 type Details = Record<string, string | boolean>;
 
 /** Ink text action beside the pills in an outcome card. */
-const ghost = "inline-flex h-12 items-center px-1 text-[14px] font-semibold text-ink hover:opacity-80 sm:px-[22px]";
+const ghost = "inline-flex h-12 items-center rounded-chip border-[1.5px] border-ink px-5 text-[14px] font-semibold text-ink hover:bg-white active:scale-[.98]";
 
 /** Step indicator: done steps show ✓ on sage, the current step sits on ink with a sunshine dot. */
 function Steps({ state, className }: { state: BookingState; className?: string }) {
@@ -353,6 +353,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
             <a href="#emergency" className="whitespace-nowrap font-semibold text-link">
               {bookingCopy.urgentMore} ›
             </a>
+            <a href="tel:988" className="mt-1 block font-semibold underline underline-offset-2">
+              {bookingCopy.urgentCrisis}
+            </a>
           </p>
         ) : null}
         <dl aria-labelledby="book-summary" className={cn("mt-3 hidden flex-col gap-2.5 rounded-card-sm border border-border bg-card px-6 py-[22px] text-[14px] leading-[1.5]", (state === 1 || state === 2) && "lg:flex")}>
@@ -426,6 +429,15 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                         {visit.hint.link} ›
                       </SmartLink>
                     ) : null}
+                  </p>
+                ) : null}
+                {/* A new patient picked Chiropractic and never saw that a first visit is an assessment. */}
+                {(visit?.key === "physio" || visit?.key === "chiro") && who === 0 && service.visits.some((v) => v.key === "assessment") ? (
+                  <p className="text-[13px] leading-[1.5] text-secondary">
+                    {x.rehabNewHint}{" "}
+                    <button type="button" onClick={() => setVisitKey("assessment")} className="border-b-[1.5px] border-ink font-semibold text-ink">
+                      {x.rehabNewAction} ›
+                    </button>
                   </p>
                 ) : null}
                 {service.note && !visit?.noServiceNote ? (
@@ -512,7 +524,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               {visit?.claim ? (
                 <fieldset className="flex flex-col gap-2">
                   <legend className="mb-1 text-[13px] font-semibold text-primary">{x.claimTitle[visit.claim]}</legend>
-                  <p className="mb-1 text-[12px] leading-[1.5] text-muted">{x.claimHint}</p>
+                  <p className="mb-1 text-[12px] leading-[1.5] text-muted">{who === 1 ? x.claimHintExisting : x.claimHint}</p>
                   <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
                     {field("claimNumber", x.fields.claimNumber, { autoComplete: "off" })}
                     {visit.claim === "mva" ? field("insurer", x.fields.insurer, { autoComplete: "off" }) : field("employer", x.fields.employer, { autoComplete: "organization" })}
@@ -672,7 +684,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               {reviewRows.map(([k, v]) => (
                 <div key={k} className="flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:justify-between sm:gap-4">
                   <dt className="shrink-0 text-muted">{k}</dt>
-                  <dd className={cn("min-w-0 break-words font-semibold [overflow-wrap:anywhere]", v.length < 60 && "sm:text-right")}>{v}</dd>
+                  <dd className={cn("min-w-0 break-words font-semibold", v.length < 60 && "sm:text-right")}>{v}</dd>
                 </div>
               ))}
             </dl>

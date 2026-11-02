@@ -263,7 +263,8 @@ export const kidsSick: KidsSickCard[] = [
     tag: draft("When we cannot see you"),
     t: "Call Health811 or visit a walk-in",
     bg: "#FFF3C4",
-    items: ["We are closed or fully booked", "A fever in a child under 3 months", "Vomiting or diarrhea with fewer wet diapers", "You want advice tonight"],
+    // Fever under 3 months moved to Emergency (draft, flagged first for clinical review): a new parent read the walk-in card as the advice.
+    items: ["We are closed or fully booked", "Vomiting or diarrhea with fewer wet diapers", "You want advice tonight"],
     action: "Health811 is free, 24 hours",
     actionHref: "tel:811",
   },
@@ -271,7 +272,7 @@ export const kidsSick: KidsSickCard[] = [
     tag: "Emergency",
     t: "Go to the emergency department or call 911",
     bg: "#FDE8E4",
-    items: ["Trouble breathing or blue lips", "Very drowsy, limp or hard to wake", "A seizure, or a stiff neck with fever", "A serious injury or a head injury with vomiting"],
+    items: [draft("A fever in a baby under 3 months"), "Trouble breathing or blue lips", "Very drowsy, limp or hard to wake", "A seizure, or a stiff neck with fever", "A serious injury or a head injury with vomiting"],
     action: "Call 911",
   },
 ];
@@ -339,6 +340,7 @@ export const kidsCopy = {
     title: "Part of every teen visit is private.",
     body: "Teens can book on their own and speak with the doctor without a parent in the room. What is discussed stays confidential within the limits of the law, and we explain those limits plainly.",
     cta: "Book a teen visit",
+    contraception: draft("Birth control and sexual health: confidential at any age"),
   },
   faq: {
     title: "Questions parents ask.",

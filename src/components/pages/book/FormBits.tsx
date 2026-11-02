@@ -151,8 +151,9 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
   const value = ok ? `${yy}-${m.padStart(2, "0")}-${dd.padStart(2, "0")}` : "";
   const bad = error || rest["aria-invalid"];
   const auto = autoComplete === "bday";
+  // Wraps instead of squeezing: on a small phone the month box shrank to its arrow and hid the chosen month.
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap gap-2">
       <input
         id={id}
         name={name}
@@ -177,8 +178,9 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
         aria-invalid={bad || undefined}
         aria-describedby={rest["aria-describedby"]}
         value={d}
-        onChange={(e) => setD(e.target.value)}
-        className="w-[72px] px-3"
+        onChange={(e) => setD(e.target.value.replace(/\D/g, ""))}
+        className="flex-none px-3"
+        style={{ width: "4.5rem" }}
       />
       <Select
         id={`${id}-month`}
@@ -187,7 +189,8 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
         aria-invalid={bad || undefined}
         value={m}
         onChange={(e) => setM(e.target.value)}
-        className="min-w-0 flex-1 px-3"
+        className="min-w-[9.5rem] flex-1 pl-3 pr-9"
+        style={{ width: "auto" }}
       >
         <option value="">Month</option>
         {MONTHS.map((n, i) => (
@@ -205,8 +208,9 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
         aria-label={`${label}, year`}
         aria-invalid={bad || undefined}
         value={y}
-        onChange={(e) => setY(e.target.value)}
-        className="w-[96px] px-3"
+        onChange={(e) => setY(e.target.value.replace(/\D/g, ""))}
+        className="flex-none px-3"
+        style={{ width: "5.75rem" }}
       />
     </div>
   );

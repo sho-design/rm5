@@ -214,7 +214,7 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
   - Vaccines: "Vaccines, including flu and catch-up", "Any vaccine records you have, from Ontario or another country. No records? Come anyway, and we plan from there.", "Your health card, if you have one.", "We tell you before the visit if a vaccine is not."
   - "Your first visit stays booked: …. This books a second, separate visit. To move or cancel the first, call us."
   - "Your visit is today, so we do not send a reminder."
-  - "… Please give us 24 hours notice when you can, so call by the clinic day before." / same day: "To change or cancel, call 905-709-3222 as soon as you can."
+  - "… Please give us 24 hours notice when you can, For a morning visit, that means calling the clinic day before." / same day: "To change or cancel, call 905-709-3222 as soon as you can."
 - **Fees and FAQ:**
   - Fees eyebrow "Fees". Lead: "What OHIP does not cover, and what it costs. We tell you the fee before any uninsured service, and every payment comes with a receipt."
   - "Anything not listed below? Ask us." Rows "IV drip: …" ("HST included, plus a 10 minute nurse screening") and "Medical Aesthetics: …" ("Per visit. Your exact price is given in writing at the consult.").
@@ -235,6 +235,19 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Contact and Maple:**
   - Complaint topic: "Concerns and complaints, including billing mistakes, go to our Medical Director. Each one is logged and reviewed, and we reply within 2 business days."
   - Maple list done: "Want a family doctor with us? The list only tells you when Maple opens. Register as a new patient too, and choose Maple." / "Register as a new patient".
+
+## Usability fixes, round 12
+
+- **Children and youth (please review first):** "A fever in a baby under 3 months" moved to the Emergency card ("Go to the emergency department or call 911"). Teen panel link: "Birth control and sexual health: confidential at any age".
+- **Booking:**
+  - Top line: "Thoughts of suicide or self-harm? Call or text 988."
+  - Rehab: "New to rehab here? Your first visit with physio or chiro is an initial assessment." / "Choose Initial assessment".
+  - Existing claim: "Already in treatment? Add the claim number if you have it handy, or leave it blank."
+- **Registration:**
+  - "Optional. Newborn whose card has not arrived yet? Leave it blank."
+  - "Already booked a visit online? Keep it, and mention it when we call so we do not book you twice."
+  - "Another language" / "Which language?" (booking wording).
+- **What's new:** "Flu shots are available now".
 
 ## Facts to confirm
 

@@ -73,6 +73,8 @@ export const bookingExtra = {
   quebecCoverage: draft("Quebec card: you pay and claim it back from RAMQ, receipt provided"),
   claimTitle: { mva: draft("About the claim"), wsib: draft("About the claim") },
   claimHint: draft("Not sure yet? Leave these blank. We can open the claim with you at the first visit."),
+  /** Existing patients were told the claim opens "at the first visit". */
+  claimHintExisting: draft("Already in treatment? Add the claim number if you have it handy, or leave it blank."),
   paymentTitle: draft("How are you paying?"),
   benefitsHint: "We bill most major insurers directly at the desk.",
   reminders: draft("Send me appointment reminders by email or text. You can unsubscribe at any time."),
@@ -93,7 +95,9 @@ export const bookingExtra = {
   interpreterBooked: (language: string) => draft(`We arrange a phone interpreter for ${language}, at no cost to you.`),
   /** Replaces "Reschedule or cancel", which only restarted the form. */
   bookAnother: draft("Book another visit"),
-  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours notice when you can, so call by the clinic day before."),
+  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours notice when you can. For a morning visit, that means calling the clinic day before."),
+  rehabNewHint: draft("New to rehab here? Your first visit with physio or chiro is an initial assessment."),
+  rehabNewAction: draft("Choose Initial assessment"),
   /** Same-day bookings: 24 hours notice cannot apply. */
   changeOrCancelToday: draft("To change or cancel, call 905-709-3222 as soon as you can."),
   /** Shown when this tab already booked and the page was opened again with Back or Forward. */

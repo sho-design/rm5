@@ -27,11 +27,17 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
     document.body.style.overflow = "hidden";
     // Lets the cookie banner step aside while the menu is open (it sits above the header's layer).
     document.documentElement.dataset.menu = "open";
+    // Escape closes the menu (two testers pressed it and nothing happened).
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
     return () => {
+      window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
       delete document.documentElement.dataset.menu;
     };
-  }, []);
+  }, [onClose]);
   return (
     <div className="fixed inset-0 z-50 flex flex-col overflow-hidden bg-ink text-white" role="dialog" aria-modal="true" aria-label="Menu">
       <div className="flex shrink-0 items-center justify-between px-4 pb-2.5 pt-3.5">
@@ -86,7 +92,7 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
           <span className="text-[11px] font-semibold tracking-[.04em] text-white/55">CLINICS</span>
           {locations.map((l) => (
             <Link key={l.key} href={`${routes.locations}#${l.key}`} onClick={onClose} className="flex items-center justify-between gap-3 rounded-row bg-white/7 px-4 py-3.5">
-              <span className="flex flex-col gap-[3px]">
+              <span className="flex min-w-0 flex-col gap-[3px]">
                 <span className="text-[15px] font-semibold">{l.name}</span>
                 <span className="text-[12px] text-white/65">{l.addressLines[0]}</span>
               </span>
@@ -96,7 +102,7 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
                   Coming soon
                 </span>
               ) : (
-                <OpenBadge inverse className="whitespace-nowrap text-white" />
+                <OpenBadge inverse className="text-right text-white" />
               )}
             </Link>
           ))}
@@ -128,13 +134,14 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
           For referring doctors ›
         </Link>
       </div>
-      <div className="flex shrink-0 flex-col gap-2 border-t border-white/12 bg-ink px-4 pb-4 pt-2.5">
+      <div className="rm-menu-foot flex shrink-0 flex-col gap-2 border-t border-white/12 bg-ink px-4 pb-4 pt-2.5">
         {/* 911 is a full-width button, not a small text link: a stroke tester found it smaller than the clinic's
             Call button. No "›": it dials, it does not open a page. */}
-        <a href="tel:911" className="flex min-h-11 items-center justify-center rounded-chip border-[1.5px] border-sun px-3 py-2 text-center text-[15px] font-semibold leading-tight text-sun">
-          {emergencyCopy.closedLine}
+        <a href="tel:911" aria-label={emergencyCopy.closedLine} className="flex min-h-11 items-center justify-center rounded-chip border-[1.5px] border-sun px-3 py-2 text-center text-[15px] font-semibold leading-tight text-sun">
+          <span className="rm-911-long">{emergencyCopy.closedLine}</span>
+          <span aria-hidden className="rm-911-short">{emergencyCopy.call911}</span>
         </a>
-        <div className="flex gap-2">
+        <div className="flex flex-1 gap-2">
           <Link href={routes.book} onClick={onClose} className="flex flex-[1.4] items-center justify-center rounded-chip bg-sun px-3 py-[13px] text-center text-[15px] font-semibold leading-tight text-sun-ink">
             <span className="rm-menu-book-long">Book an appointment</span>
             <span className="rm-menu-book-short">Book</span>
