@@ -114,7 +114,8 @@ export const divisions: Record<NavKey, Division> = {
     blurb:
       "Nerve blocks, trigger point and joint injections performed by a physician, with family medicine and rehab in the same building. With a physician referral and a valid Ontario health card, the assessment and OHIP-listed injections cost you nothing. No family doctor? Our family medicine team can assess you and refer you within the same clinic.",
     cta: "Book a family medicine assessment",
-    ctaPage: bookFor("family", "concern"),
+    // The reason travels to the booking, so the review and confirmation say this is the route to a Pain Centre referral.
+    ctaPage: `${bookFor("family", "concern")}&reason=Pain%20Centre%20referral`,
     cta2: "Send a referral",
     cta2Page: "/for-physicians#refer",
     footCta: "Start with a referral or an assessment.",
@@ -128,7 +129,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Refer a patient", page: "referrals" },
     ],
     book: [
-      { label: "Book a family medicine assessment", page: bookFor("family", "concern") },
+      { label: "Book a family medicine assessment", page: `${bookFor("family", "concern")}&reason=Pain%20Centre%20referral` },
       { label: "Referral from your doctor", page: "painFirstVisit" },
       { label: "Follow-up visit", page: bookFor("pain", "followup") },
       { label: "Procedure visit", page: bookFor("pain", "procedure") },

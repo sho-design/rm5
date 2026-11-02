@@ -2,6 +2,7 @@
 
 import { useRef, useState, type ComponentProps, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { draft } from "@/content/review";
 import { radioKeys, rovingTab } from "@/lib/a11y";
 import { Input, Select } from "@/components/ui/Form";
 
@@ -55,7 +56,8 @@ export function PillChip({ on, children, size = "md", role = "radio", ...rest }:
 export function FieldLabel({ label, hint, error, children, className, htmlFor }: { label: string; hint?: string; error?: string; children: ReactNode; className?: string; htmlFor: string }) {
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
-      <label htmlFor={htmlFor} className="text-[12px] font-semibold text-muted">
+      {/* Secondary, not muted: a low-vision tester could not read pale labels on the panel. */}
+      <label htmlFor={htmlFor} className="text-[13px] font-semibold text-secondary">
         {label}
       </label>
       {children}
@@ -84,7 +86,7 @@ export function ConsentRow({ children, className, error, ...rest }: ComponentPro
   const row = (
     <label className={cn("flex cursor-pointer items-start gap-3 text-[13px] leading-[1.5] text-secondary", className)}>
       <input type="checkbox" className="peer sr-only" {...rest} />
-      <span aria-hidden className="mt-0.5 flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-[5px] border-[1.5px] border-border bg-white text-[11px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
+      <span aria-hidden className="mt-0.5 flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-[5px] border-[1.5px] border-border-strong bg-white text-[11px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
         ✓
       </span>
       <span>{children}</span>
@@ -130,6 +132,9 @@ export function OutcomeTile({ k, children, className }: { k: string; children: R
   );
 }
 
+/** Shown when a date of birth was started but is not a real date (new wording, docs/content-review.md). */
+const dobCheck = draft("Check the date of birth: a day, a month and a 4-digit year, for example 14 March 1956.");
+
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 /**
@@ -147,8 +152,17 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
   const dayRef = useRef<HTMLInputElement>(null);
   const dd = d.replace(/\D/g, "");
   const yy = y.replace(/\D/g, "");
-  const ok = dd.length > 0 && Number(dd) >= 1 && Number(dd) <= 31 && m && yy.length === 4;
-  const value = ok ? `${yy}-${m.padStart(2, "0")}-${dd.padStart(2, "0")}` : "";
+  // A real calendar date (no 31 February) with a 4-digit year.
+  const real = (() => {
+    if (!dd || !m || yy.length !== 4) return false;
+    const dt = new Date(Number(yy), Number(m) - 1, Number(dd));
+    // Not in the future, and not more than 125 years ago.
+    const now = new Date();
+    return dt.getFullYear() === Number(yy) && dt.getMonth() === Number(m) - 1 && dt.getDate() === Number(dd) && dt <= now && Number(yy) > now.getFullYear() - 125;
+  })();
+  const value = real ? `${yy}-${m.padStart(2, "0")}-${dd.padStart(2, "0")}` : "";
+  /** Started but not a real date: say what is wrong instead of "Add your date of birth". */
+  const partial = !real && !!(dd || m || yy);
   const bad = error || rest["aria-invalid"];
   const auto = autoComplete === "bday";
   // Wraps instead of squeezing: on a small phone the month box shrank to its arrow and hid the chosen month.
@@ -164,8 +178,11 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
         tabIndex={-1}
         aria-hidden
         className="sr-only"
-        onFocus={() => dayRef.current?.focus()}
-        data-error={rest["data-error"]}
+        onFocus={() => {
+          dayRef.current?.focus({ preventScroll: true });
+          dayRef.current?.scrollIntoView({ block: "center" });
+        }}
+        data-error={partial ? dobCheck : rest["data-error"]}
       />
       <Input
         ref={dayRef}
@@ -175,21 +192,24 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
         placeholder="DD"
         autoComplete={auto ? "bday-day" : "off"}
         aria-label={`${label}, day`}
+        aria-required={required || undefined}
         aria-invalid={bad || undefined}
         aria-describedby={rest["aria-describedby"]}
         value={d}
         onChange={(e) => setD(e.target.value.replace(/\D/g, ""))}
         className="flex-none px-3"
-        style={{ width: "4.5rem" }}
+        style={{ width: "4rem" }}
       />
       <Select
         id={`${id}-month`}
         autoComplete={auto ? "bday-month" : "off"}
         aria-label={`${label}, month`}
+        aria-required={required || undefined}
         aria-invalid={bad || undefined}
+        aria-describedby={rest["aria-describedby"]}
         value={m}
         onChange={(e) => setM(e.target.value)}
-        className="min-w-[9.5rem] flex-1 pl-3 pr-9"
+        className="min-w-[8.5rem] flex-1 pl-3 pr-9"
         style={{ width: "auto" }}
       >
         <option value="">Month</option>
@@ -206,11 +226,13 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
         placeholder="YYYY"
         autoComplete={auto ? "bday-year" : "off"}
         aria-label={`${label}, year`}
+        aria-required={required || undefined}
         aria-invalid={bad || undefined}
+        aria-describedby={rest["aria-describedby"]}
         value={y}
         onChange={(e) => setY(e.target.value.replace(/\D/g, ""))}
         className="flex-none px-3"
-        style={{ width: "5.75rem" }}
+        style={{ width: "5.25rem" }}
       />
     </div>
   );

@@ -48,7 +48,7 @@ function Steps({ state, className }: { state: BookingState; className?: string }
 /** Visible label over a group of choices (the group carries the same text as its accessible name). */
 function GroupLabel({ children }: { children: ReactNode }) {
   return (
-    <span aria-hidden className="text-[12px] font-semibold text-muted">
+    <span aria-hidden className="text-[13px] font-semibold text-secondary">
       {children}
     </span>
   );
@@ -171,7 +171,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   }, [visit?.key, visit?.existing]);
   const languageName = language === 2 ? str("languageOther") || x.otherLanguage : registerLanguages[language];
   const slots = useMemo(() => day?.slots ?? [], [day]);
-  const baseCoverage = visit?.coverage ?? (visit?.payment ? (payment === 1 && visit.selfPay ? visit.selfPay : payments[payment]?.coverage) : service.coverage) ?? bookingCoverageFallback;
+  // Insured rehab visits also say what it costs if the plan does not pay (a tester never saw the price in booking).
+  const insuredWithFallback = visit?.payment && payment === 0 && visit.selfPay ? `${payments[0]?.coverage}. ${x.notCovered} ${visit.selfPay.replace(/^Self-pay:\s*/, "")}` : undefined;
+  const baseCoverage = visit?.coverage ?? (visit?.payment ? (payment === 1 && visit.selfPay ? visit.selfPay : insuredWithFallback ?? payments[payment]?.coverage) : service.coverage) ?? bookingCoverageFallback;
   // Without an Ontario health card, OHIP does not pay: never show "OHIP-insured" on their booking.
   // Quebec does not take part in reciprocal billing for doctor visits: pay and claim back from RAMQ.
   const quebec = card === 1 && province === "Quebec";
@@ -431,6 +433,12 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                     ) : null}
                   </p>
                 ) : null}
+                {/* The reason carried from search or a page ("Memory or dementia") shows here too, not only at review. */}
+                {reason ? (
+                  <p className="text-[13px] leading-[1.5] text-secondary">
+                    <span className="font-semibold text-ink">{x.reasonLabel}:</span> {reason}
+                  </p>
+                ) : null}
                 {/* A new patient picked Chiropractic and never saw that a first visit is an assessment. */}
                 {(visit?.key === "physio" || visit?.key === "chiro") && who === 0 && service.visits.some((v) => v.key === "assessment") ? (
                   <p className="text-[13px] leading-[1.5] text-secondary">
@@ -500,7 +508,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   <GroupLabel>{x.card.label}</GroupLabel>
                   <Choice options={x.card.options} value={card} onChange={setCard} ariaLabel={x.card.label} className="flex-wrap" />
                   {card === 0 ? (
-                    field("card", forOther ? x.fields.cardSomeoneElse : bookingCopy.fields.card, { inputMode: "numeric", pattern: "[0-9]{4}", maxLength: 4, autoComplete: "off", "data-error": x.cardError } as InputHTMLAttributes<HTMLInputElement>)
+                    field("card", forOther ? x.fields.cardSomeoneElse : bookingCopy.fields.card, { inputMode: "numeric", pattern: "[0-9]{4}", maxLength: 4, autoComplete: "off", "data-error": x.cardError } as InputHTMLAttributes<HTMLInputElement>, { hint: x.cardDigitsHint })
                   ) : (
                     <>
                       {card === 1 ? (

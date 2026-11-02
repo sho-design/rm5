@@ -25,7 +25,10 @@ function formatTime(mins: number, any: boolean): string {
 export function DripBuilder() {
   const [sel, setSel] = useState<number[]>([]);
   const chosen = drips.filter((_, i) => sel.includes(i));
-  const mins = chosen.reduce((a, d) => a + d.mins, 0) + (chosen.length ? dripCopy.screeningMinutes : 0);
+  // Iron's "about 90 minutes" already includes screening and observation; adding 10 more showed "1h 40m"
+  // next to "about 90 minutes" on the iron page. Screening is added only when another drip is chosen.
+  const others = sel.some((i) => i !== dripIronIndex && drips[i].mins > 0);
+  const mins = chosen.reduce((a, d) => a + d.mins, 0) + (others ? dripCopy.screeningMinutes : 0);
   const total = chosen.reduce((a, d) => a + d.price, 0);
   const toggle = (i: number) => setSel((s) => (s.includes(i) ? s.filter((x) => x !== i) : [...s, i]));
   const tint = deepDives.infusion.tint;

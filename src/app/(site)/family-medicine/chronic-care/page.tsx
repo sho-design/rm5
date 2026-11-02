@@ -41,7 +41,7 @@ export default function ChronicCarePage() {
       />
 
       <SubChooser
-        ctaTo={bookFor("family", "concern")}
+        ctaTo={bookFor("family", "chronic")}
         eyebrow="What are you managing?"
         title="Pick a condition to see how we follow it."
         intro="How often we meet, what gets checked, what to bring and what is covered."

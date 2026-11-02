@@ -125,8 +125,8 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-1.5 text-[14px] font-medium md:gap-2" onMouseEnter={closeMenu}>
           {scrolled ? (
-            <a href="tel:911" aria-label={emergencyCopy.closedLine} className="flex h-[38px] items-center rounded-full border-[1.5px] border-[color:var(--status-error-fg)] px-3 text-[14px] font-semibold text-[color:var(--status-error-fg)] sm:hidden">
-              911
+            <a href="tel:911" aria-label={emergencyCopy.closedLine} className="flex h-[38px] items-center rounded-full border-[1.5px] border-[color:var(--status-error-fg)] whitespace-nowrap px-3 text-[14px] font-semibold text-[color:var(--status-error-fg)] sm:hidden">
+              {emergencyCopy.call911}
             </a>
           ) : null}
           <button

@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (210 simulated patients)
+# Usability test, 28 October 2026 (230 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -612,6 +612,66 @@ Retests that now work: one tap to 911 from the top bar, the 988 line, the mood a
 - A short Family Medicine line on mood, anxiety and sleep (Sam). Headache in Vietnamese search ("đau đầu").
 - The Iron therapy hero says "Thornhill, Tue, Sat and Sun" while assessments book any day (Bob).
 - Dark mode, as before.
+
+## Round 13: 20 testers, Monday 2 November about 8:50am
+
+Average ease 5.3, trust 5.6 (round 12 was 5.5 and 5.8; this round leaned toward harder tasks: infant fever, a screen reader and a keyboard user, gift cards, a desktop polish review). Every booking went through. Lowest: Thao 4 for ease (infant fever), Wei 4 (Mandarin), Leo 4 (gift card and massage).
+
+Retests that now work: one tap to 911 from halfway down a page; stroke signs in the emergency note; registration in another language; text on photos readable with High contrast on four division pages; Alberta card booking.
+
+### Round 13 findings fixed in code
+
+- **Safety, children's page (please review first):**
+  - On phones, "Where to go, and when" shows the Emergency card first.
+  - Its "Call 911" is now a real call button; it was plain text (Thao).
+  - "Fever for more than two days" now says "in a child over 3 months".
+  - The emergency note lists "a fever in a baby under 3 months".
+- **911 header:** the scrolled phone header reads "Call 911", not just "911" (Doug).
+- **Screen readers and keyboard (Nia, Hal):**
+  - The renewal medications hint is linked to its field.
+  - The date of birth fields are marked required. A started but impossible date (31 February, a future date, a 2-digit year) says "Check the date of birth: a day, a month and a 4-digit year".
+  - An error on the date of birth scrolls the Day field into view.
+  - Links to #emergency or #request move focus there.
+  - The Health811 website link says it opens in a new tab.
+  - The date of birth fits on one row on desktop.
+- **Booking:**
+  - New visit "First visit as a new patient" (Wei).
+  - The reason carried from a page or search shows on the first step ("Reason for the visit: Memory or dementia").
+  - Insured physio and chiro visits also show the self-pay price if the plan does not cover it (Dev).
+  - The health card field says "Digits only. Leave out the two letters at the end."
+  - Pain Centre "Book a family medicine assessment" carries "Pain Centre referral" as the reason (Marcus).
+  - Chronic care condition cards book a chronic care review (Hoa).
+  - The 24 hours notice line is fixed.
+- **Car accidents (Mira):**
+  - The claim number reads "if you have one" on the card, the WSIB card and the FAQ.
+  - The OCF forms are explained.
+  - The card's button says "Book a car accident assessment".
+- **Iron (Carol):** the drip builder no longer adds 10 minutes of screening to iron's "about 90 minutes".
+- **Registration (Ruth):**
+  - Darker labels and checkbox borders.
+  - In "Someone I care for" mode, "Also registering from the patient's household" and "Send the registration".
+- **Other:**
+  - The referral box no longer implies a printable fax form (Dr. Kwan).
+  - "Messages and renewal requests" are read during clinic hours (no longer "booking requests", next to "You are booked").
+  - Aesthetics "Our standards of care" opens the Standards page.
+  - The fees links keep "›" with the last word.
+
+### Round 13 findings for the clinic
+
+- **Prices and products:**
+  - Gift cards: amounts, buying online, whether they cover massage. Massage length and HST (Leo).
+  - Injectables price and named injectors with credentials (Bianca).
+  - Uninsured or out-of-province fallback fee (Kai).
+- **Content to review:**
+  - The iron page's "One good afternoon" against three visits (Carol).
+  - Reminder language for Vietnamese patients (Hoa).
+  - The front desk role's hours and Maple start date (Grace).
+  - "Woodbridge" in Dr. Nguyen's bio.
+- **Design system, a follow-up pass (Zoe):**
+  - Five primary button styles.
+  - Mixed "&" and "and", and heading punctuation.
+  - "10:00 am" against "9am".
+  - The two sub-page hero templates.
 
 ## What worked
 

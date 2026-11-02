@@ -272,7 +272,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Rehab",
     q: "Do you handle MVA and WSIB claims?",
-    a: "Yes. Bring your claim number. We complete the required treatment plans and forms and bill the insurer directly.",
+    a: draft("Yes. Bring your claim number if you have one; no claim yet is fine, we can open it with you. We complete the required treatment plans and forms and bill the insurer directly."),
   },
   {
     category: "Rehab",

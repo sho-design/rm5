@@ -95,7 +95,11 @@ export const bookingExtra = {
   interpreterBooked: (language: string) => draft(`We arrange a phone interpreter for ${language}, at no cost to you.`),
   /** Replaces "Reschedule or cancel", which only restarted the form. */
   bookAnother: draft("Book another visit"),
-  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours notice when you can. For a morning visit, that means calling the clinic day before."),
+  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours’ notice when you can. For a morning visit, that means calling the day before."),
+  /** Said before the error, not after (testers typed the version letters). */
+  cardDigitsHint: draft("Digits only. Leave out the two letters at the end."),
+  notCovered: draft("Not covered by your plan?"),
+  reasonLabel: draft("Reason for the visit"),
   rehabNewHint: draft("New to rehab here? Your first visit with physio or chiro is an initial assessment."),
   rehabNewAction: draft("Choose Initial assessment"),
   /** Same-day bookings: 24 hours notice cannot apply. */

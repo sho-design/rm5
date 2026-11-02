@@ -216,7 +216,7 @@ export function RegisterForm() {
         <Panel>
           <form method="post" onSubmit={submit} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
             <div className="flex flex-col gap-1.5">
-              <span className="text-[12px] font-semibold text-muted">{x.forWhom.label}</span>
+              <span className="text-[13px] font-semibold text-secondary">{x.forWhom.label}</span>
               <Choice options={x.forWhom.options} value={forWhom} onChange={setForWhom} ariaLabel={x.forWhom.label} />
             </div>
 
@@ -265,12 +265,12 @@ export function RegisterForm() {
               </FieldLabel>
             </div>
             <div className="flex flex-col gap-1.5">
-              <span className="text-[12px] font-semibold text-muted">{x.clinic.label}</span>
+              <span className="text-[13px] font-semibold text-secondary">{x.clinic.label}</span>
               <Choice options={x.clinic.options} value={clinic} onChange={setClinic} ariaLabel={x.clinic.label} />
               {clinic === 1 ? <span className="text-[12px] leading-[1.5] text-muted">{x.clinic.mapleNote}</span> : null}
             </div>
             <div className="flex flex-col gap-1.5">
-              <span className="text-[12px] font-semibold text-muted">{registerCopy.fields.language}</span>
+              <span className="text-[13px] font-semibold text-secondary">{registerCopy.fields.language}</span>
               {/* "Another language" as on booking: a Mandarin speaker could only pick English or Tiếng Việt here. */}
               <Choice options={[...registerLanguages, bx.otherLanguage]} value={lang} onChange={setLang} ariaLabel={registerCopy.fields.language} />
               {lang === 2 ? (
@@ -280,8 +280,8 @@ export function RegisterForm() {
               ) : null}
             </div>
             <div className="flex flex-col gap-2">
-              <span id="reg-family" className="text-[12px] font-semibold text-muted">
-                {registerCopy.fields.family}
+              <span id="reg-family" className="text-[13px] font-semibold text-secondary">
+                {caregiver ? x.family.labelCaregiver : registerCopy.fields.family}
               </span>
               <span id="reg-family-hint" className="text-[12px] text-muted">
                 {x.family.hint}
@@ -333,7 +333,7 @@ export function RegisterForm() {
                 {formFailedLine}
               </p>
             ) : null}
-            <SubmitButton busy={busy}>{registerCopy.submit}</SubmitButton>
+            <SubmitButton busy={busy}>{caregiver ? x.submitCaregiver : registerCopy.submit}</SubmitButton>
           </form>
         </Panel>
       )}

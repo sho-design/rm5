@@ -29,7 +29,10 @@ export const registerExtraCopy = {
     options: [draft("Thornhill"), draft("Maple, coming soon")],
     mapleNote: draft("Maple is not open yet. We will register you now and contact you once Maple opens. Until then you can be seen at Thornhill."),
   },
+  /** Filling it in for someone else: "Send my registration" and "My partner" read as the helper's own. */
+  submitCaregiver: draft("Send the registration"),
   family: {
+    labelCaregiver: draft("Also registering from the patient's household (their partner, children or parents)"),
     hint: draft("Choose any that apply. We will ask for each person's details below."),
     relation: { partner: draft("Partner"), children: draft("Child"), parents: draft("Parent") },
     first: draft("First name"),

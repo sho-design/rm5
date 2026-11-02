@@ -255,7 +255,7 @@ export const kidsSick: KidsSickCard[] = [
     // Was "Book a same-week visit with us": parents read it as "not today" while booking shows today's times.
     t: draft("Call or book a visit with us"),
     bg: "#EEF5FC",
-    items: ["Fever for more than two days", "Ear pain, sore throat or a cough that lingers", "Rashes, tummy pain or vomiting that is settling", "Any worry that does not feel urgent"],
+    items: [draft("Fever for more than two days, in a child over 3 months"), "Ear pain, sore throat or a cough that lingers", "Rashes, tummy pain or vomiting that is settling", "Any worry that does not feel urgent"],
     action: "905-709-3222",
   },
   {
@@ -274,6 +274,7 @@ export const kidsSick: KidsSickCard[] = [
     bg: "#FDE8E4",
     items: [draft("A fever in a baby under 3 months"), "Trouble breathing or blue lips", "Very drowsy, limp or hard to wake", "A seizure, or a stiff neck with fever", "A serious injury or a head injury with vomiting"],
     action: "Call 911",
+    actionHref: "tel:911",
   },
 ];
 

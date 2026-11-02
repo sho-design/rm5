@@ -11,7 +11,7 @@ export const emergencyCopy = {
   // 911 first and tappable; Health811 second. A tester with chest pressure at 3am read the old box as "try 811 first".
   // 911 first and tappable; Health811 second. A tester with chest pressure at 3am read the old box as "try 811 first".
   // Stroke signs are named: a tester checking for a parent's stroke did not see the word.
-  urgent: draft("Chest pain or pressure, trouble breathing, heavy bleeding, or signs of a stroke (face drooping, arm weakness, slurred speech): call 911 now, or go to the nearest emergency department."),
+  urgent: draft("Chest pain or pressure, trouble breathing, heavy bleeding, signs of a stroke (face drooping, arm weakness, slurred speech), or a fever in a baby under 3 months: call 911 now, or go to the nearest emergency department."),
   call911: draft("Call 911"),
   /** Mental health crisis: a tester with low mood found only physical emergencies listed. 988 is Canada's suicide crisis line. */
   crisis: draft("Thoughts of suicide or self-harm?"),
@@ -21,7 +21,7 @@ export const emergencyCopy = {
   call811: draft("Call Health811 at 811"),
   siteLabel: draft("Visit health811.ontario.ca"),
   advice: draft("For health advice any time, day or night, call Health811 at 811."),
-  requests: draft("Booking requests and messages sent on this website are read during clinic hours."),
+  requests: draft("Messages and renewal requests sent on this website are read during clinic hours."),
   /** Utility bar and phone menu while the clinic is closed. */
   closedLine: draft("Emergency? Call 911"),
   /** Phone menu: the clinic call button says whose number it is. */

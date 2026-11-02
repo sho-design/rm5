@@ -253,6 +253,29 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 
 - Referral box: "Send it online here, one patient and one service at a time, or fax your own referral letter with any relevant results." (was "One form for all services. Tick the service, then fax it", which read as a printable fax form that does not exist).
 
+- **Children and youth (please review first):**
+  - Emergency card first on phones, with a "Call 911" button.
+  - "Fever for more than two days, in a child over 3 months".
+  - Emergency note adds "or a fever in a baby under 3 months".
+- **Header and forms:**
+  - Scrolled phone header: "Call 911".
+  - Date of birth check: "Check the date of birth: a day, a month and a 4-digit year, for example 14 March 1956."
+- **Booking:**
+  - "First visit as a new patient" / "Registering too? Keep this visit, and mention it when we call so we do not book you twice."
+  - "Reason for the visit".
+  - "Not covered by your plan?" (followed by the self-pay price).
+  - "Digits only. Leave out the two letters at the end."
+  - "… Please give us 24 hours’ notice when you can. For a morning visit, that means calling the day before."
+  - "Everything you need for the visit is here."
+- **Car accidents and WSIB:**
+  - "Your insurer's name, and the claim number if you have one".
+  - "We complete the insurer's treatment forms (OCF-18 and OCF-23)".
+  - "Book a car accident assessment".
+  - WSIB "Your claim number, if you have one".
+  - FAQ "Yes. Bring your claim number if you have one; no claim yet is fine, we can open it with you. …"
+- **Registration (caregiver):** "Send the registration" / "Also registering from the patient's household (their partner, children or parents)".
+- **Emergency note:** "Messages and renewal requests sent on this website are read during clinic hours."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

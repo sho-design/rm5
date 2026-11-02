@@ -110,7 +110,7 @@ export default async function FeesPage() {
                   <tr key={f.service} className="border-t border-border align-top">
                     <td className="px-5 py-4">
                       <SmartLink to={f.page} className="font-semibold text-link">
-                        {f.service} ›
+                        {f.service}{"\u00a0"}›
                       </SmartLink>
                       {f.note ? <span className="block pt-0.5 text-[13px] text-muted">{f.note}</span> : null}
                     </td>

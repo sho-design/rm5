@@ -42,7 +42,7 @@ export const bookingTitles: Record<"step1" | "step2" | "review" | "step3" | "wai
   step1: { title: "Book an appointment.", lead: "Tell us which service you need and who you are. Two minutes." },
   step2: { title: "Book an appointment.", lead: "Openings at Thornhill for the next seven days." },
   review: { title: "Book an appointment.", lead: draft("Check the details, then confirm. Nothing is booked until you do.") },
-  step3: { title: "See you soon.", lead: "Everything you need for the visit is below." },
+  step3: { title: "See you soon.", lead: draft("Everything you need for the visit is here.") },
   waitlist: { title: "We will call you.", lead: "Everything you need for the visit is below." },
   error: { title: "Book an appointment.", lead: "Everything you need for the visit is below." },
 };

@@ -31,7 +31,7 @@ export function EmergencyNote({ className, id, headingLevel = 2 }: { className?:
           {c.call811}
         </a>
         <a href={c.link} target="_blank" rel="noopener" className="text-[14px] font-semibold text-link underline-offset-2 hover:underline">
-          {c.siteLabel} ›
+          {c.siteLabel} ›<span className="sr-only"> (opens in a new tab)</span>
         </a>
       </div>
       <p className="pretty text-[13px] leading-[1.5] text-muted">{c.requests}</p>

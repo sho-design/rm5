@@ -105,7 +105,7 @@ export function RenewalForm() {
               </FieldLabel>
             </div>
             <FieldLabel label={c.fields.meds} htmlFor="rx-meds" hint={c.medsHint} error={errors["rx-meds"]}>
-              <Textarea {...text("meds")} rows={4} />
+              <Textarea {...text("meds")} aria-describedby={errors["rx-meds"] ? "rx-meds-hint rx-meds-error" : "rx-meds-hint"} rows={4} />
             </FieldLabel>
             <FieldLabel label={c.fields.notes} htmlFor="rx-notes">
               <Textarea {...text("notes", false)} rows={3} />

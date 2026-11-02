@@ -128,6 +128,8 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
     coverage: bookingCoverage[label("family")],
     visits: [
       { key: "concern", label: draft("A health concern"), bring: [familyBring] },
+      // New patients wanting to meet their doctor booked "A health concern" ("I am not sick, I just want a new doctor").
+      { key: "newpatient", label: draft("First visit as a new patient"), bring: [familyBring], hint: { text: draft("Registering too? Keep this visit, and mention it when we call so we do not book you twice.") } },
       // Children's page "Book a well-baby visit" (newborn checks and the routine schedule).
       // The newborn card advice shows with the visit (it was only under "No health card", which parents never opened).
       {
