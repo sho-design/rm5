@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { buttonClass } from "@/components/ui/Button";
 import { divisions, navOrder } from "@/content/divisions";
 import { locations, network, site } from "@/content/site";
 import { external, href, routes } from "@/lib/routes";
@@ -35,7 +36,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
         <div className="flex flex-col gap-3.5 lg:pr-6">
           <Wordmark size="lg" />
           <span className="pretty text-[14px] leading-[1.5] text-muted">{site.description}</span>
-          <Link href={routes.book} className="self-start rounded-chip bg-ink px-[22px] py-3 text-[14px] font-semibold text-white hover:opacity-90">
+          <Link href={routes.book} className={buttonClass("primary", "md", "self-start")}>
             Book an appointment
           </Link>
           <FooterIcons />

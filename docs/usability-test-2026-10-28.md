@@ -668,7 +668,7 @@ Retests that now work: one tap to 911 from halfway down a page; stroke signs in 
   - The front desk role's hours and Maple start date (Grace).
   - "Woodbridge" in Dr. Nguyen's bio.
 - **Design system, a follow-up pass (Zoe):**
-  - Five primary button styles.
+  - Five primary button styles. Done after round 13: buttons share one helper, `buttonClass` in `src/components/ui/Button.tsx`. They keep the design system's colour roles: navy primary, sky for booking steps and service-card Book, sunshine on navy, white on photos, outline for secondary actions. The confirmation row has one primary and outlined secondaries. The disabled "Choose a time above" is an outline, and "Edit details" and "Change time" end in " ›".
   - Mixed "&" and "and", and heading punctuation.
   - "10:00 am" against "9am".
   - The two sub-page hero templates.

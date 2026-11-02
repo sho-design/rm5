@@ -1,6 +1,7 @@
 "use client";
 
 import { Icon } from "@/components/ui";
+import { buttonClass } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { careersCopy } from "@/content/about";
 import type { BoardJob } from "./types";
@@ -46,7 +47,7 @@ export function JobRow({ job, open, onToggle, onApply }: { job: BoardJob; open: 
             <button
               type="button"
               onClick={onApply}
-              className="mt-1 inline-flex self-start rounded-chip bg-ink px-5 py-3 text-[14px] font-semibold leading-none text-white transition-opacity hover:opacity-90 active:scale-[.98]"
+              className={buttonClass("primary", "md", "mt-1 self-start")}
             >
               {c.apply}
             </button>

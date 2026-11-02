@@ -1,4 +1,5 @@
 import { emergencyCopy as c } from "@/content/patient-help";
+import { buttonClass } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 
 /**
@@ -16,7 +17,7 @@ export function EmergencyNote({ className, id, headingLevel = 2 }: { className?:
         {c.title}
       </H>
       <p className="pretty text-[15px] font-semibold leading-[1.5]">{c.urgent}</p>
-      <a href="tel:911" className="inline-flex h-12 items-center self-start rounded-chip bg-ink px-6 text-[16px] font-semibold text-white hover:opacity-90">
+      <a href="tel:911" className={buttonClass("primary", "md", "self-start")}>
         {c.call911}
       </a>
       <p className="pretty pt-1 text-[14px] leading-[1.5] text-ink-2">
@@ -27,7 +28,7 @@ export function EmergencyNote({ className, id, headingLevel = 2 }: { className?:
       </p>
       <p className="pretty pt-1 text-[14px] leading-[1.5] text-ink-2">{c.unsure}</p>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <a href="tel:811" className="inline-flex h-11 items-center rounded-chip border-[1.5px] border-ink px-5 text-[15px] font-semibold text-ink hover:bg-white/50">
+        <a href="tel:811" className={buttonClass("outline", "md", "border-ink")}>
           {c.call811}
         </a>
         <a href={c.link} target="_blank" rel="noopener" className="text-[14px] font-semibold text-link underline-offset-2 hover:underline">

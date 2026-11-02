@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui";
+import { buttonClass } from "@/components/ui/Button";
 import { referralsPage, type RefStep } from "@/content/referrals";
 
 /**
@@ -37,7 +38,7 @@ export function ReferralProcess({ steps }: { steps: RefStep[] }) {
           <p className="text-[14px] leading-[1.5] text-ink/75">{c.download.sub}</p>
           <div className="flex flex-wrap gap-2.5">
             {REFERRAL_FORM_PDF ? (
-              <a href={REFERRAL_FORM_PDF} className="inline-flex items-center justify-center rounded-chip bg-ink px-[22px] py-3 text-[14px] font-semibold leading-none text-white transition-all hover:opacity-90 active:scale-[.98]">
+              <a href={REFERRAL_FORM_PDF} className={buttonClass("primary", "md")}>
                 {c.download.pdf}
               </a>
             ) : null}

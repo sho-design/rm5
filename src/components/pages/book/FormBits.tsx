@@ -5,6 +5,7 @@ import { cn } from "@/lib/cn";
 import { draft } from "@/content/review";
 import { radioKeys, rovingTab } from "@/lib/a11y";
 import { Input, Select } from "@/components/ui/Form";
+import { buttonClass } from "@/components/ui/Button";
 
 /** Selected / idle styles for the prototype's `sel()` chips: ink fill when on, white with a line border when off. */
 export const selClass = (on: boolean) => (on ? "border-ink bg-ink text-white" : "border-border bg-white text-primary hover:border-sky");
@@ -101,14 +102,14 @@ export function ConsentRow({ children, className, error, ...rest }: ComponentPro
   );
 }
 
-/** Full-width sky submit pill (16px padding, 15px semibold) with the " ›" chevron. */
+/** Sky submit pill (the booking-step colour), the shared Button shape and size, with the " ›" chevron. */
 export function SubmitButton({ children, trailing = true, busy, className, ...rest }: ComponentProps<"button"> & { trailing?: boolean; busy?: boolean }) {
   return (
     <button
       type="submit"
       disabled={busy}
       aria-busy={busy || undefined}
-      className={cn("rounded-chip bg-sky px-4 py-[14px] text-center text-[14px] font-semibold text-white transition-all hover:opacity-90 active:scale-[.98] disabled:opacity-60 md:py-4 md:text-[15px]", className)}
+      className={buttonClass("secondary", "md", className)}
       {...rest}
     >
       {children}

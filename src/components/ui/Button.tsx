@@ -51,15 +51,25 @@ export type ButtonProps = AsLink | AsButton;
  * one line from the small breakpoint up; on a narrow phone a long label
  * ("Book a family medicine assessment") wraps instead of running off the card.
  */
-export function Button(props: ButtonProps) {
-  const { variant = "primary", size = "md", trailing, fullWidth, className, children } = props;
-  const classes = cn(
+/**
+ * The same pill classes for controls that cannot be a <Button> (a native submit, a download link),
+ * so every call to action shares one shape, size and colour system. Colour roles, from the
+ * design system: primary ink for the main action on a page, secondary sky for booking steps
+ * and Book on service cards, accent sunshine only on navy, inverse white only on photos and navy,
+ * outline for secondary actions next to a primary.
+ */
+export function buttonClass(variant: ButtonVariant = "primary", size: ButtonSize = "md", ...extra: (string | false | null | undefined)[]) {
+  return cn(
     "inline-flex items-center justify-center gap-2 rounded-chip border-[1.5px] font-semibold leading-[1.15] max-w-full text-center text-balance sm:whitespace-nowrap transition-all active:scale-[.98] disabled:opacity-45 disabled:cursor-not-allowed",
     variant === "ghost" ? "text-[15px]" : sizes[size],
     variants[variant],
-    fullWidth && "w-full",
-    className,
+    ...extra,
   );
+}
+
+export function Button(props: ButtonProps) {
+  const { variant = "primary", size = "md", trailing, fullWidth, className, children } = props;
+  const classes = buttonClass(variant, size, fullWidth && "w-full", className);
   const content = (
     <>
       {children}

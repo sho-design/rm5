@@ -11,13 +11,14 @@ import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
 import { errorProps, fmtPhone, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
 import { cn } from "@/lib/cn";
+import { buttonClass } from "@/components/ui/Button";
 import { linkPhones } from "@/components/ui/Phones";
 import { Choice, ConsentRow, FieldError, FieldLabel, OutcomeTile, Panel, PillChip, selClass, SubmitButton } from "./FormBits";
 
 type Details = Record<string, string | boolean>;
 
 /** Ink text action beside the pills in an outcome card. */
-const ghost = "inline-flex h-12 items-center rounded-chip border-[1.5px] border-ink px-5 text-[14px] font-semibold text-ink hover:bg-white active:scale-[.98]";
+const ghost = buttonClass("outline", "md");
 
 /** Step indicator: done steps show ✓ on sage, the current step sits on ink with a sunshine dot. */
 function Steps({ state, className }: { state: BookingState; className?: string }) {
@@ -655,7 +656,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
             )}
             {visit?.fasting ? <p className="text-[13px] leading-[1.5] text-secondary">{config.fasting.late}</p> : null}
             <div className="flex gap-2 md:gap-2.5">
-              <button type="button" onClick={() => setState(1)} className="min-w-[52px] shrink-0 self-center rounded-chip border-[1.5px] border-ink px-[18px] py-[14px] text-[14px] font-semibold transition-all hover:bg-white active:scale-[.98] md:px-[22px] md:py-4 md:text-[15px]">
+              <button type="button" onClick={() => setState(1)} className={buttonClass("outline", "md", "shrink-0")}>
                 <span aria-hidden>‹</span> {bookingCopy.back}
               </button>
               <button
@@ -664,7 +665,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   if (slot != null) setState(3);
                 }}
                 aria-disabled={slot == null || undefined}
-                className={cn("flex-1 rounded-chip py-[14px] text-center text-[14px] font-semibold transition-all md:py-4 md:text-[15px]", slot == null ? "cursor-not-allowed bg-line text-muted" : "bg-sky text-white hover:opacity-90 active:scale-[.98]")}
+                // No time yet: an outline with readable text, not grey on grey (a low-vision tester thought the page had stopped).
+                className={buttonClass(slot == null ? "outline" : "secondary", "md", "flex-1", slot == null && "cursor-not-allowed")}
               >
                 {slot == null ? bookingConfirmLabel.noSlot : bookingConfirmLabel.review}
               </button>
@@ -697,11 +699,12 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               ))}
             </dl>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-[14px] font-semibold">
-              <button type="button" onClick={() => setState(1)} className="border-b-[1.5px] border-ink text-ink">
-                {x.review.editDetails}
+              {/* Text links end in " ›", as everywhere else. */}
+              <button type="button" onClick={() => setState(1)} className="text-link hover:opacity-80">
+                {x.review.editDetails} ›
               </button>
-              <button type="button" onClick={() => setState(2)} className="border-b-[1.5px] border-ink text-ink">
-                {x.review.changeTime}
+              <button type="button" onClick={() => setState(2)} className="text-link hover:opacity-80">
+                {x.review.changeTime} ›
               </button>
             </div>
             <button
@@ -709,7 +712,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               onClick={confirm}
               disabled={busy}
               aria-busy={busy || undefined}
-              className="rounded-chip bg-sky py-[14px] text-center text-[14px] font-semibold text-white transition-all hover:opacity-90 active:scale-[.98] disabled:opacity-60 md:py-4 md:text-[15px]"
+              className={buttonClass("secondary", "md")}
             >
               {bookingConfirmLabel.ready}
             </button>
@@ -723,12 +726,12 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               title={bookingCopy.confirmed.title}
               actions={
                 <>
-                  <a href={`data:text/calendar;charset=utf-8,${encodeURIComponent(icsFor(day, slot, serviceLine))}`} download="restoration-medical.ics" className="inline-flex h-12 items-center rounded-chip bg-ink px-6 text-[14px] font-semibold text-white hover:opacity-90 active:scale-[.98]">
+                  <a href={`data:text/calendar;charset=utf-8,${encodeURIComponent(icsFor(day, slot, serviceLine))}`} download="restoration-medical.ics" className={buttonClass("primary", "md")}>
                     {bookingCopy.confirmed.calendar}
                   </a>
-                  {/* No directions for a phone or video visit. */}
+                  {/* No directions for a phone or video visit. Outline next to the one primary (it was a borderless white pill). */}
                   {visit?.modes && mode > 0 ? null : (
-                    <Button to="locations" variant="inverse">
+                    <Button to="locations" variant="outline">
                       {bookingCopy.confirmed.directions}
                     </Button>
                   )}

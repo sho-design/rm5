@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { divisionList } from "@/content/divisions";
 import { Section, SectionHeader, SmartLink, Photo } from "@/components/ui";
+import { buttonClass } from "@/components/ui/Button";
 import { bookFor } from "@/lib/routes";
 
 /**
@@ -24,7 +25,7 @@ export function ExploreServices() {
               <span className="text-[13px] leading-[1.45] text-muted">{d.tag}</span>
             </div>
             <div className="flex items-center gap-3 px-1 text-[14px] font-semibold">
-              <SmartLink to={bookFor(d.key)} className="rounded-chip bg-sky px-5 py-[11px] leading-none text-white transition-opacity hover:opacity-90 active:scale-[.98]">
+              <SmartLink to={bookFor(d.key)} className={buttonClass("secondary", "sm")}>
                 Book<span className="sr-only"> {d.label}</span>
               </SmartLink>
               <SmartLink to={d.key} className="text-link">

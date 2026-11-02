@@ -1,4 +1,5 @@
 import { Block, Display, Eyebrow, Lead } from "@/components/ui";
+import { buttonClass } from "@/components/ui/Button";
 import { careersCopy } from "@/content/about";
 import { site } from "@/content/site";
 
@@ -26,7 +27,7 @@ export function Placements() {
         ))}
         <a
           href={`mailto:${site.placementsEmail}`}
-          className="mt-1.5 inline-flex max-w-full self-start rounded-chip bg-ink px-5 py-3 text-[14px] font-semibold leading-[1.3] text-white transition-opacity hover:opacity-90 active:scale-[.98] sm:whitespace-nowrap"
+          className={buttonClass("primary", "md", "mt-1.5 self-start")}
         >
           <span>
             {p.cta}
