@@ -34,7 +34,7 @@ function Steps({ state, className }: { state: BookingState; className?: string }
             className={cn("flex flex-1 items-center justify-center gap-1.5 rounded-chip px-2 py-2 md:flex-none md:gap-2 md:px-3.5", on ? "bg-ink text-white" : done ? "bg-sage-tint text-ink" : "bg-white text-ink")}
           >
             <span className={cn("flex h-[18px] w-[18px] items-center justify-center rounded-full text-[10px] md:h-5 md:w-5 md:text-[11px]", on ? "bg-sun text-sun-ink" : done ? "bg-sage-deep text-white" : "bg-line text-muted")} aria-hidden>
-              {done ? "✓" : n}
+              <span aria-hidden>{done ? "✓" : n}</span>
             </span>
             {done ? <span className="sr-only">Done: </span> : on ? <span className="sr-only">{x.current}</span> : null}
             {label}
@@ -141,6 +141,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     if (params.get("for") === "someone") setForOther(1);
     try {
       setBookedBefore(sessionStorage.getItem("rm-booked") === "1");
+      setBookedWhat(sessionStorage.getItem("rm-booked-what") ?? "");
     } catch {
       /* storage blocked: no notice */
     }
@@ -174,7 +175,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   // Without an Ontario health card, OHIP does not pay: never show "OHIP-insured" on their booking.
   // Quebec does not take part in reciprocal billing for doctor visits: pay and claim back from RAMQ.
   const quebec = card === 1 && province === "Quebec";
-  const coverage = card > 0 && /OHIP/.test(baseCoverage) ? (quebec ? x.quebecCoverage : x.card.coverage[card - 1]) : baseCoverage;
+  const coverage = card > 0 && /OHIP|health card/i.test(baseCoverage) ? (quebec ? x.quebecCoverage : x.card.coverage[card - 1]) : baseCoverage;
   const slotLabel = day && slot != null && day.open ? `${DOW[day.date.getDay()]} ${MON[day.date.getMonth()]} ${day.date.getDate()}, ${fmtTime(slot)}` : bookingConfirmLabel.slotNotChosen;
   const serviceLine = [visit ? `${service.label}, ${visit.label}` : service.label, reason ? `(${reason})` : ""].filter(Boolean).join(" ");
   const patientName = forOther ? `${str("patientFirst")} ${str("patientLast")}`.trim() : "";
@@ -274,6 +275,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     if (res.ok) {
       try {
         sessionStorage.setItem("rm-booked", "1");
+        sessionStorage.setItem("rm-booked-what", `${serviceLine}, ${slotLabel}`);
       } catch {
         /* storage blocked */
       }
@@ -290,6 +292,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
 
   /** "Book another visit": the first booking stands, so say this one is a second visit. */
   const [another, setAnother] = useState(false);
+  /** The visit already booked in this tab, named in the "another visit" and "already booked" notes. */
+  const [bookedWhat, setBookedWhat] = useState("");
   const reset = () => {
     setAnother(true);
     setBookedBefore(false);
@@ -341,6 +345,16 @@ export function BookFlow({ config }: { config: BookingConfig }) {
         <Lead size="md" tone="muted">
           {lead}
         </Lead>
+        {state === 1 ? (
+          <p className="pretty rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[14px] font-semibold leading-[1.5] text-ink">
+            <a href="tel:911" className="underline underline-offset-2">
+              {bookingCopy.urgentLine}
+            </a>{" "}
+            <a href="#emergency" className="whitespace-nowrap font-semibold text-link">
+              {bookingCopy.urgentMore} ›
+            </a>
+          </p>
+        ) : null}
         <dl aria-labelledby="book-summary" className={cn("mt-3 hidden flex-col gap-2.5 rounded-card-sm border border-border bg-card px-6 py-[22px] text-[14px] leading-[1.5]", (state === 1 || state === 2) && "lg:flex")}>
           <h2 id="book-summary" className="text-[12px] font-semibold text-muted">
             {bookingCopy.summaryTitle}
@@ -370,12 +384,12 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <Steps state={state} className="hidden lg:flex" />
               {another ? (
                 <p role="status" className="rounded-row border border-border bg-white px-4 py-3 text-[13px] leading-[1.5] text-secondary">
-                  {linkPhones(`${x.anotherBooking} ${site.phone}.`)}
+                  {linkPhones(`${x.anotherBooking(bookedWhat)} ${site.phone}.`)}
                 </p>
               ) : null}
               {bookedBefore ? (
                 <p role="status" className="rounded-row border border-border bg-white px-4 py-3 text-[13px] leading-[1.5] text-secondary">
-                  {linkPhones(`${x.alreadyBooked} ${site.phone}.`)}
+                  {linkPhones(`${x.alreadyBooked(bookedWhat)} ${site.phone}.`)}
                 </p>
               ) : null}
               <h2 ref={setReveal} tabIndex={-1} className="scroll-mt-20 text-[13px] font-semibold outline-none md:font-display md:text-[26px] md:font-medium md:tracking-[-.02em]">
@@ -622,7 +636,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
             {visit?.fasting ? <p className="text-[13px] leading-[1.5] text-secondary">{config.fasting.late}</p> : null}
             <div className="flex gap-2 md:gap-2.5">
               <button type="button" onClick={() => setState(1)} className="min-w-[52px] shrink-0 self-center rounded-chip border-[1.5px] border-ink px-[18px] py-[14px] text-[14px] font-semibold transition-all hover:bg-white active:scale-[.98] md:px-[22px] md:py-4 md:text-[15px]">
-                ‹ <span className="sr-only md:not-sr-only">{bookingCopy.back}</span>
+                <span aria-hidden>‹</span> {bookingCopy.back}
               </button>
               <button
                 type="button"
@@ -658,7 +672,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               {reviewRows.map(([k, v]) => (
                 <div key={k} className="flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:justify-between sm:gap-4">
                   <dt className="shrink-0 text-muted">{k}</dt>
-                  <dd className={cn("font-semibold", v.length < 60 && "sm:text-right")}>{v}</dd>
+                  <dd className={cn("min-w-0 break-words font-semibold [overflow-wrap:anywhere]", v.length < 60 && "sm:text-right")}>{v}</dd>
                 </div>
               ))}
             </dl>
@@ -706,7 +720,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               }
             >
               <p>{reminders ? (day?.today ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.todayReminder}` : bookingCopy.confirmed.body) : x.confirmed.noReminders}</p>
-              <p className="text-[14px]">{linkPhones(x.changeOrCancel)}</p>
+              <p className="text-[14px]">{linkPhones(day?.today ? x.changeOrCancelToday : x.changeOrCancel)}</p>
               {language === 2 ? <p className="text-[14px]">{x.interpreterBooked(languageName)}</p> : null}
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.confirmed.service}>
@@ -732,6 +746,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 <OutcomeTile k={x.confirmed.coverage}>
                   <span className="text-[16px] font-semibold">{coverage}</span>
                   {visit?.claim && claimLine() ? <span className="text-[13px] text-muted">{`${x.review.keys.claim}: ${claimLine()}`}</span> : null}
+                  {/* The insurer showed on review, then vanished here: a tester wondered if it was saved. */}
+                  {visit?.payment && payment === 0 && str("benefitsInsurer") ? <span className="text-[13px] text-muted">{`${x.review.keys.insurer}: ${str("benefitsInsurer")}`}</span> : null}
                 </OutcomeTile>
               </div>
               {str("notes") ? (

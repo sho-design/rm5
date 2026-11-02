@@ -116,6 +116,11 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
           )}
           <SocialIcons size={44} />
         </div>
+        {/* For people who are not sure it is an emergency: a tester short of breath found only departments here. */}
+        <a href="tel:811" className="flex flex-col gap-0.5 rounded-row bg-white/7 px-4 py-3.5">
+          <span className="text-[13px] text-white/75">{emergencyCopy.unsure}</span>
+          <span className="text-[15px] font-semibold text-white">{emergencyCopy.call811}</span>
+        </a>
         <Link href={routes.contact} onClick={onClose} className="text-[15px] font-semibold text-white">
           {menuHeadings.contact} ›
         </Link>
@@ -124,16 +129,18 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
         </Link>
       </div>
       <div className="flex shrink-0 flex-col gap-2 border-t border-white/12 bg-ink px-4 pb-4 pt-2.5">
-        {/* "Call" dials the clinic; an emergency needs 911, always in reach. */}
-        <a href="tel:911" className="self-start text-[13px] font-semibold text-sun">
-          {emergencyCopy.closedLine} ›
+        {/* 911 is a full-width button, not a small text link: a stroke tester found it smaller than the clinic's
+            Call button. No "›": it dials, it does not open a page. */}
+        <a href="tel:911" className="flex min-h-11 items-center justify-center rounded-chip border-[1.5px] border-sun px-3 py-2 text-center text-[15px] font-semibold leading-tight text-sun">
+          {emergencyCopy.closedLine}
         </a>
         <div className="flex gap-2">
-          <Link href={routes.book} onClick={onClose} className="flex-[1.4] rounded-chip bg-sun px-3 py-[15px] text-center text-[15px] font-semibold leading-tight text-sun-ink">
-            Book an appointment
+          <Link href={routes.book} onClick={onClose} className="flex flex-[1.4] items-center justify-center rounded-chip bg-sun px-3 py-[13px] text-center text-[15px] font-semibold leading-tight text-sun-ink">
+            <span className="rm-menu-book-long">Book an appointment</span>
+            <span className="rm-menu-book-short">Book</span>
           </Link>
-          <a href={site.phoneHref} className="flex-1 rounded-chip border-[1.5px] border-white/35 py-[15px] text-center text-[15px] font-semibold">
-            Call
+          <a href={site.phoneHref} aria-label={`${emergencyCopy.callClinic}, ${site.phone}`} className="flex flex-1 items-center justify-center rounded-chip border-[1.5px] border-white/35 px-2 py-[13px] text-center text-[15px] font-semibold leading-tight">
+            {emergencyCopy.callClinic}
           </a>
         </div>
       </div>

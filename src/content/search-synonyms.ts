@@ -11,12 +11,12 @@ import { draft } from "./review";
 export const searchAliases: Record<string, string> = {
   book: "appointment appointments visit schedule reserve booking waitlist wait list cancellation",
   register: "dang ky benh nhan moi new patient accepting patients family doctor roster rostered register join sign up",
-  family: "bac si kham benh medico medica doctor gp physician insomnia sleep sleeping burnout mole moles skin check spot lesion lump sick cough cold fever flu sore throat rash infection concern walk in walkin checkup physical anxiety depression mood mental health stress sleep",
+  family: "bac si kham benh kham suc khoe dau dau medico medica doctor gp physician insomnia sleep sleeping burnout mole moles skin check spot lesion lump sick cough cold fever flu sore throat rash infection concern walk in walkin checkup physical anxiety depression mood mental health stress sleep",
   vaccines: "vacuna vacunas tiem cum tiem phong vac xin chich ngua vaccine vaccines vaccination immunization immunizations shot shots flu shot shingles shingrix rsv pneumonia tdap whooping cough",
   pregnancy: "pregnant pregnancy prenatal antenatal obstetrics obstetrician midwife midwifery baby expecting first trimester postpartum breastfeeding nursing mang thai",
-  rx: "refill refills prescription prescriptions renew renewal medication medications meds pharmacy run out ran out",
+  rx: "thuoc toa thuoc ke toa refill refills prescription prescriptions renew renewal medication medications meds pharmacy run out ran out",
   labs: "results result bloodwork lab tests test results",
-  women: "pap smear pap test cervical screening hpv menopause perimenopause hot flashes contraception birth control iud period periods womens health day women's health day last sunday testing nurse nurses",
+  women: "sti std stis stds sti test sexual health pap smear pap test cervical screening hpv menopause perimenopause hot flashes contraception birth control iud period periods womens health day women's health day last sunday testing nurse nurses",
   men: "prostate psa testosterone checkup physical std stds sti stis std test sti test sexual health erectile",
   chronic: "huyet ap huyet ap cao tieu duong diabetes diabetic a1c sugar blood sugar glucose blood pressure hypertension cholesterol asthma thyroid copd kidney heart senior seniors elderly elder older adult older adults aging memory dementia caregiver caregivers complex care parkinson parkinsons ms multiple sclerosis stroke falls fall",
   blood: "bloodwork blood test fasting ecg ekg lab draw requisition",
@@ -42,7 +42,7 @@ export const searchAliases: Record<string, string> = {
   rehab: "rehab rehabilitation injury injuries",
   rehabPhysio: "dau lung vat ly tri lieu physio physiotherapy physiotherapist physical therapy pt acl surgery post surgical sports injury shoulder knee hip ankle neck back sore stiff sprain strain back pain lower back low back price prices cost costs",
   rehabChiro: "chiro chiropractor chiropractic adjustment back neck shoulder posture spine back pain lower back low back neck pain price prices cost costs",
-  rehabMassage: "massage rmt shoulder neck back sore tight tension knots",
+  rehabMassage: "massage massage price massage cost price prices cost rmt shoulder neck back sore tight tension knots",
   rehabKines: "kinesiology kinesiologist exercise",
   rehabMva: "mva car accident motor vehicle accident collision crash auto insurance",
   rehabWsib: "wsib work injury workplace injury workers compensation",
@@ -91,9 +91,44 @@ export const searchExtras: SearchDoc[] = [
   {
     kind: draft("Family Medicine"),
     label: draft("Sexual health and STI testing"),
-    sub: draft("Confidential, with your family doctor, OHIP-insured"),
+    sub: draft("Confidential and OHIP-insured. Prefer testing with our nurses? Choose women's health day"),
     page: "/book?service=family&visit=concern&reason=Sexual%20health",
     keys: "std stds sti stis std test sti test sexual health confidential testing hiv chlamydia gonorrhea syphilis herpes hpv partner",
+  },
+  // Mood and sleep with a family doctor: a tester searching "depression" got only "Family Medicine" with no reason.
+  {
+    kind: draft("Family Medicine"),
+    label: draft("Mood, anxiety and sleep"),
+    sub: draft("Talk to a family doctor, OHIP-insured. In crisis, call or text 988"),
+    page: "/book?service=family&visit=concern&reason=Mood%20or%20sleep",
+    keys: "depression depressed anxiety anxious panic mood low mood mental health stress burnout insomnia sleep sleeping cant sleep counselling counseling therapy sad lonely grief tram cam mat ngu lo au cang thang",
+    weight: 1.4,
+  },
+  // A bleeding spot that will not heal is a doctor's visit, not a cosmetic one (a tester was offered a peel).
+  {
+    kind: draft("Family Medicine"),
+    label: draft("A mole or skin spot that is changing"),
+    sub: draft("See a family doctor first, OHIP-insured"),
+    page: "/book?service=family&visit=concern&reason=Skin%20spot%20or%20mole",
+    keys: "mole moles spot spots skin spot bleeding bleeds bleed wont heal not healing sore lesion lump growth skin check skin cancer changing mole dark spot itchy spot scab",
+    weight: 1.4,
+  },
+  // A caregiver searching "dementia" got a chronic care row listing diabetes and kidney.
+  {
+    kind: draft("Family Medicine"),
+    label: draft("Memory concerns and dementia care"),
+    sub: draft("With your family doctor, OHIP-insured. Family and caregivers are welcome at the visit"),
+    page: "/book?service=family&visit=chronic&reason=Memory%20or%20dementia",
+    keys: "dementia memory memory loss forgetful forgetting alzheimer alzheimers confusion caregiver caregivers aging parent sa sut tri nho mat tri nho",
+    weight: 1.3,
+  },
+  // Vietnamese words for a check-up (a tester typed "kham suc khoe" and got nothing).
+  {
+    kind: draft("Family Medicine"),
+    label: draft("Annual physical"),
+    sub: draft("Khám sức khỏe, OHIP-insured"),
+    page: "/book?service=family&visit=checkup",
+    keys: "kham suc khoe kham tong quat kiem tra suc khoe checkup check up annual physical",
   },
   {
     kind: draft("Help"),

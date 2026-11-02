@@ -10,7 +10,7 @@ import { bookFor } from "@/lib/routes";
 export function ExploreServices() {
   return (
     <Section className="flex flex-col gap-6 pb-6 pt-12 md:pt-16">
-      <SectionHeader title="Explore our services." actionLabel="Not sure where to start?" actionTo="book" />
+      <SectionHeader title="Explore our services." actionLabel="Not sure where to start?" actionTo="#start-here" />
 
       <div className="hidden grid-cols-3 gap-card md:grid lg:grid-cols-5">
         {divisionList.map((d) => (

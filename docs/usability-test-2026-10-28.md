@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (150 simulated patients)
+# Usability test, 28 October 2026 (190 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -477,6 +477,97 @@ Average ease 4.8, trust 5.2; every booking went through. Lowest: Kofi 2 of 7 (ch
 ### Round 10 findings for the clinic
 
 - Travel health and malaria (Isla); a line on sleep, stress and mood, and whether to show 988 (Ada); Pap and celiac preparation (Nadia, Emily); WSIB progress note cost and booking a block of sessions (Marco); Maple date and waitlist vs pre-registration (Tran); same doctor for a whole family, and guardians for teens (Sofia, Felix); drip numbers, names, times and pricing (Ravi); iron days vs assessment days (Hugo); Vietnamese pages (Duc).
+
+## Round 11: 40 testers, Monday 2 November
+
+Average ease 5.2, trust 5.4 (38 of 40 scored in their reports; round 10 was 4.8 and 5.2); every booking went through. Lowest: Bà Mai 3 of 7 (Vietnamese search), Paul 4 (bleeding spot), Gail 4 (complaint), Jess 4 (drip prices), Maya 4 and 4 (teen birth control), Dana 4 for trust (evidence labels).
+
+### Round 11 findings fixed in code
+
+- **Safety:**
+  - The emergency note is now a real heading. It names stroke signs (face drooping, arm weakness, slurred speech).
+  - It adds a mental health crisis line: "Thoughts of suicide or self-harm? Call or text 988". A tester with low mood found only physical emergencies listed.
+  - "Not sure if it is urgent?" has its own "Call Health811 at 811" button and a separately named website link. Before, two Health811 links sat side by side and read as one sentence.
+  - Searches for self-harm phrases show the note.
+- **Phone menu:**
+  - 911 is a full-width outlined button with no "›".
+  - The clinic button says "Call clinic".
+  - A "Not sure if it is urgent? Call Health811" row sits above Contact.
+  - At larger text the Book button reads "Book", so the list keeps room.
+- **Top bar:**
+  - On phones the status reads "Opens today at 9am" instead of the cut-off "Closed, opens tod…".
+  - The 911 link is an outlined pill. "For referring doctors" steps aside on phones while the clinic is closed.
+- **Booking:**
+  - A short "Chest pain, trouble breathing or signs of a stroke? Do not book. Call 911 now." line sits at the top of the form, with a link to the full note.
+  - Pain Centre "First visit with a referral" says to wait for the call if the referral is not sent yet.
+  - The well-baby visit shows the newborn card advice with the visit, and its Bring list no longer demands the health card.
+  - WSIB and car accident visits say both new and ongoing claims start there.
+  - Vaccines read "including flu and catch-up". They ask for any records from any country, and the coverage line follows "No health card".
+  - "Book another visit" names the visit that stays booked. Same-day bookings drop the 24 hours notice line. The insurer shows on the confirmation, and the Back button says "Back".
+  - Long emails wrap in the review.
+- **Cookie banner:**
+  - Hides while search is open (it covered the emergency note).
+  - Keeps keyboard focus and in-page jumps clear of itself.
+  - Is more compact on phones.
+- **Date of birth:** separate Day, Month (by name) and Year fields replace the native date input on register, renewal and referral forms. A keyboard tester got stuck in its segments, and phones showed MM/DD.
+- **Search:**
+  - "Mood, anxiety and sleep" (with 988), "A mole or skin spot that is changing" (Family Medicine, above aesthetics) and "Memory concerns and dementia care".
+  - Vietnamese "khám sức khỏe", "thuốc" and "đau đầu".
+  - STI testing points to women's health day.
+  - "massage price" finds massage.
+  - Queries in a script the index cannot read (Chinese, for example) say to call and ask for a free interpreter.
+- **Renewals:** "Running out sooner than two business days?" explains calling the clinic or asking the pharmacist for a short extension, also on the confirmation.
+- **Fees:** the page also lists drip prices and the skin treatment "from" prices. Its lead is about costs, not camp forms. "Self-pay rates are on our fees page and at the desk." No-OHIP answer: visitors are welcome, the fee is told before you are seen, and you can call to ask first.
+- **Consistency:**
+  - Home iron card "About 90 minutes" (was three hours).
+  - Aesthetics consult "20 minute" (was 30 in one FAQ).
+  - Bloodwork results "go to the doctor who ordered them". The outside requisition card says you can book online.
+- **Pages:**
+  - "Not sure where to start?" goes to the home symptom paths, not straight to booking.
+  - Chronic care "Book a first visit" books a chronic care review.
+  - Teens booking from the children's page book for themselves.
+  - Contact "A concern or complaint" says the Medical Director reads it.
+  - The Maple list confirmation keeps "Register as a new patient".
+- **Looks:**
+  - Focus rings are sunshine on navy.
+  - Division hero eyebrows sit on a dark chip, and "What we offer" photo cards have a deeper shade.
+  - The sticky phone Book bar steps aside at larger text.
+  - Footer text controls wrap.
+
+### Round 11 findings for the clinic
+
+- **Prices:**
+  - Uninsured doctor visit fee for visitors (Luis).
+  - Massage length and HST (Leo).
+  - Injectables price indicator (Bianca).
+  - Drip prices on the drip and pricing pages (Jess, Marie).
+  - Pain Centre FAQ "Private procedures are listed with their prices" (Dana).
+- **Who you see:**
+  - Whether women's health day nurses are women, and Pap preparation (Fatima, Alex).
+  - Aesthetics team physician and injector credentials (Bianca).
+  - RPN eligibility for nursing roles (Priya).
+  - Teen confidentiality wording written for teens, and what reminder texts say (Maya).
+- **Services:**
+  - Pelvic floor or postpartum physio (Sara).
+  - Mood and mental health on Family Medicine (Sam).
+  - RFA candidacy criteria and a referral reference number (Dr. Kwan).
+  - Substitute decision-maker or power of attorney guidance (Hoa).
+  - Booking a series of sessions (Tony).
+  - Insurers billed directly by name (Grace).
+  - Foreign vaccine records (Omar).
+- **Evidence:**
+  - Define Established, Supported, Emerging and Supervised, and the promised ingredient pages and doses.
+  - Source or remove the "Typical IV lounge" comparison.
+  - Pap interval against HPV screening.
+  - "Low energy" by concern going straight to paid drips (Dana).
+- **Facts:**
+  - Dr. Nguyen's bio names "Restoration Medical Woodbridge".
+  - Home "10+ years" vs team "11 years".
+  - Roles "Updated September 2026".
+  - Privacy policy on contact messages (Gail).
+- **Vietnamese pages** (Bà Mai, Hoa) and Chinese (Wei).
+- **Thin pages and labels** (Zoe): Gift cards and Lab results are stubs. "Dr. Johnny Nguyen" opens the team page. "Home exercise portal" has no portal. "Book online (Ocean)" names a vendor.
+- **Dark mode (follow-up, code):** a light-sensitive tester (Ivy) asked for it. The dark tokens exist, but components hard-code white backgrounds (68 places) and navy text, so a dark theme needs its own pass before it can follow the phone's setting.
 
 ## What worked
 

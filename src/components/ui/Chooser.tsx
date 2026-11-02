@@ -129,7 +129,7 @@ export function SubChooser({
     const base = visit ? (ctaTo.includes("visit=") ? ctaTo.replace(/visit=[^&]*/, `visit=${visit}`) : `${ctaTo}&visit=${visit}`) : ctaTo;
     return `${base}${base.includes("?") ? "&" : "?"}reason=${encodeURIComponent(label)}`;
   };
-  const results: ChooserResult[] = items.map((it) => ({ title: it.title, p: it.p, facts: it.facts, tags: it.tags, cta: it.cta, ctaPage: withReason(it.label, it.visit), link, linkPage: linkTo }));
+  const results: ChooserResult[] = items.map((it) => ({ title: it.title, p: it.p, facts: it.facts, tags: it.tags, cta: it.cta, ctaPage: it.self ? withReason(it.label, it.visit)?.replace(/&for=someone/, "") : withReason(it.label, it.visit), link, linkPage: linkTo }));
   return (
     <Chooser
       id={id}

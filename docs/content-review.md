@@ -196,6 +196,46 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - Visit type "Well-baby or newborn check". No-card note adds "Booking for a newborn whose card has not arrived yet? Choose Ontario health card and leave the digits blank." Second booking: "You already booked a visit. This books another one. To move or cancel the first, call us." Summary key "Where".
 - Aesthetics FAQ: "Is this the place for a changing mole or a rash?" / "No. A mole that changes, a spot that bleeds or will not heal, or a new rash is a family medicine visit, covered by OHIP. Book a health concern with Family Medicine."
 
+## Usability fixes, round 11
+
+- **Emergency note (please review first):**
+  - "Chest pain or pressure, trouble breathing, heavy bleeding, or signs of a stroke (face drooping, arm weakness, slurred speech): call 911 now, or go to the nearest emergency department."
+  - "Thoughts of suicide or self-harm?" / "Call or text 988, any time, day or night."
+  - "Not sure if it is urgent? Health811 gives health advice any time, day or night." / "Call Health811 at 811" / "Visit health811.ontario.ca".
+  - "Booking requests and messages sent on this website are read during clinic hours."
+  - Phone menu: "Call clinic". Booking form top: "Chest pain, trouble breathing or signs of a stroke? Do not book. Call 911 now." / "Not sure? More help".
+- **Renewals:**
+  - "Running out sooner than two business days?" / "Call us at 905-709-3222 during clinic hours. Your pharmacist can also often extend a regular prescription for a short time. If you have no medication and feel unwell, call Health811 at 811 or 911."
+  - Confirmation: "If you will run out before then, call us at 905-709-3222 or ask your pharmacist about a short extension."
+- **Booking:**
+  - Referral hint: "Choose this once your doctor has sent the referral. Not sent yet? There is no need to book: your doctor faxes it and we call you to book."
+  - Well-baby: "Bring the yellow immunization card, and the health card if it has arrived." / "Newborn whose health card has not arrived yet? Keep Ontario health card and leave the digits blank. Add your baby's age in the note."
+  - WSIB and MVA: "New claim or already in treatment, both start here. Say physio or chiro in the note, and how many sessions you still need." / "Your WSIB claim number, if you have one."
+  - Vaccines: "Vaccines, including flu and catch-up", "Any vaccine records you have, from Ontario or another country. No records? Come anyway, and we plan from there.", "Your health card, if you have one.", "We tell you before the visit if a vaccine is not."
+  - "Your first visit stays booked: …. This books a second, separate visit. To move or cancel the first, call us."
+  - "Your visit is today, so we do not send a reminder."
+  - "… Please give us 24 hours notice when you can, so call by the clinic day before." / same day: "To change or cancel, call 905-709-3222 as soon as you can."
+- **Fees and FAQ:**
+  - Fees eyebrow "Fees". Lead: "What OHIP does not cover, and what it costs. We tell you the fee before any uninsured service, and every payment comes with a receipt."
+  - "Anything not listed below? Ask us." Rows "IV drip: …" ("HST included, plus a 10 minute nurse screening") and "Medical Aesthetics: …" ("Per visit. Your exact price is given in writing at the consult.").
+  - Rehab billing FAQ ends "Self-pay rates are on our fees page and at the desk."
+  - No OHIP: "Yes, visitors and people without OHIP are welcome. The visit is uninsured: the front desk tells you the fee before you are seen, and you get a receipt for your travel or private insurance. Call 905-709-3222 to ask the fee before you book."
+  - Aesthetics consult "A 20 minute consult" (was 30; the page says 20 elsewhere).
+- **Consistency:**
+  - Home iron card "About 90 minutes in a lounge chair with a nurse nearby." (prototype said three hours; iron page says about 90 minutes).
+  - Bloodwork hero ends "Results go straight to the doctor who ordered them."
+  - Outside requisition: "… results go to the doctor who ordered them, who shares them with you. You can book online. If you are not sure we can process a test, call ahead."
+- **Search rows:**
+  - "Mood, anxiety and sleep" / "Talk to a family doctor, OHIP-insured. In crisis, call or text 988".
+  - "A mole or skin spot that is changing" / "See a family doctor first, OHIP-insured".
+  - "Memory concerns and dementia care" / "With your family doctor, OHIP-insured. Family and caregivers are welcome at the visit".
+  - "Annual physical" / "Khám sức khỏe, OHIP-insured".
+  - STI sub "Confidential and OHIP-insured. Prefer testing with our nurses? Choose women's health day".
+  - Other scripts: "Search works in English and Vietnamese for now. Call 905-709-3222 and ask for an interpreter, at no cost to you."
+- **Contact and Maple:**
+  - Complaint topic: "Concerns and complaints, including billing mistakes, go to our Medical Director. Each one is logged and reviewed, and we reply within 2 business days."
+  - Maple list done: "Want a family doctor with us? The list only tells you when Maple opens. Register as a new patient too, and choose Maple." / "Register as a new patient".
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

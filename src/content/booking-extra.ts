@@ -65,7 +65,7 @@ export const bookingExtra = {
   languageHint: "Both physicians and several staff speak Vietnamese.",
   womensDayLead: draft("Women’s health days at Thornhill, the last Sunday of each month."),
   current: draft("Current step: "),
-  todayReminder: draft("Your appointment is today, so there is no reminder."),
+  todayReminder: draft("Your visit is today, so we do not send a reminder."),
   confirmNote: draft("Your note"),
   provinceLabel: draft("Which province or territory?"),
   provinces: ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"],
@@ -93,11 +93,14 @@ export const bookingExtra = {
   interpreterBooked: (language: string) => draft(`We arrange a phone interpreter for ${language}, at no cost to you.`),
   /** Replaces "Reschedule or cancel", which only restarted the form. */
   bookAnother: draft("Book another visit"),
-  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours notice when you can."),
+  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours notice when you can, so call by the clinic day before."),
+  /** Same-day bookings: 24 hours notice cannot apply. */
+  changeOrCancelToday: draft("To change or cancel, call 905-709-3222 as soon as you can."),
   /** Shown when this tab already booked and the page was opened again with Back or Forward. */
-  alreadyBooked: draft("You booked an appointment in this tab. Your confirmation is in your email. To change it, call us."),
+  alreadyBooked: (what: string) => draft(`You booked an appointment in this tab${what ? `: ${what}` : ""}. Your confirmation is in your email. To change it, call us.`),
   /** After "Book another visit": this is a second booking, not a change. */
-  anotherBooking: draft("You already booked a visit. This books another one. To move or cancel the first, call us."),
+  // "This books another one" read as replacing the first visit; it now names the visit that stays booked.
+  anotherBooking: (what: string) => draft(`Your first visit stays booked${what ? `: ${what}` : ""}. This books a second, separate visit. To move or cancel the first, call us.`),
   summaryWhere: draft("Where"),
   /** Read out (not shown) when the day changes, so screen reader users know the times changed. */
   timesFor: (day: string, n: number) => (n === 1 ? draft(`1 time on ${day}.`) : draft(`${n} times on ${day}.`)),

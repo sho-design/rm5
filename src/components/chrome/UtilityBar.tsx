@@ -28,20 +28,21 @@ export function UtilityBar() {
         aria-label={status.ready ? (status.open ? `${status.text}. See hours` : `${status.text}. Advice while we are closed`) : "Thornhill hours"}
       >
         <span aria-hidden className="h-[7px] w-[7px] shrink-0 rounded-full" style={{ background: status.open ? "var(--status-open)" : "rgba(255,255,255,.45)" }} />
-        <span className="truncate sm:hidden">{status.ready ? status.short : "Thornhill"}</span>
+        <span className="truncate sm:hidden">{status.ready ? status.tiny : "Thornhill"}</span>
         <span className="hidden truncate sm:inline">{status.text}</span>
       </Link>
       <div className="flex items-center gap-1">
         {/* While closed, 911 sits in the bar on every page (a 3am chest pressure test found no 911 on the home page). */}
         {status.ready && !status.open ? (
-          <a href="tel:911" className="ml-3 whitespace-nowrap font-semibold text-sun hover:text-sun-soft md:mr-3">
-            {emergencyCopy.closedLine}
+          <a href="tel:911" aria-label={emergencyCopy.closedLine} className="ml-3 shrink-0 whitespace-nowrap rounded-chip border border-sun/70 px-2 py-0.5 font-semibold text-sun hover:text-sun-soft md:mr-3">
+            <span className="rm-911-long">{emergencyCopy.closedLine}</span>
+            <span aria-hidden className="rm-911-short">{emergencyCopy.call911}</span>
           </a>
         ) : null}
         <TextControls inverse compact className="mr-3 hidden text-[13px] md:flex" />
         <SocialIcons className="hidden sm:flex" />
-        <span aria-hidden className="mx-2.5 hidden h-4 w-px bg-white/25 sm:block" />
-        <Link href={routes.referrals} className="hidden whitespace-nowrap font-semibold text-sun hover:text-sun-soft min-[400px]:inline">
+        <span aria-hidden className={cn("mx-2.5 hidden h-4 w-px bg-white/25", status.ready && !status.open ? "md:block" : "sm:block")} />
+        <Link href={routes.referrals} className={cn("hidden whitespace-nowrap font-semibold text-sun hover:text-sun-soft", status.ready && !status.open ? "md:inline" : "min-[400px]:inline")}>
           For referring doctors ›
         </Link>
         {viEnabled ? (

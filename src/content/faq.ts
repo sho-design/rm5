@@ -64,7 +64,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Coverage",
     q: "What if I do not have OHIP?",
-    a: "We see uninsured patients at posted rates, told to you before the visit. A receipt is provided for private insurance or reimbursement.",
+    a: draft("Yes, visitors and people without OHIP are welcome. The visit is uninsured: the front desk tells you the fee before you are seen, and you get a receipt for your travel or private insurance. Call 905-709-3222 to ask the fee before you book."),
   },
   {
     category: "Coverage",
@@ -77,7 +77,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Coverage",
     q: "Is rehab covered?",
-    a: "Physiotherapy, chiropractic and massage are billed to extended health plans, MVA insurers or WSIB where applicable. We can direct-bill many plans. Self-pay rates are posted at the desk.",
+    a: draft("Physiotherapy, chiropractic and massage are billed to extended health plans, MVA insurers or WSIB where applicable. We can direct-bill many plans. Self-pay rates are on our fees page and at the desk."),
     linkLabel: "Rehab and Recovery",
     linkPage: "rehab",
   },
@@ -243,7 +243,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Aesthetics",
     q: "Do I need a consultation first?",
-    a: "Yes, for anything injectable or device-based. A 30 minute consult covers goals, options, cost and what to expect. Some treatments can follow at the same visit.",
+    a: draft("Yes, for anything injectable or device-based. A 20 minute consult covers goals, options, cost and what to expect. Some treatments can follow at the same visit."),
     linkLabel: "Medical Aesthetics",
     linkPage: "aesthetics",
   },

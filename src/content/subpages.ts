@@ -1,5 +1,6 @@
 import type { PathStep, QA, SubChooserItem, TintCard } from "./types";
 import { images } from "./images";
+import { draft } from "./review";
 
 /** Hero photos for the Family Medicine sub-pages (index into the family service photo set). */
 export const subpageHero = {
@@ -256,7 +257,8 @@ export const bloodOptions: SubChooserItem[] = [
     sub: "From another doctor",
     tags: ["Bring the paper", "Results to them"],
     title: "Yes, we draw for other doctors too.",
-    p: "Bring the requisition from your specialist or another clinic. We draw it here and results go to the ordering doctor. Call ahead so we can confirm the tests are ones we can process.",
+    // A tester booked online, then read "Call ahead" and did not know whether the booking stood.
+    p: draft("Bring the requisition from your specialist or another clinic. We draw it here and results go to the doctor who ordered them, who shares them with you. You can book online. If you are not sure we can process a test, call ahead."),
     facts: [
       { k: "Bring", v: "Requisition and health card" },
       { k: "Time", v: "10 minutes" },

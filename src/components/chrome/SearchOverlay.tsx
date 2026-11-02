@@ -11,6 +11,7 @@ import { href } from "@/lib/routes";
 import { isEmergencyQuery, searchDocs, type SearchDoc } from "@/lib/search";
 import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
+import { linkPhones } from "@/components/ui/Phones";
 
 /** The full index (page text, FAQ answers, notes, team) is fetched once per visit, the first time search opens. */
 let fullIndex: Promise<SearchDoc[] | null> | null = null;
@@ -25,6 +26,8 @@ const copy = {
   label: "Search the site",
   count: (n: number) => (n === 1 ? "1 result" : `${n} results`),
   none: `Nothing matched. Try a service, a symptom or a clinician name, or call ${site.phone}.`,
+  /** Typed in a script the index cannot read (Chinese, Korean, Arabic...): point to the free interpreter. */
+  otherScript: draft(`Search works in English and Vietnamese for now. Call ${site.phone} and ask for an interpreter, at no cost to you.`),
   popular: "Popular",
   close: draft("Close"),
   closeLabel: draft("Close search"),
@@ -51,6 +54,8 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
 
   useEffect(() => {
     input.current?.focus();
+    // The cookie banner steps aside while search is open: it covered the emergency note for a stroke tester.
+    document.documentElement.dataset.search = "open";
     const onKey = (e: globalThis.KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -61,6 +66,7 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
     });
     return () => {
       live = false;
+      delete document.documentElement.dataset.search;
       window.removeEventListener("keydown", onKey);
     };
   }, [onClose]);
@@ -178,7 +184,7 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
             </ul>
           ) : (
             <span id="search-results" className="py-3 text-[14px] text-muted">
-              {copy.none}
+              {/[^\u0000-\u024F\u1E00-\u1EFF\s\d\p{P}]/u.test(query) ? linkPhones(copy.otherScript) : copy.none}
             </span>
           )}
         </div>

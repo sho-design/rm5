@@ -8,7 +8,7 @@ import { submitForm } from "@/lib/forms";
 import { useRevealOnChange } from "@/lib/a11y";
 import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
 import { cn } from "@/lib/cn";
-import { Choice, ConsentRow, FieldLabel, OutcomeTile, Panel, PillChip, SubmitButton } from "../book/FormBits";
+import { Choice, ConsentRow, DobInput, FieldLabel, OutcomeTile, Panel, PillChip, SubmitButton } from "../book/FormBits";
 
 /** Family groups in registerFamily order: My partner, My children, My parents. */
 const relations = ["partner", "children", "parents"] as const;
@@ -62,7 +62,7 @@ function PersonFields({ relation, k, n, errors, onRemove }: { relation: Relation
           <Input id={id("last")} name={id("last")} data-error={x.family.lastError} autoComplete="off" required {...errorProps(errors, id("last"))} />
         </FieldLabel>
         <FieldLabel label={x.family.dob} htmlFor={id("dob")} error={errors[id("dob")]}>
-          <Input id={id("dob")} name={id("dob")} data-error={x.family.dobError} type="date" autoComplete="off" required {...errorProps(errors, id("dob"))} />
+          <DobInput id={id("dob")} name={id("dob")} label={x.family.dob} data-error={x.family.dobError} autoComplete="off" required {...errorProps(errors, id("dob"))} />
         </FieldLabel>
         <FieldLabel label={x.family.card} htmlFor={id("card")}>
           <Input id={id("card")} name={id("card")} inputMode="numeric" autoComplete="off" />
@@ -244,7 +244,7 @@ export function RegisterForm() {
                 <Input id="reg-last" name="last" autoComplete={caregiver ? "off" : "family-name"} required {...errorProps(errors, "reg-last")} />
               </FieldLabel>
               <FieldLabel label={registerCopy.fields.dob} htmlFor="reg-dob" {...err("reg-dob")}>
-                <Input id="reg-dob" name="dob" type="date" autoComplete={caregiver ? "off" : "bday"} required {...errorProps(errors, "reg-dob")} />
+                <DobInput id="reg-dob" name="dob" label={registerCopy.fields.dob} autoComplete={caregiver ? "off" : "bday"} required {...errorProps(errors, "reg-dob")} />
               </FieldLabel>
               <FieldLabel label={registerCopy.fields.card} htmlFor="reg-card">
                 <Input id="reg-card" name="card" inputMode="numeric" autoComplete="off" />

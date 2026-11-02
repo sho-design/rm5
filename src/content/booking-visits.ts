@@ -103,7 +103,7 @@ const bring = bookingCopy.confirmed.bringValue;
 const familyBring = approved(bring, "Ontario health card, medication list, any recent results.");
 const healthCard = draft("Your Ontario health card.");
 // Shingles is only publicly funded 65 to 70: never promise "OHIP-insured" on a vaccine booking.
-const vaccineCoverage = draft("Publicly funded vaccines are free with your Ontario health card. We tell you before the visit if one is not.");
+const vaccineCoverage = draft("Publicly funded vaccines are free with your Ontario health card. We tell you before the visit if a vaccine is not.");
 
 const [insured, mva, wsib, selfPay] = rehabCoverage;
 const rehabWear = faqA("rehab", "What should I wear?");
@@ -129,7 +129,13 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
     visits: [
       { key: "concern", label: draft("A health concern"), bring: [familyBring] },
       // Children's page "Book a well-baby visit" (newborn checks and the routine schedule).
-      { key: "wellbaby", label: draft("Well-baby or newborn check"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
+      // The newborn card advice shows with the visit (it was only under "No health card", which parents never opened).
+      {
+        key: "wellbaby",
+        label: draft("Well-baby or newborn check"),
+        bring: [draft("Bring the yellow immunization card, and the health card if it has arrived.")],
+        hint: { text: draft("Newborn whose health card has not arrived yet? Keep Ontario health card and leave the digits blank. Add your baby's age in the note.") },
+      },
       // Chronic care page "Book a review": the condition review, not a new concern.
       { key: "chronic", label: draft("Chronic care review"), bring: [familyBring] },
       { key: "checkup", label: menuLabel("family", "Annual physical"), bring: [familyBring], fastingMaybe: true },
@@ -138,7 +144,8 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
       { key: "bloodwork", label: draft("Bloodwork or ECG"), bring: [draft("Your Ontario health card, and your requisition if another clinic wrote one.")], fasting: true },
       // One visit can cover several vaccines: "Vaccines, including flu" for more than one, "Flu shot only" for just the flu shot.
       { key: "flu", label: draft("Flu shot only"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
-      { key: "vaccine", label: draft("Vaccines, including flu"), coverage: vaccineCoverage, bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
+      // A newcomer with no yellow card read "Bring the yellow immunization card" as a requirement.
+      { key: "vaccine", label: draft("Vaccines, including flu and catch-up"), coverage: vaccineCoverage, bring: [draft("Any vaccine records you have, from Ontario or another country. No records? Come anyway, and we plan from there."), draft("Your health card, if you have one.")] },
       { key: "pregnancy", label: draft("Pregnancy care"), bring: [familyBring] },
       { key: "womensday", label: womensHealthDay.visitLabel, bring: [womensHealthDay.bring], days: "womensday" },
       { key: "forms", label: draft("A form or note"), coverage: uninsured, bring: [`${fact(resultsFact("family", formsTitle), "Bring")}.`, healthCard] },
@@ -158,7 +165,14 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
       switchTo: { service: "family", visit: "concern" },
     },
     visits: [
-      { key: "referral", label: draft("First visit with a referral"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")] },
+      // A patient booked this before any referral existed (the page says we call you once it arrives).
+      {
+        key: "referral",
+        label: draft("First visit with a referral"),
+        coverage: painCoverage,
+        bring: [faqA("pain", "What should I bring?")],
+        hint: { text: draft("Choose this once your doctor has sent the referral. Not sent yet? There is no need to book: your doctor faxes it and we call you to book.") },
+      },
       { key: "followup", label: menuLabel("pain", "Follow-up visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")], existing: true, noServiceNote: true },
       { key: "procedure", label: menuLabel("pain", "Procedure visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")], existing: true, noServiceNote: true },
     ],
@@ -200,6 +214,8 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
         label: mva.label,
         coverage: mvaCoverage,
         claim: "mva",
+        // Same for car accident claims.
+        hint: { text: draft("New claim or already in treatment, both start here. Say physio or chiro in the note, and how many sessions you still need.") },
         bring: [`${fact(mva.facts, "Bring")}.`, draft("Your adjuster's name and phone number, if you have them."), draft("The date of the accident."), rehabWear],
       },
       {
@@ -207,7 +223,9 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
         label: wsib.label,
         coverage: wsibCoverage,
         claim: "wsib",
-        bring: [`${fact(wsib.facts, "Bring")}.`, draft("Your employer's name and contact."), healthCard, rehabWear],
+        // An existing WSIB patient could not tell intake from follow-up, or say physio or chiro.
+        hint: { text: draft("New claim or already in treatment, both start here. Say physio or chiro in the note, and how many sessions you still need.") },
+        bring: [`${fact(wsib.facts, "Bring")}.`, draft("Your employer's name and contact."), draft("Your WSIB claim number, if you have one."), healthCard, rehabWear],
       },
     ],
   },

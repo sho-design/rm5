@@ -79,7 +79,7 @@ export function StickyBook() {
   if (hiddenOn.some((p) => pathname.startsWith(p))) return null;
   const away = typing || footer || covered || reading;
   return (
-    <div className={`pointer-events-none fixed inset-x-0 bottom-0 z-30 px-4 pb-4 transition-transform duration-300 motion-reduce:transition-none sm:hidden ${away ? "translate-y-[120%]" : ""}`}>
+    <div data-sticky-book className={`pointer-events-none fixed inset-x-0 bottom-0 z-30 px-4 pb-4 transition-transform duration-300 motion-reduce:transition-none sm:hidden ${away ? "translate-y-[120%]" : ""}`}>
       <Link href={bookingFor(pathname)} tabIndex={away ? -1 : undefined} aria-hidden={away || undefined} className="pointer-events-auto block rounded-chip bg-ink py-[15px] text-center text-[15px] font-semibold text-white shadow-sticky outline outline-1 outline-white/50">
         Book an appointment
       </Link>

@@ -20,7 +20,7 @@ export default function BookPage() {
     <>
       <BookFlow config={bookingConfig()} />
       <div className="px-4 pb-6 md:px-content">
-        <EmergencyNote className="max-w-[760px]" />
+        <EmergencyNote id="emergency" className="max-w-[760px]" />
       </div>
     </>
   );

@@ -16,7 +16,7 @@ export function CarePathways({ paths, tints }: { paths: CarePath[]; tints: Recor
   const pp = paths[pick];
 
   return (
-    <Block tone="navy" className="flex flex-col gap-7 px-5 py-8 md:gap-9 md:px-12 md:py-14">
+    <Block tone="navy" id="start-here" className="scroll-mt-24 flex flex-col gap-7 px-5 py-8 md:gap-9 md:px-12 md:py-14">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:items-end lg:gap-10">
         <div className="flex flex-col gap-2.5">
           <Eyebrow tone="sun">One clinic, connected</Eyebrow>

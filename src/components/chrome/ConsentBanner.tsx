@@ -44,6 +44,27 @@ export function ConsentBanner({ enabled }: { enabled: boolean }) {
     if (open && reopened) title.current?.focus({ preventScroll: true });
   }, [open, reopened]);
 
+  // While the banner is open, keep keyboard focus and in-page jumps clear of it: a keyboard tester
+  // tabbed to footer links hidden behind it. scroll-padding covers anchors; focusin covers Tab.
+  useEffect(() => {
+    if (!open) return;
+    const root = document.documentElement;
+    const gap = () => (box.current ? window.innerHeight - box.current.getBoundingClientRect().top + 12 : 0);
+    root.style.scrollPaddingBottom = `${gap()}px`;
+    const onFocus = (e: FocusEvent) => {
+      const el = e.target as HTMLElement | null;
+      if (!el || !box.current || box.current.contains(el)) return;
+      const r = el.getBoundingClientRect();
+      const top = box.current.getBoundingClientRect().top;
+      if (r.bottom > top - 8 && r.top < window.innerHeight) window.scrollBy({ top: r.bottom - top + 16 });
+    };
+    document.addEventListener("focusin", onFocus);
+    return () => {
+      root.style.scrollPaddingBottom = "";
+      document.removeEventListener("focusin", onFocus);
+    };
+  }, [open]);
+
   // Analytics never runs on the booking and form pages, so do not ask there.
   const excluded = analyticsExcluded.some((r) => pathname === r || pathname.startsWith(`${r}/`));
   if (!enabled || !open || (excluded && !reopened)) return null;
@@ -62,7 +83,7 @@ export function ConsentBanner({ enabled }: { enabled: boolean }) {
     }
     returnTo.current = null;
   };
-  const btn = "inline-flex h-11 flex-1 items-center justify-center rounded-chip px-5 text-[14px] font-semibold sm:flex-none";
+  const btn = "inline-flex min-h-11 flex-1 items-center justify-center rounded-chip px-4 py-2 text-center text-[14px] font-semibold leading-tight sm:flex-none sm:px-5";
   return (
     <div
       ref={box}
@@ -76,12 +97,12 @@ export function ConsentBanner({ enabled }: { enabled: boolean }) {
         }
       }}
       className="fixed inset-x-3 bottom-3 z-50 md:inset-x-auto md:bottom-6 md:right-6 md:max-w-[440px]">
-      <div className="flex flex-col gap-4 rounded-card border border-border bg-raised p-5 shadow-card md:p-6">
+      <div className="flex flex-col gap-3 rounded-card border border-border bg-raised p-4 shadow-card md:gap-4 md:p-6">
         <div className="flex flex-col gap-1.5">
           <span ref={title} tabIndex={-1} className="text-[16px] font-semibold outline-none">
             {consentCopy.title}
           </span>
-          <p className="pretty text-[14px] leading-[1.5] text-secondary">
+          <p className="pretty text-[13px] leading-[1.45] text-secondary md:text-[14px] md:leading-[1.5]">
             {consentCopy.body}{" "}
             <Link href={routes.privacy} className="font-semibold text-link">
               {consentCopy.privacy} ›

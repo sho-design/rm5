@@ -9,7 +9,7 @@ import { breadcrumbs } from "@/lib/schema";
 import { JsonLd } from "@/components/JsonLd";
 import { routes } from "@/lib/routes";
 import { ironPrices } from "@/content/iron";
-import { rehabCoverage } from "@/content/deep";
+import { aestheticsLadder, drips, dripIronIndex, rehabCoverage } from "@/content/deep";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { linkPhones } from "@/components/ui/Phones";
 
@@ -19,6 +19,14 @@ const known: { service: string; note?: string; fee: string; page: string }[] = [
   ...(rehabCoverage.find((o) => o.label === "Paying myself")?.facts ?? [])
     .filter((f) => /\$/.test(f.v))
     .map((f) => ({ service: f.k, fee: f.v, page: "rehabBilling" })),
+  // Drip and skin prices were published on their pages but missing here (a tester listing every price).
+  ...drips
+    .filter((d, i) => i !== dripIronIndex)
+    .map((d) => ({ service: `${c.dripPrefix}: ${d.name}`, note: d.mins ? `${d.mins} min, ${c.dripNote}` : c.dripNote, fee: `$${d.price}`, page: "infusion" })),
+  ...aestheticsLadder
+    .map((r) => ({ r, v: r.facts.find((f) => /\$/.test(f.v))?.v }))
+    .filter((x): x is { r: (typeof aestheticsLadder)[number]; v: string } => !!x.v)
+    .map(({ r, v }) => ({ service: `${c.aesPrefix}: ${r.t}`, note: c.aesNote, fee: v, page: "aesSkin" })),
 ];
 
 const faq = (q: string) => {
@@ -47,7 +55,7 @@ export default async function FeesPage() {
           [c.title, routes.fees],
         ])}
       />
-      <PageHeader eyebrow={c.eyebrow} title={c.title} lead={forms.a} />
+      <PageHeader eyebrow={c.eyebrow} title={c.title} lead={c.lead} />
       <Section className="pt-8 md:pt-10">
         {fees.length ? (
           <div className="flex flex-col gap-3">

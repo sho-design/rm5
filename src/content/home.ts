@@ -81,7 +81,7 @@ export const carePaths: CarePath[] = [
     steps: [
       { svc: "Family Medicine", time: "Week 1", t: "Visit and bloodwork", d: "Ferritin, thyroid, B12 and sugars drawn on site.", page: "family", link: "Family Medicine" },
       { svc: "Family Medicine", time: "Day 3", t: "Results, explained", d: "A call or results visit. If iron is low and tablets are not right, we book step three.", page: "numbers", link: "Know your numbers" },
-      { svc: "Infusion Therapy", time: "Same week", t: "Iron infusion", d: "About three hours in a lounge chair with a nurse nearby.", page: "iron", link: "Iron therapy" },
+      { svc: "Infusion Therapy", time: "Same week", t: "Iron infusion", d: draft("About 90 minutes in a lounge chair with a nurse nearby."), page: "iron", link: "Iron therapy" },
       { svc: "Family Medicine", time: "Week 6", t: "Recheck", d: "Repeat bloodwork shows the response. Your plan adjusts.", page: "year", link: "Your year" },
     ],
   },

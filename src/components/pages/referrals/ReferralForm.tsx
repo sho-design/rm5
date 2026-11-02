@@ -8,7 +8,7 @@ import { referralExtraCopy } from "@/content/forms-copy";
 import { submitForm } from "@/lib/forms";
 import { useRevealOnChange } from "@/lib/a11y";
 import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
-import { FieldError } from "../book/FormBits";
+import { DobInput, FieldError } from "../book/FormBits";
 
 type Status = "form" | "sending" | "done" | "error";
 
@@ -109,7 +109,7 @@ export function ReferralForm({ services }: { services: string[] }) {
                 <Input id="ref-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" />
               </Field>
               <Field label={f.fields.dob} htmlFor="ref-dob" required>
-                <Input id="ref-dob" name="dob" data-error={referralExtraCopy.dobError} type="date" autoComplete="off" required {...ep("ref-dob")} />
+                <DobInput id="ref-dob" name="dob" label={f.fields.dob} data-error={referralExtraCopy.dobError} autoComplete="off" required {...ep("ref-dob")} />
                 <FieldError id="ref-dob" error={errors["ref-dob"]} />
               </Field>
             </div>

@@ -101,6 +101,9 @@ export const kidsAges: KidsAge[] = [
       { k: "Coverage", v: "OHIP" },
     ],
     cta: "Book a teen visit",
+    // A 17-year-old found "Someone I care for" and "Your relationship to them" already chosen.
+    self: true,
+    visit: "concern",
   },
 ];
 

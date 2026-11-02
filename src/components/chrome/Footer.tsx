@@ -126,7 +126,8 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
             ))}
             {analytics ? <ConsentSettingsLink className="hover:text-primary" /> : null}
           </div>
-          <TextControls />
+          {/* Wraps at larger text: "High contrast" ran off the screen on a small phone. */}
+          <TextControls className="flex-wrap" />
         </div>
         <span className="text-[12px] text-muted">© 2026 Restoration Medical. Refined by Medicine.</span>
         <span className="pretty text-[12px] leading-[1.55] text-muted">{site.landAcknowledgement}</span>

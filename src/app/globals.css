@@ -204,7 +204,7 @@
 :root[data-text] .rm-day-strip > * { min-width: 64px; }
 
 /* The phone menu is inside the header's layer; hide the cookie banner while the menu is open. */
-:root[data-menu="open"] [data-consent-banner] { display: none; }
+:root[data-menu="open"] [data-consent-banner], :root[data-search="open"] [data-consent-banner] { display: none; }
 
 /* High contrast: eyebrows drawn in division accents (often set inline) become solid ink. */
 :root[data-theme="contrast"] .eyebrow { color: var(--text-primary) !important; }
@@ -238,3 +238,26 @@
   background-size: 12px;
   background-position: right 16px center;
 }
+
+/* Phone menu at larger text: the sticky footer stays short so the menu list keeps room. */
+.rm-menu-book-short { display: none; }
+:root[data-text] .rm-menu-book-long { display: none; }
+:root[data-text] .rm-menu-book-short { display: inline; }
+@media (max-width: 374px) {
+  .rm-menu-book-long { display: none; }
+  .rm-menu-book-short { display: inline; }
+}
+
+/* Top bar 911 link: shorter at larger text on phones so the opening time is not cut off. */
+.rm-911-short { display: none; }
+@media (max-width: 479px) {
+  :root[data-text] .rm-911-long { display: none; }
+  :root[data-text] .rm-911-short { display: inline; }
+}
+
+/* Focus on navy surfaces (top bar, footer, phone menu, dark heroes): sky on navy was barely visible. */
+.bg-ink :focus-visible, .bg-ink-2 :focus-visible, .bg-inverse :focus-visible, .bg-ink:focus-visible { outline-color: var(--rm-sun); }
+
+/* Sticky phone Book bar: at larger text it covered the lines people were reading (a low-vision tester),
+   and the header and menu already offer Book, so it steps aside. */
+:root[data-text] [data-sticky-book] { display: none; }

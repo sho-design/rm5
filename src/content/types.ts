@@ -208,6 +208,8 @@ export interface SubChooserItem {
   cta: string;
   /** Booking visit key when this option is not the page's usual visit (sexual health is not an annual physical). */
   visit?: string;
+  /** The person reading books for themselves (a teen), so drop the page's "&for=someone". */
+  self?: boolean;
 }
 
 export interface PathStep {

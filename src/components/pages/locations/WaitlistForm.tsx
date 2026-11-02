@@ -41,8 +41,20 @@ export function WaitlistForm() {
   if (status === "done") {
     return (
       <div ref={outcomeRef} tabIndex={-1} className="scroll-mt-24 outline-none">
-        <StateCard state="success" title={w.doneTitle} actions={<Button to="book">{w.doneCta}</Button>}>
+        <StateCard
+          state="success"
+          title={w.doneTitle}
+          actions={
+            <>
+              <Button to="register">{w.doneRegisterCta}</Button>
+              <Button to="book" variant="outline">
+                {w.doneCta}
+              </Button>
+            </>
+          }
+        >
           <p>{w.doneBody}</p>
+          <p>{w.doneRegister}</p>
         </StateCard>
       </div>
     );

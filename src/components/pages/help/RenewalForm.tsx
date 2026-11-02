@@ -6,7 +6,8 @@ import { renewalCopy as c } from "@/content/patient-help";
 import { submitForm } from "@/lib/forms";
 import { useRevealOnChange } from "@/lib/a11y";
 import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
-import { ConsentRow, FieldLabel, Panel, SubmitButton } from "../book/FormBits";
+import { ConsentRow, DobInput, FieldLabel, Panel, SubmitButton } from "../book/FormBits";
+import { linkPhones } from "@/components/ui/Phones";
 import { EmergencyNote } from "./EmergencyNote";
 
 /**
@@ -62,12 +63,19 @@ export function RenewalForm() {
         <Lead size="sm" tone="muted">
           {c.lead}
         </Lead>
-        <EmergencyNote className="mt-2" />
+        <aside aria-labelledby="rx-urgent" className="mt-2 flex flex-col gap-1 rounded-tile border border-border bg-card px-5 py-4">
+          <h3 id="rx-urgent" className="text-[15px] font-semibold text-ink">
+            {c.urgentTitle}
+          </h3>
+          <p className="pretty text-[14px] leading-[1.5] text-ink-2">{linkPhones(c.urgentBody)}</p>
+        </aside>
+        <EmergencyNote headingLevel={3} />
       </div>
       {done ? (
         <div ref={doneRef} tabIndex={-1} className="scroll-mt-24 outline-none">
           <StateCard state="success" title={c.done.title}>
             <p>{c.done.body}</p>
+            <p>{linkPhones(c.done.urgent)}</p>
             <button type="button" onClick={() => setDone(false)} className="self-start border-b-[1.5px] border-ink text-[14px] font-semibold text-ink">
               {c.done.again}
             </button>
@@ -84,7 +92,7 @@ export function RenewalForm() {
                 <Input {...text("last")} autoComplete="family-name" />
               </FieldLabel>
               <FieldLabel label={c.fields.dob} htmlFor="rx-dob" error={errors["rx-dob"]}>
-                <Input {...text("dob")} type="date" autoComplete="bday" />
+                <DobInput {...text("dob")} label={c.fields.dob} autoComplete="bday" />
               </FieldLabel>
               <FieldLabel label={c.fields.phone} htmlFor="rx-phone" error={errors["rx-phone"]}>
                 <Input {...text("phone")} type="tel" inputMode="tel" autoComplete="tel" />

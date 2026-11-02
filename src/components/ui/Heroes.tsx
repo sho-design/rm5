@@ -122,7 +122,12 @@ export function DivisionHero({
       {/* A second shade from the text side: white headlines were hard to read on bright window light. */}
       <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(90deg, color-mix(in srgb, var(--rm-ink) 55%, transparent) 0%, transparent 70%)" }} />
       <div className="relative flex w-full flex-col gap-5 p-6 text-white md:p-10 lg:p-12">
-        {eyebrow ? <Eyebrow tone="sun">{eyebrow}</Eyebrow> : null}
+        {/* On a dark chip: sunshine text alone vanished on pale photos ("Accepting new patients"). */}
+        {eyebrow ? (
+          <Eyebrow tone="sun" className="self-start rounded-chip px-3 py-1.5" style={{ background: "color-mix(in srgb, var(--rm-ink) 72%, transparent)" }}>
+            {eyebrow}
+          </Eyebrow>
+        ) : null}
         <Display as="h1" size="hero" className="max-w-[900px]">
           {title}
         </Display>

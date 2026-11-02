@@ -1,8 +1,9 @@
 "use client";
 
-import type { ComponentProps, ReactNode } from "react";
+import { useRef, useState, type ComponentProps, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { radioKeys, rovingTab } from "@/lib/a11y";
+import { Input, Select } from "@/components/ui/Form";
 
 /** Selected / idle styles for the prototype's `sel()` chips: ink fill when on, white with a line border when off. */
 export const selClass = (on: boolean) => (on ? "border-ink bg-ink text-white" : "border-border bg-white text-primary hover:border-sky");
@@ -39,7 +40,7 @@ export function PillChip({ on, children, size = "md", role = "radio", ...rest }:
       role={role}
       aria-checked={on}
       className={cn(
-        "shrink-0 rounded-chip border-[1.5px] transition-all duration-[250ms]",
+        "max-w-full shrink-0 rounded-chip border-[1.5px] text-left leading-tight transition-all duration-[250ms]",
         size === "md" ? "px-3.5 py-2.5 text-[13px] font-medium md:px-[18px] md:py-3 md:text-[14px]" : "px-3.5 py-[9px] text-[13px] font-semibold",
         selClass(on),
       )}
@@ -126,5 +127,87 @@ export function OutcomeTile({ k, children, className }: { k: string; children: R
       <dt className="text-[12px] font-semibold text-muted">{k}</dt>
       <dd className="flex flex-col gap-1">{children}</dd>
     </dl>
+  );
+}
+
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+/**
+ * Date of birth as Day, Month (named) and Year. Replaces the native date
+ * input: a keyboard tester got stuck tabbing through its segments and typed
+ * later answers into it, and phones showed MM/DD/YYYY, which Canadians
+ * may read day first. A visually hidden input carries the YYYY-MM-DD value,
+ * the name and the required rule, so validation and form reading work as
+ * before; it hands focus to the Day field.
+ */
+export function DobInput({ id, name, label, required, autoComplete, error, ...rest }: { id: string; name: string; label: string; required?: boolean; autoComplete?: string; error?: boolean; "data-error"?: string; "aria-invalid"?: boolean; "aria-describedby"?: string }) {
+  const [d, setD] = useState("");
+  const [m, setM] = useState("");
+  const [y, setY] = useState("");
+  const dayRef = useRef<HTMLInputElement>(null);
+  const dd = d.replace(/\D/g, "");
+  const yy = y.replace(/\D/g, "");
+  const ok = dd.length > 0 && Number(dd) >= 1 && Number(dd) <= 31 && m && yy.length === 4;
+  const value = ok ? `${yy}-${m.padStart(2, "0")}-${dd.padStart(2, "0")}` : "";
+  const bad = error || rest["aria-invalid"];
+  const auto = autoComplete === "bday";
+  return (
+    <div className="flex gap-2">
+      <input
+        id={id}
+        name={name}
+        value={value}
+        onChange={() => undefined}
+        required={required}
+        pattern="\d{4}-\d{2}-\d{2}"
+        tabIndex={-1}
+        aria-hidden
+        className="sr-only"
+        onFocus={() => dayRef.current?.focus()}
+        data-error={rest["data-error"]}
+      />
+      <Input
+        ref={dayRef}
+        id={`${id}-day`}
+        inputMode="numeric"
+        maxLength={2}
+        placeholder="DD"
+        autoComplete={auto ? "bday-day" : "off"}
+        aria-label={`${label}, day`}
+        aria-invalid={bad || undefined}
+        aria-describedby={rest["aria-describedby"]}
+        value={d}
+        onChange={(e) => setD(e.target.value)}
+        className="w-[72px] px-3"
+      />
+      <Select
+        id={`${id}-month`}
+        autoComplete={auto ? "bday-month" : "off"}
+        aria-label={`${label}, month`}
+        aria-invalid={bad || undefined}
+        value={m}
+        onChange={(e) => setM(e.target.value)}
+        className="min-w-0 flex-1 px-3"
+      >
+        <option value="">Month</option>
+        {MONTHS.map((n, i) => (
+          <option key={n} value={String(i + 1)}>
+            {n}
+          </option>
+        ))}
+      </Select>
+      <Input
+        id={`${id}-year`}
+        inputMode="numeric"
+        maxLength={4}
+        placeholder="YYYY"
+        autoComplete={auto ? "bday-year" : "off"}
+        aria-label={`${label}, year`}
+        aria-invalid={bad || undefined}
+        value={y}
+        onChange={(e) => setY(e.target.value)}
+        className="w-[96px] px-3"
+      />
+    </div>
   );
 }

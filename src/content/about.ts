@@ -1,3 +1,4 @@
+import { draft } from "./review";
 import type { TintCard } from "./types";
 
 export interface TimelineEntry {
@@ -252,6 +253,9 @@ export const locationsCopy = {
     doneTitle: "You are on the list.",
     doneBody: "We will be in touch once Maple opens. Thornhill is seeing patients if you need care sooner.",
     doneCta: "Book at Thornhill",
+    /** The pre-register link vanished after joining; the list and registration are separate steps. */
+    doneRegister: draft("Want a family doctor with us? The list only tells you when Maple opens. Register as a new patient too, and choose Maple."),
+    doneRegisterCta: draft("Register as a new patient"),
     errorTitle: "We could not add you.",
     errorBody: "Please try again in a moment, or call 905-709-3222.",
     retry: "Try again",

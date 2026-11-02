@@ -9,12 +9,23 @@ export const emergencyCopy = {
   title: "Is this an emergency?",
   body: "Call 911 or go to the nearest emergency department. For health advice any time, day or night, call Health811 at 811 or visit health811.ontario.ca. Online requests are read during clinic hours.",
   // 911 first and tappable; Health811 second. A tester with chest pressure at 3am read the old box as "try 811 first".
-  urgent: draft("Chest pain or pressure, trouble breathing, signs of a stroke or heavy bleeding: call 911 now, or go to the nearest emergency department."),
+  // 911 first and tappable; Health811 second. A tester with chest pressure at 3am read the old box as "try 811 first".
+  // Stroke signs are named: a tester checking for a parent's stroke did not see the word.
+  urgent: draft("Chest pain or pressure, trouble breathing, heavy bleeding, or signs of a stroke (face drooping, arm weakness, slurred speech): call 911 now, or go to the nearest emergency department."),
   call911: draft("Call 911"),
+  /** Mental health crisis: a tester with low mood found only physical emergencies listed. 988 is Canada's suicide crisis line. */
+  crisis: draft("Thoughts of suicide or self-harm?"),
+  call988: draft("Call or text 988, any time, day or night."),
+  /** For people who are not sure: phone and website are separate, clearly named links. */
+  unsure: draft("Not sure if it is urgent? Health811 gives health advice any time, day or night."),
+  call811: draft("Call Health811 at 811"),
+  siteLabel: draft("Visit health811.ontario.ca"),
   advice: draft("For health advice any time, day or night, call Health811 at 811."),
-  requests: draft("Online requests are read during clinic hours."),
+  requests: draft("Booking requests and messages sent on this website are read during clinic hours."),
   /** Utility bar and phone menu while the clinic is closed. */
   closedLine: draft("Emergency? Call 911"),
+  /** Phone menu: the clinic call button says whose number it is. */
+  callClinic: draft("Call clinic"),
   linkLabel: "Health811",
   link: "https://health811.ontario.ca",
 } as const;
@@ -34,21 +45,28 @@ export const renewalCopy = {
     notes: "Anything we should know (optional)",
   },
   medsHint: "Name and strength, one per line. Do not include anything you need today.",
+  /** A tester out of heart pills tomorrow found no route for a gap shorter than two business days. */
+  urgentTitle: draft("Running out sooner than two business days?"),
+  urgentBody: draft("Call us at 905-709-3222 during clinic hours. Your pharmacist can also often extend a regular prescription for a short time. If you have no medication and feel unwell, call Health811 at 811 or 911."),
   existing: "I am an existing Restoration Medical patient.",
   contactConsent: "You may contact me by phone or email about this request.",
   submit: "Send renewal request",
   done: {
     title: "Request sent.",
     body: "Allow two business days. If a visit is needed first, we call you to book one.",
+    urgent: draft("If you will run out before then, call us at 905-709-3222 or ask your pharmacist about a short extension."),
     again: "Send another request",
   },
   failed: "That did not go through. Call 905-709-3222 and we will take the request by phone.",
 } as const;
 
 export const feesCopy = {
-  eyebrow: "Insurance and billing",
+  eyebrow: draft("Fees"),
   title: "Uninsured services and fees",
-  emptyTitle: "Ask us for the current list.",
+  /** The page opened with the forms answer (camp and daycare), which did not match "what does it cost". */
+  lead: draft("What OHIP does not cover, and what it costs. We tell you the fee before any uninsured service, and every payment comes with a receipt."),
+  // Read as contradicting the list under it ("Ask us for the current list" above a list).
+  emptyTitle: draft("Anything not listed below? Ask us."),
   emptyBody: "The front desk has the current fee list and tells you the fee before any uninsured service. Call 905-709-3222.",
   tableService: "Service",
   tableFee: "Fee",
@@ -57,6 +75,10 @@ export const feesCopy = {
   knownSub: draft("These are already published with each service. HST is shown as on the service page."),
   ironPrefix: draft("Iron therapy"),
   details: draft("Details"),
+  dripPrefix: draft("IV drip"),
+  dripNote: draft("HST included, plus a 10 minute nurse screening"),
+  aesPrefix: draft("Medical Aesthetics"),
+  aesNote: draft("Per visit. Your exact price is given in writing at the consult."),
 } as const;
 
 export const wayfindingCopy = {
