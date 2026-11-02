@@ -6,6 +6,7 @@ import { Fragment, useCallback, useEffect, useRef, useState, type FocusEvent, ty
 import type { NavKey } from "@/content/types";
 import { divisions, navOrder } from "@/content/divisions";
 import { site } from "@/content/site";
+import { emergencyCopy } from "@/content/patient-help";
 import { href, routes } from "@/lib/routes";
 import { cn } from "@/lib/cn";
 import { Wordmark } from "./Wordmark";
@@ -33,6 +34,14 @@ export function Header() {
   const [menu, setMenu] = useState<NavKey | null>(null);
   const [search, setSearch] = useState(false);
   const [mobile, setMobile] = useState(false);
+  /** Past the top bar: its 911 link has scrolled away, so the phone header shows one (a stroke tester lost it). */
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 40);
+    on();
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, []);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -67,7 +76,7 @@ export function Header() {
   const active = navOrder.find((k) => pathname === href(k) || (k !== "about" ? pathname.startsWith(href(k) + "/") : pathname.startsWith("/about")));
 
   return (
-    <header className={cn("sticky top-0 z-40 border-b border-border transition-colors", menu ? "bg-card" : "bg-page")} onMouseLeave={closeMenu} onKeyDown={onKeyDown} onBlur={onBlur}>
+    <header data-scrolled={scrolled || undefined} className={cn("rm-header sticky top-0 z-40 border-b border-border transition-colors", menu ? "bg-card" : "bg-page")} onMouseLeave={closeMenu} onKeyDown={onKeyDown} onBlur={onBlur}>
       <div className="mx-auto flex h-14 w-full max-w-[1440px] items-center justify-between gap-3 px-4 md:px-8">
         <div onMouseEnter={closeMenu}>
           <Wordmark />
@@ -115,6 +124,11 @@ export function Header() {
           })}
         </nav>
         <div className="flex items-center gap-1.5 text-[14px] font-medium md:gap-2" onMouseEnter={closeMenu}>
+          {scrolled ? (
+            <a href="tel:911" aria-label={emergencyCopy.closedLine} className="flex h-[38px] items-center rounded-full border-[1.5px] border-[color:var(--status-error-fg)] px-3 text-[14px] font-semibold text-[color:var(--status-error-fg)] sm:hidden">
+              911
+            </a>
+          ) : null}
           <button
             ref={searchButton}
             type="button"

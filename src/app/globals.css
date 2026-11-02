@@ -261,3 +261,8 @@
 /* Sticky phone Book bar: at larger text it covered the lines people were reading (a low-vision tester),
    and the header and menu already offer Book, so it steps aside. */
 :root[data-text] [data-sticky-book] { display: none; }
+
+/* Small phones, scrolled: the header's 911 button needs the room the clinic name used. */
+@media (max-width: 379px) {
+  .rm-header[data-scrolled] .rm-wordmark-text { display: none; }
+}

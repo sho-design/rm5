@@ -34,7 +34,7 @@ export function UtilityBar() {
       <div className="flex items-center gap-1">
         {/* While closed, 911 sits in the bar on every page (a 3am chest pressure test found no 911 on the home page). */}
         {status.ready && !status.open ? (
-          <a href="tel:911" aria-label={emergencyCopy.closedLine} className="ml-3 shrink-0 whitespace-nowrap rounded-chip border border-sun/70 px-2 py-0.5 font-semibold text-sun hover:text-sun-soft md:mr-3">
+          <a href="tel:911" aria-label={emergencyCopy.closedLine} className="ml-3 shrink-0 whitespace-nowrap flex min-h-[30px] items-center rounded-chip border border-sun/70 px-2.5 font-semibold text-sun hover:text-sun-soft md:mr-3">
             <span className="rm-911-long">{emergencyCopy.closedLine}</span>
             <span aria-hidden className="rm-911-short">{emergencyCopy.call911}</span>
           </a>
