@@ -14,7 +14,8 @@ export const bookingExtra = {
     endsIn: draft("ending"),
     notes: [
       draft("That is fine. We may be able to bill your home province directly. Bring your health card and we confirm coverage, and any fee, before the visit."),
-      draft("That is fine. Without a health card the visit is uninsured. We tell you the fee before the visit and give you a receipt."),
+      // A newborn's card arrives weeks after birth: a parent read "uninsured" and panicked.
+      draft("That is fine. Without a health card the visit is uninsured. We tell you the fee before the visit and give you a receipt. Booking for a newborn whose card has not arrived yet? Choose Ontario health card and leave the digits blank."),
     ],
     coverage: [draft("Card from another province, we may bill your province directly"), draft("Uninsured, fee told to you before the visit, receipt provided")],
     bring: draft("Your health card from another province."),
@@ -95,6 +96,9 @@ export const bookingExtra = {
   changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours notice when you can."),
   /** Shown when this tab already booked and the page was opened again with Back or Forward. */
   alreadyBooked: draft("You booked an appointment in this tab. Your confirmation is in your email. To change it, call us."),
+  /** After "Book another visit": this is a second booking, not a change. */
+  anotherBooking: draft("You already booked a visit. This books another one. To move or cancel the first, call us."),
+  summaryWhere: draft("Where"),
   /** Read out (not shown) when the day changes, so screen reader users know the times changed. */
   timesFor: (day: string, n: number) => (n === 1 ? draft(`1 time on ${day}.`) : draft(`${n} times on ${day}.`)),
   review: {

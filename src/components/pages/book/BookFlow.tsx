@@ -288,7 +288,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     setState(res.ok ? "w" : "e");
   };
 
+  /** "Book another visit": the first booking stands, so say this one is a second visit. */
+  const [another, setAnother] = useState(false);
   const reset = () => {
+    setAnother(true);
     setBookedBefore(false);
     setState(1);
     setSlot(null);
@@ -346,7 +349,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
             [bookingCopy.summaryKeys.service, service.label],
             // The reason from the page and a phone or video choice show while choosing, not only at review.
             [x.review.keys.visit, visit ? (reason ? `${visit.label} (${reason})` : visit.label) : ""],
-            [bookingCopy.summaryKeys.clinic, visit?.modes && mode > 0 ? x.modes[mode] : bookingCopy.clinic],
+            visit?.modes && mode > 0 ? [x.summaryWhere, x.modes[mode]] : [bookingCopy.summaryKeys.clinic, bookingCopy.clinic],
             [bookingCopy.summaryKeys.time, slotLabel],
             [bookingCopy.summaryKeys.coverage, coverage],
           ].map(([k, v]) => (
@@ -365,6 +368,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
           <Panel>
             <form method="post" onSubmit={onDetails} onInput={onInput} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
               <Steps state={state} className="hidden lg:flex" />
+              {another ? (
+                <p role="status" className="rounded-row border border-border bg-white px-4 py-3 text-[13px] leading-[1.5] text-secondary">
+                  {linkPhones(`${x.anotherBooking} ${site.phone}.`)}
+                </p>
+              ) : null}
               {bookedBefore ? (
                 <p role="status" className="rounded-row border border-border bg-white px-4 py-3 text-[13px] leading-[1.5] text-secondary">
                   {linkPhones(`${x.alreadyBooked} ${site.phone}.`)}

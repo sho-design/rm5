@@ -294,6 +294,11 @@ const pain: Topic[] = [
 /* Medical Aesthetics                                                  */
 /* ------------------------------------------------------------------ */
 
+// Medical skin concerns belong in Family Medicine: a tester with a changing mole nearly booked a cosmetic consult.
+const medicalSkinQA = {
+  q: draft("Is this the place for a changing mole or a rash?"),
+  a: draft("No. A mole that changes, a spot that bleeds or will not heal, or a new rash is a family medicine visit, covered by OHIP. Book a health concern with Family Medicine."),
+};
 // Pages for one kind of consult (skin, laser) open booking on that consult; the rest on "A consult".
 const aesBandFor = (visit = "consult"): Topic["band"] => ({ title: AD.footCta ?? "", sub: A.closing, cta: AD.cta ?? "", ctaTo: bookFor("aesthetics", visit) });
 const aesHeroFor = (visit = "consult") => ({ cta: AD.cta ?? "", ctaTo: bookFor("aesthetics", visit), coverage: approved(AD.blurb ?? "", "Individual results vary.") });
@@ -339,7 +344,7 @@ const aesthetics: Topic[] = [
     pills: result(A, 2).tags,
     cards: { title: A.chooser.title, items: [asCard(result(A, 2)), asCard(result(A, 3)), rung(0), rung(1)] },
     path: aesPath,
-    faq: [fq("Is there downtime?"), dq("aesthetics", "Is any of this covered by OHIP?"), dq("aesthetics", "Is a consult free?")],
+    faq: [medicalSkinQA, fq("Is there downtime?"), dq("aesthetics", "Is any of this covered by OHIP?"), dq("aesthetics", "Is a consult free?")],
     band: aesBandFor("skin"),
   },
   {
@@ -355,7 +360,7 @@ const aesthetics: Topic[] = [
     imgAlt: draft("Treatment room prepared for a laser consult"),
     cards: { title: A.chooser.title, items: [asCard(result(A, 4))] },
     path: aesPath,
-    faq: [fq("Do I need a consultation first?"), fq("Is there downtime?"), fq("How is pricing set?"), fq("Who performs treatments?")],
+    faq: [fq("Do I need a consultation first?"), medicalSkinQA, fq("Is there downtime?"), fq("How is pricing set?"), fq("Who performs treatments?")],
     band: aesBandFor("laser"),
   },
   {

@@ -128,6 +128,8 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
     coverage: bookingCoverage[label("family")],
     visits: [
       { key: "concern", label: draft("A health concern"), bring: [familyBring] },
+      // Children's page "Book a well-baby visit" (newborn checks and the routine schedule).
+      { key: "wellbaby", label: draft("Well-baby or newborn check"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
       // Chronic care page "Book a review": the condition review, not a new concern.
       { key: "chronic", label: draft("Chronic care review"), bring: [familyBring] },
       { key: "checkup", label: menuLabel("family", "Annual physical"), bring: [familyBring], fastingMaybe: true },

@@ -18,7 +18,7 @@ export function DeepDive({ k, division, dive }: { k: DivisionKey; division: Divi
   const foot = deepFootDefaults[k];
   const footCta = division.footCta ?? foot?.footCta ?? deepFootFallback.footCta;
   const cta = division.cta ?? foot?.cta ?? deepFootFallback.cta;
-  const ctaTo = division.ctaPage ?? bookFor(k);
+  const ctaTo = division.ctaPage ?? foot?.ctaPage ?? bookFor(k);
   return (
     <>
       <DeepDiveChooser k={k} dive={dive} />

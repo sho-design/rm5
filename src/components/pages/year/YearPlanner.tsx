@@ -61,9 +61,10 @@ export function YearPlanner({ header }: { header: ReactNode }) {
       <div className="grid grid-cols-1 gap-card px-4 pt-8 md:grid-cols-2 md:px-content md:pt-10 lg:grid-cols-4" aria-live="polite">
         {seasons.map((s) => (
           <div key={s.name} className="flex min-h-[260px] flex-col gap-4 rounded-card p-6 text-ink lg:min-h-[340px] lg:p-7" style={{ background: s.bg }}>
-            <div className="flex items-baseline justify-between gap-3">
+            {/* Wraps under the name when the column is narrow (larger text) instead of one word per line. */}
+            <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
               <span className="display text-[28px] tracking-[-.02em] lg:text-[30px]">{s.name}</span>
-              <span className="text-[12px] font-semibold text-muted">{s.months}</span>
+              <span className="whitespace-nowrap text-[12px] font-semibold text-muted">{s.months}</span>
             </div>
             <div className="flex flex-1 flex-col gap-2">
               {s.items.map((i) => (

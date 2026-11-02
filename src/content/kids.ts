@@ -55,6 +55,7 @@ export const kidsAges: KidsAge[] = [
       { k: "Coverage", v: "OHIP" },
     ],
     cta: "Book a well-baby visit",
+    visit: "wellbaby",
   },
   {
     label: "3 to 5",

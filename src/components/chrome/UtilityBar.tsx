@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useOpenStatus } from "@/lib/use-open-status";
 import { routes } from "@/lib/routes";
+import { emergencyCopy } from "@/content/patient-help";
 import { viEnabled } from "@/lib/prefs";
 import { SocialIcons } from "./SocialIcons";
 import { TextControls } from "./TextControls";
@@ -31,6 +32,12 @@ export function UtilityBar() {
         <span className="hidden truncate sm:inline">{status.text}</span>
       </Link>
       <div className="flex items-center gap-1">
+        {/* While closed, 911 sits in the bar on every page (a 3am chest pressure test found no 911 on the home page). */}
+        {status.ready && !status.open ? (
+          <a href="tel:911" className="ml-3 whitespace-nowrap font-semibold text-sun hover:text-sun-soft md:mr-3">
+            {emergencyCopy.closedLine}
+          </a>
+        ) : null}
         <TextControls inverse compact className="mr-3 hidden text-[13px] md:flex" />
         <SocialIcons className="hidden sm:flex" />
         <span aria-hidden className="mx-2.5 hidden h-4 w-px bg-white/25 sm:block" />

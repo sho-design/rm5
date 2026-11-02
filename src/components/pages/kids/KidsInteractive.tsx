@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SubChooser } from "@/components/ui";
+import { bookFor } from "@/lib/routes";
 import type { ImmunizationStage, KidsAge } from "@/content/kids";
 import { Immunizations } from "./Immunizations";
 
@@ -19,7 +20,7 @@ export function KidsInteractive({ ages, stages, tint, accent, copy }: { ages: Ki
   };
   return (
     <>
-      <SubChooser id="ages" eyebrow={copy.eyebrow} title={copy.title} intro={copy.intro} items={ages} tint={tint} accent={accent} link={copy.link} linkTo="/register?for=someone" value={age} onChange={pickAge} titleSize="md" />
+      <SubChooser id="ages" ctaTo={`${bookFor("family", "checkup")}&for=someone`} eyebrow={copy.eyebrow} title={copy.title} intro={copy.intro} items={ages} tint={tint} accent={accent} link={copy.link} linkTo="/register?for=someone" value={age} onChange={pickAge} titleSize="md" />
       <Immunizations stages={stages} value={imm} onChange={setImm} />
     </>
   );

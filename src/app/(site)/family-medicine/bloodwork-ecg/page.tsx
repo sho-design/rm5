@@ -31,8 +31,10 @@ export default function BloodworkPage() {
         title={title}
         lead={lead}
         cta="Book a blood draw"
+        ctaTo={bookFor("family", "bloodwork")}
         cta2="Bring an outside requisition"
-        cta2To="contact"
+        // Was the contact page: this books the draw and carries the reason.
+        cta2To={`${bookFor("family", "bloodwork")}&reason=${encodeURIComponent("Outside requisition")}`}
         coverage="OHIP-insured tests are covered. Fasting tests are best booked before 10am."
         tint={tint}
         accent={accent}

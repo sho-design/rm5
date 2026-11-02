@@ -8,6 +8,13 @@ import { draft } from "./review";
 export const emergencyCopy = {
   title: "Is this an emergency?",
   body: "Call 911 or go to the nearest emergency department. For health advice any time, day or night, call Health811 at 811 or visit health811.ontario.ca. Online requests are read during clinic hours.",
+  // 911 first and tappable; Health811 second. A tester with chest pressure at 3am read the old box as "try 811 first".
+  urgent: draft("Chest pain or pressure, trouble breathing, signs of a stroke or heavy bleeding: call 911 now, or go to the nearest emergency department."),
+  call911: draft("Call 911"),
+  advice: draft("For health advice any time, day or night, call Health811 at 811."),
+  requests: draft("Online requests are read during clinic hours."),
+  /** Utility bar and phone menu while the clinic is closed. */
+  closedLine: draft("Emergency? Call 911"),
   linkLabel: "Health811",
   link: "https://health811.ontario.ca",
 } as const;

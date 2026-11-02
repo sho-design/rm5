@@ -119,6 +119,8 @@ export function DivisionHero({
   return (
     <section className="relative mx-3 mt-3 flex items-end overflow-hidden rounded-block bg-ink-2 md:mx-gutter md:mt-6" style={{ minHeight }}>
       <Photo src={img} alt={imgAlt} radius="none" protect className="absolute inset-0" priority sizes="100vw" />
+      {/* A second shade from the text side: white headlines were hard to read on bright window light. */}
+      <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(90deg, color-mix(in srgb, var(--rm-ink) 55%, transparent) 0%, transparent 70%)" }} />
       <div className="relative flex w-full flex-col gap-5 p-6 text-white md:p-10 lg:p-12">
         {eyebrow ? <Eyebrow tone="sun">{eyebrow}</Eyebrow> : null}
         <Display as="h1" size="hero" className="max-w-[900px]">

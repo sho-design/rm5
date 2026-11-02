@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (130 simulated patients)
+# Usability test, 28 October 2026 (150 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -457,6 +457,26 @@ Average ease 5.0, trust 5.1. Every booking went through. 18 of 20 would use the 
 - **Medico-legal:** reports and a contact for lawyers (Ivan).
 - **Physician recruitment:** billing model, hours, support (Dr. Park).
 - **Transparency (Tess):** home page paths that start with an OHIP visit and end in a paid service; the "Typical IV lounge" comparison; drip names and evidence labels; complaints and privacy sharing the general inbox.
+
+## Round 10: 20 testers, 2:50am Monday
+
+Average ease 4.8, trust 5.2; every booking went through. Lowest: Kofi 2 of 7 (chest pressure at night), Duc 3 (Vietnamese), Vera, Isla, Grace, Priya 4. Ravi rated wellness drips 3 for trust.
+
+### Round 10 findings fixed in code
+
+- **Safety (Kofi):** while closed, the top bar on every page shows "Emergency? Call 911" as a call link; the phone menu always shows it above Book and Call. The emergency note now leads with "Chest pain or pressure, trouble breathing, signs of a stroke or heavy bleeding: call 911 now", a "Call 911" button, then Health811 (also a call link). "heartburn", "chest pressure", "trouble breathing", "numbness", "fainted", "crisis" and similar searches show it.
+- Search finds: insomnia and sleep, mole and skin check (Family Medicine), rosacea (Laser and Skin), phone appointment and virtual (the phone or video FAQ), Vietnamese "huyết áp cao", "đăng ký bệnh nhân mới", "giờ mở cửa", Spanish "vacuna", "médico", "español", and newborn. Result links read "title, section" to screen readers.
+- Buttons book the right visit: "Book a well-baby visit" (new "Well-baby or newborn check" visit), "Book a blood draw" and "Bring an outside requisition" (bloodwork, with the reason), "Book a drip" (an IV drip).
+- No health card: newborns whose card has not arrived are told to choose Ontario health card and leave the digits blank (Priya).
+- "Book another visit" now says "You already booked a visit. This books another one. To move or cancel the first, call us." (Bilal).
+- Phone visits: the summary reads "Where: By phone" (Owen).
+- Aesthetics skin and laser pages: "Is this the place for a changing mole or a rash? No. ... a family medicine visit, covered by OHIP." (Grace).
+- Hero headlines get a side shade so white text reads on bright photos (Carmen, Chen, Hugo).
+- Your year: season month ranges wrap whole at larger text (Vera). Phone menu leaves room above the bottom bar (Marco).
+
+### Round 10 findings for the clinic
+
+- Travel health and malaria (Isla); a line on sleep, stress and mood, and whether to show 988 (Ada); Pap and celiac preparation (Nadia, Emily); WSIB progress note cost and booking a block of sessions (Marco); Maple date and waitlist vs pre-registration (Tran); same doctor for a whole family, and guardians for teens (Sofia, Felix); drip numbers, names, times and pricing (Ravi); iron days vs assessment days (Hugo); Vietnamese pages (Duc).
 
 ## What worked
 

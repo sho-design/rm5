@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { divisions, menuHeadings, navOrder } from "@/content/divisions";
 import { locations, site } from "@/content/site";
+import { emergencyCopy } from "@/content/patient-help";
 import { href, routes } from "@/lib/routes";
 import { viEnabled } from "@/lib/prefs";
 import { Wordmark } from "./Wordmark";
@@ -44,7 +45,7 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
           </button>
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-[18px] overflow-y-auto px-4 pb-4 pt-1">
+      <div className="flex flex-1 flex-col gap-[18px] overflow-y-auto px-4 pb-8 pt-1">
         <TextControls inverse className="flex-wrap text-[13px]" />
         <div className="flex flex-col">
           {navOrder.map((k) => {
@@ -122,13 +123,19 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
           For referring doctors ›
         </Link>
       </div>
-      <div className="flex shrink-0 gap-2 border-t border-white/12 bg-ink px-4 pb-4 pt-3">
-        <Link href={routes.book} onClick={onClose} className="flex-[1.4] rounded-chip bg-sun px-3 py-[15px] text-center text-[15px] font-semibold leading-tight text-sun-ink">
-          Book an appointment
-        </Link>
-        <a href={site.phoneHref} className="flex-1 rounded-chip border-[1.5px] border-white/35 py-[15px] text-center text-[15px] font-semibold">
-          Call
+      <div className="flex shrink-0 flex-col gap-2 border-t border-white/12 bg-ink px-4 pb-4 pt-2.5">
+        {/* "Call" dials the clinic; an emergency needs 911, always in reach. */}
+        <a href="tel:911" className="self-start text-[13px] font-semibold text-sun">
+          {emergencyCopy.closedLine} ›
         </a>
+        <div className="flex gap-2">
+          <Link href={routes.book} onClick={onClose} className="flex-[1.4] rounded-chip bg-sun px-3 py-[15px] text-center text-[15px] font-semibold leading-tight text-sun-ink">
+            Book an appointment
+          </Link>
+          <a href={site.phoneHref} className="flex-1 rounded-chip border-[1.5px] border-white/35 py-[15px] text-center text-[15px] font-semibold">
+            Call
+          </a>
+        </div>
       </div>
     </div>
   );

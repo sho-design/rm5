@@ -190,6 +190,12 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - Search result "Sexual health and STI testing": "Confidential, with your family doctor, OHIP-insured". **Confirm STI testing is offered to every patient, not only under Men's health.**
 - Reminders checkbox now starts ticked (transactional care messages, not CASL marketing). **Confirm with the privacy officer.**
 
+## Usability fixes, round 10
+
+- **Emergency note (please review first):** "Chest pain or pressure, trouble breathing, signs of a stroke or heavy bleeding: call 911 now, or go to the nearest emergency department.", "Call 911", "For health advice any time, day or night, call Health811 at 811.", "Online requests are read during clinic hours." Top bar while closed and phone menu: "Emergency? Call 911".
+- Visit type "Well-baby or newborn check". No-card note adds "Booking for a newborn whose card has not arrived yet? Choose Ontario health card and leave the digits blank." Second booking: "You already booked a visit. This books another one. To move or cancel the first, call us." Summary key "Where".
+- Aesthetics FAQ: "Is this the place for a changing mole or a rash?" / "No. A mole that changes, a spot that bleeds or will not heal, or a new rash is a family medicine visit, covered by OHIP. Book a health concern with Family Medicine."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

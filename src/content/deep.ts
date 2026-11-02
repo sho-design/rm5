@@ -787,8 +787,9 @@ export const infusionCompareRows: CompareRow[] = [
  * Closing band fallbacks per division (prototype `FOOT`). The division's own
  * `footCta` and `cta` win when set; these fill the gaps, then the generic pair.
  */
-export const deepFootDefaults: Partial<Record<DivisionKey, { footCta: string; cta: string }>> = {
-  infusion: { footCta: "Ready when you are.", cta: "Book a drip" },
+export const deepFootDefaults: Partial<Record<DivisionKey, { footCta: string; cta: string; ctaPage?: string }>> = {
+  // "Book a drip" books a drip, not "A consult".
+  infusion: { footCta: "Ready when you are.", cta: "Book a drip", ctaPage: bookFor("infusion", "drip") },
 };
 
 export const deepFootFallback = { footCta: "Ready when you are.", cta: "Book an appointment" } as const;

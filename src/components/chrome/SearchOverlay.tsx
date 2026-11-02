@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 import { baseSearchDocs } from "@/content/search-index";
-import { emergencyCopy } from "@/content/patient-help";
+import { EmergencyNote } from "@/components/pages/help/EmergencyNote";
 import { draft } from "@/content/review";
 import { popularSearches, site } from "@/content/site";
 import { href } from "@/lib/routes";
@@ -140,15 +140,7 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
       {query ? (
         <div className="flex flex-col gap-1.5">
           {emergency ? (
-            <aside aria-label={emergencyCopy.title} className="mb-1.5 flex flex-col gap-1.5 rounded-tile border border-border bg-[color:var(--div-pain)] px-5 py-4 text-ink">
-              <span className="text-[15px] font-semibold">{emergencyCopy.title}</span>
-              <p className="pretty text-[14px] leading-[1.5] text-ink-2">
-                {emergencyCopy.body}{" "}
-                <a href={emergencyCopy.link} target="_blank" rel="noopener" className="font-semibold text-link">
-                  {emergencyCopy.linkLabel} ›
-                </a>
-              </p>
-            </aside>
+            <EmergencyNote className="mb-1.5" />
           ) : null}
           <span className="text-[12px] font-semibold text-muted" aria-hidden>
             {copy.count(results.length)}
@@ -159,7 +151,7 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
                 const url = href(r.page);
                 const inner = (
                   <>
-                    {/* Read as: title, section, then summary (screen readers heard the whole summary before the section). */}
+                    {/* Screen readers get "title, section" from the link's label (the summary read as a paragraph of commas); sighted people see all three. */}
                     <span className="text-[15px] font-semibold md:col-start-2 md:row-start-1 md:font-medium">{r.label}</span>
                     <span className="order-first text-[12px] font-semibold text-link md:order-none md:col-start-1 md:row-start-1">
                       <span className="sr-only">, </span>
@@ -172,11 +164,11 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
                 return (
                   <li key={`${r.group ?? r.page}|${r.label}`}>
                     {isExternal(url) ? (
-                      <a href={url} target="_blank" rel="noopener" onClick={onClose} className={rowClass}>
+                      <a href={url} target="_blank" rel="noopener" onClick={onClose} className={rowClass} aria-label={`${r.label}, ${r.kind}`}>
                         {inner}
                       </a>
                     ) : (
-                      <Link href={url} onClick={onClose} className={rowClass}>
+                      <Link href={url} onClick={onClose} className={rowClass} aria-label={`${r.label}, ${r.kind}`}>
                         {inner}
                       </Link>
                     )}
