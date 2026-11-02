@@ -249,6 +249,10 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
   - "Another language" / "Which language?" (booking wording).
 - **What's new:** "Flu shots are available now".
 
+## Usability fixes, round 13
+
+- Referral box: "Send it online here, one patient and one service at a time, or fax your own referral letter with any relevant results." (was "One form for all services. Tick the service, then fax it", which read as a printable fax form that does not exist).
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

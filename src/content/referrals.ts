@@ -85,7 +85,7 @@ export const referralsPage = {
     title: "Download the referral form.",
     /** Shown until the clinic supplies its PDF form. */
     titleNoForm: draft("Send a referral."),
-    sub: draft("One form for all services. Tick the service, then fax it with any relevant results."),
+    sub: draft("Send it online here, one patient and one service at a time, or fax your own referral letter with any relevant results."),
     pdf: "Referral form (PDF)",
     // There is no file upload; the button opens the online referral form.
     upload: draft("Send a referral online"),
