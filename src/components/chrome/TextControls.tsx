@@ -10,7 +10,8 @@ import { cn } from "@/lib/cn";
 export function TextControls({ inverse, compact, className }: { inverse?: boolean; compact?: boolean; className?: string }) {
   const { step, up, down, reset } = useTextSize();
   const { theme, toggleContrast } = useTheme();
-  const btn = cn("rounded-[6px] border transition-colors", compact ? "px-1.5 py-0.5" : "px-2 py-1", inverse ? "border-white/35 hover:border-white" : "border-border hover:border-sky");
+  // Larger targets outside the 38px bar: a tester with a hand tremor had to aim twice.
+  const btn = cn("inline-flex items-center justify-center rounded-[6px] border transition-colors", compact ? "min-h-7 min-w-8 px-1.5" : "min-h-10 min-w-10 px-2.5", inverse ? "border-white/35 hover:border-white" : "border-border hover:border-sky");
   return (
     <div role="group" aria-label="Text size and contrast" className={cn("flex items-center gap-1.5", inverse ? "text-white" : "text-muted", className)}>
       <span className="mr-1">Text size</span>

@@ -344,8 +344,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
           </h2>
           {[
             [bookingCopy.summaryKeys.service, service.label],
-            [x.review.keys.visit, visit?.label ?? ""],
-            [bookingCopy.summaryKeys.clinic, bookingCopy.clinic],
+            // The reason from the page and a phone or video choice show while choosing, not only at review.
+            [x.review.keys.visit, visit ? (reason ? `${visit.label} (${reason})` : visit.label) : ""],
+            [bookingCopy.summaryKeys.clinic, visit?.modes && mode > 0 ? x.modes[mode] : bookingCopy.clinic],
             [bookingCopy.summaryKeys.time, slotLabel],
             [bookingCopy.summaryKeys.coverage, coverage],
           ].map(([k, v]) => (
@@ -525,7 +526,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 <Textarea id="book-notes" name="notes" defaultValue={str("notes")} rows={4} className="resize-y" />
               </FieldLabel>
               <div className="flex flex-col gap-2.5">
-                <ConsentRow name="reminders" defaultChecked={details.reminders === true}>
+                {/* Reminders are care messages, not marketing (CASL), so they start ticked: four testers missed an empty box. */}
+                <ConsentRow name="reminders" defaultChecked={details.reminders !== false}>
                   {x.reminders}
                 </ConsentRow>
                 <ConsentRow name="updates" defaultChecked={details.updates === true}>
@@ -581,7 +583,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
             </span>
             {day && day.open ? (
               <span aria-hidden className="text-[13px] font-semibold text-secondary">
-                {x.timesOn(`${day.today ? x.todayShort : day.dow} ${MON[day.date.getMonth()]} ${day.num}`)}
+                {x.timesOn(day.today ? `${x.todayShort.toLowerCase()}, ${MON[day.date.getMonth()]} ${day.num}` : `${day.dow} ${MON[day.date.getMonth()]} ${day.num}`)}
               </span>
             ) : null}
             {day && !day.open ? (
@@ -682,16 +684,22 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   <a href={`data:text/calendar;charset=utf-8,${encodeURIComponent(icsFor(day, slot, serviceLine))}`} download="restoration-medical.ics" className="inline-flex h-12 items-center rounded-chip bg-ink px-6 text-[14px] font-semibold text-white hover:opacity-90 active:scale-[.98]">
                     {bookingCopy.confirmed.calendar}
                   </a>
-                  <Button to="locations" variant="inverse">
-                    {bookingCopy.confirmed.directions}
-                  </Button>
+                  {/* No directions for a phone or video visit. */}
+                  {visit?.modes && mode > 0 ? null : (
+                    <Button to="locations" variant="inverse">
+                      {bookingCopy.confirmed.directions}
+                    </Button>
+                  )}
+                  {/* Was "Reschedule or cancel", which only started a new booking: people could not tell whether their visit still stood. */}
                   <button type="button" onClick={reset} className={ghost}>
-                    {bookingCopy.confirmed.reset}
+                    {x.bookAnother}
                   </button>
                 </>
               }
             >
               <p>{reminders ? (day?.today ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.todayReminder}` : bookingCopy.confirmed.body) : x.confirmed.noReminders}</p>
+              <p className="text-[14px]">{linkPhones(x.changeOrCancel)}</p>
+              {language === 2 ? <p className="text-[14px]">{x.interpreterBooked(languageName)}</p> : null}
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.confirmed.service}>
                   <span className="text-[16px] font-semibold">{service.label}</span>

@@ -182,6 +182,14 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - Standards lead: the count now follows the list ("Nine commitments").
 - About menu: "Fees" replaces the second "FAQ".
 
+## Usability fixes, round 9
+
+- Booking confirmation: "Book another visit" (was "Reschedule or cancel"), "To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours notice when you can.", "We arrange a phone interpreter for <language>, at no cost to you." Language hint: "Tell us the language and we arrange a phone interpreter at no cost to you." (both follow the approved interpreter FAQ). Times label: "Times for <day>".
+- Cancellation FAQ adds "To cancel, call 905-709-3222 during clinic hours." **Confirm that calling is the way to cancel, and whether voicemail counts.**
+- Visit type "Chronic care review".
+- Search result "Sexual health and STI testing": "Confidential, with your family doctor, OHIP-insured". **Confirm STI testing is offered to every patient, not only under Men's health.**
+- Reminders checkbox now starts ticked (transactional care messages, not CASL marketing). **Confirm with the privacy officer.**
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

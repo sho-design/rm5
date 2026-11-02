@@ -128,6 +128,8 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
     coverage: bookingCoverage[label("family")],
     visits: [
       { key: "concern", label: draft("A health concern"), bring: [familyBring] },
+      // Chronic care page "Book a review": the condition review, not a new concern.
+      { key: "chronic", label: draft("Chronic care review"), bring: [familyBring] },
       { key: "checkup", label: menuLabel("family", "Annual physical"), bring: [familyBring], fastingMaybe: true },
       // Phone and video visits are for existing patients (FAQ "Do you offer phone or video visits?").
       { key: "results", label: draft("Results or follow-up"), bring: [familyBring], existing: true, modes: true },

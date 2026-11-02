@@ -35,12 +35,12 @@ export default function ContactPage() {
       <div className="grid grid-cols-2 gap-2 px-4 pt-6 md:px-content md:pt-10 lg:grid-cols-4 lg:gap-3">
         <a href={site.phoneHref} className={`${tile} bg-inverse text-on-inverse hover:opacity-95`}>
           <span className="text-[12px] text-white/60">{contactCopy.tiles.call.k}</span>
-          <span className="font-display text-[20px] tracking-[-.02em] md:text-[26px]">{site.phone}</span>
+          <span className="whitespace-nowrap font-display text-[20px] tracking-[-.02em] md:text-[26px]">{site.phone}</span>
           <span className="text-[13px] text-white/70">{contactCopy.tiles.call.sub}</span>
         </a>
         <div className={`${tile} border border-border bg-card`}>
           <span className="text-[12px] text-muted">{contactCopy.tiles.fax.k}</span>
-          <span className="font-display text-[20px] tracking-[-.02em] md:text-[26px]">{site.fax}</span>
+          <span className="whitespace-nowrap font-display text-[20px] tracking-[-.02em] md:text-[26px]">{site.fax}</span>
           <span className="text-[13px] text-muted">{contactCopy.tiles.fax.sub}</span>
         </div>
         <a href={`mailto:${site.email}`} className={`${tile} border border-border bg-card hover:border-sky`}>
@@ -61,7 +61,7 @@ export default function ContactPage() {
 
       <div className="grid grid-cols-1 gap-4 px-4 pb-8 pt-6 md:px-content md:pt-10 md:pb-10 lg:grid-cols-2 lg:items-start lg:gap-8">
         <div className="flex flex-col gap-3.5">
-          <EmergencyNote />
+          <EmergencyNote id="emergency" className="scroll-mt-24" />
           <ContactForm />
         </div>
         <div className="flex flex-col gap-3.5">

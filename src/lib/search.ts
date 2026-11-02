@@ -186,7 +186,7 @@ export function searchDocs(docs: SearchDoc[], q: string, limit = 8): SearchHit[]
 }
 
 /** Phrases that should bring up the 911 and Health811 note above the results. */
-const EMERGENCY = ["emergency", "911", "urgent", "after hours", "afterhours", "chest pain", "cant breathe", "can not breathe", "cannot breathe", "trouble breathing", "short of breath", "suicide", "suicidal", "kill myself", "overdose", "stroke", "heart attack", "bleeding", "unconscious", "seizure", "er"];
+const EMERGENCY = ["emergency", "911", "urgent", "after hours", "afterhours", "chest pain", "cant breathe", "can not breathe", "cannot breathe", "trouble breathing", "short of breath", "suicide", "suicidal", "kill myself", "overdose", "stroke", "heart attack", "bleeding", "unconscious", "seizure", "er", "fever", "high fever", "tonight", "overnight"];
 
 export function isEmergencyQuery(q: string): boolean {
   const f = ` ${fold(q)} `;

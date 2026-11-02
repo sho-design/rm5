@@ -20,7 +20,12 @@ export function UtilityBar() {
   return (
     <div role="region" aria-label="Clinic status and display settings" className="bg-ink text-white">
     <div className="mx-auto flex h-[38px] w-full max-w-[1440px] items-center justify-between px-4 text-[12px] font-medium md:px-8">
-      <Link href={`${routes.locations}#thornhill`} className="flex min-w-0 items-center gap-2 hover:underline" aria-label={status.ready ? `${status.text}. See hours` : "Thornhill hours"}>
+      {/* Closed: the status leads to after-hours advice (911, Health811), not just the hours again. */}
+      <Link
+        href={status.ready && !status.open ? `${routes.contact}#emergency` : `${routes.locations}#thornhill`}
+        className="flex min-w-0 items-center gap-2 hover:underline"
+        aria-label={status.ready ? (status.open ? `${status.text}. See hours` : `${status.text}. Advice while we are closed`) : "Thornhill hours"}
+      >
         <span aria-hidden className="h-[7px] w-[7px] shrink-0 rounded-full" style={{ background: status.open ? "var(--status-open)" : "rgba(255,255,255,.45)" }} />
         <span className="truncate sm:hidden">{status.ready ? status.short : "Thornhill"}</span>
         <span className="hidden truncate sm:inline">{status.text}</span>

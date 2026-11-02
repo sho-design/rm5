@@ -11,19 +11,19 @@ import { draft } from "./review";
 export const searchAliases: Record<string, string> = {
   book: "appointment appointments visit schedule reserve booking waitlist wait list cancellation",
   register: "new patient accepting patients family doctor roster rostered register join sign up",
-  family: "doctor gp physician sick cough cold fever flu sore throat rash infection concern walk in walkin checkup physical anxiety depression mood mental health stress sleep",
-  vaccines: "vaccine vaccines vaccination immunization immunizations shot shots flu shot shingles shingrix rsv pneumonia tdap whooping cough",
-  pregnancy: "pregnant pregnancy prenatal antenatal obstetrics obstetrician midwife midwifery baby expecting first trimester",
+  family: "bac si kham benh doctor gp physician sick cough cold fever flu sore throat rash infection concern walk in walkin checkup physical anxiety depression mood mental health stress sleep",
+  vaccines: "tiem cum tiem phong vac xin chich ngua vaccine vaccines vaccination immunization immunizations shot shots flu shot shingles shingrix rsv pneumonia tdap whooping cough",
+  pregnancy: "pregnant pregnancy prenatal antenatal obstetrics obstetrician midwife midwifery baby expecting first trimester postpartum breastfeeding nursing mang thai",
   rx: "refill refills prescription prescriptions renew renewal medication medications meds pharmacy run out ran out",
   labs: "results result bloodwork lab tests test results",
   women: "pap smear pap test cervical screening hpv menopause perimenopause hot flashes contraception birth control iud period periods womens health day women's health day last sunday testing nurse nurses",
   men: "prostate psa testosterone checkup physical std stds sti stis std test sti test sexual health erectile",
-  chronic: "diabetes diabetic a1c sugar blood sugar glucose blood pressure hypertension cholesterol asthma thyroid copd kidney heart senior seniors elderly elder older adult older adults aging memory dementia caregiver caregivers complex care",
+  chronic: "diabetes diabetic a1c sugar blood sugar glucose blood pressure hypertension cholesterol asthma thyroid copd kidney heart senior seniors elderly elder older adult older adults aging memory dementia caregiver caregivers complex care parkinson parkinsons ms multiple sclerosis stroke falls fall",
   blood: "bloodwork blood test fasting ecg ekg lab draw requisition",
   numbers: "a1c ferritin cholesterol ldl blood pressure numbers results",
   year: "screening prevention checkup annual vaccine vaccines shingles shingrix rsv pneumonia immunization",
   kids: "child children kid kids baby babies infant daughter son teen teens teenager vaccine vaccines immunization immunizations school forms anxiety mental health mood confidential",
-  iron: "iron ferritin anemia anaemia anemic low iron tired fatigue exhausted monoferric iron infusion",
+  iron: "iron ferritin anemia anaemia anemic low iron tired fatigue exhausted monoferric iron infusion postpartum breastfeeding thieu mau sat",
   infusion: "iv drip drips vitamin vitamins",
   drips: "iv drip drips hydration myers vitamin",
   shots: "shot shots b12 vitamin injection injections",
@@ -40,7 +40,7 @@ export const searchAliases: Record<string, string> = {
   aesLaser: "laser hair removal ipl resurfacing",
   aesGift: "gift card gift cards gift certificate voucher present",
   rehab: "rehab rehabilitation injury injuries",
-  rehabPhysio: "physio physiotherapy physiotherapist physical therapy pt acl surgery post surgical sports injury shoulder knee hip ankle neck back sore stiff sprain strain back pain lower back low back price prices cost costs",
+  rehabPhysio: "dau lung vat ly tri lieu physio physiotherapy physiotherapist physical therapy pt acl surgery post surgical sports injury shoulder knee hip ankle neck back sore stiff sprain strain back pain lower back low back price prices cost costs",
   rehabChiro: "chiro chiropractor chiropractic adjustment back neck shoulder posture spine back pain lower back low back neck pain price prices cost costs",
   rehabMassage: "massage rmt shoulder neck back sore tight tension knots",
   rehabKines: "kinesiology kinesiologist exercise",
@@ -54,7 +54,7 @@ export const searchAliases: Record<string, string> = {
   contact: "phone call email fax contact message",
   careers: "job jobs career careers hiring work nurse rn apply employment",
   standards: "student students placement placements learner learners teaching nursing student supervision complaint complaints",
-  team: "doctor doctors physician physicians nurse nurses staff vietnamese tieng viet language languages speak",
+  team: "bac si noi tieng viet doctor doctors physician physicians nurse nurses staff vietnamese tieng viet language languages speak",
   referrals: "refer referral physician fax ocean ereferral",
   privacy: "privacy personal information phipa cookies data",
   accessibility: "accessibility accessible aoda",
@@ -71,6 +71,8 @@ export const faqAliases: Record<string, string> = {
   "Where do I park?": "parking car lot free",
   "How long is the wait?": "wait time waiting list how soon pain centre referral",
   "What if I do not have OHIP?": "uhip international student no health card without ohip visitor tourist",
+  "Do you have interpreters?": "mandarin chinese cantonese farsi persian arabic tamil punjabi hindi urdu korean tagalog spanish portuguese russian italian interpreter translator translation language languages",
+  "What is your late and cancellation policy?": "cancel cancelling cancellation reschedule change appointment move visit no show",
   "I have a health card from another province. Can I be seen?": "alberta british columbia bc quebec manitoba saskatchewan nova scotia new brunswick newfoundland pei out of province reciprocal billing student",
   "How do I renew a prescription?": "refill run out ran out running out medication pills prescription",
 };
@@ -84,6 +86,14 @@ export function aliasesFor(page: string): string | undefined {
 
 /** Entries for things people search that have no page of their own. New wording, see docs/content-review.md. */
 export const searchExtras: SearchDoc[] = [
+  // STI testing for anyone, not only under Men's health (a nonbinary tester found it only there).
+  {
+    kind: draft("Family Medicine"),
+    label: draft("Sexual health and STI testing"),
+    sub: draft("Confidential, with your family doctor, OHIP-insured"),
+    page: "/book?service=family&visit=concern&reason=Sexual%20health",
+    keys: "std stds sti stis std test sti test sexual health confidential testing hiv chlamydia gonorrhea syphilis herpes hpv partner",
+  },
   {
     kind: draft("Help"),
     label: draft("Health advice after hours"),

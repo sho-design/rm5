@@ -29,6 +29,7 @@ export default function ChronicCarePage() {
         title={title}
         lead={lead}
         cta="Book a review"
+        ctaTo={bookFor("family", "chronic")}
         cta2="Register as a new patient"
         cta2To="register"
         coverage="OHIP-insured. Bring every medication and supplement to the first visit."

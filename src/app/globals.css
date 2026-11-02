@@ -194,6 +194,12 @@
   :root[data-text] .rm-wordmark-text { display: none; }
 }
 
+/* Small phones: all seven days wrap onto two rows instead of the last ones sitting off screen. */
+@media (max-width: 400px) {
+  .rm-day-strip { flex-wrap: wrap; overflow-x: visible; }
+  .rm-day-strip > * { flex: 1 0 calc(25% - 4px); }
+}
+
 :root[data-text] .rm-day-strip { flex-wrap: wrap; overflow-x: visible; }
 :root[data-text] .rm-day-strip > * { min-width: 64px; }
 

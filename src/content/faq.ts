@@ -170,7 +170,8 @@ export const faqItems: FaqItem[] = [
   {
     category: "Visits",
     q: "What is your late and cancellation policy?",
-    a: "Give us 24 hours notice to cancel or move a visit so the time can go to someone else. Arriving more than 15 minutes late may mean rebooking. Missed uninsured visits may carry a fee.",
+    // How to cancel added: testers found the rule but not the way to do it.
+    a: draft("Give us 24 hours notice to cancel or move a visit so the time can go to someone else. To cancel, call 905-709-3222 during clinic hours. Arriving more than 15 minutes late may mean rebooking. Missed uninsured visits may carry a fee."),
   },
   {
     category: "Visits",

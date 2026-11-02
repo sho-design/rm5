@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (110 simulated patients)
+# Usability test, 28 October 2026 (130 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -423,6 +423,40 @@ Average ease 5.0, trust 5.2. Every booking and form was finished; 19 of 20 would
 - **Fasting:** a plain answer for a first physical, and a caution for people on diabetes medication; an A1c target for people with diabetes (Tam, Femi).
 - **Same-day:** the Family Medicine menu says "Same-day" while the card says "Same-week visit" (Bao).
 - **Content gaps:** teen page written to teens, older adults and caregivers, headache and migraine, gift cards for massage.
+
+## Round 9: 20 testers, after hours
+
+Run about 11pm on a Sunday (clinic closed until Monday 9am). Areas: a toddler's fever at night, a phone follow-up, Mandarin, an IUD, ADHD skimming, pregnancy with back pain, a Parkinson's caregiver at the largest text size, a Vietnamese grandmother searching in Vietnamese, a paralegal, injectables prices, a student with UHIP, a physician recruit, a wheelchair user, iron while breastfeeding, Farsi and sciatica, 200% zoom by keyboard, a nonbinary patient seeking STI testing and PrEP, cancelling at night, "tired and achy", and a reporter.
+
+Average ease 5.0, trust 5.1. Every booking went through. 18 of 20 would use the site again; Quinn said maybe, Hanh only with her grandson. Lowest: Hanh 2 of 7 ease on her own (no Vietnamese site, Vietnamese search found nothing), Quinn, Rosa and George 4. Failed tasks: Vietnamese search and a language switch, UHIP, IUD preparation, a lawyer contact, injectables prices, STI and PrEP outside Men's health, physio in pregnancy, breastfeeding and iron.
+
+### Round 9 findings fixed in code
+
+- "Reschedule or cancel" on the confirmation only started a new booking (Eli, Ben, Rosa). It is now "Book another visit", with "To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours notice when you can." The cancellation FAQ now says how to cancel.
+- While the clinic is closed, the status in the top bar links to the emergency and Health811 note on the contact page, not the hours again; searching "fever" shows the same note (Amara).
+- Search in Vietnamese: "bác sĩ nói tiếng Việt", "tiêm cúm" and "đau lưng" find the team, Vaccines and Physiotherapy (Hanh). "Mandarin", "Chinese", "Farsi" and other languages find the interpreter FAQ (Chen, Omid). "Parkinson", "MS", "stroke" and "falls" find Chronic care (George). "breastfeeding" and "postpartum" find Pregnancy care and Iron (Nora). "cancel" finds the cancellation FAQ (Rosa).
+- "Sexual health and STI testing" is its own search result, booking a confidential family medicine visit, so it is not reached only through Men's health (Quinn).
+- Chronic care "Book a review" books a new "Chronic care review" visit (George).
+- Another language: the hint and the confirmation now say "We arrange a phone interpreter for <language>, at no cost to you", matching the FAQ (Chen, Omid).
+- Reminders start ticked; they are care messages, not marketing (Eli, Hanh, Khoa, Rosa).
+- Phone and video visits: no Directions button; the booking summary shows "By phone" and the reason while choosing (Ben, Quinn).
+- Small phones: the seven days wrap onto two rows instead of hiding Saturday and Sunday (Khoa, Hanh, Rosa). "Times for today, Nov 2" above the times.
+- Text size and contrast buttons are at least 40 px in the phone menu and footer (George).
+- Contact page phone and fax numbers no longer break across lines (Rosa).
+
+### Round 9 findings for the clinic
+
+- **Vietnamese site:** still the largest gap for the core community (Hanh).
+- **Cancelling after hours:** whether voicemail or the contact form counts as notice; the late-cancellation fee amount (Rosa, Eli).
+- **Uninsured visits:** the fee, and whether UHIP is billed directly (Khoa).
+- **Injectables:** "from" prices per unit or syringe, and injector credentials (Julia).
+- **IUD:** who inserts, device cost, how to prepare and pain relief (Dina).
+- **Sexual health:** whether PrEP is offered; a sexual health section not split by men and women; the "Your year" planner's Female or Male toggle (Quinn).
+- **Pregnancy:** physio and massage in pregnancy; Tdap timing (Farah). Iron while breastfeeding, and whether a baby can come along (Nora).
+- **Accessibility specifics:** entrance, door widths, adjustable tables, washroom (Mo).
+- **Medico-legal:** reports and a contact for lawyers (Ivan).
+- **Physician recruitment:** billing model, hours, support (Dr. Park).
+- **Transparency (Tess):** home page paths that start with an OHIP visit and end in a paid service; the "Typical IV lounge" comparison; drip names and evidence labels; complaints and privacy sharing the general inbox.
 
 ## What worked
 

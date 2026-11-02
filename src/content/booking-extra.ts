@@ -79,7 +79,7 @@ export const bookingExtra = {
   closedShort: draft("Closed"),
   todayShort: draft("Today"),
   /** Shown above the times, so the times read as belonging to the chosen day (the day strip wraps at larger text). */
-  timesOn: (day: string) => draft(`Times on ${day}`),
+  timesOn: (day: string) => draft(`Times for ${day}`),
   /** Phone and video visits (results and follow-ups). */
   modeLabel: draft("How would you like the visit?"),
   modes: [draft("At the clinic"), draft("By phone"), draft("By video")] as const,
@@ -87,7 +87,12 @@ export const bookingExtra = {
   /** Third language choice, with a box to name it. */
   otherLanguage: draft("Another language"),
   otherLanguageField: draft("Which language?"),
-  otherLanguageHint: draft("Tell us and we will arrange an interpreter where we can."),
+  // Matches the approved FAQ "Do you have interpreters?" (phone interpreter at no cost).
+  otherLanguageHint: draft("Tell us the language and we arrange a phone interpreter at no cost to you."),
+  interpreterBooked: (language: string) => draft(`We arrange a phone interpreter for ${language}, at no cost to you.`),
+  /** Replaces "Reschedule or cancel", which only restarted the form. */
+  bookAnother: draft("Book another visit"),
+  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours notice when you can."),
   /** Shown when this tab already booked and the page was opened again with Back or Forward. */
   alreadyBooked: draft("You booked an appointment in this tab. Your confirmation is in your email. To change it, call us."),
   /** Read out (not shown) when the day changes, so screen reader users know the times changed. */
