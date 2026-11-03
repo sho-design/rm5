@@ -27,9 +27,7 @@ export function EmergencyNote({ className, id, headingLevel = 2, crisisFirst = f
         </>
       ) : null}
       <p className="pretty text-[15px] font-semibold leading-[1.5]">{c.urgent}</p>
-      <a href="tel:911" className={buttonClass("primary", "md", "self-start")}>
-        {c.call911}
-      </a>
+      {/* No tel:911 link anywhere on the site: the clinic does not want accidental emergency calls. 911 is plain text. */}
       {crisisFirst ? null : (
       <p className="pretty pt-1 text-[14px] leading-[1.5] text-ink-2">
         {c.crisis}{" "}

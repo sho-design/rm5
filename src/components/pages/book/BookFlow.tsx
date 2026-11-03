@@ -354,9 +354,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
         </Lead>
         {state === 1 ? (
           <p className="pretty rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[14px] font-semibold leading-[1.5] text-ink">
-            <a href="tel:911" className="underline underline-offset-2">
-              {bookingCopy.urgentLine}
-            </a>{" "}
+            {bookingCopy.urgentLine}{" "}
             <a href="#emergency" className="whitespace-nowrap font-semibold text-link">
               {bookingCopy.urgentMore} ›
             </a>

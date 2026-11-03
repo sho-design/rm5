@@ -15,7 +15,7 @@ export const bookingExtra = {
     notes: [
       draft("That is fine. We may be able to bill your home province directly. Bring your health card and we confirm coverage, and any fee, before the visit."),
       // A newborn's card arrives weeks after birth: a parent read "uninsured" and panicked.
-      draft("That is fine. Without a health card the visit is uninsured. We tell you the fee before the visit and give you a receipt. Booking for a newborn whose card has not arrived yet? Choose Ontario health card and leave the digits blank."),
+      draft("That is fine. Without a health card the visit is uninsured: a doctor visit is $100 plus HST ($113 total). We confirm the fee before the visit and give you a receipt. Booking for a newborn whose card has not arrived yet? Choose Ontario health card and leave the digits blank."),
     ],
     coverage: [draft("Card from another province, we may bill your province directly"), draft("Uninsured, fee told to you before the visit, receipt provided")],
     bring: draft("Your health card from another province."),

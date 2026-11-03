@@ -1,3 +1,4 @@
+import { draft } from "./review";
 import type { LinkTarget } from "./types";
 import { bookFor } from "@/lib/routes";
 
@@ -232,7 +233,7 @@ export function screeningDue(age: number, female: boolean): ScreeningRow[] {
   const rows: (ScreeningRow & { ok: boolean })[] = [
     { t: "Blood pressure", d: "Checked at every visit, at least every 2 years.", how: "Any visit", ok: age >= 18 },
     { t: "Cholesterol and diabetes screen", d: "Fasting bloodwork every 3 to 5 years, sooner with risk factors.", how: "Bloodwork on site", ok: age >= 40 },
-    { t: "Cervical screening (Pap)", d: "Every 3 years for anyone with a cervix, 25 to 69.", how: "Book with your doctor", ok: fem && age >= 25 && age <= 69 },
+    { t: "Cervical screening (Pap)", d: "Every 3 years for anyone with a cervix, 25 to 69.", how: draft("Book a Pap with our nurses"), ok: fem && age >= 25 && age <= 69 },
     { t: "Breast screening", d: "Mammogram every 2 years, 40 to 74. We give you the requisition.", how: "Requisition from us", ok: fem && age >= 40 && age <= 74 },
     { t: "Colon cancer screening", d: "FIT stool test every 2 years, 50 to 74.", how: "Kit from your doctor", ok: age >= 50 && age <= 74 },
     { t: "Shingles vaccine", d: "Publicly funded 65 to 70.", how: "In clinic", ok: age >= 65 && age <= 70 },

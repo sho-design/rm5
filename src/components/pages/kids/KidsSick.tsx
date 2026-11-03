@@ -1,5 +1,4 @@
 import { Section } from "@/components/ui";
-import { buttonClass } from "@/components/ui/Button";
 import { kidsCopy, kidsSick } from "@/content/kids";
 import { linkPhones } from "@/components/ui/Phones";
 import { SubHeader } from "./FamilySubBits";
@@ -26,7 +25,7 @@ export function KidsSick() {
             </ul>
             {/* Phone actions are call buttons, with no "›" (it read as a web link). "Call 911" was plain text. */}
             {s.actionHref ? (
-              <a href={s.actionHref} className={s.actionHref === "tel:911" ? buttonClass("primary", "md", "self-start") : "self-start text-[14px] font-semibold text-link"}>
+              <a href={s.actionHref} className="self-start text-[14px] font-semibold text-link">
                 {s.action}
               </a>
             ) : (

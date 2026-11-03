@@ -314,6 +314,13 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Renewals:** "Sent outside clinic hours? We count the two business days from the next day we are open." / "Asking for someone you care for? Use their name and date of birth, and add your name and relationship in the note." FAQ: "Existing patients can request a renewal by phone or with the online form. Allow two business days, counted from the next day we are open. …"
 - **Vietnamese FAQ** (until the switch launches): "Yes. Both physicians and several staff speak Vietnamese. Call 905-709-3222 and ask for Vietnamese, or choose Tiếng Việt as your language when you book or register."
 
+## Clinic answers, 3 November 2026
+
+- **No 911 phone links.** Every "Call 911" is now plain text, so nobody dials by accident. 988 and 811 stay as call buttons.
+- **Doctor visit without OHIP: $100 plus HST.** FAQ: "Yes, visitors and people without OHIP are welcome. A doctor visit without OHIP is $100 plus HST ($113 total), and you get a receipt for your travel or private insurance. We confirm the fee before you are seen." Booking note: "That is fine. Without a health card the visit is uninsured: a doctor visit is $100 plus HST ($113 total). …"
+- **Pap tests are done by nurses.** Routine screening card "Pap test: Done by our nurses"; women's health day "Both of our physicians are men. Pap tests are done by our nurses, on women's health day and on other days."; screening planner "Book a Pap with our nurses".
+- **Maple:** no opening month yet, so the site keeps "Coming soon".
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

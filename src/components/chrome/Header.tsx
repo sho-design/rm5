@@ -6,7 +6,6 @@ import { Fragment, useCallback, useEffect, useRef, useState, type FocusEvent, ty
 import type { NavKey } from "@/content/types";
 import { divisions, navOrder } from "@/content/divisions";
 import { site } from "@/content/site";
-import { emergencyCopy } from "@/content/patient-help";
 import { href, routes } from "@/lib/routes";
 import { cn } from "@/lib/cn";
 import { Wordmark } from "./Wordmark";
@@ -124,11 +123,6 @@ export function Header() {
           })}
         </nav>
         <div className="flex items-center gap-1.5 text-[14px] font-medium md:gap-2" onMouseEnter={closeMenu}>
-          {scrolled ? (
-            <a href="tel:911" aria-label={emergencyCopy.closedLine} className="flex h-[38px] items-center rounded-full border-[1.5px] border-[color:var(--status-error-fg)] whitespace-nowrap px-3 text-[14px] font-semibold text-[color:var(--status-error-fg)] sm:hidden">
-              {emergencyCopy.call911}
-            </a>
-          ) : null}
           <button
             ref={searchButton}
             type="button"

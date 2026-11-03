@@ -91,11 +91,11 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
 
   const links = () => Array.from(list.current?.querySelectorAll<HTMLAnchorElement>("a") ?? []);
   const onInputKey = (e: KeyboardEvent<HTMLInputElement>) => {
-    // Emergency words: Enter moves to the 911 (or 988) button instead of opening the first result, which
+    // Emergency words: Enter moves focus to the emergency note instead of opening the first result, which
     // sent a tester with arm pain and breathlessness to the Pain Centre page with no warning.
     if (e.key === "Enter" && emergency) {
       e.preventDefault();
-      emergencyBox.current?.querySelector<HTMLAnchorElement>("a")?.focus();
+      emergencyBox.current?.querySelector<HTMLElement>("aside")?.focus();
     } else if (e.key === "Enter" && results[0]) {
       e.preventDefault();
       open(results[0].page);
@@ -171,7 +171,7 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
         <div className="flex flex-col gap-1.5">
           {emergency ? (
             <div ref={emergencyBox}>
-              <EmergencyNote className="mb-1.5" crisisFirst={isCrisisQuery(query)} />
+              <EmergencyNote id="search-emergency" className="mb-1.5" crisisFirst={isCrisisQuery(query)} />
             </div>
           ) : null}
           <span className="text-[12px] font-semibold text-muted" aria-hidden>

@@ -11,7 +11,7 @@ export const womensHealthDay = {
   when: draft("Last Sunday of the month, 8am to 2pm"),
   body: draft("Testing and screening done by our nurses at Thornhill, 8am to 2pm. Book a spot, and tell us what you would like done so we can have everything ready."),
   /** Shown on the card: there is no female physician yet (clinic, October 2026). */
-  who: draft("Both of our physicians are men. On women’s health day, our nurses do the testing."),
+  who: draft("Both of our physicians are men. Pap tests are done by our nurses, on women’s health day and on other days."),
   next: draft("Next one"),
   cta: draft("Book a spot"),
   visitLabel: draft("Women’s health day"),

@@ -32,12 +32,13 @@ export function UtilityBar() {
         <span className="hidden truncate sm:inline">{status.text}</span>
       </Link>
       <div className="flex items-center gap-1">
-        {/* While closed, 911 sits in the bar on every page (a 3am chest pressure test found no 911 on the home page). */}
+        {/* While closed, 911 sits in the bar on every page (a 3am chest pressure test found no 911 on the home page).
+            Plain text, not a tel: link: the clinic does not want accidental emergency calls. */}
         {status.ready && !status.open ? (
-          <a href="tel:911" aria-label={emergencyCopy.closedLine} className="ml-3 shrink-0 whitespace-nowrap flex min-h-[30px] items-center rounded-chip border border-sun/70 px-2.5 font-semibold text-sun hover:text-sun-soft md:mr-3">
+          <span aria-label={emergencyCopy.closedLine} className="ml-3 shrink-0 whitespace-nowrap font-semibold text-sun md:mr-3">
             <span className="rm-911-long">{emergencyCopy.closedLine}</span>
             <span aria-hidden className="rm-911-short">{emergencyCopy.call911}</span>
-          </a>
+          </span>
         ) : null}
         <TextControls inverse compact className="mr-3 hidden text-[13px] md:flex" />
         <SocialIcons className="hidden sm:flex" />

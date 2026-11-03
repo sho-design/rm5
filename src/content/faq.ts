@@ -64,7 +64,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Coverage",
     q: "What if I do not have OHIP?",
-    a: draft("Yes, visitors and people without OHIP are welcome. The visit is uninsured: the front desk tells you the fee before you are seen, and you get a receipt for your travel or private insurance. Call 905-709-3222 to ask the fee before you book."),
+    a: draft("Yes, visitors and people without OHIP are welcome. A doctor visit without OHIP is $100 plus HST ($113 total), and you get a receipt for your travel or private insurance. We confirm the fee before you are seen."),
   },
   {
     category: "Coverage",
