@@ -398,7 +398,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
     benefitsTitle: draft("Why a physician-led clinic."),
     benefits: [
       { big: "MD", t: "A physician is always on site", d: "Every infusion happens in a medical clinic with a doctor in the building.", bg: "#E6F4EA" },
-      { big: "1", t: "Visit for bloodwork and drip", d: "Assessment, labs and infusion under one roof.", bg: "#FFF3C4" },
+      { big: "1", t: draft("Clinic for assessment, labs and infusion"), d: draft("No separate lab trip. Iron is an assessment visit, then 3 infusion visits."), bg: "#FFF3C4" },
       { big: "$0", t: "For the assessment", d: "Iron assessments and bloodwork are OHIP-insured. Only the infusion visit is a fee.", bg: "#EEF5FC" },
     ],
     pathTitle: "From booking to back on your feet.",
@@ -654,7 +654,7 @@ export const drips: Drip[] = [
   { name: "Hydration", desc: "Fluids and electrolytes", mins: 45, price: 150 },
   { name: "Vitamin blend", desc: "B vitamins, vitamin C, zinc", mins: 60, price: 200 },
   { name: "Recovery", desc: "Amino acids and electrolytes", mins: 60, price: 200 },
-  { name: "Anti-nausea add-on", desc: "Added to any drip", mins: 0, price: 40 },
+  { name: "Anti-nausea add-on", desc: draft("Added to any drip. Pregnant or being sick? See a doctor first."), mins: 0, price: 40 },
   { name: "Vitamin C add-on", desc: "Added to any drip", mins: 0, price: 40 },
   // Iron is no longer in this picker: a prescription iron with a price next to wellness drips read as
   // advertising a drug (compliance review, round 17). The builder links to the iron page instead.

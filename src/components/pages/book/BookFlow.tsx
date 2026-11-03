@@ -92,6 +92,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [visitKey, setVisitKey] = useState<string>(services[0]?.visits[0]?.key ?? "");
   const [forOther, setForOther] = useState(0);
   const [noteUrgent, setNoteUrgent] = useState(false);
+  /** A note that reads like an emergency pauses the booking once: the warning alone did not stop a tester
+   *  with heartburn-like chest tightness and sweating from booking a visit for later today (round 20). */
+  const [urgentHold, setUrgentHold] = useState(false);
+  const urgentOk = useRef(false);
   const [who, setWho] = useState(0);
   const autoWho = useRef<number | null>(null);
   /** -1 until chosen: no default, so a rushed self-payer cannot send "insurance" by accident. */
@@ -203,8 +207,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const coverage = card > 0 && /OHIP|health card/i.test(baseCoverage) ? (quebec ? x.quebecCoverage : x.card.coverage[card - 1]) : baseCoverage;
   const slotLabel = day && slot != null && day.open ? `${DOW[day.date.getDay()]} ${MON[day.date.getMonth()]} ${day.date.getDate()}, ${fmtTime(slot)}` : bookingConfirmLabel.slotNotChosen;
   const serviceLine = [visit ? `${service.label}, ${visit.label}` : service.label, reason ? `(${reason})` : ""].filter(Boolean).join(" ");
-  /** Without the reason: what stays on screen or in this tab after booking (a teen on a family iPad, round 19). */
-  const serviceShort = visit ? `${service.label}, ${visit.label}` : service.label;
+  /** Sensitive reasons stay off what remains on screen or in this tab after booking (a teen on a family iPad,
+   *  round 19); other reasons, such as the drip name, stay so the confirmation says what was booked (round 20). */
+  const sensitive = /sexual|sti\b|std|contracep|birth control|pregnan|menopaus|hormone|testosterone|libido|erect|mood|mental|anxiety|depress/i.test(reason ?? "");
+  const shownReason = reason && !sensitive ? reason : "";
+  const serviceShort = [visit ? `${service.label}, ${visit.label}` : service.label, shownReason ? `(${shownReason})` : ""].filter(Boolean).join(" ");
   const patientName = forOther ? `${str("patientFirst")} ${str("patientLast")}`.trim() : "";
   const contactName = `${str("first")} ${str("last")}`.trim();
   const reminders = details.reminders === true;
@@ -287,6 +294,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     if (Object.keys(errs).length) {
       if (needPayment && Object.keys(errs).length === 1) form.querySelector<HTMLElement>('#book-payment [role="radio"]')?.focus();
       else focusFirstError(form, errs);
+      return;
+    }
+    if (noteUrgent && !urgentOk.current) {
+      setUrgentHold(true);
+      requestAnimationFrame(() => document.getElementById("book-notes-urgent")?.focus());
       return;
     }
     setDetails(readForm(form));
@@ -604,12 +616,31 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               ) : null}
 
               <FieldLabel label={bookingCopy.fields.notes} htmlFor="book-notes">
-                <Textarea id="book-notes" name="notes" defaultValue={str("notes")} rows={4} className="resize-y" aria-describedby={noteUrgent ? "book-notes-urgent" : undefined} onInput={(e) => setNoteUrgent(isEmergencyQuery(e.currentTarget.value))} />
+                <Textarea id="book-notes" name="notes" defaultValue={str("notes")} rows={4} className="resize-y" aria-describedby={noteUrgent ? "book-notes-urgent" : undefined} onInput={(e) => {
+                    setNoteUrgent(isEmergencyQuery(e.currentTarget.value));
+                    urgentOk.current = false;
+                    setUrgentHold(false);
+                  }} />
               </FieldLabel>
               {noteUrgent ? (
-                <p id="book-notes-urgent" role="status" className="pretty rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[14px] font-semibold leading-[1.5] text-ink">
-                  {linkPhones(bookingCopy.noteUrgent)}
-                </p>
+                <div id="book-notes-urgent" role="status" tabIndex={-1} className="pretty flex flex-col gap-2.5 rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[14px] font-semibold leading-[1.5] text-ink outline-none">
+                  <p>{linkPhones(bookingCopy.noteUrgent)}</p>
+                  {urgentHold ? (
+                    <>
+                      <p className="text-[16px]">{bookingCopy.urgentHold}</p>
+                      <button
+                        type="button"
+                        className="self-start border-b-[1.5px] border-ink text-left font-semibold"
+                        onClick={(e) => {
+                          urgentOk.current = true;
+                          e.currentTarget.closest("form")?.requestSubmit();
+                        }}
+                      >
+                        {bookingCopy.urgentContinue}
+                      </button>
+                    </>
+                  ) : null}
+                </div>
               ) : null}
               <div className="flex flex-col gap-2.5">
                 {/* Both physicians are men; the FAQ offers a female nurse for examinations, so it can be asked for here
@@ -623,6 +654,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 <ConsentRow name="reminders" defaultChecked={details.reminders !== false}>
                   {x.reminders}
                 </ConsentRow>
+                {/* A 15-year-old booking birth control worried what a reminder on a shared phone would say (round 20). */}
+                {sensitive ? <p className="text-[12px] leading-[1.5] text-muted">{x.remindersPrivate}</p> : null}
                 <ConsentRow name="updates" defaultChecked={details.updates === true}>
                   {x.updates}
                   <SmartLink to="privacy" className="font-semibold text-link">
@@ -800,13 +833,19 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               {visit?.key === "pap" ? <p className="text-[14px]">{x.papBooked}</p> : null}
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.confirmed.service}>
-                  <span className="text-[16px] font-semibold">{service.label}</span>
-                  {/* The reason stays on the review only: the confirmation stays on screen, so it shows the visit type
-                      (a 16-year-old on a family iPad, round 19). */}
-                  {visit ? <span className="text-[13px] text-muted">{visit.label}</span> : null}
+                  <span className="text-[16px] font-semibold">
+                    {service.label}
+                    <span className="sr-only">,</span>
+                  </span>
+                  {/* Sensitive reasons stay on the review only: the confirmation stays on screen (a 16-year-old on a
+                      family iPad, round 19). Drip names and other plain reasons show (round 20). */}
+                  {visit ? <span className="text-[13px] text-muted">{shownReason ? `${visit.label} (${shownReason})` : visit.label}</span> : null}
                 </OutcomeTile>
                 <OutcomeTile k={bookingCopy.confirmed.when}>
-                  <span className="text-[16px] font-semibold">{slotLabel}</span>
+                  <span className="text-[16px] font-semibold">
+                    {slotLabel}
+                    <span className="sr-only">,</span>
+                  </span>
                   {forOther && patientName ? <span className="text-[13px] text-muted">{`${x.confirmed.for} ${patientName}`}</span> : null}
                   <span className="text-[13px] text-muted">{`${registerCopy.fields.language}: ${languageName}`}</span>
                 </OutcomeTile>
@@ -815,7 +854,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                     <span className="text-[16px] font-semibold">{x.modeWhere[mode]}</span>
                   ) : (
                     <>
-                      <span className="text-[16px] font-semibold">{bookingCopy.confirmed.whereValue}</span>
+                      <span className="text-[16px] font-semibold">
+                        {bookingCopy.confirmed.whereValue}
+                        <span className="sr-only">,</span>
+                      </span>
                       <span className="text-[13px] text-muted">{bookingCopy.confirmed.whereSub}</span>
                     </>
                   )}

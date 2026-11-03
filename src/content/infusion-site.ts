@@ -159,7 +159,7 @@ export const whyPhysicianLed = [
 ];
 
 export const honestClaims = [
-  { p: "“Detoxes and melts fat.”", s: "Metabolic support happens inside a physician-guided program, with real screening and follow-up. No miracles, and we say so." },
+  { p: draft("Claims that a drip detoxes or burns fat."), s: "Metabolic support happens inside a physician-guided program, with real screening and follow-up. No miracles, and we say so." },
   { p: "“Boosts your defences.”", s: draft("We tell you what is in the bag and the dose at your consult. We do not make treatment or prevention claims that the evidence does not support.") },
 
   { p: "“Prevent illness before it starts.”", s: "We cannot promise you will not get sick. Preventing disease is not a claim we make, and we will not make it." },
@@ -247,6 +247,8 @@ export const infusionCopy = {
     /** Tired people reached drip pages with no pointer to a doctor first (round 16, CPSO: no promoting services a patient may not need). */
     tired: draft("Often tired? Start with a family doctor visit and bloodwork. OHIP-insured."),
     tiredCta: draft("Book a doctor visit"),
+    unwell: draft("Pregnant, being sick or cannot keep fluids down? A drip is not the place to start. Call us the same day at 905-709-3222, or Health811 at 811 when we are closed."),
+    pregnancyCta: draft("Pregnancy care"),
     /** Returning drip clients booked "A consult" from a drip page and lost which drip (round 19). */
     bookDrip: draft("Book this drip"),
     whatItIs: "What it is",

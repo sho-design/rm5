@@ -10,7 +10,7 @@ import { IronPrices, IronSteps, IronVisit, IronWho } from "@/components/pages/ir
 
 const title = "Tired of being tired?";
 const lead =
-  "Low iron is one of the most common reasons people feel drained, foggy and cold. When tablets have not worked, an iron infusion course restores your iron over three visits, with a physician reviewing your bloodwork first.";
+  "Low iron is one of the most common reasons people feel drained, foggy and cold. When tablets have not worked, your doctor may suggest an iron infusion course over three visits, with a physician reviewing your bloodwork first.";
 
 const baseMetadata: Metadata = { title: "Iron therapy", description: `${title} ${lead}` };
 

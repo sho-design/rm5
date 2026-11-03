@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (350 simulated patients)
+# Usability test, 28 October 2026 (370 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -901,6 +901,36 @@ No tracker on the pages: requests from two testers to facebook.com came from the
 - **WSIB (Luis):** what is owed if a claim is denied; a physio or chiro choice for WSIB visits.
 - **Newcomers (Amara):** can people register before OHIP starts.
 - **Booking families (Kayla, Ông Tuấn):** a way to book a second person without retyping.
+
+## Round 20: 20 testers, Tuesday 3 November about 12:30pm (clinic closed until 3pm)
+
+Average ease 5.3, trust 5.2 (round 19 was 5.3 and 5.4). Every booking and form went through. Retests that now work: the seizure sign and search (Duc), old drip names in search (Hannah), preferred name and pronouns from registration through booking, with a discreet calendar file (Kai), caregiver renewals (Rita), Enter on an emergency search moves focus to the emergency box (June), the reason hidden on a teen's confirmation, web address and calendar file (Leah), the no-OHIP fee in the FAQ and booking (Farid), the Maple list and family registration (Gabe), iron prices that agree across pages (Omar). Lowest: Mary (stroke) ease 3; Bà Mai (74, limited English) ease 4; trust 4 from Ben, Sam, Linh, Tina and Dr. Cohen.
+
+**911:** Mary, Duc and Tony tapped "Dial 911" and nothing happened. Tony (heartburn-like chest tightness with sweating) read both warnings and still booked a visit for later that day. The decision on tappable 911 is still open.
+
+### Round 20 findings fixed in code
+
+- **Urgent booking notes:** a note that reads like an emergency now pauses the booking once. The first Continue moves focus to the warning and asks "Before you book: is this happening now? If so, please dial 911 instead of booking." A second link, "It is not happening now. Continue my booking ›", lets the booking go on (Tony).
+- **Pregnancy and drips:** every drip page says "Pregnant, being sick or cannot keep fluids down? A drip is not the place to start. Call us the same day at 905-709-3222, or Health811 at 811 when we are closed." and links to Pregnancy care. The anti-nausea add-on says "Pregnant or being sick? See a doctor first." (Linh)
+- **Confirmation:** shows the drip name again ("An IV drip (Biotin drip)"). Reasons about sexual health, birth control, pregnancy, menopause, hormones or mood stay hidden (Hannah, Ben). For those reasons the booking says "Reminders give the day and time only, never the reason for your visit." (Leah). Screen readers hear a pause between the service, time and place lines (June).
+- **Compliance (Anne):** drip pages no longer show "Formerly …" (the old names were claims); old names still work in search. The metabolic claims list says "Claims that a drip detoxes or burns fat." instead of quoting it. The iron page description says "your doctor may suggest an iron infusion course over three visits" instead of "restores your iron".
+- **Infusion hub:** "1 Visit for bloodwork and drip" is now "1 Clinic for assessment, labs and infusion. No separate lab trip. Iron is an assessment visit, then 3 infusion visits." (Omar)
+- **Pain Centre first visit:** opens with "Already referred? There is no need to book. We call you, usually within two to three weeks of the referral arriving." (Walter)
+- **Drip pages:** "Often tired?" shows only on Foundation, Myers', vitamin, Signature and NAD+ drips (Hannah, Ben).
+- **Smaller:** "Your health card, and the date of your last Pap test if you know it." (June); renewal error "Add their date of birth." (Rita); search finds Family Medicine for "heartburn" and "indigestion" (Tony); "Iron infusion" in sentence case on the referral page (Dr. Cohen); the footer network link wraps instead of overflowing (Gabe).
+- **Not a site fault:** Paul's visit seemed to change to "First visit as a new patient". His script clicked that visit option, because its name also contains "New patient". Choosing New patient does not change the visit.
+
+### Round 20 findings for the clinic
+
+- **911 links (decision):** see above.
+- **Iron (Dr. Cohen):** a fixed 3 x 500 mg Monoferric course, given that Monoferric can often be 1,000 mg in one infusion; iron sucrose on the referral card; a first-trimester caveat; a cause work-up for men and postmenopausal women, and whether the family doctor gets a copy; hypophosphatemia and skin staining; storing iron the patient brings; "Can I drive home?". Also which days iron infusions run, since the page says Tue, Sat and Sun but assessments book on other days (Omar).
+- **Drip prices (Ben):** the Fees page lists "IV drip: Recovery, 60 min, $200" and "IV drip: Hydration, 45 min, $150", which do not match the new drip names or the 45-minute pages. Give the price for each new drip name.
+- **Compliance (Anne):** memberships with "Priority booking", "complimentary consult" on every aesthetics page, outcome slogans ("Leave feeling restored", "gets you moving", "back to the sport", "fillers restore volume"), comparisons ("not a rushed one", "not a different face each visit", "referrals sat in fax trays"), and the iron safety line "Serious reactions are rare" beside a named drug and price.
+- **Aesthetics (Tina):** who injects (the team page lists no aesthetics physician, but the consult says "Physician, 20 min"), filler prices, aftercare, and what to do after hours if something goes wrong.
+- **WSIB (Sam):** what is owed if a claim is denied; choosing physio or chiro for a WSIB visit; "You pay at the desk" above "$0".
+- **Newcomers (Farid, Bà Mai):** how to pay (card, debit, cash), a phone booking route for people with no email, and Vietnamese pages.
+- **Reminders (Leah):** confirm that reminders never say the reason for any visit, not only for teens.
+- **Maple (Gabe):** how Maple registrants book at Thornhill in the meantime.
 
 ## What worked
 

@@ -103,6 +103,7 @@ export const bookingExtra = {
   cardDigitsHint: draft("Digits only. Leave out the two letters at the end."),
   /** Booking for someone else: "your first visit" read as the helper's own. */
   firstVisitTheirs: draft("Arrive 10 minutes early for their first visit."),
+  remindersPrivate: draft("Reminders give the day and time only, never the reason for your visit."),
   femaleNurse: draft("I would like a nurse in the room for any examination. Our nurses are women. Optional."),
   femaleNurseYes: draft("A nurse in the room"),
   papBooked: draft("Your Pap test is with one of our nurses, who are women."),

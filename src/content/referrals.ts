@@ -32,7 +32,7 @@ export const refServices: RefService[] = [
     coverage: "OHIP-insured consult and procedures. WSIB and MVA accepted.",
   },
   {
-    title: "Iron Infusion",
+    title: "Iron infusion",
     lead: "Physician reviewed",
     tint: "#E6F4EA",
     p: "IV iron for iron deficiency when oral iron is not tolerated, not absorbed or too slow.",

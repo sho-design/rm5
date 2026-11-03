@@ -90,7 +90,7 @@ export const referralExtraCopy = {
   phone: draft("Your phone (optional)"),
   urgent: draft("Urgent"),
   urgentSub: draft("We review urgent referrals first. Please also call the referral line."),
-  dobError: draft("Add the patient's date of birth."),
+  dobError: draft("Add their date of birth."),
   serviceError: draft("Choose a service."),
 };
 

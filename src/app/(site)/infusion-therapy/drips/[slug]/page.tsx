@@ -9,6 +9,8 @@ import { pageMetadata } from "@/lib/seo";
 import { breadcrumbs } from "@/lib/schema";
 import { JsonLd } from "@/components/JsonLd";
 
+const tiredDrips = new Set(["foundation", "myers", "vitamin-c-zinc", "signature", "nad"]);
+
 type Params = { params: Promise<{ slug: string }> };
 const c = infusionCopy.drip;
 
@@ -55,7 +57,8 @@ export default async function DripPage({ params }: Params) {
           {d.t}
         </Display>
         <p className="pretty max-w-[640px] text-[17px] leading-[1.5] text-secondary lg:text-[19px]">{d.d}</p>
-        {d.was ? <p className="text-[14px] text-muted">{c.was} {d.was}</p> : null}
+        {/* "Formerly NAD+ Longevity" put back the claim the rename took out (compliance reviewer, round 20). Old
+            names stay in search only, where they lead here. */}
         <div className="flex flex-wrap gap-2">
           {facts.map((f) => (
             <span key={f} className="rounded-chip bg-white/80 px-3.5 py-2 text-[13px] font-semibold">
@@ -63,12 +66,21 @@ export default async function DripPage({ params }: Params) {
             </span>
           ))}
         </div>
-        <p className="pretty max-w-[640px] text-[15px] leading-[1.5] text-ink">
+        {/* A pregnant tester who could not keep fluids down found a hydration drip and an anti-nausea add-on with
+            nothing telling her to see a doctor first (round 20). */}
+        <p className="pretty max-w-[640px] rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[15px] font-semibold leading-[1.5] text-ink">
+          {c.unwell}{" "}
+          <SmartLink to="pregnancy" className="font-semibold text-link underline-offset-2 hover:underline">
+            {c.pregnancyCta} ›
+          </SmartLink>
+        </p>
+        {/* The tiredness line read oddly on hydration and skin drips (round 20). */}
+        {tiredDrips.has(d.slug) ? <p className="pretty max-w-[640px] text-[15px] leading-[1.5] text-ink">
           {c.tired}{" "}
           <SmartLink to={`${bookFor("family", "concern")}&reason=${encodeURIComponent("Low energy")}`} className="font-semibold text-link underline-offset-2 hover:underline">
             {c.tiredCta} ›
           </SmartLink>
-        </p>
+        </p> : null}
         <div className="flex flex-wrap gap-2.5">
           <Button to={`${bookFor("infusion", "drip")}&reason=${encodeURIComponent(d.t)}`}>{c.bookDrip}</Button>
           <Button to="infusionHow" variant="outline">

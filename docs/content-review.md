@@ -378,6 +378,15 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Compliance:** Standards "We check each product's Health Canada status before we use it, buy from licensed Canadian distributors, …"; rehab "Billed to your insurer"; home slide "physician-led and OHIP-covered with a referral."
 - **Forms:** "health card name:" label on the registration confirmation; registration lead "Two minutes now. We confirm within 2 business days. If you have not booked a first visit online, we book it with you: a longer appointment so your doctor can get to know you."; Maple hours "Taking names now".
 
+## Usability fixes, round 20
+
+- **Booking:** urgent note pause "Before you book: is this happening now? If so, please dial 911 instead of booking." / "It is not happening now. Continue my booking ›"; reminders "Reminders give the day and time only, never the reason for your visit." (shown for sensitive reasons; confirm this holds for every reminder); Pap bring "Your health card, and the date of your last Pap test if you know it."
+- **Drips:** every drip page "Pregnant, being sick or cannot keep fluids down? A drip is not the place to start. Call us the same day at 905-709-3222, or Health811 at 811 when we are closed." with "Pregnancy care ›"; anti-nausea add-on "Added to any drip. Pregnant or being sick? See a doctor first."; the "Formerly" line is removed; "Often tired?" on energy drips only.
+- **Infusion hub:** "Clinic for assessment, labs and infusion" / "No separate lab trip. Iron is an assessment visit, then 3 infusion visits."
+- **Compliance:** metabolic "Claims that a drip detoxes or burns fat."; iron description "your doctor may suggest an iron infusion course over three visits".
+- **Pain Centre first visit lead:** "Already referred? There is no need to book. We call you, usually within two to three weeks of the referral arriving."
+- **Forms:** renewal "Add their date of birth."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

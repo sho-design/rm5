@@ -92,7 +92,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
                 <span className="text-[15px] font-semibold">{n.t}</span>
                 <span className="text-[12px] text-muted">{n.d}</span>
               </span>
-              <span className="whitespace-nowrap text-[12px] font-semibold text-link">{n.tag}</span>
+              <span className="break-all text-[12px] font-semibold text-link">{n.tag}</span>
             </a>
           ))}
         </div>
