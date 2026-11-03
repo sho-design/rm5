@@ -28,6 +28,7 @@ export const emergencyCopy = {
     draft("A fever in a baby under 3 months"),
   ],
   orEd: draft("Or go to the nearest emergency department."),
+  otherHelp: draft("Other help lines"),
   /** Mental health crisis: a tester with low mood found only physical emergencies listed. 988 is Canada's suicide crisis line. */
   crisis: draft("Thoughts of suicide or self-harm?"),
   call988: draft("Call or text 988, any time, day or night."),
