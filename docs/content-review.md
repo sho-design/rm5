@@ -282,6 +282,27 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Search with no results:** "Nothing matched. Try a service, a symptom or a clinician name, or call 905-709-3222 during clinic hours. For health advice any time, call Health811 at 811." It used to send people to the clinic phone only, even at night.
 - **Emergency words:** sweaty, sweating, cold sweat, clammy, indigestion, tight chest, jaw pain, arm pain.
 
+- **Crisis note (please review first):**
+  - "You do not have to wait for us. Talk to someone now: call or text 988, any time, day or night. It is free and confidential."
+  - Button: "Call or text 988".
+  - "If you might act on thoughts of suicide or are in danger now, call 911."
+- **Booking:**
+  - "I would like a female nurse present for any examination. Optional." / "A female nurse present" / "You asked for a female nurse to be present for any examination. Both of our physicians are men."
+  - "Arrive 10 minutes early for their first visit."
+  - "Your visit is tomorrow, so this confirmation is your reminder."
+  - "… For a morning visit, that means calling on an earlier clinic day."
+  - "Book this drip" / "Book an iron assessment".
+  - "Claim details".
+  - First visit as a new patient: "Registering too? This visit counts as your first visit, so there is nothing else to book."
+- **Pain Centre referral hint (please review):** "Your doctor sends the referral and we call you to book, usually within two to three weeks of it arriving. Already sent? You can ask for a time here; we confirm it once the referral is with us. Not sent yet? There is no need to book."
+- **Registration:**
+  - Done: "We review it within 2 business days. Already booked a first visit online? Keep it, that is your first visit. If not, we call or email to book it with you. If you told us about a previous clinic, we request your records now."
+  - Maple done: "We review it within 2 business days and confirm by phone or email. We contact you to book your first visit once Maple opens. Until then you can be seen at Thornhill. …"
+  - Caregiver: "Their partner" / "Their children" / "Their parents", "Also registering from the patient's household", "The patient's preferred language".
+  - Notes: "Anything we should know? (optional)" / "For example, if you will come to visits with them, or need an interpreter. Please do not include test results."
+- **Car accidents and WSIB:** "… No claim yet is fine, we can open it with you." / "… No claim yet is fine."
+- **Iron:** "Iron infusion, $250 with your own iron or $550 with ours".
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

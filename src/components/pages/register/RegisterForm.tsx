@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { Button, Display, Eyebrow, Input, Lead, SmartLink, StateCard } from "@/components/ui";
+import { Button, Display, Eyebrow, Input, Lead, SmartLink, StateCard, Textarea } from "@/components/ui";
 import { formFailedLine, registerCopy, registerFamily, registerLanguages, registerSteps } from "@/content/booking";
 import { registerExtraCopy as x } from "@/content/forms-copy";
 import { bookingExtra as bx } from "@/content/booking-extra";
@@ -149,6 +149,7 @@ export function RegisterForm() {
       submittedBy: caregiver ? { name: s("helperName"), relationship: s("helperRelation"), phone: s("helperPhone") } : null,
       family,
       previousClinic: s("previous"),
+      notes: s("notes"),
       consent: v.consent === true,
       reminders: v.reminders === true,
       updates: v.updates === true,
@@ -269,7 +270,7 @@ export function RegisterForm() {
               {clinic === 1 ? <span className="text-[12px] leading-[1.5] text-muted">{x.clinic.mapleNote}</span> : null}
             </div>
             <div className="flex flex-col gap-1.5">
-              <span className="text-[13px] font-semibold text-secondary">{registerCopy.fields.language}</span>
+              <span className="text-[13px] font-semibold text-secondary">{caregiver ? x.languageCaregiver : registerCopy.fields.language}</span>
               {/* "Another language" as on booking: a Mandarin speaker could only pick English or Tiếng Việt here. */}
               <Choice options={[...registerLanguages, bx.otherLanguage]} value={lang} onChange={setLang} ariaLabel={registerCopy.fields.language} />
               {lang === 2 ? (
@@ -291,7 +292,8 @@ export function RegisterForm() {
                   const on = people[r].length > 0;
                   return (
                     <PillChip key={f} role="checkbox" on={on} size="sm" onClick={() => toggle(r)}>
-                      {f}
+                      {/* Filling it in for someone: "My parents" read as the helper's own parents. */}
+                      {caregiver ? x.family.theirs[i] : f}
                     </PillChip>
                   );
                 })}
@@ -313,6 +315,10 @@ export function RegisterForm() {
             </div>
             <FieldLabel label={registerCopy.fields.previous} htmlFor="reg-previous" hint={registerCopy.fields.previousHint}>
               <Input id="reg-previous" name="previous" />
+            </FieldLabel>
+            {/* A caregiver had nowhere to say her father has memory problems and she will come with him. */}
+            <FieldLabel label={x.notesLabel} htmlFor="reg-notes" hint={x.notesHint}>
+              <Textarea id="reg-notes" name="notes" rows={3} />
             </FieldLabel>
             <ConsentRow id="reg-consent" name="consent" required error={errors["reg-consent"]} {...errorProps(errors, "reg-consent")}>
               {caregiver ? x.helper.consent : registerCopy.consent}

@@ -71,6 +71,8 @@ export interface BookingDay {
   num: number;
   open: boolean;
   today: boolean;
+  /** The next calendar day: "a reminder the day before" means today, which reads oddly. */
+  tomorrow: boolean;
   slots: number[];
 }
 
@@ -92,7 +94,8 @@ export function womensDayBookingDays(now = torontoNow(), count = 3): BookingDay[
       const today = ymd(d) === ymd(now);
       let slots = h ? Array.from({ length: (h[1] - h[0]) * 2 }, (_, j) => h[0] + j / 2).filter((_, j) => (j * 5 + i * 3) % 6 !== 2) : [];
       if (today) slots = slots.filter((t) => t >= nowHours + 1);
-      return { date: d, iso: ymd(d), dow: DOW[d.getDay()], num: d.getDate(), open: !!h, today, slots };
+      const tomorrow = ymd(d) === ymd(new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1));
+      return { date: d, iso: ymd(d), dow: DOW[d.getDay()], num: d.getDate(), open: !!h, today, tomorrow, slots };
     })
     .filter((d) => d.slots.length)
     .slice(0, count);
@@ -113,7 +116,7 @@ export function bookingDays(now = torontoNow(), count = 7): BookingDay[] {
       slots = slots.filter((t) => t >= nowHours + 1);
       if (!slots.length) continue;
     }
-    out.push({ date: d, iso: ymd(d), dow: DOW[d.getDay()], num: d.getDate(), open: !!h, today: i === 0, slots });
+    out.push({ date: d, iso: ymd(d), dow: DOW[d.getDay()], num: d.getDate(), open: !!h, today: i === 0, tomorrow: i === 1, slots });
   }
   return out;
 }

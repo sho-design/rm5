@@ -31,8 +31,12 @@ export const registerExtraCopy = {
   },
   /** Filling it in for someone else: "Send my registration" and "My partner" read as the helper's own. */
   submitCaregiver: draft("Send the registration"),
+  languageCaregiver: draft("The patient's preferred language"),
+  notesLabel: draft("Anything we should know? (optional)"),
+  notesHint: draft("For example, if you will come to visits with them, or need an interpreter. Please do not include test results."),
   family: {
-    labelCaregiver: draft("Also registering from the patient's household (their partner, children or parents)"),
+    labelCaregiver: draft("Also registering from the patient's household"),
+    theirs: [draft("Their partner"), draft("Their children"), draft("Their parents")],
     hint: draft("Choose any that apply. We will ask for each person's details below."),
     relation: { partner: draft("Partner"), children: draft("Child"), parents: draft("Parent") },
     first: draft("First name"),

@@ -66,6 +66,7 @@ export const bookingExtra = {
   womensDayLead: draft("Women’s health days at Thornhill, the last Sunday of each month."),
   current: draft("Current step: "),
   todayReminder: draft("Your visit is today, so we do not send a reminder."),
+  tomorrowReminder: draft("Your visit is tomorrow, so this confirmation is your reminder."),
   confirmNote: draft("Your note"),
   provinceLabel: draft("Which province or territory?"),
   provinces: ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"],
@@ -95,7 +96,7 @@ export const bookingExtra = {
   interpreterBooked: (language: string) => draft(`We arrange a phone interpreter for ${language}, at no cost to you.`),
   /** Replaces "Reschedule or cancel", which only restarted the form. */
   bookAnother: draft("Book another visit"),
-  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours’ notice when you can. For a morning visit, that means calling the day before."),
+  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours’ notice when you can. For a morning visit, that means calling on an earlier clinic day."),
   /** Said before the error, not after (testers typed the version letters). */
   cardDigitsHint: draft("Digits only. Leave out the two letters at the end."),
   /** Booking for someone else: "your first visit" read as the helper's own. */

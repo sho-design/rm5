@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (230 simulated patients)
+# Usability test, 28 October 2026 (250 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -672,6 +672,64 @@ Retests that now work: one tap to 911 from halfway down a page; stroke signs in 
   - Mixed "&" and "and", and heading punctuation.
   - "10:00 am" against "9am".
   - The two sub-page hero templates.
+
+## Round 14: 20 testers, Monday 2 November about 8:30pm (clinic closed)
+
+Average ease 5.5, trust 5.5 (round 13 was 5.3 and 5.6). Every booking went through. Lowest trust: Ravi 4 (drip evidence labels), Maya 4 (teen privacy wording), Hugo 4 (Pain Centre referral process).
+
+Retests that now work:
+- Date of birth: impossible dates are caught with a clear message (Ed).
+- The "Call 911" header pill after scrolling.
+- Keyboard focus moves to each step's heading, with no traps.
+- Screen reader labels, groups and step focus.
+- Text on photos in high contrast.
+- Memory search leads to a caregiver-friendly booking.
+- The Maple list leads to registration with Maple preselected.
+
+### Round 14 findings fixed in code
+
+- **Safety:**
+  - Searching "sweaty", "tight chest", "indigestion" or "jaw pain" now shows the emergency note. The note now says "Chest pain, pressure or tightness (even if it feels like heartburn, especially with sweating)" (Kofi).
+  - Crisis words ("hopeless", "suicide", "self harm") show a crisis-first note: "You do not have to wait for us. Talk to someone now: call or text 988…", with a "Call or text 988" button, then the 911 line (Jordan).
+  - The no-results line adds Health811 instead of only the clinic phone.
+- **Forms:**
+  - Phone numbers need at least 10 digits, and emails need a domain ending (Nia).
+  - Error messages are 14px with a marker, and the consent checkbox border turns to the error colour (Bob).
+  - The date of birth fits one row on desktop.
+  - Tab stays inside the search overlay (Hal).
+- **Booking:**
+  - Family Medicine offers "I would like a female nurse present for any examination", repeated on review and confirmation with "Both of our physicians are men" (Nadia).
+  - Bookings for someone else say "their first visit" (Nia).
+  - A next-day visit says "Your visit is tomorrow, so this confirmation is your reminder".
+  - The 24 hours notice line no longer says "the day before" (closed Fridays).
+  - The children's "Book a sick visit" books for the child (Sofia).
+  - The drip builder button reads "Book this drip" or "Book an iron assessment", and carries the chosen drips and total to the booking (Ravi).
+  - The Pain Centre referral hint gives the two to three week wait and how a self-booked time is confirmed (Hugo).
+  - The claim label reads "Claim details".
+- **Registration (Hoa, Priya, Kevin):**
+  - Caregiver mode shows "Their partner / Their children / Their parents" and "The patient's preferred language".
+  - A new optional notes field.
+  - Registration and booking now agree that a visit booked online is the first visit.
+  - Maple registrations say the first visit is booked once Maple opens.
+- **Search:** "earache", "therapy", "need to talk" and "hopeless" find care (Sofia, Jordan).
+- **Car accidents and work injuries:** "No claim yet is fine" on the cards, and the duplicate WSIB claim line is removed (Luis).
+- **Small phones:**
+  - The top bar pill reads "Call 911", so "Opens tomorrow at 3pm" fits.
+  - At larger text, the contact phone and fax tiles stack, so the numbers are not cut off (Bà Lan).
+- **Iron:** the builder no longer double-counts screening, and the hub reads "Iron infusion, $250 with your own iron or $550 with ours" (Dana).
+
+### Round 14 findings for the clinic
+
+- **Drips (please review):**
+  - Evidence labels are undefined, and Myers' is labelled "Established".
+  - The ingredient library promises labels on ingredients that it does not show.
+  - The pricing page has no numbers, and drip detail pages list no ingredients or prices (Ravi, Dana).
+- **Prices:** sick note fee, and whether a note can be done by phone (Owen).
+- **Teens:** consistent teen privacy wording ("part of the visit" against "confidential at any age"), what "the limits of the law" are, and discreet messages (Maya).
+- **Who sees you:** who does skin consults and microneedling, nurse or physician (Grace).
+- **Waits and dates:** a patient-facing Pain Centre wait on the pain pages (Hugo); a Maple opening month (Kevin).
+- **Consistency:** iron visit length across the FAQ (about an hour plus observation), the health note and the infusion path ("45 to 180 minutes"); "10+" against "11" years; the past Thanksgiving closure still listed (Dana).
+- **Wellness and caregivers:** home-care advice for a feverish child tonight (Sofia); consent on behalf of a parent (Hoa).
 
 ## What worked
 

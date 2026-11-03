@@ -751,7 +751,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 </>
               }
             >
-              <p>{reminders ? (day?.today ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.todayReminder}` : bookingCopy.confirmed.body) : x.confirmed.noReminders}</p>
+              <p>{reminders ? (day?.today ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.todayReminder}` : day?.tomorrow ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.tomorrowReminder}` : bookingCopy.confirmed.body) : x.confirmed.noReminders}</p>
               <p className="text-[14px]">{linkPhones(day?.today ? x.changeOrCancelToday : x.changeOrCancel)}</p>
               {language === 2 ? <p className="text-[14px]">{x.interpreterBooked(languageName)}</p> : null}
               {service.key === "family" && details.femaleNurse === true ? <p className="text-[14px]">{x.femaleNurseBooked}</p> : null}
