@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (290 simulated patients)
+# Usability test, 28 October 2026 (310 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -810,6 +810,40 @@ No "Call 911" dials any more. Two testers (Wendy, Tran) tapped the yellow "Call 
 - **Pain Centre (Helen):** say on the pain pages that a referred patient waits for our call, and what to do if no call comes in three weeks.
 - **Registration (Mei, Sam, Ông Minh):** can people without OHIP register; a "name you go by" and pronouns field; booking by phone only, without an email.
 - **Wording kept by request:** "Call 911" is plain text, not a link. Consider "Dial 911" so it does not look tappable.
+
+## Round 17: 20 testers, Tuesday 3 November about 1:30am (clinic closed)
+
+Average ease 5.35, trust 5.2 (round 16 was 5.3 and 5.1). Every booking and form went through. Lowest trust: Dr. Leung (hematologist) 3, Kevin (16, STI testing) 4, Alex (trans patient) 4, Sofia (filler safety) 4, Dev (WSIB) 4, Tony (Kingmaker receipt) 4.
+
+Retests that now work: caregiver renewals (Mai, Ben), errors clearing as you type, the no-OHIP price on every booking screen (Graham), the Pap visit with a nurse (Huong, about 85% sure a woman does it), the Maple list saying it does not register you (Joanne), complaints naming the Medical Director (Maria), and the drowsy child sign in search (Nadia). The compliance consultant found no em dashes, exclamation marks, testimonials, ratings or urgency wording.
+
+Plain-text 911: Linda (stroke signs) reached "call 911" in under 15 seconds, but tapped the yellow "Call 911" first and nothing happened.
+
+### Round 17 findings fixed in code
+
+- **Emergency note:** it now opens with a large "Dial 911 now if someone has:", then the signs as a list (stroke first), then "Or go to the nearest emergency department." It used to be one long sentence ending in "call 911", with 811 as the only big button (Linda, Nadia).
+- **Booking:** the note warning says "Please do not book for this. What you wrote can be an emergency. … dial 911 now", not "may need care today" (Nadia). The top line adds a limp child.
+- **Iron health note:** chest tightness, trouble breathing or face and throat swelling after an infusion is now "call 911", not "call us" (Dr. Leung).
+- **Privacy:** calendar files are titled "Appointment", never the visit reason (Kevin's said "Sexual health").
+- **Bugs:** arrowing past a follow-up visit no longer leaves "Existing patient" set, and date of birth errors clear once the boxes are fixed (Ben).
+- **Pap visits:** no "nurse in the room" box, and the confirmation says "Your Pap test is with one of our nurses, who are women." (Huong).
+- **Pain Centre:** the wait FAQ adds "Not heard from us after three weeks? Call 905-709-3222 and we check that your referral arrived." (Bob).
+- **Men's health:** the energy assessment books a health concern, not an annual physical, and suggests a morning time for a testosterone test (Rick).
+- **Flu shots:** "One booking per person. Booking for your family? Book each person at the same time or back to back, and we see you together." (Jess). The vaccines page says where: "Thornhill, 700 Centre St. Maple is not open yet." (Joanne).
+- **Renewals:** caregiver mode labels "Your email (optional)", and the side hint no longer says to type your name in the note (Mai).
+- **Complaints:** the hint adds the College of Physicians and Surgeons of Ontario and the College of Nurses of Ontario (Maria).
+- **Smaller:** rehab self-pay reads "From $95 for massage"; the OHIP drip FAQ links to infusion pricing; registration notes suggest the name and pronouns you use (Alex).
+
+### Round 17 findings for the clinic
+
+- **Iron (Dr. Leung, Monique):** a fixed 1,500 mg course; iron sucrose against Monoferric; "Find out in one blood test" against the referral panel; no cause work-up (for example GI in men and post-menopausal women); safety wording; first-trimester and other contraindications; a named prescription iron and price next to a symptom checklist and "restores your iron"; iron in the drip builder.
+- **Drips and outcome lines (Monique):** evidence badges, "Healing", "beauty-from-within", "repair", "healthy-aging", "Steady energy", "Bones & mood", "Leave feeling restored", "gets you moving", "Look like yourself, on a good day", weight content (Metabolic, MIC, L-carnitine), biotin and lab tests, NAD+ infusion time.
+- **Aesthetics:** "complimentary consult with a physician" against "Consult: Nurse, 20 min"; injector credentials; filler complications and after-hours plan (Sofia).
+- **Teens (Kevin):** how the booking system knows a visit is a teen visit (no age asked) and what confirmation messages say.
+- **Names and pronouns (Alex, Sam):** add optional "name you go by" and pronouns fields, and say what happens when the health card name differs.
+- **Vietnamese (Thao):** list languages on the doctor cards and let families ask for a Vietnamese-speaking doctor.
+- **WSIB (Dev):** what is paid if a claim is denied.
+- **Consistency:** Woodbridge against Maple, "10+ years" against 11, iron visit length, "Both physicians" against "Most of our staff" speak Vietnamese.
 
 ## What worked
 

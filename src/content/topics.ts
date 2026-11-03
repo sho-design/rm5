@@ -713,6 +713,8 @@ const family: Topic[] = [
         { k: draft("Shingles"), v: draft("Publicly funded 65 to 70") },
         { k: draft("Children"), v: draft("Ontario routine schedule") },
         { k: draft("Records"), v: draft("Added to your chart") },
+        // A Maple resident had to start booking to learn shots are given at Thornhill (round 17).
+        { k: draft("Where"), v: draft("Thornhill, 700 Centre St. Maple is not open yet.") },
       ],
     },
     cards: {

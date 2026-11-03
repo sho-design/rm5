@@ -335,6 +335,17 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Complaints:** "Your concern goes to our Medical Director. It is logged and reviewed, and we reply within 2 business days."
 - **Maple list:** "Leave your details and we will tell you when Maple opens. This list does not register you. To have us as your family doctor, register as a new patient too and choose Maple."
 
+## Usability fixes, round 17
+
+- **Emergency note (please review first):** "Dial 911 now if someone has:" then "Signs of a stroke: face drooping, arm weakness, slurred speech" / "Chest pain, pressure or tightness, even if it feels like heartburn, especially with sweating" / "Pain spreading to the arm, jaw or back" / "Sudden shortness of breath or trouble breathing" / "Heavy bleeding" / "A child who is very drowsy, limp or hard to wake" / "A fever in a baby under 3 months", then "Or go to the nearest emergency department."
+- **Booking:** top line "… a child who is limp or hard to wake … Do not book. Dial 911 now."; note "Please do not book for this. What you wrote can be an emergency. … dial 911 now. …"; calendar title "Appointment"; "Your Pap test is with one of our nurses, who are women."; flu "One booking per person. Booking for your family? Book each person at the same time or back to back, and we see you together."; Pap bring "The health card, and the date of the last Pap if known."
+- **Iron health note (please review):** "… Call us if you notice a rash or swelling. For chest tightness, trouble breathing or swelling of the face or throat, call 911. …"
+- **Pain Centre wait FAQ:** "… Not heard from us after three weeks? Call 905-709-3222 and we check that your referral arrived."
+- **Men's health:** "Testosterone test: Best drawn in the morning, so pick a morning time".
+- **Vaccines:** "Where: Thornhill, 700 Centre St. Maple is not open yet."
+- **Complaints:** "If you are not satisfied with our reply, you can contact the College of Physicians and Surgeons of Ontario, or the College of Nurses of Ontario for nursing care."
+- **Forms:** "Your email (optional)"; "Asking for someone you care for? Choose Someone I care for in the form."; registration notes "For example, the name and pronouns you use if they differ from your health card, or if you need an interpreter. …"; rehab "From $95 for massage".
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.
