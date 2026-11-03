@@ -370,6 +370,14 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Infusion:** drips lead "Drips are grouped by what is in them. Pick a group to narrow the list, or browse everything."; steps "We review your health first, and we adjust or decline a treatment if it is not right for you." / "Your treatment" / "Our physician reviews every plan, and any change to a drip is on a physician's order. No pressure."; "An elective wellness service. Not a treatment for any disease."
 - **Chaperone confirmation:** "You asked for a nurse in the room for any examination. Our nurses are women."
 
+## Usability fixes, round 19
+
+- **Emergency box:** "Other help lines" above 988 and 811; sign "A seizure, or a child who is very drowsy, limp or hard to wake"; booking line adds "a seizure".
+- **Pregnancy:** Rehydration "Pregnant?" / "See a doctor first. Book a pregnancy visit, or call Health811 at 811 when we are closed."; pregnancy page "… When we are closed, call Health811 at 811 for advice any time. …"
+- **Drips:** "Formerly" line on drip pages; "Book this drip"; "All drips"; "Nine drips, one standard"; coverage "Iron assessment OHIP-insured; drips and infusions are an uninsured fee".
+- **Compliance:** Standards "We check each product's Health Canada status before we use it, buy from licensed Canadian distributors, …"; rehab "Billed to your insurer"; home slide "physician-led and OHIP-covered with a referral."
+- **Forms:** "health card name:" label on the registration confirmation; registration lead "Two minutes now. We confirm within 2 business days. If you have not booked a first visit online, we book it with you: a longer appointment so your doctor can get to know you."; Maple hours "Taking names now".
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

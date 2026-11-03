@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (330 simulated patients)
+# Usability test, 28 October 2026 (350 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -873,6 +873,34 @@ No tracker loads on the form pages: a check of /book, /register and /about/conta
 - **WSIB (Ray):** what happens if a claim is denied.
 - **Choosing a doctor (Hanh, Thao):** families want to ask for a Vietnamese-speaking doctor; Vietnamese name order on forms.
 - **Consistency:** Woodbridge against Maple.
+
+## Round 19: 20 testers, Tuesday 3 November about 10am (clinic closed until 3pm)
+
+Average ease 5.3, trust 5.4 (round 18 was 5.5 and 5.35). Every booking and form went through. Retests that now work: the 31 April date message (Dev), Pain Centre referral follow-up in three places that agree (Lorraine), the 3-hour iron visit everywhere (Natalie), old receipt names in search (Emily), caregiver renewals (Marco), Maple list and registration (Priyanka), vaccines family line (Kayla), the clean web address and calendar title for a teen (Zoe), the honest men's health page (Greg). The compliance reviewer again found no em dashes, exclamation marks, testimonials or ratings. Lowest: Susan (husband with crushing chest pain) ease 3, trust 4.
+
+**911:** Susan tapped "Dial 911", nothing happened, and the only tappable numbers in the emergency box were 988 and 811. A child seizure tester and a stroke tester said the same. This is now the most repeated safety finding.
+
+No tracker on the pages: requests from two testers to facebook.com came from the social icons, and a check of the children and form pages found no outside requests on load, hover or scroll.
+
+### Round 19 findings fixed in code
+
+- **Emergency box:** 988 and 811 now sit below a divider headed "Other help lines". A seizure is named in the emergency list and the booking line, and search catches "convulsion", "fit" and "febrile seizure" (Hoa).
+- **Teen privacy:** the confirmation shows the visit type without the reason, and the "booked in this tab" banner no longer stores it (Zoe).
+- **Preferred name:** leads on the registration confirmation ("Riley Tran (she/her; health card name: Michael Tran)") and on the booking contact row (Riley).
+- **Pregnancy:** the Rehydration drip result says "Pregnant? See a doctor first. Book a pregnancy visit, or call Health811 at 811 when we are closed." The pregnancy page adds Health811 when the clinic is closed (Trang).
+- **Drips:** each renamed drip page says "Formerly …", and "Book this drip" books an IV drip with the drip's name instead of "A consult" (Emily, Josh). The booking coverage line for infusion reads "Iron assessment OHIP-insured; drips and infusions are an uninsured fee". "All drips" heading; "Nine drips, one standard"; iron card says "per visit".
+- **Compliance (Helene):** Standards of care no longer says "Health Canada approved products only" ("We check each product's Health Canada status before we use it"); rehab "$0 to co-pay" is now "Billed to your insurer"; the home Pain Centre slide says "OHIP-covered with a referral".
+- **Search:** opens with the cursor ready, so the first letters are not lost (Trang, Kayla, Emily); "no OHIP cost" and "new to Canada" find the no-OHIP FAQ (Amara).
+- **Smaller:** the registration lead agrees with its confirmation (Ông Tuấn); the Maple hours row reads "Maple list: Taking names now" (Priyanka).
+
+### Round 19 findings for the clinic
+
+- **911 links (decision):** see above.
+- **Iron and drips (Dr. Park, Helene):** fixed 500 mg course, iron sucrose on the referral card, cause work-up, contraindications; the weight program page; ingredient benefit lines; fee names that are not on the drip menu; who orders a drip.
+- **Aesthetics (Diana):** who injects, injectable prices, aftercare and complications; "complimentary consult" and same-day treatment.
+- **WSIB (Luis):** what is owed if a claim is denied; a physio or chiro choice for WSIB visits.
+- **Newcomers (Amara):** can people register before OHIP starts.
+- **Booking families (Kayla, Ông Tuấn):** a way to book a second person without retyping.
 
 ## What worked
 

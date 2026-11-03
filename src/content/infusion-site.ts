@@ -57,6 +57,8 @@ export interface Drip {
   f: DripFamily;
   d: string;
   ev: Evidence;
+  /** Former menu name, shown on the page so receipts match (names changed November 2026). */
+  was?: string;
   /** Full page copy. Drips without it get a short page that is kept out of search until it exists. */
   detail?: DripDetail;
 }
@@ -69,7 +71,7 @@ export interface Drip {
 export const signatureDrips: Drip[] = [
   { slug: "foundation", t: "Foundation", f: "Foundation", d: "Hydration and core nutrients to start from.", ev: "Established" },
   {
-    slug: "myers",
+    slug: "myers", was: "Healing (Myers’)",
     t: draft("Myers’ cocktail"),
     f: "Foundation",
     d: "A classic blend of B vitamins, vitamin C, magnesium and calcium.",
@@ -86,15 +88,15 @@ export const signatureDrips: Drip[] = [
       screen: "Kidney health screened",
     },
   },
-  { slug: "antioxidant", t: draft("Antioxidant drip"), f: "Skin and hair", d: draft("Antioxidant vitamins. Ingredients and doses are confirmed with you at your consult."), ev: "Supported" },
-  { slug: "biotin", t: draft("Biotin drip"), f: "Skin and hair", d: draft("Built around biotin, a B vitamin. Tell us before any blood test, as biotin can affect some results."), ev: "Supported" },
-  { slug: "vitamin-c-zinc", t: draft("Vitamin C, zinc and B vitamins"), f: "Vitamins", d: draft("A vitamin and mineral blend."), ev: "Supported" },
+  { slug: "antioxidant", was: "Radiance", t: draft("Antioxidant drip"), f: "Skin and hair", d: draft("Antioxidant vitamins. Ingredients and doses are confirmed with you at your consult."), ev: "Supported" },
+  { slug: "biotin", was: "Hair & Nails", t: draft("Biotin drip"), f: "Skin and hair", d: draft("Built around biotin, a B vitamin. Tell us before any blood test, as biotin can affect some results."), ev: "Supported" },
+  { slug: "vitamin-c-zinc", was: "Seasonal Support", t: draft("Vitamin C, zinc and B vitamins"), f: "Vitamins", d: draft("A vitamin and mineral blend."), ev: "Supported" },
   // Was "Kingmaker", "Vitality support for men". Square sells it as IV Kingmaker and IV Queenmaker, the same
   // recipe; a men's or women's drip implies a sex-specific benefit (CPSO), so the site shows one unisex drip.
   { slug: "signature", t: draft("Signature drip"), f: "Signature and NAD+", d: draft("Our house blend, the same for everyone. Ingredients and doses are confirmed with you at your consult."), ev: "Supported" },
-  { slug: "after-exercise", t: draft("Hydration after exercise"), f: "Hydration", d: draft("Fluids and electrolytes, with amino acids."), ev: "Supported" },
-  { slug: "hydration", t: draft("Hydration drip"), f: "Hydration", d: draft("Fluids and electrolytes."), ev: "Supported" },
-  { slug: "nad", t: draft("NAD+ drip"), f: "Signature and NAD+", d: draft("NAD+, a coenzyme found in every cell. The evidence for NAD+ drips is still developing."), ev: "Emerging" },
+  { slug: "after-exercise", was: "Recover", t: draft("Hydration after exercise"), f: "Hydration", d: draft("Fluids and electrolytes, with amino acids."), ev: "Supported" },
+  { slug: "hydration", was: "Revive", t: draft("Hydration drip"), f: "Hydration", d: draft("Fluids and electrolytes."), ev: "Supported" },
+  { slug: "nad", was: "NAD+ Longevity", t: draft("NAD+ drip"), f: "Signature and NAD+", d: draft("NAD+, a coenzyme found in every cell. The evidence for NAD+ drips is still developing."), ev: "Emerging" },
 ];
 
 /** Part of the medical weight management program only, so not on the drip menu (no weight-loss marketing). */
@@ -241,9 +243,12 @@ export const infusionCopy = {
     elective: "Elective wellness",
     /** Clinic fact: every drip is mixed at the appointment, never ahead (a tester found it only on the claims page). */
     mixed: draft("Mixed by our nurse at your appointment"),
+    was: draft("Formerly"),
     /** Tired people reached drip pages with no pointer to a doctor first (round 16, CPSO: no promoting services a patient may not need). */
     tired: draft("Often tired? Start with a family doctor visit and bloodwork. OHIP-insured."),
     tiredCta: draft("Book a doctor visit"),
+    /** Returning drip clients booked "A consult" from a drip page and lost which drip (round 19). */
+    bookDrip: draft("Book this drip"),
     whatItIs: "What it is",
     supports: "Designed to support",
     inside: "What's inside",

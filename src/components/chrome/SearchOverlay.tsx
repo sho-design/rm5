@@ -145,7 +145,9 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
       </span>
       <div className={cn("flex h-[52px] items-center gap-2.5 rounded-[14px] border-[1.5px] border-border bg-raised px-3.5 focus-within:border-sky", !mobile && "md:h-[60px] md:gap-3.5 md:rounded-row md:px-5")}>
         <Icon name="search" size={18} stroke={2} color="var(--rm-ink-3)" />
+        {/* autoFocus focuses on mount, before effects run: testers typing straight away lost the first letters. */}
         <input
+          autoFocus
           ref={input}
           type="search"
           value={q}

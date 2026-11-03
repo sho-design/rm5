@@ -55,6 +55,7 @@ export default async function DripPage({ params }: Params) {
           {d.t}
         </Display>
         <p className="pretty max-w-[640px] text-[17px] leading-[1.5] text-secondary lg:text-[19px]">{d.d}</p>
+        {d.was ? <p className="text-[14px] text-muted">{c.was} {d.was}</p> : null}
         <div className="flex flex-wrap gap-2">
           {facts.map((f) => (
             <span key={f} className="rounded-chip bg-white/80 px-3.5 py-2 text-[13px] font-semibold">
@@ -69,7 +70,7 @@ export default async function DripPage({ params }: Params) {
           </SmartLink>
         </p>
         <div className="flex flex-wrap gap-2.5">
-          <Button to={bookFor("infusion")}>{infusionCopy.band.cta}</Button>
+          <Button to={`${bookFor("infusion", "drip")}&reason=${encodeURIComponent(d.t)}`}>{c.bookDrip}</Button>
           <Button to="infusionHow" variant="outline">
             {infusionCopy.band.cta2}
           </Button>
