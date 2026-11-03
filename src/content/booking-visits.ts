@@ -9,6 +9,9 @@ import { womensHealthDay } from "./womens-day";
 import { bloodOptions, menFaq } from "./subpages";
 import { routes } from "@/lib/routes";
 
+/** Facts are written with or without a closing full stop; add one only when missing ("No claim yet is fine.." on the confirmation). */
+const endStop = (t: string) => (/[.?!]$/.test(t.trim()) ? t : `${t}.`);
+
 /**
  * Visit types per service on /book (step 1, "What is the visit for?"),
  * with the coverage line and the "Bring" list each one shows on the
@@ -150,7 +153,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
       { key: "vaccine", label: draft("Vaccines, including flu and catch-up"), coverage: vaccineCoverage, bring: [draft("Any vaccine records you have, from Ontario or another country. No records? Come anyway, and we plan from there."), draft("Your health card, if you have one.")] },
       { key: "pregnancy", label: draft("Pregnancy care"), bring: [familyBring] },
       { key: "womensday", label: womensHealthDay.visitLabel, bring: [womensHealthDay.bring], days: "womensday" },
-      { key: "forms", label: draft("A form or note"), coverage: uninsured, bring: [`${fact(resultsFact("family", formsTitle), "Bring")}.`, healthCard] },
+      { key: "forms", label: draft("A form or note"), coverage: uninsured, bring: [endStop(fact(resultsFact("family", formsTitle), "Bring")), healthCard] },
       {
         key: "renewal",
         label: draft("Prescription renewal"),
@@ -218,7 +221,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
         claim: "mva",
         // Same for car accident claims.
         hint: { text: draft("New claim or already in treatment, both start here. Say physio or chiro in the note, and how many sessions you still need.") },
-        bring: [`${fact(mva.facts, "Bring")}.`, draft("Your adjuster's name and phone number, if you have them."), draft("The date of the accident."), rehabWear],
+        bring: [endStop(fact(mva.facts, "Bring")), draft("Your adjuster's name and phone number, if you have them."), draft("The date of the accident."), rehabWear],
       },
       {
         key: "wsib",
@@ -227,7 +230,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
         claim: "wsib",
         // An existing WSIB patient could not tell intake from follow-up, or say physio or chiro.
         hint: { text: draft("New claim or already in treatment, both start here. Say physio or chiro in the note, and how many sessions you still need.") },
-        bring: [`${fact(wsib.facts, "Bring")}.`, draft("Your employer's name and contact."), healthCard, rehabWear],
+        bring: [endStop(fact(wsib.facts, "Bring")), draft("Your employer's name and contact."), healthCard, rehabWear],
       },
     ],
   },
@@ -237,7 +240,7 @@ export function bookingConfig(): BookingConfig {
   return {
     services: divisionOrder.map((k) => ({ key: k, label: label(k), ...services[k] })),
     payments: [
-      { label: insured.label, coverage: draft("Private or work insurance, we bill most plans directly"), bring: [`${fact(insured.facts, "Bring")}.`] },
+      { label: insured.label, coverage: draft("Private or work insurance, we bill most plans directly"), bring: [endStop(fact(insured.facts, "Bring"))] },
       { label: selfPay.label, coverage: draft("Self-pay, prices plus HST, receipt provided"), bring: [] },
     ],
     firstVisit: approved(bring, "Arrive 10 minutes early for your first visit."),

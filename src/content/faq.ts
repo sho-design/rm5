@@ -108,7 +108,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Prescriptions",
     q: "How do I renew a prescription?",
-    a: "Existing patients can request a renewal by phone or portal. Allow two business days. Some medications need a visit before renewal.",
+    a: draft("Existing patients can request a renewal by phone or with the online form. Allow two business days, counted from the next day we are open. Some medications need a visit before renewal."),
   },
   {
     category: "Prescriptions",
@@ -146,7 +146,10 @@ export const faqItems: FaqItem[] = [
   {
     category: "Clinic",
     q: "Do you speak Vietnamese?",
-    a: "Yes. Both physicians and several staff speak Vietnamese. The site is available in Tiếng Việt using the switch at the top.",
+    // The language switch stays hidden until the Vietnamese pages launch; only promise it once it is there.
+    a: process.env.NEXT_PUBLIC_VI_ENABLED === "true"
+      ? "Yes. Both physicians and several staff speak Vietnamese. The site is available in Tiếng Việt using the switch at the top."
+      : draft("Yes. Both physicians and several staff speak Vietnamese. Call 905-709-3222 and ask for Vietnamese, or choose Tiếng Việt as your language when you book or register."),
   },
   {
     category: "Privacy",

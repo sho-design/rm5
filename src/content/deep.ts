@@ -391,7 +391,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         linkPage: "family",
       },
     ],
-    benefitsTitle: "Why choose a clinic, not a lounge.",
+    benefitsTitle: draft("Why a physician-led clinic."),
     benefits: [
       { big: "MD", t: "A physician is always on site", d: "Every infusion happens in a medical clinic with a doctor in the building.", bg: "#E6F4EA" },
       { big: "1", t: "Visit for bloodwork and drip", d: "Assessment, labs and infusion under one roof.", bg: "#FFF3C4" },

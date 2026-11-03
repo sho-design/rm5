@@ -11,6 +11,7 @@ import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
 import { errorProps, fmtPhone, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
 import { cn } from "@/lib/cn";
+import { isEmergencyQuery } from "@/lib/search";
 import { buttonClass } from "@/components/ui/Button";
 import { linkPhones } from "@/components/ui/Phones";
 import { Choice, ConsentRow, FieldError, FieldLabel, OutcomeTile, Panel, PillChip, selClass, SubmitButton } from "./FormBits";
@@ -89,6 +90,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [serviceKey, setServiceKey] = useState<string>(services[0]?.key ?? "family");
   const [visitKey, setVisitKey] = useState<string>(services[0]?.visits[0]?.key ?? "");
   const [forOther, setForOther] = useState(0);
+  const [noteUrgent, setNoteUrgent] = useState(false);
   const [who, setWho] = useState(0);
   /** -1 until chosen: no default, so a rushed self-payer cannot send "insurance" by accident. */
   const [payment, setPayment] = useState(-1);
@@ -568,8 +570,13 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               ) : null}
 
               <FieldLabel label={bookingCopy.fields.notes} htmlFor="book-notes">
-                <Textarea id="book-notes" name="notes" defaultValue={str("notes")} rows={4} className="resize-y" />
+                <Textarea id="book-notes" name="notes" defaultValue={str("notes")} rows={4} className="resize-y" aria-describedby={noteUrgent ? "book-notes-urgent" : undefined} onInput={(e) => setNoteUrgent(isEmergencyQuery(e.currentTarget.value))} />
               </FieldLabel>
+              {noteUrgent ? (
+                <p id="book-notes-urgent" role="status" className="pretty rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[14px] font-semibold leading-[1.5] text-ink">
+                  {linkPhones(bookingCopy.noteUrgent)}
+                </p>
+              ) : null}
               <div className="flex flex-col gap-2.5">
                 {/* Both physicians are men; the FAQ offers a female nurse for examinations, so it can be asked for here
                     (a tester wrote it in the note and could not tell whether anyone would see it). */}
@@ -752,7 +759,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               }
             >
               <p>{reminders ? (day?.today ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.todayReminder}` : day?.tomorrow ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.tomorrowReminder}` : bookingCopy.confirmed.body) : x.confirmed.noReminders}</p>
-              <p className="text-[14px]">{linkPhones(day?.today ? x.changeOrCancelToday : x.changeOrCancel)}</p>
+              <p className="text-[14px]">{linkPhones(day?.today ? x.changeOrCancelToday : slot != null && slot < 12 ? x.changeOrCancelMorning : x.changeOrCancel)}</p>
               {language === 2 ? <p className="text-[14px]">{x.interpreterBooked(languageName)}</p> : null}
               {service.key === "family" && details.femaleNurse === true ? <p className="text-[14px]">{x.femaleNurseBooked}</p> : null}
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">

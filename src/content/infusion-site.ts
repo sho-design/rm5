@@ -137,7 +137,7 @@ export const concerns: Concern[] = [
 ];
 
 export const whyPhysicianLed = [
-  { t: "Physician oversight", d: "Every treatment is reviewed by our physician, not sold from a counter." },
+  { t: "Physician oversight", d: draft("Every treatment is reviewed by our physician.") },
   { t: "RN administration", d: "Your infusion is placed and monitored by a registered nurse." },
   { t: "Honest screening", d: "We screen first, and we will adjust or decline on clinical grounds." },
   { t: "Sourcing standards", d: "Pharmaceutical-grade ingredients, prepared to clinical standards." },
@@ -145,7 +145,8 @@ export const whyPhysicianLed = [
 
 export const honestClaims = [
   { p: "“Detoxes and melts fat.”", s: "Metabolic support happens inside a physician-guided program, with real screening and follow-up. No miracles, and we say so." },
-  { p: "“Boosts your defences.”", s: "We list what is in the bag and the dose. We do not make treatment or prevention claims that the evidence does not support." },
+  { p: "“Boosts your defences.”", s: draft("We tell you what is in the bag and the dose at your consult. We do not make treatment or prevention claims that the evidence does not support.") },
+
   { p: "“Prevent illness before it starts.”", s: "We cannot promise you will not get sick. Preventing disease is not a claim we make, and we will not make it." },
 ];
 
@@ -178,7 +179,8 @@ export const memberships = {
 export const infusionTeam = {
   eyebrow: "Our team",
   title: "The people behind your care.",
-  lead: "Infusion therapy here is delivered by people, not a counter. A physician reviews every plan; registered nurses give every treatment. Calm, careful, and accountable.",
+  lead: draft("A physician reviews every plan; registered nurses give every treatment. Calm, careful, and accountable."),
+  // Comparative lines removed (CPSO): was "delivered by people, not a counter".
   director: {
     role: "Medical Director",
     name: "Dr. Johnny Nguyen",
@@ -224,6 +226,8 @@ export const infusionCopy = {
     back: "All drips",
     time: "~45 min",
     elective: "Elective wellness",
+    /** Clinic fact: every drip is mixed at the appointment, never ahead (a tester found it only on the claims page). */
+    mixed: draft("Mixed by our nurse at your appointment"),
     whatItIs: "What it is",
     supports: "Designed to support",
     inside: "What's inside",
@@ -263,22 +267,22 @@ export const infusionCopy = {
     rightP: "Wellness infusions are elective and not covered by OHIP. Iron therapy may be clinically indicated. Results vary from person to person.",
     whyEyebrow: "Why physician-led matters",
     whyTitle: draft("Physician-led, with screening first."),
-    whyP: "The difference matters. Screening, real medical oversight, and nurses who do this every day.",
+    whyP: draft("Screening first, a physician on site, and nurses who do this every day."),
   },
   honest: {
     eyebrow: "The honest menu",
     title: draft("Common claims, and what we say."),
-    lead: "The difference matters. Screening, real medical oversight, and nurses who do this every day.",
+    lead: draft("Screening first, a physician on site, and nurses who do this every day."),
     theySay: draft("Claims you may see online"),
     weSay: draft("What we say"),
     evidenceEyebrow: "Where the evidence is still developing",
-    evidenceTitle: "We label it Emerging, right on the ingredient.",
-    evidenceP: "Every ingredient page says what the evidence supports, and what we will and will not claim.",
+    evidenceTitle: draft("Where the evidence is still developing, we say so."),
+    evidenceP: draft("Ask at your consult what the evidence supports for each ingredient, and what we will and will not claim."),
   },
   ingredients: {
     eyebrow: "Where the evidence is still developing",
     title: draft("Ingredient library"),
-    lead: "We label it Emerging, right on the ingredient.",
+    lead: draft("Where the evidence is still developing, we say so."),
     coreTitle: draft("Core ingredients."),
     shotsTitle: draft("Also given as shots."),
     byEvidenceTitle: draft("Drips by evidence label."),

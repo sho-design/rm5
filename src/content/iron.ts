@@ -33,8 +33,8 @@ export const ironSymptoms: IronSymptom[] = [
 /** Tally line under the symptom checklist, for `n` selected symptoms. */
 export function ironTally(n: number): string {
   if (n === 0) return "";
-  if (n < 3) return `${n} selected. Worth mentioning at your next visit.`;
-  return `${n} selected. A ferritin test is a sensible next step.`;
+  // No symptom-count threshold that points to a paid service (CPSO). Same line for any count.
+  return draft(`${n} selected. Worth mentioning to your doctor, who can tell you whether a blood test makes sense. Already have a low result? Bring it to an iron assessment.`);
 }
 
 export const ironWho: TintCard[] = [

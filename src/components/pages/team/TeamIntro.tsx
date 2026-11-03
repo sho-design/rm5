@@ -17,7 +17,8 @@ export function TeamIntro() {
           className="flex min-h-[260px] items-center justify-center rounded-block border border-border p-6 text-center lg:min-h-[520px]"
           style={{ background: "repeating-linear-gradient(135deg, var(--rm-paper-2) 0 12px, var(--rm-sky-soft) 12px 24px)" }}
         >
-          <span className="text-[13px] leading-[1.6] text-muted">{f.portraitNote}</span>
+          {/* Initials until the headshot is supplied: the note "(from restorationmedical.ca)" showed to visitors and read as unfinished (round 15). */}
+          <span className="display-tight text-[64px] text-muted">{f.name.replace(/^Dr\. /, "").split(" ").map((w) => w[0]).join("")}</span>
         </div>
         <div className="flex flex-col justify-between gap-7 rounded-block border border-border bg-card p-6 md:p-10">
           <div className="flex flex-col gap-3">

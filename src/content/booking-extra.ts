@@ -96,7 +96,9 @@ export const bookingExtra = {
   interpreterBooked: (language: string) => draft(`We arrange a phone interpreter for ${language}, at no cost to you.`),
   /** Replaces "Reschedule or cancel", which only restarted the form. */
   bookAnother: draft("Book another visit"),
-  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours’ notice when you can. For a morning visit, that means calling on an earlier clinic day."),
+  changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours’ notice when you can."),
+  /** Only for visits before the clinic's usual afternoon opening (a tester with a 5:30pm visit was told about mornings). */
+  changeOrCancelMorning: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours’ notice when you can. For a morning visit, that means calling on an earlier clinic day."),
   /** Said before the error, not after (testers typed the version letters). */
   cardDigitsHint: draft("Digits only. Leave out the two letters at the end."),
   /** Booking for someone else: "your first visit" read as the helper's own. */

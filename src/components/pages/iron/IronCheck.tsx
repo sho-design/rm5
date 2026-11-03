@@ -20,7 +20,7 @@ export function IronCheck({ symptoms, accent }: { symptoms: IronSymptom[]; accen
         </Eyebrow>
         <Display size="sm">Low iron hides in everyday feelings.</Display>
         <p className="pretty text-[16px] leading-[1.55] text-muted">{ironCheckLead}</p>
-        <span className="min-h-[20px] text-[15px] font-semibold text-ink" aria-live="polite">
+        <span className="hidden min-h-[20px] text-[15px] font-semibold text-ink lg:block" aria-live="polite">
           {tally}
         </span>
       </div>
@@ -28,6 +28,10 @@ export function IronCheck({ symptoms, accent }: { symptoms: IronSymptom[]; accen
         {symptoms.map((sy, i) => (
           <CheckChip key={sy.label} label={sy.label} sub={sy.sub} on={sel.includes(i)} onToggle={() => toggle(i)} />
         ))}
+        {/* Phones: the intro sits above the chips, so the tally was out of view after ticking (round 15). */}
+        <span className="min-h-[20px] text-[15px] font-semibold text-ink sm:col-span-2 lg:hidden" aria-live="polite">
+          {tally}
+        </span>
       </div>
     </Section>
   );

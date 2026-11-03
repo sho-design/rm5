@@ -1,4 +1,5 @@
 import type { Job } from "./types";
+import { draft } from "./review";
 
 /** Open roles (CMS collection). Order matches the prototype's ALL list. */
 export const jobs: Job[] = [
@@ -10,7 +11,7 @@ export const jobs: Job[] = [
     type: "Part time",
     schedule: "Tue, Sat, Sun",
     postedDate: "2026-09-12",
-    summary: "IV starts, drip administration and patient monitoring in a lounge setting.",
+    summary: draft("IV starts, drip administration and patient monitoring, under physician orders."),
     tint: "#E6F4EA",
     featured: true,
     requirements: ["CNO registration in good standing", "IV therapy certification", "One year of acute or infusion experience"],

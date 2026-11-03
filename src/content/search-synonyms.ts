@@ -25,7 +25,7 @@ export const searchAliases: Record<string, string> = {
   kids: "earache ear ache ear infection fever child kid fever newborn new baby well baby well-baby rourke child children kid kids baby babies infant daughter son teen teens teenager vaccine vaccines immunization immunizations school forms anxiety mental health mood confidential",
   iron: "iron ferritin anemia anaemia anemic low iron tired fatigue exhausted monoferric iron infusion postpartum breastfeeding thieu mau sat",
   infusion: "iv drip drips vitamin vitamins",
-  drips: "iv drip drips hydration myers vitamin",
+  drips: "mixed prepared premixed premade made fresh iv drip drips hydration myers vitamin kingmaker queenmaker king maker queen maker signature house blend",
   shots: "shot shots b12 vitamin injection injections",
   metabolic: "weight metabolic",
   pain: "pain chronic pain injection injections",

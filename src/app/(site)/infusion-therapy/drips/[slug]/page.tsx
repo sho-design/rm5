@@ -32,7 +32,7 @@ export default async function DripPage({ params }: Params) {
   const d = dripBySlug((await params).slug);
   if (!d) notFound();
   const x = d.detail;
-  const facts = [c.time, c.elective, ...(x?.screen ? [x.screen] : [])];
+  const facts = [c.time, c.elective, c.mixed, ...(x?.screen ? [x.screen] : [])];
   return (
     <>
       <JsonLd

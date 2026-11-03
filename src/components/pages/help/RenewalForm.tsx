@@ -61,8 +61,9 @@ export function RenewalForm() {
         <Eyebrow>{c.eyebrow}</Eyebrow>
         <Display size="xs">{c.title}</Display>
         <Lead size="sm" tone="muted">
-          {c.lead}
+          {c.lead} {c.afterHours}
         </Lead>
+        <p className="pretty text-[14px] leading-[1.5] text-ink-2">{c.forSomeone}</p>
         <aside aria-labelledby="rx-urgent" className="mt-2 flex flex-col gap-1 rounded-tile border border-border bg-card px-5 py-4">
           <h3 id="rx-urgent" className="text-[15px] font-semibold text-ink">
             {c.urgentTitle}
