@@ -782,6 +782,8 @@ export const infusionCompareRows: CompareRow[] = [
   { k: "If something goes wrong", us: "Doctor in the building" },
   { k: "Your records", us: "One chart with your family doctor" },
   { k: "Bloodwork", us: "Drawn on site, OHIP-insured" },
+  // Clinic fact (Nov 2026): every drip is mixed at the appointment, never premixed or made in advance.
+  { k: draft("When your drip is made"), us: draft("Mixed by our nurse at your appointment, after screening. Never made ahead.") },
 ];
 
 /**

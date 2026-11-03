@@ -331,4 +331,5 @@ Changed so the site does not compare us with other providers or promote a paid s
 - Home, "Low energy" path: step 3 was "Iron infusion, same week". Now "Treatment, if your results show it: for low iron, usually tablets first. An iron infusion only if tablets are not right for you." Step 2 no longer says "we book step three". Outcome no longer says "books the fix".
 - Iron self-check intro: dropped "Three or more is a good reason to check your ferritin". Now "These feelings have many causes, and low iron is only one. A blood test, ordered by your doctor, is the only way to know."
 - Infusion concerns, "Low energy & fatigue": now goes to a family doctor visit (OHIP-insured) instead of the drips list.
+- Clinic fact: drips are mixed at the appointment, never ahead. New row in the infusion table: "When your drip is made" / "Mixed by our nurse at your appointment, after screening. Never made ahead."
 - Still open, needs clinic decision: drip names that carry health claims (Kingmaker "Vitality support for men", "NAD+ Longevity", "Beauty Elixir", "Bones & mood", "Healing (Myers')"), the evidence badges, and "Low energy & fatigue" as a drip "helps with" label.
