@@ -39,8 +39,9 @@ export function KidsLanguage() {
           <Button to={bookFor("family", "concern")} className="self-start">
             {kidsCopy.teens.cta}
           </Button>
-          {/* A 17-year-old found "Confidential, any age" only on Women's health, not here. */}
-          <SmartLink to="women" className="text-[14px] font-semibold text-link">
+          <p className="pretty text-[14px] leading-[1.5] text-ink-2">{kidsCopy.teens.messages}</p>
+          {/* Was a link to Women's health, which never mentions STIs or teens (a 17-year-old boy, round 16). */}
+          <SmartLink to={`${bookFor("family", "concern")}&reason=${encodeURIComponent("Sexual health")}`} className="text-[14px] font-semibold text-link">
             {kidsCopy.teens.contraception} ›
           </SmartLink>
         </div>

@@ -5,7 +5,7 @@ import { Button, Display, Field, Input, StateCard, SmartLink } from "@/component
 import { locationsCopy } from "@/content/about";
 import { submitForm } from "@/lib/forms";
 import { useRevealOnChange } from "@/lib/a11y";
-import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
+import { errorProps, focusFirstError, formErrors, readForm, type FormErrors, clearFixedError } from "@/lib/validate";
 import { FieldError } from "../book/FormBits";
 
 type Status = "form" | "sending" | "done" | "error";
@@ -76,7 +76,7 @@ export function WaitlistForm() {
           </StateCard>
         </div>
       ) : null}
-      <form method="post" ref={formRef} onSubmit={onSubmit} noValidate aria-busy={status === "sending"} className="grid grid-cols-1 gap-6 rounded-card border border-border bg-card p-5 md:p-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10">
+      <form method="post" ref={formRef} onSubmit={onSubmit} onInput={clearFixedError(errors, setErrors)} onChange={clearFixedError(errors, setErrors)} noValidate aria-busy={status === "sending"} className="grid grid-cols-1 gap-6 rounded-card border border-border bg-card p-5 md:p-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10">
         <div className="flex flex-col gap-3">
           <Display size="title-lg" as="h2">
             {w.title}

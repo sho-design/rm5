@@ -29,6 +29,7 @@ export const womenOptions: SubChooserItem[] = [
       { k: "Results", v: "Within two weeks, by phone or portal" },
     ],
     cta: "Book a screening visit",
+    visit: "pap",
   },
   {
     label: "Contraception",
@@ -441,7 +442,8 @@ export const womenCopy = {
   hero: {
     page: "Women’s health",
     title: "Care for every stage, with the same doctor.",
-    lead: "Pap tests, contraception, pregnancy planning, prenatal care, perimenopause and menopause. Handled by your family doctor, in a room where nothing is rushed and nothing is awkward to ask.",
+    // Was "Handled by your family doctor": Pap tests are done by our nurses (clinic, Nov 2026).
+    lead: draft("Pap tests, contraception, pregnancy planning, prenatal care, perimenopause and menopause. With your family doctor and our nurses, in a room where nothing is rushed and nothing is awkward to ask."),
     cta: "Book a visit",
     cta2: "Register as a patient",
     coverage: "Insured visits are covered by OHIP. Bring your health card and any recent results.",

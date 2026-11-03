@@ -64,7 +64,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Coverage",
     q: "What if I do not have OHIP?",
-    a: draft("Yes, visitors and people without OHIP are welcome. A doctor visit without OHIP is $100 plus HST ($113 total), and you get a receipt for your travel or private insurance. We confirm the fee before you are seen."),
+    a: draft("You are welcome here. A doctor visit without OHIP is $100 plus HST ($113 total), and you get a receipt for your travel or private insurance. We confirm the fee before you are seen."),
   },
   {
     category: "Coverage",
@@ -234,7 +234,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Infusion",
     q: "Are drips covered by OHIP?",
-    a: "No. Wellness infusions and injections are self-pay, priced with HST on the menu. Iron infusion for confirmed deficiency is a physician visit; the iron product itself may be covered by your drug plan.",
+    a: draft("No. Wellness infusions and injections are self-pay, with HST included in the price. Iron infusion for confirmed deficiency is a physician visit; the iron product itself may be covered by your drug plan."),
     linkLabel: "Pricing",
     linkPage: "infusion",
   },

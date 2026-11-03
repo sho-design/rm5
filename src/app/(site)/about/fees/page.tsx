@@ -15,6 +15,8 @@ import { linkPhones } from "@/components/ui/Phones";
 
 /** Prices the site already publishes on service pages, gathered here so the fees page is never empty. */
 const known: { service: string; note?: string; fee: string; page: string }[] = [
+  // The most common uninsured fee was only in an FAQ (a tester looking for it on this page, round 16).
+  { service: c.noOhipVisit, note: c.noOhipNote, fee: c.noOhipFee, page: "faq" },
   ...ironPrices.map((p) => ({ service: `${c.ironPrefix}: ${p.t}`, note: p.note, fee: p.price, page: "iron" })),
   ...(rehabCoverage.find((o) => o.label === "Paying myself")?.facts ?? [])
     .filter((f) => /\$/.test(f.v))

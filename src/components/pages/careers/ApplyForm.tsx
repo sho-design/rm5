@@ -7,7 +7,7 @@ import { careersCopy } from "@/content/about";
 import { site } from "@/content/site";
 import { submitForm } from "@/lib/forms";
 import { useRevealOnChange } from "@/lib/a11y";
-import { errorProps, focusFirstError, formErrors, type FormErrors } from "@/lib/validate";
+import { errorProps, focusFirstError, formErrors, type FormErrors, clearFixedError } from "@/lib/validate";
 import { FieldError } from "../book/FormBits";
 
 type Status = "form" | "sending" | "done" | "error";
@@ -95,7 +95,7 @@ export function ApplyForm({ roles, role, onRoleChange }: { roles: string[]; role
               </StateCard>
             </div>
           ) : null}
-          <form method="post" ref={formRef} onSubmit={onSubmit} noValidate className="flex flex-col gap-[22px] rounded-block border border-border bg-card p-5 md:p-9" aria-busy={status === "sending"}>
+          <form method="post" ref={formRef} onSubmit={onSubmit} onInput={clearFixedError(errors, setErrors)} onChange={clearFixedError(errors, setErrors)} noValidate className="flex flex-col gap-[22px] rounded-block border border-border bg-card p-5 md:p-9" aria-busy={status === "sending"}>
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
               <Field label={f.firstName} htmlFor="ap-first" required>
                 <Input id="ap-first" name="firstName" autoComplete="given-name" required {...errorProps(errors, "ap-first")} />

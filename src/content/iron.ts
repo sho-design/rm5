@@ -96,3 +96,5 @@ export const ironFaq: QA[] = [
 /** Iron self-check intro. Was "Three or more is a good reason to check your ferritin": an unsourced
  *  clinical threshold leading to a paid service. Now points to a doctor's visit (draft, clinical review). */
 export const ironCheckLead = draft("Tap what sounds familiar. These feelings have many causes, and low iron is only one. A blood test, ordered by your doctor, is the only way to know.");
+
+export const ironCheckBook = draft("Book an iron assessment");

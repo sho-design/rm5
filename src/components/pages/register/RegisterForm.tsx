@@ -7,7 +7,7 @@ import { registerExtraCopy as x } from "@/content/forms-copy";
 import { bookingExtra as bx } from "@/content/booking-extra";
 import { submitForm } from "@/lib/forms";
 import { useRevealOnChange } from "@/lib/a11y";
-import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
+import { errorProps, focusFirstError, formErrors, readForm, type FormErrors, clearFixedError } from "@/lib/validate";
 import { cn } from "@/lib/cn";
 import { Choice, ConsentRow, DobInput, FieldLabel, OutcomeTile, Panel, PillChip, SubmitButton } from "../book/FormBits";
 
@@ -214,7 +214,7 @@ export function RegisterForm() {
         </div>
       ) : (
         <Panel>
-          <form method="post" onSubmit={submit} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
+          <form method="post" onSubmit={submit} onInput={clearFixedError(errors, setErrors)} onChange={clearFixedError(errors, setErrors)} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
             <div className="flex flex-col gap-1.5">
               <span className="text-[13px] font-semibold text-secondary">{x.forWhom.label}</span>
               <Choice options={x.forWhom.options} value={forWhom} onChange={setForWhom} ariaLabel={x.forWhom.label} />

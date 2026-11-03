@@ -342,7 +342,9 @@ export const kidsCopy = {
     title: "Part of every teen visit is private.",
     body: "Teens can book on their own and speak with the doctor without a parent in the room. What is discussed stays confidential within the limits of the law, and we explain those limits plainly.",
     cta: "Book a teen visit",
-    contraception: draft("Birth control and sexual health: confidential at any age"),
+    contraception: draft("Book a confidential visit for birth control or sexual health"),
+    /** Teens feared a lock-screen text naming the reason (clinic answer: reminders never say it). */
+    messages: draft("Reminder texts and emails for a teen visit do not say what the visit is for. Use your own phone and email when you book."),
   },
   faq: {
     title: "Questions parents ask.",

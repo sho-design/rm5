@@ -323,6 +323,18 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Nurses are women.** Women's health day: "Both of our physicians are men. Our nurses are women, and they do Pap tests, on women's health day and on other days." Screening card: "Pap test: Done by our nurses, who are women".
 - **Teen reminders use a neutral label.** New children and youth FAQ: "Will a reminder text say what my visit is for?" / "No. Reminder texts and emails for a teen visit do not say what the visit is for. Use your own phone number and email when you book, so messages come to you." Confirm the booking system does this before launch.
 
+## Usability fixes, round 16
+
+- **Emergency (please review first):** the note adds "a child who is very drowsy, limp or hard to wake"; the booking note prompt says the same.
+- **Pap and chaperone:** visit "Pap test with a nurse" / "Your health card, and the date of your last Pap if you know it." / "Pap tests are done by our nurses, who are women."; "I would like a nurse in the room for any examination. Our nurses are women. Optional." / "A nurse in the room" / "You asked for a nurse in the room for any examination. Our nurses are women, and they do Pap tests."; Women's health lead "… With your family doctor and our nurses, in a room where nothing is rushed and nothing is awkward to ask."
+- **No OHIP:** coverage "Uninsured: a doctor visit is $100 plus HST ($113 total), receipt provided"; bring "Photo ID, and your travel or student insurance details if you have them."; FAQ now starts "You are welcome here."; fees row "Doctor visit without OHIP" / "Receipt provided for travel or private insurance" / "$100 plus HST ($113 total)".
+- **Renewals for someone else:** "Who is this request for?", "Me", "Someone I care for", "Patient's first name", "Patient's last name", "Patient's date of birth", "Your name", "Your relationship to them", "Your phone", "The person I am asking for is an existing Restoration Medical patient."
+- **Drips:** "Often tired? Start with a family doctor visit and bloodwork. OHIP-insured." / "Book a doctor visit"; home cards "What each ingredient is for, and where the evidence is still developing." and "How pricing works, and what to ask at your consult."; FAQ "… self-pay, with HST included in the price."; search entry "Signature drip" / "Our house blend, the same for everyone".
+- **Iron:** "Book an iron assessment" under the self-check.
+- **Teens:** "Reminder texts and emails for a teen visit do not say what the visit is for. Use your own phone and email when you book." / "Book a confidential visit for birth control or sexual health"; STI search sub "Confidential and OHIP-insured, at any age".
+- **Complaints:** "Your concern goes to our Medical Director. It is logged and reviewed, and we reply within 2 business days."
+- **Maple list:** "Leave your details and we will tell you when Maple opens. This list does not register you. To have us as your family doctor, register as a new patient too and choose Maple."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

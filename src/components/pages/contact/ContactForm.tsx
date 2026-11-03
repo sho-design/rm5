@@ -6,7 +6,7 @@ import { contactCopy, contactTopics, formFailedLine } from "@/content/booking";
 import { contactExtraCopy } from "@/content/forms-copy";
 import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
-import { errorProps, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
+import { errorProps, focusFirstError, formErrors, readForm, type FormErrors, clearFixedError } from "@/lib/validate";
 import { Choice, ConsentRow, FieldLabel, Panel, PillChip, SubmitButton } from "../book/FormBits";
 
 /**
@@ -49,7 +49,7 @@ export function ContactForm() {
     return (
       <div ref={doneRef} tabIndex={-1} className="scroll-mt-24 outline-none">
         <StateCard state="success" title={contactCopy.done.title}>
-          <p>{contactCopy.done.body}</p>
+          <p>{topic === topics.length - 1 ? contactExtraCopy.complaintDone : contactCopy.done.body}</p>
           <button
             type="button"
             onClick={() => {
@@ -67,7 +67,7 @@ export function ContactForm() {
 
   return (
     <Panel>
-      <form method="post" onSubmit={submit} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
+      <form method="post" onSubmit={submit} onInput={clearFixedError(errors, setErrors)} onChange={clearFixedError(errors, setErrors)} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
         <Display as="h2" size="title-md" balance={false}>
           {contactCopy.formTitle}
         </Display>

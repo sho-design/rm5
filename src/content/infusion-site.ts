@@ -228,6 +228,9 @@ export const infusionCopy = {
     elective: "Elective wellness",
     /** Clinic fact: every drip is mixed at the appointment, never ahead (a tester found it only on the claims page). */
     mixed: draft("Mixed by our nurse at your appointment"),
+    /** Tired people reached drip pages with no pointer to a doctor first (round 16, CPSO: no promoting services a patient may not need). */
+    tired: draft("Often tired? Start with a family doctor visit and bloodwork. OHIP-insured."),
+    tiredCta: draft("Book a doctor visit"),
     whatItIs: "What it is",
     supports: "Designed to support",
     inside: "What's inside",

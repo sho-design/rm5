@@ -66,3 +66,16 @@ export function fmtPhone(raw: string): string {
   const d = raw.replace(/\D/g, "").replace(/^1(?=\d{10}$)/, "");
   return d.length === 10 ? `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}` : raw;
 }
+
+/**
+ * Form onInput handler: once a field with an error becomes valid, drop its error, so fixed fields stop
+ * reading as invalid before the next submit (a keyboard tester heard "invalid" on every corrected field).
+ */
+export function clearFixedError(errors: FormErrors, setErrors: (f: (e: FormErrors) => FormErrors) => void) {
+  return (e: { target: EventTarget | null }) => {
+    const el = e.target;
+    if (!(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement)) return;
+    if (!el.id || !errors[el.id] || !el.validity.valid) return;
+    setErrors((all) => Object.fromEntries(Object.entries(all).filter(([k]) => k !== el.id)));
+  };
+}

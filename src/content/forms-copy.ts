@@ -67,6 +67,8 @@ export const contactExtraCopy = {
   replyLabel: draft("How should we reply?"),
   replyOptions: [draft("Email or phone"), draft("Email only, please do not call")],
   complaintTopic: draft("A concern or complaint"),
+  /** Confirmation for a complaint: two testers wanted to know it reached the Medical Director, not the front desk. */
+  complaintDone: draft("Your concern goes to our Medical Director. It is logged and reviewed, and we reply within 2 business days."),
   /** A tester picked the complaint topic and nothing said who reads it (it is on Patient rights). Billing mistakes belong here too. */
   complaintHint: draft("Concerns and complaints, including billing mistakes, go to our Medical Director. Each one is logged and reviewed, and we reply within 2 business days."),
   updates: draft("Also send me clinic updates by email. Optional, unsubscribe any time."),

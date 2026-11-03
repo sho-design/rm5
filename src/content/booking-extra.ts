@@ -17,9 +17,9 @@ export const bookingExtra = {
       // A newborn's card arrives weeks after birth: a parent read "uninsured" and panicked.
       draft("That is fine. Without a health card the visit is uninsured: a doctor visit is $100 plus HST ($113 total). We confirm the fee before the visit and give you a receipt. Booking for a newborn whose card has not arrived yet? Choose Ontario health card and leave the digits blank."),
     ],
-    coverage: [draft("Card from another province, we may bill your province directly"), draft("Uninsured, fee told to you before the visit, receipt provided")],
+    coverage: [draft("Card from another province, we may bill your province directly"), draft("Uninsured: a doctor visit is $100 plus HST ($113 total), receipt provided")],
     bring: draft("Your health card from another province."),
-    bringNone: draft("Photo ID."),
+    bringNone: draft("Photo ID, and your travel or student insurance details if you have them."),
   },
   /** Before the approved fasting line on morning checkups. */
   /** After booking a morning fasting draw (the page line says "Book a slot before 10am", which no longer applies). */
@@ -103,9 +103,9 @@ export const bookingExtra = {
   cardDigitsHint: draft("Digits only. Leave out the two letters at the end."),
   /** Booking for someone else: "your first visit" read as the helper's own. */
   firstVisitTheirs: draft("Arrive 10 minutes early for their first visit."),
-  femaleNurse: draft("I would like a female nurse present for any examination. Optional."),
-  femaleNurseYes: draft("A female nurse present"),
-  femaleNurseBooked: draft("You asked for a female nurse to be present for any examination. Both of our physicians are men."),
+  femaleNurse: draft("I would like a nurse in the room for any examination. Our nurses are women. Optional."),
+  femaleNurseYes: draft("A nurse in the room"),
+  femaleNurseBooked: draft("You asked for a nurse in the room for any examination. Our nurses are women, and they do Pap tests."),
   notCovered: draft("Not covered by your plan?"),
   reasonLabel: draft("Reason for the visit"),
   rehabNewHint: draft("New to rehab here? Your first visit with physio or chiro is an initial assessment."),

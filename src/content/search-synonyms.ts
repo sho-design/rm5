@@ -17,7 +17,7 @@ export const searchAliases: Record<string, string> = {
   rx: "thuoc toa thuoc ke toa refill refills prescription prescriptions renew renewal medication medications meds pharmacy run out ran out",
   labs: "results result bloodwork lab tests test results",
   women: "sti std stis stds sti test sexual health pap smear pap test cervical screening hpv menopause perimenopause hot flashes contraception birth control iud period periods womens health day women's health day last sunday testing nurse nurses",
-  men: "prostate psa testosterone checkup physical std stds sti stis std test sti test sexual health erectile",
+  men: "libido low libido sex drive vitality low t low testosterone hormones hormone mens hormone health prostate psa testosterone checkup physical std stds sti stis std test sti test sexual health erectile",
   chronic: "huyet ap huyet ap cao tieu duong diabetes diabetic a1c sugar blood sugar glucose blood pressure hypertension cholesterol asthma thyroid copd kidney heart senior seniors elderly elder older adult older adults aging memory dementia caregiver caregivers complex care parkinson parkinsons ms multiple sclerosis stroke falls fall",
   blood: "bloodwork blood test fasting ecg ekg lab draw requisition",
   numbers: "a1c ferritin cholesterol ldl blood pressure numbers results",
@@ -25,7 +25,7 @@ export const searchAliases: Record<string, string> = {
   kids: "earache ear ache ear infection fever child kid fever newborn new baby well baby well-baby rourke child children kid kids baby babies infant daughter son teen teens teenager vaccine vaccines immunization immunizations school forms anxiety mental health mood confidential",
   iron: "iron ferritin anemia anaemia anemic low iron tired fatigue exhausted monoferric iron infusion postpartum breastfeeding thieu mau sat",
   infusion: "iv drip drips vitamin vitamins",
-  drips: "mixed prepared premixed premade made fresh iv drip drips hydration myers vitamin kingmaker queenmaker king maker queen maker signature house blend",
+  drips: "mixed prepared premixed premade made fresh iv drip drips hydration myers vitamin",
   shots: "shot shots b12 vitamin injection injections",
   metabolic: "weight metabolic",
   pain: "pain chronic pain injection injections",
@@ -53,7 +53,7 @@ export const searchAliases: Record<string, string> = {
   locations: "gio mo cua horario maple waitlist hours directions address parking map walmart thornhill maple vaughan woodbridge step free entrance bus transit open closed",
   contact: "phone call email fax contact message",
   careers: "job jobs career careers hiring work nurse rn apply employment",
-  standards: "student students placement placements learner learners teaching nursing student supervision complaint complaints",
+  standards: "complication complications side effect side effects safety safe emergency kit something went wrong reaction student students placement placements learner learners teaching nursing student supervision complaint complaints",
   team: "bac si noi tieng viet doctor doctors physician physicians nurse nurses staff vietnamese tieng viet language languages speak",
   referrals: "refer referral physician fax ocean ereferral",
   privacy: "privacy personal information phipa cookies data",
@@ -87,11 +87,27 @@ export function aliasesFor(page: string): string | undefined {
 
 /** Entries for things people search that have no page of their own. New wording, see docs/content-review.md. */
 export const searchExtras: SearchDoc[] = [
+  // Teens searching "reminder text" did not find the children and youth FAQ.
+  {
+    kind: draft("Children & youth"),
+    label: draft("Will a reminder text say what my visit is for?"),
+    sub: draft("No. Teen visit reminders do not say the reason"),
+    page: "/family-medicine/children-youth#families",
+    keys: "reminder reminders text texts message lock screen parents parent mom dad private privacy teen teens confidential",
+  },
+  // Square receipts say IV Kingmaker or IV Queenmaker; the site shows that recipe as one Signature drip.
+  {
+    kind: draft("Infusion Therapy"),
+    label: draft("Signature drip"),
+    sub: draft("Our house blend, the same for everyone"),
+    page: "/infusion-therapy/drips/signature",
+    keys: "kingmaker queenmaker king maker queen maker iv kingmaker iv queenmaker signature house blend",
+  },
   // STI testing for anyone, not only under Men's health (a nonbinary tester found it only there).
   {
     kind: draft("Family Medicine"),
     label: draft("Sexual health and STI testing"),
-    sub: draft("Confidential and OHIP-insured. Prefer testing with our nurses? Choose women's health day"),
+    sub: draft("Confidential and OHIP-insured, at any age"),
     page: "/book?service=family&visit=concern&reason=Sexual%20health",
     keys: "std stds sti stis std test sti test sexual health confidential testing hiv chlamydia gonorrhea syphilis herpes hpv partner",
   },

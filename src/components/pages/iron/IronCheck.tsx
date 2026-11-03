@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { ironCheckLead, ironTally, type IronSymptom } from "@/content/iron";
-import { CheckChip, Display, Eyebrow, Section } from "@/components/ui";
+import { ironCheckBook, ironCheckLead, ironTally, type IronSymptom } from "@/content/iron";
+import { CheckChip, Display, Eyebrow, Section, SmartLink } from "@/components/ui";
+import { bookFor } from "@/lib/routes";
 
 /**
  * "Is this you?" symptom check: sticky intro left with the live tally line,
@@ -32,6 +33,12 @@ export function IronCheck({ symptoms, accent }: { symptoms: IronSymptom[]; accen
         <span className="min-h-[20px] text-[15px] font-semibold text-ink sm:col-span-2 lg:hidden" aria-live="polite">
           {tally}
         </span>
+        {/* A tester with ferritin 6 had to scroll back up for the booking button (round 16). */}
+        {sel.length ? (
+          <SmartLink to={bookFor("infusion", "iron")} className="text-[15px] font-semibold text-link sm:col-span-2">
+            {ironCheckBook} ›
+          </SmartLink>
+        ) : null}
       </div>
     </Section>
   );

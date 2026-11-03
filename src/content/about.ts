@@ -244,7 +244,7 @@ export const locationsCopy = {
   learn: "Learn more",
   waitlist: {
     title: "Join the Maple list.",
-    body: "Leave your details and we will contact you once Maple opens. Pre-registration for family medicine is open now.",
+    body: draft("Leave your details and we will tell you when Maple opens. This list does not register you. To have us as your family doctor, register as a new patient too and choose Maple."),
     name: "Full name",
     email: "Email",
     phone: "Phone",

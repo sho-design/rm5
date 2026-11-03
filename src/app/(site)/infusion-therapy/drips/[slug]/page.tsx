@@ -62,6 +62,12 @@ export default async function DripPage({ params }: Params) {
             </span>
           ))}
         </div>
+        <p className="pretty max-w-[640px] text-[15px] leading-[1.5] text-ink">
+          {c.tired}{" "}
+          <SmartLink to={`${bookFor("family", "concern")}&reason=${encodeURIComponent("Low energy")}`} className="font-semibold text-link underline-offset-2 hover:underline">
+            {c.tiredCta} ›
+          </SmartLink>
+        </p>
         <div className="flex flex-wrap gap-2.5">
           <Button to={bookFor("infusion")}>{infusionCopy.band.cta}</Button>
           <Button to="infusionHow" variant="outline">

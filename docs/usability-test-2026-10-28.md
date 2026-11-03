@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (270 simulated patients)
+# Usability test, 28 October 2026 (290 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -771,6 +771,45 @@ Average ease 5.6, trust 5.2 (round 14 was 5.5 and 5.5). Every booking, registrat
 - **Car accidents (Tomasz):** what happens if the insurer denies the claim.
 - **Who injects (Jenny):** which physician does aesthetics consults.
 - **Newcomers (Arjun):** whether you can register before OHIP is active.
+
+## Round 16: 20 testers, Tuesday 3 November about 12:55am (clinic closed)
+
+Average ease 5.3, trust 5.1 (round 15 was 5.6 and 5.2). Every booking and form went through. Lowest trust: Sunita (pharmacist) 3, Wendy (jaw ache) 4, Anh (Pap by a woman) 4, Kim (Queenmaker receipt) 4, Lisa (NP, iron) 4. Derek (men's hormones) found the site honest compared with low-T ads: no men's drip, broad testing first.
+
+No "Call 911" dials any more. Two testers (Wendy, Tran) tapped the yellow "Call 911" in the top bar expecting a call; three (Ông Minh, Rachel, Fatima) found it alarming on calm pages.
+
+### Round 16 findings fixed in code
+
+- **Safety:**
+  - Searching "jaw ache", "drowsy", "hard to wake", "limp", "stiff neck" or "lethargic" now shows the emergency note (Wendy, Tran).
+  - The emergency note and the booking note prompt add "a child who is very drowsy, limp or hard to wake".
+- **Pap tests (Anh, Sam):**
+  - New visit type "Pap test with a nurse", with "Pap tests are done by our nurses, who are women." The Women's health "Book a screening visit" opens it.
+  - The chaperone option is now "I would like a nurse in the room for any examination. Our nurses are women." It no longer adds "Both of our physicians are men" on the confirmation.
+  - The Women's health lead no longer says "Handled by your family doctor".
+- **No OHIP (Mei, Gord):** the fee shows on the review and confirmation ("Uninsured: a doctor visit is $100 plus HST ($113 total), receipt provided"), the bring list adds travel or student insurance, and the fees page lists "Doctor visit without OHIP".
+- **Renewals (Paul, Omar):** a "Who is this request for? Me / Someone I care for" choice with "Patient's name", "Your name", "Your relationship", "Your phone" and "The person I am asking for is an existing Restoration Medical patient." Links to the form now move focus to it.
+- **All forms (Omar):** a field's error clears as soon as it is fixed, instead of staying until the next submit.
+- **Drips (Kim, Brianna, Sunita):**
+  - Searching "Queenmaker" or "Kingmaker" finds the Signature drip.
+  - Every drip page says "Often tired? Start with a family doctor visit and bloodwork. OHIP-insured." with "Book a doctor visit ›".
+  - Promises the pages did not keep are reworded: "Every ingredient explained, with the evidence labelled honestly", "Clear per-visit pricing … HST included", "priced with HST on the menu".
+- **Iron (Fatima):** the self-check result has a "Book an iron assessment ›" link.
+- **Teens (Jay):** the teen panel says reminders do not name the reason, its link books a confidential sexual health visit (it went to Women's health), "reminder text" finds the answer in search, and the STI result no longer points boys to women's health day.
+- **Complaints (Gord):** the confirmation for a complaint says it goes to the Medical Director, is logged and reviewed.
+- **Maple (Raj):** the Maple list says up front that it does not register you, and to register too.
+- **Search:** "libido", "vitality" and "low T" find Men's health (Derek); "complication" and "side effects" find the standards page (Rachel).
+
+### Round 16 findings for the clinic
+
+- **Iron, clinical (Lisa, Sunita):** the referral card lists iron sucrose and ferric derisomaltose while patients see only Monoferric; a fixed 500 mg times 3; pregnancy shown as a common group without a first-trimester caution; safety wording without hypersensitivity, skin staining or low phosphate; the referral checklist (weight, eGFR, CRP, pregnancy, allergies); handling of brought-in iron.
+- **Drips:** evidence labels undefined; ingredients, doses and prices on drip pages; "Healing" and "NAD+ Longevity" names; outcome lines ("Leave feeling restored", "recovering harder", "Investing in how you age").
+- **Square:** rename IV Kingmaker and IV Queenmaker to match the site (Kim's receipt said Queenmaker).
+- **Aesthetics (Rachel):** injector credentials beyond a first name; what happens with a filler complication and who to call after hours.
+- **WSIB and car accidents (Carlos):** what happens if a claim is denied; the self-pay headline "From $95" is the massage price.
+- **Pain Centre (Helen):** say on the pain pages that a referred patient waits for our call, and what to do if no call comes in three weeks.
+- **Registration (Mei, Sam, Ông Minh):** can people without OHIP register; a "name you go by" and pronouns field; booking by phone only, without an email.
+- **Wording kept by request:** "Call 911" is plain text, not a link. Consider "Dial 911" so it does not look tappable.
 
 ## What worked
 

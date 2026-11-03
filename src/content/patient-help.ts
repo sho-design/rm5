@@ -12,7 +12,7 @@ export const emergencyCopy = {
   // 911 first and tappable; Health811 second. A tester with chest pressure at 3am read the old box as "try 811 first".
   // Stroke signs are named: a tester checking for a parent's stroke did not see the word.
   // Round 15: a tester with arm pain and breathlessness, no chest pain, read the list as not meant for him.
-  urgent: draft("Chest pain, pressure or tightness (even if it feels like heartburn, especially with sweating), pain spreading to the arm, jaw or back, sudden shortness of breath or trouble breathing, heavy bleeding, signs of a stroke (face drooping, arm weakness, slurred speech), or a fever in a baby under 3 months: call 911 now, or go to the nearest emergency department."),
+  urgent: draft("Chest pain, pressure or tightness (even if it feels like heartburn, especially with sweating), pain spreading to the arm, jaw or back, sudden shortness of breath or trouble breathing, heavy bleeding, signs of a stroke (face drooping, arm weakness, slurred speech), a child who is very drowsy, limp or hard to wake, or a fever in a baby under 3 months: call 911 now, or go to the nearest emergency department."),
   call911: draft("Call 911"),
   /** Mental health crisis: a tester with low mood found only physical emergencies listed. 988 is Canada's suicide crisis line. */
   crisis: draft("Thoughts of suicide or self-harm?"),
@@ -55,6 +55,16 @@ export const renewalCopy = {
   urgentBody: draft("Call us at 905-709-3222 during clinic hours. Your pharmacist can also often extend a regular prescription for a short time. If you have no medication and feel unwell, call Health811 at 811 or 911."),
   /** A caregiver could not tell whose details go where; renewals had no "someone I care for" path (round 15). */
   forSomeone: draft("Asking for someone you care for? Use their name and date of birth, and add your name and relationship in the note."),
+  /** Caregiver mode (round 16: a son renewing his mother's pills could not tell whose phone, and "I am an existing patient" was not true of him). */
+  forWhom: { label: draft("Who is this request for?"), options: [draft("Me"), draft("Someone I care for")] as readonly string[] },
+  patientFirst: draft("Patient's first name"),
+  patientLast: draft("Patient's last name"),
+  patientDob: draft("Patient's date of birth"),
+  yourName: draft("Your name"),
+  yourRelationship: draft("Your relationship to them"),
+  yourPhone: draft("Your phone"),
+  existingOther: draft("The person I am asking for is an existing Restoration Medical patient."),
+  contactOther: draft("You may contact me by phone or email about this request."),
   /** Requests sent at night are read the next day we are open (a tester sent one at 11:35pm). */
   afterHours: draft("Sent outside clinic hours? We count the two business days from the next day we are open."),
   existing: "I am an existing Restoration Medical patient.",
@@ -83,6 +93,9 @@ export const feesCopy = {
   knownTitle: draft("Prices on our service pages"),
   knownSub: draft("These are already published with each service. HST is shown as on the service page."),
   ironPrefix: draft("Iron therapy"),
+  noOhipVisit: draft("Doctor visit without OHIP"),
+  noOhipNote: draft("Receipt provided for travel or private insurance"),
+  noOhipFee: draft("$100 plus HST ($113 total)"),
   details: draft("Details"),
   dripPrefix: draft("IV drip"),
   dripNote: draft("HST included, plus a 10 minute nurse screening"),
