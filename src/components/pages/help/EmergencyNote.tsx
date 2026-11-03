@@ -44,7 +44,9 @@ export function EmergencyNote({ className, id, headingLevel = 2, crisisFirst = f
       )}
       <p className="pretty pt-1 text-[14px] leading-[1.5] text-ink-2">{c.unsure}</p>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <a href="tel:811" className={buttonClass("outline", "md", "border-ink")}>
+        {/* A text link, not a button: with 911 as plain text, the 811 button was the only big control in the
+            box and a tester with chest symptoms said he would have pressed it (round 18). */}
+        <a href="tel:811" className="text-[14px] font-semibold text-link underline underline-offset-2">
           {c.call811}
         </a>
         <a href={c.link} target="_blank" rel="noopener" className="text-[14px] font-semibold text-link underline-offset-2 hover:underline">
