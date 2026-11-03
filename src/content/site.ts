@@ -149,7 +149,7 @@ export const heroSlides: HeroSlide[] = [
 ];
 
 export const announcements: Announcement[] = [
-  { text: draft("The Maple list is open"), page: "locations" },
+  { text: draft("The Maple list is open"), page: "/about/clinics#maple-waitlist" },
   { text: "Dr. Joseph Truong has joined Family Medicine", page: "team" },
   { text: draft("Flu shots are available now"), page: "vaccines" },
   { text: draft("Women’s health day, the last Sunday of every month"), page: "/family-medicine/women-s-health#womens-day" },

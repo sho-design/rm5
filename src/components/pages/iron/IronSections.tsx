@@ -1,3 +1,4 @@
+import { ironStepsTitle } from "@/content/iron";
 import type { IronPrice } from "@/content/iron";
 import type { PathStep, TintCard } from "@/content/types";
 import { Block, Button, Display, Eyebrow, Photo, Section, SmartLink } from "@/components/ui";
@@ -20,13 +21,13 @@ export function IronWho({ cards }: { cards: TintCard[] }) {
   );
 }
 
-/** "Three steps. One good afternoon." Navy block with three glass cards. */
+/** Steps heading (was "Three steps. One good afternoon.", which read as one visit). Navy block with three glass cards. */
 export function IronSteps({ steps }: { steps: PathStep[] }) {
   return (
     <Block tone="navy" className="flex flex-col gap-8 p-6 md:p-10 lg:gap-10 lg:px-12 lg:py-14">
       <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-8">
         <Display size="sm" className="max-w-[600px]">
-          Three steps. One good afternoon.
+          {ironStepsTitle}
         </Display>
         <Button to={bookFor("infusion", "iron")} variant="accent">
           Start with step one

@@ -137,6 +137,9 @@ export function OutcomeTile({ k, children, className }: { k: string; children: R
 
 /** Shown when a date of birth was started but is not a real date (new wording, docs/content-review.md). */
 const dobCheck = draft("Check the date of birth: a day, a month and a 4-digit year, for example 14 March 1956.");
+/** All three parts given, but no such date, or a date in the future (a tester entered 31 February). */
+const dobNoSuchDate = draft("That date does not exist. Check the day and the month.");
+const dobFuture = draft("That date is in the future. Check the year.");
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -166,6 +169,9 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
   const value = real ? `${yy}-${m.padStart(2, "0")}-${dd.padStart(2, "0")}` : "";
   /** Started but not a real date: say what is wrong instead of "Add your date of birth". */
   const partial = !real && !!(dd || m || yy);
+  const complete = !!dd && !!m && yy.length === 4;
+  const future = complete && new Date(Number(yy), Number(m) - 1, Number(dd)) > new Date();
+  const partialMsg = !complete ? dobCheck : future ? dobFuture : Number(yy) <= new Date().getFullYear() - 125 ? dobCheck : dobNoSuchDate;
   const bad = error || rest["aria-invalid"];
   const auto = autoComplete === "bday";
   // Wraps instead of squeezing: on a small phone the month box shrank to its arrow and hid the chosen month.
@@ -185,7 +191,7 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
           dayRef.current?.focus({ preventScroll: true });
           dayRef.current?.scrollIntoView({ block: "center" });
         }}
-        data-error={partial ? dobCheck : rest["data-error"]}
+        data-error={partial ? partialMsg : rest["data-error"]}
       />
       <Input
         ref={dayRef}

@@ -11,9 +11,9 @@ import { draft } from "./review";
 export const searchAliases: Record<string, string> = {
   book: "appointment appointments visit schedule reserve booking waitlist wait list cancellation",
   register: "dang ky benh nhan moi new patient accepting patients family doctor roster rostered register join sign up",
-  family: "earache ear ache ear pain ear infection sore ear pink eye uti urinary infection bac si kham benh kham suc khoe dau dau medico medica doctor gp physician insomnia sleep sleeping burnout mole moles skin check spot lesion lump sick cough cold fever flu sore throat rash infection concern walk in walkin checkup physical anxiety depression mood mental health stress sleep",
+  family: "nausea vomiting throwing up being sick earache ear ache ear pain ear infection sore ear pink eye uti urinary infection bac si kham benh kham suc khoe dau dau medico medica doctor gp physician insomnia sleep sleeping burnout mole moles skin check spot lesion lump sick cough cold fever flu sore throat rash infection concern walk in walkin checkup physical anxiety depression mood mental health stress sleep",
   vaccines: "vacuna vacunas tiem cum tiem phong vac xin chich ngua vaccine vaccines vaccination immunization immunizations shot shots flu shot shingles shingrix rsv pneumonia tdap whooping cough",
-  pregnancy: "pregnant pregnancy prenatal antenatal obstetrics obstetrician midwife midwifery baby expecting first trimester postpartum breastfeeding nursing mang thai",
+  pregnancy: "morning sickness nausea in pregnancy vomiting being sick throwing up hyperemesis pregnant pregnancy prenatal antenatal obstetrics obstetrician midwife midwifery baby expecting first trimester postpartum breastfeeding nursing mang thai",
   rx: "thuoc toa thuoc ke toa refill refills prescription prescriptions renew renewal medication medications meds pharmacy run out ran out",
   labs: "results result bloodwork lab tests test results",
   women: "sti std stis stds sti test sexual health pap smear pap test cervical screening hpv menopause perimenopause hot flashes contraception birth control iud period periods womens health day women's health day last sunday testing nurse nurses",
@@ -87,6 +87,15 @@ export function aliasesFor(page: string): string | undefined {
 
 /** Entries for things people search that have no page of their own. New wording, see docs/content-review.md. */
 export const searchExtras: SearchDoc[] = [
+  // Old drip names from receipts (renamed by contents, Nov 2026): a tester with a "Beauty Elixir" receipt landed on Aesthetics.
+  { kind: draft("Infusion Therapy"), label: draft("Myers’ cocktail"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/myers", keys: "healing myers healing" },
+  { kind: draft("Infusion Therapy"), label: draft("Antioxidant drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/antioxidant", keys: "radiance" },
+  { kind: draft("Infusion Therapy"), label: draft("Biotin drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/biotin", keys: "hair and nails hair nails" },
+  { kind: draft("Infusion Therapy"), label: draft("Vitamin C, zinc and B vitamins"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/vitamin-c-zinc", keys: "seasonal support seasonal" },
+  { kind: draft("Infusion Therapy"), label: draft("Hydration after exercise"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/after-exercise", keys: "recover recovery" },
+  { kind: draft("Infusion Therapy"), label: draft("Hydration drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/hydration", keys: "revive" },
+  { kind: draft("Infusion Therapy"), label: draft("NAD+ drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/nad", keys: "nad longevity longevity" },
+  { kind: draft("Infusion Therapy"), label: draft("Skin and hair drips"), sub: draft("Beauty Elixir is no longer offered. See the skin and hair drips"), page: "/infusion-therapy/drips?family=Skin%20and%20hair", keys: "beauty elixir elixir" },
   // Teens searching "reminder text" did not find the children and youth FAQ.
   {
     kind: draft("Children & youth"),

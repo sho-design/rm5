@@ -233,7 +233,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Infusion",
     q: "Are drips covered by OHIP?",
-    a: draft("No. Wellness infusions and injections are self-pay, with HST included in the price. Iron infusion for confirmed deficiency is a physician visit; the iron product itself may be covered by your drug plan."),
+    a: draft("No. Wellness infusions and injections are self-pay, with HST included in the price. The iron assessment and bloodwork are OHIP-insured; the infusion visit itself is not, and the iron product may be covered by your drug plan."),
     linkLabel: "Pricing",
     linkPage: "infusionPricing",
   },

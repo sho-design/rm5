@@ -715,6 +715,7 @@ const family: Topic[] = [
         { k: draft("Records"), v: draft("Added to your chart") },
         // A Maple resident had to start booking to learn shots are given at Thornhill (round 17).
         { k: draft("Where"), v: draft("Thornhill, 700 Centre St. Maple is not open yet.") },
+        { k: draft("Families"), v: draft("One booking per person. Book each person back to back and we see you together.") },
       ],
     },
     cards: {
@@ -764,6 +765,8 @@ const family: Topic[] = [
         { k: draft("Referral"), v: approved(womenResult("Planning a pregnancy"), "Referral to obstetrics or midwifery by 12 weeks") },
         { k: draft("After the baby"), v: draft("Well-baby visits here") },
         { k: draft("Who you see"), v: draft("One of our physicians, with our nurses for testing") },
+        // A pregnant tester with bad nausea found no warning signs, and search sent "nausea" to drips (round 18).
+        { k: draft("Call us the same day"), v: draft("If you are being sick and cannot keep fluids down, feel faint, or have bleeding. For heavy bleeding or severe pain, dial 911.") },
       ],
     },
     path: {

@@ -141,7 +141,15 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     const key = params.get("service");
     if (key && services.some((s) => s.key === key)) chooseService(key, params.get("visit") ?? undefined);
     const why = params.get("reason")?.trim().slice(0, 80);
-    if (why) setReason(why);
+    if (why) {
+      setReason(why);
+      // Keep the reason out of the address bar and history (a 15-year-old's family iPad showed "Sexual health").
+      try {
+        const u = new URL(window.location.href);
+        u.searchParams.delete("reason");
+        window.history.replaceState(window.history.state, "", u.pathname + (u.search ? u.search : "") + u.hash);
+      } catch {}
+    }
     // Links from children's pages pass &for=someone: the booking is for a child, not the parent.
     if (params.get("for") === "someone") setForOther(1);
     try {
@@ -232,6 +240,12 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     return [c.claimNumber, "insurer" in c ? c.insurer : c.employer, nice].filter(Boolean).join(", ");
   };
 
+  /** "Jordan (he/him)": testers gave a preferred name and pronouns and never saw them again (round 18). */
+  const preferredLine = () => {
+    const n = str(forOther ? "patientPreferred" : "preferredName");
+    const pr = str(forOther ? "patientPronouns" : "pronouns");
+    return [n, pr ? `(${pr})` : ""].filter(Boolean).join(" ");
+  };
   const payload = () => ({
     division: service.label,
     service: service.key,
@@ -340,6 +354,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const reviewRows: [string, string][] = [
     [x.review.keys.service, serviceLine],
     ...(forOther ? ([[x.review.keys.for, [patientName ? `${patientName}.` : "", str("relationship") ? x.youAreTheir(str("relationship")) : ""].filter(Boolean).join(" ")]] as [string, string][]) : []),
+    ...(preferredLine() ? ([[x.review.keys.preferred, preferredLine()]] as [string, string][]) : []),
     [x.review.keys.status, bookingWho[who]],
     [registerCopy.fields.language, languageName],
     ...(visit?.modes ? ([[x.modeLabel, x.modes[mode]]] as [string, string][]) : []),

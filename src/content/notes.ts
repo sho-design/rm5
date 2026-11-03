@@ -32,7 +32,7 @@ export const healthNotes: HealthNote[] = [
       { type: "h", text: "During the infusion" },
       {
         type: "p",
-        text: "A nurse places the IV, checks your vital signs and starts the infusion. Depending on the product, the infusion itself takes 15 to 60 minutes, and we observe you for 30 minutes afterwards. Bring something to read.",
+        text: draft("A nurse places the IV, checks your vital signs and starts the infusion. Plan for about 3 hours in all, including screening, the infusion and the time we watch you afterwards. Bring something to read."),
       },
       { type: "h", text: "Afterwards" },
       {

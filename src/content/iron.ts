@@ -108,3 +108,5 @@ export const ironCta = {
   title: draft("Start with an iron assessment."),
   sub: draft("OHIP-insured, with bloodwork on site. Your doctor goes through the results with you and tells you whether an infusion makes sense."),
 };
+
+export const ironStepsTitle = draft("Three steps, over a few weeks.");

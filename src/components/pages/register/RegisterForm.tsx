@@ -158,7 +158,8 @@ export function RegisterForm() {
     });
     setBusy(false);
     if (res.ok) {
-      setSent({ names: [`${s("first")} ${s("last")}`.trim(), ...family.map((m) => `${m.first} ${m.last}`.trim())].filter(Boolean), clinic: clinic === 0 ? "Thornhill" : "Maple" });
+      const pref = [s("preferredName"), s("pronouns")].filter(Boolean).join(", ");
+      setSent({ names: [`${s("first")} ${s("last")}${pref ? ` (${pref})` : ""}`.trim(), ...family.map((m) => `${m.first} ${m.last}`.trim())].filter(Boolean), clinic: clinic === 0 ? "Thornhill" : "Maple" });
       setDone(true);
     } else setError(true);
   };
@@ -244,7 +245,7 @@ export function RegisterForm() {
               {caregiver ? x.patientTitle : registerCopy.formTitle}
             </Display>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
-              <FieldLabel label={registerCopy.fields.first} htmlFor="reg-first" {...err("reg-first")}>
+              <FieldLabel label={registerCopy.fields.first} htmlFor="reg-first" hint={x.asOnCard} {...err("reg-first")}>
                 <Input id="reg-first" name="first" autoComplete={caregiver ? "off" : "given-name"} required {...errorProps(errors, "reg-first")} />
               </FieldLabel>
               <FieldLabel label={registerCopy.fields.last} htmlFor="reg-last" {...err("reg-last")}>

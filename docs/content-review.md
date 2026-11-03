@@ -357,6 +357,19 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Evidence labels hidden** until a physician defines them (`showEvidenceLabels` in `src/content/infusion-site.ts`).
 - **Drip names by contents.** Myers' cocktail (was Healing (Myers')), Antioxidant drip (Radiance), Biotin drip (Hair & Nails, with "Tell us before any blood test, as biotin can affect some results."), Vitamin C, zinc and B vitamins (Seasonal Support), Hydration after exercise (Recover), Hydration drip (Revive), NAD+ drip (NAD+ Longevity, "The evidence for NAD+ drips is still developing."), Hydration in pregnancy (Pregnancy Care). Beauty Elixir removed; Metabolic shows only on the program page. Families: Foundation, Skin and hair, Vitamins, Signature and NAD+, Hydration. Shot lines describe contents ("A B vitamin", "An antioxidant"). By-concern cards reworded without outcomes. Myers' add-ons "Added only on a physician's order, after a quick screening." Old drip addresses redirect. Rename the Square items to match.
 
+## Usability fixes, round 18
+
+- **Booking emergency line:** "Chest pain, pressure or tightness (even if it feels like heartburn), arm or jaw pain, … Do not book. Dial 911 now." / "See the full list of emergency signs".
+- **Preferred name:** review key "Preferred name"; first name hint "As on the health card."
+- **Pregnancy page (please review):** "Call us the same day: If you are being sick and cannot keep fluids down, feel faint, or have bleeding. For heavy bleeding or severe pain, dial 911."
+- **Iron:** health note "… Plan for about 3 hours in all, including screening, the infusion and the time we watch you afterwards. …"; drips FAQ "… The iron assessment and bloodwork are OHIP-insured; the infusion visit itself is not, and the iron product may be covered by your drug plan."; "Three steps, over a few weeks."
+- **Search entries for old drip names:** "Drip names changed in November 2026"; "Beauty Elixir is no longer offered. See the skin and hair drips".
+- **Dates of birth:** "That date does not exist. Check the day and the month." / "That date is in the future. Check the year."
+- **Pain Centre FAQ:** "My doctor sent a referral. What happens now?" / "We call you to book, usually within two to three weeks of the referral arriving. Not heard from us after three weeks? Call 905-709-3222 and we check that your referral arrived."; booking hint adds "as a request" and the three-week call.
+- **Vaccines:** "Families: One booking per person. Book each person back to back and we see you together."
+- **Infusion:** drips lead "Drips are grouped by what is in them. Pick a group to narrow the list, or browse everything."; steps "We review your health first, and we adjust or decline a treatment if it is not right for you." / "Your treatment" / "Our physician reviews every plan, and any change to a drip is on a physician's order. No pressure."; "An elective wellness service. Not a treatment for any disease."
+- **Chaperone confirmation:** "You asked for a nurse in the room for any examination. Our nurses are women."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

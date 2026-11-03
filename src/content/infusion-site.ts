@@ -35,7 +35,7 @@ export const dripFamilies = {
 } as const;
 
 export type DripFamily = keyof typeof dripFamilies;
-export const dripFamilyList = Object.keys(dripFamilies) as DripFamily[];
+// Defined after signatureDrips below so families with no drips on the menu (Program) get no empty filter.
 
 export interface DripDetail {
   whatItIs: string;
@@ -63,7 +63,8 @@ export interface Drip {
 
 // Names describe what is in the drip, not a result (CPSO, Health Canada prescription drug advertising).
 // Old names, for staff: Healing (Myers'), Radiance, Hair & Nails, Seasonal Support, Kingmaker/Queenmaker,
-// Recover, Revive, NAD+ Longevity, Pregnancy Care. Beauty Elixir was removed (it overlapped Radiance and
+// Recover, Revive, NAD+ Longevity. Pregnancy Care was removed (a pregnant patient needing fluids sees a doctor,
+// round 18) and now redirects to pregnancy care. Beauty Elixir was removed (it overlapped Radiance and
 // made a beauty claim); Metabolic now shows only on the metabolic program page. Old addresses redirect.
 export const signatureDrips: Drip[] = [
   { slug: "foundation", t: "Foundation", f: "Foundation", d: "Hydration and core nutrients to start from.", ev: "Established" },
@@ -94,13 +95,15 @@ export const signatureDrips: Drip[] = [
   { slug: "after-exercise", t: draft("Hydration after exercise"), f: "Hydration", d: draft("Fluids and electrolytes, with amino acids."), ev: "Supported" },
   { slug: "hydration", t: draft("Hydration drip"), f: "Hydration", d: draft("Fluids and electrolytes."), ev: "Supported" },
   { slug: "nad", t: draft("NAD+ drip"), f: "Signature and NAD+", d: draft("NAD+, a coenzyme found in every cell. The evidence for NAD+ drips is still developing."), ev: "Emerging" },
-  { slug: "pregnancy-hydration", t: draft("Hydration in pregnancy"), f: "Foundation", d: draft("Physician-supervised hydration in pregnancy, only when your doctor recommends it."), ev: "Supervised" },
 ];
 
 /** Part of the medical weight management program only, so not on the drip menu (no weight-loss marketing). */
 export const metabolicDrip: Drip = { slug: "metabolic", t: "Metabolic", f: "Program", d: "Part of our physician-supervised medical weight management program.", ev: "Emerging" };
 
 export const dripBySlug = (slug: string) => signatureDrips.find((d) => d.slug === slug);
+
+/** Filter chips: only families that have a drip on the menu (a tester found "Program" with 0 drips). */
+export const dripFamilyList = (Object.keys(dripFamilies) as DripFamily[]).filter((f) => signatureDrips.some((d) => d.f === f));
 
 /** The Injection Bar. */
 export const shots: { t: string; d: string }[] = [
@@ -161,8 +164,8 @@ export const honestClaims = [
 ];
 
 export const infusionSteps = [
-  { n: "01", t: "Consult & screen", d: "We talk through how you want to feel and review your health, so any treatment is safe and right for you." },
-  { n: "02", t: "Personalize your treatment", d: "Our physician reviews and our nurse tailors the drip or shot to you. No fixed menu, no pressure." },
+  { n: "01", t: "Consult & screen", d: draft("We review your health first, and we adjust or decline a treatment if it is not right for you.") },
+  { n: "02", t: draft("Your treatment"), d: draft("Our physician reviews every plan, and any change to a drip is on a physician's order. No pressure.") },
   { n: "03", t: "Relax while we care for you", d: "Settle into the chair in a calm clinical setting. We stay with you from the first drop to the last." },
 ];
 
@@ -211,7 +214,7 @@ export const infusionTeam = {
 export const infusionCopy = {
   smallPrint:
     "Wellness infusion services are elective and are not covered by OHIP. Iron therapy may be clinically indicated. Every treatment is physician-reviewed and nurse-administered. Information on this site is educational and is not medical advice. Results vary from person to person. A consult confirms what is right for you.",
-  wellnessNote: "An elective wellness service. Results vary. Not a treatment for any disease.",
+  wellnessNote: draft("An elective wellness service. Not a treatment for any disease."),
   band: {
     title: "Care that begins with you.",
     sub: "Wellness or clinical, the standard of care is the same. A consult confirms what is right for you. No pricing surprises, no pressure.",
@@ -221,7 +224,7 @@ export const infusionCopy = {
   drips: {
     eyebrow: "Browse our drips & shots",
     title: "Our drips and shots.",
-    lead: "Each treatment family carries its own accent, drawn from its ingredients. Pick a family to narrow the list, or browse everything.",
+    lead: draft("Drips are grouped by what is in them. Pick a group to narrow the list, or browse everything."),
     all: "All families",
     signature: "Signature drips",
     count: (n: number) => `${n} drips, about 45 minutes in the chair`,

@@ -76,7 +76,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
             <br />
             {maple.addressLines[1]}
           </a>
-          <span className="flex-1">Family Medicine, Pain Centre, Infusion Therapy and Rehab. Pre-registration is open now.</span>
+          <span className="flex-1">Family Medicine, Pain Centre, Infusion Therapy and Rehab. The Maple list is open now.</span>
           <Link href={`${routes.locations}#maple-waitlist`} className="w-full border-t border-border pt-1.5 font-semibold text-link">
             Join the Maple list ›
           </Link>

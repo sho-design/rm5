@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (310 simulated patients)
+# Usability test, 28 October 2026 (330 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -844,6 +844,35 @@ Plain-text 911: Linda (stroke signs) reached "call 911" in under 15 seconds, but
 - **Vietnamese (Thao):** list languages on the doctor cards and let families ask for a Vietnamese-speaking doctor.
 - **WSIB (Dev):** what is paid if a claim is denied.
 - **Consistency:** Woodbridge against Maple, "10+ years" against 11, iron visit length, "Both physicians" against "Most of our staff" speak Vietnamese.
+
+## Round 18: 20 testers, Tuesday 3 November about 9am (clinic closed until 3pm)
+
+Average ease 5.5, trust 5.35, the highest so far (round 17 was 5.35 and 5.2). Every booking and form went through. Retests that now work: the "Dial 911 now" box (Kim reached the stroke instruction in about 2 seconds), patient status no longer changing on its own and date errors clearing (Rosa), the private calendar title (Ava), the no-OHIP fee in five places (Omar), Pap with a nurse (Fatima, 6 out of 7 sure), the morning testosterone tip (Mike), and Maple preselected from the Maple list (Sam). Both compliance reviewers found no em dashes, exclamation marks, testimonials or ratings. Lowest trust: Jordan (preferred name not shown back) 4, Ava (reason in the web address) 4, Dr. Ali 4.
+
+No tracker loads on the form pages: a check of /book, /register and /about/contact found no outside requests. A tester's facebook.com request came from the Facebook icon in the top bar.
+
+### Round 18 findings fixed in code
+
+- **Emergency box:** Health811 is now a text link, not a button. With 911 as plain text, the 811 button was the only large control and two testers said they might press it. The booking top line names pressure, tightness and heartburn, and its link reads "See the full list of emergency signs".
+- **Preferred name and pronouns:** shown back on the booking review ("Preferred name: Jordan (he/him)") and on the registration confirmation. The first name field adds "As on the health card."
+- **Teen privacy:** the visit reason is removed from the web address once read, so it does not stay in browser history.
+- **Pregnancy:** the "Hydration in pregnancy" drip is off the menu and redirects to pregnancy care. Searching "morning sickness" or "nausea" finds pregnancy care and family medicine. The pregnancy page adds when to call the same day and when to dial 911.
+- **Iron:** the health note says "Plan for about 3 hours in all"; the drips FAQ says the infusion visit itself is not OHIP-insured; the steps heading is "Three steps, over a few weeks."
+- **Old drip names:** searching a receipt name ("Beauty Elixir", "NAD+ Longevity", "Healing", "Radiance", "Recover") finds the renamed drip, with "Drip names changed in November 2026".
+- **Dates of birth:** "That date does not exist. Check the day and the month." for 31 February, and a separate message for future dates.
+- **Pain Centre:** its FAQ adds "My doctor sent a referral. What happens now?", and the booking hint says to call after three weeks.
+- **Smaller:** vaccines page "Families: One booking per person…"; the "Program" drip filter with no drips is gone; footer and ticker say "Maple list" and the ticker opens the form; drip page lead and how-it-works steps no longer say "No fixed menu", "how you want to feel" or "so any treatment is safe"; one "Results vary" instead of two.
+
+### Round 18 findings for the clinic
+
+- **Iron (Dr. Ali, Pierre):** fixed 500 mg course; iron sucrose on the referral page; first-trimester and other contraindications; the cause work-up; skin staining and low phosphate; Monoferric and its price next to "restores your iron" and "Serious reactions are rare".
+- **Weight program (Pierre):** the struck-through "Detoxes and melts fat" quote, "medical weight management" and the MIC and L-carnitine add-ons.
+- **Aesthetics (Carmen, Pierre):** who injects; injectable prices; aftercare and complications; "Look like yourself, on a good day"; "complimentary consult" as an inducement.
+- **Outcome lines (Pierre):** "Leave feeling restored", "gets you moving", "back to the sport, not just out of pain", "Steady numbers, fewer surprises", "From booking to back on your feet".
+- **Drips:** prices and doses on drip pages; fee names (Hydration, Vitamin blend, Recovery) that match the menu; a way to pick the drip when booking.
+- **WSIB (Ray):** what happens if a claim is denied.
+- **Choosing a doctor (Hanh, Thao):** families want to ask for a Vietnamese-speaking doctor; Vietnamese name order on forms.
+- **Consistency:** Woodbridge against Maple.
 
 ## What worked
 
