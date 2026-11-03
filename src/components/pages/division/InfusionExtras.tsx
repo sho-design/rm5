@@ -102,43 +102,25 @@ export function InfusionGrid() {
   );
 }
 
-/** Deep dive, infusion only: "A medical clinic, not a drip bar." comparison table. */
+/** Deep dive, infusion only: how an infusion works here. Facts about this clinic only, no comparison with others. */
 export function CompareTable({ rows }: { rows: CompareRow[] }) {
   const c = deepModuleCopy.compare;
   return (
     <Section className="flex flex-col gap-5">
       <Display size="xs">{c.title}</Display>
-      <div role="table" className="overflow-hidden rounded-card border border-border">
-        <div role="row" className="hidden grid-cols-[1.4fr_1fr_1fr] bg-card text-[13px] font-semibold text-muted md:grid">
-          <span role="columnheader" className="px-6 py-4" />
-          <span role="columnheader" className="px-6 py-4 text-ink">
-            {c.us}
-          </span>
-          <span role="columnheader" className="px-6 py-4">
-            {c.them}
-          </span>
-        </div>
-        {rows.map((r) => (
-          <div key={r.k} role="row" className="grid grid-cols-1 border-t border-border text-[15px] md:grid-cols-[1.4fr_1fr_1fr]">
-            <span role="cell" className="px-5 pt-4 font-semibold md:px-6 md:py-[18px]">
-              {r.k}
-            </span>
-            <span role="cell" className="flex flex-col gap-1 bg-sage-tint px-5 py-3 md:px-6 md:py-[18px]">
-              <span className="text-[12px] font-semibold text-muted md:hidden">{c.us}</span>
-              <span className="flex items-start gap-2">
-                <span aria-hidden className="text-sage-deep">
-                  ✓
-                </span>
-                <span>{r.us}</span>
+      <dl className="overflow-hidden rounded-card border border-border">
+        {rows.map((r, i) => (
+          <div key={r.k} className={`grid grid-cols-1 text-[15px] md:grid-cols-[1.4fr_2fr] ${i ? "border-t border-border" : ""}`}>
+            <dt className="px-5 pt-4 font-semibold md:px-6 md:py-[18px]">{r.k}</dt>
+            <dd className="flex items-start gap-2 bg-sage-tint px-5 py-3 md:px-6 md:py-[18px]">
+              <span aria-hidden className="text-sage-deep">
+                ✓
               </span>
-            </span>
-            <span role="cell" className="flex flex-col gap-1 px-5 pb-4 pt-3 text-muted md:px-6 md:py-[18px]">
-              <span className="text-[12px] font-semibold md:hidden">{c.them}</span>
-              <span>{r.them}</span>
-            </span>
+              <span>{r.us}</span>
+            </dd>
           </div>
         ))}
-      </div>
+      </dl>
     </Section>
   );
 }

@@ -319,3 +319,14 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Vietnamese FAQ.** The answer to "Do you speak Vietnamese?" mentions a language switch at the top of the site. The switch stays hidden until the Vietnamese pages are ready (`NEXT_PUBLIC_VI_ENABLED`), so reword the answer or launch the translation.
 - **Rehab self-pay floor.** The booking coverage line "Self-pay, from $95, HST included" comes from the rehab coverage checker. Confirm it covers chiro and massage too.
 - **Quebec cards.** Booking says Quebec cards cannot be billed directly for doctor visits (Quebec is not part of reciprocal medical billing) and patients pay and claim back from RAMQ. Confirm this matches how the clinic handles Quebec patients.
+
+## CPSO advertising review (2026-11-03)
+
+Changed so the site does not compare us with other providers or promote a paid service before an assessment (O. Reg. 114/94 Part III, CPSO Advertising policy). All new lines are `draft()` and need clinic approval.
+
+- Removed the "Typical IV lounge" column from the infusion comparison table. It now lists only how an infusion works here ("How an infusion works here.").
+- "Not a drip bar" lines reworded to describe only the clinic: "Physician-led, with screening first." Honest menu title is now "Common claims, and what we say." with "Claims you may see online".
+- Home, "Low energy" path: step 3 was "Iron infusion, same week". Now "Treatment, if your results show it: for low iron, usually tablets first. An iron infusion only if tablets are not right for you." Step 2 no longer says "we book step three". Outcome no longer says "books the fix".
+- Iron self-check intro: dropped "Three or more is a good reason to check your ferritin". Now "These feelings have many causes, and low iron is only one. A blood test, ordered by your doctor, is the only way to know."
+- Infusion concerns, "Low energy & fatigue": now goes to a family doctor visit (OHIP-insured) instead of the drips list.
+- Still open, needs clinic decision: drip names that carry health claims (Kingmaker "Vitality support for men", "NAD+ Longevity", "Beauty Elixir", "Bones & mood", "Healing (Myers')"), the evidence badges, and "Low energy & fatigue" as a drip "helps with" label.

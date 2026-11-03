@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ironTally, type IronSymptom } from "@/content/iron";
+import { ironCheckLead, ironTally, type IronSymptom } from "@/content/iron";
 import { CheckChip, Display, Eyebrow, Section } from "@/components/ui";
 
 /**
@@ -19,7 +19,7 @@ export function IronCheck({ symptoms, accent }: { symptoms: IronSymptom[]; accen
           Is this you?
         </Eyebrow>
         <Display size="sm">Low iron hides in everyday feelings.</Display>
-        <p className="pretty text-[16px] leading-[1.55] text-muted">Tap what sounds familiar. Three or more is a good reason to check your ferritin. A blood test is the only way to know.</p>
+        <p className="pretty text-[16px] leading-[1.55] text-muted">{ironCheckLead}</p>
         <span className="min-h-[20px] text-[15px] font-semibold text-ink" aria-live="polite">
           {tally}
         </span>

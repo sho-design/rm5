@@ -9,7 +9,7 @@
  * here instead. Strings wrapped in `draft()` are new wording written to join
  * the pages together and need clinic approval (docs/content-review.md).
  */
-import type { PageKey } from "@/lib/routes";
+import { bookFor, type PageKey } from "@/lib/routes";
 
 function draft(text: string): string {
   return text;
@@ -123,7 +123,8 @@ export interface Concern {
 /** By concern. Wellness concerns open the drips list on the matching family. */
 const dripsIn = (f: DripFamily) => `/infusion-therapy/drips?family=${encodeURIComponent(f)}`;
 export const concerns: Concern[] = [
-  { t: "Low energy & fatigue", d: "Running low more often than you would like.", cta: "Explore", tag: "Wellness", page: dripsIn("Foundation & Healing") },
+  // Fatigue goes to a doctor's visit first, not straight to paid drips (CPSO: no promoting services a patient may not need).
+  { t: "Low energy & fatigue", d: draft("Start with a family doctor visit and bloodwork. OHIP-insured."), cta: draft("Book a visit"), tag: "Clinical", page: `${bookFor("family", "concern")}&reason=${encodeURIComponent("Low energy")}` },
   { t: "Seasonal wellness", d: "Support through a demanding season.", cta: "Explore", tag: "Wellness", page: dripsIn("Seasonal") },
   { t: "Skin, hair & nails", d: "Caring for how you look from within.", cta: "Explore", tag: "Wellness", page: dripsIn("Radiance & Beauty") },
   { t: "Recovery & performance", d: "Training hard and recovering harder.", cta: "Explore", tag: "Wellness", page: dripsIn("Recovery") },
@@ -259,14 +260,14 @@ export const infusionCopy = {
     rightTitle: "We screen first, and we will adjust or decline on clinical grounds.",
     rightP: "Wellness infusions are elective and not covered by OHIP. Iron therapy may be clinically indicated. Results vary from person to person.",
     whyEyebrow: "Why physician-led matters",
-    whyTitle: "A real clinic, not a drip bar.",
+    whyTitle: draft("Physician-led, with screening first."),
     whyP: "The difference matters. Screening, real medical oversight, and nurses who do this every day.",
   },
   honest: {
     eyebrow: "The honest menu",
-    title: "What a drip bar promises. What we say.",
+    title: draft("Common claims, and what we say."),
     lead: "The difference matters. Screening, real medical oversight, and nurses who do this every day.",
-    theySay: draft("What you may hear"),
+    theySay: draft("Claims you may see online"),
     weSay: draft("What we say"),
     evidenceEyebrow: "Where the evidence is still developing",
     evidenceTitle: "We label it Emerging, right on the ingredient.",
@@ -296,7 +297,7 @@ export const infusionPages: { key: PageKey; title: string; description: string }
   { key: "concerns", title: infusionCopy.concerns.title, description: infusionCopy.concerns.lead },
   { key: "metabolic", title: infusionCopy.metabolic.title, description: draft("A physician-supervised medical weight management program at Restoration Medical in Thornhill, with screening and follow-up.") },
   { key: "infusionHow", title: infusionCopy.how.title, description: infusionSteps.map((s) => s.t).join(", ") + ". " + infusionCopy.how.rightTitle },
-  { key: "honest", title: infusionCopy.honest.title, description: draft("What a drip bar promises, and what a physician-led clinic says instead. Screening first, real medical oversight and registered nurses.") },
+  { key: "honest", title: infusionCopy.honest.title, description: draft("Common claims about IV drips, and what our physicians say. Screening first, medical oversight and registered nurses.") },
   { key: "ingredients", title: infusionCopy.ingredients.title, description: draft("The ingredients in our drips and shots, what each one is for, and where the evidence is still developing.") },
   { key: "infusionPricing", title: infusionCopy.pricing.title, description: infusionCopy.pricing.lead },
   { key: "infusionTeam", title: infusionTeam.title, description: infusionTeam.lead },

@@ -58,11 +58,11 @@ export interface CoverageOption {
   ctaPage: string;
 }
 
-/** Infusion "clinic vs lounge" comparison row. */
+/** Infusion "how we work" row. Was a clinic versus "typical IV lounge" comparison; comparative statements
+ *  are not allowed in physician advertising (O. Reg. 114/94, CPSO Advertising policy), so only our side remains. */
 export interface CompareRow {
   k: string;
   us: string;
-  them: string;
 }
 
 export const deepDives: Record<DivisionKey, DeepDive> = {
@@ -775,13 +775,13 @@ export const rehabCoverage: CoverageOption[] = [
   },
 ];
 
-/** Infusion Therapy: clinic versus lounge comparison table. */
+/** Infusion Therapy: how an infusion works here (facts about this clinic only). */
 export const infusionCompareRows: CompareRow[] = [
-  { k: "Who screens you", us: "Registered nurse, physician on site", them: "Often a nurse only" },
-  { k: "Iron infusions", us: "Physician-reviewed bloodwork first", them: "Rarely offered" },
-  { k: "If something goes wrong", us: "Doctor in the building", them: "Call 911" },
-  { k: "Your records", us: "One chart with your family doctor", them: "Separate, if any" },
-  { k: "Bloodwork", us: "Drawn on site, OHIP-insured", them: "Elsewhere, extra cost" },
+  { k: "Who screens you", us: "Registered nurse, physician on site" },
+  { k: "Iron infusions", us: "Physician-reviewed bloodwork first" },
+  { k: "If something goes wrong", us: "Doctor in the building" },
+  { k: "Your records", us: "One chart with your family doctor" },
+  { k: "Bloodwork", us: "Drawn on site, OHIP-insured" },
 ];
 
 /**
@@ -812,7 +812,7 @@ export const deepModuleCopy = {
     coverage: "All OHIP-insured",
     cta: "Book a checkup and catch up",
   },
-  compare: { title: "A medical clinic, not a drip bar.", us: "Restoration Medical", them: "Typical IV lounge" },
+  compare: { title: draft("How an infusion works here."), us: "Restoration Medical" },
   ladder: { eyebrow: "How we think", title: "Lightest option first. Step up only if you want to.", note: "Tap a rung to see what it involves. Most people start on the first.", step: "Step" },
   coverage: { eyebrow: "What will I pay?", title: "Pick how you are covered.", payLabel: "You pay at the desk" },
   handoff: {

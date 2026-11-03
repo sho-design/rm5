@@ -92,3 +92,7 @@ export const ironFaq: QA[] = [
   { q: "Will my insurance cover it?", a: "Your assessment and bloodwork are OHIP-insured. Most private drug plans cover the iron itself when filled with our prescription. The infusion visit fee is paid out of pocket and we provide a receipt." },
   { q: "Can I drive home?", a: "Yes. Iron infusions do not involve sedation. Most people return to their normal day." },
 ];
+
+/** Iron self-check intro. Was "Three or more is a good reason to check your ferritin": an unsourced
+ *  clinical threshold leading to a paid service. Now points to a doctor's visit (draft, clinical review). */
+export const ironCheckLead = draft("Tap what sounds familiar. These feelings have many causes, and low iron is only one. A blood test, ordered by your doctor, is the only way to know.");
