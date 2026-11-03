@@ -16,6 +16,10 @@ export const emergencyCopy = {
   /** Mental health crisis: a tester with low mood found only physical emergencies listed. 988 is Canada's suicide crisis line. */
   crisis: draft("Thoughts of suicide or self-harm?"),
   call988: draft("Call or text 988, any time, day or night."),
+  /** Crisis-first note (search for "hopeless" and similar). 988 is Canada's suicide crisis line, by call or text. */
+  crisisLead: draft("You do not have to wait for us. Talk to someone now: call or text 988, any time, day or night. It is free and confidential."),
+  call988Button: draft("Call or text 988"),
+  crisisSafety: draft("If you might act on thoughts of suicide or are in danger now, call 911."),
   /** For people who are not sure: phone and website are separate, clearly named links. */
   unsure: draft("Not sure if it is urgent? Health811 gives health advice any time, day or night."),
   call811: draft("Call Health811 at 811"),

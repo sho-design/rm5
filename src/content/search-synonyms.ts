@@ -11,7 +11,7 @@ import { draft } from "./review";
 export const searchAliases: Record<string, string> = {
   book: "appointment appointments visit schedule reserve booking waitlist wait list cancellation",
   register: "dang ky benh nhan moi new patient accepting patients family doctor roster rostered register join sign up",
-  family: "bac si kham benh kham suc khoe dau dau medico medica doctor gp physician insomnia sleep sleeping burnout mole moles skin check spot lesion lump sick cough cold fever flu sore throat rash infection concern walk in walkin checkup physical anxiety depression mood mental health stress sleep",
+  family: "earache ear ache ear pain ear infection sore ear pink eye uti urinary infection bac si kham benh kham suc khoe dau dau medico medica doctor gp physician insomnia sleep sleeping burnout mole moles skin check spot lesion lump sick cough cold fever flu sore throat rash infection concern walk in walkin checkup physical anxiety depression mood mental health stress sleep",
   vaccines: "vacuna vacunas tiem cum tiem phong vac xin chich ngua vaccine vaccines vaccination immunization immunizations shot shots flu shot shingles shingrix rsv pneumonia tdap whooping cough",
   pregnancy: "pregnant pregnancy prenatal antenatal obstetrics obstetrician midwife midwifery baby expecting first trimester postpartum breastfeeding nursing mang thai",
   rx: "thuoc toa thuoc ke toa refill refills prescription prescriptions renew renewal medication medications meds pharmacy run out ran out",
@@ -22,7 +22,7 @@ export const searchAliases: Record<string, string> = {
   blood: "bloodwork blood test fasting ecg ekg lab draw requisition",
   numbers: "a1c ferritin cholesterol ldl blood pressure numbers results",
   year: "screening prevention checkup annual vaccine vaccines shingles shingrix rsv pneumonia immunization",
-  kids: "newborn new baby well baby well-baby rourke child children kid kids baby babies infant daughter son teen teens teenager vaccine vaccines immunization immunizations school forms anxiety mental health mood confidential",
+  kids: "earache ear ache ear infection fever child kid fever newborn new baby well baby well-baby rourke child children kid kids baby babies infant daughter son teen teens teenager vaccine vaccines immunization immunizations school forms anxiety mental health mood confidential",
   iron: "iron ferritin anemia anaemia anemic low iron tired fatigue exhausted monoferric iron infusion postpartum breastfeeding thieu mau sat",
   infusion: "iv drip drips vitamin vitamins",
   drips: "iv drip drips hydration myers vitamin",
@@ -101,8 +101,8 @@ export const searchExtras: SearchDoc[] = [
     label: draft("Mood, anxiety and sleep"),
     sub: draft("Talk to a family doctor, OHIP-insured. In crisis, call or text 988"),
     page: "/book?service=family&visit=concern&reason=Mood%20or%20sleep",
-    keys: "depression depressed anxiety anxious panic mood low mood mental health stress burnout insomnia sleep sleeping cant sleep counselling counseling therapy sad lonely grief tram cam mat ngu lo au cang thang",
-    weight: 1.4,
+    keys: "hopeless need to talk talk to someone someone to talk to therapy therapist counsellor psychologist depression depressed anxiety anxious panic mood low mood mental health stress burnout insomnia sleep sleeping cant sleep counselling counseling therapy sad lonely grief tram cam mat ngu lo au cang thang",
+    weight: 1.8,
   },
   // A bleeding spot that will not heal is a doctor's visit, not a cosmetic one (a tester was offered a peel).
   {

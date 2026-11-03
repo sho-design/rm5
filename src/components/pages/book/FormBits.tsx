@@ -76,7 +76,9 @@ export function FieldLabel({ label, hint, error, children, className, htmlFor }:
 export function FieldError({ id, error }: { id: string; error?: string }) {
   if (!error) return null;
   return (
-    <span id={`${id}-error`} className="text-[12px] font-semibold text-[color:var(--status-error-fg)]">
+    // 14px and marked: a low-vision tester nearly missed the 12px error line.
+    <span id={`${id}-error`} className="flex items-start gap-1.5 text-[14px] font-semibold leading-[1.4] text-[color:var(--status-error-fg)]">
+      <span aria-hidden className="mt-[1px] inline-flex h-4 w-4 flex-none items-center justify-center rounded-full bg-[color:var(--status-error-fg)] text-[11px] leading-none text-white">!</span>
       {error}
     </span>
   );
@@ -87,7 +89,7 @@ export function ConsentRow({ children, className, error, ...rest }: ComponentPro
   const row = (
     <label className={cn("flex cursor-pointer items-start gap-3 text-[13px] leading-[1.5] text-secondary", className)}>
       <input type="checkbox" className="peer sr-only" {...rest} />
-      <span aria-hidden className="mt-0.5 flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-[5px] border-[1.5px] border-border-strong bg-white text-[11px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
+      <span aria-hidden className="mt-0.5 flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[5px] border-2 border-border-strong bg-white peer-aria-[invalid=true]:border-[color:var(--status-error-fg)] text-[11px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
         ✓
       </span>
       <span>{children}</span>
@@ -199,7 +201,7 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
         value={d}
         onChange={(e) => setD(e.target.value.replace(/\D/g, ""))}
         className="flex-none px-3"
-        style={{ width: "4rem" }}
+        style={{ width: "3.75rem" }}
       />
       <Select
         id={`${id}-month`}
@@ -210,7 +212,7 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
         aria-describedby={rest["aria-describedby"]}
         value={m}
         onChange={(e) => setM(e.target.value)}
-        className="min-w-[8.5rem] flex-1 pl-3 pr-9"
+        className="min-w-[7.5rem] flex-1 pl-3 pr-8"
         style={{ width: "auto" }}
       >
         <option value="">Month</option>
@@ -233,7 +235,7 @@ export function DobInput({ id, name, label, required, autoComplete, error, ...re
         value={y}
         onChange={(e) => setY(e.target.value.replace(/\D/g, ""))}
         className="flex-none px-3"
-        style={{ width: "5.25rem" }}
+        style={{ width: "4.75rem" }}
       />
     </div>
   );

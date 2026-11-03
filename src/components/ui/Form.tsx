@@ -26,8 +26,14 @@ export function Field({ label, hint, error, required, htmlFor, children, classNa
 
 const control = "h-12 w-full rounded-field border-[1.5px] border-[color:var(--field-border)] bg-[var(--field-bg)] px-4 text-[15px] text-primary outline-none transition-colors placeholder:text-[var(--field-placeholder)] focus:border-[color:var(--field-border-focus)] focus-visible:shadow-[0_0_0_3px_var(--focus-ring)] disabled:bg-[var(--field-disabled-bg)] disabled:text-[var(--field-disabled-fg)] aria-[invalid=true]:border-[color:var(--field-border-error)]";
 
-export const Input = forwardRef<HTMLInputElement, ComponentProps<"input">>(function Input({ className, ...rest }, ref) {
-  return <input ref={ref} className={cn(control, className)} {...rest} />;
+/** At least 10 digits (spaces, dashes, brackets and a leading + allowed); a 5-digit phone was accepted. */
+const PHONE_PATTERN = "(?:\\D*\\d){10,15}\\D*";
+/** Needs a domain ending: "name@example" passed the browser's own email check. */
+const EMAIL_PATTERN = "[^@\\s]+@[^@\\s]+\\.[^@\\s]{2,}";
+
+export const Input = forwardRef<HTMLInputElement, ComponentProps<"input">>(function Input({ className, pattern, ...rest }, ref) {
+  const rule = pattern ?? (rest.type === "tel" ? PHONE_PATTERN : rest.type === "email" ? EMAIL_PATTERN : undefined);
+  return <input ref={ref} className={cn(control, className)} pattern={rule} {...rest} />;
 });
 
 /** Native select with a chevron, drawn by .rm-select in globals.css. */

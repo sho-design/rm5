@@ -36,7 +36,7 @@ export default function ChildrenYouthPage() {
         cta={kidsCopy.hero.cta}
         ctaTo="/register?for=someone"
         cta2={kidsCopy.hero.cta2}
-        cta2To={bookFor("family", "concern")}
+        cta2To={`${bookFor("family", "concern")}&for=someone`}
         coverage={kidsCopy.hero.coverage}
         tint={divisionTint.family}
         accent={divisionAccent.family}

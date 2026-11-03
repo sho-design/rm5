@@ -30,7 +30,7 @@ export function formErrors(form: HTMLFormElement): FormErrors {
     const label = labelFor(form, el.id);
     if (el instanceof HTMLInputElement && el.type === "checkbox") out[el.id] = c.checkbox;
     else if (v.valueMissing) out[el.id] = c.missing(label);
-    else if (v.typeMismatch && el.type === "email") out[el.id] = c.email;
+    else if ((v.typeMismatch || v.patternMismatch) && el.type === "email") out[el.id] = c.email;
     else if (el.type === "tel" || v.patternMismatch) out[el.id] = el.type === "tel" ? c.phone : c.pattern;
     else out[el.id] = c.generic;
   }

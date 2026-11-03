@@ -181,7 +181,10 @@ export const registerCopy = {
   submit: "Send my registration",
   done: {
     title: "Registration received.",
-    body: "We review it within 2 business days and call or email to book your first visit. If you told us about a previous clinic, we request your records now.",
+    // Testers read "we book your first visit" next to a visit they had just booked, and feared two first visits.
+    body: draft("We review it within 2 business days. Already booked a first visit online? Keep it, that is your first visit. If not, we call or email to book it with you. If you told us about a previous clinic, we request your records now."),
+    /** Maple registrations: no first visit is booked until Maple opens (it contradicted the line above). */
+    bodyMaple: draft("We review it within 2 business days and confirm by phone or email. We contact you to book your first visit once Maple opens. Until then you can be seen at Thornhill. If you told us about a previous clinic, we request your records now."),
     waitTitle: "While you wait",
     waitBody: "Make a list of your medications and any questions. Your first visit is 30 minutes so there is time for them.",
     notes: "Read our health notes",

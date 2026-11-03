@@ -190,8 +190,7 @@ export function RegisterForm() {
               </>
             }
           >
-            <p>{registerCopy.done.body}</p>
-            <p>{x.done.alreadyBooked}</p>
+            <p>{sent?.clinic === "Maple" ? registerCopy.done.bodyMaple : registerCopy.done.body}</p>
             {sent ? (
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.done.people(sent.names.length)}>
@@ -203,7 +202,7 @@ export function RegisterForm() {
                 </OutcomeTile>
                 <OutcomeTile k={x.done.clinic}>
                   <span className="text-[15px] font-semibold">{sent.clinic}</span>
-                  {sent.clinic === "Maple" ? <span className="text-[13px] leading-[1.5] text-muted">{x.clinic.mapleNote}</span> : null}
+
                 </OutcomeTile>
               </div>
             ) : null}

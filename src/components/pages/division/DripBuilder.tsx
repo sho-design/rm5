@@ -85,7 +85,8 @@ export function DripBuilder() {
           {sel.includes(dripIronIndex) ? dripCopy.ironNote : dripCopy.note}
         </p>
         <div className="border-t border-border pt-4">
-          <Button to={bookFor("infusion", "drip")}>{c.cta}</Button>
+          {/* The chosen drips and total travel to the booking as the reason (the review "forgot what I picked"). */}
+          <Button to={chosen.length ? `${bookFor("infusion", sel.includes(dripIronIndex) ? "iron" : "drip")}&reason=${encodeURIComponent(`${chosen.map((d) => d.name).join(" + ")}, $${total}`)}` : bookFor("infusion", "drip")}>{!chosen.length ? c.cta : sel.includes(dripIronIndex) ? c.ctaIron : c.ctaDrip}</Button>
         </div>
       </div>
     </Block>

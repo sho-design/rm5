@@ -321,7 +321,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         facts: [
           { k: "Step one", v: "OHIP-insured assessment" },
           { k: "Bloodwork", v: "On site" },
-          { k: "If needed", v: "Iron infusion, from $250" },
+          { k: "If needed", v: draft("Iron infusion, $250 with your own iron or $550 with ours") },
           { k: "Days", v: "Tue, Sat, Sun" },
         ],
         tags: ["Iron", "Physician first"],
@@ -738,7 +738,7 @@ export const rehabCoverage: CoverageOption[] = [
     p: "Your auto insurer covers treatment. We open the claim, complete the OCF forms and bill them directly.",
     facts: [
       // "Bring claim number" everywhere read as required; the booking form says you can start without one.
-      { k: "Bring", v: draft("Your insurer's name, and the claim number if you have one") },
+      { k: "Bring", v: draft("Your insurer's name, and the claim number if you have one. No claim yet is fine.") },
       { k: "Forms", v: draft("We complete the insurer's treatment forms (OCF-18 and OCF-23)") },
       { k: "Timing", v: "Start within days" },
       { k: "Physician", v: "Assessment on site" },
@@ -751,7 +751,7 @@ export const rehabCoverage: CoverageOption[] = [
     upfront: "$0",
     p: "Approved WSIB provider. Treatment and a graded return-to-work plan, reported to WSIB and your employer.",
     facts: [
-      { k: "Bring", v: draft("Your claim number, if you have one") },
+      { k: "Bring", v: draft("Your claim number if you have one. No claim yet is fine, we can open it with you.") },
       { k: "Forms", v: "We report to WSIB" },
       { k: "Plan", v: "Return to work in stages" },
       { k: "Cost to you", v: "None" },
@@ -844,4 +844,7 @@ export const dripBuilderCopy = {
   total: "Total",
   addOn: "Add-on",
   cta: "Book a consult",
+  /** The button matches what was picked: it said "Book a consult" and opened "An IV drip". */
+  ctaDrip: draft("Book this drip"),
+  ctaIron: draft("Book an iron assessment"),
 } as const;

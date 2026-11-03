@@ -271,3 +271,15 @@
 :root[data-text] .rm-menu-foot { flex-direction: row; }
 :root[data-text] .rm-menu-foot .rm-911-long { display: none; }
 :root[data-text] .rm-menu-foot .rm-911-short { display: inline; }
+
+/* Small phones: the top bar's opening time was cut off ("Opens tomorrow at …") beside "Emergency? Call 911".
+   The pill reads "Call 911" there, which still dials 911 and keeps the status whole. */
+@media (max-width: 400px) {
+  .rm-911-long { display: none; }
+  .rm-911-short { display: inline; }
+}
+
+/* Contact tiles at larger text on phones: one per row, so the phone and fax numbers are not cut off. */
+@media (max-width: 479px) {
+  :root[data-text] .rm-contact-tiles { grid-template-columns: minmax(0, 1fr); }
+}

@@ -129,7 +129,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
     visits: [
       { key: "concern", label: draft("A health concern"), bring: [familyBring] },
       // New patients wanting to meet their doctor booked "A health concern" ("I am not sick, I just want a new doctor").
-      { key: "newpatient", label: draft("First visit as a new patient"), bring: [familyBring], hint: { text: draft("Registering too? Keep this visit, and mention it when we call so we do not book you twice.") } },
+      { key: "newpatient", label: draft("First visit as a new patient"), bring: [familyBring], hint: { text: draft("Registering too? This visit counts as your first visit, so there is nothing else to book.") } },
       // Children's page "Book a well-baby visit" (newborn checks and the routine schedule).
       // The newborn card advice shows with the visit (it was only under "No health card", which parents never opened).
       {
@@ -173,7 +173,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
         label: draft("First visit with a referral"),
         coverage: painCoverage,
         bring: [faqA("pain", "What should I bring?")],
-        hint: { text: draft("Choose this once your doctor has sent the referral. Not sent yet? There is no need to book: your doctor faxes it and we call you to book.") },
+        hint: { text: draft("Your doctor sends the referral and we call you to book, usually within two to three weeks of it arriving. Already sent? You can ask for a time here; we confirm it once the referral is with us. Not sent yet? There is no need to book.") },
       },
       { key: "followup", label: menuLabel("pain", "Follow-up visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")], existing: true, noServiceNote: true },
       { key: "procedure", label: menuLabel("pain", "Procedure visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")], existing: true, noServiceNote: true },
@@ -227,7 +227,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
         claim: "wsib",
         // An existing WSIB patient could not tell intake from follow-up, or say physio or chiro.
         hint: { text: draft("New claim or already in treatment, both start here. Say physio or chiro in the note, and how many sessions you still need.") },
-        bring: [`${fact(wsib.facts, "Bring")}.`, draft("Your employer's name and contact."), draft("Your WSIB claim number, if you have one."), healthCard, rehabWear],
+        bring: [`${fact(wsib.facts, "Bring")}.`, draft("Your employer's name and contact."), healthCard, rehabWear],
       },
     ],
   },

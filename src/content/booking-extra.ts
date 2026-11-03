@@ -98,6 +98,11 @@ export const bookingExtra = {
   changeOrCancel: draft("To change or cancel, call 905-709-3222 during clinic hours. Please give us 24 hours’ notice when you can. For a morning visit, that means calling the day before."),
   /** Said before the error, not after (testers typed the version letters). */
   cardDigitsHint: draft("Digits only. Leave out the two letters at the end."),
+  /** Booking for someone else: "your first visit" read as the helper's own. */
+  firstVisitTheirs: draft("Arrive 10 minutes early for their first visit."),
+  femaleNurse: draft("I would like a female nurse present for any examination. Optional."),
+  femaleNurseYes: draft("A female nurse present"),
+  femaleNurseBooked: draft("You asked for a female nurse to be present for any examination. Both of our physicians are men."),
   notCovered: draft("Not covered by your plan?"),
   reasonLabel: draft("Reason for the visit"),
   rehabNewHint: draft("New to rehab here? Your first visit with physio or chiro is an initial assessment."),
@@ -124,7 +129,8 @@ export const bookingExtra = {
       clinic: "Clinic",
       coverage: "Coverage",
       contact: draft("Contact"),
-      claim: draft("Claim"),
+      claim: draft("Claim details"),
+      chaperone: draft("Examinations"),
       insurer: draft("Insurer"),
       notes: draft("Your note"),
       reminders: draft("Reminders"),

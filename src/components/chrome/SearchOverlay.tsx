@@ -8,7 +8,7 @@ import { EmergencyNote } from "@/components/pages/help/EmergencyNote";
 import { draft } from "@/content/review";
 import { popularSearches, site } from "@/content/site";
 import { href } from "@/lib/routes";
-import { isEmergencyQuery, searchDocs, type SearchDoc } from "@/lib/search";
+import { isCrisisQuery, isEmergencyQuery, searchDocs, type SearchDoc } from "@/lib/search";
 import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
 import { linkPhones } from "@/components/ui/Phones";
@@ -115,7 +115,25 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
 
   return (
     // Scrolls on its own: on a small phone the results are taller than the screen under the sticky header.
-    <div className={cn("flex max-h-[calc(100dvh-56px)] flex-col gap-4 overflow-y-auto overscroll-contain bg-card p-4", !mobile && "md:gap-6 md:px-8 md:pb-10 md:pt-8")} role="search">
+    // Tab stays inside while it covers the page: a keyboard tester tabbed into the hidden footer behind it.
+    <div
+      className={cn("flex max-h-[calc(100dvh-56px)] flex-col gap-4 overflow-y-auto overscroll-contain bg-card p-4", !mobile && "md:gap-6 md:px-8 md:pb-10 md:pt-8")}
+      role="search"
+      onKeyDown={(e) => {
+        if (e.key !== "Tab") return;
+        const items = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])')).filter((el) => el.offsetParent !== null);
+        if (!items.length) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }}
+    >
       <span className="sr-only" aria-live="polite" aria-atomic="true">
         {announced}
       </span>
@@ -146,7 +164,7 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
       {query ? (
         <div className="flex flex-col gap-1.5">
           {emergency ? (
-            <EmergencyNote className="mb-1.5" />
+            <EmergencyNote className="mb-1.5" crisisFirst={isCrisisQuery(query)} />
           ) : null}
           <span className="text-[12px] font-semibold text-muted" aria-hidden>
             {copy.count(results.length)}

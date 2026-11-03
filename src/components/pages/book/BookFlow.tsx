@@ -200,7 +200,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     ...(visit?.payment ? (payments[payment]?.bring ?? []) : []),
     ...(visit?.fasting && slot != null ? [slot < 10 ? x.fastingBooked : config.fasting.late] : []),
     ...(visit?.fastingMaybe && slot != null && slot < 10 ? [`${x.fastingIf} ${x.fastingBooked}`] : []),
-    ...(who === 0 ? [config.firstVisit] : []),
+    ...(who === 0 ? [forOther ? x.firstVisitTheirs : config.firstVisit] : []),
   ].map((l) => (forOther ? l.replace(/^(?:Your )?(Ontario )?health card/i, (_m, on: string | undefined) => `Their ${on ?? ""}health card`) : l));
 
   const claimDetails = () => {
@@ -237,6 +237,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     email: str("email"),
     healthCardLast4: str("card"),
     notes: str("notes"),
+    femaleNurse: service.key === "family" && details.femaleNurse === true,
     claim: claimDetails() ?? null,
     payment: visit?.payment && payment >= 0 ? (payments[payment]?.label ?? null) : null,
     benefitsInsurer: visit?.payment && payment === 0 ? str("benefitsInsurer") : null,
@@ -334,6 +335,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     ...(visit?.claim && claimLine() ? ([[x.review.keys.claim, claimLine()]] as [string, string][]) : []),
     [x.review.keys.contact, [contactName, fmtPhone(str("phone")), str("email")].filter(Boolean).join(", ")],
     ...(str("notes") ? ([[x.review.keys.notes, str("notes")]] as [string, string][]) : []),
+    ...(service.key === "family" && details.femaleNurse === true ? ([[x.review.keys.chaperone, x.femaleNurseYes]] as [string, string][]) : []),
     [x.review.keys.reminders, reminders ? x.review.yes : x.review.no],
   ];
 
@@ -569,6 +571,13 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 <Textarea id="book-notes" name="notes" defaultValue={str("notes")} rows={4} className="resize-y" />
               </FieldLabel>
               <div className="flex flex-col gap-2.5">
+                {/* Both physicians are men; the FAQ offers a female nurse for examinations, so it can be asked for here
+                    (a tester wrote it in the note and could not tell whether anyone would see it). */}
+                {service.key === "family" ? (
+                  <ConsentRow name="femaleNurse" defaultChecked={details.femaleNurse === true}>
+                    {x.femaleNurse}
+                  </ConsentRow>
+                ) : null}
                 {/* Reminders are care messages, not marketing (CASL), so they start ticked: four testers missed an empty box. */}
                 <ConsentRow name="reminders" defaultChecked={details.reminders !== false}>
                   {x.reminders}
@@ -745,6 +754,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <p>{reminders ? (day?.today ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.todayReminder}` : bookingCopy.confirmed.body) : x.confirmed.noReminders}</p>
               <p className="text-[14px]">{linkPhones(day?.today ? x.changeOrCancelToday : x.changeOrCancel)}</p>
               {language === 2 ? <p className="text-[14px]">{x.interpreterBooked(languageName)}</p> : null}
+              {service.key === "family" && details.femaleNurse === true ? <p className="text-[14px]">{x.femaleNurseBooked}</p> : null}
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.confirmed.service}>
                   <span className="text-[16px] font-semibold">{service.label}</span>
