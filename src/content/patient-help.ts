@@ -11,7 +11,7 @@ export const emergencyCopy = {
   // 911 first and tappable; Health811 second. A tester with chest pressure at 3am read the old box as "try 811 first".
   // 911 first and tappable; Health811 second. A tester with chest pressure at 3am read the old box as "try 811 first".
   // Stroke signs are named: a tester checking for a parent's stroke did not see the word.
-  urgent: draft("Chest pain or pressure, trouble breathing, heavy bleeding, signs of a stroke (face drooping, arm weakness, slurred speech), or a fever in a baby under 3 months: call 911 now, or go to the nearest emergency department."),
+  urgent: draft("Chest pain, pressure or tightness (even if it feels like heartburn, especially with sweating), trouble breathing, heavy bleeding, signs of a stroke (face drooping, arm weakness, slurred speech), or a fever in a baby under 3 months: call 911 now, or go to the nearest emergency department."),
   call911: draft("Call 911"),
   /** Mental health crisis: a tester with low mood found only physical emergencies listed. 988 is Canada's suicide crisis line. */
   crisis: draft("Thoughts of suicide or self-harm?"),

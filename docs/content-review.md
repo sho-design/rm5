@@ -276,6 +276,12 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Registration (caregiver):** "Send the registration" / "Also registering from the patient's household (their partner, children or parents)".
 - **Emergency note:** "Messages and renewal requests sent on this website are read during clinic hours."
 
+## Usability fixes, round 14
+
+- **Emergency note (please review first):** "Chest pain, pressure or tightness (even if it feels like heartburn, especially with sweating), trouble breathing, …" A tester who thought his chest tightness was heartburn read "chest pain or pressure" as not meant for him.
+- **Search with no results:** "Nothing matched. Try a service, a symptom or a clinician name, or call 905-709-3222 during clinic hours. For health advice any time, call Health811 at 811." It used to send people to the clinic phone only, even at night.
+- **Emergency words:** sweaty, sweating, cold sweat, clammy, indigestion, tight chest, jaw pain, arm pain.
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

@@ -25,7 +25,7 @@ const copy = {
   placeholderShort: draft("Search the site"),
   label: "Search the site",
   count: (n: number) => (n === 1 ? "1 result" : `${n} results`),
-  none: `Nothing matched. Try a service, a symptom or a clinician name, or call ${site.phone}.`,
+  none: draft(`Nothing matched. Try a service, a symptom or a clinician name, or call ${site.phone} during clinic hours. For health advice any time, call Health811 at 811.`),
   /** Typed in a script the index cannot read (Chinese, Korean, Arabic...): point to the free interpreter. */
   otherScript: draft(`Search works in English and Vietnamese for now. Call ${site.phone} and ask for an interpreter, at no cost to you.`),
   popular: "Popular",
