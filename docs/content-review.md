@@ -2,6 +2,8 @@
 
 Pages added in October 2026 behind the mega-menu links, and the Infusion pages moved onto this site, reuse approved prototype copy wherever it exists. The strings below are new wording written to join pages together. Each one is wrapped in `draft()` in the source. Approve, reword or remove each before launch (RM-HB-COMMS).
 
+For a one-page checklist grouped by who approves what, see `docs/launch-signoff.md`.
+
 Approved copy is quoted through guards that fail the build if the source text changes, so only the strings below are unreviewed.
 
 ## Service and patient topic pages
@@ -91,7 +93,7 @@ Source: `src/content/infusion-site.ts`
 - Drips by evidence label.
 - Ten vitamin and nutrient shots at Restoration Medical in Thornhill, about 10 minutes each, physician-reviewed and nurse-administered.
 - A physician-supervised medical weight management program at Restoration Medical in Thornhill, with screening and follow-up.
-- What a drip bar promises, and what a physician-led clinic says instead. Screening first, real medical oversight and registered nurses.
+- Common claims about IV drips, and what our physicians say. Screening first, medical oversight and registered nurses.
 - The ingredients in our drips and shots, what each one is for, and where the evidence is still developing.
 
 ## Patient helpers (added before launch)
