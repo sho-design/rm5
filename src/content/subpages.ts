@@ -25,7 +25,7 @@ export const womenOptions: SubChooserItem[] = [
       { k: "Coverage", v: "OHIP" },
       { k: "Bring", v: "Health card, last Pap date if known" },
       // Clinic fact (Nov 2026): Pap tests are done by nurses (a tester wanted to know who does it).
-      { k: draft("Pap test"), v: draft("Done by our nurses") },
+      { k: draft("Pap test"), v: draft("Done by our nurses, who are women") },
       { k: "Results", v: "Within two weeks, by phone or portal" },
     ],
     cta: "Book a screening visit",

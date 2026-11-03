@@ -114,6 +114,8 @@ export const kidsFaq: QA[] = [
   { q: "Do you give routine vaccines in clinic?", a: "Yes. We follow the Ontario publicly funded schedule and update the yellow card at each visit. School-based vaccines from public health are recorded too." },
   { q: "Is there a charge for school and camp forms?", a: "Forms for medical care are covered. Third-party forms such as camp, daycare and sports carry a small uninsured fee. We tell you the amount before the visit and give a receipt." },
   { q: "Do you see teenagers without a parent?", a: "Yes. Teens can book and attend on their own. Part of every teen visit is private, and what is discussed stays confidential within the limits of the law." },
+  // Clinic answer (Nov 2026): teen reminders use a neutral label, never the reason (a 16-year-old feared a lock-screen text).
+  { q: draft("Will a reminder text say what my visit is for?"), a: draft("No. Reminder texts and emails for a teen visit do not say what the visit is for. Use your own phone number and email when you book, so messages come to you.") },
 ];
 
 export const immunizations: ImmunizationStage[] = [

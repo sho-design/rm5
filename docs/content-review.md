@@ -320,6 +320,8 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Doctor visit without OHIP: $100 plus HST.** FAQ: "Yes, visitors and people without OHIP are welcome. A doctor visit without OHIP is $100 plus HST ($113 total), and you get a receipt for your travel or private insurance. We confirm the fee before you are seen." Booking note: "That is fine. Without a health card the visit is uninsured: a doctor visit is $100 plus HST ($113 total). …"
 - **Pap tests are done by nurses.** Routine screening card "Pap test: Done by our nurses"; women's health day "Both of our physicians are men. Pap tests are done by our nurses, on women's health day and on other days."; screening planner "Book a Pap with our nurses".
 - **Maple:** no opening month yet, so the site keeps "Coming soon".
+- **Nurses are women.** Women's health day: "Both of our physicians are men. Our nurses are women, and they do Pap tests, on women's health day and on other days." Screening card: "Pap test: Done by our nurses, who are women".
+- **Teen reminders use a neutral label.** New children and youth FAQ: "Will a reminder text say what my visit is for?" / "No. Reminder texts and emails for a teen visit do not say what the visit is for. Use your own phone number and email when you book, so messages come to you." Confirm the booking system does this before launch.
 
 ## Facts to confirm
 
