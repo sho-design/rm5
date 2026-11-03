@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Display, Section } from "@/components/ui";
 import { EvidenceChip, InfusionBand, InfusionHeader, InfusionSmallPrint, ShotGrid } from "@/components/pages/infusion/InfusionBits";
-import { infusionCopy, infusionPages, ingredients, shots, signatureDrips, type Evidence } from "@/content/infusion-site";
+import { infusionCopy, infusionPages, ingredients, shots, signatureDrips, type Evidence, showEvidenceLabels } from "@/content/infusion-site";
 import { pageMetadata } from "@/lib/seo";
 import { dripRoute } from "@/lib/routes";
 import { SmartLink } from "@/components/ui";
@@ -33,6 +33,7 @@ export default function IngredientsPage() {
         <Display size="xs">{c.shotsTitle}</Display>
         <ShotGrid shots={shots} />
       </Section>
+      {showEvidenceLabels ? (
       <Section className="flex flex-col gap-5">
         <Display size="xs">{c.byEvidenceTitle}</Display>
         <div className="grid grid-cols-1 gap-card md:grid-cols-2 lg:grid-cols-4">
@@ -54,6 +55,7 @@ export default function IngredientsPage() {
           ))}
         </div>
       </Section>
+      ) : null}
       <InfusionSmallPrint />
       <InfusionBand />
     </>

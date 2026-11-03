@@ -35,6 +35,16 @@ export const infusionRedirects: [string, string][] = [
 /** Likely old main-site paths (unconfirmed, see above). */
 export const legacyRedirects: [string, string][] = [
   // Drip renamed from Kingmaker (one unisex drip).
+  [`${routes.drips}/healing-myers`, `${routes.drips}/myers`],
+  [`${routes.drips}/radiance`, `${routes.drips}/antioxidant`],
+  [`${routes.drips}/hair-and-nails`, `${routes.drips}/biotin`],
+  [`${routes.drips}/beauty-elixir`, routes.drips],
+  [`${routes.drips}/seasonal-support`, `${routes.drips}/vitamin-c-zinc`],
+  [`${routes.drips}/recover`, `${routes.drips}/after-exercise`],
+  [`${routes.drips}/revive`, `${routes.drips}/hydration`],
+  [`${routes.drips}/nad-longevity`, `${routes.drips}/nad`],
+  [`${routes.drips}/metabolic`, routes.metabolic],
+  [`${routes.drips}/pregnancy-care`, `${routes.drips}/pregnancy-hydration`],
   [`${routes.drips}/kingmaker`, `${routes.drips}/signature`],
   ["/home", routes.home],
   ["/about-us", routes.about],

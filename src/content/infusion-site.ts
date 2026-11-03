@@ -17,15 +17,21 @@ function draft(text: string): string {
 
 /** Evidence label shown on every drip and ingredient. */
 export type Evidence = "Established" | "Supported" | "Emerging" | "Supervised";
+/**
+ * Evidence labels are hidden until a physician defines each one in writing: three reviewers read them as
+ * efficacy ratings, and "Supervised" is not an evidence level (clinic decision, Nov 2026). Set to true to show.
+ */
+export const showEvidenceLabels = false;
 
 /** Treatment families and their accent colours (from the Infusion design file). */
 export const dripFamilies = {
-  "Foundation & Healing": "#7FC8A9",
-  "Radiance & Beauty": "#D9A6E0",
-  Seasonal: "#F5C451",
-  "Energy & Longevity": "#F0955C",
-  Metabolic: "#6FB4E8",
-  Recovery: "#9BD0E0",
+  // Families renamed to describe contents, not results (clinic decision, Nov 2026). Colours unchanged.
+  Foundation: "#7FC8A9",
+  "Skin and hair": "#D9A6E0",
+  Vitamins: "#F5C451",
+  "Signature and NAD+": "#F0955C",
+  Program: "#6FB4E8",
+  Hydration: "#9BD0E0",
 } as const;
 
 export type DripFamily = keyof typeof dripFamilies;
@@ -55,55 +61,59 @@ export interface Drip {
   detail?: DripDetail;
 }
 
+// Names describe what is in the drip, not a result (CPSO, Health Canada prescription drug advertising).
+// Old names, for staff: Healing (Myers'), Radiance, Hair & Nails, Seasonal Support, Kingmaker/Queenmaker,
+// Recover, Revive, NAD+ Longevity, Pregnancy Care. Beauty Elixir was removed (it overlapped Radiance and
+// made a beauty claim); Metabolic now shows only on the metabolic program page. Old addresses redirect.
 export const signatureDrips: Drip[] = [
-  { slug: "foundation", t: "Foundation", f: "Foundation & Healing", d: "Hydration and core nutrients to start from.", ev: "Established" },
+  { slug: "foundation", t: "Foundation", f: "Foundation", d: "Hydration and core nutrients to start from.", ev: "Established" },
   {
-    slug: "healing-myers",
-    t: "Healing (Myers’)",
-    f: "Foundation & Healing",
+    slug: "myers",
+    t: draft("Myers’ cocktail"),
+    f: "Foundation",
     d: "A classic blend of B vitamins, vitamin C, magnesium and calcium.",
     ev: "Established",
     detail: {
-      whatItIs:
-        "Our take on the classic Myers’ cocktail, a well-known blend of B vitamins, vitamin C, magnesium, and calcium. A go-to when you feel run down and want to reset.",
-      supports: ["May support recovery when you feel run down.", "Contains B vitamins, vitamin C, magnesium and calcium.", "Helps maintain hydration."],
+      whatItIs: draft("Our version of the classic Myers’ cocktail, a well-known blend of B vitamins, vitamin C, magnesium and calcium."),
+      supports: [draft("Contains B vitamins, vitamin C, magnesium and calcium."), draft("Given with fluids, so it also adds hydration.")],
       insideNote: "A consult and screening confirm the final blend for you.",
       inside: ["B-Complex", "Vitamin C", "Magnesium", "Calcium", "B12 (methylcobalamin)"],
       addOns: "Glutathione, zinc, amino blend",
-      addOnsNote: "Your nurse can include any after a quick screening, on clinical grounds.",
+      addOnsNote: draft("Added only on a physician's order, after a quick screening."),
       expect: "Around forty-five minutes in the chair. The magnesium can bring a gentle warmth, which your nurse paces for comfort.",
-      helpsWith: ["Low energy & fatigue", "Seasonal wellness", "Hydration & travel"],
+      helpsWith: [draft("Vitamins"), draft("Hydration")],
       screen: "Kidney health screened",
     },
   },
-  { slug: "radiance", t: "Radiance", f: "Radiance & Beauty", d: "Antioxidant and skin-radiance support.", ev: "Supported" },
-  { slug: "hair-and-nails", t: "Hair & Nails", f: "Radiance & Beauty", d: "Biotin-forward support for hair and nails.", ev: "Supported" },
-  { slug: "beauty-elixir", t: "Beauty Elixir", f: "Radiance & Beauty", d: "Complete beauty-from-within support.", ev: "Supported" },
-  { slug: "seasonal-support", t: "Seasonal Support", f: "Seasonal", d: "Vitamin C, zinc and B vitamins.", ev: "Supported" },
+  { slug: "antioxidant", t: draft("Antioxidant drip"), f: "Skin and hair", d: draft("Antioxidant vitamins. Ingredients and doses are confirmed with you at your consult."), ev: "Supported" },
+  { slug: "biotin", t: draft("Biotin drip"), f: "Skin and hair", d: draft("Built around biotin, a B vitamin. Tell us before any blood test, as biotin can affect some results."), ev: "Supported" },
+  { slug: "vitamin-c-zinc", t: draft("Vitamin C, zinc and B vitamins"), f: "Vitamins", d: draft("A vitamin and mineral blend."), ev: "Supported" },
   // Was "Kingmaker", "Vitality support for men". Square sells it as IV Kingmaker and IV Queenmaker, the same
   // recipe; a men's or women's drip implies a sex-specific benefit (CPSO), so the site shows one unisex drip.
-  { slug: "signature", t: draft("Signature drip"), f: "Energy & Longevity", d: draft("Our house blend, the same for everyone. Ingredients and doses are confirmed with you at your consult."), ev: "Supported" },
-  { slug: "recover", t: "Recover", f: "Recovery", d: "Post-exertion rehydration and repair.", ev: "Supported" },
-  { slug: "revive", t: "Revive", f: "Recovery", d: "A reset after travel or a long week.", ev: "Supported" },
-  { slug: "nad-longevity", t: "NAD+ Longevity", f: "Energy & Longevity", d: "Cellular energy and healthy-aging support.", ev: "Emerging" },
-  { slug: "metabolic", t: "Metabolic", f: "Metabolic", d: "Part of our physician-supervised medical weight management program.", ev: "Emerging" },
-  { slug: "pregnancy-care", t: "Pregnancy Care", f: "Foundation & Healing", d: "Gentle, physician-supervised hydration through pregnancy.", ev: "Supervised" },
+  { slug: "signature", t: draft("Signature drip"), f: "Signature and NAD+", d: draft("Our house blend, the same for everyone. Ingredients and doses are confirmed with you at your consult."), ev: "Supported" },
+  { slug: "after-exercise", t: draft("Hydration after exercise"), f: "Hydration", d: draft("Fluids and electrolytes, with amino acids."), ev: "Supported" },
+  { slug: "hydration", t: draft("Hydration drip"), f: "Hydration", d: draft("Fluids and electrolytes."), ev: "Supported" },
+  { slug: "nad", t: draft("NAD+ drip"), f: "Signature and NAD+", d: draft("NAD+, a coenzyme found in every cell. The evidence for NAD+ drips is still developing."), ev: "Emerging" },
+  { slug: "pregnancy-hydration", t: draft("Hydration in pregnancy"), f: "Foundation", d: draft("Physician-supervised hydration in pregnancy, only when your doctor recommends it."), ev: "Supervised" },
 ];
+
+/** Part of the medical weight management program only, so not on the drip menu (no weight-loss marketing). */
+export const metabolicDrip: Drip = { slug: "metabolic", t: "Metabolic", f: "Program", d: "Part of our physician-supervised medical weight management program.", ev: "Emerging" };
 
 export const dripBySlug = (slug: string) => signatureDrips.find((d) => d.slug === slug);
 
 /** The Injection Bar. */
 export const shots: { t: string; d: string }[] = [
-  { t: "B12", d: "Steady energy" },
-  { t: "B-Complex", d: "Energy metabolism" },
-  { t: "Vitamin D", d: "Bones & mood" },
-  { t: "Glutathione", d: "Antioxidant" },
-  { t: "Vitamin C + Zinc", d: "Seasonal support" },
+  { t: "B12", d: draft("A B vitamin") },
+  { t: "B-Complex", d: draft("Several B vitamins") },
+  { t: "Vitamin D", d: draft("A fat-soluble vitamin") },
+  { t: "Glutathione", d: draft("An antioxidant") },
+  { t: "Vitamin C + Zinc", d: draft("A vitamin and a mineral") },
   { t: "MIC blend", d: "Program add-on" },
   { t: "L-Carnitine", d: "Program add-on" },
-  { t: "Amino blend", d: "Recovery" },
-  { t: "NAD+", d: "Cellular energy" },
-  { t: "Biotin", d: "Hair & nails" },
+  { t: "Amino blend", d: draft("Amino acids") },
+  { t: "NAD+", d: draft("A coenzyme") },
+  { t: "Biotin", d: draft("A B vitamin") },
 ];
 
 export const ingredients: { t: string; d: string }[] = [
@@ -127,13 +137,13 @@ const dripsIn = (f: DripFamily) => `/infusion-therapy/drips?family=${encodeURICo
 export const concerns: Concern[] = [
   // Fatigue goes to a doctor's visit first, not straight to paid drips (CPSO: no promoting services a patient may not need).
   { t: "Low energy & fatigue", d: draft("Start with a family doctor visit and bloodwork. OHIP-insured."), cta: draft("Book a visit"), tag: "Clinical", page: `${bookFor("family", "concern")}&reason=${encodeURIComponent("Low energy")}` },
-  { t: "Seasonal wellness", d: "Support through a demanding season.", cta: "Explore", tag: "Wellness", page: dripsIn("Seasonal") },
-  { t: "Skin, hair & nails", d: "Caring for how you look from within.", cta: "Explore", tag: "Wellness", page: dripsIn("Radiance & Beauty") },
-  { t: "Recovery & performance", d: "Training hard and recovering harder.", cta: "Explore", tag: "Wellness", page: dripsIn("Recovery") },
-  { t: "Longevity & healthy aging", d: "Investing in how you age.", cta: "Explore", tag: "Wellness", page: dripsIn("Energy & Longevity") },
+  { t: draft("Vitamin drips"), d: draft("Vitamin and mineral blends, given by a nurse."), cta: "Explore", tag: "Wellness", page: dripsIn("Vitamins") },
+  { t: draft("Skin and hair"), d: draft("Antioxidant and biotin drips."), cta: "Explore", tag: "Wellness", page: dripsIn("Skin and hair") },
+  { t: draft("After exercise"), d: draft("Fluids, electrolytes and amino acids."), cta: "Explore", tag: "Wellness", page: dripsIn("Hydration") },
+  { t: draft("NAD+"), d: draft("Where the evidence is still developing, we say so."), cta: "Explore", tag: "Wellness", page: dripsIn("Signature and NAD+") },
   { t: "Weight & metabolism", d: "Physician-supervised medical weight management.", cta: "Explore", tag: "Program", page: "metabolic" },
   { t: "Iron deficiency & low ferritin", d: "When fatigue may be about iron.", cta: "Clinical pathway", tag: "Clinical", page: "iron" },
-  { t: "Hydration & travel", d: "Resetting after the road.", cta: "Explore", tag: "Wellness", page: dripsIn("Recovery") },
+  { t: draft("Hydration"), d: draft("Fluids and electrolytes."), cta: "Explore", tag: "Wellness", page: dripsIn("Hydration") },
 ];
 
 export const whyPhysicianLed = [

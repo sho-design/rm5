@@ -109,6 +109,8 @@ export interface TeamMember {
   role: string;
   divisions: string[];
   preceptorTag?: string;
+  /** Languages, shown on the card (both physicians speak Vietnamese, FAQ). */
+  languages?: string;
   initial: string;
   tint: string;
   /** Headshot URL when one has been uploaded in the CMS. */

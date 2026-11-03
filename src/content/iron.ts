@@ -47,7 +47,7 @@ export const ironWho: TintCard[] = [
 export const ironSteps: PathStep[] = [
   { n: "1", time: "OHIP-insured", t: "Assessment and bloodwork", d: "A short visit with our physician and a blood draw on site. If you already have recent results, bring them and skip the wait." },
   { n: "2", time: "Same week", t: "Your plan", d: "If your ferritin is low and tablets are not right for you, the physician chooses the iron and dose. We book your infusion, often within days." },
-  { n: "3", time: "3 visits, 90 min each", t: "The infusions", d: "A nurse places a small IV and you relax in a lounge chair while 500 mg runs in. We observe you for 30 minutes after, then you go back to your day. Repeat one to two weeks later until the course is done." },
+  { n: "3", time: draft("3 visits, about 3 hours each"), t: "The infusions", d: "A nurse places a small IV and you relax in a lounge chair while 500 mg runs in. We observe you for 30 minutes after, then you go back to your day. Repeat one to two weeks later until the course is done." },
 ];
 
 export const ironVisit: string[] = [
@@ -98,3 +98,13 @@ export const ironFaq: QA[] = [
 export const ironCheckLead = draft("Tap what sounds familiar. These feelings have many causes, and low iron is only one. A blood test, ordered by your doctor, is the only way to know.");
 
 export const ironCheckBook = draft("Book an iron assessment");
+
+/** Clinic answer (Nov 2026): an iron visit takes about 3 hours, including the time watching you afterwards. */
+export const ironVisitPill = draft("3 visits, about 3 hours each");
+
+/** Was "Find out in one blood test." / "… we can usually infuse the same week." (a hematologist: it is a panel,
+ *  not one test; a compliance reviewer: same-week reads as urgency). */
+export const ironCta = {
+  title: draft("Start with an iron assessment."),
+  sub: draft("OHIP-insured, with bloodwork on site. Your doctor goes through the results with you and tells you whether an infusion makes sense."),
+};

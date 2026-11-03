@@ -293,7 +293,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
       { q: "How soon will I feel something?", a: "It varies by person and by procedure, and the physician will tell you what is typical for yours. Some people notice a change the same day; for others it takes longer, or the first procedure is diagnostic. Results vary from person to person." },
       { q: "Will I have to keep coming back?", a: "Some people need a short series; some need occasional repeat procedures; some need none after rehab. The physician sets the plan with you and reviews it at every visit. There is no automatic schedule." },
       { q: "Can I drive home?", a: "Usually yes after trigger point and most joint injections. After some nerve blocks the physician may ask you to have a ride. You are told at the time of booking." },
-      { q: "Do you speak Vietnamese?", a: "Yes. Most of our staff speak Vietnamese, and the physician does too." },
+      { q: "Do you speak Vietnamese?", a: draft("Yes. Both physicians and several staff speak Vietnamese.") },
       { q: "What should I bring?", a: "Your health card, your referral if you have it, any imaging reports, and a list of medications and treatments you have tried." },
     ],
     closing: "Have a family doctor? Ask them to fax a referral to 905-761-7306 or send it by Ocean eReferral. No family doctor? Book a family medicine assessment and we handle the referral inside the clinic. This page is general information, not medical advice. Results vary from person to person.",
@@ -401,7 +401,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
     path: [
       { n: "1", time: "2 minutes", t: "Book online", d: "Pick a drip or an iron assessment. Same-week times are common." },
       { n: "2", time: "On arrival", t: "Nurse screening", d: "Vitals, history and allergies. The physician reviews anything unusual." },
-      { n: "3", time: "45 to 180 minutes", t: "Your infusion", d: "A lounge chair, a blanket and a nurse nearby. Bring headphones." },
+      { n: "3", time: draft("45 minutes to about 3 hours"), t: "Your infusion", d: "A lounge chair, a blanket and a nurse nearby. Bring headphones." },
       { n: "4", time: "Afterwards", t: "Go about your day", d: "No sedation. Iron patients get repeat bloodwork booked at 4 to 8 weeks." },
     ],
     faq: [
@@ -652,12 +652,12 @@ export const drips: Drip[] = [
   { name: "Recovery", desc: "Amino acids and electrolytes", mins: 60, price: 200 },
   { name: "Anti-nausea add-on", desc: "Added to any drip", mins: 0, price: 40 },
   { name: "Vitamin C add-on", desc: "Added to any drip", mins: 0, price: 40 },
-  // Clinic price: $550 per visit with clinic-supplied Monoferric 500 mg (see the iron therapy page).
-  { name: "Iron (Monoferric 500 mg)", desc: "Requires physician assessment first", mins: 90, price: 550 },
+  // Iron is no longer in this picker: a prescription iron with a price next to wellness drips read as
+  // advertising a drug (compliance review, round 17). The builder links to the iron page instead.
 ];
 
-/** Index of the drip that requires a physician assessment first (Iron). */
-export const dripIronIndex = 5;
+/** Kept for callers that filtered iron out; iron is no longer in the list. */
+export const dripIronIndex = -1;
 
 /** Drip builder helper copy. */
 export const dripCopy = {
@@ -666,6 +666,7 @@ export const dripCopy = {
   ironNote: "Iron requires an OHIP-insured physician assessment and bloodwork first. Times include a 10 minute screening.",
   /** Minutes added for the nurse screening when at least one drip is selected. */
   screeningMinutes: 10,
+  ironLink: draft("Low iron? Iron therapy is a physician-led service, booked separately"),
 } as const;
 
 /** Pain Centre body map hotspots (x, y in the illustration's coordinate space). */

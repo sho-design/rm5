@@ -275,7 +275,7 @@ export const kidsSick: KidsSickCard[] = [
     t: "Go to the emergency department or call 911",
     bg: "#FDE8E4",
     items: [draft("A fever in a baby under 3 months"), "Trouble breathing or blue lips", "Very drowsy, limp or hard to wake", "A seizure, or a stiff neck with fever", "A serious injury or a head injury with vomiting"],
-    action: "Call 911",
+    action: draft("Dial 911"),
   },
 ];
 

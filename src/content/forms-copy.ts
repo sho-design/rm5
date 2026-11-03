@@ -33,9 +33,15 @@ export const registerExtraCopy = {
   submitCaregiver: draft("Send the registration"),
   languageCaregiver: draft("The patient's preferred language"),
   notesLabel: draft("Anything we should know? (optional)"),
-  notesHint: draft("For example, the name and pronouns they use, if you will come to visits with them, or if they need an interpreter. Please do not include test results."),
+  notesHint: draft("For example, if you will come to visits with them, or if they need an interpreter. Please do not include test results."),
     /** Registering yourself: a trans tester had nowhere to give the name she uses (round 17). */
-    notesHintSelf: draft("For example, the name and pronouns you use if they differ from your health card, or if you need an interpreter. Please do not include test results."),
+    /** Optional, for anyone whose name differs from their health card (two rounds of testers asked). */
+    preferredName: draft("Preferred name (optional)"),
+    preferredHint: draft("If it differs from the name on the health card. We use it when we talk to you."),
+    preferredHintOther: draft("If it differs from the name on their health card. We use it when we talk to them."),
+    pronouns: draft("Pronouns (optional)"),
+    pronounsHint: draft("For example she/her, he/him or they/them."),
+    notesHintSelf: draft("For example, if someone will come to visits with you, or if you need an interpreter. Please do not include test results."),
   family: {
     labelCaregiver: draft("Also registering from the patient's household"),
     theirs: [draft("Their partner"), draft("Their children"), draft("Their parents")],

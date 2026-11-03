@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Display, Section } from "@/components/ui";
 import { DripCard, InfusionBand, InfusionHeader, InfusionSmallPrint, NumberedCards, ShotGrid } from "@/components/pages/infusion/InfusionBits";
-import { dripBySlug, honestClaims, infusionCopy, infusionPages, infusionSteps, shots } from "@/content/infusion-site";
+import { metabolicDrip, honestClaims, infusionCopy, infusionPages, infusionSteps, shots } from "@/content/infusion-site";
 import { pageMetadata } from "@/lib/seo";
 
 const c = infusionCopy.metabolic;
@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function MetabolicPage() {
-  const drip = dripBySlug("metabolic");
+  const drip = metabolicDrip;
   const claim = honestClaims[0];
   const programShots = shots.filter((s) => s.d === "Program add-on");
   return (

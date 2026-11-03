@@ -80,12 +80,13 @@ export const locations: Location[] = [
     cta: "Join the Maple list",
     hours: [
       ["Opening", "Coming soon"],
-      ["Pre-registration", "Open now"],
+      [draft("Maple list"), draft("Open now")],
       ["Questions", "Call 905-709-3222"],
     ],
     services: ["family", "pain", "infusion", "rehab"],
     footCta: "Be first through the door in Maple.",
-    footSub: "Sign up for the Maple waitlist and we will contact you once we open.",
+    // One name for the Maple sign-up: "Maple list" (testers saw waitlist, pre-registration and list).
+    footSub: draft("Join the Maple list and we will tell you when we open. To have us as your family doctor, register as a new patient too."),
   },
 ];
 
@@ -148,7 +149,7 @@ export const heroSlides: HeroSlide[] = [
 ];
 
 export const announcements: Announcement[] = [
-  { text: "Maple clinic pre-registration is open", page: "locations" },
+  { text: draft("The Maple list is open"), page: "locations" },
   { text: "Dr. Joseph Truong has joined Family Medicine", page: "team" },
   { text: draft("Flu shots are available now"), page: "vaccines" },
   { text: draft("Women’s health day, the last Sunday of every month"), page: "/family-medicine/women-s-health#womens-day" },

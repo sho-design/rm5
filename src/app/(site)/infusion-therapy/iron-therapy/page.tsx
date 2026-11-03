@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import { CtaBand, Faq, SubPageHero } from "@/components/ui";
 import { divisions } from "@/content/divisions";
 import { images } from "@/content/images";
-import { ironFaq, ironPrices, ironSteps, ironSymptoms, ironVisit, ironVisitImg, ironWho } from "@/content/iron";
+import { ironFaq, ironPrices, ironSteps, ironSymptoms, ironVisit, ironVisitImg, ironWho, ironVisitPill, ironCta } from "@/content/iron";
 import { bookFor, noteRoute } from "@/lib/routes";
 import { IronCheck } from "@/components/pages/iron/IronCheck";
 import { IronPrices, IronSteps, IronVisit, IronWho } from "@/components/pages/iron/IronSections";
@@ -37,11 +37,11 @@ export default function IronTherapyPage() {
         accent={div.accent}
         img={images.ironHero}
         imgAlt=""
-        pills={["3 visits, about 90 minutes each", "Bloodwork on site", "Care in English and Tiếng Việt"]}
+        pills={[ironVisitPill, "Bloodwork on site", "Care in English and Tiếng Việt"]}
       />
 
-      <IronCheck symptoms={ironSymptoms} accent={div.accent} />
-
+      {/* The symptom self-check sits after prices and the FAQ, not next to a named prescription iron and its
+          price (compliance review, round 17). */}
       <IronWho cards={ironWho} />
 
       <IronSteps steps={ironSteps} />
@@ -52,9 +52,11 @@ export default function IronTherapyPage() {
 
       <Faq title="Quick answers." sub="Anything else, ask at your assessment." items={ironFaq} />
 
+      <IronCheck symptoms={ironSymptoms} accent={div.accent} />
+
       <CtaBand
-        title="Find out in one blood test."
-        sub="Book an iron assessment. If your levels are low and tablets are not the answer, we can usually infuse the same week."
+        title={ironCta.title}
+        sub={ironCta.sub}
         cta="Book an iron assessment"
         ctaTo={bookFor("infusion", "iron")}
       />

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState, type FormEvent, type InputHTMLAtt
 import { Button, Display, Input, Lead, Select, SmartLink, StateCard, Textarea } from "@/components/ui";
 import { bookingConfirmLabel, bookingCopy, bookingCoverageFallback, bookingSteps, bookingTitleFor, bookingWho, registerCopy, registerLanguages, type BookingState } from "@/content/booking";
 import { bookingExtra as x } from "@/content/booking-extra";
+import { registerExtraCopy as rx } from "@/content/forms-copy";
 import type { BookingConfig, BookingService, BookingVisit } from "@/content/booking-visits";
 import { site } from "@/content/site";
 import { bookingDays, fmtTime, womensDayBookingDays, DOW, MON, type BookingDay } from "@/lib/hours";
@@ -237,7 +238,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     visit: visit?.label ?? null,
     visitKey: visit?.key ?? null,
     forSomeoneElse: forOther === 1,
-    patient: forOther ? { first: str("patientFirst"), last: str("patientLast"), relationship: str("relationship") } : null,
+    patient: forOther ? { first: str("patientFirst"), last: str("patientLast"), preferredName: str("patientPreferred") || null, pronouns: str("patientPronouns") || null, relationship: str("relationship") } : null,
+    preferredName: forOther ? null : str("preferredName") || null,
+    pronouns: forOther ? null : str("pronouns") || null,
     who: bookingWho[who],
     language: languageName,
     mode: visit?.modes ? x.modes[mode] : null,
@@ -505,6 +508,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
                     {field("patientFirst", x.fields.patientFirst, { required: true, autoComplete: "off", "data-error": x.missing.patientFirst } as InputHTMLAttributes<HTMLInputElement>)}
                     {field("patientLast", x.fields.patientLast, { required: true, autoComplete: "off", "data-error": x.missing.patientLast } as InputHTMLAttributes<HTMLInputElement>)}
+                    {field("patientPreferred", rx.preferredName, { autoComplete: "off" }, { hint: rx.preferredHintOther })}
+                    {field("patientPronouns", rx.pronouns, { autoComplete: "off" }, { hint: rx.pronounsHint })}
                     {field("relationship", x.fields.relationship, { autoComplete: "off" }, { hint: x.fields.relationshipHint, className: "sm:col-span-2" })}
                   </div>
                 </fieldset>
@@ -515,6 +520,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
                   {field("first", forOther ? x.fields.first : bookingCopy.fields.first, { autoComplete: "given-name", required: true, "data-error": x.missing.first } as InputHTMLAttributes<HTMLInputElement>)}
                   {field("last", forOther ? x.fields.last : bookingCopy.fields.last, { autoComplete: "family-name", required: true, "data-error": x.missing.last } as InputHTMLAttributes<HTMLInputElement>)}
+                  {forOther ? null : field("preferredName", rx.preferredName, { autoComplete: "nickname" }, { hint: rx.preferredHint })}
+                  {forOther ? null : field("pronouns", rx.pronouns, { autoComplete: "off" }, { hint: rx.pronounsHint })}
                   {field("email", bookingCopy.fields.email, { type: "email", autoComplete: "email", inputMode: "email", required: true })}
                   {field("phone", bookingCopy.fields.phone, { type: "tel", autoComplete: "tel", inputMode: "tel", required: true })}
                 </div>

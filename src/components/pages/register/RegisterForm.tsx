@@ -139,6 +139,8 @@ export function RegisterForm() {
     setError(false);
     const res = await submitForm("register", {
       name: `${s("first")} ${s("last")}`.trim(),
+      preferredName: s("preferredName") || null,
+      pronouns: s("pronouns") || null,
       dateOfBirth: s("dob"),
       healthCard: s("card"),
       email: s("email"),
@@ -247,6 +249,12 @@ export function RegisterForm() {
               </FieldLabel>
               <FieldLabel label={registerCopy.fields.last} htmlFor="reg-last" {...err("reg-last")}>
                 <Input id="reg-last" name="last" autoComplete={caregiver ? "off" : "family-name"} required {...errorProps(errors, "reg-last")} />
+              </FieldLabel>
+              <FieldLabel label={x.preferredName} htmlFor="reg-preferred" hint={caregiver ? x.preferredHintOther : x.preferredHint}>
+                <Input id="reg-preferred" name="preferredName" autoComplete={caregiver ? "off" : "nickname"} aria-describedby="reg-preferred-hint" />
+              </FieldLabel>
+              <FieldLabel label={x.pronouns} htmlFor="reg-pronouns" hint={x.pronounsHint}>
+                <Input id="reg-pronouns" name="pronouns" autoComplete="off" aria-describedby="reg-pronouns-hint" />
               </FieldLabel>
               <FieldLabel label={registerCopy.fields.dob} htmlFor="reg-dob" {...err("reg-dob")}>
                 <DobInput id="reg-dob" name="dob" label={registerCopy.fields.dob} autoComplete={caregiver ? "off" : "bday"} required {...errorProps(errors, "reg-dob")} />

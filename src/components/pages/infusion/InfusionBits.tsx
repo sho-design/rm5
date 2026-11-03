@@ -9,7 +9,7 @@ import {
   SmartLink,
 } from "@/components/ui";
 import { divisions } from "@/content/divisions";
-import { dripFamilies, infusionCopy, type Drip } from "@/content/infusion-site";
+import { dripFamilies, infusionCopy, type Drip, showEvidenceLabels } from "@/content/infusion-site";
 import { bookFor, dripRoute, href, type PageKey } from "@/lib/routes";
 import { breadcrumbs } from "@/lib/schema";
 import { JsonLd } from "@/components/JsonLd";
@@ -103,6 +103,7 @@ export function EvidenceChip({
   ev: string;
   className?: string;
 }) {
+  if (!showEvidenceLabels) return null;
   return (
     <span
       className={cn(

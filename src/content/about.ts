@@ -49,7 +49,7 @@ export const storyTimeline: TimelineEntry[] = [
   {
     y: "2026",
     t: "Maple",
-    d: "A second clinic at 2620 Rutherford Rd, built on the same standard. Pre-registration is open.",
+    d: draft("A second clinic at 2620 Rutherford Rd, built on the same standard. The Maple list is open."),
   },
 ];
 

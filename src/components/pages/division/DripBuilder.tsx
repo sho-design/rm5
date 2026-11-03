@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { bookFor } from "@/lib/routes";
-import { Block, Button, CheckChip, Display, Eyebrow, FactGrid, Lead } from "@/components/ui";
+import { Block, Button, CheckChip, Display, Eyebrow, FactGrid, Lead, SmartLink } from "@/components/ui";
 import { deepDives, dripBuilderCopy as c, dripCopy, dripIronIndex, drips } from "@/content/deep";
 
 /** Prototype `dripTime`: "1h 30m" past the hour, otherwise "45 min"; "0 min" with nothing picked. */
@@ -25,8 +25,6 @@ function formatTime(mins: number, any: boolean): string {
 export function DripBuilder() {
   const [sel, setSel] = useState<number[]>([]);
   const chosen = drips.filter((_, i) => sel.includes(i));
-  // Iron's "about 90 minutes" already includes screening and observation; adding 10 more showed "1h 40m"
-  // next to "about 90 minutes" on the iron page. Screening is added only when another drip is chosen.
   const others = sel.some((i) => i !== dripIronIndex && drips[i].mins > 0);
   const mins = chosen.reduce((a, d) => a + d.mins, 0) + (others ? dripCopy.screeningMinutes : 0);
   const total = chosen.reduce((a, d) => a + d.price, 0);
@@ -84,6 +82,9 @@ export function DripBuilder() {
         <p className="text-[13px] leading-[1.5] text-muted" aria-live="polite">
           {sel.includes(dripIronIndex) ? dripCopy.ironNote : dripCopy.note}
         </p>
+        <SmartLink to="iron" className="text-[14px] font-semibold text-link">
+          {dripCopy.ironLink} ›
+        </SmartLink>
         <div className="border-t border-border pt-4">
           {/* The chosen drips and total travel to the booking as the reason (the review "forgot what I picked"). */}
           <Button to={chosen.length ? `${bookFor("infusion", sel.includes(dripIronIndex) ? "iron" : "drip")}&reason=${encodeURIComponent(`${chosen.map((d) => d.name).join(" + ")}, $${total}`)}` : bookFor("infusion", "drip")}>{!chosen.length ? c.cta : sel.includes(dripIronIndex) ? c.ctaIron : c.ctaDrip}</Button>

@@ -82,7 +82,7 @@ export function WaitlistForm() {
             {w.title}
           </Display>
           <p className="pretty text-[15px] leading-[1.5] text-secondary">{w.body}</p>
-          <SmartLink to="register" className="text-[14px] font-semibold text-link">
+          <SmartLink to="/register?clinic=maple" className="text-[14px] font-semibold text-link">
             {w.register} ›
           </SmartLink>
         </div>

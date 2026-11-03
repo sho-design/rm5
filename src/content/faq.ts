@@ -139,7 +139,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Clinic",
     q: "When does Maple open?",
-    a: "Maple at 2620 Rutherford Rd is opening soon. Pre-registration is open now so you can be matched before day one.",
+    a: draft("Maple at 2620 Rutherford Rd is opening soon. Join the Maple list to hear when it opens, and register as a new patient now to have us as your family doctor there."),
     linkLabel: "Join the Maple list",
     linkPage: "/about/clinics#maple-waitlist",
   },
@@ -219,7 +219,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Infusion",
     q: "How long does an infusion take?",
-    a: "Wellness drips 45 to 60 minutes; iron infusions about an hour plus a 30 minute observation. Injections take a few minutes.",
+    a: draft("Wellness drips 45 to 60 minutes. An iron infusion visit takes about 3 hours, including the time we watch you afterwards. Injections take a few minutes."),
     linkLabel: "Infusion Therapy",
     linkPage: "infusion",
   },

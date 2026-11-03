@@ -1,5 +1,9 @@
 import type { TeamMember } from "./types";
 import { tints } from "./divisions";
+import { draft } from "./review";
+
+/** Approved FAQ: "Both physicians and several staff speak Vietnamese." A daughter booking for her mother looked for it here. */
+const physicianLanguages = draft("Speaks English and Tiếng Việt");
 
 /** [name, role, divisions (comma separated), preceptor tag?] as in the prototype. */
 const TEAM: [string, string, string, string?][] = [
@@ -37,6 +41,7 @@ export const team: TeamMember[] = TEAM.map(([name, role, divisions, preceptorTag
   role,
   divisions: divisions.split(", "),
   ...(preceptorTag ? { preceptorTag } : {}),
+  ...(name.startsWith("Dr. ") ? { languages: physicianLanguages } : {}),
   initial: initialOf(name),
   tint: tints[i % 5],
 }));

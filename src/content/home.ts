@@ -166,7 +166,7 @@ export const quickActions: QuickAction[] = [
   { label: "Renew a prescription", sub: "Existing patients", page: "/family-medicine/prescription-renewals#request", icon: ["M6 3h9l3 3v15H6z", "M9 12h6", "M12 9v6"] },
   { label: "Refer a patient", sub: "For referring doctors", page: "referrals", icon: ["M5 12h12", "M13 7l5 5-5 5"] },
   {
-    label: "Join the Maple waitlist",
+    label: draft("Join the Maple list"),
     sub: "Opening soon",
     page: "/about/clinics#maple-waitlist",
     icon: ["M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z", "M12 12.5a2.5 2.5 0 1 0 0-5a2.5 2.5 0 1 0 0 5z"],
@@ -247,8 +247,8 @@ export const infusionLinks: InfusionLink[] = [
   {
     k: "Signature drips",
     c: "#7FC8A9",
-    t: draft("Twelve drips, one standard"),
-    d: "Foundation, Healing, Radiance, Recover, NAD+ Longevity and more, each physician-reviewed.",
+    t: draft("Ten drips, one standard"),
+    d: draft("Foundation, Myers’ cocktail, vitamin and hydration drips, NAD+ and more, each physician-reviewed."),
     cta: "Browse drips",
     href: "drips",
   },

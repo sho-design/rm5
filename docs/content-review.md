@@ -346,6 +346,17 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Complaints:** "If you are not satisfied with our reply, you can contact the College of Physicians and Surgeons of Ontario, or the College of Nurses of Ontario for nursing care."
 - **Forms:** "Your email (optional)"; "Asking for someone you care for? Choose Someone I care for in the form."; registration notes "For example, the name and pronouns you use if they differ from your health card, or if you need an interpreter. …"; rehab "From $95 for massage".
 
+## Clinic decisions, 3 November 2026
+
+- **Iron visit about 3 hours.** "3 visits, about 3 hours each" (hero and steps); FAQ "Wellness drips 45 to 60 minutes. An iron infusion visit takes about 3 hours, including the time we watch you afterwards. …"; infusion path "45 minutes to about 3 hours". Iron page CTA "Start with an iron assessment." / "OHIP-insured, with bloodwork on site. Your doctor goes through the results with you and tells you whether an infusion makes sense." The symptom self-check now sits after prices and the FAQ.
+- **Iron left the drip builder.** "Low iron? Iron therapy is a physician-led service, booked separately ›".
+- **Doctor languages.** Doctor cards "Speaks English and Tiếng Việt"; Pain Centre FAQ "Yes. Both physicians and several staff speak Vietnamese."
+- **One name: Maple list.** "Join the Maple list"; hours row "Maple list: Open now"; announcement "The Maple list is open"; footer "Join the Maple list and we will tell you when we open. To have us as your family doctor, register as a new patient too."; FAQ "… Join the Maple list to hear when it opens, and register as a new patient now to have us as your family doctor there."; About "… The Maple list is open." Registration links from Maple open with Maple chosen.
+- **Dial 911.** "Dial 911" and "Emergency? Dial 911" in the top bar, phone menu, emergency box and children's card.
+- **Preferred name and pronouns.** Optional fields on registration and booking: "Preferred name (optional)" / "If it differs from the name on the health card. We use it when we talk to you." (or "… their health card … talk to them."), "Pronouns (optional)" / "For example she/her, he/him or they/them."
+- **Evidence labels hidden** until a physician defines them (`showEvidenceLabels` in `src/content/infusion-site.ts`).
+- **Drip names by contents.** Myers' cocktail (was Healing (Myers')), Antioxidant drip (Radiance), Biotin drip (Hair & Nails, with "Tell us before any blood test, as biotin can affect some results."), Vitamin C, zinc and B vitamins (Seasonal Support), Hydration after exercise (Recover), Hydration drip (Revive), NAD+ drip (NAD+ Longevity, "The evidence for NAD+ drips is still developing."), Hydration in pregnancy (Pregnancy Care). Beauty Elixir removed; Metabolic shows only on the program page. Families: Foundation, Skin and hair, Vitamins, Signature and NAD+, Hydration. Shot lines describe contents ("A B vitamin", "An antioxidant"). By-concern cards reworded without outcomes. Myers' add-ons "Added only on a physician's order, after a quick screening." Old drip addresses redirect. Rename the Square items to match.
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

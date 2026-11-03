@@ -13,7 +13,8 @@ export const emergencyCopy = {
   // Stroke signs are named: a tester checking for a parent's stroke did not see the word.
   // Round 15: a tester with arm pain and breathlessness, no chest pain, read the list as not meant for him.
   urgent: draft("Chest pain, pressure or tightness (even if it feels like heartburn, especially with sweating), pain spreading to the arm, jaw or back, sudden shortness of breath or trouble breathing, heavy bleeding, signs of a stroke (face drooping, arm weakness, slurred speech), a child who is very drowsy, limp or hard to wake, or a fever in a baby under 3 months: call 911 now, or go to the nearest emergency department."),
-  call911: draft("Call 911"),
+  // "Dial" so it reads as an instruction: 911 is plain text, and three testers tapped "Call 911" expecting a call.
+  call911: draft("Dial 911"),
   /** Round 17: a tester with a husband showing stroke signs had to read a 9-line sentence to reach "call 911",
    *  while the only big button was 811. Now a short standalone line first, then the signs as a list. */
   dialLead: draft("Dial 911 now if someone has:"),
@@ -41,7 +42,7 @@ export const emergencyCopy = {
   advice: draft("For health advice any time, day or night, call Health811 at 811."),
   requests: draft("Messages and renewal requests sent on this website are read during clinic hours."),
   /** Utility bar and phone menu while the clinic is closed. */
-  closedLine: draft("Emergency? Call 911"),
+  closedLine: draft("Emergency? Dial 911"),
   /** Phone menu: the clinic call button says whose number it is. */
   callClinic: draft("Call clinic"),
   linkLabel: "Health811",
