@@ -26,7 +26,13 @@ export function EmergencyNote({ className, id, headingLevel = 2, crisisFirst = f
           <p className="pretty pt-1 text-[14px] leading-[1.5] text-ink-2">{c.crisisSafety}</p>
         </>
       ) : null}
-      <p className="pretty text-[15px] font-semibold leading-[1.5]">{c.urgent}</p>
+      <p className="text-[20px] font-semibold leading-[1.25] text-ink">{c.dialLead}</p>
+      <ul className="flex list-disc flex-col gap-1 pl-5 text-[15px] font-semibold leading-[1.45]">
+        {c.signs.map((s) => (
+          <li key={s}>{s}</li>
+        ))}
+      </ul>
+      <p className="text-[15px] font-semibold leading-[1.5]">{c.orEd}</p>
       {/* No tel:911 link anywhere on the site: the clinic does not want accidental emergency calls. 911 is plain text. */}
       {crisisFirst ? null : (
       <p className="pretty pt-1 text-[14px] leading-[1.5] text-ink-2">

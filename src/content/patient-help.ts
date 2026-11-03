@@ -14,6 +14,19 @@ export const emergencyCopy = {
   // Round 15: a tester with arm pain and breathlessness, no chest pain, read the list as not meant for him.
   urgent: draft("Chest pain, pressure or tightness (even if it feels like heartburn, especially with sweating), pain spreading to the arm, jaw or back, sudden shortness of breath or trouble breathing, heavy bleeding, signs of a stroke (face drooping, arm weakness, slurred speech), a child who is very drowsy, limp or hard to wake, or a fever in a baby under 3 months: call 911 now, or go to the nearest emergency department."),
   call911: draft("Call 911"),
+  /** Round 17: a tester with a husband showing stroke signs had to read a 9-line sentence to reach "call 911",
+   *  while the only big button was 811. Now a short standalone line first, then the signs as a list. */
+  dialLead: draft("Dial 911 now if someone has:"),
+  signs: [
+    draft("Signs of a stroke: face drooping, arm weakness, slurred speech"),
+    draft("Chest pain, pressure or tightness, even if it feels like heartburn, especially with sweating"),
+    draft("Pain spreading to the arm, jaw or back"),
+    draft("Sudden shortness of breath or trouble breathing"),
+    draft("Heavy bleeding"),
+    draft("A child who is very drowsy, limp or hard to wake"),
+    draft("A fever in a baby under 3 months"),
+  ],
+  orEd: draft("Or go to the nearest emergency department."),
   /** Mental health crisis: a tester with low mood found only physical emergencies listed. 988 is Canada's suicide crisis line. */
   crisis: draft("Thoughts of suicide or self-harm?"),
   call988: draft("Call or text 988, any time, day or night."),
@@ -54,7 +67,7 @@ export const renewalCopy = {
   urgentTitle: draft("Running out sooner than two business days?"),
   urgentBody: draft("Call us at 905-709-3222 during clinic hours. Your pharmacist can also often extend a regular prescription for a short time. If you have no medication and feel unwell, call Health811 at 811 or 911."),
   /** A caregiver could not tell whose details go where; renewals had no "someone I care for" path (round 15). */
-  forSomeone: draft("Asking for someone you care for? Use their name and date of birth, and add your name and relationship in the note."),
+  forSomeone: draft("Asking for someone you care for? Choose Someone I care for in the form."),
   /** Caregiver mode (round 16: a son renewing his mother's pills could not tell whose phone, and "I am an existing patient" was not true of him). */
   forWhom: { label: draft("Who is this request for?"), options: [draft("Me"), draft("Someone I care for")] as readonly string[] },
   patientFirst: draft("Patient's first name"),
@@ -63,6 +76,7 @@ export const renewalCopy = {
   yourName: draft("Your name"),
   yourRelationship: draft("Your relationship to them"),
   yourPhone: draft("Your phone"),
+  yourEmail: draft("Your email (optional)"),
   existingOther: draft("The person I am asking for is an existing Restoration Medical patient."),
   contactOther: draft("You may contact me by phone or email about this request."),
   /** Requests sent at night are read the next day we are open (a tester sent one at 11:35pm). */

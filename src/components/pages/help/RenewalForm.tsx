@@ -114,7 +114,7 @@ export function RenewalForm() {
               <FieldLabel label={other ? c.yourPhone : c.fields.phone} htmlFor="rx-phone" error={errors["rx-phone"]}>
                 <Input {...text("phone")} type="tel" inputMode="tel" autoComplete="tel" />
               </FieldLabel>
-              <FieldLabel label={c.fields.email} htmlFor="rx-email" error={errors["rx-email"]}>
+              <FieldLabel label={other ? c.yourEmail : c.fields.email} htmlFor="rx-email" error={errors["rx-email"]}>
                 <Input {...text("email", false)} type="email" inputMode="email" autoComplete="email" />
               </FieldLabel>
               <FieldLabel label={c.fields.pharmacy} htmlFor="rx-pharmacy" error={errors["rx-pharmacy"]}>
