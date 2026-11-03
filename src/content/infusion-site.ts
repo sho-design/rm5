@@ -226,7 +226,7 @@ export const infusionCopy = {
     title: "Our drips and shots.",
     lead: draft("Drips are grouped by what is in them. Pick a group to narrow the list, or browse everything."),
     all: "All families",
-    signature: "Signature drips",
+    signature: draft("All drips"),
     count: (n: number) => `${n} drips, about 45 minutes in the chair`,
     shotsTitle: "Shots: The Injection Bar",
     shotsSub: "10 shots, about 10 minutes",

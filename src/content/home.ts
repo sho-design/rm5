@@ -247,7 +247,7 @@ export const infusionLinks: InfusionLink[] = [
   {
     k: "Signature drips",
     c: "#7FC8A9",
-    t: draft("Ten drips, one standard"),
+    t: draft("Nine drips, one standard"),
     d: draft("Foundation, Myers’ cocktail, vitamin and hydration drips, NAD+ and more, each physician-reviewed."),
     cta: "Browse drips",
     href: "drips",

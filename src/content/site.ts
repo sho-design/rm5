@@ -80,7 +80,8 @@ export const locations: Location[] = [
     cta: "Join the Maple list",
     hours: [
       ["Opening", "Coming soon"],
-      [draft("Maple list"), draft("Open now")],
+      // "Maple list: Open now" under Hours read as Maple itself being open.
+      [draft("Maple list"), draft("Taking names now")],
       ["Questions", "Call 905-709-3222"],
     ],
     services: ["family", "pain", "infusion", "rehab"],
@@ -129,7 +130,7 @@ export const heroSlides: HeroSlide[] = [
     alt: "Man gardening in his backyard",
     eyebrow: "Pain Centre",
     h1: "Pain Centre,",
-    h1em: "physician-led and OHIP-covered.",
+    h1em: draft("physician-led and OHIP-covered with a referral."),
     p: "Nerve blocks, trigger point and joint injections performed by a physician, with evening and weekend hours in Thornhill.",
     cta: "See the Pain Centre",
     page: "pain",

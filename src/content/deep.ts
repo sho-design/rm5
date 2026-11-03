@@ -355,6 +355,8 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
           { k: "Price", v: "$150, HST incl." },
           { k: "Safety", v: "Physician on site" },
           { k: "Not for", v: "Severe symptoms: go to emergency" },
+          // A pregnant tester with vomiting reached this drip with no warning (round 19).
+          { k: draft("Pregnant?"), v: draft("See a doctor first. Book a pregnancy visit, or call Health811 at 811 when we are closed.") },
         ],
         tags: ["Rehydration"],
         cta: "Call to book today",
@@ -724,7 +726,7 @@ export const aestheticsLadder: LadderRung[] = [
 export const rehabCoverage: CoverageOption[] = [
   {
     label: "Private or work insurance",
-    upfront: "$0 to co-pay",
+    upfront: draft("Billed to your insurer"),
     p: "We bill most major insurers directly at the desk. You pay only what your plan does not cover, if anything.",
     facts: [
       { k: "Bring", v: "Insurance card" },

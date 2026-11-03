@@ -4,7 +4,7 @@ import { draft } from "./review";
 export const bookingCoverage: Record<string, string> = {
   "Family Medicine": "OHIP-insured",
   "Pain Centre": "OHIP-insured assessment",
-  "Infusion Therapy": "Assessment OHIP, infusion fee",
+  "Infusion Therapy": draft("Iron assessment OHIP-insured; drips and infusions are an uninsured fee"),
   "Medical Aesthetics": "Complimentary consult",
   "Rehab & Recovery": "Insurance, MVA, WSIB or self-pay",
 };
@@ -97,7 +97,7 @@ export const bookingCopy = {
   summaryKeys: { service: "Service", clinic: "Clinic", time: "Time", coverage: "Coverage" },
   clinic: "Thornhill, 700 Centre St",
   /** Top of the booking form: a tester short of breath found the 911 box three screens down, after Continue. */
-  urgentLine: draft("Chest pain, pressure or tightness (even if it feels like heartburn), arm or jaw pain, shortness of breath, signs of a stroke, a child who is limp or hard to wake, or a fever in a baby under 3 months? Do not book. Dial 911 now."),
+  urgentLine: draft("Chest pain, pressure or tightness (even if it feels like heartburn), arm or jaw pain, shortness of breath, signs of a stroke, a seizure, a child who is limp or hard to wake, or a fever in a baby under 3 months? Do not book. Dial 911 now."),
   /** Shown under the note when it mentions an emergency symptom (a tester typed "short of breath" and booked tomorrow). */
   noteUrgent: draft("Please do not book for this. What you wrote can be an emergency. If you have chest pain, arm or jaw pain, shortness of breath or signs of a stroke, a child is very drowsy, limp or hard to wake, or a baby under 3 months has a fever, dial 911 now. Not sure? Call Health811 at 811, any time."),
   urgentMore: draft("See the full list of emergency signs"),
@@ -164,7 +164,8 @@ export const bookingCopy = {
 export const registerCopy = {
   eyebrow: "New patients",
   title: "Register with a family doctor.",
-  lead: "Two minutes now. We confirm within 2 business days and book your first visit, a longer appointment so your doctor can get to know you.",
+  // Agrees with the confirmation now (a tester could not tell whether to book or wait for a call).
+  lead: draft("Two minutes now. We confirm within 2 business days. If you have not booked a first visit online, we book it with you: a longer appointment so your doctor can get to know you."),
   formTitle: "About you",
   fields: {
     first: "First name",

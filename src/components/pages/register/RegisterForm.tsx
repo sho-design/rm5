@@ -158,8 +158,10 @@ export function RegisterForm() {
     });
     setBusy(false);
     if (res.ok) {
-      const pref = [s("preferredName"), s("pronouns")].filter(Boolean).join(", ");
-      setSent({ names: [`${s("first")} ${s("last")}${pref ? ` (${pref})` : ""}`.trim(), ...family.map((m) => `${m.first} ${m.last}`.trim())].filter(Boolean), clinic: clinic === 0 ? "Thornhill" : "Maple" });
+      // Preferred name leads; the health card name follows, labelled (a trans tester was "the footnote in my own registration").
+      const lead = s("preferredName") ? `${s("preferredName")} ${s("last")}` : `${s("first")} ${s("last")}`;
+      const extra = [s("pronouns"), s("preferredName") ? `${x.cardNameLabel} ${s("first")} ${s("last")}` : ""].filter(Boolean).join("; ");
+      setSent({ names: [`${lead.trim()}${extra ? ` (${extra})` : ""}`, ...family.map((m) => `${m.first} ${m.last}`.trim())].filter(Boolean), clinic: clinic === 0 ? "Thornhill" : "Maple" });
       setDone(true);
     } else setError(true);
   };

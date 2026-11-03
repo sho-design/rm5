@@ -203,6 +203,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const coverage = card > 0 && /OHIP|health card/i.test(baseCoverage) ? (quebec ? x.quebecCoverage : x.card.coverage[card - 1]) : baseCoverage;
   const slotLabel = day && slot != null && day.open ? `${DOW[day.date.getDay()]} ${MON[day.date.getMonth()]} ${day.date.getDate()}, ${fmtTime(slot)}` : bookingConfirmLabel.slotNotChosen;
   const serviceLine = [visit ? `${service.label}, ${visit.label}` : service.label, reason ? `(${reason})` : ""].filter(Boolean).join(" ");
+  /** Without the reason: what stays on screen or in this tab after booking (a teen on a family iPad, round 19). */
+  const serviceShort = visit ? `${service.label}, ${visit.label}` : service.label;
   const patientName = forOther ? `${str("patientFirst")} ${str("patientLast")}`.trim() : "";
   const contactName = `${str("first")} ${str("last")}`.trim();
   const reminders = details.reminders === true;
@@ -309,7 +311,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     if (res.ok) {
       try {
         sessionStorage.setItem("rm-booked", "1");
-        sessionStorage.setItem("rm-booked-what", `${serviceLine}, ${slotLabel}`);
+        sessionStorage.setItem("rm-booked-what", `${serviceShort}, ${slotLabel}`);
       } catch {
         /* storage blocked */
       }
@@ -364,7 +366,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     [x.review.keys.coverage, coverage],
     ...(visit?.payment && payment === 0 && str("benefitsInsurer") ? ([[x.review.keys.insurer, str("benefitsInsurer")]] as [string, string][]) : []),
     ...(visit?.claim && claimLine() ? ([[x.review.keys.claim, claimLine()]] as [string, string][]) : []),
-    [x.review.keys.contact, [contactName, fmtPhone(str("phone")), str("email")].filter(Boolean).join(", ")],
+    // The preferred name leads the contact row; a tester saw her health card name right under her preferred name.
+    [x.review.keys.contact, [!forOther && str("preferredName") ? `${str("preferredName")} ${str("last")}`.trim() : contactName, fmtPhone(str("phone")), str("email")].filter(Boolean).join(", ")],
     ...(str("notes") ? ([[x.review.keys.notes, str("notes")]] as [string, string][]) : []),
     ...(service.key === "family" && details.femaleNurse === true ? ([[x.review.keys.chaperone, x.femaleNurseYes]] as [string, string][]) : []),
     [x.review.keys.reminders, reminders ? x.review.yes : x.review.no],
@@ -798,8 +801,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.confirmed.service}>
                   <span className="text-[16px] font-semibold">{service.label}</span>
-                  {/* With the reason carried from the page ("Perimenopause and menopause"), as on the review. */}
-                  {visit ? <span className="text-[13px] text-muted">{reason ? `${visit.label} (${reason})` : visit.label}</span> : null}
+                  {/* The reason stays on the review only: the confirmation stays on screen, so it shows the visit type
+                      (a 16-year-old on a family iPad, round 19). */}
+                  {visit ? <span className="text-[13px] text-muted">{visit.label}</span> : null}
                 </OutcomeTile>
                 <OutcomeTile k={bookingCopy.confirmed.when}>
                   <span className="text-[16px] font-semibold">{slotLabel}</span>
@@ -855,7 +859,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
             >
               <p>{bookingCopy.waitlisted.body(service.label)}</p>
               <OutcomeTile k={bookingCopy.summaryKeys.service}>
-                <span className="text-[16px] font-semibold">{serviceLine}</span>
+                <span className="text-[16px] font-semibold">{serviceShort}</span>
                 <span className="text-[13px] text-muted">{bookingCopy.waitlisted.listLabel}</span>
               </OutcomeTile>
             </StateCard>

@@ -94,7 +94,7 @@ export const standardsList: StandardEntry[] = [
   {
     n: "03",
     t: "Sterile technique and sourcing",
-    d: "Single-use needles and supplies. Health Canada approved products only, bought from licensed Canadian distributors, with lot numbers recorded in your chart.",
+    d: "Single-use needles and supplies. We check each product’s Health Canada status before we use it, buy from licensed Canadian distributors, with lot numbers recorded in your chart.",
     bg: "#E6F4EA",
   },
   {

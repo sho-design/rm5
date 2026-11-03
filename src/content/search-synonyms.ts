@@ -70,7 +70,7 @@ export const faqAliases: Record<string, string> = {
   "Is the clinic accessible?": "wheelchair walker scooter stroller step free ramp elevator mobility disability",
   "Where do I park?": "parking car lot free",
   "How long is the wait?": "wait time waiting list how soon pain centre referral",
-  "What if I do not have OHIP?": "uhip international student no health card without ohip visitor tourist",
+  "What if I do not have OHIP?": "uhip international student no health card without ohip visitor tourist no ohip cost no ohip price no ohip fee uninsured visit cost newcomer new to canada new to ontario waiting for ohip ohip not active refugee",
   "Do you have interpreters?": "espanol spanish ingles idioma traductor interprete mandarin chinese cantonese farsi persian arabic tamil punjabi hindi urdu korean tagalog spanish portuguese russian italian interpreter translator translation language languages",
   "What is your late and cancellation policy?": "cancel cancelling cancellation reschedule change appointment move visit no show",
   "I have a health card from another province. Can I be seen?": "alberta british columbia bc quebec manitoba saskatchewan nova scotia new brunswick newfoundland pei out of province reciprocal billing student",

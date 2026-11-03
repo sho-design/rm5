@@ -766,7 +766,7 @@ const family: Topic[] = [
         { k: draft("After the baby"), v: draft("Well-baby visits here") },
         { k: draft("Who you see"), v: draft("One of our physicians, with our nurses for testing") },
         // A pregnant tester with bad nausea found no warning signs, and search sent "nausea" to drips (round 18).
-        { k: draft("Call us the same day"), v: draft("If you are being sick and cannot keep fluids down, feel faint, or have bleeding. For heavy bleeding or severe pain, dial 911.") },
+        { k: draft("Call us the same day"), v: draft("If you are being sick and cannot keep fluids down, feel faint, or have bleeding. When we are closed, call Health811 at 811 for advice any time. For heavy bleeding or severe pain, dial 911.") },
       ],
     },
     path: {

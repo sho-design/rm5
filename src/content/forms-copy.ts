@@ -38,6 +38,7 @@ export const registerExtraCopy = {
     /** Optional, for anyone whose name differs from their health card (two rounds of testers asked). */
     preferredName: draft("Preferred name (optional)"),
     asOnCard: draft("As on the health card."),
+    cardNameLabel: draft("health card name:"),
     preferredHint: draft("If it differs from the name on the health card. We use it when we talk to you."),
     preferredHintOther: draft("If it differs from the name on their health card. We use it when we talk to them."),
     pronouns: draft("Pronouns (optional)"),

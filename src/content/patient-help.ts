@@ -24,7 +24,7 @@ export const emergencyCopy = {
     draft("Pain spreading to the arm, jaw or back"),
     draft("Sudden shortness of breath or trouble breathing"),
     draft("Heavy bleeding"),
-    draft("A child who is very drowsy, limp or hard to wake"),
+    draft("A seizure, or a child who is very drowsy, limp or hard to wake"),
     draft("A fever in a baby under 3 months"),
   ],
   orEd: draft("Or go to the nearest emergency department."),
