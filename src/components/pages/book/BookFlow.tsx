@@ -589,7 +589,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <div className="flex flex-col gap-2.5">
                 {/* Both physicians are men; the FAQ offers a female nurse for examinations, so it can be asked for here
                     (a tester wrote it in the note and could not tell whether anyone would see it). */}
-                {service.key === "family" ? (
+                {service.key === "family" && visit?.key !== "pap" ? (
                   <ConsentRow name="femaleNurse" defaultChecked={details.femaleNurse === true}>
                     {x.femaleNurse}
                   </ConsentRow>
@@ -770,7 +770,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <p>{reminders ? (day?.today ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.todayReminder}` : day?.tomorrow ? `${bookingCopy.confirmed.body.split(". ")[0]}. ${x.tomorrowReminder}` : bookingCopy.confirmed.body) : x.confirmed.noReminders}</p>
               <p className="text-[14px]">{linkPhones(day?.today ? x.changeOrCancelToday : slot != null && slot < 12 ? x.changeOrCancelMorning : x.changeOrCancel)}</p>
               {language === 2 ? <p className="text-[14px]">{x.interpreterBooked(languageName)}</p> : null}
-              {service.key === "family" && details.femaleNurse === true ? <p className="text-[14px]">{x.femaleNurseBooked}</p> : null}
+              {service.key === "family" && details.femaleNurse === true && visit?.key !== "pap" ? <p className="text-[14px]">{x.femaleNurseBooked}</p> : null}
+              {/* A Pap visit is with a nurse; say it again on the last page (a tester was 85% sure before). */}
+              {visit?.key === "pap" ? <p className="text-[14px]">{x.papBooked}</p> : null}
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.confirmed.service}>
                   <span className="text-[16px] font-semibold">{service.label}</span>

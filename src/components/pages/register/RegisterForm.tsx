@@ -317,7 +317,7 @@ export function RegisterForm() {
               <Input id="reg-previous" name="previous" />
             </FieldLabel>
             {/* A caregiver had nowhere to say her father has memory problems and she will come with him. */}
-            <FieldLabel label={x.notesLabel} htmlFor="reg-notes" hint={x.notesHint}>
+            <FieldLabel label={x.notesLabel} htmlFor="reg-notes" hint={forWhom === 1 ? x.notesHint : x.notesHintSelf}>
               <Textarea id="reg-notes" name="notes" rows={3} />
             </FieldLabel>
             <ConsentRow id="reg-consent" name="consent" required error={errors["reg-consent"]} {...errorProps(errors, "reg-consent")}>

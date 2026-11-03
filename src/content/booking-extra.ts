@@ -105,6 +105,7 @@ export const bookingExtra = {
   firstVisitTheirs: draft("Arrive 10 minutes early for their first visit."),
   femaleNurse: draft("I would like a nurse in the room for any examination. Our nurses are women. Optional."),
   femaleNurseYes: draft("A nurse in the room"),
+  papBooked: draft("Your Pap test is with one of our nurses, who are women."),
   femaleNurseBooked: draft("You asked for a nurse in the room for any examination. Our nurses are women, and they do Pap tests."),
   notCovered: draft("Not covered by your plan?"),
   reasonLabel: draft("Reason for the visit"),
