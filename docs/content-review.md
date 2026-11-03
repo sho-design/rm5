@@ -305,6 +305,15 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Car accidents and WSIB:** "… No claim yet is fine, we can open it with you." / "… No claim yet is fine."
 - **Iron:** "Iron infusion, $250 with your own iron or $550 with ours".
 
+## Usability fixes, round 15
+
+- **Emergency note (please review first):** "… pain spreading to the arm, jaw or back, sudden shortness of breath or trouble breathing, …". Booking top line: "Chest pain, arm or jaw pain, shortness of breath, signs of a stroke, or a fever in a baby under 3 months? Do not book. Call 911 now." Under the booking note: "What you wrote may need care today. If you have chest pain, arm or jaw pain, shortness of breath or signs of a stroke, or a baby under 3 months has a fever, call 911 now. Not sure? Call Health811 at 811, any time."
+- **Iron self-check:** "N selected. Worth mentioning to your doctor, who can tell you whether a blood test makes sense. Already have a low result? Bring it to an iron assessment."
+- **Drips:** "Mixed by our nurse at your appointment" on every drip page; "Why a physician-led clinic."; "Every treatment is reviewed by our physician."; "A physician reviews every plan; registered nurses give every treatment. Calm, careful, and accountable."; "Screening first, a physician on site, and nurses who do this every day."; "Where the evidence is still developing, we say so." / "Ask at your consult what the evidence supports for each ingredient, and what we will and will not claim."; "We tell you what is in the bag and the dose at your consult. …"
+- **Jobs:** "IV starts, drip administration and patient monitoring, under physician orders."
+- **Renewals:** "Sent outside clinic hours? We count the two business days from the next day we are open." / "Asking for someone you care for? Use their name and date of birth, and add your name and relationship in the note." FAQ: "Existing patients can request a renewal by phone or with the online form. Allow two business days, counted from the next day we are open. …"
+- **Vietnamese FAQ** (until the switch launches): "Yes. Both physicians and several staff speak Vietnamese. Call 905-709-3222 and ask for Vietnamese, or choose Tiếng Việt as your language when you book or register."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

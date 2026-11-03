@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (250 simulated patients)
+# Usability test, 28 October 2026 (270 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -730,6 +730,47 @@ Retests that now work:
 - **Waits and dates:** a patient-facing Pain Centre wait on the pain pages (Hugo); a Maple opening month (Kevin).
 - **Consistency:** iron visit length across the FAQ (about an hour plus observation), the health note and the infusion path ("45 to 180 minutes"); "10+" against "11" years; the past Thanksgiving closure still listed (Dana).
 - **Wellness and caregivers:** home-care advice for a feverish child tonight (Sofia); consent on behalf of a parent (Hoa).
+
+## Round 15: 20 testers, Monday 2 November about 11:35pm (clinic closed)
+
+Average ease 5.6, trust 5.2 (round 14 was 5.5 and 5.5). Every booking, registration and form went through. Trust dropped on the infusion and iron pages: Ravi (pharmacist) 4, Dr. Haddad (referring physician) 4, Gerald (arm pain) 4, Maya (teen) 4. The low energy path now sends people to a doctor first, and no one felt pushed to buy (Linh).
+
+### Round 15 findings fixed in code
+
+- **Safety (Gerald, Sarah):**
+  - In search, pressing Enter on emergency words moves to the Call 911 (or 988) button instead of opening the first result. It used to open the Pain Centre page for "arm pain short of breath".
+  - The emergency note adds "pain spreading to the arm, jaw or back, sudden shortness of breath".
+  - The booking top line adds arm or jaw pain, shortness of breath and a fever in a baby under 3 months.
+  - If the booking note mentions an emergency symptom, a 911 and Health811 prompt appears under it.
+- **Iron (Priya):** the self-check tally now shows under the chips on phones. It no longer says "A ferritin test is a sensible next step" at three ticks; any count says to mention it to your doctor, and to bring a low result to an iron assessment.
+- **Drips (Marcus, Ravi, Grace):**
+  - Every drip page shows "Mixed by our nurse at your appointment".
+  - Searching "Kingmaker", "Queenmaker", "mixed" or "premixed" finds the drips.
+  - Comparative lines removed: "Why choose a clinic, not a lounge", "not sold from a counter", "delivered by people, not a counter", "real medical oversight".
+  - The ingredient library no longer promises labels on each ingredient or ingredient pages that do not exist. "We list what is in the bag and the dose" now says this is done at your consult.
+  - The infusion RN job ad no longer says "in a lounge setting".
+- **Renewals (Kevin, Diane):** an after-hours line ("We count the two business days from the next day we are open"), a caregiver hint, and the FAQ no longer mentions a portal.
+- **Vietnamese (Bà Hoa):** the FAQ no longer promises a language switch that is hidden until the Vietnamese pages launch.
+- **Small fixes:** the morning cancel line only shows for morning visits (Tomasz had a 5:30pm visit); no double full stop on claim lines; the team page shows initials instead of "Dr. Nguyen portrait (from restorationmedical.ca)".
+
+### Round 15 findings for the clinic
+
+- **Infusion and iron, clinical (Ravi, Dr. Haddad, Grace):**
+  - Evidence labels are still undefined; "Supervised" is not an evidence level.
+  - Most drips list no ingredients or doses, including the Signature drip.
+  - Whose orders the nurse follows when "tailoring" a drip or adding add-ons.
+  - A pregnancy drip filed as elective wellness.
+  - Iron: a fixed 500 mg times 3 against "the physician chooses the iron and dose"; safety wording ("Serious reactions are rare") without hypersensitivity, low phosphate or skin staining; how brought-in iron is checked and stored; "Most private drug plans cover the iron".
+  - Marketing tone on iron: "Tired of being tired?", "One good afternoon" for a three-visit course, "restores your iron".
+  - Outcome lines: "healthy-aging support", "Investing in how you age", "Bones & mood", "Steady energy", "Leave feeling restored", "recovering harder".
+- **Prices:** an uninsured family medicine visit fee (Arjun); drip prices on the pricing page, and fee names (Hydration, Vitamin blend, Recovery) that match the menu (Marcus); a pay range on job ads (Grace).
+- **Referrals (Dr. Haddad):** the online referral asks for no patient name, so physicians would fax instead; a reference number for matching faxed results.
+- **Teens (Maya):** what reminder texts say on a lock screen; whether anything reaches parents on a shared health card.
+- **Women's health day (Thu):** say who does the Pap test on that day (a female nurse?).
+- **Maple (Olivia):** an opening month; one name for the list ("waitlist", "pre-registration", "register").
+- **Car accidents (Tomasz):** what happens if the insurer denies the claim.
+- **Who injects (Jenny):** which physician does aesthetics consults.
+- **Newcomers (Arjun):** whether you can register before OHIP is active.
 
 ## What worked
 
