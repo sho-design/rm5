@@ -78,3 +78,17 @@ export const legacyRedirects: [string, string][] = [
   ["/accessibility", routes.accessibility],
   ["/terms", routes.terms],
 ];
+
+/**
+ * Service domains the clinic owns, each sent permanently to its section of the
+ * main site (one site, so search strength and booking stay in one place). Any
+ * path on these domains lands on the section's front page: they never had pages
+ * of their own. The bare and www forms both redirect. They take effect once each
+ * domain's DNS points at this Vercel project.
+ */
+export const serviceDomains: [host: string, to: string][] = [
+  ["ironinfusion.ca", routes.iron],
+  ["medicalaesthetics.ca", routes.aesthetics],
+  ["familymedicine.ca", routes.family],
+  ["infusiontherapy.ca", routes.infusion],
+];

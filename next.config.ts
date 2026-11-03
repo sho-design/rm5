@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 import { withPayload } from "@payloadcms/next/withPayload";
-import { infusionHost, infusionRedirects, legacyRedirects } from "./src/content/redirects";
+import { infusionHost, infusionRedirects, legacyRedirects, serviceDomains } from "./src/content/redirects";
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://restorationmedical.ca").replace(/\/$/, "");
 
@@ -40,6 +40,10 @@ const nextConfig: NextConfig = {
     return [
       // The old Infusion subdomain, path by path, onto the main site.
       ...infusionRedirects.map(([source, to]) => ({ source, has: [{ type: "host" as const, value: infusionHost }], destination: `${siteUrl}${to}`, permanent: true })),
+      // Service domains (ironinfusion.ca and others), bare and www, onto their section of the main site.
+      ...serviceDomains.flatMap(([host, to]) =>
+        [host, `www.${host}`].map((value) => ({ source: "/:path*", has: [{ type: "host" as const, value }], destination: `${siteUrl}${to}`, permanent: true })),
+      ),
       // Likely old main-site addresses. More can be added in the admin under Redirects.
       ...legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true })),
     ];
