@@ -80,7 +80,9 @@ export const signatureDrips: Drip[] = [
   { slug: "hair-and-nails", t: "Hair & Nails", f: "Radiance & Beauty", d: "Biotin-forward support for hair and nails.", ev: "Supported" },
   { slug: "beauty-elixir", t: "Beauty Elixir", f: "Radiance & Beauty", d: "Complete beauty-from-within support.", ev: "Supported" },
   { slug: "seasonal-support", t: "Seasonal Support", f: "Seasonal", d: "Vitamin C, zinc and B vitamins.", ev: "Supported" },
-  { slug: "kingmaker", t: "Kingmaker", f: "Energy & Longevity", d: "Vitality support for men.", ev: "Supported" },
+  // Was "Kingmaker", "Vitality support for men". Square sells it as IV Kingmaker and IV Queenmaker, the same
+  // recipe; a men's or women's drip implies a sex-specific benefit (CPSO), so the site shows one unisex drip.
+  { slug: "signature", t: draft("Signature drip"), f: "Energy & Longevity", d: draft("Our house blend, the same for everyone. Ingredients and doses are confirmed with you at your consult."), ev: "Supported" },
   { slug: "recover", t: "Recover", f: "Recovery", d: "Post-exertion rehydration and repair.", ev: "Supported" },
   { slug: "revive", t: "Revive", f: "Recovery", d: "A reset after travel or a long week.", ev: "Supported" },
   { slug: "nad-longevity", t: "NAD+ Longevity", f: "Energy & Longevity", d: "Cellular energy and healthy-aging support.", ev: "Emerging" },

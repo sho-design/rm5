@@ -25,6 +25,7 @@ Plan for about 1 hour with a physician, 30 minutes with the nurse lead, 30 minut
 - [ ] **Women's health day:** 8am to 2pm on the last Sunday, and which tests are offered. CR "Clinic answers".
 - [ ] **Female nurse present** for examinations, as offered in booking. CR round 14.
 - [ ] **Drip pages:** only Healing (Myers') has full copy. Supply ingredients, doses and what to expect for the other 11, or keep them hidden from search. CR "Facts to confirm".
+- [ ] **Signature drip** (was Kingmaker, sold in Square as IV Kingmaker and IV Queenmaker): supply its ingredients so the name and line can say what is in it. CR "CPSO advertising review".
 - [ ] **Drip preparation:** the new line "Mixed by our nurse at your appointment, after screening. Never made ahead." Confirm the nurse mixes every drip, and that each ingredient comes from a Health Canada authorized vial (has a DIN). CR "CPSO advertising review".
 - [ ] **Iron:** about 90 minutes, $250 with your own iron or $550 with ours, Monoferric 500 mg. CR rounds 6, 11, 14.
 - [ ] **Infusion team page:** each first name is on staff and agrees to be listed. CR "Facts to confirm".

@@ -34,6 +34,8 @@ export const infusionRedirects: [string, string][] = [
 
 /** Likely old main-site paths (unconfirmed, see above). */
 export const legacyRedirects: [string, string][] = [
+  // Drip renamed from Kingmaker (one unisex drip).
+  [`${routes.drips}/kingmaker`, `${routes.drips}/signature`],
   ["/home", routes.home],
   ["/about-us", routes.about],
   ["/our-story", routes.story],
