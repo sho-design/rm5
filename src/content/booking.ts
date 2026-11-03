@@ -97,10 +97,12 @@ export const bookingCopy = {
   summaryKeys: { service: "Service", clinic: "Clinic", time: "Time", coverage: "Coverage" },
   clinic: "Thornhill, 700 Centre St",
   /** Top of the booking form: a tester short of breath found the 911 box three screens down, after Continue. */
-  urgentLine: draft("Chest pain, arm or jaw pain, shortness of breath, signs of a stroke, or a fever in a baby under 3 months? Do not book. Call 911 now."),
+  urgentLine: draft("Chest pain, arm or jaw pain, shortness of breath, signs of a stroke, a child who is limp or hard to wake, or a fever in a baby under 3 months? Do not book. Dial 911 now."),
   /** Shown under the note when it mentions an emergency symptom (a tester typed "short of breath" and booked tomorrow). */
-  noteUrgent: draft("What you wrote may need care today. If you have chest pain, arm or jaw pain, shortness of breath or signs of a stroke, a child is very drowsy, limp or hard to wake, or a baby under 3 months has a fever, call 911 now. Not sure? Call Health811 at 811, any time."),
+  noteUrgent: draft("Please do not book for this. What you wrote can be an emergency. If you have chest pain, arm or jaw pain, shortness of breath or signs of a stroke, a child is very drowsy, limp or hard to wake, or a baby under 3 months has a fever, dial 911 now. Not sure? Call Health811 at 811, any time."),
   urgentMore: draft("Not sure? More help"),
+  /** Calendar files never name the reason (a 16-year-old's .ics said "Sexual health" on a shared family calendar). */
+  calendarTitle: draft("Appointment"),
   /** Mental health crisis on the same top line (a tester found 988 only below the form). */
   urgentCrisis: draft("Thoughts of suicide or self-harm? Call or text 988."),
   callLine: "Prefer to call? 905-709-3222 during clinic hours. For emergencies call 911.",

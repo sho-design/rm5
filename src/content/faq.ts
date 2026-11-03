@@ -213,9 +213,8 @@ export const faqItems: FaqItem[] = [
   {
     category: "Pain Centre",
     q: "How long is the wait?",
-    a: "New assessments are usually within two to three weeks of referral. Urgent cases flagged by your doctor are seen sooner.",
-    linkLabel: "Refer a patient",
-    linkPage: "referrals",
+    // A referred patient two weeks in found no "what if nobody calls" and only a doctors' link here.
+    a: draft("New assessments are usually within two to three weeks of referral. Urgent cases flagged by your doctor are seen sooner. Not heard from us after three weeks? Call 905-709-3222 and we check that your referral arrived."),
   },
   {
     category: "Infusion",
@@ -236,7 +235,7 @@ export const faqItems: FaqItem[] = [
     q: "Are drips covered by OHIP?",
     a: draft("No. Wellness infusions and injections are self-pay, with HST included in the price. Iron infusion for confirmed deficiency is a physician visit; the iron product itself may be covered by your drug plan."),
     linkLabel: "Pricing",
-    linkPage: "infusion",
+    linkPage: "infusionPricing",
   },
   {
     category: "Infusion",

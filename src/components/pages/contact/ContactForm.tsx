@@ -80,7 +80,7 @@ export function ContactForm() {
         </div>
         {topic === topics.length - 1 ? (
           <p role="status" className="rounded-row border border-border bg-card px-4 py-3 text-[14px] leading-[1.5] text-secondary">
-            {contactExtraCopy.complaintHint}
+            {contactExtraCopy.complaintHint} {contactExtraCopy.complaintOptions}
           </p>
         ) : null}
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">

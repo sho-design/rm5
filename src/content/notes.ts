@@ -1,5 +1,6 @@
 import type { HealthNote } from "./types";
 import { images } from "./images";
+import { draft } from "./review";
 
 /**
  * Health notes (CMS collection). Order matches the prototype: the first
@@ -36,7 +37,8 @@ export const healthNotes: HealthNote[] = [
       { type: "h", text: "Afterwards" },
       {
         type: "p",
-        text: "Most people go back to their day. Mild headache, flushing or muscle aches can occur for a day or two. Call us if you notice a rash, swelling, chest tightness or trouble breathing, or go to the nearest emergency department. Repeat bloodwork is usually done 4 to 8 weeks later.",
+        // A hematologist: chest tightness or trouble breathing after an infusion is a 911 call, not "call us".
+        text: draft("Most people go back to their day. Mild headache, flushing or muscle aches can occur for a day or two. Call us if you notice a rash or swelling. For chest tightness, trouble breathing or swelling of the face or throat, call 911. Repeat bloodwork is usually done 4 to 8 weeks later."),
       },
     ],
   },

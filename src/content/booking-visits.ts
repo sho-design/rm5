@@ -148,12 +148,12 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
       { key: "results", label: draft("Results or follow-up"), bring: [familyBring], existing: true, modes: true },
       { key: "bloodwork", label: draft("Bloodwork or ECG"), bring: [draft("Your Ontario health card, and your requisition if another clinic wrote one.")], fasting: true },
       // One visit can cover several vaccines: "Vaccines, including flu" for more than one, "Flu shot only" for just the flu shot.
-      { key: "flu", label: draft("Flu shot only"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")] },
+      { key: "flu", label: draft("Flu shot only"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")], hint: { text: draft("One booking per person. Booking for your family? Book each person at the same time or back to back, and we see you together.") } },
       // A newcomer with no yellow card read "Bring the yellow immunization card" as a requirement.
       { key: "vaccine", label: draft("Vaccines, including flu and catch-up"), coverage: vaccineCoverage, bring: [draft("Any vaccine records you have, from Ontario or another country. No records? Come anyway, and we plan from there."), draft("Your health card, if you have one.")] },
       { key: "pregnancy", label: draft("Pregnancy care"), bring: [familyBring] },
       // Clinic fact: Pap tests are done by our nurses, who are women (a tester who needs a woman found only "A health concern").
-      { key: "pap", label: draft("Pap test with a nurse"), bring: [draft("Your health card, and the date of your last Pap if you know it.")], hint: { text: draft("Pap tests are done by our nurses, who are women.") } },
+      { key: "pap", label: draft("Pap test with a nurse"), bring: [draft("The health card, and the date of the last Pap if known.")], hint: { text: draft("Pap tests are done by our nurses, who are women.") } },
       { key: "womensday", label: womensHealthDay.visitLabel, bring: [womensHealthDay.bring], days: "womensday" },
       { key: "forms", label: draft("A form or note"), coverage: uninsured, bring: [endStop(fact(resultsFact("family", formsTitle), "Bring")), healthCard] },
       {

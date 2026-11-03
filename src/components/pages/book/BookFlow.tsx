@@ -92,6 +92,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [forOther, setForOther] = useState(0);
   const [noteUrgent, setNoteUrgent] = useState(false);
   const [who, setWho] = useState(0);
+  const autoWho = useRef<number | null>(null);
   /** -1 until chosen: no default, so a rushed self-payer cannot send "insurance" by accident. */
   const [payment, setPayment] = useState(-1);
   /** 0 English, 1 Tiếng Việt, 2 another language (named in a text box). */
@@ -169,8 +170,18 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     setDayIdx(0);
     setSlot(null);
     setMode(0);
-    // Follow-ups and procedures are for people already seen here.
-    if (visit?.existing) setWho(1);
+    // Follow-ups and procedures are for people already seen here. Arrowing past one of them used to leave
+    // "Existing patient" set silently (a screen reader tester found it on review), so put the status back after.
+    if (visit?.existing) {
+      setWho((w) => {
+        if (w !== 1) autoWho.current = w;
+        return 1;
+      });
+    } else if (autoWho.current != null) {
+      const back = autoWho.current;
+      autoWho.current = null;
+      setWho(back);
+    }
   }, [visit?.key, visit?.existing]);
   const languageName = language === 2 ? str("languageOther") || x.otherLanguage : registerLanguages[language];
   const slots = useMemo(() => day?.slots ?? [], [day]);
@@ -740,7 +751,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               title={bookingCopy.confirmed.title}
               actions={
                 <>
-                  <a href={`data:text/calendar;charset=utf-8,${encodeURIComponent(icsFor(day, slot, serviceLine))}`} download="restoration-medical.ics" className={buttonClass("primary", "md")}>
+                  <a href={`data:text/calendar;charset=utf-8,${encodeURIComponent(icsFor(day, slot, bookingCopy.calendarTitle))}`} download="restoration-medical.ics" className={buttonClass("primary", "md")}>
                     {bookingCopy.confirmed.calendar}
                   </a>
                   {/* No directions for a phone or video visit. Outline next to the one primary (it was a borderless white pill). */}

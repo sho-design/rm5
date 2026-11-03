@@ -75,7 +75,15 @@ export function clearFixedError(errors: FormErrors, setErrors: (f: (e: FormError
   return (e: { target: EventTarget | null }) => {
     const el = e.target;
     if (!(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement)) return;
-    if (!el.id || !errors[el.id] || !el.validity.valid) return;
-    setErrors((all) => Object.fromEntries(Object.entries(all).filter(([k]) => k !== el.id)));
+    if (!el.id) return;
+    // Date of birth is three visible boxes feeding one hidden input ("rx-dob-day" for "rx-dob"), so check the
+    // field that carries the error after the boxes have updated it.
+    const key = errors[el.id] ? el.id : Object.keys(errors).find((k) => el.id.startsWith(`${k}-`));
+    if (!key) return;
+    requestAnimationFrame(() => {
+      const f = document.getElementById(key);
+      const valid = f instanceof HTMLInputElement || f instanceof HTMLTextAreaElement || f instanceof HTMLSelectElement ? f.validity.valid : false;
+      if (valid) setErrors((all) => Object.fromEntries(Object.entries(all).filter(([k]) => k !== key)));
+    });
   };
 }

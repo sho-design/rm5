@@ -161,8 +161,12 @@ export const menOptions: SubChooserItem[] = [
       { k: "Coverage", v: "OHIP" },
       { k: "Bloodwork", v: "On site, same visit" },
       { k: "Follow-up", v: "Two weeks, with results" },
+      // FAQ: testosterone is drawn in the morning (a tester booked an evening slot before finding it).
+      { k: draft("Testosterone test"), v: draft("Best drawn in the morning, so pick a morning time") },
     ],
     cta: "Book an assessment",
+    // Opened as "Annual physical" from a 30-minute energy assessment card.
+    visit: "concern",
   },
   {
     label: "Sexual health",
