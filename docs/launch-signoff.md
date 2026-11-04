@@ -50,7 +50,7 @@ Plan for about 1 hour with a physician, 30 minutes with the nurse lead, 30 minut
 
 - [ ] **Reminder checkbox ticked by default:** these are care messages, not marketing (CASL). CR round 9.
 - [ ] **Cookie banner wording**, and a privacy policy paragraph on Google Analytics: consent only, never on form pages. CR "Patient helpers".
-- [ ] **Form destinations:** each form (booking, registration, contact, renewals, referrals, careers) sends to a PHIPA-safe inbox or system. Set this in Vercel environment variables. The forms show an error until then.
+- [ ] **Form destinations:** booking, registration and renewals open Ocean (OSCAR Pro) once the `NEXT_PUBLIC_OCEAN_*` links are set in Vercel, so that information goes straight to the chart. Contact, careers, referrals and the Maple list still send to a PHIPA-safe inbox set in `FORM_ENDPOINT_*`. Forms with neither show an error. See `docs/forms.md`.
 - [ ] **Registration notes field:** "Please do not include test results." CR round 14.
 
 ## 5. Low risk, approve in bulk

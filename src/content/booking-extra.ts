@@ -112,6 +112,15 @@ export const bookingExtra = {
   bornOn: draft("Born"),
   /** After "No, none of these signs": the visit then read as routine (a man with chest tightness on stairs, round 22). */
   urgentAfter: draft("You told us about signs we take seriously. If they come back or get worse before your visit, dial 911. Not sure? Call Health811 at 811, any time."),
+  /** Hand-off to Ocean, the clinic's secure booking and forms system (OSCAR Pro). */
+  ocean: {
+    gate: draft("Before you go on: does anyone have one of the emergency signs above right now? Please dial 911 instead of booking."),
+    book: draft("Choose a time and add your details ›"),
+    register: draft("Open the registration form ›"),
+    renewal: draft("Open the renewal form ›"),
+    note: draft("This opens Ocean, our secure booking and forms system. What you enter goes straight to your chart with us, not through this website."),
+    call: draft("Prefer to call? 905-709-3222 during clinic hours."),
+  },
   remindersPrivate: draft("Reminders give the day and time only, never the reason for your visit."),
   femaleNurse: draft("I would like a nurse in the room for any examination. Our nurses are women. Optional."),
   femaleNurseYes: draft("A nurse in the room"),

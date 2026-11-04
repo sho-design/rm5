@@ -1,5 +1,21 @@
 # Form payloads
 
+## Ocean for OSCAR Pro (preferred)
+
+The clinic's EMR is OSCAR Pro, and Ocean (OceanMD) books into its schedule and files forms to the chart. When an Ocean link is set, that step of the site opens Ocean, so names, health card numbers, dates of birth, medications and notes are entered there and never pass through this site:
+
+| Variable | What it replaces |
+|---|---|
+| `NEXT_PUBLIC_OCEAN_BOOKING_URL` | The details, time and review steps of `/book`, for every visit |
+| `NEXT_PUBLIC_OCEAN_BOOKING_LINKS` | The same, per service or `service:visit`, as JSON. The most specific link wins, then the service, then the single URL |
+| `NEXT_PUBLIC_OCEAN_REGISTER_URL` | The `/register` form |
+| `NEXT_PUBLIC_OCEAN_RENEWAL_URL` | The prescription renewal form |
+
+What stays on the site for booking: choosing the service and visit, the emergency box and a last "dial 911 instead" line, coverage and what to bring. Nothing is added to the Ocean link (no reason, no name). Contact, careers, referrals and the Maple list keep the site's own forms below, which carry little or no health information. Any link left unset falls back to the site's form and its `FORM_ENDPOINT_*`.
+
+These are build-time variables: redeploy after changing them. Visit keys for `service:visit` are in `src/content/booking-visits.ts` (for example `family:pap`, `family:newpatient`, `rehab:wsib`, `infusion:iron`).
+
+
 Each form posts JSON to `/api/<kind>`, which forwards `{ kind, submittedAt, data }` to the `FORM_ENDPOINT_<KIND>` destination and stores nothing. Below is the shape of `data`, for whoever connects the destination systems. Fields not listed are unchanged from the original build.
 
 ## book

@@ -1,6 +1,8 @@
 import { BenefitCard, CtaBand, Display, Faq, FactGrid, Grid, PathSteps, Section, SectionHeader, SmartLink, SubPageHero } from "@/components/ui";
 import { CoverageChecker } from "@/components/pages/division/CoverageChecker";
 import { RenewalForm } from "@/components/pages/help/RenewalForm";
+import { OceanHandoff } from "@/components/pages/book/OceanHandoff";
+import { oceanRenewalUrl } from "@/lib/ocean";
 import { Ladder } from "@/components/pages/division/Ladder";
 import { aestheticsLadder, rehabCoverage } from "@/content/deep";
 import { divisionAccent, divisionTint, divisions, tints } from "@/content/divisions";
@@ -129,7 +131,16 @@ export function TopicPage({ t }: { t: Topic }) {
         </Section>
       ) : null}
 
-      {t.extra === "renewal" ? <RenewalForm /> : null}
+      {/* With Ocean set up, the renewal (medications, pharmacy) is filed straight to the chart in OSCAR Pro. */}
+      {t.extra === "renewal" ? (
+        oceanRenewalUrl ? (
+          <Section id="request" className="flex flex-col gap-4">
+            <OceanHandoff url={oceanRenewalUrl} kind="renewal" />
+          </Section>
+        ) : (
+          <RenewalForm />
+        )
+      ) : null}
 
       {t.faq && t.faq.length ? <Faq items={t.faq} /> : null}
 

@@ -16,6 +16,8 @@ import { isEmergencyNote } from "@/lib/search";
 import { readReason, SENSITIVE_REASON } from "@/lib/routes";
 import { buttonClass } from "@/components/ui/Button";
 import { linkPhones } from "@/components/ui/Phones";
+import { oceanBookingUrl } from "@/lib/ocean";
+import { OceanHandoff } from "./OceanHandoff";
 import { Choice, ConsentRow, DobInput, FieldError, FieldLabel, OutcomeTile, Panel, PillChip, selClass, SubmitButton } from "./FormBits";
 
 type Details = Record<string, string | boolean>;
@@ -211,6 +213,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   /** Sensitive reasons stay off what remains on screen or in this tab after booking (a teen on a family iPad,
    *  round 19); other reasons, such as the drip name, stay so the confirmation says what was booked (round 20). */
   const sensitive = SENSITIVE_REASON.test(reason ?? "");
+  const ocean = oceanBookingUrl(service.key, visit?.key);
   const shownReason = reason && !sensitive ? reason : "";
   const serviceShort = [visit ? `${service.label}, ${visit.label}` : service.label, shownReason ? `(${shownReason})` : ""].filter(Boolean).join(" ");
   const patientName = forOther ? `${str("patientFirst")} ${str("patientLast")}`.trim() : "";
@@ -406,7 +409,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     <div ref={root} className="grid grid-cols-1 gap-4 px-4 pb-8 pt-5 md:px-content md:pt-16 md:pb-10 lg:grid-cols-2 lg:items-start lg:gap-8">
       {/* Left: title, lead, live summary */}
       <div className="flex flex-col gap-3 lg:sticky lg:top-[80px] lg:gap-3.5">
-        <Steps state={state} className="lg:hidden" />
+        {ocean ? null : <Steps state={state} className="lg:hidden" />}
         <Display as="h1" size="lg" className="pt-1 lg:pt-0">
           {title}
         </Display>
@@ -450,7 +453,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
         {state === 1 ? (
           <Panel>
             <form method="post" onSubmit={onDetails} onInput={onInput} noValidate className="flex flex-col gap-[14px] md:gap-[22px]">
-              <Steps state={state} className="hidden lg:flex" />
+              {ocean ? null : <Steps state={state} className="hidden lg:flex" />}
               {another ? (
                 <p role="status" className="rounded-row border border-border bg-white px-4 py-3 text-[13px] leading-[1.5] text-secondary">
                   {linkPhones(`${x.anotherBooking(bookedWhat)} ${site.phone}.`)}
@@ -524,6 +527,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 ) : null}
               </div>
 
+              {/* With Ocean set up for this visit, details are entered there and go straight into OSCAR Pro. */}
+              {ocean ? (
+                <OceanHandoff url={ocean} kind="book" />
+              ) : (
+              <>
               <div className="flex flex-col gap-2">
                 <GroupLabel>{x.forTitle}</GroupLabel>
                 <Choice options={x.forOptions} value={forOther} onChange={setForOther} ariaLabel={x.forTitle} />
@@ -686,6 +694,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 </ConsentRow>
               </div>
               <SubmitButton>{bookingCopy.next}</SubmitButton>
+              </>
+              )}
             </form>
           </Panel>
         ) : null}

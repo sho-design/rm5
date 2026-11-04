@@ -9,6 +9,7 @@ Public website for Restoration Medical, a physician-led multi-service clinic in 
 - `src/content/` typed content modules. Collections the handoff assigns to the CMS (health notes, jobs, team, FAQ, locations, announcements, legal) are read only through `src/lib/cms.ts` so they can move to Payload CMS without touching pages.
 - `src/lib/routes.ts` maps every prototype page key to its URL. Always link with these helpers.
 - `src/components/ui/` shared primitives (Button, Eyebrow, headings, cards, Chooser, Faq, PathSteps, CtaBand, Photo). `src/components/chrome/` utility bar, header, mega menu, search, mobile menu, footer.
+- `src/lib/ocean.ts` Ocean (OceanMD) links for OSCAR Pro, the clinic EMR. When set, booking, registration and renewals hand off to Ocean so patient details never pass through the site; see `docs/forms.md`.
 - `src/app/api/*` route handlers for forms. They forward to the destination configured by environment variables, never log request bodies, and respond with `Cache-Control: no-store`.
 
 ## Copy rules (RM-HB-COMMS)
