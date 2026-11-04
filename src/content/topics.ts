@@ -15,6 +15,7 @@
  */
 import type { PageKey } from "@/lib/routes";
 import { bookFor } from "@/lib/routes";
+import { rehabCompareQA } from "./rehab-compare";
 import type { Benefit, Fact, NavKey, PathStep } from "./types";
 import { aestheticsLadder, deepDives, deepModuleCopy, rehabCoverage } from "./deep";
 import { divisions } from "./divisions";
@@ -72,6 +73,8 @@ export interface Topic {
   related?: { title: string; items: { t: string; d: string; page: string }[] };
   /** Small print under the page content. */
   note?: string;
+  /** Side-by-side comparison (Physio or chiro?). */
+  compare?: boolean;
   /** An interactive block rendered before the FAQ. */
   extra?: "renewal";
   band: { title: string; sub?: string; cta: string; ctaTo: string; cta2?: string; cta2To?: string };
@@ -485,6 +488,7 @@ const rehab: Topic[] = [
     ...rehabHero,
     img: images.services.rehab[0],
     imgAlt: draft("Physiotherapist assessing a patient's knee"),
+    compare: true,
     pills: result(R, 0).tags,
     glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Physio or chiro assessment"), priceFact("Physio or chiro treatment"), directBilling, cov(3).facts[3] ?? directBilling] },
     cards: { title: R.chooser.title, items: [asCard(result(R, 0)), asCard(result(R, 1)), asCard(result(R, 4))] },
@@ -504,10 +508,11 @@ const rehab: Topic[] = [
     ...rehabHero,
     img: images.services.rehab[1],
     imgAlt: draft("Chiropractor working with a patient"),
+    compare: true,
     glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Physio or chiro assessment"), priceFact("Physio or chiro treatment"), directBilling] },
     cards: { title: R.chooser.title, items: [asCard(result(R, 4)), asCard(result(R, 2))] },
     path: rehabPath,
-    faq: [dq("rehab", "Do I need a doctor's referral?"), dq("rehab", "Do you bill my insurance directly?"), dq("rehab", "What should I wear?")],
+    faq: [rehabCompareQA, dq("rehab", "Do I need a doctor's referral?"), dq("rehab", "Do you bill my insurance directly?"), dq("rehab", "What should I wear?")],
     band: rehabBand,
   },
   {

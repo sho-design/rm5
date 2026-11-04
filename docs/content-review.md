@@ -448,6 +448,23 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Renewal hint:** "Name and strength, one per line. Run out today or tomorrow? Please call us at 905-709-3222 or ask your pharmacist instead."
 - **Injectables FAQ:** "Pregnant or breastfeeding?" / "Tell us when you book. We talk it through at your consult before any treatment, and some treatments wait until after pregnancy and breastfeeding." (physician)
 
+## Physio or chiro explainer (clinic request, 2026-11-04)
+
+On the Physiotherapy and Chiropractic pages, after "What it costs", and as the first Rehab & Recovery FAQ. Text is in `src/content/rehab-compare.ts`. Physio and chiro leads to review the scope lines.
+
+- **Title:** "Physio or chiro?" / "Both are regulated health professionals. Both assess you first and give you a plan, and both cost the same here."
+- **Physiotherapy:**
+  - Focus: "How you move: muscles, joints and strength. Back and neck pain, sprains, sports injuries, and getting back to activity after surgery."
+  - A visit often includes: "Guided exercise, hands-on treatment, and a routine to do at home."
+  - Regulated by: "College of Physiotherapists of Ontario".
+- **Chiropractic:**
+  - Focus: "The spine and joints, most often back and neck pain."
+  - A visit often includes: "Spinal and joint adjustment, soft tissue work, and exercises."
+  - Regulated by: "College of Chiropractors of Ontario".
+- **Price line:** "Either one: assessment $135 plus HST ($152.55 total), treatment $100 plus HST ($113 total). We bill most insurers directly."
+- **Not sure:** "Not sure which? Tell us what is going on at an initial assessment, and we suggest which to start with." with "Book an initial assessment ›".
+- **FAQ:** "Should I see physio or chiro?" / "Either can be a place to start for back or neck pain. Physio focuses on movement, strength and recovery from injury or surgery. Chiro focuses on the spine and joints, often with adjustments. Not sure? Book an initial assessment and we suggest which to start with. Both cost the same."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

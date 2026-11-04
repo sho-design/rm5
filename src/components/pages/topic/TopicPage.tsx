@@ -1,6 +1,7 @@
 import { BenefitCard, CtaBand, Display, Faq, FactGrid, Grid, PathSteps, Section, SectionHeader, SmartLink, SubPageHero } from "@/components/ui";
 import { CoverageChecker } from "@/components/pages/division/CoverageChecker";
 import { RenewalForm } from "@/components/pages/help/RenewalForm";
+import { RehabCompare } from "@/components/pages/rehab/RehabCompare";
 import { OceanHandoff } from "@/components/pages/book/OceanHandoff";
 import { oceanRenewalUrl } from "@/lib/ocean";
 import { Ladder } from "@/components/pages/division/Ladder";
@@ -63,6 +64,8 @@ export function TopicPage({ t }: { t: Topic }) {
           <FactGrid facts={t.glance.facts} />
         </Section>
       ) : null}
+
+      {t.compare ? <RehabCompare current={t.key} /> : null}
 
       {t.cards ? (
         <Section className="flex flex-col gap-6">

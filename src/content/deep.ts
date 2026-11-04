@@ -1,6 +1,7 @@
 import type { Benefit, ChooserOption, ChooserResult, DivisionKey, Fact, PathStep, QA } from "./types";
 import { bookFor } from "@/lib/routes";
 import { draft } from "./review";
+import { rehabCompareQA } from "./rehab-compare";
 
 /** Division deep-dive content (prototype `DEEP`): chooser, results, benefits, path, FAQ. */
 export interface DeepDive {
@@ -641,6 +642,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
       { n: "4", time: "Week 4", t: "Re-assess", d: "Measured against day one. Continue, taper or discharge with a maintenance plan." },
     ],
     faq: [
+      rehabCompareQA,
       { q: "Do I need a doctor's referral?", a: "No for private insurance and MVA. Some extended health plans ask for one to reimburse; check your plan." },
       { q: "Do you bill my insurance directly?", a: "Yes for most major insurers. Bring your card and we submit at the front desk." },
       { q: "How many visits will I need?", a: "It depends on the injury. Your therapist gives an estimate at the first visit and re-assesses at week four." },
