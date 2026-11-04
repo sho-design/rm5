@@ -92,6 +92,10 @@ export const bookingExtra = {
   modeLabel: draft("How would you like the visit?"),
   modes: [draft("At the clinic"), draft("By phone"), draft("By video")] as const,
   modeWhere: [null, draft("By phone. We call you at the number you gave us."), draft("By video. We email you a link before the visit.")] as const,
+  /** A tester on her lunch break had only "We email you a link" to go on (round 23). Clinic to confirm the timing. */
+  modeHow: [null, draft("Keep your phone nearby at your visit time. Missed our call? Call us back at 905-709-3222."), draft("Use a phone, tablet or computer with a camera, somewhere private. No link by your visit time? Call 905-709-3222.")] as const,
+  /** "Bring" read oddly for a visit at home (round 23). */
+  haveReady: draft("Have ready"),
   /** Third language choice, with a box to name it. */
   otherLanguage: draft("Another language"),
   otherLanguageField: draft("Which language?"),
@@ -115,10 +119,16 @@ export const bookingExtra = {
   /** Hand-off to Ocean, the clinic's secure booking and forms system (OSCAR Pro). */
   ocean: {
     gate: draft("Before you go on: does anyone have one of the emergency signs above right now? Please dial 911 instead of booking."),
-    book: draft("Choose a time and add your details ›"),
-    register: draft("Open the registration form ›"),
-    renewal: draft("Open the renewal form ›"),
-    note: draft("This opens Ocean, our secure booking and forms system. What you enter goes straight to your chart with us, not through this website."),
+    book: draft("Continue to Ocean to choose a time ›"),
+    lead: draft("Tell us which service you need. You choose a time and add your details on the next page."),
+    /** A 16-year-old wanted this next to the button, not on another page (round 23). */
+    privateNote: draft("Booking for yourself? Use your own phone and email. Reminders give the day and time only, never the reason for your visit."),
+    register: draft("Continue to Ocean to register ›"),
+    /** A mother of four wanted to know what to have ready before she started (round 23). Clinic to confirm the family line once the Ocean form is set up. */
+    registerReady: draft("Have ready: each person's health card and date of birth, your address, and your previous family doctor's name if you had one. Registering your family too? Each person gets their own registration."),
+    renewal: draft("Continue to Ocean to request a renewal ›"),
+    /** Before the button, with the web address: a 74-year-old wary of scams read it only after tapping (round 23). */
+    note: (host: string) => draft(`Next you go to Ocean, the secure booking and forms system we use with our medical records, at ${host}. It shows our name. What you enter goes straight to your chart with us, not through this website.`),
     call: draft("Prefer to call? 905-709-3222 during clinic hours."),
   },
   remindersPrivate: draft("Reminders give the day and time only, never the reason for your visit."),

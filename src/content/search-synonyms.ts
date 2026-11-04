@@ -118,7 +118,7 @@ export const searchExtras: SearchDoc[] = [
     label: draft("Sexual health and STI testing"),
     sub: draft("Confidential and OHIP-insured, at any age"),
     page: `/book?service=family&visit=concern&reason=${reasonParam("Sexual health")}`,
-    keys: "std stds sti stis std test sti test sexual health confidential testing hiv chlamydia gonorrhea syphilis herpes hpv partner",
+    keys: "std check sti check std testing sti testing burning pee burning when i pee burning when peeing burns when i pee pee burns painful peeing discharge clap the clap drip new partner std stds sti stis std test sti test sexual health confidential testing hiv chlamydia gonorrhea syphilis herpes hpv partner",
   },
   // Mood and sleep with a family doctor: a tester searching "depression" got only "Family Medicine" with no reason.
   {

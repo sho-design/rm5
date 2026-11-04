@@ -222,7 +222,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const titles = bookingTitleFor(state);
   const { title } = titles;
   // Women's health day dates run over several months, not "the next seven days".
-  const lead = state === 2 && visit?.days === "womensday" ? x.womensDayLead : titles.lead;
+  // "Who you are. Two minutes" promised fields that are in Ocean when the hand-off is on (round 23).
+  const lead = state === 2 && visit?.days === "womensday" ? x.womensDayLead : ocean && state === 1 ? x.ocean.lead : titles.lead;
 
   // Do not ask people to bring what they already typed (claim number, insurer, employer, date),
   // and no Ontario card line for someone without one.
@@ -394,7 +395,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     ...(visit?.modes ? ([[x.modeLabel, x.modes[mode]]] as [string, string][]) : []),
     [x.card.label, card === 0 && str("card") ? `${x.card.options[0]}, ${x.card.endsIn} ${str("card")}` : card === 1 && province ? `${x.card.options[1]}: ${province}` : x.card.options[card]],
     [x.review.keys.time, slotLabel],
-    [x.review.keys.clinic, bookingCopy.clinic],
+    // "Clinic: Thornhill" on a video visit made a tester think she had to go in (round 23).
+    [x.review.keys.clinic, visit?.modes && mode > 0 ? x.modes[mode] : bookingCopy.clinic],
     [x.review.keys.coverage, coverage],
     ...(visit?.payment && payment === 0 && str("benefitsInsurer") ? ([[x.review.keys.insurer, str("benefitsInsurer")]] as [string, string][]) : []),
     ...(visit?.claim && claimLine() ? ([[x.review.keys.claim, claimLine()]] as [string, string][]) : []),
@@ -529,7 +531,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
 
               {/* With Ocean set up for this visit, details are entered there and go straight into OSCAR Pro. */}
               {ocean ? (
-                <OceanHandoff url={ocean} kind="book" />
+                <OceanHandoff url={ocean} kind="book" privateNote={sensitive ? x.ocean.privateNote : undefined} />
               ) : (
               <>
               <div className="flex flex-col gap-2">
@@ -674,7 +676,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <div className="flex flex-col gap-2.5">
                 {/* Both physicians are men; the FAQ offers a female nurse for examinations, so it can be asked for here
                     (a tester wrote it in the note and could not tell whether anyone would see it). */}
-                {service.key === "family" && visit?.key !== "pap" ? (
+                {service.key === "family" && visit?.key !== "pap" && !(visit?.modes && mode > 0) ? (
                   <ConsentRow name="femaleNurse" defaultChecked={details.femaleNurse === true}>
                     {x.femaleNurse}
                   </ConsentRow>
@@ -884,7 +886,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 </OutcomeTile>
                 <OutcomeTile k={bookingCopy.confirmed.where}>
                   {visit?.modes && mode > 0 ? (
-                    <span className="text-[16px] font-semibold">{x.modeWhere[mode]}</span>
+                    <>
+                      <span className="text-[16px] font-semibold">{x.modeWhere[mode]}</span>
+                      <span className="text-[13px] text-muted">{x.modeHow[mode]}</span>
+                    </>
                   ) : (
                     <>
                       <span className="text-[16px] font-semibold">
@@ -907,7 +912,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   <span className="whitespace-pre-line text-[14px] leading-[1.5]">{str("notes")}</span>
                 </OutcomeTile>
               ) : null}
-              <OutcomeTile k={bookingCopy.confirmed.bring}>
+              <OutcomeTile k={visit?.modes && mode > 0 ? x.haveReady : bookingCopy.confirmed.bring}>
                 <ul className="flex list-disc flex-col gap-1 pl-5 text-[14px] leading-[1.5]">
                   {bring.map((b) => (
                     <li key={b}>{b}</li>
