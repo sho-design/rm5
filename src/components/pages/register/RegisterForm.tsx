@@ -114,6 +114,9 @@ export function RegisterForm() {
     if (people[r].length >= maxPeople[r]) return;
     setPeople((p) => ({ ...p, [r]: [...p[r], nextKey] }));
     setNextKey((k) => k + 1);
+    // The new child's fields appear above the button, and a blind tester typed into the wrong ones (round 22).
+    const first = `fam-${r}-${nextKey}-first`;
+    requestAnimationFrame(() => requestAnimationFrame(() => document.getElementById(first)?.focus()));
   };
   const remove = (r: Relation, k: number) => setPeople((p) => ({ ...p, [r]: p[r].filter((x) => x !== k) }));
 
