@@ -241,6 +241,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
       ? { type: "mva", claimNumber: str("claimNumber"), insurer: str("insurer"), accidentDate: str("eventDate") }
       : { type: "wsib", claimNumber: str("claimNumber"), employer: str("employer"), injuryDate: str("eventDate") };
   };
+  /** "Mar 14, 1997" from YYYY-MM-DD: a mother typed her son's birth date and never saw it again (round 22). */
+  const niceDob = (v: string) => (/^\d{4}-\d{2}-\d{2}$/.test(v) ? `${MON[Number(v.slice(5, 7)) - 1]} ${Number(v.slice(8, 10))}, ${v.slice(0, 4)}` : "");
   const claimLine = () => {
     const c = claimDetails();
     if (!c) return "";
@@ -288,6 +290,13 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     updates: details.updates === true,
   });
 
+  /** Age in days from the date of birth given for the patient, if any (YYYY-MM-DD in the hidden DOB input). */
+  const ageDaysIn = (form: HTMLFormElement | null) => {
+    const v = (form?.elements.namedItem("patientDob") as HTMLInputElement | null)?.value ?? "";
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return undefined;
+    return Math.floor((Date.now() - new Date(`${v}T12:00:00`).getTime()) / 86400000);
+  };
+
   const onDetails = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -300,7 +309,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
       else focusFirstError(form, errs);
       return;
     }
-    if (noteUrgent && !urgentOk.current) {
+    // The date of birth may be typed after the note: check again with it (a 6-week-old with 38.2, round 22).
+    const notes = (form.elements.namedItem("notes") as HTMLTextAreaElement | null)?.value ?? "";
+    const urgentNow = isEmergencyNote(notes, ageDaysIn(form));
+    if (urgentNow !== noteUrgent) setNoteUrgent(urgentNow);
+    if (urgentNow && !urgentOk.current) {
       setUrgentHold(true);
       requestAnimationFrame(() => document.getElementById("book-notes-urgent")?.focus());
       return;
@@ -371,7 +384,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
 
   const reviewRows: [string, string][] = [
     [x.review.keys.service, serviceLine],
-    ...(forOther ? ([[x.review.keys.for, [patientName ? `${patientName}.` : "", str("relationship") ? x.youAreTheir(str("relationship")) : ""].filter(Boolean).join(" ")]] as [string, string][]) : []),
+    ...(forOther ? ([[x.review.keys.for, [patientName ? `${patientName}.` : "", niceDob(str("patientDob")) ? `${x.bornOn} ${niceDob(str("patientDob"))}.` : "", str("relationship") ? x.youAreTheir(str("relationship")) : ""].filter(Boolean).join(" ")]] as [string, string][]) : []),
     ...(preferredLine() ? ([[x.review.keys.preferred, preferredLine()]] as [string, string][]) : []),
     [x.review.keys.status, bookingWho[who]],
     [registerCopy.fields.language, languageName],
@@ -625,7 +638,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
 
               <FieldLabel label={bookingCopy.fields.notes} htmlFor="book-notes">
                 <Textarea id="book-notes" name="notes" defaultValue={str("notes")} rows={4} className="resize-y" aria-describedby={noteUrgent ? "book-notes-urgent" : undefined} onInput={(e) => {
-                    setNoteUrgent(isEmergencyNote(e.currentTarget.value));
+                    setNoteUrgent(isEmergencyNote(e.currentTarget.value, ageDaysIn(e.currentTarget.form)));
                     urgentOk.current = false;
                     setUrgentHold(false);
                   }} />
@@ -780,6 +793,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 {x.review.title}
               </h2>
               <span className="text-[13px] text-muted">{x.review.sub}</span>
+              {noteUrgent && urgentOk.current ? <p className="pretty rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[14px] font-semibold leading-[1.5] text-ink">{linkPhones(x.urgentAfter)}</p> : null}
             </div>
             <dl className="flex flex-col divide-y divide-border rounded-row border border-border bg-white text-[14px] leading-[1.5]">
               {reviewRows.map(([k, v]) => (
@@ -839,6 +853,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               {service.key === "family" && details.femaleNurse === true && visit?.key !== "pap" ? <p className="text-[14px]">{x.femaleNurseBooked}</p> : null}
               {/* A Pap visit is with a nurse; say it again on the last page (a tester was 85% sure before). */}
               {visit?.key === "pap" ? <p className="text-[14px]">{x.papBooked}</p> : null}
+              {noteUrgent && urgentOk.current ? <p className="pretty rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[14px] font-semibold leading-[1.5] text-ink">{linkPhones(x.urgentAfter)}</p> : null}
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <OutcomeTile k={x.confirmed.service}>
                   <span className="text-[16px] font-semibold">

@@ -721,7 +721,7 @@ const family: Topic[] = [
     },
     cards: {
       title: draft("What we give."),
-      sub: draft("Funding rules change from season to season. We confirm what is covered for you at the visit."),
+      sub: draft("Funding rules change from season to season. If a vaccine is not funded for you, we tell you the cost before it is given."),
       items: [
         { t: draft("Flu shot"), d: draft("Every fall from October, for everyone 6 months and older. Publicly funded, so no cost to you. Due for other vaccines too? Tell us when you book and we plan them together."), meta: draft("Every fall"), link: draft("Flu shot questions, answered"), page: "/health-notes/flu-shot-faq" },
         { t: draft("Children and teens"), d: approved(kidsCopy.imm.note, "All routine vaccines are given in clinic and recorded on the yellow card."), meta: draft("Birth to 18"), link: draft("See the schedule by age"), page: "/family-medicine/children-youth#immunizations" },

@@ -388,8 +388,9 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
           { k: "Honesty", v: "We will tell you if it is not for you" },
         ],
         tags: ["Physician first"],
-        cta: "Book a visit",
-        ctaPage: bookFor("infusion", "consult"),
+        cta: draft("Book a family medicine visit"),
+        // The text said "Book a family medicine visit" and the button booked an infusion consult (round 22).
+        ctaPage: bookFor("family", "concern"),
         link: "Family Medicine",
         linkPage: "family",
       },
@@ -653,7 +654,8 @@ export const drips: Drip[] = [
   { name: "Hydration", desc: "Fluids and electrolytes", mins: 45, price: 150 },
   { name: "Vitamin blend", desc: "B vitamins, vitamin C, zinc", mins: 60, price: 200 },
   { name: "Recovery", desc: "Amino acids and electrolytes", mins: 60, price: 200 },
-  { name: "Anti-nausea add-on", desc: draft("Added to any drip. Pregnant or being sick? See a doctor first."), mins: 0, price: 40 },
+  // The anti-nausea add-on is gone: the builder sold it ($190 with hydration) while every page says someone
+  // being sick should see a doctor first (public health reviewer, round 22).
   { name: "Vitamin C add-on", desc: "Added to any drip", mins: 0, price: 40 },
   // Iron is no longer in this picker: a prescription iron with a price next to wellness drips read as
   // advertising a drug (compliance review, round 17). The builder links to the iron page instead.

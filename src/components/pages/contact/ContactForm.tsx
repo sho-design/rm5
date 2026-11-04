@@ -49,7 +49,7 @@ export function ContactForm() {
     return (
       <div ref={doneRef} tabIndex={-1} className="scroll-mt-24 outline-none">
         <StateCard state="success" title={contactCopy.done.title}>
-          <p>{topic === topics.length - 1 ? contactExtraCopy.complaintDone : contactCopy.done.body}</p>
+          <p>{topic === topics.length - 1 ? contactExtraCopy.complaintDone : replyBy === 1 ? contactExtraCopy.doneEmailOnly : contactCopy.done.body}</p>
           <button
             type="button"
             onClick={() => {

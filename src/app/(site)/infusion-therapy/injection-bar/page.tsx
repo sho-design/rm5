@@ -16,6 +16,10 @@ export default function InjectionBarPage() {
     <>
       <InfusionHeader pageKey="shots" page="The Injection Bar" eyebrow={c.eyebrow} title={c.title} lead={c.lead} />
       <Section className="pt-10 md:pt-12">
+        {/* Every drip page had this line and the shots page had none (public health reviewer, round 22). */}
+        <p className="pretty mb-6 max-w-[640px] rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[15px] font-semibold leading-[1.5] text-ink">
+          {infusionCopy.drip.shotsUnwell}
+        </p>
         <ShotGrid shots={shots} />
       </Section>
       <Section className="flex flex-col gap-6">

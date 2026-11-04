@@ -16,7 +16,7 @@ export const legalPages: LegalPage[] = [
       {
         h: "What we collect",
         p: [
-          "Personal health information you share with us for your care: contact details, health card number, medical history, test results and treatment notes. Website analytics data is collected in aggregate and does not identify you.",
+          "Personal health information you share with us for your care: contact details, health card number, medical history, test results and treatment notes. Website analytics runs only if you allow it in Cookie settings, and never on booking, registration, contact, referral, renewal or careers pages. If you allow it, Google Analytics stores an identifier in your browser to count return visits. It does not receive your name or health information. Your choice is saved in your browser, and you can change it at any time under Cookie settings at the bottom of every page.",
         ],
       },
       {

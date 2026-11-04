@@ -406,6 +406,25 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
   - No OHIP adds: "Booking for a newborn whose card has not arrived yet? Choose Ontario health card and leave the number blank."
 - **Pain Centre first visit lead** adds: "Not heard from us after three weeks? Call 905-709-3222."
 
+## Usability fixes, round 22
+
+- **Booking:**
+  - After the pause: "You told us about signs we take seriously. If they come back or get worse before your visit, dial 911. Not sure? Call Health811 at 811, any time."
+  - Review: "Born" before the patient's date of birth.
+- **Infusion:**
+  - The anti-nausea add-on is removed from the builder.
+  - "Not sure" button: "Book a family medicine visit".
+  - Iron tally adds "Chest pain, fainting, or short of breath at rest? Dial 911."
+  - Injection Bar: "Being sick, cannot keep fluids down, or pregnant? Please see a doctor before any shot. Call us the same day at 905-709-3222, or Health811 at 811 when we are closed."
+- **Privacy policy:** "Website analytics runs only if you allow it in Cookie settings, and never on booking, registration, contact, referral, renewal or careers pages. If you allow it, Google Analytics stores an identifier in your browser to count return visits. It does not receive your name or health information. Your choice is saved in your browser, and you can change it at any time under Cookie settings at the bottom of every page." (privacy officer)
+- **Contact:**
+  - Email-only reply: "We reply by email within 2 business days."
+  - The complaint hint and done text add "Raising a concern does not affect your care." The hint names "long waits".
+- **FAQ and pages:**
+  - No OHIP adds: "Student or travel plan, such as UHIP? We give you a receipt to claim from your plan."
+  - Children: "Newborn card not here yet? Leave the number blank when you book, and bring the card once it arrives."
+  - Vaccines: "If a vaccine is not funded for you, we tell you the cost before it is given."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

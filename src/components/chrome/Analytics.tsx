@@ -46,9 +46,19 @@ export function Analytics({ gtmId, gaId }: { gtmId?: string; gaId?: string }) {
     if (allowed && !loaded) setLoaded(true);
   }, [allowed, loaded]);
 
+  // Moving onto a form page in the same tab left the Google script in memory, only told to be quiet (an IT
+  // security tester, round 22). Switch it off at once, then reload the form page so it starts without it.
+  useEffect(() => {
+    if (!loaded || !excluded) return;
+    if (gaId) (window as unknown as Record<string, unknown>)[`ga-disable-${gaId}`] = true;
+    window.gtag?.("consent", "update", { analytics_storage: "denied" });
+    window.location.reload();
+  }, [loaded, excluded, gaId]);
+
   // After loading: follow consent and the form-page rule, and send GA4 page views ourselves.
   useEffect(() => {
     if (!loaded || !window.gtag) return;
+    if (gaId) (window as unknown as Record<string, unknown>)[`ga-disable-${gaId}`] = !allowed;
     window.gtag("consent", "update", { analytics_storage: allowed ? "granted" : "denied" });
     if (allowed && gaId) window.gtag("event", "page_view", { page_path: pathname, page_location: window.location.origin + pathname });
   }, [loaded, allowed, pathname, gaId]);
@@ -63,7 +73,7 @@ export function Analytics({ gtmId, gaId }: { gtmId?: string; gaId?: string }) {
   ) : (
     <>
       <Script id="ga4-init" strategy="afterInteractive">
-        {`${base}gtag('js',new Date());gtag('config',${JSON.stringify(gaId)},{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false});gtag('event','page_view',{page_path:location.pathname,page_location:location.origin+location.pathname});`}
+        {`${base}gtag('js',new Date());gtag('config',${JSON.stringify(gaId)},{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false});`}
       </Script>
       <Script id="ga4" strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId ?? "")}`} />
     </>

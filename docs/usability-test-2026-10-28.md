@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (390 simulated patients)
+# Usability test, 28 October 2026 (410 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -983,6 +983,61 @@ Lowest trust (4): the pharmacist reviewer, the Quebec student and Kevin (no drip
 - **MVA (Nadia):** what is owed if the insurer declines, and whether the patient must notify the insurer.
 - **Careers (Grace):** pay ranges and shift times.
 - **Photo (Mei):** the children page shows a woman in navy (doctor) scrubs, but both physicians are men.
+
+## Round 22: 20 testers, Wednesday 4 November about 2am (clinic closed until 9am)
+
+Average ease 5.3, trust 5.05 (round 21 was 5.65 and 5.5). This round aimed at harder cases, and every booking and form went through. Retests that now work:
+- **Carol** (hot flashes, sweating, heartburn): no false alarm from her note.
+- **Luc** (Quebec card): the Quebec fee and RAMQ wording agree everywhere.
+- **Ahmed** (blind): child fields are named "Child 1, First name", and all three names are read back.
+- **Mia** (16): titles, calendar file and confirmation stay neutral.
+- **Sandra**: the changing mole goes to Family Medicine.
+- **Huong**: "tiem cum" finds the flu shot.
+
+Lowest:
+- **Daniel** (Deaf, ASL): ease 3, trust 3. Changing a booking is by phone only, and interpreters are phone interpreters only.
+- **Hana** (6-week-old with 38.2): trust 3. Her note was not caught.
+- **Marlene** (complaint): ease 4, trust 4.
+
+**Analytics leads from testers:** four testers reported a request to googletagmanager.com after "No thanks". A fresh browser that declines sends no Google requests on the pages they named. The address is in the site's own script, which their browser caches hold. The real issue Nora found is fixed below.
+
+### Round 22 findings fixed in code
+
+- **Baby fever (Hana):** the booking note check missed "a temperature of 38.2" for a 6-week-old. It now treats a temperature of 38 or more ("38.2", "38,2"), "temperature" or "temp" as a fever. A fever counts as an emergency for a baby under 3 months, going by the note ("6 weeks old", "newborn") or by the date of birth given for the patient. The check runs again on Continue, in case the date of birth was typed after the note.
+- **After the pause (Vince):** once someone says "No, none of these signs", the review and confirmation say: "You told us about signs we take seriously. If they come back or get worse before your visit, dial 911. Not sure? Call Health811 at 811, any time."
+- **Infusion (Dr. Wu):**
+  - The drip builder no longer sells an anti-nausea add-on.
+  - The "Not sure, I just want to feel better" button now books a family medicine visit, as its text says.
+  - The iron symptom tally adds "Chest pain, fainting, or short of breath at rest? Dial 911."
+  - The Injection Bar has a being-sick and pregnancy line.
+- **Teen privacy (Mia):** sensitive reasons in links are now a number (`reason=~0`), not base64, so nothing in the history or cache can be decoded. A sensitive reason that is not on the list is left out of the link.
+- **Analytics on form pages (Nora):** moving onto a booking or form page in the same tab now switches Google Analytics off at once and reloads the page without it. The home page no longer counts one visit twice. The privacy policy now says when analytics runs, that it stores a browser identifier, and how to change the choice. It no longer claims the data "does not identify you".
+- **Booking for someone else (Ruth):** the date of birth now shows on the review ("Born Mar 14, 1997.").
+- **Screen readers (Ahmed):** "Add another child" moves focus to the new child's first name.
+- **Contact (Daniel, Marlene):**
+  - "Email only" now gets "We reply by email within 2 business days", not "please call".
+  - The complaint hint and confirmation add "Raising a concern does not affect your care", and long waits are named as a reason to write in.
+- **Search:**
+  - Vietnamese without accents now finds women's health ("phu khoa", "phu nu", "y ta nu"), bloodwork ("xet nghiem") and the Pain Centre for "dau lung" (Huong).
+  - "feedback" finds complaints (Marlene).
+  - "age spots" finds Laser (Sandra).
+- **Smaller:**
+  - The no-OHIP FAQ names UHIP and student or travel plans (Arjun).
+  - The children page says a newborn's card number can be left blank (Jess, Mei).
+  - The vaccine coverage lines agree: "If a vaccine is not funded for you, we tell you the cost before it is given." (Bernard)
+
+### Round 22 findings for the clinic
+
+- **Deaf patients (Daniel), blocker:** a way to change or cancel without phoning (email or text) that works before the 24-hour cut-off, and whether ASL interpreters or video relay are offered. The site cannot say either until the clinic decides.
+- **911 links (decision):** still open.
+- **Infusion screening (Dr. Wu):** the nurse screening is "the first time" only, while the builder says each drip includes one. Also heart or kidney disease cautions, and iron in pregnancy (Tran, 24 weeks): whether it is given, from which trimester, and working with midwives.
+- **Prices:** sick notes and forms (Luc), laser (Sandra), massage by length and whether $95 includes HST (Kayla), knee injections that are private (Dr. Lau).
+- **Insurers (Kayla):** name the plans billed directly, for example Sun Life.
+- **WSIB (Tony):** say on the WSIB page that patients can transfer from another clinic and choose physio or chiro. The team card lists physio and kinesiology only.
+- **Referrals (Dr. Lau):** a reference number on the confirmation, an anticoagulant field, joint and side, and attaching imaging.
+- **Vaccines (Bernard):** RSV eligibility by age, and the cost of shingles outside 65 to 70.
+- **Complaints (Marlene):** confirm "Raising a concern does not affect your care", and pick one wording across Standards, Patient rights and Contact (who reads it, and "acknowledged" or "reply").
+- **Booking types (Ruth, Luc):** a medication review visit, and more than one reason for one visit (for example a concern and a note).
 
 ## What worked
 

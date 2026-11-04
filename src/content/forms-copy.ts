@@ -80,9 +80,11 @@ export const contactExtraCopy = {
   /** Confirmation for a complaint: two testers wanted to know it reached the Medical Director, not the front desk. */
   /** A patient complaining about a nurse wanted to know her other options next to the form. */
   complaintOptions: draft("If you are not satisfied with our reply, you can contact the College of Physicians and Surgeons of Ontario, or the College of Nurses of Ontario for nursing care."),
-  complaintDone: draft("Your concern goes to our Medical Director. It is logged and reviewed, and we reply within 2 business days."),
+  complaintDone: draft("Your concern goes to our Medical Director. It is logged and reviewed, and we reply within 2 business days. Raising a concern does not affect your care."),
+  /** A Deaf tester chose "Email only" and was then told to call (round 22). */
+  doneEmailOnly: draft("We reply by email within 2 business days."),
   /** A tester picked the complaint topic and nothing said who reads it (it is on Patient rights). Billing mistakes belong here too. */
-  complaintHint: draft("Concerns and complaints, including billing mistakes, go to our Medical Director. Each one is logged and reviewed, and we reply within 2 business days."),
+  complaintHint: draft("Concerns and complaints, including billing mistakes and long waits, go to our Medical Director. Each one is logged and reviewed, and we reply within 2 business days. Raising a concern does not affect your care."),
   updates: draft("Also send me clinic updates by email. Optional, unsubscribe any time."),
 };
 

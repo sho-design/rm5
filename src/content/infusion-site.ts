@@ -249,6 +249,7 @@ export const infusionCopy = {
     tiredCta: draft("Book a doctor visit"),
     unwell: draft("Being sick or cannot keep fluids down? A drip is not the place to start. Call us the same day at 905-709-3222, or Health811 at 811 when we are closed. Pregnant? Please see a doctor before any drip."),
     pregnancyCta: draft("Pregnancy care"),
+    shotsUnwell: draft("Being sick, cannot keep fluids down, or pregnant? Please see a doctor before any shot. Call us the same day at 905-709-3222, or Health811 at 811 when we are closed."),
     /** Returning drip clients booked "A consult" from a drip page and lost which drip (round 19). */
     bookDrip: draft("Book this drip"),
     whatItIs: "What it is",

@@ -206,9 +206,15 @@ export function isEmergencyQuery(q: string): boolean {
 const NOTE_IGNORE = new Set(["emergency", "911", "urgent", "after hours", "afterhours", "er", "fever", "high fever", "tonight", "overnight", "fit", "breathing", "breathe", "sweaty", "sweating", "shaking", "indigestion", "heartburn", "crisis", "988", "faint"]);
 const NOTE_EMERGENCY = EMERGENCY.filter((e) => !NOTE_IGNORE.has(e));
 
-/** For booking notes: emergency signs only. A fever counts when it is a young baby's. */
-export function isEmergencyNote(q: string): boolean {
+/** A fever, by word or by number (38 or more, as "38.2" or "38,2"). */
+const FEVER = /\b(fever|feverish|temperature|temp|hot to touch|burning up)\b|\b(3[89]|4[01])([.,]\d)?\s*(c|°|degrees)?\b/;
+
+/** For booking notes: emergency signs only. A fever counts when it is a young baby's: by the note ("6 weeks
+ *  old", "newborn") or by the date of birth given for them (a 6-week-old with 38.2 was booked for 9am, round 22). */
+export function isEmergencyNote(q: string, ageDays?: number): boolean {
   const f = ` ${fold(q)} `;
   if (NOTE_EMERGENCY.some((e) => f.includes(` ${e} `))) return true;
-  return / fever /.test(f.replace(/[^a-z0-9]+/g, " ")) && /(newborn| baby | infant |weeks? old| [12] months? old)/.test(f);
+  if (!FEVER.test(f)) return false;
+  if (ageDays != null && ageDays >= 0 && ageDays < 92) return true;
+  return /(newborn|\bbaby\b|\binfant\b|\b\d{1,2} ?(days?|weeks?|wks?) old\b|\b[12] ?months? old\b)/.test(f);
 }

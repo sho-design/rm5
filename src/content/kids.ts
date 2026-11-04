@@ -287,7 +287,7 @@ export const kidsCopy = {
     lead: "Well-baby visits, vaccines, growth checks, same-week sick visits and every form a school or camp asks for. Care in English or Tiếng Việt, covered by OHIP.",
     cta: "Register your child",
     cta2: "Book a sick visit",
-    coverage: "Children can be registered with a parent or on their own. Bring the health card and immunization record.",
+    coverage: "Children can be registered with a parent or on their own. Bring the health card and immunization record. Newborn card not here yet? Leave the number blank when you book, and bring the card once it arrives.",
     alt: "Family doctor with a young child",
     pills: ["OHIP covered", "Same-week sick visits", "EN / Tiếng Việt"],
   },

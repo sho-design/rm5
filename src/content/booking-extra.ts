@@ -109,6 +109,9 @@ export const bookingExtra = {
   firstVisitTheirs: draft("Arrive 10 minutes early for their first visit."),
   claimDateMva: draft("accident on"),
   claimDateWsib: draft("injury on"),
+  bornOn: draft("Born"),
+  /** After "No, none of these signs": the visit then read as routine (a man with chest tightness on stairs, round 22). */
+  urgentAfter: draft("You told us about signs we take seriously. If they come back or get worse before your visit, dial 911. Not sure? Call Health811 at 811, any time."),
   remindersPrivate: draft("Reminders give the day and time only, never the reason for your visit."),
   femaleNurse: draft("I would like a nurse in the room for any examination. Our nurses are women. Optional."),
   femaleNurseYes: draft("A nurse in the room"),

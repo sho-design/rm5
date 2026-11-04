@@ -106,7 +106,7 @@ const bring = bookingCopy.confirmed.bringValue;
 const familyBring = approved(bring, "Ontario health card, medication list, any recent results.");
 const healthCard = draft("Your Ontario health card.");
 // Shingles is only publicly funded 65 to 70: never promise "OHIP-insured" on a vaccine booking.
-const vaccineCoverage = draft("Publicly funded vaccines are free with your Ontario health card. We tell you before the visit if a vaccine is not.");
+const vaccineCoverage = draft("Publicly funded vaccines are free with your Ontario health card. If one is not funded for you, we tell you the cost before it is given.");
 
 const [insured, mva, wsib, selfPay] = rehabCoverage;
 const rehabWear = faqA("rehab", "What should I wear?");

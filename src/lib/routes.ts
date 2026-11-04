@@ -117,20 +117,20 @@ export function href(key: PageKey | string): string {
  *  laptop saw "reason=Sexual%20health", round 21). Also used to keep them off the confirmation screen. */
 export const SENSITIVE_REASON = /sexual|sti\b|std|contracep|birth control|pregnan|menopaus|hormone|testosterone|libido|erect|mood|mental|anxiety|depress|memory|dementia/i;
 
-const toB64 = (s: string) => btoa(String.fromCharCode(...new TextEncoder().encode(s))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+/** Sensitive reasons that links may carry, by number only: base64 in the link could still be decoded from the
+ *  history or the cache (a 16-year-old on the family laptop, round 22). A sensitive reason not listed here is
+ *  left out of the link. Append only: the numbers are in links people may have saved. */
+const PRIVATE_REASONS = ["Sexual health", "Contraception", "Planning a pregnancy", "Perimenopause and menopause", "Energy, mood and sleep", "Mood or sleep", "Memory or dementia"];
 
-/** The value for `&reason=`: plain for everyday reasons, encoded for sensitive ones (decoded by readReason). */
+/** The value for `&reason=`: plain for everyday reasons, a number for sensitive ones (read by readReason). */
 export function reasonParam(label: string): string {
-  return SENSITIVE_REASON.test(label) ? `~${toB64(label)}` : encodeURIComponent(label);
+  if (!SENSITIVE_REASON.test(label)) return encodeURIComponent(label);
+  const i = PRIVATE_REASONS.indexOf(label);
+  return i < 0 ? "" : `~${i}`;
 }
 
 /** Reads a `reason` value written by reasonParam. */
 export function readReason(value: string): string {
   if (!value.startsWith("~")) return value;
-  try {
-    const b = atob(value.slice(1).replace(/-/g, "+").replace(/_/g, "/"));
-    return new TextDecoder().decode(Uint8Array.from(b, (c) => c.charCodeAt(0)));
-  } catch {
-    return "";
-  }
+  return PRIVATE_REASONS[Number(value.slice(1))] ?? "";
 }
