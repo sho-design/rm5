@@ -126,7 +126,7 @@ export const searchExtras: SearchDoc[] = [
     label: draft("Mood, anxiety and sleep"),
     sub: draft("Talk to a family doctor, OHIP-insured. In crisis, call or text 988"),
     page: `/book?service=family&visit=concern&reason=${reasonParam("Mood or sleep")}`,
-    keys: "hopeless need to talk talk to someone someone to talk to therapy therapist counsellor psychologist depression depressed anxiety anxious panic mood low mood mental health stress burnout insomnia sleep sleeping cant sleep counselling counseling therapy sad lonely grief tram cam mat ngu lo au cang thang",
+    keys: "adhd add attention focus concentration cant focus hopeless need to talk talk to someone someone to talk to therapy therapist counsellor psychologist depression depressed anxiety anxious panic mood low mood mental health stress burnout insomnia sleep sleeping cant sleep counselling counseling therapy sad lonely grief tram cam mat ngu lo au cang thang",
     weight: 1.8,
   },
   // A bleeding spot that will not heal is a doctor's visit, not a cosmetic one (a tester was offered a peel).

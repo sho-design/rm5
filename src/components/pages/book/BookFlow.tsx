@@ -771,6 +771,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               </div>
             )}
             {visit?.fasting ? <p className="text-[13px] leading-[1.5] text-secondary">{config.fasting.late}</p> : null}
+            {/* Fasting since midnight, 9:20am, and the first time today was 11am (round 23). */}
+            {visit?.fasting && dayIdx === 0 && day && !day.slots.some((t) => t < 10) ? <p className="text-[13px] font-semibold leading-[1.5] text-ink">{linkPhones(x.fastingNoneToday)}</p> : null}
             <div className="flex gap-2 md:gap-2.5">
               <button type="button" onClick={() => setState(1)} className={buttonClass("outline", "md", "shrink-0")}>
                 <span aria-hidden>‹</span> {bookingCopy.back}

@@ -17,7 +17,9 @@ export const emergencyCopy = {
   call911: draft("Dial 911"),
   /** Round 17: a tester with a husband showing stroke signs had to read a 9-line sentence to reach "call 911",
    *  while the only big button was 811. Now a short standalone line first, then the signs as a list. */
-  dialLead: draft("Dial 911 now if someone has:"),
+  // "If someone has" read as being about someone else (a man with chest pressure, round 23).
+  dialLead: draft("Dial 911 now if you or someone else has:"),
+  notWalkIn: draft("Chest pain, signs of a stroke or trouble breathing? Do not walk or drive here. Dial 911."),
   signs: [
     draft("Signs of a stroke: face drooping, arm weakness, slurred speech"),
     draft("Chest pain, pressure or tightness, even if it feels like heartburn, especially with sweating"),

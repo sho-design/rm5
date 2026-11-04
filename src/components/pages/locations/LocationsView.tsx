@@ -1,5 +1,6 @@
 "use client";
 
+import { emergencyCopy } from "@/content/patient-help";
 import { useEffect, useState } from "react";
 import { Block, Button, Display, Photo, SmartLink } from "@/components/ui";
 import { cn } from "@/lib/cn";
@@ -141,6 +142,8 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
                   {c.directions}
                 </Button>
               </div>
+              {/* A man with chest pressure tapped "Open until 4pm" and found only directions (round 23). */}
+              {loc.soon ? null : <p className="pretty text-[14px] font-semibold leading-[1.5]">{emergencyCopy.notWalkIn}</p>}
             </div>
             <HoursCard hours={loc.hours} live={!loc.soon} />
           </div>
