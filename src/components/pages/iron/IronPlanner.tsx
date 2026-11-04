@@ -140,7 +140,7 @@ export function IronPlanner() {
                       <span className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-ink font-display text-[17px] font-medium text-white">{i + 1}</span>
                       <span className="flex min-w-0 flex-1 flex-col">
                         <span className="text-[16px] font-semibold">{`${c.visit(i + 1)}: ${fmt(v)}`}</span>
-                        <span className="text-[13px] text-muted">{d ? `${c.visitSub}. ${d.label} hours ${d.hours}.` : c.visitSub}</span>
+                        <span className="text-[13px] text-muted">{d ? `${c.visitSub}. Start by ${d.lastStart}.` : c.visitSub}</span>
                       </span>
                     </li>
                   );

@@ -1,4 +1,4 @@
-import { ironDay as c, ironInfusionDays } from "@/content/iron";
+import { ironDay as c, ironInfusionDays, ironLastStart } from "@/content/iron";
 import { Display, Eyebrow, Section } from "@/components/ui";
 
 const tints = ["bg-sky-soft", "bg-lilac-tint", "bg-sage-tint", "bg-sun-tint"];
@@ -36,7 +36,10 @@ export function IronDay() {
               <span className="font-display text-[22px] font-medium leading-[1.1] tracking-[-.02em]">{d.label}</span>
               <span className="text-[13px] text-muted">{d.when}</span>
             </span>
-            <span className="text-[15px] font-semibold">{d.hours}</span>
+            <span className="flex flex-col items-end text-right">
+              <span className="text-[15px] font-semibold">{ironLastStart(d.lastStart)}</span>
+              <span className="text-[13px] text-muted">{`Open ${d.hours}`}</span>
+            </span>
           </div>
         ))}
       </div>

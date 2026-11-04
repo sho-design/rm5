@@ -88,7 +88,7 @@ export const ironPrices: IronPrice[] = [
 ];
 
 export const ironFaq: QA[] = [
-  { q: draft("Which days are infusions?"), a: draft("Tuesday 3pm to 9pm, Saturday 8am to 4pm and Sunday 8am to 2pm, at Thornhill. Your assessment can be on any day we are open.") },
+  { q: "Which days are infusions?", a: "Tuesday, Saturday and Sunday at Thornhill. A visit takes about 3 hours, so the last start is 6:30pm on Tuesday, 1pm on Saturday and 11am on Sunday. Your assessment can be on any day we are open." },
   { q: "Do I need a referral?", a: "No. Book an iron assessment directly. If you have a referral or recent bloodwork from another doctor, bring it and we will use it." },
   { q: "How soon will I feel different?", a: "Iron stores take time to rebuild and everyone responds differently. Your repeat bloodwork at 4 to 8 weeks is the reliable measure, and your physician reviews it with you." },
   { q: "Is it safe?", a: "Modern IV iron is well studied and given daily in hospitals and clinics across Canada. Serious reactions are rare. A nurse monitors you throughout and a physician is on site." },
@@ -116,11 +116,13 @@ export const ironStepsTitle = draft("Three steps, over a few weeks.");
 
 /** Clinic answer (Nov 2026): iron infusions run on Tuesday, Saturday and Sunday at Thornhill. The assessment can be
  *  any clinic day. Day numbers are JavaScript weekdays (0 is Sunday). */
-export const ironInfusionDays: { day: number; label: string; hours: string; when: string }[] = [
-  { day: 2, label: "Tuesday", hours: draft("3pm to 9pm"), when: draft("Evenings") },
-  { day: 6, label: "Saturday", hours: draft("8am to 4pm"), when: draft("All day") },
-  { day: 0, label: "Sunday", hours: draft("8am to 2pm"), when: draft("Mornings") },
+/* Latest start times are clinic answers (Nov 2026): a 3-hour visit has to finish before closing. */
+export const ironInfusionDays: { day: number; label: string; hours: string; when: string; lastStart: string }[] = [
+  { day: 2, label: "Tuesday", hours: "3pm to 9pm", when: "Evenings", lastStart: "6:30pm" },
+  { day: 6, label: "Saturday", hours: "8am to 4pm", when: "Daytime", lastStart: "1pm" },
+  { day: 0, label: "Sunday", hours: "8am to 2pm", when: "Mornings", lastStart: "11am" },
 ];
+export const ironLastStart = (time: string) => `Last start ${time}`;
 
 /** Course planner. A tester with ferritin 6 could not plan time off from the page (round 23). */
 export const ironPlanner = {

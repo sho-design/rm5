@@ -484,7 +484,8 @@ Clinic fact: iron infusions run on Tuesday, Saturday and Sunday; the assessment 
 
   It shows the three visit dates, the repeat bloodwork window (4 to 8 weeks after the last visit), the course total ($1,650 or $750 plus the iron) and "About 9 hours, over 3 visits". Fine print: "A planning guide, not a booking. Your physician confirms the iron, the dose and the number of visits after your assessment, and we book the dates with you." Nothing is stored.
 - **Step 3:** "On a Tuesday, Saturday or Sunday. A nurse places a small IV and you relax in a lounge chair while 500 mg runs in, then we watch you for 30 minutes. About 3 hours in all. Repeat one to two weeks later until the course is done."
-- **New FAQ:** "Which days are infusions?" / "Tuesday 3pm to 9pm, Saturday 8am to 4pm and Sunday 8am to 2pm, at Thornhill. Your assessment can be on any day we are open."
+- **Latest start (clinic answer, 2026-11-04):** 6:30pm Tuesday, 1pm Saturday, 11am Sunday. The day cards show "Last start …" with "Open …" underneath, and each planner visit says "Start by …". Saturday reads "Daytime" instead of "All day".
+- **New FAQ:** "Which days are infusions?" / "Tuesday, Saturday and Sunday at Thornhill. A visit takes about 3 hours, so the last start is 6:30pm on Tuesday, 1pm on Saturday and 11am on Sunday. Your assessment can be on any day we are open."
 
 ## Facts to confirm
 
