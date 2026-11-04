@@ -114,6 +114,7 @@ export const bookingExtra = {
   claimDateMva: draft("accident on"),
   claimDateWsib: draft("injury on"),
   bornOn: draft("Born"),
+  interpreterShort: draft("phone interpreter at no cost"),
   fastingNoneToday: draft("No fasting times left today. Fasting already? Call us at 905-709-3222 to ask about a draw this morning, or book a time before 10am on another day."),
   /** After "No, none of these signs": the visit then read as routine (a man with chest tightness on stairs, round 22). */
   urgentAfter: draft("You told us about signs we take seriously. If they come back or get worse before your visit, dial 911. Not sure? Call Health811 at 811, any time."),

@@ -391,7 +391,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     ...(forOther ? ([[x.review.keys.for, [patientName ? `${patientName}.` : "", niceDob(str("patientDob")) ? `${x.bornOn} ${niceDob(str("patientDob"))}.` : "", str("relationship") ? x.youAreTheir(str("relationship")) : ""].filter(Boolean).join(" ")]] as [string, string][]) : []),
     ...(preferredLine() ? ([[x.review.keys.preferred, preferredLine()]] as [string, string][]) : []),
     [x.review.keys.status, bookingWho[who]],
-    [registerCopy.fields.language, languageName],
+    // Review said only "Mandarin"; the interpreter appeared first on the confirmation (round 23).
+    [registerCopy.fields.language, language === 2 ? `${languageName}, ${x.interpreterShort}` : languageName],
     ...(visit?.modes ? ([[x.modeLabel, x.modes[mode]]] as [string, string][]) : []),
     [x.card.label, card === 0 && str("card") ? `${x.card.options[0]}, ${x.card.endsIn} ${str("card")}` : card === 1 && province ? `${x.card.options[1]}: ${province}` : x.card.options[card]],
     [x.review.keys.time, slotLabel],

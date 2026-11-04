@@ -186,7 +186,7 @@ export function searchDocs(docs: SearchDoc[], q: string, limit = 8): SearchHit[]
 }
 
 /** Phrases that should bring up the 911 and Health811 note above the results. */
-const EMERGENCY = ["emergency", "911", "urgent", "after hours", "afterhours", "chest pain", "cant breathe", "can not breathe", "cannot breathe", "trouble breathing", "short of breath", "suicide", "suicidal", "kill myself", "overdose", "stroke", "heart attack", "bleeding", "unconscious", "seizure", "er", "fever", "high fever", "tonight", "overnight", "chest", "chest pressure", "chest tightness", "heartburn", "breathing", "breathe", "faint", "fainted", "fainting", "numb", "numbness", "slurred", "drooping", "allergic reaction", "anaphylaxis", "crisis", "988", "self harm", "selfharm", "hurt myself", "want to die", "hopeless", "end my life", "sweaty", "sweating", "cold sweat", "clammy", "indigestion", "tight chest", "chest tight", "jaw pain", "arm pain", "left arm", "pressure in chest", "drowsy", "very sleepy", "hard to wake", "wont wake", "limp", "lethargic", "stiff neck", "unresponsive", "jaw ache", "jaw aches", "convulsion", "convulsions", "fit", "febrile seizure", "shaking"];
+const EMERGENCY = ["emergency", "911", "urgent", "after hours", "afterhours", "chest pain", "cant breathe", "can not breathe", "cannot breathe", "trouble breathing", "short of breath", "suicide", "suicidal", "kill myself", "overdose", "stroke", "heart attack", "bleeding", "unconscious", "seizure", "er", "fever", "high fever", "tonight", "overnight", "chest", "chest pressure", "chest tightness", "heartburn", "breathing", "breathe", "faint", "fainted", "fainting", "numb", "numbness", "slurred", "drooping", "allergic reaction", "anaphylaxis", "crisis", "988", "self harm", "selfharm", "hurt myself", "want to die", "hopeless", "end my life", "sweaty", "sweating", "cold sweat", "clammy", "indigestion", "tight chest", "chest tight", "jaw pain", "arm pain", "left arm", "pressure in chest", "drowsy", "very sleepy", "hard to wake", "wont wake", "limp", "lethargic", "stiff neck", "unresponsive", "jaw ache", "jaw aches", "convulsion", "convulsions", "fit", "febrile seizure", "shaking", "concussion", "head injury", "hit his head", "hit her head", "hit my head", "knocked out"];
 
 /** Mental health crisis words: the note leads with 988 instead of the physical emergency list. */
 const CRISIS = ["suicide", "suicidal", "kill myself", "self harm", "selfharm", "hurt myself", "want to die", "hopeless", "end my life", "crisis", "988", "no reason to live", "cant go on"];
@@ -203,7 +203,7 @@ export function isEmergencyQuery(q: string): boolean {
 
 /** Search words that are fine in a booking note: a parent wrote "fever for 4 days, tired" and was told not to
  *  book (round 21), and hot flashes with sweating would do the same. */
-const NOTE_IGNORE = new Set(["emergency", "911", "urgent", "after hours", "afterhours", "er", "fever", "high fever", "tonight", "overnight", "fit", "breathing", "breathe", "sweaty", "sweating", "shaking", "indigestion", "heartburn", "crisis", "988", "faint"]);
+const NOTE_IGNORE = new Set(["emergency", "911", "urgent", "after hours", "afterhours", "er", "fever", "high fever", "tonight", "overnight", "fit", "breathing", "breathe", "sweaty", "sweating", "shaking", "indigestion", "heartburn", "crisis", "988", "faint", "concussion", "head injury", "hit his head", "hit her head", "hit my head"]);
 const NOTE_EMERGENCY = EMERGENCY.filter((e) => !NOTE_IGNORE.has(e));
 
 /** A fever, by word or by number (38 or more, as "38.2" or "38,2"). */
@@ -214,6 +214,8 @@ const FEVER = /\b(fever|feverish|temperature|temp|hot to touch|burning up)\b|\b(
 export function isEmergencyNote(q: string, ageDays?: number): boolean {
   const f = ` ${fold(q)} `;
   if (NOTE_EMERGENCY.some((e) => f.includes(` ${e} `))) return true;
+  // A head injury counts in a note when it comes with vomiting (a teen who threw up after hockey, round 23).
+  if (/(head injury|hit (his|her|my|their) head|concussion|knocked out)/.test(f) && /(vomit|threw up|throwing up|been sick)/.test(f)) return true;
   if (!FEVER.test(f)) return false;
   if (ageDays != null && ageDays >= 0 && ageDays < 92) return true;
   return /(newborn|\bbaby\b|\binfant\b|\b\d{1,2} ?(days?|weeks?|wks?) old\b|\b[12] ?months? old\b)/.test(f);

@@ -97,7 +97,7 @@ export const bookingCopy = {
   summaryKeys: { service: "Service", clinic: "Clinic", time: "Time", coverage: "Coverage" },
   clinic: "Thornhill, 700 Centre St",
   /** Top of the booking form: a tester short of breath found the 911 box three screens down, after Continue. */
-  urgentLine: draft("Chest pain, pressure or tightness (even if it feels like heartburn), arm or jaw pain, shortness of breath, signs of a stroke, a seizure, a child who is limp or hard to wake, or a fever in a baby under 3 months? Do not book. Dial 911 now."),
+  urgentLine: draft("Chest pain, pressure or tightness (even if it feels like heartburn), arm or jaw pain, shortness of breath, signs of a stroke, a seizure, a child who is limp or hard to wake, a head injury with vomiting, or a fever in a baby under 3 months? Do not book. Dial 911 now."),
   /** Shown under the note when it mentions an emergency symptom (a tester typed "short of breath" and booked tomorrow). */
   urgentHold: draft("Before you book: does anyone have one of the signs above right now, or on and off today? Signs that come and go count. If so, please dial 911 instead of booking."),
   urgentContinue: draft("No, none of these signs. Continue my booking ›"),

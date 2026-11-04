@@ -328,7 +328,7 @@ const aesthetics: Topic[] = [
     cards: { title: A.chooser.title, items: [asCard(result(A, 0)), asCard(result(A, 1)), rung(2)] },
     benefits: { title: A.benefitsTitle, items: A.benefits },
     path: aesPath,
-    faq: [dq("aesthetics", "Who does the injections?"), dq("aesthetics", "Is a consult free?"), dq("aesthetics", "Will it look natural?"), dq("aesthetics", "How much does it cost?")],
+    faq: [dq("aesthetics", "Who does the injections?"), dq("aesthetics", "Pregnant or breastfeeding?"), dq("aesthetics", "Is a consult free?"), dq("aesthetics", "Will it look natural?"), dq("aesthetics", "How much does it cost?")],
     band: aesBand,
   },
   {
