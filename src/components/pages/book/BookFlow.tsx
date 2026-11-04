@@ -12,7 +12,7 @@ import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
 import { errorProps, fmtPhone, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
 import { cn } from "@/lib/cn";
-import { isEmergencyNote } from "@/lib/search";
+import { isEmergencyNote, isInfantFever } from "@/lib/search";
 import { readReason, SENSITIVE_REASON } from "@/lib/routes";
 import { buttonClass } from "@/components/ui/Button";
 import { linkPhones } from "@/components/ui/Phones";
@@ -98,6 +98,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   /** A note that reads like an emergency pauses the booking once: the warning alone did not stop a tester
    *  with heartburn-like chest tightness and sweating from booking a visit for later today (round 20). */
   const [urgentHold, setUrgentHold] = useState(false);
+  /** A baby under 3 months with a fever: a hard stop, with no way to continue (a 10-week-old with 38.4 was
+   *  booked for 11am after one tap, round 23). Changing the note or the date of birth lifts it. */
+  const [infantFever, setInfantFever] = useState(false);
   const urgentOk = useRef(false);
   const [who, setWho] = useState(0);
   const autoWho = useRef<number | null>(null);
@@ -317,6 +320,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     const notes = (form.elements.namedItem("notes") as HTMLTextAreaElement | null)?.value ?? "";
     const urgentNow = isEmergencyNote(notes, ageDaysIn(form));
     if (urgentNow !== noteUrgent) setNoteUrgent(urgentNow);
+    if (isInfantFever(notes, ageDaysIn(form))) {
+      setInfantFever(true);
+      requestAnimationFrame(() => document.getElementById("book-notes-urgent")?.focus());
+      return;
+    }
     if (urgentNow && !urgentOk.current) {
       setUrgentHold(true);
       requestAnimationFrame(() => document.getElementById("book-notes-urgent")?.focus());
@@ -328,6 +336,15 @@ export function BookFlow({ config }: { config: BookingConfig }) {
 
   // Clear a field's error as soon as it is edited.
   const onInput = (e: FormEvent<HTMLFormElement>) => {
+    // Re-check on every field: the date of birth is often typed after the note.
+    // After a frame: the date of birth's hidden YYYY-MM-DD value updates on the next render.
+    const f = e.currentTarget;
+    requestAnimationFrame(() => {
+      const notesNow = (f.elements.namedItem("notes") as HTMLTextAreaElement | null)?.value ?? "";
+      const infant = isInfantFever(notesNow, ageDaysIn(f));
+      setInfantFever(infant);
+      if (infant) setNoteUrgent(true);
+    });
     const id = (e.target as HTMLElement).id;
     if (!id || !errors[id]) return;
     setErrors((all) => Object.fromEntries(Object.entries(all).filter(([k]) => k !== id)));
@@ -656,8 +673,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               </FieldLabel>
               {noteUrgent ? (
                 <div id="book-notes-urgent" role="status" tabIndex={-1} className="pretty flex flex-col gap-2.5 rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[14px] font-semibold leading-[1.5] text-ink outline-none">
-                  <p>{linkPhones(bookingCopy.noteUrgent)}</p>
-                  {urgentHold ? (
+                  <p>{linkPhones(infantFever ? x.infantFever : bookingCopy.noteUrgent)}</p>
+                  {infantFever ? null : urgentHold ? (
                     <>
                       <p className="text-[16px]">{bookingCopy.urgentHold}</p>
                       <button

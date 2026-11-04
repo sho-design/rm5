@@ -79,7 +79,7 @@ export const locations: Location[] = [
     soon: true,
     cta: "Join the Maple list",
     hours: [
-      ["Opening", "Coming soon"],
+      ["Opening", draft("No date set yet")],
       // "Maple list: Open now" under Hours read as Maple itself being open.
       [draft("Maple list"), draft("Taking names now")],
       ["Questions", "Call 905-709-3222"],

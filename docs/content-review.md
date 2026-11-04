@@ -425,6 +425,29 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
   - Children: "Newborn card not here yet? Leave the number blank when you book, and bring the card once it arrives."
   - Vaccines: "If a vaccine is not funded for you, we tell you the cost before it is given."
 
+## Usability fixes, round 23
+
+- **Booking:**
+  - Infant fever stop: "A fever in a baby under 3 months needs to be seen now, not at a later visit. Please dial 911 or go to the nearest emergency department. Not sure? Call Health811 at 811, any time. We cannot book this online." (physician)
+  - After the pause: "If anything changes or gets worse before your visit, dial 911."
+  - The urgent line adds "a head injury with vomiting".
+  - Fasting: "No fasting times left today. Fasting already? Call us at 905-709-3222 to ask about a draw this morning, or book a time before 10am on another day."
+  - Interpreter on review: "phone interpreter at no cost".
+- **Video and phone:**
+  - "Keep your phone nearby at your visit time. Missed our call? Call us back at 905-709-3222."
+  - "Use a phone, tablet or computer with a camera, somewhere private. No link by your visit time? Call 905-709-3222."
+  - "Have ready".
+- **Ocean hand-off:**
+  - "Next you go to Ocean, the secure booking and forms system we use with our medical records, at <address>. It shows our name. What you enter goes straight to your chart with us, not through this website." (confirm once Ocean is set up)
+  - Buttons: "Continue to Ocean to choose a time ›", "… to register ›", "… to request a renewal ›".
+  - Lead: "Tell us which service you need. You choose a time and add your details on the next page."
+  - Register: "Have ready: each person's health card and date of birth, your address, and your previous family doctor's name if you had one. Registering your family too? Each person gets their own registration." (confirm with the Ocean form)
+  - Sensitive booking: "Booking for yourself? Use your own phone and email. Reminders give the day and time only, never the reason for your visit."
+- **Clinics:** "Chest pain, signs of a stroke or trouble breathing? Do not walk or drive here. Dial 911." Maple "Opening: No date set yet".
+- **Emergency box:** "Dial 911 now if you or someone else has:".
+- **Renewal hint:** "Name and strength, one per line. Run out today or tomorrow? Please call us at 905-709-3222 or ask your pharmacist instead."
+- **Injectables FAQ:** "Pregnant or breastfeeding?" / "Tell us when you book. We talk it through at your consult before any treatment, and some treatments wait until after pregnancy and breastfeeding." (physician)
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

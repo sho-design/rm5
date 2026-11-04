@@ -117,7 +117,9 @@ export const bookingExtra = {
   interpreterShort: draft("phone interpreter at no cost"),
   fastingNoneToday: draft("No fasting times left today. Fasting already? Call us at 905-709-3222 to ask about a draw this morning, or book a time before 10am on another day."),
   /** After "No, none of these signs": the visit then read as routine (a man with chest tightness on stairs, round 22). */
-  urgentAfter: draft("You told us about signs we take seriously. If they come back or get worse before your visit, dial 911. Not sure? Call Health811 at 811, any time."),
+  // "If they come back" read wrong for a fever that never went away (round 23).
+  urgentAfter: draft("You told us about signs we take seriously. If anything changes or gets worse before your visit, dial 911. Not sure? Call Health811 at 811, any time."),
+  infantFever: draft("A fever in a baby under 3 months needs to be seen now, not at a later visit. Please dial 911 or go to the nearest emergency department. Not sure? Call Health811 at 811, any time. We cannot book this online."),
   /** Hand-off to Ocean, the clinic's secure booking and forms system (OSCAR Pro). */
   ocean: {
     gate: draft("Before you go on: does anyone have one of the emergency signs above right now? Please dial 911 instead of booking."),

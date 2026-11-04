@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (410 simulated patients)
+# Usability test, 28 October 2026 (430 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -1038,6 +1038,62 @@ Lowest:
 - **Vaccines (Bernard):** RSV eligibility by age, and the cost of shingles outside 65 to 70.
 - **Complaints (Marlene):** confirm "Raising a concern does not affect your care", and pick one wording across Standards, Patient rights and Contact (who reads it, and "acknowledged" or "reply").
 - **Booking types (Ruth, Luc):** a medication review visit, and more than one reason for one visit (for example a concern and a note).
+
+## Round 23: 20 testers, Wednesday 4 November about 9:20am (clinic open until 4pm)
+
+Average ease 5.25, trust 5.3 (round 22 was 5.3 and 5.05). The first daytime round in a while, and the first test of the Ocean hand-off: three testers used a build with sample Ocean links, judging everything up to leaving the site. Every booking and form went through. What worked:
+- **Ava** (16): the Ocean link carries nothing about the reason.
+- **Mr. Zhang:** the interpreter request carried through.
+- **Lisa and Linda** (memory concerns for a parent): reminders and confirmations stay discreet.
+- **Sunita:** the full iron course price.
+- **Bob:** no invented Maple date.
+
+Lowest:
+- **Tuan:** trust 3. His 10-week-old with 38.4 got through the pause in one tap.
+- **Ray** (chest pressure, planning to walk in): ease 4.
+- **Priya** (adult ADHD): ease 4. "ADHD" found nothing.
+- **Doris** (74, wary of scams, on the Ocean build): trust 4.
+
+### Round 23 findings fixed in code
+
+- **Baby fever (Tuan), hard stop:** a fever in a baby under 3 months, by the note or the date of birth, now stops the booking with no way to continue: "A fever in a baby under 3 months needs to be seen now, not at a later visit. Please dial 911 or go to the nearest emergency department. Not sure? Call Health811 at 811, any time. We cannot book this online." It shows as soon as the date of birth is typed, not only on Continue, and lifts only if the note or date changes. Checked in a browser with a 10-week-old and "temp 38.4". The line after the pause now says "If anything changes or gets worse", not "If they come back".
+- **Head injury (Michelle):** a booking note with a head injury and vomiting counts as an emergency. The booking line names "a head injury with vomiting". Search for "concussion" or "head injury" shows the emergency box and finds the children's page.
+- **Walking in with chest pain (Ray):** the clinic hours card says "Chest pain, signs of a stroke or trouble breathing? Do not walk or drive here. Dial 911." The emergency box reads "if you or someone else has".
+- **Ocean hand-off (Doris, Wei, Ava):**
+  - The explanation now comes before the button and names the web address.
+  - The lead no longer says "who you are. Two minutes", and the step bar is hidden.
+  - Registration lists what to have ready.
+  - A sensitive booking says "Booking for yourself? Use your own phone and email. Reminders give the day and time only."
+- **Video and phone visits (Lauren):** the confirmation says what to have ready and what to do if the link or call does not come. Review shows "By video" instead of the clinic address. "Have ready" replaces "Bring". The nurse-in-the-room box is hidden for video and phone visits.
+- **Search:** STI words people use ("burning pee", "std check", "clap") find testing (Jay). "ADHD" finds the mood and focus visit with a family doctor (Priya). "breastfeeding" finds injectables (Jasmine).
+- **Smaller:**
+  - Injectables FAQ "Pregnant or breastfeeding? Tell us when you book. We talk it through at your consult before any treatment, and some treatments wait until after pregnancy and breastfeeding." (Jasmine, physician to confirm)
+  - Review shows "phone interpreter at no cost" next to the language (Mr. Zhang).
+  - The renewal hint says to call when running out today or tomorrow (Gary).
+  - A same-day fasting note when no time before 10am is left (Hassan).
+  - Maple "Opening: No date set yet" (Bob).
+
+### Round 23 findings for the clinic
+
+- **911 links (decision):** still open. Ray and Tuan again found 811 and 988 tappable but not 911.
+- **Walk-ins (Kim, Hassan):** whether walk-ins are taken, including for outside bloodwork. The "same-week slots for existing patients" FAQ disagrees with same-day times shown to new patients.
+- **CPSO review (Margaret):**
+  - Gift cards for injectables.
+  - "$0 upfront" and "Start an MVA claim".
+  - "Approved WSIB provider" (needs proof).
+  - The home back-pain path "Week 2 Image-guided treatment", which skips the referral wait.
+  - "10+ years of physician experience".
+  - Outcome lines, such as "Leave feeling restored", "gets you moving" and "Steady numbers, fewer surprises".
+  - "0 Second trips for bloodwork" next to "most requisitions".
+  - Physician vs nurse consult in aesthetics.
+
+  This is prototype copy, so it changes only with clinic approval.
+- **Physio or chiro (Paolo):** a short explainer of which to choose. Insurer wording is shown to self-payers.
+- **Iron days (Sunita):** which days infusions run, and whether a 3-hour infusion fits a Tuesday evening.
+- **Memory care (Linda) and adult ADHD (Priya):** a page on what the visit involves and what the clinic does and does not offer.
+- **Concussion visits (Michelle):** a follow-up after a concussion was booked as "A form or note" (uninsured). Say which visit to book.
+- **Low vision (Ernest):** the text size and contrast buttons are small, and contrast mode leaves pastel panels.
+- **Maple (Bob):** how Maple registrants are seen at Thornhill meanwhile. The Maple parking text repeats Thornhill's.
 
 ## What worked
 

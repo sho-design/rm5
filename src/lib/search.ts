@@ -209,6 +209,14 @@ const NOTE_EMERGENCY = EMERGENCY.filter((e) => !NOTE_IGNORE.has(e));
 /** A fever, by word or by number (38 or more, as "38.2" or "38,2"). */
 const FEVER = /\b(fever|feverish|temperature|temp|hot to touch|burning up)\b|\b(3[89]|4[01])([.,]\d)?\s*(c|°|degrees)?\b/;
 
+/** A fever in a baby under 3 months, by the note or by the date of birth given for them. Never bookable here. */
+export function isInfantFever(q: string, ageDays?: number): boolean {
+  const f = ` ${fold(q)} `;
+  if (!FEVER.test(f)) return false;
+  if (ageDays != null && ageDays >= 0 && ageDays < 92) return true;
+  return /(newborn|\bbaby\b|\binfant\b|\b\d{1,2} ?(days?|weeks?|wks?) old\b|\b[12] ?months? old\b)/.test(f);
+}
+
 /** For booking notes: emergency signs only. A fever counts when it is a young baby's: by the note ("6 weeks
  *  old", "newborn") or by the date of birth given for them (a 6-week-old with 38.2 was booked for 9am, round 22). */
 export function isEmergencyNote(q: string, ageDays?: number): boolean {
