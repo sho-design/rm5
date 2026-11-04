@@ -48,7 +48,8 @@ export const ironWho: TintCard[] = [
 export const ironSteps: PathStep[] = [
   { n: "1", time: "OHIP-insured", t: "Assessment and bloodwork", d: "A short visit with our physician and a blood draw on site. If you already have recent results, bring them and skip the wait." },
   { n: "2", time: "Same week", t: "Your plan", d: "If your ferritin is low and tablets are not right for you, the physician chooses the iron and dose. We book your infusion, often within days." },
-  { n: "3", time: draft("3 visits, about 3 hours each"), t: "The infusions", d: "A nurse places a small IV and you relax in a lounge chair while 500 mg runs in. We observe you for 30 minutes after, then you go back to your day. Repeat one to two weeks later until the course is done." },
+  // The 30 minutes read as extra time on top of the 3 hours (round 23). Infusion days added (clinic, Nov 2026).
+  { n: "3", time: draft("3 visits, about 3 hours each"), t: "The infusions", d: draft("On a Tuesday, Saturday or Sunday. A nurse places a small IV and you relax in a lounge chair while 500 mg runs in, then we watch you for 30 minutes. About 3 hours in all. Repeat one to two weeks later until the course is done.") },
 ];
 
 export const ironVisit: string[] = [
@@ -87,6 +88,7 @@ export const ironPrices: IronPrice[] = [
 ];
 
 export const ironFaq: QA[] = [
+  { q: draft("Which days are infusions?"), a: draft("Tuesday 3pm to 9pm, Saturday 8am to 4pm and Sunday 8am to 2pm, at Thornhill. Your assessment can be on any day we are open.") },
   { q: "Do I need a referral?", a: "No. Book an iron assessment directly. If you have a referral or recent bloodwork from another doctor, bring it and we will use it." },
   { q: "How soon will I feel different?", a: "Iron stores take time to rebuild and everyone responds differently. Your repeat bloodwork at 4 to 8 weeks is the reliable measure, and your physician reviews it with you." },
   { q: "Is it safe?", a: "Modern IV iron is well studied and given daily in hospitals and clinics across Canada. Serious reactions are rare. A nurse monitors you throughout and a physician is on site." },
@@ -111,3 +113,50 @@ export const ironCta = {
 };
 
 export const ironStepsTitle = draft("Three steps, over a few weeks.");
+
+/** Clinic answer (Nov 2026): iron infusions run on Tuesday, Saturday and Sunday at Thornhill. The assessment can be
+ *  any clinic day. Day numbers are JavaScript weekdays (0 is Sunday). */
+export const ironInfusionDays: { day: number; label: string; hours: string; when: string }[] = [
+  { day: 2, label: "Tuesday", hours: draft("3pm to 9pm"), when: draft("Evenings") },
+  { day: 6, label: "Saturday", hours: draft("8am to 4pm"), when: draft("All day") },
+  { day: 0, label: "Sunday", hours: draft("8am to 2pm"), when: draft("Mornings") },
+];
+
+/** Course planner. A tester with ferritin 6 could not plan time off from the page (round 23). */
+export const ironPlanner = {
+  eyebrow: draft("Plan your course"),
+  title: draft("See your three visits on a calendar."),
+  lead: draft("Infusions run on Tuesday, Saturday and Sunday. Pick a first day and the spacing, and see roughly when each visit and your repeat bloodwork would fall."),
+  startLabel: draft("First infusion"),
+  gapLabel: draft("Time between visits"),
+  gaps: [draft("1 week"), draft("2 weeks")] as const,
+  ironLabel: draft("Iron"),
+  ironOptions: [draft("Clinic supplied"), draft("Bring your own")] as const,
+  visit: (n: number) => draft(`Visit ${n}`),
+  visitSub: draft("About 3 hours"),
+  labs: draft("Repeat bloodwork"),
+  labsSub: draft("4 to 8 weeks after your last visit"),
+  totalLabel: draft("Course of 3"),
+  totals: [
+    { v: "$1,650", sub: draft("HST included, iron and nursing") },
+    { v: "$750", sub: draft("HST included, plus the iron from your pharmacy") },
+  ] as const,
+  timeLabel: draft("Time at the clinic"),
+  time: { v: draft("About 9 hours"), sub: draft("Over 3 visits") },
+  labsShort: draft("Bloodwork"),
+  fine: draft("A planning guide, not a booking. Your physician confirms the iron, the dose and the number of visits after your assessment, and we book the dates with you."),
+  cta: draft("Book an iron assessment"),
+};
+
+/** One infusion visit, start to finish (about 3 hours in all, including 30 minutes watching you afterwards). */
+export const ironDay = {
+  eyebrow: draft("One visit, start to finish"),
+  title: draft("About 3 hours, in four parts."),
+  parts: [
+    { t: draft("Check in"), d: draft("A short nurse screening, your vitals, and a chance to ask questions."), w: 2 },
+    { t: draft("IV placed"), d: draft("A small IV in your arm. Your nurse stays close throughout."), w: 1 },
+    { t: draft("Infusion"), d: draft("500 mg runs in while you sit back in a lounge chair. Read, work or rest."), w: 5 },
+    { t: draft("30 minutes after"), d: draft("We watch you for 30 minutes, then you go back to your day."), w: 2 },
+  ],
+  note: draft("Eat normally beforehand. No fasting, and you can drive home."),
+};

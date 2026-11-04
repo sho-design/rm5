@@ -465,6 +465,27 @@ On the Physiotherapy and Chiropractic pages, after "What it costs", and as the f
 - **Not sure:** "Not sure which? Tell us what is going on at an initial assessment, and we suggest which to start with." with "Book an initial assessment ›".
 - **FAQ:** "Should I see physio or chiro?" / "Either can be a place to start for back or neck pain. Physio focuses on movement, strength and recovery from injury or surgery. Chiro focuses on the spine and joints, often with adjustments. Not sure? Book an initial assessment and we suggest which to start with. Both cost the same."
 
+## Iron therapy page redesign (clinic request, 2026-11-04)
+
+Clinic fact: iron infusions run on Tuesday, Saturday and Sunday; the assessment can be any open day (added to CLAUDE.md). New sections, text in `src/content/iron.ts`:
+
+- **Hero:** "Physician-led. Nurse-administered. Infusions on Tuesday, Saturday and Sunday at Thornhill." Second button "Plan your three visits".
+- **One visit, start to finish:** "About 3 hours, in four parts."
+  - Check in: "A short nurse screening, your vitals, and a chance to ask questions."
+  - IV placed: "A small IV in your arm. Your nurse stays close throughout."
+  - Infusion: "500 mg runs in while you sit back in a lounge chair. Read, work or rest."
+  - 30 minutes after: "We watch you for 30 minutes, then you go back to your day."
+
+  The bar widths are illustrative; only the total and the 30 minutes are clinic facts. Then "Eat normally beforehand. No fasting, and you can drive home." and the three days with hours (Tuesday "Evenings" 3pm to 9pm, Saturday "All day" 8am to 4pm, Sunday "Mornings" 8am to 2pm).
+- **Course planner (interactive):** "Plan your course" / "See your three visits on a calendar." The visitor picks:
+  - a first infusion day (the next Tuesdays, Saturdays and Sundays, starting 3 days out);
+  - 1 or 2 weeks between visits;
+  - clinic-supplied or own iron.
+
+  It shows the three visit dates, the repeat bloodwork window (4 to 8 weeks after the last visit), the course total ($1,650 or $750 plus the iron) and "About 9 hours, over 3 visits". Fine print: "A planning guide, not a booking. Your physician confirms the iron, the dose and the number of visits after your assessment, and we book the dates with you." Nothing is stored.
+- **Step 3:** "On a Tuesday, Saturday or Sunday. A nurse places a small IV and you relax in a lounge chair while 500 mg runs in, then we watch you for 30 minutes. About 3 hours in all. Repeat one to two weeks later until the course is done."
+- **New FAQ:** "Which days are infusions?" / "Tuesday 3pm to 9pm, Saturday 8am to 4pm and Sunday 8am to 2pm, at Thornhill. Your assessment can be on any day we are open."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

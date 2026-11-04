@@ -7,6 +7,8 @@ import { ironFaq, ironPrices, ironSteps, ironSymptoms, ironVisit, ironVisitImg, 
 import { bookFor, noteRoute } from "@/lib/routes";
 import { IronCheck } from "@/components/pages/iron/IronCheck";
 import { IronPrices, IronSteps, IronVisit, IronWho } from "@/components/pages/iron/IronSections";
+import { IronDay } from "@/components/pages/iron/IronDay";
+import { IronPlanner } from "@/components/pages/iron/IronPlanner";
 
 const title = "Tired of being tired?";
 const lead =
@@ -30,9 +32,9 @@ export default function IronTherapyPage() {
         lead={lead}
         cta="Book an iron assessment"
         ctaTo={bookFor("infusion", "iron")}
-        cta2="Do I need one?"
-        cta2To="#iron-check"
-        coverage="Physician-led. Nurse-administered. Thornhill, Tue, Sat and Sun."
+        cta2="Plan your three visits"
+        cta2To="#iron-plan"
+        coverage="Physician-led. Nurse-administered. Infusions on Tuesday, Saturday and Sunday at Thornhill."
         tint={div.tint}
         accent={div.accent}
         img={images.ironHero}
@@ -45,6 +47,12 @@ export default function IronTherapyPage() {
       <IronWho cards={ironWho} />
 
       <IronSteps steps={ironSteps} />
+
+      {/* The visit in four parts, the infusion days and an interactive course planner: a working tester could not
+          plan time off from the page (round 23). */}
+      <IronDay />
+
+      <IronPlanner />
 
       <IronVisit items={ironVisit} img={ironVisitImg} noteHref={noteRoute("iron-infusion")} accent={div.accent} />
 
