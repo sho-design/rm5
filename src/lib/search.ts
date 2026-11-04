@@ -200,3 +200,15 @@ export function isEmergencyQuery(q: string): boolean {
   const f = ` ${fold(q)} `;
   return EMERGENCY.some((e) => f.includes(` ${e} `));
 }
+
+/** Search words that are fine in a booking note: a parent wrote "fever for 4 days, tired" and was told not to
+ *  book (round 21), and hot flashes with sweating would do the same. */
+const NOTE_IGNORE = new Set(["emergency", "911", "urgent", "after hours", "afterhours", "er", "fever", "high fever", "tonight", "overnight", "fit", "breathing", "breathe", "sweaty", "sweating", "shaking", "indigestion", "heartburn", "crisis", "988", "faint"]);
+const NOTE_EMERGENCY = EMERGENCY.filter((e) => !NOTE_IGNORE.has(e));
+
+/** For booking notes: emergency signs only. A fever counts when it is a young baby's. */
+export function isEmergencyNote(q: string): boolean {
+  const f = ` ${fold(q)} `;
+  if (NOTE_EMERGENCY.some((e) => f.includes(` ${e} `))) return true;
+  return / fever /.test(f.replace(/[^a-z0-9]+/g, " ")) && /(newborn| baby | infant |weeks? old| [12] months? old)/.test(f);
+}

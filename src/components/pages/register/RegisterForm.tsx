@@ -56,16 +56,16 @@ function PersonFields({ relation, k, n, errors, onRemove }: { relation: Relation
         ) : null}
       </div>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
-        <FieldLabel label={x.family.first} htmlFor={id("first")} error={errors[id("first")]}>
+        <FieldLabel label={x.family.first} srPrefix={title} htmlFor={id("first")} error={errors[id("first")]}>
           <Input id={id("first")} name={id("first")} data-error={x.family.firstError} autoComplete="off" required {...errorProps(errors, id("first"))} />
         </FieldLabel>
-        <FieldLabel label={x.family.last} htmlFor={id("last")} error={errors[id("last")]}>
+        <FieldLabel label={x.family.last} srPrefix={title} htmlFor={id("last")} error={errors[id("last")]}>
           <Input id={id("last")} name={id("last")} data-error={x.family.lastError} autoComplete="off" required {...errorProps(errors, id("last"))} />
         </FieldLabel>
-        <FieldLabel label={x.family.dob} htmlFor={id("dob")} error={errors[id("dob")]}>
-          <DobInput id={id("dob")} name={id("dob")} label={x.family.dob} data-error={x.family.dobError} autoComplete="off" required {...errorProps(errors, id("dob"))} />
+        <FieldLabel label={x.family.dob} srPrefix={title} htmlFor={id("dob")} error={errors[id("dob")]}>
+          <DobInput id={id("dob")} name={id("dob")} label={`${title}, ${x.family.dob.toLowerCase()}`} data-error={x.family.dobError} autoComplete="off" required {...errorProps(errors, id("dob"))} />
         </FieldLabel>
-        <FieldLabel label={x.family.card} htmlFor={id("card")}>
+        <FieldLabel label={x.family.card} srPrefix={title} htmlFor={id("card")}>
           <Input id={id("card")} name={id("card")} inputMode="numeric" autoComplete="off" />
         </FieldLabel>
       </div>

@@ -73,7 +73,7 @@ export const faqAliases: Record<string, string> = {
   "What if I do not have OHIP?": "uhip international student no health card without ohip visitor tourist no ohip cost no ohip price no ohip fee uninsured visit cost newcomer new to canada new to ontario waiting for ohip ohip not active refugee",
   "Do you have interpreters?": "espanol spanish ingles idioma traductor interprete mandarin chinese cantonese farsi persian arabic tamil punjabi hindi urdu korean tagalog spanish portuguese russian italian interpreter translator translation language languages",
   "What is your late and cancellation policy?": "cancel cancelling cancellation reschedule change appointment move visit no show",
-  "I have a health card from another province. Can I be seen?": "alberta british columbia bc quebec manitoba saskatchewan nova scotia new brunswick newfoundland pei out of province reciprocal billing student",
+  "I have a health card from another province. Can I be seen?": "ramq carte soleil alberta british columbia bc quebec manitoba saskatchewan nova scotia new brunswick newfoundland pei out of province reciprocal billing student",
   "Do you offer phone or video visits?": "phone appointment phone visit call video virtual telehealth telemedicine online visit zoom",
   "How do I renew a prescription?": "refill run out ran out running out medication pills prescription",
 };

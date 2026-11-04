@@ -311,7 +311,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
       options: [
         { label: "Tired all the time", sub: "Low iron, low energy" },
         { label: "Run down after illness or travel", sub: "Hydration and recovery" },
-        { label: "Nausea or cannot keep fluids down", sub: "Rehydration" },
+        { label: "Nausea or cannot keep fluids down", sub: draft("See a doctor first") },
         { label: "Training or an event", sub: "Recovery support" },
         { label: "Not sure, I just want to feel better", sub: "Start with an assessment" },
       ],
@@ -348,21 +348,20 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         linkPage: "infusion",
       },
       {
-        title: "Rehydration",
-        p: "For dehydration from a stomach bug or heat when you cannot keep fluids down. A nurse screens you and a physician is on site.",
+        // This result sold a $150 drip to someone vomiting, while every drip page says a drip is not the place
+        // to start (pharmacist reviewer, round 21). It now sends them to a doctor.
+        title: draft("See a doctor first"),
+        p: draft("Being sick or not keeping fluids down is a reason to see a doctor, not to start with a drip. Call us the same day, or Health811 at 811 when we are closed."),
         facts: [
-          { k: "Time", v: "45 to 60 minutes" },
-          { k: "Price", v: "$150, HST incl." },
-          { k: "Safety", v: "Physician on site" },
-          { k: "Not for", v: "Severe symptoms: go to emergency" },
-          // A pregnant tester with vomiting reached this drip with no warning (round 19).
-          { k: draft("Pregnant?"), v: draft("See a doctor first. Book a pregnancy visit, or call Health811 at 811 when we are closed.") },
+          { k: draft("Visit"), v: draft("Family medicine, OHIP-insured") },
+          { k: draft("Pregnant?"), v: draft("Book a pregnancy visit, or call us the same day") },
+          { k: draft("Dial 911"), v: draft("Vomiting blood, a stiff neck, severe belly pain, or very drowsy") },
         ],
-        tags: ["Rehydration"],
-        cta: "Call to book today",
-        ctaPage: "tel:9057093222",
-        link: "See our hours",
-        linkPage: "locations",
+        tags: [draft("Family medicine")],
+        cta: draft("Book a doctor visit"),
+        ctaPage: bookFor("family", "concern"),
+        link: draft("Pregnancy care"),
+        linkPage: "pregnancy",
       },
       {
         title: "Recovery drip",
@@ -370,7 +369,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         facts: [
           { k: "Time", v: "60 minutes" },
           { k: "Price", v: "$200, HST incl." },
-          { k: "Add-on", v: "Anti-nausea or vitamin C" },
+          { k: "Add-on", v: draft("Vitamin C") },
           { k: "Coverage", v: "Not OHIP-insured" },
         ],
         tags: ["Recovery"],

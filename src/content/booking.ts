@@ -99,8 +99,8 @@ export const bookingCopy = {
   /** Top of the booking form: a tester short of breath found the 911 box three screens down, after Continue. */
   urgentLine: draft("Chest pain, pressure or tightness (even if it feels like heartburn), arm or jaw pain, shortness of breath, signs of a stroke, a seizure, a child who is limp or hard to wake, or a fever in a baby under 3 months? Do not book. Dial 911 now."),
   /** Shown under the note when it mentions an emergency symptom (a tester typed "short of breath" and booked tomorrow). */
-  urgentHold: draft("Before you book: is this happening now? If so, please dial 911 instead of booking."),
-  urgentContinue: draft("It is not happening now. Continue my booking ›"),
+  urgentHold: draft("Before you book: does anyone have one of the signs above right now, or on and off today? Signs that come and go count. If so, please dial 911 instead of booking."),
+  urgentContinue: draft("No, none of these signs. Continue my booking ›"),
   noteUrgent: draft("Please do not book for this. What you wrote can be an emergency. If you have chest pain, arm or jaw pain, shortness of breath or signs of a stroke, a child is very drowsy, limp or hard to wake, or a baby under 3 months has a fever, dial 911 now. Not sure? Call Health811 at 811, any time."),
   urgentMore: draft("See the full list of emergency signs"),
   /** Calendar files never name the reason (a 16-year-old's .ics said "Sexual health" on a shared family calendar). */

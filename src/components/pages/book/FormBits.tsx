@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type ComponentProps, type ReactNode } from "react";
+import { cloneElement, isValidElement, useRef, useState, type ComponentProps, type ReactElement, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { draft } from "@/content/review";
 import { radioKeys, rovingTab } from "@/lib/a11y";
@@ -54,16 +54,25 @@ export function PillChip({ on, children, size = "md", role = "radio", ...rest }:
 }
 
 /** 12px muted label over a control, as the prototype's form fields. */
-export function FieldLabel({ label, hint, error, children, className, htmlFor }: { label: string; hint?: string; error?: string; children: ReactNode; className?: string; htmlFor: string }) {
+export function FieldLabel({ label, hint, error, children, className, htmlFor, srPrefix }: { label: string; hint?: string; error?: string; children: ReactNode; className?: string; htmlFor: string; srPrefix?: string }) {
+  // Hints are read with the field: a blind tester never heard "As on the health card" or "Optional" (round 21).
+  const hintId = `${htmlFor}-hint`;
+  let control = children;
+  if (hint && isValidElement(children)) {
+    const el = children as ReactElement<{ "aria-describedby"?: string }>;
+    const own = el.props["aria-describedby"];
+    if (!own?.split(" ").includes(hintId)) control = cloneElement(el, { "aria-describedby": [hintId, own].filter(Boolean).join(" ") });
+  }
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
       {/* Secondary, not muted: a low-vision tester could not read pale labels on the panel. */}
       <label htmlFor={htmlFor} className="text-[13px] font-semibold text-secondary">
+        {srPrefix ? <span className="sr-only">{`${srPrefix}, `}</span> : null}
         {label}
       </label>
-      {children}
+      {control}
       {hint ? (
-        <span id={`${htmlFor}-hint`} className="text-[12px] text-muted">
+        <span id={hintId} className="text-[12px] text-muted">
           {hint}
         </span>
       ) : null}

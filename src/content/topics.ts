@@ -264,7 +264,7 @@ const pain: Topic[] = [
     page: "What happens at a first visit",
     title: P.pathTitle,
     // A referred 77-year-old found "no need to book" only inside the booking form (round 20).
-    lead: `${draft("Already referred? There is no need to book. We call you, usually within two to three weeks of the referral arriving.")} ${fq("What happens at a first Pain Centre visit?").a}`,
+    lead: `${draft("Already referred? There is no need to book. We call you, usually within two to three weeks of the referral arriving. Not heard from us after three weeks? Call 905-709-3222.")} ${fq("What happens at a first Pain Centre visit?").a}`,
     description: fit(fq("What happens at a first Pain Centre visit?").a),
     ...painHero,
     img: images.services.pain[0],

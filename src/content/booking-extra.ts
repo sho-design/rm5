@@ -37,6 +37,8 @@ export const bookingExtra = {
   paymentError: draft("Choose how you are paying."),
   fields: {
     patientFirst: draft("Their first name"),
+    patientDob: draft("Their date of birth (optional)"),
+    patientDobHint: draft("Helps us find the right chart when names are common."),
     patientLast: draft("Their last name"),
     relationship: draft("Your relationship to them (optional)"),
     relationshipHint: draft("For example parent, spouse, adult child or caregiver."),
@@ -70,7 +72,7 @@ export const bookingExtra = {
   confirmNote: draft("Your note"),
   provinceLabel: draft("Which province or territory?"),
   provinces: ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"],
-  quebecNote: draft("Quebec cards cannot be billed directly for doctor visits. You pay at the visit and claim it back from RAMQ with the receipt we give you. We tell you the fee before the visit."),
+  quebecNote: draft("Quebec cards cannot be billed directly for doctor visits. You pay at the visit, $100 plus HST ($113 total) for a doctor visit, and claim it back from RAMQ with the receipt we give you."),
   quebecCoverage: draft("Quebec card: you pay and claim it back from RAMQ, receipt provided"),
   claimTitle: { mva: draft("About the claim"), wsib: draft("About the claim") },
   claimHint: draft("Not sure yet? Leave these blank. We can open the claim with you at the first visit."),
@@ -103,6 +105,8 @@ export const bookingExtra = {
   cardDigitsHint: draft("Digits only. Leave out the two letters at the end."),
   /** Booking for someone else: "your first visit" read as the helper's own. */
   firstVisitTheirs: draft("Arrive 10 minutes early for their first visit."),
+  claimDateMva: draft("accident on"),
+  claimDateWsib: draft("injury on"),
   remindersPrivate: draft("Reminders give the day and time only, never the reason for your visit."),
   femaleNurse: draft("I would like a nurse in the room for any examination. Our nurses are women. Optional."),
   femaleNurseYes: draft("A nurse in the room"),

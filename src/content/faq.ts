@@ -70,7 +70,8 @@ export const faqItems: FaqItem[] = [
     category: "Coverage",
     // New answer (clinic, October 2026): reciprocal billing may be possible. See docs/content-review.md.
     q: "I have a health card from another province. Can I be seen?",
-    a: "Yes. We may be able to bill your home province directly. Bring your health card and we confirm coverage, and any fee, before the visit.",
+    // A Quebec student read "may bill your home province" here, then "Quebec cards cannot be billed" in booking (round 21).
+    a: draft("Yes. For most provinces we may be able to bill your home province directly. Quebec cards cannot be billed directly: you pay at the visit and claim it back from RAMQ with our receipt. Without billing, a doctor visit is $100 plus HST ($113 total). Bring your health card and we confirm coverage, and any fee, before the visit."),
     linkLabel: "Book an appointment",
     linkPage: "book",
   },

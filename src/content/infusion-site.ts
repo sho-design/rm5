@@ -247,7 +247,7 @@ export const infusionCopy = {
     /** Tired people reached drip pages with no pointer to a doctor first (round 16, CPSO: no promoting services a patient may not need). */
     tired: draft("Often tired? Start with a family doctor visit and bloodwork. OHIP-insured."),
     tiredCta: draft("Book a doctor visit"),
-    unwell: draft("Pregnant, being sick or cannot keep fluids down? A drip is not the place to start. Call us the same day at 905-709-3222, or Health811 at 811 when we are closed."),
+    unwell: draft("Being sick or cannot keep fluids down? A drip is not the place to start. Call us the same day at 905-709-3222, or Health811 at 811 when we are closed. Pregnant? Please see a doctor before any drip."),
     pregnancyCta: draft("Pregnancy care"),
     /** Returning drip clients booked "A consult" from a drip page and lost which drip (round 19). */
     bookDrip: draft("Book this drip"),

@@ -12,10 +12,10 @@ import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
 import { errorProps, fmtPhone, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
 import { cn } from "@/lib/cn";
-import { isEmergencyQuery } from "@/lib/search";
+import { isEmergencyNote } from "@/lib/search";
 import { buttonClass } from "@/components/ui/Button";
 import { linkPhones } from "@/components/ui/Phones";
-import { Choice, ConsentRow, FieldError, FieldLabel, OutcomeTile, Panel, PillChip, selClass, SubmitButton } from "./FormBits";
+import { Choice, ConsentRow, DobInput, FieldError, FieldLabel, OutcomeTile, Panel, PillChip, selClass, SubmitButton } from "./FormBits";
 
 type Details = Record<string, string | boolean>;
 
@@ -246,7 +246,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     const date = ("accidentDate" in c ? c.accidentDate : c.injuryDate) ?? "";
     // Same date style as the appointment ("Oct 21, 2026"), not the raw form value.
     const nice = /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${MON[Number(date.slice(5, 7)) - 1]} ${Number(date.slice(8, 10))}, ${date.slice(0, 4)}` : date;
-    return [c.claimNumber, "insurer" in c ? c.insurer : c.employer, nice].filter(Boolean).join(", ");
+    // "Intact, Oct 30, 2026" read as a claim dated Oct 30 (round 21): name the date.
+    const when = nice ? `${"insurer" in c ? x.claimDateMva : x.claimDateWsib} ${nice}` : "";
+    return [c.claimNumber, "insurer" in c ? c.insurer : c.employer, when].filter(Boolean).join(", ");
   };
 
   /** "Jordan (he/him)": testers gave a preferred name and pronouns and never saw them again (round 18). */
@@ -261,7 +263,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     visit: visit?.label ?? null,
     visitKey: visit?.key ?? null,
     forSomeoneElse: forOther === 1,
-    patient: forOther ? { first: str("patientFirst"), last: str("patientLast"), preferredName: str("patientPreferred") || null, pronouns: str("patientPronouns") || null, relationship: str("relationship") } : null,
+    patient: forOther ? { first: str("patientFirst"), last: str("patientLast"), dob: str("patientDob") || null, preferredName: str("patientPreferred") || null, pronouns: str("patientPronouns") || null, relationship: str("relationship") } : null,
     preferredName: forOther ? null : str("preferredName") || null,
     pronouns: forOther ? null : str("pronouns") || null,
     who: bookingWho[who],
@@ -540,6 +542,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                     {field("patientLast", x.fields.patientLast, { required: true, autoComplete: "off", "data-error": x.missing.patientLast } as InputHTMLAttributes<HTMLInputElement>)}
                     {field("patientPreferred", rx.preferredName, { autoComplete: "off" }, { hint: rx.preferredHintOther })}
                     {field("patientPronouns", rx.pronouns, { autoComplete: "off" }, { hint: rx.pronounsHint })}
+                    {/* "Lan Nguyen" is a common name: a son booking for his mother had no way to say which chart (round 21). */}
+                    <FieldLabel label={x.fields.patientDob} htmlFor="book-patientDob" hint={x.fields.patientDobHint} className="sm:col-span-2">
+                      <DobInput id="book-patientDob" name="patientDob" label={x.fields.patientDob} autoComplete="off" />
+                    </FieldLabel>
                     {field("relationship", x.fields.relationship, { autoComplete: "off" }, { hint: x.fields.relationshipHint, className: "sm:col-span-2" })}
                   </div>
                 </fieldset>
@@ -617,7 +623,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
 
               <FieldLabel label={bookingCopy.fields.notes} htmlFor="book-notes">
                 <Textarea id="book-notes" name="notes" defaultValue={str("notes")} rows={4} className="resize-y" aria-describedby={noteUrgent ? "book-notes-urgent" : undefined} onInput={(e) => {
-                    setNoteUrgent(isEmergencyQuery(e.currentTarget.value));
+                    setNoteUrgent(isEmergencyNote(e.currentTarget.value));
                     urgentOk.current = false;
                     setUrgentHold(false);
                   }} />
