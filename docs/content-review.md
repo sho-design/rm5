@@ -387,6 +387,25 @@ New and changed wording after the clinic's answers (all wrapped in `draft()`):
 - **Pain Centre first visit lead:** "Already referred? There is no need to book. We call you, usually within two to three weeks of the referral arriving."
 - **Forms:** renewal "Add their date of birth."
 
+## Usability fixes, round 21
+
+- **Infusion chooser:**
+  - Nausea option: "See a doctor first" / "Being sick or not keeping fluids down is a reason to see a doctor, not to start with a drip. Call us the same day, or Health811 at 811 when we are closed."
+  - Facts: "Family medicine, OHIP-insured"; "Pregnant? Book a pregnancy visit, or call us the same day"; "Dial 911: Vomiting blood, a stiff neck, severe belly pain, or very drowsy" (physician to confirm).
+  - Button: "Book a doctor visit".
+  - Recovery add-on: "Vitamin C".
+- **Drip pages:** "Being sick or cannot keep fluids down? A drip is not the place to start. Call us the same day at 905-709-3222, or Health811 at 811 when we are closed. Pregnant? Please see a doctor before any drip."
+- **Booking:**
+  - Pause: "Before you book: does anyone have one of the signs above right now, or on and off today? Signs that come and go count. If so, please dial 911 instead of booking." / "No, none of these signs. Continue my booking ›"
+  - Date of birth: "Their date of birth (optional)" / "Helps us find the right chart when names are common."
+  - Claim dates: "accident on" / "injury on".
+  - No card, non-family visit: "That is fine. Without a health card the visit is uninsured. We confirm the fee before the visit and give you a receipt."
+  - Quebec: "Quebec cards cannot be billed directly for doctor visits. You pay at the visit, $100 plus HST ($113 total) for a doctor visit, and claim it back from RAMQ with the receipt we give you." (confirm that the $100 fee applies to Quebec cards)
+- **FAQ:**
+  - Out of province: "Yes. For most provinces we may be able to bill your home province directly. Quebec cards cannot be billed directly: you pay at the visit and claim it back from RAMQ with our receipt. Without billing, a doctor visit is $100 plus HST ($113 total). …"
+  - No OHIP adds: "Booking for a newborn whose card has not arrived yet? Choose Ontario health card and leave the number blank."
+- **Pain Centre first visit lead** adds: "Not heard from us after three weeks? Call 905-709-3222."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

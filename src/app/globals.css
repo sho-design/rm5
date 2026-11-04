@@ -136,6 +136,8 @@
   h1, h2, h3, h4, p { margin: 0; }
 
   :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: 6px; }
+  /* Chips and buttons: a keyboard tester with a tremor could not see the 2px ring on chips (round 21). */
+  [role="radio"]:focus-visible, button:focus-visible { outline-width: 3px; }
   input[type="range"] { accent-color: var(--rm-sun); width: 100%; }
 }
 

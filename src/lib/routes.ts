@@ -112,3 +112,25 @@ export const bookFor = (division: string, visit?: string) => `${routes.book}?ser
 export function href(key: PageKey | string): string {
   return key in routes ? routes[key as PageKey] : key;
 }
+
+/** Reasons that should not be readable in a web address, history or server logs (a 17-year-old on the family
+ *  laptop saw "reason=Sexual%20health", round 21). Also used to keep them off the confirmation screen. */
+export const SENSITIVE_REASON = /sexual|sti\b|std|contracep|birth control|pregnan|menopaus|hormone|testosterone|libido|erect|mood|mental|anxiety|depress|memory|dementia/i;
+
+const toB64 = (s: string) => btoa(String.fromCharCode(...new TextEncoder().encode(s))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+
+/** The value for `&reason=`: plain for everyday reasons, encoded for sensitive ones (decoded by readReason). */
+export function reasonParam(label: string): string {
+  return SENSITIVE_REASON.test(label) ? `~${toB64(label)}` : encodeURIComponent(label);
+}
+
+/** Reads a `reason` value written by reasonParam. */
+export function readReason(value: string): string {
+  if (!value.startsWith("~")) return value;
+  try {
+    const b = atob(value.slice(1).replace(/-/g, "+").replace(/_/g, "/"));
+    return new TextDecoder().decode(Uint8Array.from(b, (c) => c.charCodeAt(0)));
+  } catch {
+    return "";
+  }
+}

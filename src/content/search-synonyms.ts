@@ -1,4 +1,4 @@
-import { noteRoute, routes } from "@/lib/routes";
+import { noteRoute, reasonParam, routes } from "@/lib/routes";
 import type { SearchDoc } from "@/lib/search";
 import { draft } from "./review";
 
@@ -117,7 +117,7 @@ export const searchExtras: SearchDoc[] = [
     kind: draft("Family Medicine"),
     label: draft("Sexual health and STI testing"),
     sub: draft("Confidential and OHIP-insured, at any age"),
-    page: "/book?service=family&visit=concern&reason=Sexual%20health",
+    page: `/book?service=family&visit=concern&reason=${reasonParam("Sexual health")}`,
     keys: "std stds sti stis std test sti test sexual health confidential testing hiv chlamydia gonorrhea syphilis herpes hpv partner",
   },
   // Mood and sleep with a family doctor: a tester searching "depression" got only "Family Medicine" with no reason.
@@ -125,7 +125,7 @@ export const searchExtras: SearchDoc[] = [
     kind: draft("Family Medicine"),
     label: draft("Mood, anxiety and sleep"),
     sub: draft("Talk to a family doctor, OHIP-insured. In crisis, call or text 988"),
-    page: "/book?service=family&visit=concern&reason=Mood%20or%20sleep",
+    page: `/book?service=family&visit=concern&reason=${reasonParam("Mood or sleep")}`,
     keys: "hopeless need to talk talk to someone someone to talk to therapy therapist counsellor psychologist depression depressed anxiety anxious panic mood low mood mental health stress burnout insomnia sleep sleeping cant sleep counselling counseling therapy sad lonely grief tram cam mat ngu lo au cang thang",
     weight: 1.8,
   },
@@ -143,7 +143,7 @@ export const searchExtras: SearchDoc[] = [
     kind: draft("Family Medicine"),
     label: draft("Memory concerns and dementia care"),
     sub: draft("With your family doctor, OHIP-insured. Family and caregivers are welcome at the visit"),
-    page: "/book?service=family&visit=chronic&reason=Memory%20or%20dementia",
+    page: `/book?service=family&visit=chronic&reason=${reasonParam("Memory or dementia")}`,
     keys: "dementia memory memory loss forgetful forgetting alzheimer alzheimers confusion caregiver caregivers aging parent sa sut tri nho mat tri nho",
     weight: 1.3,
   },

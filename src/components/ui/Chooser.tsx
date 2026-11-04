@@ -3,6 +3,7 @@
 import { useState, type ReactNode } from "react";
 import type { ChooserOption, ChooserResult, SubChooserItem } from "@/content/types";
 import { cn } from "@/lib/cn";
+import { reasonParam } from "@/lib/routes";
 import { Display, Eyebrow, Lead } from "./Text";
 import { OptionList } from "./OptionList";
 import { ResultCard } from "./ResultCard";
@@ -127,7 +128,7 @@ export function SubChooser({
   const withReason = (label: string, visit?: string) => {
     if (!ctaTo.startsWith("/book")) return undefined;
     const base = visit ? (ctaTo.includes("visit=") ? ctaTo.replace(/visit=[^&]*/, `visit=${visit}`) : `${ctaTo}&visit=${visit}`) : ctaTo;
-    return `${base}${base.includes("?") ? "&" : "?"}reason=${encodeURIComponent(label)}`;
+    return `${base}${base.includes("?") ? "&" : "?"}reason=${reasonParam(label)}`;
   };
   const results: ChooserResult[] = items.map((it) => ({ title: it.title, p: it.p, facts: it.facts, tags: it.tags, cta: it.cta, ctaPage: it.self ? withReason(it.label, it.visit)?.replace(/&for=someone/, "") : withReason(it.label, it.visit), link, linkPage: linkTo }));
   return (

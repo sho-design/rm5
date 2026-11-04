@@ -1,4 +1,4 @@
-# Usability test, 28 October 2026 (370 simulated patients)
+# Usability test, 28 October 2026 (390 simulated patients)
 
 Thirty simulated test patients, in two rounds of 10 and 20, used the production build in a real browser (Chromium via Playwright) on a phone (390x844, touch) or desktop (1440x900). Each followed a persona and three tasks, decided every step from screenshots of what was on screen, and reported friction, quotes and ratings. Forms simulated a successful send. Photos were blank (the image CDN is blocked in the test sandbox) and were not judged. The run happened about 10:50pm on a Tuesday, so the clinic showed as closed.
 
@@ -931,6 +931,58 @@ Average ease 5.3, trust 5.2 (round 19 was 5.3 and 5.4). Every booking and form w
 - **Newcomers (Farid, Bà Mai):** how to pay (card, debit, cash), a phone booking route for people with no email, and Vietnamese pages.
 - **Reminders (Leah):** confirm that reminders never say the reason for any visit, not only for teens.
 - **Maple (Gabe):** how Maple registrants book at Thornhill in the meantime.
+
+## Round 21: 20 testers, Wednesday 4 November about 1am (clinic closed until 9am)
+
+Average ease 5.65, trust 5.5 (round 20 was 5.3 and 5.2), the highest so far. Every booking and form went through. Retests that now work:
+- **Gloria** (jaw ache, chest pressure): the pause on emergency-sounding notes stopped her ("I would call 911").
+- **Thao** (8 weeks pregnant): the drip page line turned her away from a drip to a pregnancy visit.
+- **Frank** (referred and waiting): the Pain Centre "no need to book" lead.
+- **Kevin**: the drip name on the confirmation.
+- **Jordan and Lisa**: the reason hidden on the confirmation and the reminders line.
+- **Sophie** (blind): a two-person registration read back by name.
+- **Anh**: women's health day dates that match the last Sundays.
+
+Lowest trust (4): the pharmacist reviewer, the Quebec student and Kevin (no drip price).
+
+**911:** Gloria and Omar again tapped "Dial 911" in the top bar and the warnings, and nothing happened. The decision is still open.
+
+### Round 21 findings fixed in code
+
+- **Infusion chooser:** "Nausea or cannot keep fluids down" offered a $150 rehydration drip and "Call to book today", while every drip page says a drip is not the place to start. It now says "See a doctor first", and books a family medicine visit. It also gives the pregnancy and 911 lines (Priya). The recovery result no longer offers an anti-nausea add-on.
+- **Booking note check:** a parent's note "fever for 4 days, tired" set off "Please do not book for this" (Omar). Booking notes now use a narrower list: fever, sweating, heartburn, "urgent" and "tonight" no longer count on their own, and a fever counts when it is a young baby's. The pause asks "does anyone have one of the signs above right now, or on and off today? Signs that come and go count." The answer reads "No, none of these signs. Continue my booking ›" (Gloria, Omar).
+- **Teen privacy:** sensitive reasons (sexual health, birth control, menopause, mood, memory and others) are encoded in the booking link, so "Sexual health" no longer appears in the web address, history or server logs (Jordan).
+- **Quebec:** the out-of-province FAQ now says Quebec cards are paid at the visit and claimed from RAMQ. The FAQ and the booking note both give the $100 plus HST ($113 total) doctor fee. Search finds "RAMQ" and "carte soleil" (Élise).
+- **Pain Centre first visit:** the lead adds "Not heard from us after three weeks? Call 905-709-3222." (Frank)
+- **Booking for someone else:** optional "Their date of birth", to find the right chart when names are common (Tuan).
+- **Screen readers:** form hints are now read with their field (for example "As on the health card." and "Optional."). Partner and child fields are named, for example "Partner, First name" (Sophie).
+- **Smaller:**
+  - "Preferred name: (she/her)" no longer shows when only pronouns are given (Lisa).
+  - The claim line says "Intact, accident on Oct 30, 2026" (Nadia).
+  - Booking physio, chiro or aesthetics without a health card no longer quotes the doctor visit fee (Marcus).
+  - Thicker focus rings on chips and buttons (Marcus).
+  - The drip page alert separates "Being sick or cannot keep fluids down?" from "Pregnant? Please see a doctor before any drip." (Thao).
+  - The no-OHIP FAQ covers newborns whose card has not arrived (Mei).
+  - The footer "You are here" no longer breaks mid-word (Thao).
+
+### Round 21 findings for the clinic
+
+- **911 links (decision):** see above.
+- **Infusion compliance (Priya):**
+  - Monoferric named and priced on the same page as a symptom checklist.
+  - No pregnancy caveat on iron.
+  - Vitamin benefit lines ("Supports steady energy").
+  - "Leave feeling restored."
+  - Membership "Priority booking".
+  - "Serious reactions are rare" with no risks listed.
+  - Who approves a returning drip: "book straight in" vs "physician-reviewed".
+- **Drip prices and old names (Kevin):** regulars look for "IV Kingmaker" and a price. Decide whether the Signature drip page may say it is sold as IV Kingmaker and IV Queenmaker, and publish a price for each drip.
+- **Fasting and diabetes (Raj, Tuan):** whether diabetes bloodwork needs fasting, and what to do about metformin or insulin when fasting.
+- **Aesthetics (Derek):** a "from" price for neuromodulators, and who runs the consult (the physician or a nurse).
+- **Hard of hearing (Harold):** a way to change or cancel other than by phone. Advice on phone or video visits.
+- **MVA (Nadia):** what is owed if the insurer declines, and whether the patient must notify the insurer.
+- **Careers (Grace):** pay ranges and shift times.
+- **Photo (Mei):** the children page shows a woman in navy (doctor) scrubs, but both physicians are men.
 
 ## What worked
 

@@ -64,7 +64,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Coverage",
     q: "What if I do not have OHIP?",
-    a: draft("You are welcome here. A doctor visit without OHIP is $100 plus HST ($113 total), and you get a receipt for your travel or private insurance. We confirm the fee before you are seen."),
+    a: draft("You are welcome here. A doctor visit without OHIP is $100 plus HST ($113 total), and you get a receipt for your travel or private insurance. We confirm the fee before you are seen. Booking for a newborn whose card has not arrived yet? Choose Ontario health card and leave the number blank."),
   },
   {
     category: "Coverage",

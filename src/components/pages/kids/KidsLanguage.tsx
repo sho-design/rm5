@@ -1,4 +1,4 @@
-import { bookFor } from "@/lib/routes";
+import { bookFor, reasonParam } from "@/lib/routes";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { Button, Display, Eyebrow, Section } from "@/components/ui";
 import { kidsCopy } from "@/content/kids";
@@ -41,7 +41,7 @@ export function KidsLanguage() {
           </Button>
           <p className="pretty text-[14px] leading-[1.5] text-ink-2">{kidsCopy.teens.messages}</p>
           {/* Was a link to Women's health, which never mentions STIs or teens (a 17-year-old boy, round 16). */}
-          <SmartLink to={`${bookFor("family", "concern")}&reason=${encodeURIComponent("Sexual health")}`} className="text-[14px] font-semibold text-link">
+          <SmartLink to={`${bookFor("family", "concern")}&reason=${reasonParam("Sexual health")}`} className="text-[14px] font-semibold text-link">
             {kidsCopy.teens.contraception} ›
           </SmartLink>
         </div>

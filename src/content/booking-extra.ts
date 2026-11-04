@@ -12,6 +12,8 @@ export const bookingExtra = {
     label: draft("Health card"),
     options: [draft("Ontario health card"), draft("From another province"), draft("No health card")],
     endsIn: draft("ending"),
+    /** For visits other than a family doctor visit: the doctor fee read as the physio price (round 21). */
+    noneOther: draft("That is fine. Without a health card the visit is uninsured. We confirm the fee before the visit and give you a receipt."),
     notes: [
       draft("That is fine. We may be able to bill your home province directly. Bring your health card and we confirm coverage, and any fee, before the visit."),
       // A newborn's card arrives weeks after birth: a parent read "uninsured" and panicked.

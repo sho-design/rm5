@@ -13,6 +13,7 @@ import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
 import { errorProps, fmtPhone, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
 import { cn } from "@/lib/cn";
 import { isEmergencyNote } from "@/lib/search";
+import { readReason, SENSITIVE_REASON } from "@/lib/routes";
 import { buttonClass } from "@/components/ui/Button";
 import { linkPhones } from "@/components/ui/Phones";
 import { Choice, ConsentRow, DobInput, FieldError, FieldLabel, OutcomeTile, Panel, PillChip, selClass, SubmitButton } from "./FormBits";
@@ -144,7 +145,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     const params = new URLSearchParams(window.location.search);
     const key = params.get("service");
     if (key && services.some((s) => s.key === key)) chooseService(key, params.get("visit") ?? undefined);
-    const why = params.get("reason")?.trim().slice(0, 80);
+    const why = readReason(params.get("reason")?.trim() ?? "").slice(0, 80);
     if (why) {
       setReason(why);
       // Keep the reason out of the address bar and history (a 15-year-old's family iPad showed "Sexual health").
@@ -209,7 +210,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const serviceLine = [visit ? `${service.label}, ${visit.label}` : service.label, reason ? `(${reason})` : ""].filter(Boolean).join(" ");
   /** Sensitive reasons stay off what remains on screen or in this tab after booking (a teen on a family iPad,
    *  round 19); other reasons, such as the drip name, stay so the confirmation says what was booked (round 20). */
-  const sensitive = /sexual|sti\b|std|contracep|birth control|pregnan|menopaus|hormone|testosterone|libido|erect|mood|mental|anxiety|depress/i.test(reason ?? "");
+  const sensitive = SENSITIVE_REASON.test(reason ?? "");
   const shownReason = reason && !sensitive ? reason : "";
   const serviceShort = [visit ? `${service.label}, ${visit.label}` : service.label, shownReason ? `(${shownReason})` : ""].filter(Boolean).join(" ");
   const patientName = forOther ? `${str("patientFirst")} ${str("patientLast")}`.trim() : "";
@@ -255,7 +256,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const preferredLine = () => {
     const n = str(forOther ? "patientPreferred" : "preferredName");
     const pr = str(forOther ? "patientPronouns" : "pronouns");
-    return [n, pr ? `(${pr})` : ""].filter(Boolean).join(" ");
+    // Pronouns alone used to show as "Preferred name: (she/her)" (round 21).
+    return n ? [n, pr ? `(${pr})` : ""].filter(Boolean).join(" ") : "";
   };
   const payload = () => ({
     division: service.label,
@@ -579,7 +581,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                         </FieldLabel>
                       ) : null}
                       <p className="text-[13px] leading-[1.5] text-secondary" aria-live="polite">
-                        {quebec ? x.quebecNote : x.card.notes[card - 1]}
+                        {quebec ? x.quebecNote : card === 2 && service.key !== "family" ? x.card.noneOther : x.card.notes[card - 1]}
                       </p>
                     </>
                   )}
