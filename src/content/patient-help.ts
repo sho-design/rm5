@@ -64,7 +64,8 @@ export const renewalCopy = {
     meds: "Medications to renew",
     notes: "Anything we should know (optional)",
   },
-  medsHint: "Name and strength, one per line. Do not include anything you need today.",
+  // "Do not include anything you need today" read as a rule broken by a man out of pills that morning (round 23).
+  medsHint: draft("Name and strength, one per line. Run out today or tomorrow? Please call us at 905-709-3222 or ask your pharmacist instead."),
   /** A tester out of heart pills tomorrow found no route for a gap shorter than two business days. */
   urgentTitle: draft("Running out sooner than two business days?"),
   urgentBody: draft("Call us at 905-709-3222 during clinic hours. Your pharmacist can also often extend a regular prescription for a short time. If you have no medication and feel unwell, call Health811 at 811 or 911."),
