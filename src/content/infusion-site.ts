@@ -360,3 +360,27 @@ export const pricingVisual = {
   guideNote: draft("Drip prices vary by drip and are confirmed at your consult. An iron course is 3 visits."),
   rhythmLabel: draft("A steady rhythm"),
 };
+
+/** What is in each drip, only as far as the menu already says. Drips whose ingredients are set at the consult
+ *  say so instead of listing anything (2026-11-05). */
+export const dripInside: Record<string, { items: string[]; consult?: boolean }> = {
+  foundation: { items: [draft("Fluids")], consult: true },
+  myers: { items: [draft("B vitamins"), draft("Vitamin C"), draft("Magnesium"), draft("Calcium")] },
+  antioxidant: { items: [draft("Antioxidant vitamins")], consult: true },
+  biotin: { items: [draft("Biotin")] },
+  "vitamin-c-zinc": { items: [draft("Vitamin C"), draft("Zinc"), draft("B vitamins")] },
+  signature: { items: [], consult: true },
+  "after-exercise": { items: [draft("Fluids"), draft("Electrolytes"), draft("Amino acids")] },
+  hydration: { items: [draft("Fluids"), draft("Electrolytes")] },
+  nad: { items: [draft("NAD+")] },
+};
+
+export const dripBrowserCopy = {
+  views: [draft("Cards"), draft("Compare what's inside")] as const,
+  viewLabel: draft("View"),
+  inside: draft("What's inside"),
+  atConsult: draft("Confirmed at your consult"),
+  tableDrip: draft("Drip"),
+  tableNote: draft("Doses are set with you at your consult, after screening. Each drip is mixed at your appointment."),
+  shotsLead: draft("Quick shots, about 10 minutes. Screened first, like every drip."),
+};

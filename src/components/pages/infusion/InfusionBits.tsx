@@ -143,19 +143,29 @@ export function DripCard({ drip }: { drip: Drip }) {
   );
 }
 
+const shotTints = Object.values(dripFamilies);
+
 /** The Injection Bar grid. */
 export function ShotGrid({ shots }: { shots: { t: string; d: string }[] }) {
   return (
     <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3 lg:grid-cols-5">
-      {shots.map((s) => (
-        <div
-          key={s.t}
-          className="flex flex-col gap-1 rounded-tile border border-border bg-card px-5 py-4"
-        >
-          <span className="text-[16px] font-semibold">{s.t}</span>
-          <span className="text-[13px] text-muted">{s.d}</span>
-        </div>
-      ))}
+      {shots.map((s, i) => {
+        const color = shotTints[i % shotTints.length];
+        return (
+          <div key={s.t} className="group flex items-center gap-3.5 rounded-tile border border-border bg-card px-4 py-4 transition-colors hover:border-sky">
+            {/* A small vial; the liquid rises on hover. */}
+            <svg aria-hidden viewBox="0 0 24 48" className="h-[46px] w-[23px] shrink-0">
+              <rect x="6" y="1" width="12" height="7" rx="2" fill="var(--rm-ink)" opacity=".8" />
+              <rect x="4" y="9" width="16" height="37" rx="5" fill="white" stroke="var(--rm-ink)" strokeOpacity=".2" strokeWidth="1.5" />
+              <rect x="5.5" y="24" width="13" height="20.5" rx="4" fill={color} className="origin-bottom motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-y-[1.25]" />
+            </svg>
+            <span className="flex min-w-0 flex-col gap-0.5">
+              <span className="text-[16px] font-semibold">{s.t}</span>
+              <span className="text-[13px] text-muted">{s.d}</span>
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 }

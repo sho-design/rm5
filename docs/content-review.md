@@ -510,6 +510,13 @@ Clinic fact: iron infusions run on Tuesday, Saturday and Sunday; the assessment 
 - A dark sign-off band with "Refined by Medicine." and the land acknowledgement.
 - The privacy policy should mention that the map, when opened, loads from Google (privacy officer).
 
+## Drips page graphics (2026-11-05)
+
+- The page leads with the being-sick and pregnancy line (the same as on each drip page).
+- Each card has an IV bag drawing in the family colour, and "What's inside" chips taken only from what the menu already says. Foundation, Antioxidant and Signature also say "Confirmed at your consult". The chips are in `dripInside` in `src/content/infusion-site.ts`; nurse lead to confirm.
+- A "Cards / Compare what's inside" switch shows a table of drips against ingredients, with the note "Doses are set with you at your consult, after screening. Each drip is mixed at your appointment."
+- Shots show as small vials. The subtitle is "Quick shots, about 10 minutes. Screened first, like every drip."
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.
