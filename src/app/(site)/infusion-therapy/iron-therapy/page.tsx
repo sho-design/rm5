@@ -3,16 +3,16 @@ import { pageMetadata } from "@/lib/seo";
 import { CtaBand, Faq, SubPageHero } from "@/components/ui";
 import { divisions } from "@/content/divisions";
 import { images } from "@/content/images";
-import { ironFaq, ironPrices, ironSteps, ironSymptoms, ironVisit, ironVisitImg, ironWho, ironVisitPill, ironCta } from "@/content/iron";
+import { ironFaq, ironPrices, ironSteps, ironSymptoms, ironWho, ironVisitPill, ironCta } from "@/content/iron";
 import { bookFor, noteRoute } from "@/lib/routes";
 import { IronCheck } from "@/components/pages/iron/IronCheck";
-import { IronPrices, IronSteps, IronVisit, IronWho } from "@/components/pages/iron/IronSections";
+import { IronPrices, IronSteps, IronWho } from "@/components/pages/iron/IronSections";
 import { IronDay } from "@/components/pages/iron/IronDay";
 import { IronPlanner } from "@/components/pages/iron/IronPlanner";
 
 const title = "Tired of being tired?";
 const lead =
-  "Low iron is one of the most common reasons people feel drained, foggy and cold. When tablets have not worked, your doctor may suggest an iron infusion course over three visits, with a physician reviewing your bloodwork first.";
+  "Low iron is one of the most common reasons people feel drained, foggy and cold. When tablets have not worked, your doctor may suggest an iron infusion course, usually three visits, with a physician reviewing your bloodwork first.";
 
 const baseMetadata: Metadata = { title: "Iron therapy", description: `${title} ${lead}` };
 
@@ -32,8 +32,8 @@ export default function IronTherapyPage() {
         lead={lead}
         cta="Book an iron assessment"
         ctaTo={bookFor("infusion", "iron")}
-        cta2="Plan your three visits"
-        cta2To="#iron-plan"
+        cta2="Is this you?"
+        cta2To="#iron-check"
         coverage="Physician-led. Nurse-administered. Infusions on Tuesday, Saturday and Sunday at Thornhill."
         tint={div.tint}
         accent={div.accent}
@@ -42,25 +42,21 @@ export default function IronTherapyPage() {
         pills={[ironVisitPill, "Bloodwork on site", "Care in English and Tiếng Việt"]}
       />
 
-      {/* The symptom self-check sits after prices and the FAQ, not next to a named prescription iron and its
-          price (compliance review, round 17). */}
+      {/* Funnel, top to bottom: is this me, who it is for, how it works, one visit, cost, plan, questions, book.
+          The symptom check leads; the named irons and their prices come four sections later (compliance, round 17). */}
+      <IronCheck symptoms={ironSymptoms} accent={div.accent} />
+
       <IronWho cards={ironWho} />
 
       <IronSteps steps={ironSteps} />
 
-      {/* The visit in four parts, the infusion days and an interactive course planner: a working tester could not
-          plan time off from the page (round 23). */}
-      <IronDay />
-
-      <IronPlanner />
-
-      <IronVisit items={ironVisit} img={ironVisitImg} noteHref={noteRoute("iron-infusion")} accent={div.accent} />
+      <IronDay noteHref={noteRoute("iron-infusion")} />
 
       <IronPrices prices={ironPrices} />
 
-      <Faq title="Quick answers." sub="Anything else, ask at your assessment." items={ironFaq} />
+      <IronPlanner />
 
-      <IronCheck symptoms={ironSymptoms} accent={div.accent} />
+      <Faq title="Quick answers." sub="Anything else, ask at your assessment." items={ironFaq} />
 
       <CtaBand
         title={ironCta.title}

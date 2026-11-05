@@ -539,6 +539,30 @@ Clinic fact: iron infusions run on Tuesday, Saturday and Sunday; the assessment 
   Nurse lead to confirm the hour in all.
 - **Drip pages:** a large animated bag in the family colour (drops fall when motion is allowed), "What's inside" chips (only on pages without full copy), "Similar drips", and the visit timeline.
 
+## Iron page flow and Venofer (clinic answers, 2026-11-05)
+
+- **Clinic facts:**
+  - Clinic-supplied Venofer (iron sucrose) 300 mg is used most often, at $400 per visit.
+  - Monoferric 500 mg ($550 per visit) is also offered.
+  - Own iron is $250 per visit.
+  - Each visit is about 3 hours. A course is usually 3 visits, sometimes 1 or 2 as the physician directs.
+- **Page order (funnel):**
+  1. Hero ("Book an iron assessment", second button "Is this you?").
+  2. Symptom check.
+  3. Who we often see.
+  4. Three steps.
+  5. One visit in four parts, with the infusion days, latest start times and what to bring.
+  6. What it costs: Venofer, Monoferric, own iron, OHIP.
+  7. Plan your course.
+  8. FAQ.
+  9. Book.
+
+  The separate "The visit" photo section is folded into "One visit". The named irons and prices sit four sections after the symptom check.
+- **Prices:** "Clinic supplied, most often", Venofer (iron sucrose), $400, "300 mg per visit … A course is usually 3 visits, one to two weeks apart, as your physician directs." / "Usual course of 3: $1,200". Monoferric is labelled "Clinic supplied, also offered", "Usual course of 3: $1,650". Own iron: "Usual course of 3: $750, plus the iron from your pharmacy".
+- **Planner:** pick the iron (Venofer, Monoferric or your own) and 1, 2 or 3 visits ("Usually 3. Your physician directs 1, 2 or 3 after your assessment."). The total and hours follow.
+- **Step 3:** "Usually 3 visits, one to two weeks apart; your physician may direct 1 or 2." Hero pill: "Usually 3 visits, about 3 hours each".
+- Also updated: the pricing page guide (Venofer $400 added), the family medicine low-energy path ("$400 per visit with our Venofer"), and the infusion hub ("usually 3 infusion visits").
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

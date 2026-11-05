@@ -23,7 +23,7 @@ export const searchAliases: Record<string, string> = {
   numbers: "a1c ferritin cholesterol ldl blood pressure numbers results",
   year: "screening prevention checkup annual vaccine vaccines shingles shingrix rsv pneumonia immunization",
   kids: "concussion head injury return to play sports injury earache ear ache ear infection fever child kid fever newborn new baby well baby well-baby rourke child children kid kids baby babies infant daughter son teen teens teenager vaccine vaccines immunization immunizations school forms anxiety mental health mood confidential",
-  iron: "iron ferritin anemia anaemia anemic low iron tired fatigue exhausted monoferric iron infusion postpartum breastfeeding thieu mau sat",
+  iron: "iron ferritin anemia anaemia anemic low iron tired fatigue exhausted monoferric iron infusion venofer iron sucrose postpartum breastfeeding thieu mau sat",
   infusion: "iv drip drips vitamin vitamins",
   drips: "mixed prepared premixed premade made fresh iv drip drips hydration myers vitamin",
   shots: "shot shots b12 vitamin injection injections",

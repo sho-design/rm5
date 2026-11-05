@@ -88,7 +88,7 @@ export function IronPrices({ prices }: { prices: IronPrice[] }) {
         </div>
         <span className="max-w-[300px] text-[13px] leading-[1.5] text-muted md:text-right">Most private plans cover the iron itself with a prescription. We give you a receipt for the rest.</span>
       </div>
-      <div className="grid grid-cols-1 gap-card md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-card md:grid-cols-2 lg:grid-cols-4">
         {prices.map((pr) => (
           <div key={pr.k} className="flex flex-col gap-[18px] rounded-card border border-border p-6 text-ink lg:p-7" style={{ background: pr.bg }}>
             <div className="flex flex-col gap-1">

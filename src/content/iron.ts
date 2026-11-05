@@ -49,7 +49,7 @@ export const ironSteps: PathStep[] = [
   { n: "1", time: "OHIP-insured", t: "Assessment and bloodwork", d: "A short visit with our physician and a blood draw on site. If you already have recent results, bring them and skip the wait." },
   { n: "2", time: "Same week", t: "Your plan", d: "If your ferritin is low and tablets are not right for you, the physician chooses the iron and dose. We book your infusion, often within days." },
   // The 30 minutes read as extra time on top of the 3 hours (round 23). Infusion days added (clinic, Nov 2026).
-  { n: "3", time: draft("3 visits, about 3 hours each"), t: "The infusions", d: draft("On a Tuesday, Saturday or Sunday. A nurse places a small IV and you relax in a lounge chair while 500 mg runs in, then we watch you for 30 minutes. About 3 hours in all. Repeat one to two weeks later until the course is done.") },
+  { n: "3", time: draft("Usually 3 visits, about 3 hours each"), t: "The infusions", d: draft("On a Tuesday, Saturday or Sunday. A nurse places a small IV and you relax in a lounge chair while your iron runs in, then we watch you for 30 minutes. About 3 hours in all. Usually 3 visits, one to two weeks apart; your physician may direct 1 or 2.") },
 ];
 
 export const ironVisit: string[] = [
@@ -59,23 +59,32 @@ export const ironVisit: string[] = [
   "Repeat bloodwork 4 to 8 weeks later shows how your levels responded.",
 ];
 
+/* Clinic answer (Nov 2026): Venofer is the clinic-supplied iron used most often, 300 mg at $400 per visit.
+ * Monoferric 500 mg at $550 per visit is the second option. Both are usually 3 visits of about 3 hours; the physician may direct 1 or 2. */
 export const ironPrices: IronPrice[] = [
+  {
+    k: draft("Clinic supplied, most often"),
+    t: "Venofer (iron sucrose)",
+    price: "$400",
+    d: draft("300 mg per visit, iron, nursing and monitoring in one price. A course is usually 3 visits, one to two weeks apart, as your physician directs."),
+    note: draft("Per visit, HST included. Usual course of 3: $1,200"),
+    bg: "#E6F4EA",
+  },
+  {
+    k: draft("Clinic supplied, also offered"),
+    t: "Monoferric (ferric derisomaltose)",
+    price: "$550",
+    d: draft("500 mg per visit, iron, nursing and monitoring in one price. A course is usually 3 visits, one to two weeks apart, as your physician directs."),
+    note: draft("Per visit, HST included. Usual course of 3: $1,650"),
+    bg: "#fff",
+  },
   {
     k: "Bring your own iron",
     t: "Administration only",
     price: "$250",
     d: "We write the prescription, you fill it at your pharmacy and bring it in. Most private drug plans cover the iron. We supply the nursing, supplies and monitoring.",
-    // Course total added to match the clinic-supplied card (3 visits per course).
-    note: draft("Per visit, HST included. Course of 3: $750, plus the iron from your pharmacy"),
+    note: draft("Per visit, HST included. Usual course of 3: $750, plus the iron from your pharmacy"),
     bg: "#fff",
-  },
-  {
-    k: "Clinic supplied",
-    t: "Monoferric (ferric derisomaltose)",
-    price: "$550",
-    d: "500 mg per visit, iron, nursing and monitoring in one price. A full course is 3 visits, usually one to two weeks apart.",
-    note: "Per visit, HST included. Course of 3: $1,650",
-    bg: "#E6F4EA",
   },
   {
     k: "Covered by OHIP",
@@ -103,7 +112,7 @@ export const ironCheckLead = draft("Tap what sounds familiar. These feelings hav
 export const ironCheckBook = draft("Book an iron assessment");
 
 /** Clinic answer (Nov 2026): an iron visit takes about 3 hours, including the time watching you afterwards. */
-export const ironVisitPill = draft("3 visits, about 3 hours each");
+export const ironVisitPill = draft("Usually 3 visits, about 3 hours each");
 
 /** Was "Find out in one blood test." / "… we can usually infuse the same week." (a hematologist: it is a panel,
  *  not one test; a compliance reviewer: same-week reads as urgency). */
@@ -127,24 +136,26 @@ export const ironLastStart = (time: string) => `Last start ${time}`;
 /** Course planner. A tester with ferritin 6 could not plan time off from the page (round 23). */
 export const ironPlanner = {
   eyebrow: draft("Plan your course"),
-  title: draft("See your three visits on a calendar."),
-  lead: draft("Infusions run on Tuesday, Saturday and Sunday. Pick a first day and the spacing, and see roughly when each visit and your repeat bloodwork would fall."),
+  title: draft("See your visits on a calendar."),
+  lead: draft("Infusions run on Tuesday, Saturday and Sunday. Pick the iron, a first day and the spacing, and see roughly when each visit and your repeat bloodwork would fall."),
   startLabel: draft("First infusion"),
   gapLabel: draft("Time between visits"),
   gaps: [draft("1 week"), draft("2 weeks")] as const,
   ironLabel: draft("Iron"),
-  ironOptions: [draft("Clinic supplied"), draft("Bring your own")] as const,
+  ironOptions: [draft("Venofer"), draft("Monoferric"), draft("Your own iron")] as const,
+  visitsLabel: draft("Number of visits"),
+  visitsOptions: ["1", "2", "3"] as const,
+  visitsHint: draft("Usually 3. Your physician directs 1, 2 or 3 after your assessment."),
   visit: (n: number) => draft(`Visit ${n}`),
   visitSub: draft("About 3 hours"),
   labs: draft("Repeat bloodwork"),
   labsSub: draft("4 to 8 weeks after your last visit"),
-  totalLabel: draft("Course of 3"),
-  totals: [
-    { v: "$1,650", sub: draft("HST included, iron and nursing") },
-    { v: "$750", sub: draft("HST included, plus the iron from your pharmacy") },
-  ] as const,
+  totalLabel: (n: number) => (n === 1 ? draft("1 visit") : draft(`Course of ${n}`)),
+  /** Per visit, HST included (clinic prices, Nov 2026): Venofer 300 mg $400, Monoferric 500 mg $550, own iron $250. */
+  perVisit: [400, 550, 250] as const,
+  totalSub: [draft("HST included, Venofer 300 mg, nursing"), draft("HST included, Monoferric 500 mg, nursing"), draft("HST included, plus the iron from your pharmacy")] as const,
   timeLabel: draft("Time at the clinic"),
-  time: { v: draft("About 9 hours"), sub: draft("Over 3 visits") },
+  time: (n: number) => ({ v: draft(`About ${n * 3} hours`), sub: n === 1 ? draft("In 1 visit") : draft(`Over ${n} visits`) }),
   labsShort: draft("Bloodwork"),
   fine: draft("A planning guide, not a booking. Your physician confirms the iron, the dose and the number of visits after your assessment, and we book the dates with you."),
   cta: draft("Book an iron assessment"),
@@ -157,8 +168,8 @@ export const ironDay = {
   parts: [
     { t: draft("Check in"), d: draft("A short nurse screening, your vitals, and a chance to ask questions."), w: 2 },
     { t: draft("IV placed"), d: draft("A small IV in your arm. Your nurse stays close throughout."), w: 1 },
-    { t: draft("Infusion"), d: draft("500 mg runs in while you sit back in a lounge chair. Read, work or rest."), w: 5 },
+    { t: draft("Infusion"), d: draft("Your iron runs in while you sit back in a lounge chair. Read, work or rest."), w: 5 },
     { t: draft("30 minutes after"), d: draft("We watch you for 30 minutes, then you go back to your day."), w: 2 },
   ],
-  note: draft("Eat normally beforehand. No fasting, and you can drive home."),
+  note: draft("Eat normally beforehand, no fasting. Wear a top with sleeves that roll up, and bring a book, headphones or a laptop. You can drive home."),
 };

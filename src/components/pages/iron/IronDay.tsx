@@ -1,5 +1,5 @@
 import { ironDay as c, ironInfusionDays, ironLastStart } from "@/content/iron";
-import { Display, Eyebrow, Section } from "@/components/ui";
+import { Display, Eyebrow, Section, SmartLink } from "@/components/ui";
 
 const tints = ["bg-sky-soft", "bg-lilac-tint", "bg-sage-tint", "bg-sun-tint"];
 
@@ -8,7 +8,7 @@ const tints = ["bg-sky-soft", "bg-lilac-tint", "bg-sage-tint", "bg-sun-tint"];
  * 3 hours) and the 30 minutes are clinic facts, so the parts carry no minutes of their own. The three infusion days
  * sit underneath with their hours.
  */
-export function IronDay() {
+export function IronDay({ noteHref }: { noteHref?: string }) {
   return (
     <Section className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
@@ -27,7 +27,14 @@ export function IronDay() {
           </li>
         ))}
       </ol>
-      <p className="text-[15px] leading-[1.55] text-secondary">{c.note}</p>
+      <p className="pretty max-w-[760px] text-[15px] leading-[1.55] text-secondary">
+        {c.note}{" "}
+        {noteHref ? (
+          <SmartLink to={noteHref} className="font-semibold text-link">
+            Read: what to expect at an iron infusion ›
+          </SmartLink>
+        ) : null}
+      </p>
 
       <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
         {ironInfusionDays.map((d) => (

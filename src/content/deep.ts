@@ -324,7 +324,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         facts: [
           { k: "Step one", v: "OHIP-insured assessment" },
           { k: "Bloodwork", v: "On site" },
-          { k: "If needed", v: draft("Iron infusion, $250 per visit with your own iron or $550 per visit with ours") },
+          { k: "If needed", v: draft("Iron infusion, $250 per visit with your own iron, or $400 per visit with our Venofer") },
           { k: "Days", v: "Tue, Sat, Sun" },
         ],
         tags: ["Iron", "Physician first"],
@@ -399,7 +399,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
     benefitsTitle: draft("Why a physician-led clinic."),
     benefits: [
       { big: "MD", t: "A physician is always on site", d: "Every infusion happens in a medical clinic with a doctor in the building.", bg: "#E6F4EA" },
-      { big: "1", t: draft("Clinic for assessment, labs and infusion"), d: draft("No separate lab trip. Iron is an assessment visit, then 3 infusion visits."), bg: "#FFF3C4" },
+      { big: "1", t: draft("Clinic for assessment, labs and infusion"), d: draft("No separate lab trip. Iron is an assessment visit, then usually 3 infusion visits."), bg: "#FFF3C4" },
       { big: "$0", t: "For the assessment", d: "Iron assessments and bloodwork are OHIP-insured. Only the infusion visit is a fee.", bg: "#EEF5FC" },
     ],
     pathTitle: "From booking to back on your feet.",

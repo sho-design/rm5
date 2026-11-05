@@ -31,7 +31,7 @@ function nextInfusionDays(from: Date, count: number): Date[] {
 }
 
 /**
- * Course planner: pick a first infusion day (Tuesday, Saturday or Sunday) and the spacing, and the three visits and
+ * Course planner: pick the iron, a first infusion day (Tuesday, Saturday or Sunday) the number of visits and the spacing, and the visits and
  * the repeat bloodwork window move along a timeline. A planning guide only; nothing is booked or stored.
  */
 export function IronPlanner() {
@@ -39,18 +39,23 @@ export function IronPlanner() {
   const [start, setStart] = useState(0);
   const [gap, setGap] = useState(0);
   const [iron, setIron] = useState(0);
+  const [count, setCount] = useState(2);
+  const n = count + 1;
   // Dates depend on today, so they are worked out after hydration.
   useEffect(() => setToday(torontoToday()), []);
 
   const starts = useMemo(() => (today ? nextInfusionDays(today, 6) : []), [today]);
   const first = starts[start];
-  const visits = first ? [0, 1, 2].map((i) => new Date(first.getTime() + i * (gap + 1) * 7 * DAY)) : [];
-  const last = visits[2];
+  const visits = first ? Array.from({ length: n }, (_, i) => new Date(first.getTime() + i * (gap + 1) * 7 * DAY)) : [];
+  const last = visits[n - 1];
   const labsFrom = last ? new Date(last.getTime() + 28 * DAY) : null;
   const labsTo = last ? new Date(last.getTime() + 56 * DAY) : null;
   // Visits spread over the first 62% of the track (to scale against the longest spacing, 2 weeks), so changing
   // the spacing visibly moves them; the bloodwork window keeps the last part.
   const pct = (d: Date) => (first ? ((d.getTime() - first.getTime()) / (28 * DAY)) * 62 : 0);
+  // Course of 3 at the chosen iron's price per visit (Venofer $400, Monoferric $550, own iron $250).
+  const total = `$${(c.perVisit[iron] * n).toLocaleString("en-CA")}`;
+  const time = c.time(n);
 
   return (
     <Section id="iron-plan" className="scroll-mt-6">
@@ -95,20 +100,25 @@ export function IronPlanner() {
             <span className="text-[13px] font-semibold text-secondary">{c.ironLabel}</span>
             <Choice options={c.ironOptions} value={iron} onChange={setIron} ariaLabel={c.ironLabel} />
           </div>
+          <div className="flex flex-col gap-2">
+            <span className="text-[13px] font-semibold text-secondary">{c.visitsLabel}</span>
+            <Choice options={c.visitsOptions} value={count} onChange={setCount} ariaLabel={c.visitsLabel} />
+            <span className="text-[12px] leading-[1.5] text-muted">{c.visitsHint}</span>
+          </div>
 
           <dl className="grid grid-cols-1 gap-3 rounded-card-sm bg-white p-5 sm:grid-cols-2" aria-live="polite">
             <div className="flex flex-col gap-1">
-              <dt className="text-[13px] font-semibold text-muted">{c.totalLabel}</dt>
+              <dt className="text-[13px] font-semibold text-muted">{c.totalLabel(n)}</dt>
               <dd className="flex flex-col gap-0.5">
-                <span className="font-display text-[30px] font-medium leading-none tracking-[-.03em]">{c.totals[iron].v}</span>
-                <span className="text-[13px] leading-[1.4] text-muted">{c.totals[iron].sub}</span>
+                <span className="font-display text-[30px] font-medium leading-none tracking-[-.03em]">{total}</span>
+                <span className="text-[13px] leading-[1.4] text-muted">{c.totalSub[iron]}</span>
               </dd>
             </div>
             <div className="flex flex-col gap-1">
               <dt className="text-[13px] font-semibold text-muted">{c.timeLabel}</dt>
               <dd className="flex flex-col gap-0.5">
-                <span className="font-display text-[30px] font-medium leading-none tracking-[-.03em]">{c.time.v}</span>
-                <span className="text-[13px] leading-[1.4] text-muted">{c.time.sub}</span>
+                <span className="font-display text-[30px] font-medium leading-none tracking-[-.03em]">{time.v}</span>
+                <span className="text-[13px] leading-[1.4] text-muted">{time.sub}</span>
               </dd>
             </div>
           </dl>
@@ -145,7 +155,7 @@ export function IronPlanner() {
                     </li>
                   );
                 })
-              : Array.from({ length: 3 }, (_, i) => <li key={i} className="h-[70px] rounded-card-sm bg-white/60" />)}
+              : Array.from({ length: n }, (_, i) => <li key={i} className="h-[70px] rounded-card-sm bg-white/60" />)}
             <li className="flex items-center gap-4 rounded-card-sm border-[1.5px] border-dashed border-ink/20 px-5 py-4">
               <span aria-hidden className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-sun-tint text-[17px]">
                 ✓

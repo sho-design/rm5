@@ -355,9 +355,10 @@ export const pricingVisual = {
   guide: [
     { t: draft("IV drips"), sub: draft("From"), price: 150, label: "$150", tone: "sky", page: "drips" },
     { t: draft("Iron infusion, your own iron"), sub: draft("Administration only"), price: 250, label: "$250", tone: "sage", page: "iron" },
+    { t: draft("Iron infusion, our Venofer 300 mg"), sub: draft("Iron, nursing and monitoring"), price: 400, label: "$400", tone: "sage", page: "iron" },
     { t: draft("Iron infusion, our Monoferric 500 mg"), sub: draft("Iron, nursing and monitoring"), price: 550, label: "$550", tone: "sage", page: "iron" },
   ],
-  guideNote: draft("Drip prices vary by drip and are confirmed at your consult. An iron course is 3 visits."),
+  guideNote: draft("Drip prices vary by drip and are confirmed at your consult. An iron course is usually 3 visits."),
   rhythmLabel: draft("A steady rhythm"),
 };
 
