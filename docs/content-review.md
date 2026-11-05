@@ -587,6 +587,24 @@ Clinic fact: iron infusions run on Tuesday, Saturday and Sunday; the assessment 
 - **Photo to replace:** the joint injection photo (Pain Centre "Joint injections" card and the Joint pain page) shows a cart ultrasound with a corded probe and a woman in navy scrubs, who reads as a doctor. Both conflict with clinic facts.
 - **Team:** Daniel, Priya, Linh, Marcus, Thu, Jasmine and Van were removed from the team page at the clinic's request. Rehab & Recovery has no one listed for now, so its filter chip and the "Our therapists" menu link are hidden.
 
+## Medical Aesthetics menu (2026-11-05)
+
+Adapted from the clinic's Medical Aesthetics guide site (ma1-indol.vercel.app) and marked draft. All copy lives in `src/content/aesthetics-menu.ts`.
+
+- **New page `/medical-aesthetics/treatments`:** "The menu." lists 17 treatments in six families, with session lengths from the guide, a filter by family and by concern, and the "Baby" laser tier note. It also has a goal planner ("Mark what you would like to address."), the four candidacy blocks and a tools strip.
+- **Landing page:** "Start with what you notice." shows nine concern cards that open the menu filtered. It replaces the single-pick chooser there.
+- **Left out of the guide, on purpose:**
+  - body fat, cellulite, buttock and hip goals (no weight or body-shaping claims);
+  - "Most chosen" on memberships, and "pairs beautifully";
+  - "safe for all skin types" (now "comparatively gentle across skin tones");
+  - "results last several years";
+  - "Health Canada licensed" wording;
+  - named injectors other than Dr. Nguyen (the filler tiers say "Senior Registered Nurse").
+- **To confirm:**
+  - **Prices online.** The guide says prices are shared at a complimentary consult and not listed online, but our `/medical-aesthetics/pricing` page lists prices. Which is right?
+  - **Free consult.** Is the consult complimentary?
+  - **Memberships.** Should the Essentials, Refined and Signature tiers appear on the site?
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

@@ -201,6 +201,7 @@ export const divisions: Record<NavKey, Division> = {
     footCta: "Curious where to start?",
     explore: [
       { label: "All Medical Aesthetics", page: "aesthetics" },
+      { label: draft("Treatment menu"), page: "aesMenu" },
       { label: "Injectables", page: "aesInjectables" },
       { label: "Skin treatments", page: "aesSkin" },
       { label: "Laser", page: "aesLaser" },
@@ -221,6 +222,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Gift cards", page: "aesGift" },
     ],
     sub: [
+      { label: draft("Menu"), icon: "plan", page: "aesMenu" },
       { label: "Injectables", icon: "shot", page: "aesInjectables" },
       { label: "Skin", icon: "skin", page: "aesSkin" },
       { label: "Laser", icon: "laser", page: "aesLaser" },

@@ -10,6 +10,7 @@ import { DeepDiveChooser } from "./DeepDiveChooser";
 import { CompareTable, InfusionHandoff } from "./InfusionExtras";
 import { Ladder } from "./Ladder";
 import { DripBuilder } from "./DripBuilder";
+import { AesConcerns } from "@/components/pages/aesthetics/AesSections";
 
 /**
  * The deep-dive sections that follow every division page: chooser, the
@@ -22,7 +23,8 @@ export function DeepDive({ k, division, dive }: { k: DivisionKey; division: Divi
   const ctaTo = division.ctaPage ?? foot?.ctaPage ?? bookFor(k);
   return (
     <>
-      <DeepDiveChooser k={k} dive={dive} />
+      {/* Aesthetics opens the menu by concern (nine cards) instead of the single-pick chooser. */}
+      {k === "aesthetics" ? <AesConcerns /> : <DeepDiveChooser k={k} dive={dive} />}
 
       {k === "family" ? <AmIDue /> : null}
       {/* Infusion funnel: how you feel, then the menu, then build a drip, then how it works here. */}
