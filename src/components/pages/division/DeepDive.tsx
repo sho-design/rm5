@@ -9,6 +9,7 @@ import { CoverageChecker } from "./CoverageChecker";
 import { DeepDiveChooser } from "./DeepDiveChooser";
 import { CompareTable, InfusionHandoff } from "./InfusionExtras";
 import { Ladder } from "./Ladder";
+import { DripBuilder } from "./DripBuilder";
 
 /**
  * The deep-dive sections that follow every division page: chooser, the
@@ -24,10 +25,16 @@ export function DeepDive({ k, division, dive }: { k: DivisionKey; division: Divi
       <DeepDiveChooser k={k} dive={dive} />
 
       {k === "family" ? <AmIDue /> : null}
-      {k === "infusion" ? <CompareTable rows={infusionCompareRows} /> : null}
+      {/* Infusion funnel: how you feel, then the menu, then build a drip, then how it works here. */}
+      {k === "infusion" ? (
+        <>
+          <InfusionHandoff links={infusionLinks} />
+          <DripBuilder />
+          <CompareTable rows={infusionCompareRows} />
+        </>
+      ) : null}
       {k === "aesthetics" ? <Ladder rungs={aestheticsLadder} /> : null}
       {k === "rehab" ? <CoverageChecker options={rehabCoverage} /> : null}
-      {k === "infusion" ? <InfusionHandoff links={infusionLinks} /> : null}
 
       <Section className="flex flex-col gap-5">
         <Display size="xs">{dive.benefitsTitle}</Display>

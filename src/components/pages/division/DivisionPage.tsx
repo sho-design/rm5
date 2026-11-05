@@ -8,7 +8,6 @@ import { AboutTeaching } from "./AboutTeaching";
 import { DeepDive } from "./DeepDive";
 import { Hero } from "./Hero";
 import { InfusionGrid, InfusionHero } from "./InfusionExtras";
-import { DripBuilder } from "./DripBuilder";
 import { Offer } from "./Offer";
 import { SubNav } from "./SubNav";
 
@@ -23,7 +22,7 @@ export function divisionMetadata(k: NavKey): Metadata {
  * One template for the five division pages and the About landing page:
  * H1 + icon sub-nav, photo hero, "What we offer" bento, then the division's
  * deep dive (or, for About, the teaching clinic block and its closing band).
- * Infusion renders its own hero, grid and drip builder, with links to the
+ * Infusion renders its own hero and grid (the drip builder follows the concern chooser in the deep dive), with links to the
  * drips, shots, concern and pricing pages under /infusion-therapy.
  */
 export function DivisionPage({ k }: { k: NavKey }) {
@@ -57,7 +56,6 @@ export function DivisionPage({ k }: { k: NavKey }) {
         <>
           <InfusionHero />
           <InfusionGrid />
-          <DripBuilder />
         </>
       ) : (
         <>
@@ -80,7 +78,7 @@ export function DivisionPage({ k }: { k: NavKey }) {
       {isAbout ? (
         <>
           <AboutTeaching />
-          <CtaBand title={d.footCta ?? ""} cta={d.cta ?? ""} ctaTo={d.ctaPage ?? "book"} />
+          <CtaBand title={d.footCta ?? ""} cta="Contact us" ctaTo="contact" />
         </>
       ) : (
         <DeepDive k={k as DivisionKey} division={d} dive={deepDives[k as DivisionKey]} />

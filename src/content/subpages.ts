@@ -1,6 +1,7 @@
 import type { PathStep, QA, SubChooserItem, TintCard } from "./types";
 import { images } from "./images";
 import { draft } from "./review";
+import { bookFor } from "@/lib/routes";
 
 /** Hero photos for the Family Medicine sub-pages (index into the family service photo set). */
 export const subpageHero = {
@@ -425,7 +426,7 @@ export const chronicRhythm: PathStep[] = [
 ];
 
 export const chronicVsPain: TintCard[] = [
-  { t: "Chronic care is", d: "Long-term management of a condition: diabetes, blood pressure, asthma, thyroid, heart, kidney. Your family doctor, ongoing, OHIP.", bg: "#EEF5FC", link: "This page", page: "chronic" },
+  { t: "Chronic care is", d: "Long-term management of a condition: diabetes, blood pressure, asthma, thyroid, heart, kidney. Your family doctor, ongoing, OHIP.", bg: "#EEF5FC", link: "Book a review", page: bookFor("family", "chronic") },
   { t: "The Pain Centre is", d: "Procedures for pain itself: image-guided injections, nerve blocks, medication review. A pain physician, by referral, OHIP for most procedures.", bg: "#FDE8E4", link: "Pain Centre", page: "pain" },
   { t: "Both, if", d: "You have chronic back or joint pain alongside another condition. Your family doctor refers down the hall and keeps the rest of the plan. One chart.", bg: "#FFF3C4", link: "How referrals work", page: "referrals" },
 ];

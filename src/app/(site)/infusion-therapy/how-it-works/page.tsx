@@ -47,7 +47,7 @@ export default function HowItWorksPage() {
       </Section>
       <Faq items={faq} />
       <InfusionSmallPrint />
-      <InfusionBand />
+      <InfusionBand cta2To="concerns" />
     </>
   );
 }

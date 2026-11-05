@@ -174,9 +174,12 @@ export function ShotGrid({ shots }: { shots: { t: string; d: string }[] }) {
 export function InfusionBand({
   title = infusionCopy.band.title,
   sub = infusionCopy.band.sub,
+  cta2To = "infusionHow",
 }: {
   title?: string;
   sub?: string;
+  /** How it works passes the concern page, so the button never links to the page it is on. */
+  cta2To?: string;
 }) {
   return (
     <CtaBand
@@ -185,7 +188,7 @@ export function InfusionBand({
       cta={infusionCopy.band.cta}
       ctaTo={bookFor("infusion")}
       cta2={infusionCopy.band.cta2}
-      cta2To="infusionHow"
+      cta2To={cta2To}
     />
   );
 }

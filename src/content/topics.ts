@@ -532,7 +532,7 @@ const rehab: Topic[] = [
     cards: { title: R.chooser.title, items: [asCard(result(R, 4)), asCard(result(R, 2))] },
     path: rehabPath,
     faq: [dq("rehab", "Do I need a doctor's referral?"), dq("rehab", "Do you bill my insurance directly?"), dq("rehab", "What should I wear?")],
-    band: rehabBand,
+    band: { ...rehabBand, cta: draft("Book a massage") },
   },
   {
     key: "rehabKines",
@@ -794,7 +794,7 @@ const family: Topic[] = [
       ],
     },
     faq: [womenFaqQA("Can I ask for a female physician?"), ...faqItems.filter((f) => f.q === "I have a health card from another province. Can I be seen?").map(({ q, a }) => ({ q, a }))],
-    band: familyBand,
+    band: { ...familyBand, cta: draft("Book a pregnancy visit"), ctaTo: bookFor("family", "pregnancy"), cta2: "Register as a patient", cta2To: "register" },
   },
 ];
 
