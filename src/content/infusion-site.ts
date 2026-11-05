@@ -384,3 +384,56 @@ export const dripBrowserCopy = {
   tableNote: draft("Doses are set with you at your consult, after screening. Each drip is mixed at your appointment."),
   shotsLead: draft("Quick shots, about 10 minutes. Screened first, like every drip."),
 };
+
+/** Drip visit timeline, finder and compare tray (2026-11-05). Times: the 10 minute screening is from the drip
+ *  builder note, about 45 minutes is the menu time, mixing at the appointment is a clinic fact. */
+export const dripVisit = {
+  eyebrow: draft("A drip visit"),
+  title: draft("About an hour, start to finish."),
+  parts: [
+    { t: draft("Screening"), d: draft("About 10 minutes with your nurse: health history, vitals and any questions."), w: 2.2 },
+    { t: draft("Mixed for you"), d: draft("Your drip is mixed at your appointment, after screening. Never made ahead."), w: 2 },
+    { t: draft("The drip"), d: draft("About 45 minutes in a lounge chair. Read, work or rest."), w: 4.5 },
+    { t: draft("Back to your day"), d: draft("Your nurse removes the IV and checks in with you before you go."), w: 2.2 },
+  ],
+};
+
+export type FinderOption = { t: string; drips?: string[]; consult?: boolean; unwell?: boolean };
+export const dripFinder = {
+  eyebrow: draft("Find a drip"),
+  title: draft("What brings you in?"),
+  lead: draft("Pick the closest match to see drips that fit. A consult confirms what is right for you, and we may suggest something else, or nothing at all."),
+  options: [
+    { t: draft("After exercise or a long day outdoors"), drips: ["after-exercise", "hydration"] },
+    { t: draft("Travel or a busy week"), drips: ["hydration", "foundation"] },
+    { t: draft("A regular vitamin routine"), drips: ["myers", "vitamin-c-zinc", "foundation"] },
+    { t: draft("A skin and hair routine"), drips: ["biotin", "antioxidant"] },
+    { t: draft("Curious about NAD+"), drips: ["nad"] },
+    { t: draft("Not sure yet"), consult: true },
+    { t: draft("I am unwell, being sick or pregnant"), unwell: true },
+  ] as FinderOption[],
+  matches: draft("Drips that fit what you picked"),
+  consultTitle: draft("Start with a consult."),
+  consultP: draft("Tell us what is going on and we suggest what fits, if anything. No pressure."),
+  unwellTitle: draft("Please see a doctor first."),
+  unwellP: draft("A drip is not the place to start when you are unwell, being sick or pregnant. Book a family medicine visit, call us the same day at 905-709-3222, or call Health811 at 811 when we are closed."),
+  unwellCta: draft("Book a doctor visit"),
+  again: draft("Start over"),
+};
+
+export const dripCompareCopy = {
+  add: draft("Compare"),
+  added: draft("Added"),
+  max: draft("Up to 3"),
+  tray: (n: number) => draft(`${n} selected`),
+  open: draft("Compare side by side ›"),
+  clear: draft("Clear"),
+  title: draft("Side by side."),
+  family: draft("Family"),
+  time: draft("Time in the chair"),
+  timeV: draft("About 45 minutes"),
+  inside: draft("What's inside"),
+  close: draft("Close"),
+  similar: draft("Similar drips"),
+  compareThis: draft("Compare with other drips ›"),
+};

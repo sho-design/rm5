@@ -517,6 +517,28 @@ Clinic fact: iron infusions run on Tuesday, Saturday and Sunday; the assessment 
 - A "Cards / Compare what's inside" switch shows a table of drips against ingredients, with the note "Doses are set with you at your consult, after screening. Each drip is mixed at your appointment."
 - Shots show as small vials. The subtitle is "Quick shots, about 10 minutes. Screened first, like every drip."
 
+## Drips: finder, compare and drip pages (2026-11-05)
+
+- **Find a drip:** "What brings you in?" leads to drips that fit, matched by occasion and contents. No results are promised, and the lead says "A consult confirms what is right for you, and we may suggest something else, or nothing at all."
+  - "After exercise or a long day outdoors" → Hydration after exercise, Hydration.
+  - "Travel or a busy week" → Hydration, Foundation.
+  - "A regular vitamin routine" → Myers', Vitamin C zinc and B, Foundation.
+  - "A skin and hair routine" → Biotin, Antioxidant.
+  - "Curious about NAD+" → NAD+.
+  - "Not sure yet" → consult.
+  - "I am unwell, being sick or pregnant" → "Please see a doctor first." with "Book a doctor visit".
+
+  Physician and compliance to review the mapping.
+- **Compare:** a "+ Compare" button on each card (up to 3). A tray slides up from the bottom, and "Compare side by side ›" shows family, "About 45 minutes" and what's inside, with "Book this drip". Drip pages link to "Compare with other drips ›", which opens the tray with that drip already picked.
+- **A drip visit:** "About an hour, start to finish."
+  1. Screening, "About 10 minutes with your nurse".
+  2. Mixed for you, "mixed at your appointment, after screening. Never made ahead."
+  3. The drip, "About 45 minutes in a lounge chair".
+  4. Back to your day, "Your nurse removes the IV and checks in with you before you go."
+
+  Nurse lead to confirm the hour in all.
+- **Drip pages:** a large animated bag in the family colour (drops fall when motion is allowed), "What's inside" chips (only on pages without full copy), "Similar drips", and the visit timeline.
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

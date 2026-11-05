@@ -291,3 +291,11 @@
 @media (prefers-reduced-motion: no-preference) {
   .rm-grow-x { transform-origin: left center; animation: rm-grow-x 400ms cubic-bezier(.2,.8,.2,1) both; }
 }
+
+/* Drip art: drops fall down the line and the fluid surface sways. Off when motion is reduced. */
+@keyframes rm-drop { 0% { transform: translateY(-6px); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(46px); opacity: 0; } }
+@keyframes rm-sway { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-24px); } }
+@media (prefers-reduced-motion: no-preference) {
+  .rm-drop { animation: rm-drop 1.8s cubic-bezier(.4,0,.6,1) infinite; }
+  .rm-sway { animation: rm-sway 6s ease-in-out infinite; }
+}

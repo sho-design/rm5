@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Button, Display, Section, SmartLink } from "@/components/ui";
-import { EvidenceChip, InfusionBand, InfusionSmallPrint, NumberedCards } from "@/components/pages/infusion/InfusionBits";
+import { EvidenceChip, InfusionBand, InfusionSmallPrint } from "@/components/pages/infusion/InfusionBits";
+import { Bag, DripHeroArt } from "@/components/pages/infusion/DripArt";
+import { DripVisit } from "@/components/pages/infusion/DripVisit";
 import { divisions } from "@/content/divisions";
-import { dripBySlug, dripFamilies, infusionCopy, infusionSteps, ingredients, signatureDrips } from "@/content/infusion-site";
-import { bookFor, dripRoute } from "@/lib/routes";
+import { dripBrowserCopy, dripBySlug, dripCompareCopy, dripFamilies, dripInside, infusionCopy, ingredients, signatureDrips } from "@/content/infusion-site";
+import { bookFor, dripRoute, routes } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
+import { cn } from "@/lib/cn";
 import { breadcrumbs } from "@/lib/schema";
 import { JsonLd } from "@/components/JsonLd";
 
@@ -35,6 +38,11 @@ export default async function DripPage({ params }: Params) {
   if (!d) notFound();
   const x = d.detail;
   const facts = [c.time, c.elective, c.mixed, ...(x?.screen ? [x.screen] : [])];
+  const color = dripFamilies[d.f];
+  const inside = dripInside[d.slug];
+  // Same family first, then the rest, three in all.
+  const similar = [...signatureDrips.filter((o) => o.f === d.f && o.slug !== d.slug), ...signatureDrips.filter((o) => o.f !== d.f)].slice(0, 3);
+  const dripsHref = routes.drips;
   return (
     <>
       <JsonLd
@@ -44,7 +52,8 @@ export default async function DripPage({ params }: Params) {
           [d.t, dripRoute(d.slug)],
         ])}
       />
-      <section className="mx-3 mt-3 flex flex-col gap-6 rounded-block p-6 md:mx-gutter md:mt-6 md:p-10 lg:p-12" style={{ background: "var(--div-infusion)" }}>
+      <section className="relative mx-3 mt-3 grid grid-cols-1 gap-8 overflow-hidden rounded-block p-6 md:mx-gutter md:mt-6 md:p-10 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:p-12" style={{ background: `linear-gradient(135deg, var(--div-infusion) 55%, color-mix(in srgb, ${color} 30%, var(--div-infusion)))` }}>
+        <div className="flex flex-col gap-6">
         <span className="eyebrow text-[color:var(--div-infusion-accent)]">
           <SmartLink to="infusion">{divisions.infusion.label}</SmartLink> › <SmartLink to="drips">{c.back}</SmartLink>
         </span>
@@ -87,7 +96,55 @@ export default async function DripPage({ params }: Params) {
             {infusionCopy.band.cta2}
           </Button>
         </div>
+        </div>
+        {/* Large animated bag in the family colour. */}
+        <div className="flex justify-center lg:justify-end">
+          <DripHeroArt color={color} className="max-w-[200px] md:max-w-[240px]" />
+        </div>
       </section>
+
+      {/* What's inside, as far as the menu says, and where it sits among the other drips. */}
+      <Section className={cn("grid grid-cols-1 items-start gap-card", !x && "lg:grid-cols-[1.2fr_1fr]")}>
+        {/* Drips with full page copy list their ingredients further down; the chips would repeat them. */}
+        {x ? null : <div className="flex flex-col gap-4 rounded-card border border-border bg-card p-6 md:p-8">
+          <span className="text-[13px] font-semibold text-muted">{dripBrowserCopy.inside}</span>
+          <div className="flex flex-wrap gap-2">
+            {inside?.items.map((it) => (
+              <span key={it} className="rounded-chip px-4 py-2 text-[15px] font-semibold text-ink" style={{ background: `color-mix(in srgb, ${color} 30%, white)` }}>
+                {it}
+              </span>
+            ))}
+            {inside?.consult ? <span className="rounded-chip border border-dashed border-border px-4 py-2 text-[15px] text-muted">{dripBrowserCopy.atConsult}</span> : null}
+          </div>
+          <span className="text-[13px] text-muted">{dripBrowserCopy.tableNote}</span>
+          <SmartLink to={`${dripsHref}?compare=${d.slug}`} className="text-[14px] font-semibold text-link">
+            {dripCompareCopy.compareThis}
+          </SmartLink>
+        </div>}
+        <div className={cn("grid grid-cols-1 gap-3 rounded-card bg-paper p-6 md:p-8", x && "md:grid-cols-3")}>
+          <span className={cn("flex items-center justify-between gap-3 text-[13px] font-semibold text-muted", x && "md:col-span-3")}>
+            {dripCompareCopy.similar}
+            {x ? (
+              <SmartLink to={`${dripsHref}?compare=${d.slug}`} className="text-[14px] text-link">
+                {dripCompareCopy.compareThis}
+              </SmartLink>
+            ) : null}
+          </span>
+          {similar.map((s) => (
+            <SmartLink key={s.slug} to={dripRoute(s.slug)} className="group flex items-center gap-4 rounded-card-sm bg-white p-3.5 transition-shadow hover:shadow-[0_6px_20px_rgba(16,24,40,.08)]">
+              <Bag color={dripFamilies[s.f]} className="h-[56px] w-[37px]" />
+              <span className="flex min-w-0 flex-col">
+                <span className="text-[15px] font-semibold">{s.t} ›</span>
+                <span className="truncate text-[13px] text-muted">{s.d}</span>
+              </span>
+            </SmartLink>
+          ))}
+        </div>
+      </Section>
+
+      <Section>
+        <DripVisit />
+      </Section>
 
       {x ? (
         <Section className="grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
@@ -147,9 +204,8 @@ export default async function DripPage({ params }: Params) {
           </div>
         </Section>
       ) : (
-        <Section className="flex flex-col gap-6">
+        <Section>
           <p className="pretty max-w-[640px] text-[17px] leading-[1.55] text-secondary">{c.pending}</p>
-          <NumberedCards items={infusionSteps} />
         </Section>
       )}
 
