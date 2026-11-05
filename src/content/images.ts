@@ -83,7 +83,7 @@ export const images = {
   ironHero: u("hf_20260912_074608_821f2bd7-99fa-4c0a-91f9-20c88e407960.png"),
 
   /** Iron therapy page visit photo */
-  ironVisit: u("hf_20260911_055325_6dbe2234-4d5c-4269-a3d5-594369bb3cf3.png"),
+  ironVisit: u("hf_20260911_055325_a52ad731-f02d-4327-9bce-9b5e8afcade3.png"),
 
   logos: {
     tmu: "/logos/tmu-logo.webp",

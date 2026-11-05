@@ -24,11 +24,14 @@ const radii = { block: "rounded-block", card: "rounded-card", "card-sm": "rounde
 /**
  * Editorial photo block: object-fit cover, rounded corners, optional
  * protection gradient and overlay children (captions, pills).
+ *
+ * The photos are wide (about 16:9). In a tall frame, object-cover crops most of the width away, so `sizes` must
+ * ask for the width of the uncropped image, not of the frame, or the visible part is upscaled and looks blurry.
  */
 export function Photo({ src, alt, protect, ratio, radius = "card", className, imgClassName, style, priority, sizes = "(max-width: 768px) 100vw, 50vw", children, tint }: PhotoProps) {
   return (
     <div className={cn("relative overflow-hidden", radii[radius], className)} style={{ aspectRatio: ratio, background: tint, ...style }}>
-      <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className={cn("object-cover", imgClassName)} />
+      <Image src={src} alt={alt} fill priority={priority} sizes={sizes} quality={85} className={cn("object-cover", imgClassName)} />
       {protect ? <div aria-hidden className="absolute inset-0" style={{ background: "var(--photo-protection)" }} /> : null}
       {children}
     </div>

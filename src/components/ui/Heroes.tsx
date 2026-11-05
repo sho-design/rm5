@@ -71,7 +71,7 @@ export function SubPageHero({
           {children}
         </div>
       </div>
-      <Photo src={img} alt={imgAlt} radius="block" className="min-h-[320px] lg:min-h-[520px]" priority sizes="(max-width: 1024px) 100vw, 45vw">
+      <Photo src={img} alt={imgAlt} radius="block" className="min-h-[320px] lg:min-h-[520px]" priority sizes="(max-width: 1024px) 150vw, 70vw">
         {pills.length ? (
           <div className="absolute bottom-5 left-5 flex flex-wrap gap-1.5">
             {pills.map((p) => (

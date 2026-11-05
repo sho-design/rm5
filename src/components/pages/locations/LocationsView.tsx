@@ -97,7 +97,7 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
       <div role="tabpanel" id={`loc-panel-${loc.key}`} aria-labelledby={`loc-tab-${loc.key}`} className="scroll-mt-20">
         {/* Photo + detail */}
         <div className="grid grid-cols-1 items-stretch gap-block px-3 pt-6 md:px-content lg:grid-cols-[1.2fr_1fr]">
-          <Photo src={loc.img} alt={loc.name} radius="block" className="min-h-[300px] md:min-h-[420px] lg:min-h-[480px]" sizes="(max-width: 1024px) 100vw, 55vw" priority>
+          <Photo src={loc.img} alt={loc.name} radius="block" className="min-h-[300px] md:min-h-[420px] lg:min-h-[480px]" sizes="(max-width: 1024px) 150vw, 75vw" priority>
             {loc.soon ? <span className="absolute left-5 top-5 rounded-chip bg-sun px-3.5 py-[7px] text-[13px] font-semibold text-sun-ink">{c.soonPill}</span> : null}
           </Photo>
           <div className="flex flex-col gap-block">
@@ -165,7 +165,7 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
             {loc.tiles.map((s) => (
               <div key={s.key} className="flex flex-col gap-3.5">
                 <SmartLink to={s.key} className="block" aria-label={s.label}>
-                  <Photo src={s.img} alt="" ratio="4 / 5" radius="card-sm" tint={s.tint} sizes="(max-width: 768px) 50vw, 20vw" />
+                  <Photo src={s.img} alt="" ratio="4 / 5" radius="card-sm" tint={s.tint} sizes="(max-width: 768px) 100vw, 45vw" />
                 </SmartLink>
                 <div className="flex flex-1 flex-col gap-1.5 px-1">
                   <span className="display-tight text-[19px] leading-[1.05] tracking-[-.02em] md:text-[22px]">{s.label}</span>

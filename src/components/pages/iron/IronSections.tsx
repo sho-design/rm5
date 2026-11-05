@@ -53,7 +53,7 @@ export function IronSteps({ steps }: { steps: PathStep[] }) {
 export function IronVisit({ items, img, noteHref, accent }: { items: string[]; img: string; noteHref: string; accent: string }) {
   return (
     <Section className="grid grid-cols-1 gap-block lg:grid-cols-2 lg:items-stretch">
-      <Photo src={img} alt="" radius="block" className="min-h-[260px] md:min-h-[360px] lg:min-h-[480px]" tint="var(--rm-sage-tint)" sizes="(max-width: 1024px) 100vw, 50vw" />
+      <Photo src={img} alt="" radius="block" className="min-h-[260px] md:min-h-[360px] lg:min-h-[480px]" tint="var(--rm-sage-tint)" sizes="(max-width: 1024px) 150vw, 70vw" />
       <div className="flex flex-col justify-center gap-6 rounded-block border border-border bg-card p-6 md:p-10 lg:p-12">
         <Eyebrow tone="inherit" style={{ color: accent }}>
           The visit

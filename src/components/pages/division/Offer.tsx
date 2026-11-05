@@ -12,7 +12,7 @@ function Tile({ s, tint, big, book }: { s: DivisionService; tint: string; big?: 
     <div className={cn("relative flex flex-col justify-end overflow-hidden rounded-card", big ? "min-h-[600px] p-7" : "min-h-[200px] p-[22px]")} style={{ background: s.image ? "var(--rm-ink)" : tint }}>
       {s.image ? (
         <div className="absolute inset-0">
-          <Photo src={s.image} alt="" radius="none" protect className="h-full w-full" sizes={big ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 40vw"} />
+          <Photo src={s.image} alt="" radius="none" protect className="h-full w-full" sizes={big ? "(max-width: 768px) 150vw, 70vw" : "(max-width: 768px) 150vw, 60vw"} />
           {/* A deeper shade under the text: a low-vision tester could not read white text on the bright photos. */}
           <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, color-mix(in srgb, var(--rm-ink) 45%, transparent) 0%, color-mix(in srgb, var(--rm-ink) 85%, transparent) 100%)" }} />
         </div>
