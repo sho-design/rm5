@@ -19,13 +19,6 @@ const TEAM: [string, string, string, string?][] = [
   ["Hillary", "Registered Nurse", "Pain Centre"],
   ["Aastha", "Registered Nurse", "Infusion Therapy"],
   ["Karen", "Lab Manager", "Family Medicine", "Preceptor, laboratory learners"],
-  ["Daniel", "Registered Physiotherapist", "Rehab & Recovery"],
-  ["Priya", "Chiropractor", "Rehab & Recovery"],
-  ["Linh", "Registered Massage Therapist", "Rehab & Recovery"],
-  ["Marcus", "Kinesiologist", "Rehab & Recovery"],
-  ["Thu", "Aesthetic Nurse", "Medical Aesthetics"],
-  ["Jasmine", "Patient Coordinator", "Family Medicine, Pain Centre"],
-  ["Van", "Front Desk and Vietnamese Liaison", "Family Medicine"],
 ];
 
 const initialOf = (name: string): string => {

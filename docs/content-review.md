@@ -578,6 +578,15 @@ Clinic fact: iron infusions run on Tuesday, Saturday and Sunday; the assessment 
   Nurse lead to confirm the injection site and wording.
 - **"A shot or a drip?":** about 10 minutes for a single nutrient, against about 45 minutes for fluids with a blend.
 
+## Ultrasound and team (2026-11-05)
+
+- **Ultrasound:** the clinic uses Clarius wireless handheld scanners (L15 and C3), with no fluoroscopy.
+  - Joint injections now read "with wireless ultrasound guidance where it improves accuracy." (was "ultrasound or X-ray").
+  - The Pain Centre guidance fact now reads "Wireless ultrasound where it helps".
+  - The About equipment line now says "Two Clarius wireless handheld ultrasounds (L15 and C3)".
+- **Photo to replace:** the joint injection photo (Pain Centre "Joint injections" card and the Joint pain page) shows a cart ultrasound with a corded probe and a woman in navy scrubs, who reads as a doctor. Both conflict with clinic facts.
+- **Team:** Daniel, Priya, Linh, Marcus, Thu, Jasmine and Van were removed from the team page at the clinic's request. Rehab & Recovery has no one listed for now, so its filter chip and the "Our therapists" menu link are hidden.
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

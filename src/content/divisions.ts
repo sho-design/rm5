@@ -153,7 +153,7 @@ export const divisions: Record<NavKey, Division> = {
       { title: "Pain assessment", desc: "History, examination, a review of your imaging and a written plan. OHIP with a referral.", page: "painFirstVisit", image: images.services.pain[0] },
       { title: "Nerve blocks", desc: "Local anaesthetic, sometimes with an anti-inflammatory, placed around the nerve carrying the pain signal.", page: "painNerve", image: images.services.pain[1] },
       { title: "Trigger point injections", desc: "Injection into a tight, tender band of muscle. Usually under 20 minutes.", page: "painTrigger", image: images.services.pain[2] },
-      { title: "Joint injections", desc: "Knee, hip, shoulder and other painful joints, with ultrasound or X-ray guidance where it improves accuracy.", page: "painJoints", image: images.services.pain[3] },
+      { title: "Joint injections", desc: "Knee, hip, shoulder and other painful joints, with wireless ultrasound guidance where it improves accuracy.", page: "painJoints", image: images.services.pain[3] },
     ],
   },
   infusion: {
@@ -265,7 +265,6 @@ export const divisions: Record<NavKey, Division> = {
       { label: "WSIB intake", page: bookFor("rehab", "wsib") },
     ],
     more: [
-      { label: "Our therapists", page: "/about/team?service=Rehab%20%26%20Recovery" },
       { label: "Insurance & direct billing", page: "rehabBilling" },
       { label: "What to bring", page: "rehabBring" },
       { label: "Home exercise portal", page: "rehabHome" },

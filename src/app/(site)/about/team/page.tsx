@@ -20,7 +20,7 @@ export default async function TeamPage() {
   return (
     <>
       <TeamIntro />
-      <TeamGrid team={team} filters={[...teamFilters]} note={teamPage.photosNote} />
+      <TeamGrid team={team} filters={teamFilters.filter((f) => f === "All" || team.some((m) => m.divisions.includes(f)))} note={teamPage.photosNote} />
       <SmallBand title={teamPage.band.title} sub={teamPage.band.sub} cta={teamPage.band.cta} ctaTo="book" />
     </>
   );

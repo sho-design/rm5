@@ -220,7 +220,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
           { k: "First visit", v: "Pain assessment, about 20 min" },
           { k: "Procedures", v: "Nerve blocks, joint injections" },
           { k: "Coverage", v: "OHIP with a referral and health card" },
-          { k: "Guidance", v: "Ultrasound or X-ray where it helps" },
+          { k: "Guidance", v: "Wireless ultrasound where it helps" },
         ],
         tags: ["Back and neck", "OHIP"],
         cta: "Book a family medicine assessment",

@@ -143,7 +143,7 @@ export const careersWhy: ReasonEntry[] = [
   },
   {
     t: "Modern kit",
-    d: "Two Clarius handheld ultrasounds (L15 and C3) for guided procedures, one electronic chart across divisions, 10-lead ECG and bloodwork on site.",
+    d: "Two Clarius wireless handheld ultrasounds (L15 and C3) for guided procedures, one electronic chart across divisions, 10-lead ECG and bloodwork on site.",
   },
   {
     t: "Learn across divisions",
