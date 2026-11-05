@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Button, Display, Eyebrow, Section } from "@/components/ui";
-import { InfusionBand, InfusionHeader, InfusionSmallPrint, NumberedCards } from "@/components/pages/infusion/InfusionBits";
-import { infusionCopy, memberships, pricingPrinciples } from "@/content/infusion-site";
+import { InfusionBand, InfusionHeader, InfusionSmallPrint } from "@/components/pages/infusion/InfusionBits";
+import { CoverSplit, PriceGuide, PricingPrinciples, RhythmRow } from "@/components/pages/infusion/PricingVisuals";
+import { infusionCopy, memberships } from "@/content/infusion-site";
 import { bookFor } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
 
@@ -16,8 +17,10 @@ export default function InfusionPricingPage() {
     <>
       <InfusionHeader pageKey="infusionPricing" page="Pricing" eyebrow={c.eyebrow} title={c.title} lead={c.lead} />
       <Section className="pt-10 md:pt-12">
-        <NumberedCards items={pricingPrinciples} />
+        <PricingPrinciples />
       </Section>
+      <CoverSplit />
+      <PriceGuide />
       <Section id="memberships" className="scroll-mt-6">
         <div className="grid grid-cols-1 gap-8 rounded-card bg-inverse p-6 text-on-inverse md:p-10 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
           <div className="flex flex-col gap-3">
@@ -37,6 +40,7 @@ export default function InfusionPricingPage() {
               ))}
             </ul>
             <span className="text-[13px] text-white/60">{memberships.note}</span>
+            <RhythmRow />
           </div>
         </div>
       </Section>

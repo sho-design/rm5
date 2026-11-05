@@ -332,3 +332,31 @@ export const infusionPages: { key: PageKey; title: string; description: string }
   { key: "infusionPricing", title: infusionCopy.pricing.title, description: infusionCopy.pricing.lead },
   { key: "infusionTeam", title: infusionTeam.title, description: infusionTeam.lead },
 ];
+
+/** Pricing page graphics (2026-11-05). Iron prices are clinic facts; the drip "from" price is the prototype's
+ *  lowest drip fee (Hydration, $150) and needs clinic confirmation for the new drip names. */
+export const pricingVisual = {
+  coverTitle: draft("Who pays for what."),
+  covered: {
+    t: draft("Covered by OHIP"),
+    big: "$0",
+    items: [draft("Iron assessment with a physician"), draft("Bloodwork for iron, done on site")],
+    note: draft("Ontario health card required"),
+  },
+  selfPay: {
+    t: draft("You pay, receipt provided"),
+    big: "$",
+    items: [draft("IV drips"), draft("Injection Bar shots"), draft("Iron infusion visits")],
+    note: draft("Prices include HST. Many private plans cover the iron itself."),
+  },
+  guideTitle: draft("A price guide, per visit."),
+  guideSub: draft("HST included. Your written plan at the consult has the exact amount."),
+  scaleMax: 600,
+  guide: [
+    { t: draft("IV drips"), sub: draft("From"), price: 150, label: "$150", tone: "sky", page: "drips" },
+    { t: draft("Iron infusion, your own iron"), sub: draft("Administration only"), price: 250, label: "$250", tone: "sage", page: "iron" },
+    { t: draft("Iron infusion, our Monoferric 500 mg"), sub: draft("Iron, nursing and monitoring"), price: 550, label: "$550", tone: "sage", page: "iron" },
+  ],
+  guideNote: draft("Drip prices vary by drip and are confirmed at your consult. An iron course is 3 visits."),
+  rhythmLabel: draft("A steady rhythm"),
+};

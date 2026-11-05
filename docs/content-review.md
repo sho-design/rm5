@@ -487,6 +487,29 @@ Clinic fact: iron infusions run on Tuesday, Saturday and Sunday; the assessment 
 - **Latest start (clinic answer, 2026-11-04):** 6:30pm Tuesday, 1pm Saturday, 11am Sunday. The day cards show "Last start …" with "Open …" underneath, and each planner visit says "Start by …". Saturday reads "Daytime" instead of "All day".
 - **New FAQ:** "Which days are infusions?" / "Tuesday, Saturday and Sunday at Thornhill. A visit takes about 3 hours, so the last start is 6:30pm on Tuesday, 1pm on Saturday and 11am on Sunday. Your assessment can be on any day we are open."
 
+## Infusion pricing page graphics (2026-11-05)
+
+- **Principles:** shown as four icon cards (same text as before).
+- **"Who pays for what.":**
+  - "Covered by OHIP" ($0): "Iron assessment with a physician", "Bloodwork for iron, done on site", "Ontario health card required".
+  - "You pay, receipt provided": "IV drips", "Injection Bar shots", "Iron infusion visits", "Prices include HST. Many private plans cover the iron itself."
+- **"A price guide, per visit."** / "HST included. Your written plan at the consult has the exact amount." Bars on one scale:
+  - "IV drips" from $150. This is the prototype's lowest drip fee (Hydration); confirm it for the new drip names, or remove the row.
+  - "Iron infusion, your own iron" $250.
+  - "Iron infusion, our Monoferric 500 mg" $550.
+
+  Note: "Drip prices vary by drip and are confirmed at your consult. An iron course is 3 visits."
+- **Memberships:** a decorative twelve-month "A steady rhythm" row, no numbers. The membership wording itself ("Priority booking") is still on the compliance list.
+
+## Footer redesign (2026-11-05)
+
+- Each clinic card has a map that loads from Google only when "Show map" is tapped (nothing from Google loads before that), plus "Directions ›".
+- Division colour dots on the link columns.
+- Links grouped into "For patients", "For doctors" ("Send a referral") and "Policies".
+- Text size and contrast in an "Easier to read" card.
+- A dark sign-off band with "Refined by Medicine." and the land acknowledgement.
+- The privacy policy should mention that the map, when opened, loads from Google (privacy officer).
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

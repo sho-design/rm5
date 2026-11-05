@@ -285,3 +285,9 @@
 @media (max-width: 479px) {
   :root[data-text] .rm-contact-tiles { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Pricing bars grow in once (pricing page). Motion only when the visitor has not asked to reduce it. */
+@keyframes rm-grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: no-preference) {
+  .rm-grow-x { transform-origin: left center; animation: rm-grow-x 400ms cubic-bezier(.2,.8,.2,1) both; }
+}
