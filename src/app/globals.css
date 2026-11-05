@@ -299,3 +299,11 @@
   .rm-drop { animation: rm-drop 1.8s cubic-bezier(.4,0,.6,1) infinite; }
   .rm-sway { animation: rm-sway 6s ease-in-out infinite; }
 }
+
+/* Injection Bar: vials rise onto the shelf once, and the detail card fades in on change. */
+@keyframes rm-rise { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes rm-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .rm-rise { animation: rm-rise 400ms cubic-bezier(.2,.8,.2,1) both; }
+  .rm-fade { animation: rm-fade 300ms cubic-bezier(.2,.8,.2,1) both; }
+}

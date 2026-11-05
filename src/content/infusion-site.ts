@@ -438,3 +438,47 @@ export const dripCompareCopy = {
   similar: draft("Similar drips"),
   compareThis: draft("Compare with other drips ›"),
 };
+
+/** Injection Bar page (2026-11-05). Groups describe what is in each shot. Notes repeat what the site already says
+ *  (biotin and blood tests, NAD+ evidence, program add-ons only inside the physician-supervised program). */
+export const shotGroups = {
+  Vitamins: "#F5C451",
+  "Antioxidant and coenzyme": "#F0955C",
+  "Amino acids": "#9BD0E0",
+  "Program add-ons": "#6FB4E8",
+} as const;
+export type ShotGroup = keyof typeof shotGroups;
+export const shotInfo: Record<string, { g: ShotGroup; note?: string; program?: boolean }> = {
+  B12: { g: "Vitamins" },
+  "B-Complex": { g: "Vitamins" },
+  "Vitamin D": { g: "Vitamins" },
+  "Vitamin C + Zinc": { g: "Vitamins" },
+  Biotin: { g: "Vitamins", note: draft("Tell us before any blood test, as biotin can affect some results.") },
+  Glutathione: { g: "Antioxidant and coenzyme" },
+  "NAD+": { g: "Antioxidant and coenzyme", note: draft("The evidence for NAD+ is still developing.") },
+  "Amino blend": { g: "Amino acids" },
+  "MIC blend": { g: "Program add-ons", program: true, note: draft("Only as part of our physician-supervised program.") },
+  "L-Carnitine": { g: "Program add-ons", program: true, note: draft("Only as part of our physician-supervised program.") },
+};
+export const shotBar = {
+  eyebrow: draft("The bar"),
+  title: draft("Tap a vial."),
+  lead: draft("Ten shots, each a single vitamin, mineral or nutrient. Every one starts with a short screening, and your nurse confirms the dose with you."),
+  all: draft("All shots"),
+  time: draft("About 10 minutes"),
+  screened: draft("Screened first"),
+  book: draft("Book this shot"),
+  program: draft("About the program ›"),
+  visitEyebrow: draft("A shot visit"),
+  visitTitle: draft("About 10 minutes, start to finish."),
+  visit: [
+    { t: draft("Screening"), d: draft("A few questions with your nurse, and your vitals if needed.") },
+    { t: draft("Your shot"), d: draft("A quick injection, usually in the upper arm.") },
+    { t: draft("Back to your day"), d: draft("No recovery time. Tell us if anything feels off afterwards.") },
+  ],
+  vsTitle: draft("A shot or a drip?"),
+  vs: [
+    { t: draft("A shot"), big: draft("About 10 minutes"), d: draft("A single vitamin, mineral or nutrient, in one quick injection."), page: "shots" },
+    { t: draft("A drip"), big: draft("About 45 minutes"), d: draft("Fluids with a blend of nutrients, in a lounge chair."), page: "drips" },
+  ],
+};

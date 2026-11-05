@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui";
-import { InfusionBand, InfusionHeader, InfusionSmallPrint, NumberedCards, ShotGrid } from "@/components/pages/infusion/InfusionBits";
-import { infusionCopy, infusionPages, infusionSteps, shots } from "@/content/infusion-site";
+import { InfusionBand, InfusionHeader, InfusionSmallPrint } from "@/components/pages/infusion/InfusionBits";
+import { ShotBar } from "@/components/pages/infusion/ShotBar";
+import { ShotExtras } from "@/components/pages/infusion/ShotExtras";
+import { infusionCopy, infusionPages } from "@/content/infusion-site";
 import { pageMetadata } from "@/lib/seo";
 
 const meta = infusionPages.find((p) => p.key === "shots");
@@ -20,10 +22,10 @@ export default function InjectionBarPage() {
         <p className="pretty mb-6 max-w-[640px] rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[15px] font-semibold leading-[1.5] text-ink">
           {infusionCopy.drip.shotsUnwell}
         </p>
-        <ShotGrid shots={shots} />
+        <ShotBar />
       </Section>
-      <Section className="flex flex-col gap-6">
-        <NumberedCards items={infusionSteps} />
+      <Section>
+        <ShotExtras />
       </Section>
       <InfusionSmallPrint extra={infusionCopy.wellnessNote} />
       <InfusionBand />

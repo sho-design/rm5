@@ -563,6 +563,21 @@ Clinic fact: iron infusions run on Tuesday, Saturday and Sunday; the assessment 
 - **Step 3:** "Usually 3 visits, one to two weeks apart; your physician may direct 1 or 2." Hero pill: "Usually 3 visits, about 3 hours each".
 - Also updated: the pricing page guide (Venofer $400 added), the family medicine low-energy path ("$400 per visit with our Venofer"), and the infusion hub ("usually 3 infusion visits").
 
+## Injection Bar page (2026-11-05)
+
+- **"The bar" / "Tap a vial.":** a dark shelf of ten vials, coloured by group and filtered by group chips. The groups are Vitamins (B12, B-Complex, Vitamin D, Vitamin C + Zinc, Biotin), Antioxidant and coenzyme (Glutathione, NAD+), Amino acids (Amino blend) and Program add-ons (MIC blend, L-Carnitine).
+- **Detail panel:** group, name, the existing one-line description, "About 10 minutes", "Screened first", any note and "Book this shot".
+  - Notes: Biotin "Tell us before any blood test, as biotin can affect some results."; NAD+ "The evidence for NAD+ is still developing."
+  - Program add-ons say "Only as part of our physician-supervised program." and link to the program instead of offering booking.
+- **Lead:** "Ten shots, each a single vitamin, mineral or nutrient. Every one starts with a short screening, and your nurse confirms the dose with you."
+- **"A shot visit" / "About 10 minutes, start to finish.":**
+  1. Screening, "A few questions with your nurse, and your vitals if needed."
+  2. Your shot, "A quick injection, usually in the upper arm."
+  3. Back to your day, "No recovery time. Tell us if anything feels off afterwards."
+
+  Nurse lead to confirm the injection site and wording.
+- **"A shot or a drip?":** about 10 minutes for a single nutrient, against about 45 minutes for fluids with a blend.
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.
