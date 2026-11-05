@@ -13,6 +13,8 @@ const csp = [
   "img-src 'self' data: blob: https://*.public.blob.vercel-storage.com https://d8j0ntlcm91z4.cloudfront.net https://www.googletagmanager.com https://*.google-analytics.com",
   "font-src 'self' data:",
   "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
+  // Google Maps loads only when a visitor taps "Show map" (LocationMap).
+  "frame-src https://www.google.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

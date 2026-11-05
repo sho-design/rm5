@@ -8,19 +8,14 @@ import { OpenBadge } from "./OpenBadge";
 import { FooterIcons } from "./SocialIcons";
 import { TextControls } from "./TextControls";
 import { ConsentSettingsLink } from "./ConsentBanner";
+import { LocationMap } from "./LocationMap";
+import { divisionDot } from "@/content/divisions";
 
-const legalLinks: [string, string][] = [
-  ["Contact", routes.contact],
-  ["New patients", routes.register],
-  ["Your year", routes.year],
-  ["Know your numbers", routes.numbers],
-  ["For referring doctors", routes.referrals],
-  ["Fees", routes.fees],
-  ["Privacy policy", routes.privacy],
-  ["Accessibility statement", routes.accessibility],
-  ["Patient rights", routes.rights],
-  ["Terms of use", routes.terms],
-  ["Sitemap", routes.sitemap],
+/** Grouped so the eleven loose links read as three short lists. */
+const linkGroups: { t: string; links: [string, string][] }[] = [
+  { t: "For patients", links: [["New patients", routes.register], ["Contact", routes.contact], ["Fees", routes.fees], ["Your year", routes.year], ["Know your numbers", routes.numbers]] },
+  { t: "For doctors", links: [["Send a referral", routes.referrals]] },
+  { t: "Policies", links: [["Privacy policy", routes.privacy], ["Accessibility statement", routes.accessibility], ["Patient rights", routes.rights], ["Terms of use", routes.terms], ["Sitemap", routes.sitemap]] },
 ];
 
 /**
@@ -51,6 +46,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
             <br />
             {thornhill.addressLines[1]}
           </a>
+          <LocationMap query="Restoration Medical, 700 Centre St, Thornhill, ON L4J 0A7" label={thornhill.name} directions={external.thornhillMaps} className="h-[150px]" />
           <span>
             Mon, Wed, Thu 9am to 4pm
             <br />
@@ -76,6 +72,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
             <br />
             {maple.addressLines[1]}
           </a>
+          <LocationMap query="2620 Rutherford Rd, Vaughan, ON L4K 0H1" label={maple.name} directions={external.mapleMaps} className="h-[150px]" />
           <span className="flex-1">Family Medicine, Pain Centre, Infusion Therapy and Rehab. The Maple list is open now.</span>
           <Link href={`${routes.locations}#maple-waitlist`} className="w-full border-t border-border pt-1.5 font-semibold text-link">
             Join the Maple list ›
@@ -103,12 +100,13 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
           const d = divisions[k];
           const links = k === "about" ? d.explore.filter((e) => ["Our team", "Our clinics", "Health notes", "FAQ"].includes(e.label)) : d.explore.slice(1, 5);
           return (
-            <div key={k} className="flex flex-col gap-[9px] text-[13px]">
-              <Link href={href(k)} className="mb-1 font-semibold text-primary">
-                {d.label}
+            <div key={k} className="flex flex-col gap-2.5 text-[14px]">
+              <Link href={href(k)} className="group mb-1 flex items-center gap-2 font-semibold text-primary">
+                <span aria-hidden className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: divisionDot[d.label] ?? "var(--rm-ink)" }} />
+                <span className="group-hover:underline group-hover:underline-offset-4">{d.label}</span>
               </Link>
               {links.map((l) => (
-                <Link key={l.label} href={href(l.page)} className="text-muted hover:text-primary">
+                <Link key={l.label} href={href(l.page)} className="w-fit text-muted transition-colors hover:text-primary">
                   {l.label}
                 </Link>
               ))}
@@ -117,21 +115,36 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
         })}
       </nav>
 
-      <div className="flex flex-col gap-3 border-t border-border pt-6">
-        <div className="flex flex-wrap justify-between gap-6 text-[12px]">
-          <div className="flex flex-wrap gap-x-[18px] gap-y-2 text-muted">
-            {legalLinks.map(([label, to]) => (
-              <Link key={label} href={to} className="hover:text-primary">
-                {label}
-              </Link>
-            ))}
-            {analytics ? <ConsentSettingsLink className="hover:text-primary" /> : null}
-          </div>
-          {/* Wraps at larger text: "High contrast" ran off the screen on a small phone. */}
+      <div className="grid grid-cols-1 gap-8 border-t border-border pt-8 md:grid-cols-[1fr_auto]">
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+          {linkGroups.map((g) => (
+            <div key={g.t} className="flex flex-col gap-2.5 text-[13px]">
+              <span className="text-[12px] font-semibold text-primary">{g.t}</span>
+              {g.links.map(([label, to]) => (
+                <Link key={label} href={to} className="w-fit text-muted transition-colors hover:text-primary">
+                  {label}
+                </Link>
+              ))}
+              {g.t === "Policies" && analytics ? <ConsentSettingsLink className="w-fit text-left text-muted hover:text-primary" /> : null}
+            </div>
+          ))}
+        </div>
+        {/* Wraps at larger text: "High contrast" ran off the screen on a small phone. */}
+        <div className="flex flex-col gap-2.5 self-start rounded-[20px] border border-border bg-raised p-4 text-[13px]">
+          <span className="text-[12px] font-semibold text-primary">Easier to read</span>
           <TextControls className="flex-wrap" />
         </div>
-        <span className="text-[12px] text-muted">© 2026 Restoration Medical. Refined by Medicine.</span>
-        <span className="pretty text-[12px] leading-[1.55] text-muted">{site.landAcknowledgement}</span>
+      </div>
+
+      {/* Sign-off band. */}
+      <div className="flex flex-col gap-5 rounded-[24px] bg-ink p-6 text-white md:p-8">
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <span className="font-display text-[34px] font-medium leading-none tracking-[-.03em] md:text-[44px]">
+            Refined by <span className="text-sun">Medicine.</span>
+          </span>
+          <span className="text-[13px] text-white/70">© 2026 Restoration Medical</span>
+        </div>
+        <span className="pretty border-t border-white/15 pt-4 text-[12px] leading-[1.6] text-white/65">{site.landAcknowledgement}</span>
       </div>
     </footer>
   );
