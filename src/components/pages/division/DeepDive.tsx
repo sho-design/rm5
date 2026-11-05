@@ -45,7 +45,7 @@ export function DeepDive({ k, division, dive }: { k: DivisionKey; division: Divi
         </Grid>
       </Section>
 
-      <PathSteps title={dive.pathTitle} steps={dive.path} cta={cta} ctaTo={ctaTo} />
+      <PathSteps title={dive.pathTitle} steps={dive.path} />
 
       <Faq items={dive.faq} />
 

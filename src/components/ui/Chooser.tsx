@@ -86,7 +86,7 @@ export function Chooser({
           </div>
         ) : null}
       </div>
-      <ResultCard tags={r.tags} tagTint={tint} title={r.title} p={r.p} facts={r.facts} cta={r.cta} ctaTo={r.ctaPage ?? ctaTo} link={r.link} linkTo={r.linkPage} />
+      <ResultCard tags={r.tags} tagTint={tint} title={r.title} p={r.p} facts={r.facts} cta={r.cta} ctaTo={r.ctaPage ?? ctaTo} link={r.linkPage && r.linkPage === (r.ctaPage ?? ctaTo) ? undefined : r.link} linkTo={r.linkPage} />
     </section>
   );
 }

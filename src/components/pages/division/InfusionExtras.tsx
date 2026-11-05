@@ -137,10 +137,7 @@ export function InfusionHandoff({ links }: { links: InfusionLink[] }) {
           {h.p}
         </Lead>
         <div className="flex flex-wrap gap-2.5">
-          <Button to="drips" variant="accent" trailing>
-            {h.cta}
-          </Button>
-          <Button to={bookFor("infusion")} variant="outline-inverse">
+          <Button to={bookFor("infusion")} variant="accent">
             {h.cta2}
           </Button>
         </div>

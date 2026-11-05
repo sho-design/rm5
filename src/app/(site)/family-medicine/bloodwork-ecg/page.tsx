@@ -71,8 +71,6 @@ export default function BloodworkPage() {
         title="One trip. Doctor, requisition, draw."
         sub="Most checkups end at the lab chair down the hall. Results reach your doctor in about a week, and you hear either way."
         cta="Book a checkup"
-        link="Know your numbers"
-        linkTo="numbers"
         tint={tint}
         subClassName="text-sage-ink"
       />

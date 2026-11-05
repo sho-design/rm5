@@ -193,7 +193,7 @@ const pain: Topic[] = [
       items: [
         { t: svc(PD, 1).title, d: svc(PD, 1).desc, link: draft("About nerve blocks"), page: "painNerve" },
         { t: svc(PD, 3).title, d: svc(PD, 3).desc, link: draft("About joint pain"), page: "painJoints" },
-        { t: result(P, 4).title, d: result(P, 4).p, link: draft("About nerve blocks"), page: "painNerve" },
+        { t: result(P, 4).title, d: result(P, 4).p },
       ],
     },
     path: painPath,
@@ -682,8 +682,6 @@ const family: Topic[] = [
     description: fit(`Lab results at Restoration Medical in Thornhill. ${fq("How do I get my results?").a}`),
     cta: "Book a visit",
     ctaTo: bookFor("family"),
-    cta2: "Bloodwork on site",
-    cta2To: "blood",
     img: images.services.family[5],
     imgAlt: draft("Lab technician labelling a blood sample"),
     faq: [fq("How do I get my results?"), fq("How long does bloodwork take?"), fq("Can I get a copy of my records?")],
@@ -740,7 +738,6 @@ const family: Topic[] = [
       title: draft("Related."),
       items: [
         { t: draft("Children and youth"), d: draft("Vaccines by age and school forms"), page: "kids" },
-        { t: draft("Pregnancy care"), d: draft("From the first visit to the referral"), page: "pregnancy" },
         { t: draft("Your year of staying well"), d: draft("Screenings and vaccines by age"), page: "year" },
       ],
     },
