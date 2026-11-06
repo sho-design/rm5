@@ -1,4 +1,4 @@
-import { aesConcerns, aesCopy as c } from "@/content/aesthetics-menu";
+import { aesConcerns, aesCopy as c, aesFamilies, aesTreatments, type AesFamily } from "@/content/aesthetics-menu";
 import { Display, Eyebrow, Section, SmartLink } from "@/components/ui";
 import { routes } from "@/lib/routes";
 
@@ -10,6 +10,9 @@ export function AesConcerns({ title = c.concernsTitle }: { title?: string }) {
         <Eyebrow>{c.concernsEyebrow}</Eyebrow>
         <Display size="sm">{title}</Display>
         <p className="pretty max-w-[640px] text-[16px] leading-[1.55] text-secondary">{c.concernsLead}</p>
+        <SmartLink to={`${routes.aesMenu}#plan`} className="text-[15px] font-semibold text-link">
+          {c.planLink} ›
+        </SmartLink>
       </div>
       <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
         {aesConcerns.map((x) => (
@@ -69,6 +72,52 @@ export function AesCandidacy() {
           </div>
         ))}
       </div>
+    </Section>
+  );
+}
+
+/** The six treatment families as colour cards, each opening the menu filtered to that family. */
+export function AesFamilies() {
+  const fams = Object.keys(aesFamilies) as AesFamily[];
+  return (
+    <Section className="flex flex-col gap-6">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-8">
+        <div className="flex flex-col gap-2">
+          <Eyebrow>{c.menuEyebrow}</Eyebrow>
+          <Display size="sm">{c.menuTitle}</Display>
+        </div>
+        <SmartLink to={`${routes.aesMenu}#menu`} className="text-[15px] font-semibold text-link">
+          {c.seeMenu} ›
+        </SmartLink>
+      </div>
+      <ul className="grid grid-cols-1 gap-card sm:grid-cols-2 lg:grid-cols-3">
+        {fams.map((f, i) => {
+          const items = aesTreatments.filter((t) => t.family === f);
+          return (
+            <li key={f} className="rm-rise" style={{ animationDelay: `${i * 70}ms` }}>
+              <SmartLink
+                to={`${routes.aesMenu}?family=${f}#menu`}
+                className="group relative flex h-full flex-col gap-4 overflow-hidden rounded-card border border-border bg-card p-6 motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] hover:-translate-y-1"
+              >
+                <span aria-hidden className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-60 motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-125" style={{ background: aesFamilies[f].color }} />
+                <span className="relative flex items-center gap-2 text-[13px] font-semibold text-muted">
+                  <span aria-hidden className="h-3 w-3 rounded-full" style={{ background: aesFamilies[f].color }} />
+                  {c.count(items.length)}
+                </span>
+                <span className="relative display-tight text-[28px]">{aesFamilies[f].t}</span>
+                <span className="relative pretty text-[15px] leading-[1.5] text-secondary">{aesFamilies[f].d}</span>
+                <span className="relative mt-auto flex flex-wrap gap-1.5">
+                  {items.slice(0, 3).map((t) => (
+                    <span key={t.id} className="rounded-chip bg-raised px-3 py-1 text-[13px] font-semibold">
+                      {t.brand ?? t.name}
+                    </span>
+                  ))}
+                </span>
+              </SmartLink>
+            </li>
+          );
+        })}
+      </ul>
     </Section>
   );
 }

@@ -605,6 +605,24 @@ Adapted from the clinic's Medical Aesthetics guide site (ma1-indol.vercel.app) a
   - **Free consult.** Is the consult complimentary?
   - **Memberships.** Should the Essentials, Refined and Signature tiers appear on the site?
 
+## Patient-first landing pages (2026-11-06)
+
+- **Every service page now opens with the patient:**
+  - Family Medicine, "Tell us what brings you in."
+  - Pain Centre, "Pain that has lasted longer than three months"
+  - Infusion Therapy, "Start with how you feel."
+  - Medical Aesthetics, "Start with what you notice."
+  - Rehab & Recovery, "Tell us your situation."
+
+  "What we offer" now follows.
+- **Infusion Therapy:** the bento grid and the build-your-drip box are replaced by three cards that lead with the patient's situation. Each card has the moving art of its page and how long it takes:
+  - "You would like fluids and vitamins, in a calm hour." (Drips, about 45 minutes)
+  - "You would like one nutrient, such as B12, without a long visit." (The Injection Bar, about 10 minutes)
+  - "You feel tired all the time, and low iron may be why." (Iron therapy, about 3 hours a visit, Tuesday, Saturday or Sunday)
+
+  The builder listed Hydration $150, Vitamin blend $200, Recovery $200 and a Vitamin C add-on $40. Those did not match the nine named drips, or the drips page's "prices confirmed at your consult". If the clinic wants drip prices online, confirm them per drip first.
+- **Medical Aesthetics:** after "Lightest option first", a new "Six families, one clinical standard." row has one card per family, each opening the menu filtered to it. The concern section links to the goal planner ("Not sure of the name? Plan by goal").
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.

@@ -17,9 +17,11 @@ export function AesMenu() {
   const [fam, setFam] = useState(0);
   const [con, setCon] = useState(0);
   useEffect(() => {
-    const want = new URLSearchParams(window.location.search).get("concern");
-    const i = aesConcerns.findIndex((x) => x.k === want);
+    const q = new URLSearchParams(window.location.search);
+    const i = aesConcerns.findIndex((x) => x.k === q.get("concern"));
     if (i >= 0) setCon(i + 1);
+    const f = families.indexOf(q.get("family") as AesFamily);
+    if (f >= 0) setFam(f + 1);
   }, []);
   const famKey = fam ? families[fam - 1] : null;
   const conKey = con ? aesConcerns[con - 1].k : null;

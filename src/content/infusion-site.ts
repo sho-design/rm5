@@ -482,3 +482,40 @@ export const shotBar = {
     { t: draft("A drip"), big: draft("About 45 minutes"), d: draft("Fluids with a blend of nutrients, in a lounge chair."), page: "drips" },
   ],
 };
+
+/**
+ * Infusion landing: three ways in (Nov 2026). Replaces the bento and the build-your-drip box, whose fixed drip
+ * prices did not match the drips page ("confirmed at your consult"). Times are clinic facts used elsewhere.
+ */
+export const infusionDoors = [
+  {
+    k: "drips" as const,
+    who: draft("You would like fluids and vitamins, in a calm hour."),
+    kind: draft("Wellness, elective"),
+    t: draft("Drips"),
+    time: draft("About 45 minutes"),
+    d: draft("Nine drips, grouped by what is in them. Mixed by your nurse at the visit, after screening."),
+    cta: draft("Find your drip"),
+    to: "drips",
+  },
+  {
+    k: "shots" as const,
+    who: draft("You would like one nutrient, such as B12, without a long visit."),
+    kind: draft("Wellness, elective"),
+    t: draft("The Injection Bar"),
+    time: draft("About 10 minutes"),
+    d: draft("Ten single-nutrient shots, such as B12 and vitamin D. Screened first, then a quick injection."),
+    cta: draft("Tap a vial"),
+    to: "shots",
+  },
+  {
+    k: "iron" as const,
+    who: draft("You feel tired all the time, and low iron may be why."),
+    kind: draft("Clinical, physician-reviewed"),
+    t: draft("Iron therapy"),
+    time: draft("About 3 hours a visit"),
+    d: draft("For low iron when tablets have not been enough. Assessment and bloodwork are OHIP-insured. Infusions on Tuesday, Saturday or Sunday."),
+    cta: draft("Plan your course"),
+    to: "iron",
+  },
+];

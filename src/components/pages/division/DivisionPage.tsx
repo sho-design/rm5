@@ -7,7 +7,9 @@ import type { DivisionKey, NavKey } from "@/content/types";
 import { AboutTeaching } from "./AboutTeaching";
 import { DeepDive } from "./DeepDive";
 import { Hero } from "./Hero";
-import { InfusionGrid, InfusionHero } from "./InfusionExtras";
+import { InfusionHero } from "./InfusionExtras";
+import { AesConcerns } from "@/components/pages/aesthetics/AesSections";
+import { DeepDiveChooser } from "./DeepDiveChooser";
 import { Offer } from "./Offer";
 import { SubNav } from "./SubNav";
 
@@ -55,7 +57,8 @@ export function DivisionPage({ k }: { k: NavKey }) {
       {isInfusion ? (
         <>
           <InfusionHero />
-          <InfusionGrid />
+          {/* Patient first: how you feel comes before any list of services. */}
+          <DeepDiveChooser k="infusion" dive={deepDives.infusion} />
         </>
       ) : (
         <>
@@ -71,6 +74,8 @@ export function DivisionPage({ k }: { k: NavKey }) {
             cta2To={d.cta2Page}
             helper={painHelper}
           />
+          {/* Patient first: their concern or situation, then what we offer for it. */}
+          {k === "aesthetics" ? <AesConcerns /> : !isAbout ? <DeepDiveChooser k={k as DivisionKey} dive={deepDives[k as DivisionKey]} /> : null}
           <Offer services={d.services ?? []} division={k} />
         </>
       )}

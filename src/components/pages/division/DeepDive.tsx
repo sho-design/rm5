@@ -6,11 +6,10 @@ import type { Division, DivisionKey } from "@/content/types";
 import { bookFor } from "@/lib/routes";
 import { AmIDue } from "./AmIDue";
 import { CoverageChecker } from "./CoverageChecker";
-import { DeepDiveChooser } from "./DeepDiveChooser";
 import { CompareTable, InfusionHandoff } from "./InfusionExtras";
 import { Ladder } from "./Ladder";
-import { DripBuilder } from "./DripBuilder";
-import { AesConcerns } from "@/components/pages/aesthetics/AesSections";
+import { AesFamilies } from "@/components/pages/aesthetics/AesSections";
+import { InfusionDoors } from "@/components/pages/infusion/InfusionDoors";
 
 /**
  * The deep-dive sections that follow every division page: chooser, the
@@ -23,19 +22,23 @@ export function DeepDive({ k, division, dive }: { k: DivisionKey; division: Divi
   const ctaTo = division.ctaPage ?? foot?.ctaPage ?? bookFor(k);
   return (
     <>
-      {/* Aesthetics opens the menu by concern (nine cards) instead of the single-pick chooser. */}
-      {k === "aesthetics" ? <AesConcerns /> : <DeepDiveChooser k={k} dive={dive} />}
+      {/* The concern chooser now opens the page (DivisionPage), ahead of the services. */}
 
       {k === "family" ? <AmIDue /> : null}
-      {/* Infusion funnel: how you feel, then the menu, then build a drip, then how it works here. */}
+      {/* Infusion funnel: how you feel, then the menu, then how it works here. The build-a-drip box was removed: its fixed prices did not match the drips page. */}
       {k === "infusion" ? (
         <>
+          <InfusionDoors />
           <InfusionHandoff links={infusionLinks} />
-          <DripBuilder />
           <CompareTable rows={infusionCompareRows} />
         </>
       ) : null}
-      {k === "aesthetics" ? <Ladder rungs={aestheticsLadder} /> : null}
+      {k === "aesthetics" ? (
+        <>
+          <Ladder rungs={aestheticsLadder} />
+          <AesFamilies />
+        </>
+      ) : null}
       {k === "rehab" ? <CoverageChecker options={rehabCoverage} /> : null}
 
       <Section className="flex flex-col gap-5">
