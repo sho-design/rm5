@@ -61,3 +61,12 @@ Visit keys accepted in booking links (`/book?service=rehab&visit=physio`) are li
 ## renewal, careers, Maple waitlist
 
 Same keys as before.
+
+## Gift cards (Square eGift Cards)
+
+Medical Aesthetics gift cards are sold on the clinic's hosted Square eGift Card page. The buyer chooses an amount and pays on Square's checkout, and Square emails the card. No payment or personal details pass through this site.
+
+- **Find the link:** in the Square Dashboard, go to Gift Cards, then eGift Cards, and copy the link to your eGift Card page. It looks like `https://squareup.com/gift/XXXXXXXX/order` or a `square.link` short link.
+- **Set it:** add `NEXT_PUBLIC_SQUARE_GIFT_URL` to the Vercel project, for Production, then redeploy. Only Square addresses are accepted (`src/lib/giftcards.ts`).
+- **What changes:** with the link set, `/medical-aesthetics/gift-cards` shows "Buy an eGift card" (it opens Square in a new tab), then "Call the clinic". Without it, the page keeps "Call the clinic" and the front desk details.
+- **Optional:** the Square connector in claude.ai lets Claude look up gift card activity and settings. Selling does not need it.
