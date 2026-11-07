@@ -48,13 +48,26 @@ const comparePage: Partial<Record<NavKey, string>> = { aesthetics: "aesPricing",
 export function Offer({ services, division }: { services: DivisionService[]; division: NavKey }) {
   // About pages (story, standards, team) are not bookable, so their tiles have no Book button.
   const book = division === "about" ? undefined : bookFor(division);
-  if (!services.length) return null;
-  const [first, ...rest] = services;
+  // Family Medicine: "New patients" is already the first answer in the chooser above, so it is not repeated here,
+  // and its six services sit in an even grid instead of one tall feature beside a long stack.
+  const even = division === "family";
+  const list = even ? services.filter((s) => s.page !== "register") : services;
+  if (!list.length) return null;
+  const [first, ...rest] = list;
   return (
     <section className="flex flex-col gap-4 px-4 pt-10 md:gap-6 md:px-content md:pt-16">
       <SectionHeader title={divisionPageCopy.offerTitle} actionLabel={comparePage[division] ? divisionPageCopy.compareAll : undefined} actionTo={comparePage[division]} />
 
-      <div className="hidden grid-cols-2 gap-card md:grid">
+      {even ? (
+        <div className="hidden grid-cols-2 gap-card md:grid lg:grid-cols-3">
+          {list.map((s, i) => (
+            <div key={s.title} className="rm-rise grid min-h-[300px]" style={{ animationDelay: `${i * 70}ms` }}>
+              <Tile s={s} tint={tintFor(i)} book={book} />
+            </div>
+          ))}
+        </div>
+      ) : null}
+      <div className={even ? "hidden" : "hidden grid-cols-2 gap-card md:grid"}>
         <Tile s={first} tint={tintFor(0)} big book={book} />
         <div className="grid auto-rows-fr gap-card">
           {rest.map((s, i) => (
@@ -64,7 +77,7 @@ export function Offer({ services, division }: { services: DivisionService[]; div
       </div>
 
       <div className="flex flex-col gap-2.5 md:hidden">
-        {services.map((s, i) => (
+        {list.map((s, i) => (
           <SmartLink key={s.title} to={s.page} className="flex items-center justify-between gap-3 rounded-row p-4 transition-opacity active:opacity-80" style={{ background: tintFor(i) }}>
             <span className="flex flex-col gap-[3px]">
               <span className="text-[16px] font-semibold">{s.title}</span>

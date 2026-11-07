@@ -8,7 +8,7 @@ import { AboutTeaching } from "./AboutTeaching";
 import { DeepDive } from "./DeepDive";
 import { Hero } from "./Hero";
 import { InfusionHero } from "./InfusionExtras";
-import { AesConcerns } from "@/components/pages/aesthetics/AesSections";
+import { AesFaceMap } from "@/components/pages/aesthetics/AesFaceMap";
 import { DeepDiveChooser } from "./DeepDiveChooser";
 import { Offer } from "./Offer";
 import { SubNav } from "./SubNav";
@@ -75,7 +75,7 @@ export function DivisionPage({ k }: { k: NavKey }) {
             helper={painHelper}
           />
           {/* Patient first: their concern or situation, then what we offer for it. */}
-          {k === "aesthetics" ? <AesConcerns /> : !isAbout ? <DeepDiveChooser k={k as DivisionKey} dive={deepDives[k as DivisionKey]} /> : null}
+          {k === "aesthetics" ? <AesFaceMap /> : !isAbout ? <DeepDiveChooser k={k as DivisionKey} dive={deepDives[k as DivisionKey]} /> : null}
           <Offer services={d.services ?? []} division={k} />
         </>
       )}

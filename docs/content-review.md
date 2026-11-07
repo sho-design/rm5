@@ -623,6 +623,14 @@ Adapted from the clinic's Medical Aesthetics guide site (ma1-indol.vercel.app) a
   The builder listed Hydration $150, Vitamin blend $200, Recovery $200 and a Vitamin C add-on $40. Those did not match the nine named drips, or the drips page's "prices confirmed at your consult". If the clinic wants drip prices online, confirm them per drip first.
 - **Medical Aesthetics:** after "Lightest option first", a new "Six families, one clinical standard." row has one card per family, each opening the menu filtered to it. The concern section links to the goal planner ("Not sure of the name? Plan by goal").
 
+## Aesthetics face map and Family Medicine services (2026-11-06)
+
+- **Medical Aesthetics, "Start with what you notice.":** the plain cards are now a face map, with a line-drawn face and a pulsing spot per concern, plus the same concerns as chips. Choosing one shows "Often considered" treatments, with their family colours and session times, and links to "Book a consult" and the menu filtered to that concern. The new wording is draft:
+  - "Tap what you notice. We show what often helps, and your consult decides what is right for you."
+  - "A starting point, not a plan. Your clinician and physician confirm the right option, if any, at a consult."
+- **Family Medicine, "What we offer":** the six services now sit in an even grid. "New patients" is no longer repeated there, because it is the first answer in "Tell us what brings you in." just above.
+- **Photos to replace:** the Chronic disease, Children & youth and Preventive care tiles show women in navy scrubs, which reads as a female physician. The clinic has none yet.
+
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.
