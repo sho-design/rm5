@@ -1,10 +1,9 @@
-import { bookFor, reasonParam } from "@/lib/routes";
+import { bookFor, reasonParam, viRoutes } from "@/lib/routes";
+import { viEnabled } from "@/lib/prefs";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { Button, Display, Eyebrow, Section } from "@/components/ui";
 import { kidsCopy } from "@/content/kids";
 
-/** Same flag the chrome uses for the EN / Tiếng Việt toggle (hidden until VI is ready). */
-const viEnabled = process.env.NEXT_PUBLIC_VI_ENABLED === "true";
 
 /** Vietnamese-speaking families card (sage) beside the teen privacy card (paper). */
 export function KidsLanguage() {
@@ -21,7 +20,7 @@ export function KidsLanguage() {
           <p className="pretty max-w-[520px] text-[15px] leading-[1.55] text-sage-ink">{kidsCopy.vi.body}</p>
         </div>
         <div className="flex flex-wrap gap-2.5" lang="vi">
-          {viEnabled ? <Button to="kids">{kidsCopy.vi.cta}</Button> : null}
+          {viEnabled ? <Button to={viRoutes.home}>{kidsCopy.vi.cta}</Button> : null}
           <Button to="register" variant={viEnabled ? "inverse" : "primary"}>
             {kidsCopy.vi.cta2}
           </Button>

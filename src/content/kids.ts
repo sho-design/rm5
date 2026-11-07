@@ -82,7 +82,7 @@ export const kidsAges: KidsAge[] = [
     facts: [
       { k: "How often", v: "Once a year, plus sick visits" },
       { k: "Forms", v: "Camp, sports, medication at school" },
-      { k: "Also", v: "Referrals to pediatric specialists when needed" },
+      { k: "Also", v: "Referrals to paediatric specialists when needed" },
       { k: "Coverage", v: "OHIP" },
     ],
     cta: "Book a checkup",

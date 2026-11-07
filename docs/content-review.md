@@ -6,6 +6,19 @@ For a one-page checklist grouped by who approves what, see `docs/launch-signoff.
 
 Approved copy is quoted through guards that fail the build if the source text changes, so only the strings below are unreviewed.
 
+## Vietnamese pages (November 2026)
+
+Source: `src/content/vi.ts`. Four new pages in Vietnamese: `/vi` (home), `/vi/benh-nhan-moi` (new patients), `/vi/truyen-sat` (iron therapy) and `/vi/lien-he` (contact). Every string is new and marked `draft()`. Facts are taken from the approved English pages (hours, fees, iron prices and visit times, Health811 advice); nothing new is claimed.
+
+- **Needs a fluent clinician's review** before launch: medical terms (phong bế thần kinh, tiêm điểm đau, sắt sucrose, vận động trị liệu), tone, and whether to address readers as "bạn" or "quý vị" for older patients.
+- **Language switch:** "Tiếng Việt" in the top bar and phone menu goes to the same page in Vietnamese where one exists, otherwise to `/vi`. "English" on the Vietnamese pages goes back. Hide it with `NEXT_PUBLIC_VI_ENABLED=false`.
+- **Booking and registration forms stay in English.** Every Vietnamese page says so and offers the phone, and the forms already let people choose Tiếng Việt as their language.
+- **Search:** pages declare `lang="vi"`, and each English and Vietnamese pair links the other with hreflang. All four are in the sitemap. No analytics run on Vietnamese pages.
+
+## Canadian spelling (November 2026)
+
+English pages now declare `lang="en-CA"`. Spelling made consistent: "local anaesthetic" (nerve block health note), "general anaesthesia" (aesthetics menu), "paediatric" (Family Medicine and Children & youth). Spelling only, no change in meaning; confirm the clinic prefers "paediatric" over "pediatric".
+
 ## Gift cards for any service (November 2026)
 
 Source: `src/content/giftcards.ts`. Gift cards moved from Medical Aesthetics to one clinic-wide page at `/gift-cards`. Every string in that file is new and marked `draft()`: the title "A gift card for any service.", the lead, the coverage line ("OHIP-insured care is free, so a card is only needed for services you pay for."), the four "Where you can use it" cards (Aesthetics, Infusion, Rehab, Family Medicine uninsured fees), the three "How it works" steps and the closing band. Confirm the clinic accepts the card for every listed service. The aesthetics gift card strings listed under topic pages below are no longer used.

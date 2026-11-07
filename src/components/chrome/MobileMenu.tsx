@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { divisions, menuHeadings, navOrder } from "@/content/divisions";
 import { locations, site } from "@/content/site";
 import { emergencyCopy } from "@/content/patient-help";
-import { href, routes } from "@/lib/routes";
+import { href, routes, viPairs, viRoutes } from "@/lib/routes";
 import { viEnabled } from "@/lib/prefs";
 import { Wordmark } from "./Wordmark";
 import { OpenBadge } from "./OpenBadge";
@@ -21,7 +22,7 @@ import { cn } from "@/lib/cn";
  */
 export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearch: () => void }) {
   const [open, setOpen] = useState<string | null>(null);
-  const [lang, setLang] = useState<"en" | "vi">("en");
+  const pathname = usePathname();
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -109,14 +110,9 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
         </div>
         <div className="flex items-center justify-between gap-3">
           {viEnabled ? (
-            <div className="flex rounded-chip border-[1.5px] border-white/25 p-[3px]">
-              <button type="button" onClick={() => setLang("en")} className={cn("rounded-chip px-3.5 py-[9px] text-[13px] font-semibold", lang === "en" ? "bg-white text-ink" : "text-white")} aria-pressed={lang === "en"}>
-                EN
-              </button>
-              <button type="button" onClick={() => setLang("vi")} className={cn("rounded-chip px-3.5 py-[9px] text-[13px] font-semibold", lang === "vi" ? "bg-white text-ink" : "text-white")} aria-pressed={lang === "vi"}>
-                Tiếng Việt
-              </button>
-            </div>
+            <Link href={viPairs[pathname ?? "/"] ?? viRoutes.home} hrefLang="vi" lang="vi" className="rounded-chip border-[1.5px] border-white/25 px-4 py-[10px] text-[13px] font-semibold text-white">
+              Tiếng Việt
+            </Link>
           ) : (
             <span />
           )}

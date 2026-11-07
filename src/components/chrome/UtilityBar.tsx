@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { useOpenStatus } from "@/lib/use-open-status";
-import { routes } from "@/lib/routes";
+import { routes, viPairs, viRoutes } from "@/lib/routes";
 import { emergencyCopy } from "@/content/patient-help";
 import { viEnabled } from "@/lib/prefs";
 import { SocialIcons } from "./SocialIcons";
@@ -13,11 +13,13 @@ import { cn } from "@/lib/cn";
 /**
  * 38px navy utility bar: live open-now status with a 7px sage dot on the
  * left; on the right, social icons, a hairline, the sunshine "For referring
- * doctors ›" link and the EN / Tiếng Việt toggle (hidden until VI is ready).
+ * doctors ›" link and a Tiếng Việt link to the Vietnamese version of the page (or the Vietnamese home page).
  */
 export function UtilityBar() {
   const status = useOpenStatus();
-  const [lang, setLang] = useState<"en" | "vi">("en");
+  const path = usePathname() ?? "/";
+  // Same page in Vietnamese where one exists, otherwise the Vietnamese home page.
+  const vi = viPairs[path] ?? viRoutes.home;
   return (
     <div role="region" aria-label="Clinic status and display settings" className="bg-ink text-white">
     <div className="mx-auto flex h-[38px] w-full max-w-[1440px] items-center justify-between px-4 text-[12px] font-medium md:px-8">
@@ -48,13 +50,10 @@ export function UtilityBar() {
         </Link>
         {viEnabled ? (
           <>
-            <span aria-hidden className="ml-4 h-4 w-px bg-white/25" />
-            <button type="button" onClick={() => setLang("en")} className={cn("rounded-[6px] px-2 py-1", lang === "en" ? "font-semibold text-white" : "text-white/60")} aria-pressed={lang === "en"} lang="en">
-              EN
-            </button>
-            <button type="button" onClick={() => setLang("vi")} className={cn("rounded-[6px] px-2 py-1", lang === "vi" ? "font-semibold text-white" : "text-white/60")} aria-pressed={lang === "vi"} lang="vi">
+            <span aria-hidden className="ml-3 h-4 w-px bg-white/25 sm:ml-4" />
+            <Link href={vi} hrefLang="vi" lang="vi" className="ml-1 shrink-0 whitespace-nowrap rounded-[6px] px-2 py-1 font-semibold hover:underline">
               Tiếng Việt
-            </button>
+            </Link>
           </>
         ) : null}
       </div>

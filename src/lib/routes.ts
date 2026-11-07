@@ -85,6 +85,25 @@ export const noteRoute = (slug: string) => `${routes.notes}/${slug}`;
 /** One page per signature drip, under the drips list. */
 export const dripRoute = (slug: string) => `${routes.drips}/${slug}`;
 
+/** Vietnamese pages (draft, November 2026). Each pairs with an English page for the language switch and hreflang. */
+export const viRoutes = {
+  home: "/vi",
+  register: "/vi/benh-nhan-moi",
+  iron: "/vi/truyen-sat",
+  contact: "/vi/lien-he",
+} as const;
+
+/** English path to its Vietnamese page. Pages without a pair switch to the Vietnamese home page. */
+export const viPairs: Record<string, string> = {
+  [routes.home]: viRoutes.home,
+  [routes.register]: viRoutes.register,
+  [routes.iron]: viRoutes.iron,
+  [routes.contact]: viRoutes.contact,
+};
+
+/** Vietnamese path back to its English page. */
+export const enPairs: Record<string, string> = Object.fromEntries(Object.entries(viPairs).map(([en, vi]) => [vi, en]));
+
 export const external = {
   instagram: "https://www.instagram.com/restorationmedicalofficial/",
   facebook: "https://www.facebook.com/restorationmedicalofficial/",

@@ -125,12 +125,12 @@ export const healthNotes: HealthNote[] = [
     body: [
       {
         type: "p",
-        text: "A nerve block is an image-guided injection of local anesthetic, sometimes with a steroid, around a specific nerve. It is used both to diagnose the source of pain and to treat it.",
+        text: "A nerve block is an image-guided injection of local anaesthetic, sometimes with a steroid, around a specific nerve. It is used both to diagnose the source of pain and to treat it.",
       },
       { type: "h", text: "The day before" },
       {
         type: "p",
-        text: "Tell us about blood thinners, diabetes medication or allergies to contrast or local anesthetic. Do not stop any medication unless the physician tells you to. Arrange a ride home.",
+        text: "Tell us about blood thinners, diabetes medication or allergies to contrast or local anaesthetic. Do not stop any medication unless the physician tells you to. Arrange a ride home.",
       },
       { type: "h", text: "The day of" },
       {

@@ -52,7 +52,7 @@ export const divisions: Record<NavKey, Division> = {
     eyebrow: "Accepting new patients",
     headline: "A family doctor who knows your name.",
     blurb:
-      "Comprehensive, personalized care for every stage of life: pediatric care, routine check-ups, chronic disease management and preventive wellness education. Family medicine visits are covered by OHIP.",
+      "Comprehensive, personalized care for every stage of life: paediatric care, routine check-ups, chronic disease management and preventive wellness education. Family medicine visits are covered by OHIP.",
     cta: "Join our roster",
     ctaPage: "register",
     footCta: "Looking for a family doctor in Thornhill?",
@@ -96,7 +96,7 @@ export const divisions: Record<NavKey, Division> = {
     services: [
       { title: "New patients", desc: "Register with our Thornhill location to be contacted for an appointment.", page: "register", image: images.services.family[0] },
       { title: "Chronic disease & acute illness", desc: "Support for long-term conditions and immediate concerns.", page: "chronic", image: images.services.family[1] },
-      { title: "Children & youth", desc: "Pediatric care, growth checks, immunizations and school forms.", page: "kids", image: images.services.family[2] },
+      { title: "Children & youth", desc: "Paediatric care, growth checks, immunizations and school forms.", page: "kids", image: images.services.family[2] },
       { title: "Women’s health", desc: "Pap tests, contraception, prenatal and menopause care.", page: "women", image: images.services.family[3] },
       { title: "Men’s health", desc: "Prostate and heart health screening, testosterone assessment and lifestyle care.", page: "men", image: images.services.family[4] },
       { title: "Bloodwork on site", desc: "Lab requisitions drawn in clinic by our lab technician, so you do not need a separate trip.", page: "blood", image: images.services.family[5] },

@@ -170,7 +170,7 @@ export const aesTreatments: AesTreatment[] = [
     family: "plasma",
     brand: "PlexR Plus",
     name: draft("Plasma soft surgery"),
-    d: draft("Plasma for non-surgical eyelid tightening and lesion removal, with no incisions and no general anesthesia."),
+    d: draft("Plasma for non-surgical eyelid tightening and lesion removal, with no incisions and no general anaesthesia."),
     sessions: [{ t: draft("Upper eyelids"), mins: 75 }, { t: draft("Lower eyelids or under-eye"), mins: 75 }, { t: draft("Upper and lower"), mins: 75 }, { t: draft("Mole removal, per lesion"), mins: 45 }],
     note: draft("Usually 2 sessions."),
     concerns: ["laxity", "aging"],

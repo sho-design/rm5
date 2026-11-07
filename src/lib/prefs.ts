@@ -62,4 +62,5 @@ export function useTextSize() {
   return { step, up: () => setStep(Math.min(2, step + 1) as TextStep), down: () => setStep(Math.max(0, step - 1) as TextStep), reset: () => setStep(0) };
 }
 
-export const viEnabled = process.env.NEXT_PUBLIC_VI_ENABLED === "true";
+/** The Tiếng Việt switch. On by default now the Vietnamese pages exist; set NEXT_PUBLIC_VI_ENABLED=false to hide it. */
+export const viEnabled = process.env.NEXT_PUBLIC_VI_ENABLED !== "false";
