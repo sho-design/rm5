@@ -17,13 +17,16 @@ const SPOT: Record<AesConcern, { x: number; y: number }> = {
   texture: { x: 206, y: 214 },
   acne: { x: 186, y: 266 },
   laxity: { x: 104, y: 266 },
-  aging: { x: 150, y: 342 },
+  aging: { x: 150, y: 330 },
 };
 
 /** Calm line drawing of a face, no gender or age cues beyond a soft hairline. Purely decorative. */
 function Face() {
   return (
     <g fill="none" stroke="var(--rm-ink)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Neck and shoulders sit behind the face, so the neck runs up into the jaw with no gap. */}
+      <path d="M116 262c2 34 4 66 2 92M184 262c-2 34-4 66-2 92" />
+      <path d="M118 352c-22 6-42 14-58 26M182 352c22 6 42 14 58 26" />
       <path d="M150 22c-58 0-92 40-92 104 0 34 6 66 20 96 16 34 42 66 72 66s56-32 72-66c14-30 20-62 20-96 0-64-34-104-92-104z" fill="var(--rm-paper)" />
       <path d="M62 112c8-46 44-74 88-74s80 28 88 74c-22-24-52-36-88-36s-66 12-88 36z" fill="var(--rm-lilac-tint)" stroke="none" />
       <path d="M62 112c8-46 44-74 88-74s80 28 88 74" />
@@ -32,7 +35,6 @@ function Face() {
       <path d="M98 166c8-6 22-6 30 0M172 166c8-6 22-6 30 0" />
       <path d="M150 158v40c-4 6-10 10-16 10M150 208c6 2 12 0 16-4" />
       <path d="M124 246c10 8 42 8 52 0M124 246c14-6 38-6 52 0" />
-      <path d="M118 318c4 18 6 36 4 52M182 318c-4 18-6 36-4 52" />
     </g>
   );
 }
