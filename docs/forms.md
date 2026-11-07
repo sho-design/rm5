@@ -67,6 +67,6 @@ Same keys as before.
 Medical Aesthetics gift cards are sold on the clinic's hosted Square eGift Card page. The buyer chooses an amount and pays on Square's checkout, and Square emails the card. No payment or personal details pass through this site.
 
 - **Find the link:** in the Square Dashboard, go to Gift Cards, then eGift Cards, and copy the link to your eGift Card page. It looks like `https://squareup.com/gift/XXXXXXXX/order` or a `square.link` short link.
-- **Set it:** add `NEXT_PUBLIC_SQUARE_GIFT_URL` to the Vercel project, for Production, then redeploy. Only Square addresses are accepted (`src/lib/giftcards.ts`).
-- **What changes:** with the link set, `/medical-aesthetics/gift-cards` shows "Buy an eGift card" (it opens Square in a new tab), then "Call the clinic". Without it, the page keeps "Call the clinic" and the front desk details.
+- **Where it is set:** the clinic's pages are built in as defaults in `src/lib/giftcards.ts`: `https://app.squareup.com/gift/MLDR38SA366F5/order` to buy, and `.../check-balance` to check a balance. `NEXT_PUBLIC_SQUARE_GIFT_URL` and `NEXT_PUBLIC_SQUARE_GIFT_BALANCE_URL` in Vercel override them. Only Square addresses are accepted.
+- **What changes:** with the link set, `/medical-aesthetics/gift-cards` shows "Buy an eGift card" and "Check a card balance". Both open Square in a new tab, and the front desk phone and email stay on the page. Without it, the page keeps "Call the clinic" and the front desk details.
 - **Optional:** the Square connector in claude.ai lets Claude look up gift card activity and settings. Selling does not need it.
