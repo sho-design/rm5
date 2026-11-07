@@ -1,4 +1,3 @@
-import { squareGiftBalanceUrl, squareGiftUrl } from "@/lib/giftcards";
 /**
  * Topic pages behind the mega-menu links that used to fall back to the
  * division page (Pain Centre, Medical Aesthetics, Rehab & Recovery, Family
@@ -25,7 +24,7 @@ import { images } from "./images";
 import { kidsCopy } from "./kids";
 import { womenFaq, womenOptions } from "./subpages";
 import { womensHealthDay } from "./womens-day";
-import { locations, site } from "./site";
+import { site } from "./site";
 
 export interface TopicFaq {
   q: string;
@@ -428,33 +427,6 @@ const aesthetics: Topic[] = [
     imgAlt: draft("Consult room in the Medical Aesthetics suite"),
     path: aesPath,
     faq: [dq("aesthetics", "Will it look natural?"), dq("aesthetics", "Is a consult free?")],
-    band: aesBand,
-  },
-  {
-    key: "aesGift",
-    slug: "gift-cards",
-    division: "aesthetics",
-    page: "Gift cards",
-    title: draft("Gift cards"),
-    // With a Square eGift Card page set (src/lib/giftcards.ts), people buy online and Square emails the card.
-    lead: squareGiftUrl
-      ? draft("Buy a Medical Aesthetics eGift card online, any amount, emailed by Square to you or the person you choose. Or ask the front desk at Thornhill.")
-      : draft("Ask the front desk about Medical Aesthetics gift cards, in person at Thornhill or by phone."),
-    description: draft("Medical Aesthetics gift cards at Restoration Medical in Thornhill. Buy online or ask the front desk in person or by phone at 905-709-3222."),
-    cta: squareGiftUrl ? draft("Buy an eGift card") : draft("Call the clinic"),
-    ctaTo: squareGiftUrl ?? site.phoneHref,
-    cta2: squareGiftUrl ? (squareGiftBalanceUrl ? draft("Check a card balance") : draft("Call the clinic")) : AD.cta,
-    cta2To: squareGiftUrl ? (squareGiftBalanceUrl ?? site.phoneHref) : bookFor("aesthetics"),
-    img: images.division.aesthetics,
-    imgAlt: draft("Front desk at the Thornhill clinic"),
-    glance: {
-      title: squareGiftUrl ? draft("Or ask at the desk") : draft("Ask at the desk"),
-      p: locations[0]?.address ?? "",
-      facts: [
-        { k: "Phone", v: site.phone },
-        { k: "Email", v: site.email },
-      ],
-    },
     band: aesBand,
   },
 ];

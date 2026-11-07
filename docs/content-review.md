@@ -6,6 +6,10 @@ For a one-page checklist grouped by who approves what, see `docs/launch-signoff.
 
 Approved copy is quoted through guards that fail the build if the source text changes, so only the strings below are unreviewed.
 
+## Gift cards for any service (November 2026)
+
+Source: `src/content/giftcards.ts`. Gift cards moved from Medical Aesthetics to one clinic-wide page at `/gift-cards`. Every string in that file is new and marked `draft()`: the title "A gift card for any service.", the lead, the coverage line ("OHIP-insured care is free, so a card is only needed for services you pay for."), the four "Where you can use it" cards (Aesthetics, Infusion, Rehab, Family Medicine uninsured fees), the three "How it works" steps and the closing band. Confirm the clinic accepts the card for every listed service. The aesthetics gift card strings listed under topic pages below are no longer used.
+
 ## Service and patient topic pages
 
 Source: `src/content/topics.ts`

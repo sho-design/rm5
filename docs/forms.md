@@ -64,9 +64,10 @@ Same keys as before.
 
 ## Gift cards (Square eGift Cards)
 
-Medical Aesthetics gift cards are sold on the clinic's hosted Square eGift Card page. The buyer chooses an amount and pays on Square's checkout, and Square emails the card. No payment or personal details pass through this site.
+Gift cards are clinic-wide: one card works for any service a patient pays for (aesthetics, drips and shots, iron infusion visits, physio, chiro, massage, kinesiology and uninsured fees). They are sold on the clinic's hosted Square eGift Card page. The buyer chooses an amount and pays on Square's checkout, and Square emails the card. No payment or personal details pass through this site.
 
 - **Find the link:** in the Square Dashboard, go to Gift Cards, then eGift Cards, and copy the link to your eGift Card page. It looks like `https://squareup.com/gift/XXXXXXXX/order` or a `square.link` short link.
 - **Where it is set:** the clinic's pages are built in as defaults in `src/lib/giftcards.ts`: `https://app.squareup.com/gift/MLDR38SA366F5/order` to buy, and `.../check-balance` to check a balance. `NEXT_PUBLIC_SQUARE_GIFT_URL` and `NEXT_PUBLIC_SQUARE_GIFT_BALANCE_URL` in Vercel override them. Only Square addresses are accepted.
-- **What changes:** with the link set, `/medical-aesthetics/gift-cards` shows "Buy an eGift card" and "Check a card balance". Both open Square in a new tab, and the front desk phone and email stay on the page. Without it, the page keeps "Call the clinic" and the front desk details.
+- **What changes:** with the link set, `/gift-cards` (content in `src/content/giftcards.ts`) shows "Buy an eGift card" and "Check a card balance". Both open Square in a new tab, and the front desk phone and email stay on the page. Without it, the page keeps "Call the clinic" and the front desk details. The old `/medical-aesthetics/gift-cards` address redirects to `/gift-cards`. The page is linked from the footer (For patients) and the Infusion, Rehab and Aesthetics menus.
+- **At the desk:** the card is redeemed on the clinic's Square point of sale, so the front desk should accept it for every paid service, not only aesthetics.
 - **Optional:** the Square connector in claude.ai lets Claude look up gift card activity and settings. Selling does not need it.

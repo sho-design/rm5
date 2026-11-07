@@ -44,7 +44,7 @@ export const routes = {
   aesMen: "/medical-aesthetics/mens-aesthetics",
   aesPricing: "/medical-aesthetics/pricing",
   aesPhotos: "/medical-aesthetics/before-and-after",
-  aesGift: "/medical-aesthetics/gift-cards",
+  aesGift: "/gift-cards",
   aesMenu: "/medical-aesthetics/treatments",
   rehabPhysio: "/rehab-recovery/physiotherapy",
   rehabChiro: "/rehab-recovery/chiropractic",

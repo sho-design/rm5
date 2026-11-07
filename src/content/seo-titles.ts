@@ -39,7 +39,7 @@ export const seoTitles: Record<string, string> = {
   "/medical-aesthetics/laser": "Laser treatments in Thornhill",
   "/medical-aesthetics/mens-aesthetics": "Men’s aesthetics in Thornhill",
   "/medical-aesthetics/pricing": "Medical aesthetics pricing",
-  "/medical-aesthetics/gift-cards": "Medical aesthetics gift cards",
+  "/gift-cards": "Gift cards for any service",
 
   "/rehab-recovery": "Physio, chiro and massage in Thornhill",
   "/rehab-recovery/physiotherapy": "Physiotherapy in Thornhill",

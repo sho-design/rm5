@@ -81,6 +81,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Prescription renewals", page: "rx" },
       { label: "Lab results", page: "labs" },
       { label: "Hours & location", page: "locations" },
+      { label: draft("Gift cards"), page: "aesGift" },
     ],
     sub: [
       { label: "New patients", icon: "steth", page: "register" },
@@ -183,6 +184,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "The honest menu", page: "honest" },
       { label: "Pricing", page: "infusionPricing" },
       { label: "Our nurses", page: "infusionTeam" },
+      { label: draft("Gift cards"), page: "aesGift" },
     ],
   },
   aesthetics: {

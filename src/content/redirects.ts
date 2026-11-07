@@ -34,6 +34,8 @@ export const infusionRedirects: [string, string][] = [
 
 /** Likely old main-site paths (unconfirmed, see above). */
 export const legacyRedirects: [string, string][] = [
+  // Gift cards became clinic-wide (Nov 2026): one card for any service you pay for.
+  ["/medical-aesthetics/gift-cards", routes.aesGift],
   // Drip renamed from Kingmaker (one unisex drip).
   [`${routes.drips}/healing-myers`, `${routes.drips}/myers`],
   [`${routes.drips}/radiance`, `${routes.drips}/antioxidant`],
