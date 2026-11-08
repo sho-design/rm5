@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import { Display, Eyebrow, Photo, SmartLink } from "@/components/ui";
+import { Display, Eyebrow, IconChips, Photo, SmartLink } from "@/components/ui";
 import { ContactForm } from "@/components/pages/contact/ContactForm";
 import { HoursLead } from "@/components/pages/contact/HoursLead";
 import { contactCopy } from "@/content/booking";
 import { images } from "@/content/images";
-import { site, thornhillHours } from "@/content/site";
+import { accessChips, site, thornhillHours } from "@/content/site";
 import { shortRange } from "@/lib/hours";
 import { external } from "@/lib/routes";
 import { EmergencyNote } from "@/components/pages/help/EmergencyNote";
@@ -89,6 +89,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-1">
               <span className="text-[12px] font-semibold text-muted">{contactCopy.gettingHereTitle}</span>
               <span>{contactCopy.gettingHere}</span>
+              <IconChips className="pt-2" items={accessChips} />
             </div>
           </div>
         </div>

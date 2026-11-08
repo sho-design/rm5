@@ -3,6 +3,16 @@ import type { Announcement, HeroSlide, Location } from "./types";
 import { images } from "./images";
 import { external } from "@/lib/routes";
 
+/**
+ * Visit facts as icon chips (Our clinics, Contact). Parking and access restate the approved access line; the language
+ * line is the approved footer wording. Only open clinics show the language chip.
+ */
+export const accessChips = [
+  { icon: "parking", label: draft("Free on-site parking") },
+  { icon: "access", label: draft("Wheelchair accessible") },
+  { icon: "lang", label: "Care in English and Tiếng Việt", openOnly: true },
+] as const;
+
 export const site = {
   name: "Restoration Medical",
   signoff: "Refined by Medicine.",

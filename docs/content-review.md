@@ -6,6 +6,10 @@ For a one-page checklist grouped by who approves what, see `docs/launch-signoff.
 
 Approved copy is quoted through guards that fail the build if the source text changes, so only the strings below are unreviewed.
 
+## Icons placed on the site (November 2026)
+
+Source: `src/content/divisions.ts` and `accessChips` in `src/content/site.ts`. New sub-navigation items (draft labels): Family "Pregnancy", "Vaccines", "Prescriptions", "Lab results"; Pain Centre "OHIP coverage"; Infusion "Honest menu", "Our nurses"; Rehab "Billing", "What to bring", "Home program"; About "Fees", "Forms". Each links to a page not otherwise linked from that page. Icon chips on Our clinics and Contact: "Free on-site parking" and "Wheelchair accessible" (draft, restating the approved access line) and "Care in English and Tiếng Việt" (approved).
+
 ## Team page cards (November 2026)
 
 Source: `teamCarousel` in `src/content/team.ts`. The team page is now a navy band: Dr. Nguyen as a statement with his credentials as a list, then a grid of tall cards (after the FIGS ambassador cards). Tapping a name opens what that person does in your visit, their services and languages, and booking for their service. New draft lines: "Who you will meet.", "Tap a name to see what they do in your visit.", one line each for Dr. Nguyen and Dr. Truong, one line per role and service (infusion, family medicine, Pain Centre and aesthetics nurses, lab manager), and the booking buttons ("Book a family visit", "Book a Pain Centre visit", "Book an infusion visit", "Book a consult", "Book a session"). A bio entered in the admin replaces the role line. Cards show the headshot uploaded in the admin; until then, a tinted card with the initial.

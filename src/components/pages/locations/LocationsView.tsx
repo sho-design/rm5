@@ -2,12 +2,12 @@
 
 import { emergencyCopy } from "@/content/patient-help";
 import { useEffect, useState } from "react";
-import { Block, Button, Display, Photo, SmartLink } from "@/components/ui";
+import { Block, Button, Display, IconChips, Photo, SmartLink } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { bookFor } from "@/lib/routes";
 import { locationsCopy } from "@/content/about";
 import { wayfindingCopy } from "@/content/patient-help";
-import { site } from "@/content/site";
+import { accessChips, site } from "@/content/site";
 import { HoursCard } from "./HoursCard";
 import { WaitlistForm } from "./WaitlistForm";
 import type { LocationView } from "./types";
@@ -118,6 +118,7 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
               <div className="flex flex-col gap-1">
                 <span className="text-[12px] font-semibold text-white/60">{c.access}</span>
                 <span className="text-[15px] leading-[1.45] text-white/80">{loc.access}</span>
+                <IconChips inverse className="pt-2" items={accessChips.filter((x) => !("openOnly" in x && x.openOnly && loc.soon))} />
               </div>
               {loc.findingUs ? (
                 <div className="flex flex-col gap-1">
