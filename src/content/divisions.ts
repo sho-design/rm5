@@ -92,10 +92,6 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Men’s health", icon: "men", page: "men" },
       { label: "Bloodwork on site", icon: "blood", page: "blood" },
       { label: "Same-day", icon: "sameday", page: bookFor("family") },
-      { label: draft("Pregnancy"), icon: "pregnancy", page: "pregnancy" },
-      { label: draft("Vaccines"), icon: "vial", page: "vaccines" },
-      { label: draft("Prescriptions"), icon: "pill", page: "rx" },
-      { label: draft("Lab results"), icon: "lab", page: "labs" },
     ],
     services: [
       { title: "New patients", desc: "Register with our Thornhill location to be contacted for an appointment.", page: "register", image: images.services.family[0] },
@@ -153,7 +149,6 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Trigger points", icon: "trigger", page: "painTrigger" },
       { label: "Headache", icon: "head", page: "/health-notes/headache-when-to-see" },
       { label: "Referrals", icon: "referral", page: "referrals" },
-      { label: draft("OHIP coverage"), icon: "card", page: "painOhip" },
     ],
     services: [
       { title: "Pain assessment", desc: "History, examination, a review of your imaging and a written plan. OHIP with a referral.", page: "painFirstVisit", image: images.services.pain[0] },
@@ -286,9 +281,6 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Kinesiology", icon: "kines", page: "rehabKines" },
       { label: "MVA", icon: "mva", page: "rehabMva" },
       { label: "WSIB", icon: "wsib", page: "rehabWsib" },
-      { label: draft("Billing"), icon: "receipt", page: "rehabBilling" },
-      { label: draft("What to bring"), icon: "bag", page: "rehabBring" },
-      { label: draft("Home program"), icon: "home", page: "rehabHome" },
     ],
     services: [
       { title: "Physiotherapy", desc: "Assessment and individualized treatment plans.", page: "rehabPhysio", image: images.services.rehab[0] },
@@ -342,8 +334,6 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Story", icon: "story", page: "story" },
       { label: "Standards", icon: "standards", page: "standards" },
       { label: "Careers", icon: "careers", page: "careers" },
-      { label: draft("Fees"), icon: "receipt", page: "fees" },
-      { label: draft("Forms"), icon: "forms", page: "forms" },
     ],
     services: [
       { title: "Our team", desc: "Physicians, nurses, therapists and clinicians, in one place.", page: "team", image: images.services.about[0] },
@@ -368,8 +358,6 @@ export const infusionSub = [
   { label: "Concerns", icon: "concern", page: "concerns" },
   { label: "How it works", icon: "how", page: "infusionHow" },
   { label: "Pricing", icon: "price", page: "infusionPricing" },
-  { label: draft("Honest menu"), icon: "standards", page: "honest" },
-  { label: draft("Our nurses"), icon: "team", page: "infusionTeam" },
 ] as const;
 
 /** Mega menu and phone menu column headings. About has no bookings, so its middle column reads "Get in touch". */

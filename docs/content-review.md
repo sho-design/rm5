@@ -8,7 +8,7 @@ Approved copy is quoted through guards that fail the build if the source text ch
 
 ## Icons placed on the site (November 2026)
 
-Source: `src/content/divisions.ts` and `accessChips` in `src/content/site.ts`. New sub-navigation items (draft labels): Family "Pregnancy", "Vaccines", "Prescriptions", "Lab results"; Pain Centre "OHIP coverage"; Infusion "Honest menu", "Our nurses"; Rehab "Billing", "What to bring", "Home program"; About "Fees", "Forms". Each links to a page not otherwise linked from that page. Icon chips on Our clinics and Contact: "Free on-site parking" and "Wheelchair accessible" (draft, restating the approved access line) and "Care in English and Tiếng Việt" (approved).
+Source: `accessChips` in `src/content/site.ts`. Icon chips on Our clinics and Contact: "Free on-site parking" and "Wheelchair accessible" (draft, restating the approved access line) and "Care in English and Tiếng Việt" (approved). Sub-navigation keeps its original items; six now use better-matching icons.
 
 ## Team page cards (November 2026)
 
