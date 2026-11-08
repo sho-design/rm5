@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import { teamFilters, teamPage } from "@/content/team";
 import { getTeam } from "@/lib/cms";
 import { TeamIntro } from "@/components/pages/team/TeamIntro";
-import { TeamGrid } from "@/components/pages/team/TeamGrid";
+import { TeamCarousel } from "@/components/pages/team/TeamCarousel";
 import { SmallBand } from "@/components/pages/notes/NotesBand";
 
 const baseMetadata: Metadata = {
@@ -20,7 +20,7 @@ export default async function TeamPage() {
   return (
     <>
       <TeamIntro />
-      <TeamGrid team={team} filters={teamFilters.filter((f) => f === "All" || team.some((m) => m.divisions.includes(f)))} note={teamPage.photosNote} />
+      <TeamCarousel team={team} filters={teamFilters.filter((f) => f === "All" || team.some((m) => m.divisions.includes(f)))} note={teamPage.photosNote} />
       <SmallBand title={teamPage.band.title} sub={teamPage.band.sub} cta={teamPage.band.cta} ctaTo="book" />
     </>
   );

@@ -63,3 +63,37 @@ export const teamPage = {
     cta: "Book an appointment",
   },
 } as const;
+
+/**
+ * Team carousel (November 2026, after the FIGS ambassador cards). Each card opens to say what this person does for
+ * you, in your visit, and how to book with their service. All draft. Generic by role, so no one is quoted.
+ */
+export const teamCarousel = {
+  title: draft("Who you will meet."),
+  lead: draft("Tap a name to see what they do in your visit."),
+  open: draft("More about"),
+  close: draft("Close"),
+  prev: draft("Previous team members"),
+  next: draft("Next team members"),
+  listLabel: draft("Team members"),
+  /** What this person does for you. By name for the physicians, then by role and service. */
+  byName: {
+    "Dr. Johnny Nguyen": draft("Leads the clinic and performs Pain Centre procedures, guided by wireless ultrasound. Also sees family medicine patients."),
+    "Dr. Joseph Truong": draft("Your family doctor for checkups, chronic care and the questions in between."),
+  } as Record<string, string>,
+  byRole: {
+    "Registered Nurse|Infusion Therapy": draft("Screens you, places your IV and stays with you through your drip or iron infusion."),
+    "Registered Nurse|Family Medicine": draft("Pap tests, vaccines and bloodwork, and testing on women's health day."),
+    "Registered Nurse|Pain Centre": draft("Gets you ready for your procedure and checks on you before you go home."),
+    "Registered Nurse|Medical Aesthetics": draft("Screens you first, then treats you, following the plan from your consult."),
+    "Lab Manager|Family Medicine": draft("Runs our on-site lab, so your bloodwork happens here, not across town."),
+  } as Record<string, string>,
+  /** Booking per service, verb plus object. */
+  book: {
+    family: { t: draft("Book a family visit"), service: "family" },
+    pain: { t: draft("Book a Pain Centre visit"), service: "pain" },
+    infusion: { t: draft("Book an infusion visit"), service: "infusion" },
+    aesthetics: { t: draft("Book a consult"), service: "aesthetics", visit: "consult" },
+    rehab: { t: draft("Book a session"), service: "rehab" },
+  } as Record<string, { t: string; service: string; visit?: string }>,
+};
