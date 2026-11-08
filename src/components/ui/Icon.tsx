@@ -71,6 +71,22 @@ export const iconPaths: Record<string, string[]> = {
   evening: ["M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z", "M17 3.5v2.5", "M15.75 4.75h2.5"],
   leaf: ["M12 2.5l1.5 3 2-1-.5 3.5 3-1.5-1 3 2.5 1-3.5 2.5 1 2-4-.5L12 16l-1-2.5-4 .5 1-2L4.5 9.5 7 8.5 6 5.5l3 1.5L8.5 3.5l2 1z", "M12 16v5.5"],
   elder: ["M10 3.5a1.5 1.5 0 1 0 0 3a1.5 1.5 0 1 0 0-3z", "M10 7.5c-1 2-1 4 0 6", "M10 13.5l-1.5 7", "M10 13.5l2 7", "M10 9.5l4 2", "M14 11.5v9", "M14 11.5a1.5 1.5 0 0 1 3 0"],
+  // Second batch, from a site audit: pages that had no icon or a borrowed one.
+  trigger: ["M2.5 21c0-8.5 4.5-14 11-14H17a4.5 4.5 0 0 1 4.5 4.5V21", "M12.5 9.5V11", "M12.5 18v1.5", "M7.5 14.5H9", "M16 14.5h1.5", "M9.5 14.5a3 3 0 1 0 6 0a3 3 0 1 0-6 0z", "M12.5 14.5h.01"],
+  chiro: ["M9.5 3h5v3.5h-5z", "M9.5 8.5h5V12h-5z", "M9.5 14h5v3.5h-5z", "M12 17.5V21", "M3.5 10.25H7", "M5.5 8.5l1.75 1.75L5.5 12", "M20.5 10.25H17", "M18.5 8.5l-1.75 1.75L18.5 12"],
+  faq: ["M4 5h16v11h-9l-4 4v-4H4z", "M10 9a2 2 0 1 1 3 1.7c-.6.4-1 .8-1 1.5", "M12 14.5h.01"],
+  newpatient: ["M7 6a3 3 0 1 0 6 0a3 3 0 1 0-6 0z", "M4 20v-2a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v2", "M19 8v6", "M16 11h6"],
+  card: ["M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z", "M6 9.5h4v5H6z", "M13 10h5", "M13 13h5", "M13 16h3"],
+  cycle: ["M4 5.5h16v15H4z", "M8 3v4.5", "M16 3v4.5", "M15 15a3 3 0 1 1-.9-2.1", "M14.5 10.8v2.2h-2.2"],
+  injector: ["M4 20l3-3", "M7 17l7.5-7.5", "M12.5 7.5l4 4", "M14.5 5.5l4 4", "M17 3l4 4", "M6 4.5c.8 1.1 1.5 1.9 1.5 2.7a1.5 1.5 0 0 1-3 0c0-.8.7-1.6 1.5-2.7z"],
+  molecule: ["M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0z", "M3 6.5a2 2 0 1 0 4 0a2 2 0 1 0-4 0z", "M17 6.5a2 2 0 1 0 4 0a2 2 0 1 0-4 0z", "M10 20a2 2 0 1 0 4 0a2 2 0 1 0-4 0z", "M6.6 7.7l3 2.3", "M17.4 7.7l-3 2.3", "M12 15v3"],
+  receipt: ["M6 3h12v18l-2-1.5-2 1.5-2-1.5-2 1.5-2-1.5L6 21z", "M9 8h6", "M9 11.5h6", "M9 15h3"],
+  bag: ["M5 8h14l-1 13H6z", "M9 8V6a3 3 0 0 1 6 0v2", "M9 12v1", "M15 12v1"],
+  home: ["M4 11l8-7 8 7", "M6 9.5V20h12V9.5", "M9 15h6", "M8.5 13.5v3", "M15.5 13.5v3"],
+  forms: ["M8 4h8v3H8z", "M7 5.5H5v15h14v-15h-2", "M8.5 11h7", "M8.5 14.5h7", "M8.5 18h4"],
+  lock: ["M6 11h12v10H6z", "M8.5 11V8a3.5 3.5 0 0 1 7 0v3", "M12 15v2"],
+  notes: ["M5 4h11l3 3v13H5z", "M16 4v3h3", "M8 10h8", "M8 13.5h8", "M8 17h5"],
+  firstvisit: ["M8 3h10v18H8z", "M15 12h.01", "M2 12h8", "M7.5 9.5L10 12l-2.5 2.5"],
 };
 
 interface Anim {
@@ -143,6 +159,21 @@ const anims: Record<string, Anim> = {
   evening: { paths: { 1: "rmGlow .8s ease-in-out infinite", 2: "rmGlow .8s ease-in-out infinite" } },
   leaf: { all: "rmSway .9s ease-in-out", origin: "50% 95%" },
   elder: { all: "rmSway .9s ease-in-out", origin: "50% 100%" },
+  trigger: { paths: { 5: "rmPulse 1s ease-in-out infinite", 6: "rmGlow .8s ease-in-out infinite" }, pathOrigin: { 5: "12.5px 14.5px" } },
+  chiro: { paths: { 5: "rmGlow .7s ease-in-out infinite", 7: "rmGlow .7s ease-in-out infinite .2s" } },
+  faq: { paths: { 1: "rmDash .6s ease-out", 2: "rmGlow .8s ease-in-out infinite" }, dash: { 1: 40 } },
+  newpatient: { paths: { 2: "rmPulse .8s ease-in-out", 3: "rmPulse .8s ease-in-out" }, pathOrigin: { 2: "19px 11px", 3: "19px 11px" } },
+  card: { paths: { 2: "rmDrop .4s ease-out both", 3: "rmDrop .4s ease-out .1s both", 4: "rmDrop .4s ease-out .2s both" } },
+  cycle: { paths: { 3: "rmSway .7s ease-in-out infinite", 4: "rmSway .7s ease-in-out infinite" }, pathOrigin: { 3: "12px 15px", 4: "12px 15px" } },
+  injector: { all: "rmShotPush .7s ease-in-out", origin: "50% 50%" },
+  molecule: { paths: { 0: "rmPulse 1s ease-in-out infinite" }, pathOrigin: { 0: "12px 12px" } },
+  receipt: { paths: { 1: "rmDash .5s ease-out", 2: "rmDash .5s ease-out .1s", 3: "rmDash .5s ease-out .2s" }, dash: { 1: 40, 2: 40, 3: 40 } },
+  bag: { all: "rmSwing .8s ease-in-out", origin: "50% 20%" },
+  home: { paths: { 2: "rmStretch .7s ease-in-out", 3: "rmStretch .7s ease-in-out", 4: "rmStretch .7s ease-in-out" }, pathOrigin: { 2: "12px 15px", 3: "12px 15px", 4: "12px 15px" } },
+  forms: { paths: { 2: "rmDash .5s ease-out", 3: "rmDash .5s ease-out .1s", 4: "rmDash .5s ease-out .2s" }, dash: { 2: 40, 3: 40, 4: 40 } },
+  lock: { paths: { 1: "rmBounce .6s cubic-bezier(.3,.7,.4,1.2)" }, pathOrigin: { 1: "12px 8px" } },
+  notes: { paths: { 2: "rmDrop .4s ease-out both", 3: "rmDrop .4s ease-out .1s both", 4: "rmDrop .4s ease-out .2s both" } },
+  firstvisit: { paths: { 2: "rmShotPush .7s ease-in-out", 3: "rmShotPush .7s ease-in-out" } },
 };
 
 /**

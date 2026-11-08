@@ -84,7 +84,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: draft("Gift cards"), page: "aesGift" },
     ],
     sub: [
-      { label: "New patients", icon: "steth", page: "register" },
+      { label: "New patients", icon: "newpatient", page: "register" },
       { label: "Checkups", icon: "checkup", page: "year" },
       { label: "Chronic care", icon: "chronic", page: "chronic" },
       { label: "Kids", icon: "kids", page: "kids" },
@@ -146,7 +146,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Back & neck", icon: "spine", page: "painBack" },
       { label: "Joints", icon: "joint", page: "painJoints" },
       { label: "Nerve blocks", icon: "nerve", page: "painNerve" },
-      { label: "Trigger points", icon: "sports", page: "painTrigger" },
+      { label: "Trigger points", icon: "trigger", page: "painTrigger" },
       { label: "Headache", icon: "head", page: "/health-notes/headache-when-to-see" },
       { label: "Referrals", icon: "referral", page: "referrals" },
     ],
@@ -225,10 +225,10 @@ export const divisions: Record<NavKey, Division> = {
     ],
     sub: [
       { label: draft("Menu"), icon: "plan", page: "aesMenu" },
-      { label: "Injectables", icon: "shot", page: "aesInjectables" },
+      { label: "Injectables", icon: "injector", page: "aesInjectables" },
       { label: "Skin", icon: "skin", page: "aesSkin" },
       { label: "Laser", icon: "laser", page: "aesLaser" },
-      { label: "Plans", icon: "plan", page: "aesPlans" },
+      { label: "Plans", icon: "cycle", page: "aesPlans" },
       { label: "Men", icon: "men", page: "aesMen" },
       { label: "Gift cards", icon: "gift", page: "aesGift" },
     ],
@@ -276,7 +276,7 @@ export const divisions: Record<NavKey, Division> = {
     ],
     sub: [
       { label: "Physio", icon: "physio", page: "rehabPhysio" },
-      { label: "Chiro", icon: "band", page: "rehabChiro" },
+      { label: "Chiro", icon: "chiro", page: "rehabChiro" },
       { label: "Massage", icon: "massage", page: "rehabMassage" },
       { label: "Kinesiology", icon: "kines", page: "rehabKines" },
       { label: "MVA", icon: "mva", page: "rehabMva" },
@@ -330,7 +330,7 @@ export const divisions: Record<NavKey, Division> = {
     sub: [
       { label: "Team", icon: "team", page: "team" },
       { label: "Clinics", icon: "clinic", page: "locations" },
-      { label: "FAQ", icon: "how", page: "faq" },
+      { label: "FAQ", icon: "faq", page: "faq" },
       { label: "Story", icon: "story", page: "story" },
       { label: "Standards", icon: "standards", page: "standards" },
       { label: "Careers", icon: "careers", page: "careers" },
