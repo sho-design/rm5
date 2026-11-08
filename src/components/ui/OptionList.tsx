@@ -1,5 +1,6 @@
 "use client";
 
+import type { KeyboardEvent } from "react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { radioKeys, rovingTab } from "@/lib/a11y";
@@ -74,6 +75,7 @@ export function ChipRow({
   scroll = true,
   ariaLabel = "Filter",
   size = "md",
+  controls,
 }: {
   items: string[] | { label: string; count?: number }[];
   value: number;
@@ -84,9 +86,21 @@ export function ChipRow({
   scroll?: boolean;
   ariaLabel?: string;
   size?: "sm" | "md";
+  /** id of the region the tabs filter, for aria-controls. */
+  controls?: string;
 }) {
+  // Arrow keys move between chips and select them, as screen reader users expect of tabs (round 24, Jordan).
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const n = items.length;
+    const next = e.key === "ArrowRight" || e.key === "ArrowDown" ? (value + 1) % n : e.key === "ArrowLeft" || e.key === "ArrowUp" ? (value - 1 + n) % n : e.key === "Home" ? 0 : e.key === "End" ? n - 1 : -1;
+    if (next < 0) return;
+    e.preventDefault();
+    onChange(next);
+    const tabs = e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+    tabs[next]?.focus();
+  };
   return (
-    <div role="tablist" aria-label={ariaLabel} className={cn("flex gap-1.5", scroll ? "scroll-x -mx-4 px-4 md:mx-0 md:flex-wrap md:px-0" : "flex-wrap", className)}>
+    <div role="tablist" aria-label={ariaLabel} onKeyDown={onKeyDown} className={cn("flex gap-1.5", scroll ? "scroll-x -mx-4 px-4 md:mx-0 md:flex-wrap md:px-0" : "flex-wrap", className)}>
       {items.map((it, i) => {
         const label = typeof it === "string" ? it : it.label;
         const count = typeof it === "string" ? undefined : it.count;
@@ -97,6 +111,8 @@ export function ChipRow({
             type="button"
             role="tab"
             aria-selected={on}
+            aria-controls={controls}
+            tabIndex={on ? 0 : -1}
             onClick={() => onChange(i)}
             className={cn(
               "shrink-0 rounded-chip border-[1.5px] font-semibold transition-all duration-[250ms]",

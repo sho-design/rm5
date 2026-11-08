@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { aesConcerns, aesCopy as c, aesFamilies, aesTreatments, type AesConcern } from "@/content/aesthetics-menu";
 import { Display, Eyebrow, Section, SmartLink } from "@/components/ui";
 import { buttonClass } from "@/components/ui/Button";
@@ -75,6 +75,15 @@ function MaleFace() {
 export function AesFaceMap() {
   const [k, setK] = useState<AesConcern>("lines");
   const [face, setFace] = useState<Face>("female");
+  const panel = useRef<HTMLDivElement>(null);
+  // On a phone the result sits below the drawing, so tapping a spot brings it into view (round 24, Karen).
+  const pick = (next: AesConcern) => {
+    setK(next);
+    if (window.matchMedia("(max-width: 1023px)").matches) {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      requestAnimationFrame(() => panel.current?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" }));
+    }
+  };
   const SPOT = face === "male" ? SPOT_M : SPOT_F;
   const concern = aesConcerns.find((x) => x.k === k) ?? aesConcerns[0];
   const helps = aesTreatments.filter((t) => t.concerns.includes(k)).slice(0, 4);
@@ -115,6 +124,7 @@ export function AesFaceMap() {
               const on = x.k === k;
               return (
                 <g key={x.k} transform={`translate(${p.x} ${p.y})`} className="motion-safe:transition-transform motion-safe:duration-300">
+                  <circle r="24" fill="transparent" className="cursor-pointer" onClick={() => pick(x.k)} aria-hidden />
                   {!on ? <circle r="16" fill="var(--rm-lilac-deep)" opacity=".18" className="origin-center motion-safe:animate-[rm-ping_2.4s_ease-out_infinite]" style={{ transformBox: "fill-box" }} /> : null}
                   <circle
                     r={on ? 13 : 9}
@@ -125,7 +135,7 @@ export function AesFaceMap() {
                     role="button"
                     tabIndex={-1}
                     aria-hidden
-                    onClick={() => setK(x.k)}
+                    onClick={() => pick(x.k)}
                   />
                   {on ? <circle r="22" fill="none" stroke="var(--rm-ink)" strokeWidth="1.5" strokeDasharray="3 5" className="origin-center motion-safe:animate-[spin_9s_linear_infinite]" style={{ transformBox: "fill-box" }} /> : null}
                 </g>
@@ -151,7 +161,7 @@ export function AesFaceMap() {
           </div>
         </div>
 
-        <div key={k} className="rm-fade flex flex-col gap-5 self-center rounded-card bg-white p-6 md:p-8" aria-live="polite">
+        <div key={k} ref={panel} className="rm-fade flex scroll-mt-24 flex-col gap-5 self-center rounded-card bg-white p-6 md:p-8" aria-live="polite">
           <div className="flex flex-col gap-2">
             <span className="text-[13px] font-semibold text-lilac-deep">{c.youNotice}</span>
             <span className="display-tight text-[34px] md:text-[40px]">{concern.t}</span>

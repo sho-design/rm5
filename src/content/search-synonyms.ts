@@ -38,7 +38,7 @@ export const searchAliases: Record<string, string> = {
   aesInjectables: "breastfeeding nursing pregnant pregnancy botox tox dysport xeomin neurotoxin wrinkle wrinkles filler fillers lines frown forehead",
   aesSkin: "acne acne scars scarring microneedling peel peels skin facial pigmentation rosacea",
   aesLaser: "age spots age spot sun spots sunspots liver spots brown spots pigment laser hair removal ipl resurfacing rosacea redness red face flushing broken capillaries",
-  aesGift: "gift card gift cards gift certificate voucher present",
+  aesGift: "gift card gift cards gift certificate voucher present egift e-gift square balance check balance massage gift spa gift",
   rehab: "rehab rehabilitation injury injuries",
   rehabPhysio: "physio or chiro physio vs chiro chiro vs physio difference which one dau lung vat ly tri lieu physio physiotherapy physiotherapist physical therapy pt acl surgery post surgical sports injury shoulder knee hip ankle neck back sore stiff sprain strain back pain lower back low back price prices cost costs",
   rehabChiro: "physio or chiro physio vs chiro chiro vs physio difference which one chiro chiropractor chiropractic adjustment back neck shoulder posture spine back pain lower back low back neck pain price prices cost costs",

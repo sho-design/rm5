@@ -42,7 +42,7 @@ export function UtilityBar() {
             <span aria-hidden className="rm-911-short">{emergencyCopy.call911}</span>
           </span>
         ) : null}
-        <TextControls inverse compact className="mr-3 hidden text-[13px] md:flex" />
+        <TextControls inverse compact className="mr-3 hidden text-[13px] xl:flex" />
         <SocialIcons className="hidden sm:flex" />
         <span aria-hidden className={cn("mx-2.5 hidden h-4 w-px bg-white/25", status.ready && !status.open ? "md:block" : "sm:block")} />
         <Link href={routes.referrals} className={cn("hidden whitespace-nowrap font-semibold text-sun hover:text-sun-soft", status.ready && !status.open ? "md:inline" : "min-[400px]:inline")}>

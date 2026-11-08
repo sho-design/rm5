@@ -8,7 +8,11 @@ Approved copy is quoted through guards that fail the build if the source text ch
 
 ## Icons placed on the site (November 2026)
 
-Source: `accessChips` in `src/content/site.ts`. Icon chips on Our clinics and Contact: "Free on-site parking" and "Wheelchair accessible" (draft, restating the approved access line) and "Care in English and Tiếng Việt" (approved). Sub-navigation keeps its original items; six now use better-matching icons.
+Sub-navigation keeps its original items; six now use better-matching icons (new patients, trigger points, injectables, plans, chiropractic, FAQ). The access chips on Our clinics and Contact were removed in round 24 because they repeated the access text beside them.
+
+## Team page and contact, round 24 (November 2026)
+
+New draft lines: "Showing all 5 team members." and "Showing 5 in Family Medicine." (read by screen readers when the team filter changes; the number and service fill in), and the contact photo description "Front desk at the Thornhill clinic".
 
 ## Team page cards (November 2026)
 

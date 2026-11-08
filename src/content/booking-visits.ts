@@ -24,6 +24,8 @@ const endStop = (t: string) => (/[.?!]$/.test(t.trim()) ? t : `${t}.`);
 export type BookingClaim = "mva" | "wsib";
 
 export interface BookingVisit {
+  /** Minutes the visit takes, when longer than a half-hour slot; later start times are not offered. */
+  mins?: number;
   key: string;
   label: string;
   /** Overrides the service's coverage line. */
@@ -210,7 +212,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
   rehab: {
     coverage: bookingCoverage[label("rehab")],
     visits: [
-      { key: "assessment", label: menuLabel("rehab", "Initial assessment"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay, hint: { text: draft("Your first visit with physio or chiro. Choose this if you are new to rehab here.") } },
+      { key: "assessment", mins: 45, label: menuLabel("rehab", "Initial assessment"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay, hint: { text: draft("Your first visit with physio or chiro. Choose this if you are new to rehab here.") } },
       { key: "physio", label: menuLabel("rehab", "Physiotherapy"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
       { key: "chiro", label: menuLabel("rehab", "Chiropractic"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
       // The rehab "what to wear" answer is about knee, hip and shoulder treatment, not massage.

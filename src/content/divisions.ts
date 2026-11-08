@@ -273,6 +273,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "What to bring", page: "rehabBring" },
       { label: "Home exercise portal", page: "rehabHome" },
       { label: "Hours & location", page: "locations" },
+      { label: draft("Gift cards"), page: "aesGift" },
     ],
     sub: [
       { label: "Physio", icon: "physio", page: "rehabPhysio" },

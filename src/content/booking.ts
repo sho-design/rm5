@@ -220,7 +220,7 @@ export const contactCopy = {
     body: "We reply within 2 business days. If it is about an appointment today, please call 905-709-3222.",
     again: "Send another",
   },
-  mapAlt: "Map to Thornhill clinic",
+  mapAlt: draft("Front desk at the Thornhill clinic"),
   mapLink: "Open in Maps",
   hoursTitle: "Hours",
   gettingHereTitle: "Getting here",

@@ -76,6 +76,8 @@ export const teamCarousel = {
   open: draft("More about"),
   close: draft("Close"),
   listLabel: draft("Team members"),
+  /** Announced to screen readers when a filter changes the list. */
+  showing: (n: number, service: string) => (service === "All" ? draft(`Showing all ${n} team members.`) : draft(`Showing ${n} in ${service}.`)),
   /** What this person does for you. By name for the physicians, then by role and service. */
   byName: {
     "Dr. Johnny Nguyen": draft("Leads the clinic and performs Pain Centre procedures, guided by wireless ultrasound. Also sees family medicine patients."),

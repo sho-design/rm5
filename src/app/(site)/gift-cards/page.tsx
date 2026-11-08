@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import { CtaBand, Display, Eyebrow, FactGrid, Section, SubPageHero } from "@/components/ui";
+import { CtaBand, Display, Eyebrow, Section, SubPageHero } from "@/components/ui";
 import { divisions, divisionDot } from "@/content/divisions";
 import { giftCopy as c } from "@/content/giftcards";
 import { images } from "@/content/images";
@@ -78,7 +78,17 @@ export default function GiftCardsPage() {
           <Display size="xs">{c.deskTitle}</Display>
           <span className="text-[15px] text-secondary">{locations[0]?.address ?? ""}</span>
         </div>
-        <FactGrid facts={[{ k: "Phone", v: site.phone }, { k: "Email", v: site.email }]} />
+        {/* Real links, so the cards can be tapped (round 24, Minh). */}
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+          <a href={site.phoneHref} className="flex flex-col gap-1 rounded-card-sm border border-border bg-card px-4 py-3.5 hover:border-sky">
+            <span className="text-[12px] text-muted">Phone</span>
+            <span className="text-[16px] font-semibold">{site.phone}</span>
+          </a>
+          <a href={`mailto:${site.email}`} className="flex flex-col gap-1 rounded-card-sm border border-border bg-card px-4 py-3.5 hover:border-sky">
+            <span className="text-[12px] text-muted">Email</span>
+            <span className="break-all text-[16px] font-semibold">{site.email}</span>
+          </a>
+        </div>
       </Section>
 
       <CtaBand title={c.bandTitle} sub={c.bandSub} cta={squareGiftUrl ? c.buy : c.call} ctaTo={squareGiftUrl ?? site.phoneHref} />

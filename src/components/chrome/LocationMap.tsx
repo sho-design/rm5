@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 
 /**
@@ -10,11 +10,16 @@ import { cn } from "@/lib/cn";
  */
 export function LocationMap({ query, label, directions, className }: { query: string; label: string; directions: string; className?: string }) {
   const [on, setOn] = useState(false);
+  const frame = useRef<HTMLIFrameElement>(null);
+  // The button disappears when the map loads, so focus goes to the map rather than back to the top of the page.
+  useEffect(() => {
+    if (on) frame.current?.focus();
+  }, [on]);
   const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=16&output=embed`;
   return (
     <div className={cn("relative overflow-hidden rounded-[14px] border border-border bg-sky-soft", className)}>
       {on ? (
-        <iframe src={src} title={`Map: ${label}`} loading="lazy" referrerPolicy="no-referrer" className="absolute inset-0 h-full w-full border-0" />
+        <iframe ref={frame} src={src} title={`Map: ${label}`} loading="lazy" referrerPolicy="no-referrer" className="absolute inset-0 h-full w-full border-0" />
       ) : (
         <>
           <svg aria-hidden viewBox="0 0 320 160" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full text-white">

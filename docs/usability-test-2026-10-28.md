@@ -1095,6 +1095,53 @@ Lowest:
 - **Low vision (Ernest):** the text size and contrast buttons are small, and contrast mode leaves pastel panels.
 - **Maple (Bob):** how Maple registrants are seen at Thornhill meanwhile. The Maple parking text repeats Thornhill's.
 
+## Round 24: 10 testers, Sunday 8 November about 7:40am (clinic opens 8am)
+
+Average ease 5.5, trust 6.3 (round 23 was 5.25 and 5.3). The first round on the new team cards, the Vietnamese pages, gift cards for every service and the new icons. Scores (ease, trust):
+- **Bà Lan** (72, reads Vietnamese first): 6, 6.
+- **Minh** (her son, buying a gift card): 5, 6.
+- **Karen** (aesthetics on a phone): 5, 6.
+- **Dev** (keyboard only): 7, 7.
+- **Mrs. Tran** (low vision, largest text): 4, 6.
+- **Jordan** (screen reader): 5, 6.
+- **Priya** (shoulder pain, physician referral): 6, 6.
+- **Omar** (rehab assessment after work): 6, 7.
+- **Sarah** (new patient, comparing clinics): 6, 7.
+- **Bao** (iron therapy): 5, 6.
+
+What worked: the Vietnamese home and iron pages read as written for the reader, not translated (Bà Lan). The team cards made the clinic feel staffed by real people (Sarah, Omar). Gift cards were clear that they cover any service you pay for (Minh). No one read the new icons as decoration getting in the way.
+
+### Round 24 findings fixed in code
+
+- **Vietnamese pages (Bà Lan):** a nested link in the header broke the page after loading. The logo now links to the Vietnamese home itself. The four tabs wrap on a phone instead of running off screen.
+- **Gift cards (Minh):** search for "gift card", "balance" or "egift" now finds the gift card page first. The Rehab menu lists Gift cards. The phone and email on the gift card page are real links.
+- **Team page (Mrs. Tran, Jordan, Dev):**
+  - An open card grows with its text, so the last lines and the booking button are no longer cut off at the largest text size.
+  - Names and roles wrap on a phone instead of being cut off.
+  - Escape closes an open card and keeps focus on the name. Each name has a clear focus ring.
+  - The service filter works with arrow keys and announces "Showing 5 in Family Medicine."
+- **Keyboard (Dev):** the mega menu closes when focus moves past it. Show map moves focus to the map.
+- **Screen reader (Jordan):** the footer has real headings for the clinic, hours, Maple and each link group. The contact photo's description says what is in it. The signature lines are hidden from screen readers.
+- **Large text (Mrs. Tran):** the header and the open-status bar no longer cut off at 1024 pixels wide or with larger text.
+- **Booking (Omar):** a 45-minute rehab assessment no longer offers a start that runs past closing (no 8:30pm on a Tuesday).
+- **Pain Centre (Priya):** booking from the trigger point page now carries "Pain Centre referral" as the reason.
+- **Face map (Karen):** tapping a spot on a phone scrolls to the answer, and each spot has a larger tap area.
+- **Access chips:** the parking, wheelchair and language chips on Our clinics and Contact repeated the text beside them, so they were removed.
+- **Signature line (Sarah):** after the beat the line keeps a gentle rhythm instead of going flat, which read as a flatline.
+
+### Round 24 findings for the clinic
+
+- **Dr. Nguyen's bio:** "Woodbridge", "11 years" and the awards need a source before launch.
+- **Imaging (Priya):** "If you need imaging, it happens here" should say ultrasound only.
+- **Rehab prices (Omar):** "From $95 for massage" leads the self-pay panel; the physio and chiro fees come second. The physio hero says "We bill the insurer directly", which self-payers read as not for them.
+- **Getting there (Bà Lan, Sarah):** the FAQ says "Walmart plaza" while the rest of the site says "inside Walmart". Add which entrance, how to find the clinic inside, and the YRT routes.
+- **Iron on a Tuesday (Bao):** a 6:30pm start plus about 3 hours ends after the 9pm close. Confirm the last start.
+- **Aesthetics (Karen):** no prices for fine-lines treatments, and whether the consult is with a physician or a nurse.
+- **Labels (Priya):** "Send a referral" leads to the physician page; patients expected a form.
+- **Booking (Omar):** a short explainer of physio or chiro. The sticky booking bar overlaps the last field on a small phone.
+- **Vietnamese (Bà Lan):** the forms are still English only, and the Vietnamese pages do not show whether the clinic is open now.
+- **Visual (Mrs. Tran, Jordan):** the nerve icon reads as an X. Contrast mode keeps pastel panels. The A+ and A- buttons are small. The Our clinics hero crops at 1024. The cookie banner comes before the skip link (deliberate, kept).
+
 ## What worked
 
 - Coverage answers: Pain Centre framing (referral, OHIP, no family doctor route) and the MVA "$0" chooser were understood at once.

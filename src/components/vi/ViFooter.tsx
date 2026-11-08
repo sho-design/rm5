@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Wordmark } from "@/components/chrome/Wordmark";
 import { viChrome as c } from "@/content/vi";
 import { site } from "@/content/site";
-import { external, routes } from "@/lib/routes";
+import { external, routes, viRoutes } from "@/lib/routes";
 
 /** Hours, address and contact in Vietnamese, then the sign-off band. The rest of the site is English for now. */
 export function ViFooter() {
@@ -10,7 +10,7 @@ export function ViFooter() {
     <footer id="footer" className="mx-4 mb-4 mt-12 flex flex-col gap-8 rounded-block bg-raised p-6 md:mx-6 md:mt-section md:p-10">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         <div className="flex flex-col gap-3">
-          <Wordmark />
+          <Wordmark href={viRoutes.home} label="Restoration Medical, trang chủ tiếng Việt" />
           <p className="pretty text-[14px] leading-[1.55] text-secondary">{c.footerLead}</p>
           <p className="text-[14px] text-secondary">
             {c.footerAll}{" "}

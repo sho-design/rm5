@@ -166,13 +166,13 @@ const painBand: Topic["band"] = {
   title: PD.footCta ?? "",
   sub: P.closing,
   cta: PD.cta ?? "",
-  ctaTo: bookFor("family"),
+  ctaTo: PD.ctaPage ?? bookFor("family"),
   cta2: PD.cta2,
   cta2To: "referrals",
 };
 const painRedFlag = approved(P.chooser.intro, "If your pain is new, sudden or severe, see your family physician or go to an emergency department first.");
 const painPath = { title: P.pathTitle, steps: P.path };
-const painHero = { cta: PD.cta ?? "", ctaTo: bookFor("family"), cta2: PD.cta2, cta2To: "referrals", coverage: approved(PD.eyebrow ?? "", "OHIP-covered with a referral.") };
+const painHero = { cta: PD.cta ?? "", ctaTo: PD.ctaPage ?? bookFor("family"), cta2: PD.cta2, cta2To: "referrals", coverage: approved(PD.eyebrow ?? "", "OHIP-covered with a referral.") };
 
 const pain: Topic[] = [
   {

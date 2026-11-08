@@ -48,6 +48,7 @@ const handWritten: SearchEntry[] = [
   { kind: "Team", label: "Dr. Johnny Nguyen", sub: "Medical Director", page: "team" },
   { kind: "Team", label: "Our team", sub: "Physicians, nurses, therapists", page: "team" },
   { kind: "Book", label: "Book an appointment", sub: "Any service", page: "book" },
+  { kind: "Gift cards", label: "Gift cards", sub: "A Square eGift card for any service you pay for. Buy online or check a balance.", page: "aesGift" },
 ];
 
 // Menu rows say what the page is about (its topic lead, or the hand-written row) rather than just "Explore".

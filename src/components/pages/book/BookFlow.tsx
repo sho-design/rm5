@@ -8,6 +8,7 @@ import { registerExtraCopy as rx } from "@/content/forms-copy";
 import type { BookingConfig, BookingService, BookingVisit } from "@/content/booking-visits";
 import { site } from "@/content/site";
 import { bookingDays, fmtTime, womensDayBookingDays, DOW, MON, type BookingDay } from "@/lib/hours";
+import { openingHours } from "@/content/site";
 import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
 import { errorProps, fmtPhone, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
@@ -203,7 +204,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     }
   }, [visit?.key, visit?.existing]);
   const languageName = language === 2 ? str("languageOther") || x.otherLanguage : registerLanguages[language];
-  const slots = useMemo(() => day?.slots ?? [], [day]);
+  // A visit longer than a slot must finish by closing (a 45 minute first visit at 8:30pm ran past 9pm).
+  const closeAt = day ? openingHours[day.date.getDay()]?.[1] : undefined;
+  const slots = useMemo(() => (day?.slots ?? []).filter((t) => !visit?.mins || closeAt === undefined || t + visit.mins / 60 <= closeAt), [day, visit?.mins, closeAt]);
   // Insured rehab visits also say what it costs if the plan does not pay (a tester never saw the price in booking).
   const insuredWithFallback = visit?.payment && payment === 0 && visit.selfPay ? `${payments[0]?.coverage}. ${x.notCovered} ${visit.selfPay.replace(/^Self-pay:\s*/, "")}` : undefined;
   const baseCoverage = visit?.coverage ?? (visit?.payment ? (payment === 1 && visit.selfPay ? visit.selfPay : insuredWithFallback ?? payments[payment]?.coverage) : service.coverage) ?? bookingCoverageFallback;

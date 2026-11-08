@@ -44,7 +44,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
           <div className="grid grid-cols-1 gap-5 rounded-[20px] border border-border bg-raised p-5 text-[13px] leading-[1.5] text-muted sm:grid-cols-2 md:p-6 xl:grid-cols-[1fr_1fr_1.15fr]">
             <div className="flex flex-col gap-2">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                <span className="display text-[20px] text-primary">{thornhill.name}</span>
+                <h2 className="display text-[20px] text-primary">{thornhill.name}</h2>
                 <OpenBadge className="text-primary" />
               </div>
               <a href={external.thornhillMaps} target="_blank" rel="noopener" className="hover:text-primary">
@@ -63,7 +63,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="text-[12px] font-semibold text-primary">Hours</span>
+              <h3 className="text-[12px] font-semibold text-primary">Hours</h3>
               <span>
                 Mon, Wed, Thu 9am to 4pm
                 <br />
@@ -80,7 +80,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
           </div>
           <div className="flex flex-col gap-2 rounded-[20px] border border-border bg-raised px-5 py-4 text-[13px] leading-[1.5] text-muted md:flex-row md:items-center md:gap-5 md:px-6">
             <span className="flex shrink-0 items-center gap-2.5">
-              <span className="display text-[18px] text-primary">{maple.name}</span>
+              <h2 className="display text-[18px] text-primary">{maple.name}</h2>
               <span className="rounded-chip bg-sun-soft px-2.5 py-1 text-[12px] font-semibold text-sun-ink">Coming soon</span>
             </span>
             <a href={external.mapleMaps} target="_blank" rel="noopener" className="min-w-0 hover:text-primary md:flex-1">
@@ -114,7 +114,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
         })}
         {linkGroups.map((g) => (
           <div key={g.t} className="flex flex-col gap-2.5 text-[14px]">
-            <span className="mb-1 font-semibold text-primary">{g.t}</span>
+            <h2 className="mb-1 font-semibold text-primary">{g.t}</h2>
             {g.links.map(([label, to]) => (
               <Link key={label} href={to} className="w-fit text-muted transition-colors hover:text-primary">
                 {label}

@@ -1,5 +1,4 @@
 export { Button } from "./Button";
-export { IconChips, type IconChip } from "./IconChips";
 export type { ButtonProps, ButtonVariant } from "./Button";
 export { SmartLink } from "./SmartLink";
 export { Display, Eyebrow, Lead, TextLink } from "./Text";

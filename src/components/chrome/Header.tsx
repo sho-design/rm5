@@ -60,7 +60,9 @@ export function Header() {
     toggles.current[k]?.focus();
   };
   const onBlur = (e: FocusEvent<HTMLElement>) => {
-    if (menu && !e.currentTarget.contains(e.relatedTarget as Node | null)) setMenu(null);
+    // Close once focus leaves the open menu itself; tabbing on to Search or the phone link closes it (round 24).
+    const to = e.relatedTarget as Element | null;
+    if (menu && !to?.closest(`[data-menu="${menu}"]`)) setMenu(null);
   };
   const searchButton = useRef<HTMLButtonElement>(null);
   // Closing search (Esc, Close) puts focus back on the Search button instead of the page body.
@@ -87,7 +89,7 @@ export function Header() {
             const on = menu === k;
             return (
               <Fragment key={k}>
-                <span className="relative flex items-center">
+                <span data-menu={k} className="relative flex items-center">
                   <Link
                     href={href(k)}
                     onMouseEnter={() => setMenu(k)}
@@ -114,7 +116,7 @@ export function Header() {
                   </button>
                 </span>
                 {on && !search ? (
-                  <div id={`mega-${k}`} className="absolute inset-x-0 top-full border-y border-border bg-card shadow-card">
+                  <div id={`mega-${k}`} data-menu={k} className="absolute inset-x-0 top-full border-y border-border bg-card shadow-card">
                     <div className="mx-auto w-full max-w-[1440px]">
                       <MegaMenu menuKey={k} onNavigate={closeMenu} />
                     </div>

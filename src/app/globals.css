@@ -177,15 +177,15 @@
    division menu and phone pill. Below that, use the phone menu instead so
    nothing is cut off. Media queries see the real window width, not the
    zoomed one, hence the larger breakpoints. */
-@media (max-width: 1439px) {
+@media (max-width: 1679px) {
   :root[data-text="1"] .rm-desktop-nav { display: none; }
   :root[data-text="1"] .rm-menu-btn { display: flex; }
 }
-@media (max-width: 1599px) {
+@media (max-width: 1899px) {
   :root[data-text="2"] .rm-desktop-nav { display: none; }
   :root[data-text="2"] .rm-menu-btn { display: flex; }
 }
-@media (max-width: 1023px) {
+@media (max-width: 1899px) {
   :root[data-text] .rm-header-phone { display: none; }
 }
 

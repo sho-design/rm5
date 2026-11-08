@@ -15,11 +15,11 @@ import { cn } from "@/lib/cn";
 type Variant = "pulse" | "services" | "end";
 
 const W = 1200;
-const H = 140;
-const Y = 96;
+const H = 120;
+const Y = 86;
 
 const MAIN: Record<Variant, string> = {
-  pulse: `M0 ${Y} H420 L440 ${Y} L456 ${Y - 52} L476 ${Y + 30} L492 ${Y - 30} L506 ${Y + 10} L518 ${Y - 8} C548 ${Y - 14} 572 ${Y + 8} 604 ${Y} C640 ${Y - 6} 668 ${Y + 4} 704 ${Y} H${W}`,
+  pulse: `M0 ${Y} H420 L440 ${Y} L456 ${Y - 52} L476 ${Y + 30} L492 ${Y - 30} L506 ${Y + 10} L518 ${Y - 8} C548 ${Y - 14} 572 ${Y + 8} 604 ${Y} C640 ${Y - 10} 668 ${Y - 10} 704 ${Y} S768 ${Y + 10} 804 ${Y} S868 ${Y - 10} 904 ${Y} S968 ${Y + 10} 1004 ${Y} S1068 ${Y - 10} 1104 ${Y} S1168 ${Y + 10} ${W} ${Y}`,
   services: `M0 ${Y} H${W}`,
   end: `M0 ${Y} H${W / 2}`,
 };
@@ -95,8 +95,8 @@ export function SignatureLine({ variant = "pulse", className }: { variant?: Vari
   }, [variant]);
 
   return (
-    <div ref={wrap} aria-hidden data-sig={variant} className={cn("px-4 pt-8 md:px-content md:pt-12", className)}>
-      <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full overflow-visible" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <div ref={wrap} aria-hidden data-sig={variant} className={cn("px-4 pt-6 md:px-content md:pt-8", className)}>
+      <svg aria-hidden viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full overflow-visible" fill="none" strokeLinecap="round" strokeLinejoin="round">
         <defs>
           <clipPath id={clipId}>
             <rect ref={reveal} x={-10} y={-20} width={0} height={H + 40} />

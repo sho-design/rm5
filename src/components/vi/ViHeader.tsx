@@ -28,9 +28,7 @@ export function ViHeader() {
         </div>
       </div>
       <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-4 py-3.5 md:px-8">
-        <Link href={viRoutes.home} aria-label="Restoration Medical, trang chủ tiếng Việt">
-          <Wordmark />
-        </Link>
+        <Wordmark href={viRoutes.home} label="Restoration Medical, trang chủ tiếng Việt" />
         <div className="flex items-center gap-2">
           <a href={site.phoneHref} className="hidden rounded-chip border-[1.5px] border-border px-4 py-2 text-[14px] font-semibold md:inline-flex">
             {site.phone}
@@ -41,7 +39,7 @@ export function ViHeader() {
         </div>
       </div>
       <nav aria-label={c.navLabel} className="mx-auto w-full max-w-[1440px] px-4 pb-2 md:px-8">
-        <ul className="flex gap-1.5 overflow-x-auto pb-1">
+        <ul className="flex flex-wrap gap-1.5 pb-1">
           {c.nav.map((n) => {
             const href = viRoutes[n.k];
             const on = path === href;
