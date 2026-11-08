@@ -14,6 +14,7 @@ import { SeasonCalendar } from "@/components/pages/home/SeasonCalendar";
 import { FeatureRow } from "@/components/pages/home/FeatureRow";
 import { WholeFamily } from "@/components/pages/home/WholeFamily";
 import { HealthNotes } from "@/components/pages/home/HealthNotes";
+import { SignatureLine } from "@/components/chrome/SignatureLine";
 
 /** Re-render hourly so "This season" and the health calendar follow the Toronto month. */
 export const revalidate = 3600;
@@ -35,13 +36,16 @@ export default async function HomePage() {
     <>
       <HeroCarousel slides={heroSlides} />
       <QuickActions />
+      <SignatureLine variant="pulse" />
       <Announcements items={announcements} />
       <ExploreServices />
+      <SignatureLine variant="services" />
       <CarePathways paths={carePaths} tints={carePathTints} />
       <SeasonCalendar month={month} />
       <FeatureRow />
       <WholeFamily />
       <HealthNotes notes={notes.slice(0, 3)} />
+      <SignatureLine variant="end" />
       <CtaBand title="Care that begins with you." sub="Whatever brings you in, the standard of care is the same. Tell us what you need and we will point you to the right team." cta="Book an appointment" ctaTo="book" callLine={false} />
     </>
   );
