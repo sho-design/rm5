@@ -18,8 +18,8 @@ const linkGroups: { t: string; links: [string, string][] }[] = [
 ];
 
 /**
- * Footer in three bands: wordmark, Book button and the two clinic cards (a map for Thornhill only, as Maple is not
- * open); one link grid (six services, patients, policies, with no link repeated); and the sign-off band carrying
+ * Footer in three bands: wordmark and Book button beside Thornhill (address, hours and map in one row) with Maple
+ * as a slim strip, as it is not open; one link grid (six services, patients, policies, with no link repeated); and the sign-off band carrying
  * text size and contrast, the network link and the land acknowledgement.
  */
 export function Footer({ analytics = false }: { analytics?: boolean }) {
@@ -29,8 +29,8 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
   const grouped = new Set(linkGroups.flatMap((g) => g.links.map(([, to]) => to)));
   return (
     <footer id="footer" tabIndex={-1} className="m-3 flex outline-none flex-col gap-10 rounded-block border border-border bg-card p-6 md:m-gutter md:p-12">
-      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[1.1fr_1fr_1fr]">
-        <div className="flex flex-col gap-3.5 lg:pr-6">
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,.8fr)_minmax(0,2fr)] lg:gap-8">
+        <div className="flex flex-col gap-3.5">
           <Wordmark size="lg" />
           <span className="pretty text-[14px] leading-[1.5] text-muted">{site.description}</span>
           <Link href={routes.book} className={buttonClass("primary", "md", "self-start")}>
@@ -38,46 +38,58 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
           </Link>
           <FooterIcons />
         </div>
-        <div className="flex flex-col gap-3 rounded-[20px] border border-border bg-raised px-6 py-[22px] text-[13px] leading-[1.5] text-muted">
-          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
-            <span className="display text-[20px] text-primary">{thornhill.name}</span>
-            <OpenBadge className="text-primary" />
+        {/* Thornhill reads across in one card (address and contact, hours, map), with Maple as a slim strip under it,
+            so neither card leaves a tall empty column. */}
+        <div className="flex flex-col gap-2.5">
+          <div className="grid grid-cols-1 gap-5 rounded-[20px] border border-border bg-raised p-5 text-[13px] leading-[1.5] text-muted sm:grid-cols-2 md:p-6 xl:grid-cols-[1fr_1fr_1.15fr]">
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span className="display text-[20px] text-primary">{thornhill.name}</span>
+                <OpenBadge className="text-primary" />
+              </div>
+              <a href={external.thornhillMaps} target="_blank" rel="noopener" className="hover:text-primary">
+                {thornhill.addressLines[0]}
+                <br />
+                {thornhill.addressLines[1]}
+              </a>
+              <div className="flex flex-col gap-0.5 pt-1 text-primary">
+                <a href={site.phoneHref} className="font-semibold">
+                  {site.phone}
+                </a>
+                <span className="text-muted">Fax {site.fax}</span>
+                <a href={`mailto:${site.email}`} className="break-all">
+                  {site.email}
+                </a>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <span className="text-[12px] font-semibold text-primary">Hours</span>
+              <span>
+                Mon, Wed, Thu 9am to 4pm
+                <br />
+                Tue 3pm to 9pm
+                <br />
+                Sat 8am to 4pm
+                <br />
+                Sun 8am to 2pm
+                <br />
+                Fri closed
+              </span>
+            </div>
+            <LocationMap query="Restoration Medical, 700 Centre St, Thornhill, ON L4J 0A7" label={thornhill.name} directions={external.thornhillMaps} className="h-[150px] sm:col-span-2 xl:col-span-1 xl:h-full xl:min-h-[150px]" />
           </div>
-          <a href={external.thornhillMaps} target="_blank" rel="noopener" className="hover:text-primary">
-            {thornhill.addressLines[0]}
-            <br />
-            {thornhill.addressLines[1]}
-          </a>
-          <LocationMap query="Restoration Medical, 700 Centre St, Thornhill, ON L4J 0A7" label={thornhill.name} directions={external.thornhillMaps} className="h-[150px]" />
-          <span>
-            Mon, Wed, Thu 9am to 4pm
-            <br />
-            Tue 3pm to 9pm
-            <br />
-            Sat 8am to 4pm, Sun 8am to 2pm
-            <br />
-            Fri closed
-          </span>
-          <div className="flex flex-col gap-0.5 border-t border-border pt-1.5 text-primary">
-            <a href={site.phoneHref}>{site.phone}</a>
-            <span className="text-muted">Fax {site.fax}</span>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
+          <div className="flex flex-col gap-2 rounded-[20px] border border-border bg-raised px-5 py-4 text-[13px] leading-[1.5] text-muted md:flex-row md:items-center md:gap-5 md:px-6">
+            <span className="flex shrink-0 items-center gap-2.5">
+              <span className="display text-[18px] text-primary">{maple.name}</span>
+              <span className="rounded-chip bg-sun-soft px-2.5 py-1 text-[12px] font-semibold text-sun-ink">Coming soon</span>
+            </span>
+            <a href={external.mapleMaps} target="_blank" rel="noopener" className="min-w-0 hover:text-primary md:flex-1">
+              {maple.addressLines.join(", ")}
+            </a>
+            <Link href={`${routes.locations}#maple-waitlist`} className="shrink-0 font-semibold text-link">
+              Join the Maple list ›
+            </Link>
           </div>
-        </div>
-        <div className="flex flex-col gap-3 rounded-[20px] border border-border bg-raised px-6 py-[22px] text-[13px] leading-[1.5] text-muted">
-          <div className="flex items-center justify-between gap-3">
-            <span className="display text-[20px] text-primary">{maple.name}</span>
-            <span className="rounded-chip bg-sun-soft px-2.5 py-1 text-[12px] font-semibold text-sun-ink">Coming soon</span>
-          </div>
-          <a href={external.mapleMaps} target="_blank" rel="noopener" className="hover:text-primary">
-            {maple.addressLines[0]}
-            <br />
-            {maple.addressLines[1]}
-          </a>
-          <span className="flex-1">Family Medicine, Pain Centre, Infusion Therapy and Rehab. The Maple list is open now.</span>
-          <Link href={`${routes.locations}#maple-waitlist`} className="w-full border-t border-border pt-1.5 font-semibold text-link">
-            Join the Maple list ›
-          </Link>
         </div>
       </div>
 
