@@ -69,6 +69,8 @@ export const teamPage = {
  * you, in your visit, and how to book with their service. All draft. Generic by role, so no one is quoted.
  */
 export const teamCarousel = {
+  /** Numbers strip under the title. Counts come from the roster; labels are draft. */
+  stats: { physicians: draft("Physicians"), nurses: draft("Registered nurses"), lab: draft("On-site lab"), languages: draft("Languages, English and Tiếng Việt") },
   title: draft("Who you will meet."),
   lead: draft("Tap a name to see what they do in your visit."),
   open: draft("More about"),

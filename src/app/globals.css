@@ -82,6 +82,7 @@
   --spacing-gutter: var(--page-gutter);
   --spacing-content: var(--content-gutter);
   --spacing-card: var(--card-gap);
+  /* Careful: this key also makes Tailwind give the "inline-block" class an inline-size of 14px. Use [display:inline-block]. */
   --spacing-block: var(--block-gap);
   --spacing-section: var(--section-gap);
   --spacing-section-tight: var(--section-gap-tight);
@@ -309,4 +310,15 @@
 @media (prefers-reduced-motion: no-preference) {
   .rm-rise { animation: rm-rise 400ms cubic-bezier(.2,.8,.2,1) both; }
   .rm-fade { animation: rm-fade 300ms cubic-bezier(.2,.8,.2,1) both; }
+}
+
+/* Team page (Nov 2026): drifting colour glows on the navy band, an orbiting ring, and cards that rise into view.
+   Everything rests in its final state when motion is reduced. */
+@keyframes rm-drift { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(6%, -8%) scale(1.12); } 100% { transform: translate(-5%, 6%) scale(.95); } }
+@keyframes rm-orbit { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: no-preference) {
+  .rm-drift { animation: rm-drift 22s ease-in-out infinite alternate; }
+  .rm-orbit { animation: rm-orbit 40s linear infinite; }
+  .rm-reveal { opacity: 0; transform: translateY(28px); transition: opacity 400ms cubic-bezier(.2,.8,.2,1), transform 400ms cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0ms); }
+  .rm-reveal.is-in { opacity: 1; transform: none; }
 }

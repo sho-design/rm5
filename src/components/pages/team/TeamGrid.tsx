@@ -9,6 +9,7 @@ import { teamCarousel as c } from "@/content/team";
 import type { TeamMember } from "@/content/types";
 import { bookFor } from "@/lib/routes";
 import { cn } from "@/lib/cn";
+import { Reveal } from "./TeamMotion";
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
@@ -22,7 +23,7 @@ function whatTheyDo(m: TeamMember): string | undefined {
  * pill with a plus; tapping it raises a panel over the lower half with what they do in your visit, their services
  * and languages, and booking for their service. Only one card is open at a time.
  */
-function Card({ m, open, onToggle }: { m: TeamMember; open: boolean; onToggle: () => void }) {
+function Card({ m, open, onToggle, index }: { m: TeamMember; open: boolean; onToggle: () => void; index: number }) {
   const id = `team-${slug(m.name)}`;
   const key = divisionKeyByLabel[m.divisions[0]] ?? "family";
   const book = c.book[key];
@@ -32,15 +33,15 @@ function Card({ m, open, onToggle }: { m: TeamMember; open: boolean; onToggle: (
   const light = !m.photo && !open;
   return (
     // On a phone the grid is two across, so an open card widens to the full row to fit its details.
-    <li className={cn("min-w-0", open && "col-span-2 sm:col-span-1")} aria-label={m.name}>
-      <article className="relative aspect-[3/4] overflow-hidden rounded-block bg-ink text-white ring-1 ring-white/15">
+    <Reveal as="li" delay={(index % 4) * 90} className={cn("group min-w-0", open && "col-span-2 sm:col-span-1")}>
+      <article aria-label={m.name} className="relative aspect-[3/4] overflow-hidden rounded-block bg-ink text-white ring-1 ring-ink/5 shadow-[0_8px_24px_rgba(16,24,40,.06)] motion-safe:transition-[transform,box-shadow] motion-safe:duration-300 motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] hover:-translate-y-1.5 hover:shadow-[0_24px_50px_rgba(16,24,40,.16)]">
         {m.photo ? (
           <Image src={m.photo} alt="" fill sizes="(max-width: 640px) 50vw, 320px" className={cn("object-cover object-[50%_20%] motion-safe:transition-transform motion-safe:duration-[400ms] motion-safe:ease-[cubic-bezier(.2,.8,.2,1)]", open && "motion-safe:scale-[1.04]")} />
         ) : (
           <div aria-hidden className="absolute inset-0" style={{ background: m.tint }}>
-            <span className="absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-50 sm:h-56 sm:w-56" style={{ background: accent }} />
+            <span className="absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-50 motion-safe:transition-transform motion-safe:duration-[400ms] motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] group-hover:scale-125 sm:h-56 sm:w-56" style={{ background: accent }} />
             <span className="absolute -bottom-10 -left-12 h-40 w-40 rounded-full bg-white/50" />
-            <span className="absolute inset-0 flex items-center justify-center pb-16 font-display text-[88px] font-medium sm:text-[130px] xl:text-[150px] leading-none tracking-[-.04em] text-ink/85">{m.initial}</span>
+            <span className="absolute inset-0 flex items-center justify-center pb-16 font-display text-[88px] font-medium leading-none tracking-[-.04em] text-ink/85 motion-safe:transition-transform motion-safe:duration-[400ms] motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] group-hover:-translate-y-1 group-hover:scale-105 sm:text-[130px] xl:text-[150px]">{m.initial}</span>
           </div>
         )}
         {/* Protection so the white name reads on any photo. The tinted portraits keep ink text instead. */}
@@ -84,7 +85,7 @@ function Card({ m, open, onToggle }: { m: TeamMember; open: boolean; onToggle: (
           </div>
         </div>
       </article>
-    </li>
+    </Reveal>
   );
 }
 
@@ -104,13 +105,13 @@ export function TeamGrid({ team, filters, note }: { team: TeamMember[]; filters:
   const shown = label === "All" ? team : team.filter((m) => m.divisions.includes(label));
 
   return (
-    <section aria-labelledby="team-title" className="flex flex-col gap-6 border-t border-white/15 px-6 pt-10 md:px-12 md:pt-14 lg:px-16">
+    <section aria-labelledby="team-title" className="flex flex-col gap-6 border-t border-border px-6 pt-10 md:px-12 md:pt-14 lg:px-16">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1.5">
           <Display size="sm" id="team-title">
             {c.title}
           </Display>
-          <p className="text-[16px] text-white/70">{c.lead}</p>
+          <p className="text-[16px] text-secondary">{c.lead}</p>
         </div>
         <ChipRow
           items={filters}
@@ -120,16 +121,15 @@ export function TeamGrid({ team, filters, note }: { team: TeamMember[]; filters:
             setOpen(null);
           }}
           size="sm"
-          inverse
           ariaLabel="Filter team by service"
         />
       </div>
       <ul aria-label={c.listLabel} className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
-        {shown.map((m) => (
-          <Card key={m.name} m={m} open={open === m.name} onToggle={() => setOpen(open === m.name ? null : m.name)} />
+        {shown.map((m, idx) => (
+          <Card key={m.name} index={idx} m={m} open={open === m.name} onToggle={() => setOpen(open === m.name ? null : m.name)} />
         ))}
       </ul>
-      <span className="text-[13px] text-white/55">{note}</span>
+      <span className="text-[13px] text-muted">{note}</span>
     </section>
   );
 }

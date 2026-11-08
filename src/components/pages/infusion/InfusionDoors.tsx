@@ -83,7 +83,7 @@ export function InfusionDoors() {
                 <span className="text-[17px] font-semibold">{x.t}</span>
                 <span className="pretty text-[15px] leading-[1.5] text-secondary">{x.d}</span>
                 <span className="pt-1 text-[15px] font-semibold text-link">
-                  {x.cta} <span className="inline-block motion-safe:transition-transform group-hover:translate-x-1">›</span>
+                  {x.cta} <span className="[display:inline-block] motion-safe:transition-transform group-hover:translate-x-1">›</span>
                 </span>
               </span>
             </SmartLink>

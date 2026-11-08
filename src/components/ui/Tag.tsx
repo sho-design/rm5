@@ -19,5 +19,5 @@ export function Tag({ children, className, style, tone = "tint" }: { children: R
 
 /** Status dot (7px) used for open-now and location status. */
 export function Dot({ color = "var(--status-open)", size = 7, className }: { color?: string; size?: number; className?: string }) {
-  return <span aria-hidden className={cn("inline-block shrink-0 rounded-full", className)} style={{ width: size, height: size, background: color }} />;
+  return <span aria-hidden className={cn("[display:inline-block] shrink-0 rounded-full", className)} style={{ width: size, height: size, background: color }} />;
 }

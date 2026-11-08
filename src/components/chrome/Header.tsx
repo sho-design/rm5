@@ -76,11 +76,13 @@ export function Header() {
 
   return (
     <header data-scrolled={scrolled || undefined} className={cn("rm-header sticky top-0 z-40 border-b border-border transition-colors", menu ? "bg-card" : "bg-page")} onMouseLeave={closeMenu} onKeyDown={onKeyDown} onBlur={onBlur}>
-      <div className="mx-auto flex h-14 w-full max-w-[1440px] items-center justify-between gap-3 px-4 md:px-8">
+      {/* Taller bar on larger screens (76px), after FIGS: more air, a larger wordmark and roomier pills. */}
+      <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between gap-3 px-4 md:h-[76px] md:px-8">
         <div onMouseEnter={closeMenu}>
-          <Wordmark />
+          <Wordmark className="md:hidden" />
+          <Wordmark size="lg" className="hidden md:flex" />
         </div>
-        <nav className="rm-desktop-nav hidden gap-1 text-[14px] xl:flex" aria-label="Primary">
+        <nav className="rm-desktop-nav hidden gap-1 text-[15px] xl:flex" aria-label="Primary">
           {navOrder.map((k) => {
             const on = menu === k;
             return (
@@ -90,7 +92,7 @@ export function Header() {
                     href={href(k)}
                     onMouseEnter={() => setMenu(k)}
                     aria-current={active === k ? "page" : undefined}
-                    className={cn("whitespace-nowrap rounded-chip px-3.5 py-2 transition-colors", on ? "bg-ink text-white" : "hover:bg-card", active === k ? "font-semibold" : "font-medium")}
+                    className={cn("whitespace-nowrap rounded-chip px-4 py-2.5 transition-colors", on ? "bg-ink text-white" : "hover:bg-card", active === k ? "font-semibold" : "font-medium")}
                   >
                     {divisions[k].label}
                   </Link>
@@ -122,7 +124,7 @@ export function Header() {
             );
           })}
         </nav>
-        <div className="flex items-center gap-1.5 text-[14px] font-medium md:gap-2" onMouseEnter={closeMenu}>
+        <div className="flex items-center gap-1.5 text-[14px] font-medium md:gap-2 md:text-[15px]" onMouseEnter={closeMenu}>
           <button
             ref={searchButton}
             type="button"
@@ -132,14 +134,14 @@ export function Header() {
             }}
             aria-label="Search"
             aria-expanded={search}
-            className="flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-border transition-colors hover:border-sky"
+            className="flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-border transition-colors hover:border-sky md:h-[44px] md:w-[44px]"
           >
             <Icon name="search" size={16} stroke={2} />
           </button>
-          <a href={site.phoneHref} className="rm-header-phone hidden whitespace-nowrap rounded-chip border-[1.5px] border-border px-3.5 py-[9px] transition-colors hover:border-sky md:block">
+          <a href={site.phoneHref} className="rm-header-phone hidden whitespace-nowrap rounded-chip border-[1.5px] border-border px-4 py-[11px] transition-colors hover:border-sky md:block">
             {site.phone}
           </a>
-          <Link href={routes.book} className="hidden rounded-chip bg-ink px-4 py-[9px] text-white hover:opacity-90 sm:block">
+          <Link href={routes.book} className="hidden rounded-chip bg-ink px-5 py-[11px] text-white hover:opacity-90 sm:block">
             Book
           </Link>
           <button
@@ -147,7 +149,7 @@ export function Header() {
             onClick={() => setMobile(true)}
             aria-label="Menu"
             aria-expanded={mobile}
-            className="rm-menu-btn flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-border text-[16px] xl:hidden"
+            className="rm-menu-btn flex h-[38px] w-[38px] md:h-[44px] md:w-[44px] items-center justify-center rounded-full border-[1.5px] border-border text-[16px] xl:hidden"
           >
             ☰
           </button>
