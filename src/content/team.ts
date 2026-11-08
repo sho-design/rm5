@@ -65,7 +65,7 @@ export const teamPage = {
 } as const;
 
 /**
- * Team carousel (November 2026, after the FIGS ambassador cards). Each card opens to say what this person does for
+ * Team cards (November 2026, after the FIGS ambassador cards). Each card opens to say what this person does for
  * you, in your visit, and how to book with their service. All draft. Generic by role, so no one is quoted.
  */
 export const teamCarousel = {
@@ -73,8 +73,6 @@ export const teamCarousel = {
   lead: draft("Tap a name to see what they do in your visit."),
   open: draft("More about"),
   close: draft("Close"),
-  prev: draft("Previous team members"),
-  next: draft("Next team members"),
   listLabel: draft("Team members"),
   /** What this person does for you. By name for the physicians, then by role and service. */
   byName: {

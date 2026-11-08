@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChipRow, Display, SmartLink } from "@/components/ui";
 import { buttonClass } from "@/components/ui/Button";
 import { divisionDot, divisionKeyByLabel } from "@/content/divisions";
@@ -18,7 +18,7 @@ function whatTheyDo(m: TeamMember): string | undefined {
 }
 
 /**
- * One tall card. A headshot when the CMS has one; until then a tinted portrait with the initial. The name sits on a
+ * One tall card in the grid. A headshot when the CMS has one; until then a tinted portrait with the initial. The name sits on a
  * pill with a plus; tapping it raises a panel over the lower half with what they do in your visit, their services
  * and languages, and booking for their service. Only one card is open at a time.
  */
@@ -31,35 +31,36 @@ function Card({ m, open, onToggle }: { m: TeamMember; open: boolean; onToggle: (
   // Tinted portrait (no photo) and closed: ink text on the pastel; otherwise white on the photo or the open sheet.
   const light = !m.photo && !open;
   return (
-    <li className="w-[80vw] max-w-[340px] shrink-0 snap-start sm:w-[320px]" aria-label={m.name}>
-      <article className="relative aspect-[3/4] overflow-hidden rounded-block bg-ink text-white">
+    // On a phone the grid is two across, so an open card widens to the full row to fit its details.
+    <li className={cn("min-w-0", open && "col-span-2 sm:col-span-1")} aria-label={m.name}>
+      <article className="relative aspect-[3/4] overflow-hidden rounded-block bg-ink text-white ring-1 ring-white/15">
         {m.photo ? (
-          <Image src={m.photo} alt="" fill sizes="340px" className={cn("object-cover object-[50%_20%] motion-safe:transition-transform motion-safe:duration-[400ms] motion-safe:ease-[cubic-bezier(.2,.8,.2,1)]", open && "motion-safe:scale-[1.04]")} />
+          <Image src={m.photo} alt="" fill sizes="(max-width: 640px) 50vw, 320px" className={cn("object-cover object-[50%_20%] motion-safe:transition-transform motion-safe:duration-[400ms] motion-safe:ease-[cubic-bezier(.2,.8,.2,1)]", open && "motion-safe:scale-[1.04]")} />
         ) : (
           <div aria-hidden className="absolute inset-0" style={{ background: m.tint }}>
-            <span className="absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-50" style={{ background: accent }} />
+            <span className="absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-50 sm:h-56 sm:w-56" style={{ background: accent }} />
             <span className="absolute -bottom-10 -left-12 h-40 w-40 rounded-full bg-white/50" />
-            <span className="absolute inset-0 flex items-center justify-center pb-16 font-display text-[150px] font-medium leading-none tracking-[-.04em] text-ink/85">{m.initial}</span>
+            <span className="absolute inset-0 flex items-center justify-center pb-16 font-display text-[88px] font-medium sm:text-[130px] xl:text-[150px] leading-none tracking-[-.04em] text-ink/85">{m.initial}</span>
           </div>
         )}
         {/* Protection so the white name reads on any photo. The tinted portraits keep ink text instead. */}
         {m.photo ? <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent" /> : null}
 
         {m.languages && !open ? (
-          <span className="absolute left-4 top-4 rounded-chip bg-white/92 px-3 py-1.5 text-[12px] font-semibold text-ink">Tiếng Việt</span>
+          <span className="absolute left-3 top-3 rounded-chip bg-white/92 px-2.5 py-1 text-[11px] sm:left-4 sm:top-4 sm:px-3 sm:py-1.5 sm:text-[12px] font-semibold text-ink">Tiếng Việt</span>
         ) : null}
 
         {/* Bottom sheet: the name button stays on top and opens the details beneath it, over the lower part of the card. */}
         <div className={cn("absolute inset-x-0 bottom-0 z-10 flex max-h-full flex-col motion-safe:transition-colors motion-safe:duration-300", open ? (m.photo ? "bg-ink/90 backdrop-blur-md" : "bg-ink") : "bg-transparent")}>
-          <button type="button" onClick={onToggle} aria-expanded={open} aria-controls={id} className="flex shrink-0 items-center gap-3 p-4 text-left">
+          <button type="button" onClick={onToggle} aria-expanded={open} aria-controls={id} className="flex shrink-0 items-center gap-2.5 p-3 text-left sm:gap-3 sm:p-4">
             <span aria-hidden className={cn("flex h-8 w-8 shrink-0 items-center justify-center rounded-full motion-safe:transition-transform motion-safe:duration-300", light ? "bg-ink text-white" : "bg-white text-ink", open && "rotate-45")}>
               <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M8 2v12M2 8h12" />
               </svg>
             </span>
             <span className="flex min-w-0 flex-col">
-              <span className={cn("truncate text-[17px] font-semibold", light ? "text-ink" : "drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.name}</span>
-              <span className={cn("truncate text-[13px]", light ? "text-ink/70" : "text-white/85 drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.role}</span>
+              <span className={cn("truncate text-[15px] font-semibold sm:text-[17px]", light ? "text-ink" : "drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.name}</span>
+              <span className={cn("truncate text-[12px] sm:text-[13px]", light ? "text-ink/70" : "text-white/85 drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.role}</span>
               <span className="sr-only">{open ? `, ${c.close}` : `, ${c.open} ${m.name}`}</span>
             </span>
           </button>
@@ -87,12 +88,10 @@ function Card({ m, open, onToggle }: { m: TeamMember; open: boolean; onToggle: (
   );
 }
 
-/** Service chips over a sideways row of tall team cards, with arrow buttons on larger screens. */
-export function TeamCarousel({ team, filters, note }: { team: TeamMember[]; filters: string[]; note: string }) {
+/** Service chips over a grid of tall team cards, on the navy band. Each card opens to what that person does for you. */
+export function TeamGrid({ team, filters, note }: { team: TeamMember[]; filters: string[]; note: string }) {
   const [i, setI] = useState(0);
   const [open, setOpen] = useState<string | null>(null);
-  const [edge, setEdge] = useState({ start: true, end: false });
-  const row = useRef<HTMLUListElement>(null);
 
   // Menu links such as "Our clinicians" open the page filtered: /about/team?service=Medical%20Aesthetics
   useEffect(() => {
@@ -104,64 +103,33 @@ export function TeamCarousel({ team, filters, note }: { team: TeamMember[]; filt
   const label = filters[i];
   const shown = label === "All" ? team : team.filter((m) => m.divisions.includes(label));
 
-  const measure = useCallback(() => {
-    const el = row.current;
-    if (!el) return;
-    setEdge({ start: el.scrollLeft < 8, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 8 });
-  }, []);
-  useEffect(() => {
-    row.current?.scrollTo({ left: 0 });
-    setOpen(null);
-    measure();
-  }, [i, measure]);
-  useEffect(() => {
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [measure]);
-
-  const page = (dir: 1 | -1) => {
-    const el = row.current;
-    if (!el) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollBy({ left: dir * Math.max(el.clientWidth * 0.8, 300), behavior: reduce ? "auto" : "smooth" });
-  };
-
-  const arrow = "flex h-12 w-12 items-center justify-center rounded-full bg-ink text-white shadow-[0_6px_20px_rgba(16,24,40,.25)] motion-safe:transition-opacity disabled:pointer-events-none disabled:opacity-0";
-
   return (
-    <section className="flex flex-col gap-6 pt-10 md:pt-14">
-      <div className="flex flex-col gap-4 px-4 md:px-content">
+    <section aria-labelledby="team-title" className="flex flex-col gap-6 border-t border-white/15 px-6 pt-10 md:px-12 md:pt-14 lg:px-16">
+      <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1.5">
-          <Display size="sm">{c.title}</Display>
-          <p className="text-[16px] text-secondary">{c.lead}</p>
+          <Display size="sm" id="team-title">
+            {c.title}
+          </Display>
+          <p className="text-[16px] text-white/70">{c.lead}</p>
         </div>
-        <ChipRow items={filters} value={i} onChange={setI} size="sm" ariaLabel="Filter team by service" />
+        <ChipRow
+          items={filters}
+          value={i}
+          onChange={(n) => {
+            setI(n);
+            setOpen(null);
+          }}
+          size="sm"
+          inverse
+          ariaLabel="Filter team by service"
+        />
       </div>
-      <div className="relative">
-        <ul
-          ref={row}
-          onScroll={measure}
-          aria-label={c.listLabel}
-          className="scroll-x flex snap-x snap-mandatory gap-3 scroll-px-4 px-4 pb-2 md:scroll-px-content md:gap-4 md:px-content"
-        >
-          {shown.map((m) => (
-            <Card key={m.name} m={m} open={open === m.name} onToggle={() => setOpen(open === m.name ? null : m.name)} />
-          ))}
-        </ul>
-        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 hidden items-center justify-between px-3 md:flex md:px-6">
-          <button type="button" aria-label={c.prev} onClick={() => page(-1)} disabled={edge.start} className={cn(arrow, "pointer-events-auto")}>
-            <svg aria-hidden viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M10 3 5 8l5 5" />
-            </svg>
-          </button>
-          <button type="button" aria-label={c.next} onClick={() => page(1)} disabled={edge.end} className={cn(arrow, "pointer-events-auto")}>
-            <svg aria-hidden viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m6 3 5 5-5 5" />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <span className="px-4 text-[13px] text-muted md:px-content">{note}</span>
+      <ul aria-label={c.listLabel} className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+        {shown.map((m) => (
+          <Card key={m.name} m={m} open={open === m.name} onToggle={() => setOpen(open === m.name ? null : m.name)} />
+        ))}
+      </ul>
+      <span className="text-[13px] text-white/55">{note}</span>
     </section>
   );
 }

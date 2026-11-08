@@ -6,9 +6,9 @@ For a one-page checklist grouped by who approves what, see `docs/launch-signoff.
 
 Approved copy is quoted through guards that fail the build if the source text changes, so only the strings below are unreviewed.
 
-## Team carousel (November 2026)
+## Team page cards (November 2026)
 
-Source: `teamCarousel` in `src/content/team.ts`. The team grid became tall cards in a sideways row (after the FIGS ambassador cards). Tapping a name opens what that person does in your visit, their services and languages, and booking for their service. New draft lines: "Who you will meet.", "Tap a name to see what they do in your visit.", one line each for Dr. Nguyen and Dr. Truong, one line per role and service (infusion, family medicine, Pain Centre and aesthetics nurses, lab manager), and the booking buttons ("Book a family visit", "Book a Pain Centre visit", "Book an infusion visit", "Book a consult", "Book a session"). A bio entered in the admin replaces the role line. Cards show the headshot uploaded in the admin; until then, a tinted card with the initial.
+Source: `teamCarousel` in `src/content/team.ts`. The team page is now a navy band: Dr. Nguyen as a statement with his credentials as a list, then a grid of tall cards (after the FIGS ambassador cards). Tapping a name opens what that person does in your visit, their services and languages, and booking for their service. New draft lines: "Who you will meet.", "Tap a name to see what they do in your visit.", one line each for Dr. Nguyen and Dr. Truong, one line per role and service (infusion, family medicine, Pain Centre and aesthetics nurses, lab manager), and the booking buttons ("Book a family visit", "Book a Pain Centre visit", "Book an infusion visit", "Book a consult", "Book a session"). A bio entered in the admin replaces the role line. Cards show the headshot uploaded in the admin; until then, a tinted card with the initial.
 
 ## Vietnamese pages (November 2026)
 
