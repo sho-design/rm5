@@ -1,3 +1,4 @@
+import { draft } from "@/content/review";
 import Image from "next/image";
 import { trust } from "@/content/site";
 import { images } from "@/content/images";
@@ -27,6 +28,8 @@ export function FeatureRow() {
             <span className="font-display text-[26px] font-medium leading-[1.05] tracking-[-.02em] md:text-[28px]">Looking for a family doctor?</span>
             <span className="text-[14px] opacity-75">Join our Family Medicine roster in Thornhill.</span>
           </div>
+          {/* A visible cue that the card is a link (round 26, Tina). */}
+          <span className="text-[14px] font-semibold">{draft("Register as a patient")} ›</span>
         </SmartLink>
         <dl className="grid grid-cols-3 gap-4 rounded-card border border-border bg-card p-6 md:p-8">
           {trust.map((t) => (

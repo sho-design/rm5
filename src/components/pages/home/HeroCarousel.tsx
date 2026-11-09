@@ -99,6 +99,8 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
       <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg,rgba(10,20,30,0) 38%,rgba(10,20,30,.72) 100%)" }} />
       {/* Side shade under the headline: "doctor" disappeared into a bright window on one slide. */}
       <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(90deg, color-mix(in srgb, var(--rm-ink) 50%, transparent) 0%, transparent 65%)" }} />
+      {/* High contrast: a solid shade so white text never sits on bright leaves (round 26, Tina). */}
+      <div aria-hidden className="rm-contrast-scrim absolute inset-0 hidden bg-black/60" />
 
       <div className="relative flex w-full flex-col gap-5 p-5 text-white md:p-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
         <div className="flex max-w-[800px] flex-col gap-2.5 md:gap-5" aria-live={stopped ? "polite" : "off"} aria-atomic="true">

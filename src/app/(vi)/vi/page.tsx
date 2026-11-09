@@ -73,6 +73,12 @@ export default function ViHomePage() {
               <li key={w.t} className="flex flex-col gap-1.5">
                 <span className="text-[17px] font-semibold">{w.t}</span>
                 <span className="pretty text-[15px] leading-[1.55] text-secondary">{w.d}</span>
+                {/* Women's health day had no time or way to book in Vietnamese (round 26, Bà Hạnh). */}
+                {"to" in w && w.to ? (
+                  <SmartLink to={w.to} className="text-[14px] font-semibold text-link">
+                    {w.link}
+                  </SmartLink>
+                ) : null}
               </li>
             ))}
           </ul>

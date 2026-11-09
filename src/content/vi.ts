@@ -67,7 +67,7 @@ export const viHome = {
     { t: draft("Từ lúc đặt hẹn đến khi tái khám"), d: draft("Lễ tân, điều dưỡng và bác sĩ đều có thể nói chuyện trực tiếp với bạn bằng tiếng Việt.") },
     { t: draft("Xét nghiệm máu ngay tại phòng khám"), d: draft("Lấy máu tại chỗ, không cần đi nơi khác.") },
     { t: draft("Siêu âm cầm tay không dây"), d: draft("Bác sĩ dùng máy siêu âm cầm tay Clarius để hướng dẫn mũi tiêm khi cần.") },
-    { t: draft("Ngày sức khỏe phụ nữ"), d: draft("Chủ Nhật cuối cùng mỗi tháng, xét nghiệm với điều dưỡng. Tất cả điều dưỡng của chúng tôi là nữ.") },
+    { t: draft("Ngày sức khỏe phụ nữ"), d: draft("Chủ Nhật cuối cùng mỗi tháng, 8 giờ sáng đến 2 giờ chiều, xét nghiệm với điều dưỡng. Tất cả điều dưỡng của chúng tôi là nữ."), link: draft("Đặt chỗ (mẫu đơn tiếng Anh) ›"), to: "/book?service=family&visit=womensday&lang=vi" },
   ],
   doctorsTitle: draft("Bác sĩ của chúng tôi"),
   doctors: [
