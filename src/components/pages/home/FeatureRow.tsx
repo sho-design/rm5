@@ -20,7 +20,8 @@ export function FeatureRow() {
       </SmartLink>
 
       <div className="grid grid-cols-1 gap-block md:grid-rows-2">
-        <SmartLink to="book" className="flex flex-col justify-between gap-6 rounded-card bg-sun-soft p-6 text-ink transition-opacity hover:opacity-95 md:p-8">
+        {/* Looking for a family doctor means registering, not one visit (round 25, Hoa). */}
+        <SmartLink to="register" className="flex flex-col justify-between gap-6 rounded-card bg-sun-soft p-6 text-ink transition-opacity hover:opacity-95 md:p-8">
           <span className="text-[13px] font-semibold">Accepting new patients</span>
           <div className="flex flex-col gap-1.5">
             <span className="font-display text-[26px] font-medium leading-[1.05] tracking-[-.02em] md:text-[28px]">Looking for a family doctor?</span>

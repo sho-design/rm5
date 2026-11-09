@@ -10,6 +10,10 @@ Approved copy is quoted through guards that fail the build if the source text ch
 
 Sub-navigation keeps its original items; six now use better-matching icons (new patients, trigger points, injectables, plans, chiropractic, FAQ). The access chips on Our clinics and Contact were removed in round 24 because they repeated the access text beside them.
 
+## Round 25 lines (November 2026)
+
+New draft lines: "Today" (label on today's row of the hours), and on the gift card page "Injectables start with a consult, and the card can pay for that too."
+
 ## Team page and contact, round 24 (November 2026)
 
 New draft lines: "Showing all 5 team members." and "Showing 5 in Family Medicine." (read by screen readers when the team filter changes; the number and service fill in), and the contact photo description "Front desk at the Thornhill clinic".

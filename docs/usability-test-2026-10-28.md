@@ -1142,6 +1142,68 @@ What worked: the Vietnamese home and iron pages read as written for the reader, 
 - **Vietnamese (Bà Lan):** the forms are still English only, and the Vietnamese pages do not show whether the clinic is open now.
 - **Visual (Mrs. Tran, Jordan):** the nerve icon reads as an X. Contrast mode keeps pastel panels. The A+ and A- buttons are small. The Our clinics hero crops at 1024. The cookie banner comes before the skip link (deliberate, kept).
 
+## Round 25: 20 testers, Monday 9 November about 10:15am (clinic open until 4pm)
+
+Average ease 5.55, trust 5.8 (round 24 was 5.5 and 6.3, with 10 testers). No console errors, broken links or sideways scrolling on a phone in any run, and no fact on the site disagreed with the clinic facts. Scores (ease, trust):
+
+| Tester | Task | Ease | Trust |
+|---|---|---|---|
+| Hoa | New patient, phone | 5 | 6 |
+| Dr. Patel | Refer to the Pain Centre | 6 | 6 |
+| Linh | Teen sexual health privacy | 5 | 7 |
+| Marcus | Rehab after a car accident | 5 | 6 |
+| Aisha | Alberta health card | 6 | 6 |
+| Sam | Screen reader, book a visit | 6 | 6 |
+| Grace | Pap test with a woman | 6 | 6 |
+| Kevin | Skeptical about drips | 5 | 4 |
+| Farah | Maple | 6 | 6 |
+| Jenny | Nurse applying for a job | 6 | 6 |
+| Mr. Wong | Pain Centre with a referral | 6 | 6 |
+| Diane | Prescription renewal | 5 | 6 |
+| Theo | Dark mode, tablet | 2 | 3 |
+| Paolo | Physio or chiro, benefits | 6 | 6 |
+| Anh | Iron for his father, from /vi | 6 | 7 |
+| Rachel | Botox gift card | 6 | 6 |
+| Omar | Site search | 6 | 5 |
+| Mai | 10 weeks pregnant | 7 | 7 |
+| Bill | Outside bloodwork | 6 | 5 |
+| Rosa | 79, small phone, largest text | 5 | 6 |
+
+What worked: Pain Centre framing ("Already referred? There is no need to book. We call you"), pregnancy care end to end (Mai, 7 and 7), the honest answer on female physicians and the nurses who do Pap tests, the physio or chiro comparison with prices, the Vietnamese iron page with correct prices and days, keyboard booking with labelled fields and announced time changes (Sam), the Maple list that says it does not register you, and the job board.
+
+### Round 25 findings fixed in code
+
+- **Checkbox needed two taps (Diane):** after a "Tick this box" error, the first tap on a consent checkbox was lost because the box was rebuilt when the error cleared. Fixed for every consent checkbox on the site.
+- **Vietnamese to booking (Anh):** booking links from the Vietnamese pages now arrive with Tiếng Việt already chosen as the language.
+- **Hours (Rosa):** the open-status pill now goes straight to the hours card, and today's row has a "Today" label, not only bold text.
+- **Search (Omar):** "ferritin" and "fatigue" now find the iron infusion health note.
+- **Screen reader (Sam):** the " ›" after "Edit details", "Change time", "Register as a patient" and "Join the waitlist" is no longer read aloud. The slide buttons in the home carousel say "Show slide 1 of 4" before the description. Health note cards on the home page have a clean name.
+- **Careers (Jenny):** the footer links to Careers.
+- **Pain Centre (Mr. Wong):** the headache card's health note link opens the headache note, not the list.
+- **Gift cards (Rachel):** the aesthetics line adds "Injectables start with a consult, and the card can pay for that too."
+- **New patients (Hoa):** the home "Looking for a family doctor?" card now opens registration, not a one-off booking.
+- **Booking review (Anh):** "For Van Tran." lost its stray full stop.
+
+### Round 25 findings for the clinic
+
+- **Photo (Grace):** the Family Medicine card shows a woman in navy doctor scrubs with blue gloves examining a baby. Under the image rules that outfit means a physician, which conflicts with "no female physicians". Replace with a nurse in black scrubs, or a male physician.
+- **Pap interval (Grace):** the women's health page says "Pap test every 3 years, 25 to 69". Ontario has moved to HPV testing every 5 years. Needs a physician review.
+- **Drips (Kevin):** no price on the drips menu or any drip page; the only figures are "From $150" and "$150 to $200" for a "Hydration and vitamin drip" that is not on the menu. The Signature drip is "the same for everyone" but its contents are "Confirmed at your consult". Myers lists 4 ingredients on its card and 5 on its page. Visit length varies between "about an hour", "about 45 minutes" and "45 to 60 minutes".
+- **Bloodwork (Bill):** results "in about a week" on the bloodwork page and FAQ, "within a few days" in the requisition health note. Say plainly whether walk-ins are taken. "Nothing to eat after midnight" next to "8 to 12 hours".
+- **Dark mode (Theo):** the site offers only light and high contrast; dark mode has no control and ignores the phone's setting. When forced on, pastel panels keep light backgrounds under white text, including the drips safety notice. Decide whether to offer dark mode; if so, the pastel panels need dark versions first.
+- **Getting there (Rosa):** still no directions inside Walmart (which entrance, where in the store). The bus routes appear only in booking.
+- **Pain Centre (Mr. Wong):** "Book" buttons on each procedure card sit beside "There is no need to book" for referred patients. The chooser says "the card beside it" while on a tablet it is below.
+- **Rehab (Paolo):** choosing "Physiotherapy" as a new patient sends you back to "Initial assessment". The hero line "We bill the insurer directly" reads as accident claims; name the private insurers billed directly.
+- **Maple (Farah):** parking text repeats Thornhill's, the photo is the home hero, aesthetics is missing from Maple services with no reason, and "use Thornhill meanwhile" shows only after joining the list.
+- **Careers (Jenny):** no pay ranges; "10-lead ECG" is likely "12-lead".
+- **Referring physicians (Dr. Patel):** /for-physicians has no wait time; "usually within two to three weeks" is only in a Pain Centre FAQ. Coverage reads "OHIP-insured consult and procedures" there but "OHIP-listed injections… private procedures priced before booking" on the Pain Centre pages. The Pain Centre pages leave out the referral email.
+- **Teen privacy (Linh):** the search shortcut "Sexual health and STI testing" goes straight to booking, past the page that explains teen privacy. Reminders are pre-ticked on booking but not on registration.
+- **Car accidents (Marcus):** no physio or chiro choice in an MVA booking (only "say it in the note"); the MVA page does not say what you pay if the insurer declines; "Coverage checker ›" leads to the rehab page, which has no checker.
+- **Out-of-province cards (Aisha):** the $100 plus HST fallback is only in the FAQ, not in booking.
+- **Women's health day (Grace):** the review and confirmation could say a nurse, a woman, will see you.
+- **Pregnancy (Mai):** the confirmation could repeat the reminder to register as a patient.
+- **Cookie banner (Sam):** still before the skip links (deliberate, kept).
+
 ## What worked
 
 - Coverage answers: Pain Centre framing (referral, OHIP, no family doctor route) and the MVA "$0" chooser were understood at once.
