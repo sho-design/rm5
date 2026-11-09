@@ -86,6 +86,8 @@ export const bookingExtra = {
   updates: draft("Send me clinic updates by email. Optional, unsubscribe any time. See our "),
   closedShort: draft("Closed"),
   todayShort: draft("Today"),
+  /** Shown when today is left out of the days (clinic rule, November 2026). */
+  noSameDay: draft("Same-day visits are for bloodwork, aesthetics and IV wellness. Other visits start from the next clinic day. Unwell today? Call us at 905-709-3222."),
   /** Shown above the times, so the times read as belonging to the chosen day (the day strip wraps at larger text). */
   timesOn: (day: string) => draft(`Times for ${day}`),
   /** Phone and video visits (results and follow-ups). */

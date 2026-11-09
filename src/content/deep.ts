@@ -778,6 +778,7 @@ export const rehabCoverage: CoverageOption[] = [
       { k: draft("Physio or chiro assessment"), v: draft("$135 plus HST ($152.55 total)") },
       { k: draft("Physio or chiro treatment"), v: draft("$100 plus HST ($113 total)") },
       { k: draft("Massage therapy"), v: "From $95" },
+      { k: draft("Massage sessions"), v: draft("25 or 55 minutes") },
       { k: "Receipts", v: "Always" },
     ],
     cta: "Book an assessment",

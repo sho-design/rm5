@@ -10,6 +10,14 @@ Approved copy is quoted through guards that fail the build if the source text ch
 
 Sub-navigation keeps its original items; six now use better-matching icons (new patients, trigger points, injectables, plans, chiropractic, FAQ). The access chips on Our clinics and Contact were removed in round 24 because they repeated the access text beside them.
 
+## Clinic answers, 9 November 2026
+
+- **Same-day visits:** only lab testing, aesthetics and IV wellness (drips and Injection Bar shots) can be booked for today. Booking now leaves today out for every other visit and says so: "Same-day visits are for bloodwork, aesthetics and IV wellness. Other visits start from the next clinic day. Unwell today? Call us at 905-709-3222." (draft). The Family Medicine menu links "Same-day sick visit" and "Same-day" are now "Sick visit" (draft). Still to reconcile: the women's health line "Emergency contraception, same day" and the Family Medicine FAQ "Can I be seen the same day?".
+- **Massage:** sessions are 25 or 55 minutes ("Session length" on the massage page, "Massage sessions" in the rehab self-pay panel). Prices per length not published yet.
+- **Laser:** hair removal is offered; no prices published. The laser card and page now read "Hair removal, redness, pigment and texture." (draft).
+- **Dr. Nguyen's bio:** "Restoration Medical Woodbridge" is the Maple clinic; the bio now says "Restoration Medical Maple". If the bio was also entered in the admin, change it there too.
+- **Iron:** a 6:30pm Tuesday start is fine (about 3 hours, ending around 9:30pm); no change.
+
 ## Round 26 lines (November 2026)
 
 New draft lines: "Register as a patient ›" on the home "Looking for a family doctor?" card. In Vietnamese: women's health day now reads "Chủ Nhật cuối cùng mỗi tháng, 8 giờ sáng đến 2 giờ chiều, xét nghiệm với điều dưỡng…" with the link "Đặt chỗ (mẫu đơn tiếng Anh) ›", and the Pain Centre card adds "Chưa có giấy giới thiệu? Bác sĩ gia đình của chúng tôi có thể khám và giới thiệu bạn ngay tại phòng khám." Both need the fluent clinician's review with the other Vietnamese pages.

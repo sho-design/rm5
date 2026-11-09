@@ -45,6 +45,8 @@ export interface BookingVisit {
   selfPay?: string;
   /** Only bookable on set days: "womensday" = the last Sunday of the month. */
   days?: "womensday";
+  /** Can be booked for today. Clinic rule: same-day visits are only lab testing, aesthetics and IV wellness. */
+  sameDay?: boolean;
   /** For people already seen here: starts on "Existing patient". */
   existing?: boolean;
   /** Can be in clinic, by phone or by video (FAQ: follow-ups, results and renewals with existing patients). */
@@ -148,7 +150,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
       { key: "checkup", label: menuLabel("family", "Annual physical"), bring: [familyBring], fastingMaybe: true },
       // Phone and video visits are for existing patients (FAQ "Do you offer phone or video visits?").
       { key: "results", label: draft("Results or follow-up"), bring: [familyBring], existing: true, modes: true },
-      { key: "bloodwork", label: draft("Bloodwork or ECG"), bring: [draft("Your Ontario health card, and your requisition if another clinic wrote one.")], fasting: true },
+      { key: "bloodwork", sameDay: true, label: draft("Bloodwork or ECG"), bring: [draft("Your Ontario health card, and your requisition if another clinic wrote one.")], fasting: true },
       // One visit can cover several vaccines: "Vaccines, including flu" for more than one, "Flu shot only" for just the flu shot.
       { key: "flu", label: draft("Flu shot only"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")], hint: { text: draft("One booking per person. Booking for your family? Book each person at the same time or back to back, and we see you together.") } },
       // A newcomer with no yellow card read "Bring the yellow immunization card" as a requirement.
@@ -196,17 +198,17 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
         coverage: draft("Assessment and bloodwork OHIP-insured"),
         bring: [healthCard, approved(ironSteps[0].d, "If you already have recent results, bring them and skip the wait.")],
       },
-      { key: "drip", label: draft("An IV drip"), coverage: uninsured, bring: [faqA("infusion", "How do I prepare?")] },
-      { key: "shot", label: draft("A shot from the Injection Bar"), coverage: uninsured, bring: [draft("Wear a top with sleeves that roll up.")] },
+      { key: "drip", sameDay: true, label: draft("An IV drip"), coverage: uninsured, bring: [faqA("infusion", "How do I prepare?")] },
+      { key: "shot", sameDay: true, label: draft("A shot from the Injection Bar"), coverage: uninsured, bring: [draft("Wear a top with sleeves that roll up.")] },
     ],
   },
   aesthetics: {
     coverage: bookingCoverage[label("aesthetics")],
     visits: [
-      { key: "consult", label: draft("A consult"), bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
-      { key: "injectables", label: menuLabel("aesthetics", "Injectables appointment"), coverage: uninsured, bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
-      { key: "skin", label: menuLabel("aesthetics", "Skin consult"), bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
-      { key: "laser", label: menuLabel("aesthetics", "Laser consult"), bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
+      { key: "consult", sameDay: true, label: draft("A consult"), bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
+      { key: "injectables", sameDay: true, label: menuLabel("aesthetics", "Injectables appointment"), coverage: uninsured, bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
+      { key: "skin", sameDay: true, label: menuLabel("aesthetics", "Skin consult"), bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
+      { key: "laser", sameDay: true, label: menuLabel("aesthetics", "Laser consult"), bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
     ],
   },
   rehab: {

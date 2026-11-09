@@ -504,7 +504,7 @@ const rehab: Topic[] = [
     cta: draft("Book a massage"),
     img: images.services.rehab[2],
     imgAlt: draft("Registered massage therapist treating a patient's shoulder"),
-    glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Massage therapy"), directBilling] },
+    glance: { title: draft("What it costs"), p: cov(0).p, facts: [priceFact("Massage therapy"), { k: draft("Session length"), v: draft("25 or 55 minutes") }, directBilling] },
     cards: { title: R.chooser.title, items: [asCard(result(R, 4)), asCard(result(R, 2))] },
     path: rehabPath,
     faq: [dq("rehab", "Do I need a doctor's referral?"), dq("rehab", "Do you bill my insurance directly?"), dq("rehab", "What should I wear?")],

@@ -70,7 +70,8 @@ export const divisions: Record<NavKey, Division> = {
     ],
     book: [
       { label: "Book a visit", page: bookFor("family") },
-      { label: "Same-day sick visit", page: bookFor("family", "concern") },
+      // Clinic rule (November 2026): no same-day family visits, so these no longer say "same-day".
+      { label: draft("Sick visit"), page: bookFor("family", "concern") },
       { label: "Annual physical", page: bookFor("family", "checkup") },
       { label: draft("Request a prescription renewal"), page: "/family-medicine/prescription-renewals#request" },
       { label: "Join the roster", page: "register" },
@@ -91,7 +92,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Women’s health", icon: "women", page: "women" },
       { label: "Men’s health", icon: "men", page: "men" },
       { label: "Bloodwork on site", icon: "blood", page: "blood" },
-      { label: "Same-day", icon: "sameday", page: bookFor("family") },
+      { label: draft("Sick visit"), icon: "sameday", page: bookFor("family", "concern") },
     ],
     services: [
       { title: "New patients", desc: "Register with our Thornhill location to be contacted for an appointment.", page: "register", image: images.services.family[0] },
@@ -235,7 +236,7 @@ export const divisions: Record<NavKey, Division> = {
     services: [
       { title: "Injectables", desc: "Neuromodulators and fillers, conservatively planned. Ultrasound is available to map vessels in higher-risk areas when the injector judges it useful.", page: "aesInjectables", image: images.services.aesthetics[0] },
       { title: "Skin treatments", desc: "Peels, microneedling and medical facials.", page: "aesSkin", image: images.services.aesthetics[1] },
-      { title: "Laser", desc: "Redness, pigment and texture.", page: "aesLaser", image: images.services.aesthetics[2] },
+      { title: "Laser", desc: draft("Hair removal, redness, pigment and texture."), page: "aesLaser", image: images.services.aesthetics[2] },
       { title: "Skin health plans", desc: "A year of care, mapped with your clinician.", page: "aesPlans", image: images.services.aesthetics[3] },
     ],
   },

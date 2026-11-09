@@ -186,7 +186,9 @@ export function BookFlow({ config }: { config: BookingConfig }) {
 
   const str = (k: string) => (typeof details[k] === "string" ? (details[k] as string) : "");
   // Women's health day is only on the last Sunday of the month: offer those dates instead of the next 7 days.
-  const dayList = visit?.days === "womensday" ? womensDays : days;
+  // Clinic rule: only lab testing, aesthetics and IV wellness can be booked for today.
+  const noToday = !!visit && !visit.sameDay && visit.days !== "womensday" && days.some((d) => d.today);
+  const dayList = visit?.days === "womensday" ? womensDays : noToday ? days.filter((d) => !d.today) : days;
   const day = dayList[dayIdx];
   useEffect(() => {
     setDayIdx(0);
@@ -739,6 +741,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               </h2>
               <span className="text-[13px] text-muted">{visit?.days === "womensday" ? x.womensDaySub : bookingCopy.step2Sub}</span>
             </div>
+            {noToday ? <p className="pretty -mt-2 text-[13px] leading-[1.5] text-muted">{linkPhones(x.noSameDay)}</p> : null}
             <div role="radiogroup" aria-label="Day" onKeyDown={radioKeys} className="rm-day-strip scroll-x -mx-1 flex gap-1 px-1 py-0.5 md:gap-1.5">
               {dayList.map((d, i) => {
                 const on = dayIdx === i;
