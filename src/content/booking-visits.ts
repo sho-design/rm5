@@ -220,7 +220,8 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
       { key: "physio", label: menuLabel("rehab", "Physiotherapy"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
       { key: "chiro", label: menuLabel("rehab", "Chiropractic"), bring: [rehabWear], payment: true, selfPay: physioChiroSelfPay },
       // The rehab "what to wear" answer is about knee, hip and shoulder treatment, not massage.
-      { key: "massage", label: menuLabel("rehab", "Massage therapy"), bring: [draft("Comfortable clothing.")], payment: true, selfPay: massageSelfPay },
+      // Sessions are 25 or 55 minutes (clinic, 9 November). Times allow for 55 so a long session never runs past closing (round 27, Emma).
+      { key: "massage", mins: 55, label: menuLabel("rehab", "Massage therapy"), bring: [draft("Comfortable clothing.")], payment: true, selfPay: massageSelfPay, hint: { text: draft("Sessions are 25 or 55 minutes. Say which in the note.") } },
       { key: "kines", label: menuLabel("rehab", "Kinesiology"), bring: [rehabWear], payment: true },
       {
         key: "mva",

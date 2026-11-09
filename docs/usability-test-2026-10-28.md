@@ -1255,6 +1255,61 @@ What worked: booking a same-evening visit in under 10 taps (Kim, Jake, Ms. River
 - **Slow connections (Arjun):** on 3G the Menu and Search buttons do nothing for about 15 seconds while scripts load, and the slideshow keeps loading later slides. Worth a lighter menu that works before scripts, and pausing the slideshow until the page has loaded.
 - **Smaller:** contraception privacy copy lives on the 13 to 18 page; the confirmation does not say whether it names the visit (Chloe). "How referrals work" on chronic care goes to the physician page (Mr. Ali). The team page has no therapists despite the copy, and only initials (Nadia). Small helper text on registration (Mr. Ali).
 
+## Round 27: 20 testers, Saturday 14 November about 11:20am (clinic open until 4pm)
+
+Average ease 5.4, trust 5.5 (round 26 was 5.1 and 5.4). The first round on the clinic's answers: same-day only for lab testing, aesthetics and IV wellness, a two to four week referral wait, 25 or 55 minute massage, laser hair removal. No console errors, broken links or sideways scrolling, and no fact on the site disagreed with the clinic facts.
+
+| Tester | Task | Ease | Trust |
+|---|---|---|---|
+| Tom | Cough, wants a doctor today | 5 | 6 |
+| Lisa | Botox today | 6 | 6 |
+| Mr. Tran | Fasting bloodwork, from /vi | 4 | 5 |
+| Ashley | Hydration drip after a cold | 6 | 4 |
+| Dr. Singh | Knee injection referral | 6 | 6 |
+| Emma | 55-minute massage | 4 | 5 |
+| Raj | Screen reader, physio | 6 | 6 |
+| Maria | Menopause care | 7 | 6 |
+| Kevin | STI test at 17 | 5 | 6 |
+| Sandra | Privacy before registering | 5 | 4 |
+| Gloria | Hip referral faxed, largest text | 5 | 6 |
+| Nam | Laser hair removal | 6 | 5 |
+| Chris | Back pain, tablet landscape | 6 | 7 |
+| Joanne | Flu shot today, keyboard | 5 | 6 |
+| Hieu | Women's health day from /vi | 6 | 6 |
+| Pat | Compliance review | 6 | 5 |
+| Derek | Iron with his own product | 6 | 6 |
+| Fatima | Iron at 28 weeks pregnant | 3 | 4 |
+| Owen | Child's earache today | 5 | 6 |
+| Lena | Comparing the team | 6 | 5 |
+
+What worked: the same-day rule held everywhere (Botox, a drip and bloodwork offered today; a cough, a flu shot, a physio visit and an iron assessment not), the referral wait read "usually within two to four weeks" on every page, Pat found no testimonials, superlatives, urgency, "Health Canada approved" or self-referral wording, and keyboard and screen reader booking was solid (Raj).
+
+### Round 27 findings fixed in code
+
+- **Same-day rule (Tom, Owen, Joanne):** the note now shows on the first step, under the visit type, before any personal details. It reads "Today's times are only for lab tests, aesthetics and IV wellness, so this visit starts from the next clinic day" (an iron assessment includes bloodwork, which made the old wording confusing). It only shows when today actually has times, and screen readers hear it with the day picker.
+- **Seven days (Derek, Emma, Chris):** when today is left out, the picker still shows seven days.
+- **Drips after a cold (Ashley):** booking a drip or a shot shows the unwell reminder from the infusion pages.
+- **Injectables without a consult (Lisa):** a new patient who picks an injectables appointment is pointed to the complimentary consult, with one tap to switch.
+- **Pain Centre wording (Gloria, Dr. Singh):** booking now matches the first-visit page: "Already referred? There is no need to book." Every "Not heard from us after…" line says four weeks, to match the two to four week wait.
+- **Massage (Emma):** times allow for a 55-minute session so none runs past closing, and booking says "Sessions are 25 or 55 minutes. Say which in the note."
+- **Calendar file (Raj):** uses the visit's real length (45 minutes for a rehab assessment).
+- **Privacy link (Sandra):** the privacy policy link in registration and booking consent opens in a new tab, so going back no longer empties the form.
+- **Bio (Lena):** says the Maple clinic is opening soon.
+
+### Round 27 findings for the clinic
+
+- **Iron in pregnancy (Fatima):** the iron page has a "Pregnancy and after" card, but nothing says whether the clinic gives iron in pregnancy, from which trimester, or with the obstetrician or midwife. Pregnancy care stops at 12 weeks. Needs a physician answer, alongside the breastfeeding FAQ awaiting approval.
+- **Compliance (Pat):** outcome wording "Leave feeling restored", "From booking to back on your feet", "Interventional pain care that gets you moving"; availability wording "A physician is always on site", "Same-week times are common", "often within days", "Same-week sick visits"; unverified "10+ Years of physician experience", "Most private drug plans cover the iron", acne "covered by OHIP". Prototype copy, so clinic approval needed.
+- **Aesthetics consult:** "Consult: Nurse, 20 min" next to "a complimentary consult with a physician". Which is it? No physician under the team page's aesthetics filter.
+- **Prices:** massage per length (and HST), laser (the laser FAQ says prices are "listed with HST" but none are). The laser page says little about hair removal (sessions, prep, skin types).
+- **Massage booking:** a length choice in booking would be better than the note, once prices per length are set.
+- **Privacy policy (Sandra):** retention, storage, processors (email, SMS, Ocean), breach notification and a named privacy officer.
+- **Teen STI testing (Kevin):** the search shortcut goes straight to booking, past the page that answers "can I book alone at 17?".
+- **Vietnamese (Mr. Tran, Hieu):** no Vietnamese bloodwork or fasting page; booking, including the 911 banner, is English.
+- **Team (Lena):** no rehab therapists listed although the intro mentions them; Dr. Truong's card has no training.
+- **Children (Owen):** the hero badge "Same-week sick visits" and "Book a sick visit"; say "call us for today" on the page. "Dial 911" is still plain text (open 911 links decision).
+- **Smaller:** booking a drip directly while the drip pages say "a consult first" (Ashley); "Flu shot only" next to "Vaccines, including flu" (Joanne); the menopause "note of symptoms" is not in the confirmation's Bring list (Maria); registration asks for the full health card number, booking only the last 4 digits (Sandra).
+
 ## What worked
 
 - Coverage answers: Pain Centre framing (referral, OHIP, no family doctor route) and the MVA "$0" chooser were understood at once.

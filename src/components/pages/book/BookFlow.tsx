@@ -61,10 +61,11 @@ function GroupLabel({ children }: { children: ReactNode }) {
   );
 }
 
-function icsFor(day: BookingDay, slot: number, summary: string): string {
+function icsFor(day: BookingDay, slot: number, summary: string, mins = 30): string {
   const start = new Date(day.date);
   start.setHours(Math.floor(slot), slot % 1 ? 30 : 0, 0, 0);
-  const end = new Date(start.getTime() + 30 * 60_000);
+  // The visit length when known (a 45-minute assessment showed as 30 in calendars, round 27).
+  const end = new Date(start.getTime() + mins * 60_000);
   const stamp = (d: Date) => `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}T${String(d.getHours()).padStart(2, "0")}${String(d.getMinutes()).padStart(2, "0")}00`;
   return [
     "BEGIN:VCALENDAR",
@@ -731,7 +732,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                 {sensitive ? <p className="text-[12px] leading-[1.5] text-muted">{x.remindersPrivate}</p> : null}
                 <ConsentRow name="updates" defaultChecked={details.updates === true}>
                   {x.updates}
-                  <SmartLink to="privacy" className="font-semibold text-link">
+                  <SmartLink to="privacy" target="_blank" rel="noopener" className="font-semibold text-link">
                     {bookingCopy.consentLink}
                   </SmartLink>
                   .
@@ -753,8 +754,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               </h2>
               <span className="text-[13px] text-muted">{visit?.days === "womensday" ? x.womensDaySub : bookingCopy.step2Sub}</span>
             </div>
-            {noToday ? <p className="pretty -mt-2 text-[13px] leading-[1.5] text-muted">{linkPhones(x.noSameDay)}</p> : null}
-            <div role="radiogroup" aria-label="Day" onKeyDown={radioKeys} className="rm-day-strip scroll-x -mx-1 flex gap-1 px-1 py-0.5 md:gap-1.5">
+            {noToday ? <p id="no-same-day" className="pretty -mt-2 text-[13px] leading-[1.5] text-muted">{linkPhones(x.noSameDay)}</p> : null}
+            <div role="radiogroup" aria-label="Day" aria-describedby={noToday ? "no-same-day" : undefined} onKeyDown={radioKeys} className="rm-day-strip scroll-x -mx-1 flex gap-1 px-1 py-0.5 md:gap-1.5">
               {dayList.map((d, i) => {
                 const on = dayIdx === i;
                 return (
@@ -888,7 +889,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               title={bookingCopy.confirmed.title}
               actions={
                 <>
-                  <a href={`data:text/calendar;charset=utf-8,${encodeURIComponent(icsFor(day, slot, bookingCopy.calendarTitle))}`} download="restoration-medical.ics" className={buttonClass("primary", "md")}>
+                  <a href={`data:text/calendar;charset=utf-8,${encodeURIComponent(icsFor(day, slot, bookingCopy.calendarTitle, visit?.mins))}`} download="restoration-medical.ics" className={buttonClass("primary", "md")}>
                     {bookingCopy.confirmed.calendar}
                   </a>
                   {/* No directions for a phone or video visit. Outline next to the one primary (it was a borderless white pill). */}

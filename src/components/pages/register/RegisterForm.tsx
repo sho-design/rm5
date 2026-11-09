@@ -336,7 +336,7 @@ export function RegisterForm() {
             </FieldLabel>
             <ConsentRow id="reg-consent" name="consent" required error={errors["reg-consent"]} {...errorProps(errors, "reg-consent")}>
               {caregiver ? x.helper.consent : registerCopy.consent}
-              <SmartLink to="privacy" className="font-semibold text-link">
+              <SmartLink to="privacy" target="_blank" rel="noopener" className="font-semibold text-link">
                 {registerCopy.consentLink}
               </SmartLink>
               .

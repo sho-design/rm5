@@ -10,6 +10,10 @@ Approved copy is quoted through guards that fail the build if the source text ch
 
 Sub-navigation keeps its original items; six now use better-matching icons (new patients, trigger points, injectables, plans, chiropractic, FAQ). The access chips on Our clinics and Contact were removed in round 24 because they repeated the access text beside them.
 
+## Round 27 lines (November 2026)
+
+New draft lines in booking: "Today's times are only for lab tests, aesthetics and IV wellness, so this visit starts from the next clinic day. Unwell today? Call us at 905-709-3222." (replaces the round 26 wording), "New to aesthetics here? Treatment starts with a complimentary consult." with "Choose a consult", "Sessions are 25 or 55 minutes. Say which in the note.", and the Pain Centre referral hint "Already referred? There is no need to book. Your doctor sends the referral and we call you, usually within two to four weeks of it arriving. Not heard from us after four weeks? Call 905-709-3222 and we check that it arrived. No referral yet? Book a family medicine assessment first." Drip and shot bookings reuse the approved-draft unwell lines from the infusion pages. Dr. Nguyen's bio: "the Restoration Medical Maple clinic, opening soon".
+
 ## Clinic answers, 9 November 2026
 
 - **Same-day visits:** only lab testing, aesthetics and IV wellness (drips and Injection Bar shots) can be booked for today. Booking now leaves today out for every other visit and says so: "Same-day visits are for bloodwork, aesthetics and IV wellness. Other visits start from the next clinic day. Unwell today? Call us at 905-709-3222." (draft). The Family Medicine menu links "Same-day sick visit" and "Same-day" are now "Sick visit" (draft). Still to reconcile: the women's health line "Emergency contraception, same day" and the Family Medicine FAQ "Can I be seen the same day?".
