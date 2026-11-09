@@ -182,7 +182,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
         label: draft("First visit with a referral"),
         coverage: painCoverage,
         bring: [faqA("pain", "What should I bring?")],
-        hint: { text: draft("Your doctor sends the referral and we call you to book, usually within two to three weeks of it arriving. Already sent? You can ask for a time here, as a request; we confirm it once the referral is with us. Not heard from us after three weeks? Call 905-709-3222 and we check that it arrived. Not sent yet? There is no need to book.") },
+        hint: { text: draft("Your doctor sends the referral and we call you to book, usually within two to four weeks of it arriving. Already sent? You can ask for a time here, as a request; we confirm it once the referral is with us. Not heard from us after three weeks? Call 905-709-3222 and we check that it arrived. Not sent yet? There is no need to book.") },
       },
       { key: "followup", label: menuLabel("pain", "Follow-up visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")], existing: true, noServiceNote: true },
       { key: "procedure", label: menuLabel("pain", "Procedure visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")], existing: true, noServiceNote: true },

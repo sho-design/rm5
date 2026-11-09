@@ -64,7 +64,7 @@ export const refServices: RefService[] = [
 export const refSteps: RefStep[] = [
   { n: "1", t: "Send the referral", d: "Fax, secure email, Ocean or OTN. Include the items listed for that service." },
   { n: "2", t: "We confirm receipt", d: "You receive a fax acknowledgement within 2 business days." },
-  { n: "3", t: "We book your patient", d: "Our team contacts the patient directly in English or Vietnamese and sends you the appointment date." },
+  { n: "3", t: "We book your patient", d: `Our team contacts the patient directly in English or Vietnamese and sends you the appointment date. ${draft("New Pain Centre assessments are usually within two to four weeks of the referral.")}` },
   { n: "4", t: "You receive the report", d: "A consult note after the first visit and a procedure or progress note after each treatment." },
 ];
 

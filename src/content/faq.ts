@@ -215,7 +215,7 @@ export const faqItems: FaqItem[] = [
     category: "Pain Centre",
     q: "How long is the wait?",
     // A referred patient two weeks in found no "what if nobody calls" and only a doctors' link here.
-    a: draft("New assessments are usually within two to three weeks of referral. Urgent cases flagged by your doctor are seen sooner. Not heard from us after three weeks? Call 905-709-3222 and we check that your referral arrived."),
+    a: draft("New assessments are usually within two to four weeks of referral. Urgent cases flagged by your doctor are seen sooner. Not heard from us after three weeks? Call 905-709-3222 and we check that your referral arrived."),
   },
   {
     category: "Infusion",

@@ -16,6 +16,7 @@ Sub-navigation keeps its original items; six now use better-matching icons (new 
 - **Massage:** sessions are 25 or 55 minutes ("Session length" on the massage page, "Massage sessions" in the rehab self-pay panel). Prices per length not published yet.
 - **Laser:** hair removal is offered; no prices published. The laser card and page now read "Hair removal, redness, pigment and texture." (draft).
 - **Dr. Nguyen's bio:** "Restoration Medical Woodbridge" is the Maple clinic; the bio now says "Restoration Medical Maple". If the bio was also entered in the admin, change it there too.
+- **Referral wait:** new Pain Centre assessments are usually within two to four weeks of the referral (clinic, 9 November). Updated in the four places that said two to three weeks, and added to step 3 on /for-physicians (draft).
 - **Iron:** a 6:30pm Tuesday start is fine (about 3 hours, ending around 9:30pm); no change.
 
 ## Round 26 lines (November 2026)
