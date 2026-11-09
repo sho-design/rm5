@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 /** Iron therapy in Vietnamese: assessment first (OHIP), then the course, the three fees and the last start times. */
 export default function ViIronPage() {
-  const book = bookFor("infusion", "iron");
+  const book = `${bookFor("infusion", "iron")}&lang=vi`;
   return (
     <>
       <SubPageHero

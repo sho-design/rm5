@@ -163,6 +163,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     }
     // Links from children's pages pass &for=someone: the booking is for a child, not the parent.
     if (params.get("for") === "someone") setForOther(1);
+    // Links from the Vietnamese pages pass &lang=vi so Tiếng Việt is already chosen (round 25, Anh).
+    if (params.get("lang") === "vi") setLanguage(1);
     try {
       setBookedBefore(sessionStorage.getItem("rm-booked") === "1");
       setBookedWhat(sessionStorage.getItem("rm-booked-what") ?? "");
@@ -203,6 +205,11 @@ export function BookFlow({ config }: { config: BookingConfig }) {
       setWho(back);
     }
   }, [visit?.key, visit?.existing]);
+  // "Van Tran" alone, or "Van Tran. Born 3 May 1956. You are their son." (a lone name had a stray full stop, round 25).
+  const forWhoLine = () => {
+    const extra = [niceDob(str("patientDob")) ? `${x.bornOn} ${niceDob(str("patientDob"))}.` : "", str("relationship") ? x.youAreTheir(str("relationship")) : ""].filter(Boolean);
+    return [patientName ? (extra.length ? `${patientName}.` : patientName) : "", ...extra].filter(Boolean).join(" ");
+  };
   const languageName = language === 2 ? str("languageOther") || x.otherLanguage : registerLanguages[language];
   // A visit longer than a slot must finish by closing (a 45 minute first visit at 8:30pm ran past 9pm).
   const closeAt = day ? openingHours[day.date.getDay()]?.[1] : undefined;
@@ -408,7 +415,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
 
   const reviewRows: [string, string][] = [
     [x.review.keys.service, serviceLine],
-    ...(forOther ? ([[x.review.keys.for, [patientName ? `${patientName}.` : "", niceDob(str("patientDob")) ? `${x.bornOn} ${niceDob(str("patientDob"))}.` : "", str("relationship") ? x.youAreTheir(str("relationship")) : ""].filter(Boolean).join(" ")]] as [string, string][]) : []),
+    ...(forOther ? ([[x.review.keys.for, forWhoLine()]] as [string, string][]) : []),
     ...(preferredLine() ? ([[x.review.keys.preferred, preferredLine()]] as [string, string][]) : []),
     [x.review.keys.status, bookingWho[who]],
     // Review said only "Mandarin"; the interpreter appeared first on the confirmation (round 23).

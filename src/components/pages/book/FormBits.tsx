@@ -104,11 +104,12 @@ export function ConsentRow({ children, className, error, ...rest }: ComponentPro
       <span>{children}</span>
     </label>
   );
-  if (!error || !rest.id) return row;
+  // Always the same wrapper: switching between a bare row and a wrapped one remounted the checkbox when an error
+  // cleared, so the tap that cleared it was lost and a second tap was needed (round 25, Diane).
   return (
     <div className="flex flex-col gap-1">
       {row}
-      <FieldError id={rest.id} error={error} />
+      {error && rest.id ? <FieldError id={rest.id} error={error} /> : null}
     </div>
   );
 }

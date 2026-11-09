@@ -211,7 +211,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         cta: "Book a family medicine assessment",
         ctaPage: `${bookFor("family", "concern")}&reason=Pain%20Centre%20referral`,
         link: "Read the health note",
-        linkPage: "notes",
+        linkPage: "/health-notes/headache-when-to-see",
       },
       {
         title: "Lower back and neck pain",

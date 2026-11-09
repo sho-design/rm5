@@ -24,7 +24,7 @@ export default function ViHomePage() {
         title={c.h1}
         lead={c.lead}
         cta={viChrome.book}
-        ctaTo={routes.book}
+        ctaTo={`${routes.book}?lang=vi`}
         cta2={c.cta2}
         cta2To={site.phoneHref}
         coverage={viChrome.formsNote}

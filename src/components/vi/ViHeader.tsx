@@ -33,7 +33,7 @@ export function ViHeader() {
           <a href={site.phoneHref} className="hidden rounded-chip border-[1.5px] border-border px-4 py-2 text-[14px] font-semibold md:inline-flex">
             {site.phone}
           </a>
-          <Link href={routes.book} className={buttonClass("primary", "sm")}>
+          <Link href={`${routes.book}?lang=vi`} className={buttonClass("primary", "sm")}>
             {c.book}
           </Link>
         </div>
