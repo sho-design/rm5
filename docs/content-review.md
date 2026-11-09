@@ -10,6 +10,10 @@ Approved copy is quoted through guards that fail the build if the source text ch
 
 Sub-navigation keeps its original items; six now use better-matching icons (new patients, trigger points, injectables, plans, chiropractic, FAQ). The access chips on Our clinics and Contact were removed in round 24 because they repeated the access text beside them.
 
+## Round 26 lines (November 2026)
+
+New draft lines: "Register as a patient ›" on the home "Looking for a family doctor?" card. In Vietnamese: women's health day now reads "Chủ Nhật cuối cùng mỗi tháng, 8 giờ sáng đến 2 giờ chiều, xét nghiệm với điều dưỡng…" with the link "Đặt chỗ (mẫu đơn tiếng Anh) ›", and the Pain Centre card adds "Chưa có giấy giới thiệu? Bác sĩ gia đình của chúng tôi có thể khám và giới thiệu bạn ngay tại phòng khám." Both need the fluent clinician's review with the other Vietnamese pages.
+
 ## Round 25 lines (November 2026)
 
 New draft lines: "Today" (label on today's row of the hours), and on the gift card page "Injectables start with a consult, and the card can pay for that too."

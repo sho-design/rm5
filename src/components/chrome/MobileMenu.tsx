@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { divisions, menuHeadings, navOrder } from "@/content/divisions";
 import { locations, site } from "@/content/site";
 import { emergencyCopy } from "@/content/patient-help";
@@ -23,6 +23,15 @@ import { cn } from "@/lib/cn";
 export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearch: () => void }) {
   const [open, setOpen] = useState<string | null>(null);
   const pathname = usePathname();
+  const box = useRef<HTMLDivElement>(null);
+  // Focus moves into the menu when it opens and back to the Menu button when it closes (round 26, Lucas).
+  useEffect(() => {
+    const opener = document.activeElement as HTMLElement | null;
+    box.current?.querySelector<HTMLElement>("button, a[href]")?.focus();
+    return () => {
+      (opener && opener.isConnected ? opener : document.querySelector<HTMLElement>(".rm-menu-btn"))?.focus();
+    };
+  }, []);
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -31,6 +40,21 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
     // Escape closes the menu (two testers pressed it and nothing happened).
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      // Tab stays inside the open menu instead of reaching the page hidden behind it (round 26, Lucas).
+      if (e.key === "Tab" && box.current) {
+        const items = [...box.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter((el) => el.offsetParent !== null);
+        if (!items.length) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        const inside = box.current.contains(document.activeElement);
+        if (e.shiftKey && (document.activeElement === first || !inside)) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && (document.activeElement === last || !inside)) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => {
@@ -40,7 +64,7 @@ export function MobileMenu({ onClose, onSearch }: { onClose: () => void; onSearc
     };
   }, [onClose]);
   return (
-    <div className="fixed inset-0 z-50 flex flex-col overflow-hidden bg-ink text-white" role="dialog" aria-modal="true" aria-label="Menu">
+    <div ref={box} className="fixed inset-0 z-50 flex flex-col overflow-hidden bg-ink text-white" role="dialog" aria-modal="true" aria-label="Menu">
       <div className="flex shrink-0 items-center justify-between px-4 pb-2.5 pt-3.5">
         <Wordmark size="sm" inverse />
         <div className="flex gap-1.5">

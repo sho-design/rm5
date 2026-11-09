@@ -1204,6 +1204,57 @@ What worked: Pain Centre framing ("Already referred? There is no need to book. W
 - **Pregnancy (Mai):** the confirmation could repeat the reminder to register as a patient.
 - **Cookie banner (Sam):** still before the skip links (deliberate, kept).
 
+## Round 26: 20 testers, Tuesday 10 November about 6:10pm (clinic open until 9pm)
+
+Average ease 5.1, trust 5.4 (round 25 was 5.55 and 5.8). Harder tasks this round: evening care, privacy checks, a slow phone connection and services with no published price. No console errors, broken links or sideways scrolling on a phone; no fact on the site disagreed with the clinic facts apart from the bio and the photo below.
+
+| Tester | Task | Ease | Trust |
+|---|---|---|---|
+| Kim | Sore throat and fever, tonight | 6 | 5 |
+| Mr. Ali | Diabetes and blood pressure, register | 6 | 6 |
+| Chloe | Birth control, privately | 6 | 6 |
+| Hung | Shoulder pain, no referral, Vietnamese | 4 | 6 |
+| Nadia | Registering a family of four | 6 | 5 |
+| Lucas | Keyboard only at 200% zoom | 5 | 6 |
+| Priyanka | Iron while breastfeeding | 5 | 5 |
+| Jake | Sprained ankle | 6 | 5 |
+| Helen | Shingles and flu shots at 63 | 5 | 5 |
+| Vincent | 5 massage gift cards for staff | 5 | 5 |
+| Dr. Lam | Referral for a nerve block, phone | 6 | 6 |
+| Sophie | Laser hair removal | 3 | 5 |
+| Mr. Okafor | WSIB back injury | 6 | 5 |
+| Tina | High contrast, largest text | 5 | 6 |
+| Bà Hạnh | Hours and women's health day in Vietnamese | 5 | 6 |
+| Ben | Privacy and network requests | 6 | 6 |
+| Ms. Rivera | Sick note and form today | 4 | 5 |
+| Daniel | B12 shot | 5 | 4 |
+| Joy | Memory care for her husband | 4 | 5 |
+| Arjun | Slow 3G phone | 4 | 6 |
+
+What worked: booking a same-evening visit in under 10 taps (Kim, Jake, Ms. Rivera), the hours pill landing on "Tuesday Today 3pm to 9pm", contraception privacy in booking ("Reminders give the day and time only"), family registration ("Registered, 4 people"), the WSIB booking and its what-to-bring list, Tiếng Việt carried into booking from /vi, analytics that stays off when declined and never loads on booking or registration (Ben checked the network), and the consent checkbox that now ticks on the first tap after an error.
+
+### Round 26 findings fixed in code
+
+- **Phone menu focus (Lucas):** focus now moves into the menu when it opens, Tab and Shift+Tab stay inside it, and Escape returns focus to the Menu button. Before, Tab reached links hidden behind the menu and the page scrolled under it.
+- **High contrast (Tina):** the home slideshow gets a solid shade under its white text, so words no longer sit on bright leaves.
+- **Vietnamese (Bà Hạnh, Hung):** women's health day on /vi gives 8am to 2pm and a booking link with Tiếng Việt chosen. The Pain Centre card says our family doctors can assess and refer you if you have no referral. Search finds joint pain for "đau vai" and the referral page for "giấy giới thiệu".
+- **Home (Tina, Nadia):** the "Looking for a family doctor?" card shows "Register as a patient ›" so it reads as a link.
+
+### Round 26 findings for the clinic
+
+- **Prices not published (Sophie, Daniel, Ms. Rivera, Helen, Vincent):** laser hair removal (the laser page never mentions it; no price, sessions or interval), Injection Bar shots (the page says "No pricing surprises"), sick notes and forms ("a small uninsured fee"), the shingles vaccine outside 65 to 70 (doses, cost, clinic or pharmacy), and massage session lengths. A gift card page note on buying several or for a business.
+- **Dr. Nguyen's bio (Nadia):** still says "Restoration Medical Woodbridge". The second clinic is Maple. Needs correcting before launch.
+- **Same-day care (Kim):** the Family Medicine FAQ says "same-week slots for existing patients… call in the morning", while booking offers new patients tonight and Tuesdays open at 3pm.
+- **Memory care (Joy):** no page explains what the clinic offers for memory concerns and caregivers; search goes straight to booking.
+- **Iron and breastfeeding (Priyanka):** search sends breastfeeding and postpartum users to iron therapy, but nothing there says whether IV iron suits someone breastfeeding, or whether a baby can come to a 3-hour visit. Physician wording needed.
+- **Privacy policy (Ben):** says nothing about where booking, registration and contact forms go, how long they are kept, or which processors are used (hosting, Ocean, Square). Booking has no collection statement.
+- **Referrals (Dr. Lam):** still no wait time on /for-physicians. The online form has no patient identity fields and the GP's phone is optional, so the clinic may have no way to call back.
+- **Rehab (Jake, Mr. Okafor):** "We bill the insurer directly and handle the forms" sits under every physio and massage hero; "If you need imaging… it happens here" overstates ultrasound-only imaging for a possible fracture. No "doctor first or physio?" guidance for a new injury. WSIB "Cost to you: None" has no condition, and What to bring has no WSIB items.
+- **Aesthetics (Sophie):** consult by "Physician" on the laser page, "Nurse" on pricing, "physician" in the closing band.
+- **Photos:** the Family Medicine card (woman in navy doctor scrubs, a wooden chair), a beige lounge chair in the infusion promo, and a nerve block hero that looks like a manicure. All break the image rules.
+- **Slow connections (Arjun):** on 3G the Menu and Search buttons do nothing for about 15 seconds while scripts load, and the slideshow keeps loading later slides. Worth a lighter menu that works before scripts, and pausing the slideshow until the page has loaded.
+- **Smaller:** contraception privacy copy lives on the 13 to 18 page; the confirmation does not say whether it names the visit (Chloe). "How referrals work" on chronic care goes to the physician page (Mr. Ali). The team page has no therapists despite the copy, and only initials (Nadia). Small helper text on registration (Mr. Ali).
+
 ## What worked
 
 - Coverage answers: Pain Centre framing (referral, OHIP, no family doctor route) and the MVA "$0" chooser were understood at once.
