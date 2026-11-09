@@ -20,7 +20,7 @@ export const searchAliases: Record<string, string> = {
   men: "libido low libido sex drive vitality low t low testosterone hormones hormone mens hormone health prostate psa testosterone checkup physical std stds sti stis std test sti test sexual health erectile",
   chronic: "huyet ap huyet ap cao tieu duong diabetes diabetic a1c sugar blood sugar glucose blood pressure hypertension cholesterol asthma thyroid copd kidney heart senior seniors elderly elder older adult older adults aging memory dementia caregiver caregivers complex care parkinson parkinsons ms multiple sclerosis stroke falls fall",
   blood: "xet nghiem xet nghiem mau thu mau bloodwork blood test fasting ecg ekg lab draw requisition",
-  numbers: "a1c ferritin cholesterol ldl blood pressure numbers results",
+  numbers: "a1c ferritin cholesterol ldl blood pressure numbers results tired fatigue",
   year: "screening prevention checkup annual vaccine vaccines shingles shingrix rsv pneumonia immunization",
   kids: "concussion head injury return to play sports injury earache ear ache ear infection fever child kid fever newborn new baby well baby well-baby rourke child children kid kids baby babies infant daughter son teen teens teenager vaccine vaccines immunization immunizations school forms anxiety mental health mood confidential",
   iron: "iron ferritin anemia anaemia anemic low iron tired fatigue exhausted monoferric iron infusion venofer iron sucrose postpartum breastfeeding thieu mau sat",
@@ -62,7 +62,7 @@ export const searchAliases: Record<string, string> = {
   notes: "articles blog",
   [noteRoute("flu-shot-faq")]: "flu shot flu shots vaccine influenza",
   [noteRoute("headache-when-to-see")]: "headache headaches migraine migraines",
-  [noteRoute("iron-infusion")]: "iron infusion",
+  [noteRoute("iron-infusion")]: "iron infusion ferritin low iron anemia anaemia tired fatigue exhausted",
 };
 
 /** Words patients type for an FAQ answer, keyed by the exact question. */

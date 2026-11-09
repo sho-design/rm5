@@ -96,7 +96,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
       <nav aria-label="Footer" className="grid grid-cols-2 gap-x-6 gap-y-8 border-t border-border pt-8 md:grid-cols-4">
         {navOrder.map((k) => {
           const d = divisions[k];
-          const links = k === "about" ? d.explore.filter((e) => ["Our team", "Our clinics", "Health notes", "FAQ"].includes(e.label)) : d.explore.slice(1, 5);
+          const links = k === "about" ? d.explore.filter((e) => ["Our team", "Our clinics", "Health notes", "FAQ", "Careers"].includes(e.label)) : d.explore.slice(1, 5);
           const shown = links.filter((l) => !grouped.has(href(l.page)));
           return (
             <div key={k} className="flex flex-col gap-2.5 text-[14px]">

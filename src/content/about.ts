@@ -239,6 +239,7 @@ export const locationsCopy = {
   access: "Parking and access",
   directions: "Get directions",
   hours: "Hours",
+  today: draft("Today"),
   servicesAt: "Services at ",
   book: "Book",
   learn: "Learn more",

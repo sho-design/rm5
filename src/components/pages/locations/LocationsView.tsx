@@ -30,13 +30,15 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
     const select = () => {
       const hash = window.location.hash;
       const wantsList = hash.endsWith("-waitlist");
-      const n = locations.findIndex((l) => `#${l.key}` === hash || `#${l.key}-waitlist` === hash);
+      // #thornhill-hours goes straight to the hours (the open-status pill, round 25).
+      const wantsHours = hash.endsWith("-hours");
+      const n = locations.findIndex((l) => [`#${l.key}`, `#${l.key}-waitlist`, `#${l.key}-hours`].includes(hash));
       if (n < 0) return;
       setI(n);
       setWaitlist(false);
       window.setTimeout(() => {
         if (wantsList && locations[n].soon) openWaitlist();
-        else document.getElementById(`loc-panel-${locations[n].key}`)?.scrollIntoView({ block: "start" });
+        else document.getElementById(wantsHours ? "hours" : `loc-panel-${locations[n].key}`)?.scrollIntoView({ block: "start" });
       }, 60);
     };
     select();

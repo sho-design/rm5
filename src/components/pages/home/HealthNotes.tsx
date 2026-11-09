@@ -15,7 +15,7 @@ export function HealthNotes({ notes }: { notes: HealthNote[] }) {
           const key = divisionKeyByLabel[n.division];
           const initial = n.author.split(" ").pop()?.[0] ?? "";
           return (
-            <SmartLink key={n.slug} to={noteRoute(n.slug)} className="flex flex-col gap-4 overflow-hidden rounded-card-sm border border-border bg-card pb-6 transition-colors hover:border-sky">
+            <SmartLink key={n.slug} to={noteRoute(n.slug)} aria-label={`${n.title}, ${n.division}, ${n.readMinutes} min read`} className="flex flex-col gap-4 overflow-hidden rounded-card-sm border border-border bg-card pb-6 transition-colors hover:border-sky">
               <div className="relative aspect-video overflow-hidden" style={{ background: divisions[key].tint }}>
                 <Image src={n.img} alt="" fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                 <span className="absolute left-3.5 top-3.5 whitespace-nowrap rounded-chip bg-white px-2.5 py-[5px] text-[12px] font-semibold leading-none" style={{ color: divisionDot[n.division] }}>

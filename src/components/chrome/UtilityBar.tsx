@@ -25,7 +25,7 @@ export function UtilityBar() {
     <div className="mx-auto flex h-[38px] w-full max-w-[1440px] items-center justify-between px-4 text-[12px] font-medium md:px-8">
       {/* Closed: the status leads to after-hours advice (911, Health811), not just the hours again. */}
       <Link
-        href={status.ready && !status.open ? `${routes.contact}#emergency` : `${routes.locations}#thornhill`}
+        href={status.ready && !status.open ? `${routes.contact}#emergency` : `${routes.locations}#thornhill-hours`}
         className="flex min-w-0 items-center gap-2 hover:underline"
         aria-label={status.ready ? (status.open ? `${status.text}. See hours` : `${status.text}. Advice while we are closed`) : "Thornhill hours"}
       >

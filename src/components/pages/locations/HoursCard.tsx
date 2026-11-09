@@ -28,7 +28,7 @@ export function HoursCard({ hours, live }: { hours: [string, string][]; live: bo
   }, [live]);
 
   return (
-    <div className="flex flex-col gap-2.5 rounded-card border border-border bg-card px-5 py-5 md:px-7 md:py-6">
+    <div id={live ? "hours" : undefined} className="flex scroll-mt-24 flex-col gap-2.5 rounded-card border border-border bg-card px-5 py-5 md:px-7 md:py-6">
       <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
         <span className="text-[13px] font-semibold text-muted">{locationsCopy.hours}</span>
         {status ? (
@@ -42,7 +42,11 @@ export function HoursCard({ hours, live }: { hours: [string, string][]; live: bo
         const today = status?.today === i;
         return (
           <div key={d} className={cn("flex justify-between gap-4 text-[14px]", today && "font-semibold")}>
-            <span className="font-medium">{d}</span>
+            <span className="font-medium">
+              {d}
+              {/* Bold alone did not mark today for a low-vision tester (round 25, Rosa). */}
+              {today ? <span className="ml-2 rounded-chip bg-sun px-2 py-0.5 text-[11px] font-semibold text-ink">{locationsCopy.today}</span> : null}
+            </span>
             <span className={cn("whitespace-nowrap text-right", today && t !== "Closed" ? "text-primary" : "text-muted")}>{shortRange(t)}</span>
           </div>
         );

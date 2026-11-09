@@ -14,7 +14,7 @@ export const giftCopy = {
   useTitle: draft("Where you can use it."),
   useLead: draft("The same card works at the front desk for every service you pay for."),
   uses: [
-    { div: "aesthetics", t: draft("Medical Aesthetics"), d: draft("Consults, injectables, skin treatments, laser and skin health plans.") },
+    { div: "aesthetics", t: draft("Medical Aesthetics"), d: draft("Consults, injectables, skin treatments, laser and skin health plans. Injectables start with a consult, and the card can pay for that too.") },
     { div: "infusion", t: draft("Infusion Therapy"), d: draft("Drips, Injection Bar shots and iron infusion visits.") },
     { div: "rehab", t: draft("Rehab & Recovery"), d: draft("Physiotherapy, chiropractic, massage and kinesiology, for anything your plan does not cover.") },
     { div: "family", t: draft("Family Medicine"), d: draft("Uninsured fees, such as forms and notes, or a doctor visit without OHIP coverage.") },

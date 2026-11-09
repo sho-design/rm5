@@ -155,7 +155,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
                   key={s.alt + i}
                   type="button"
                   onClick={() => setIdx(i)}
-                  aria-label={s.alt}
+                  aria-label={`Show slide ${i + 1} of ${slides.length}: ${s.alt}`}
                   aria-current={on ? "true" : undefined}
                   className={cn("h-1 rounded-chip transition-all duration-[400ms]", on ? "w-9 bg-sun" : "w-3.5 bg-white/45 hover:bg-white/70")}
                 />

@@ -575,7 +575,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   <span className="text-[12px] text-muted">
                     {x.registerHint}{" "}
                     <SmartLink to="register" className="font-semibold text-link">
-                      {x.registerLink} ›
+                      {x.registerLink}<span aria-hidden> ›</span>
                     </SmartLink>
                   </span>
                 ) : null}
@@ -821,7 +821,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <span className="font-semibold">{bookingCopy.waitlistTitle}</span>
               <span className="text-secondary">{bookingCopy.waitlistBody}</span>
               <button type="button" onClick={waitlist} disabled={busy} className="self-start border-b-[1.5px] border-ink font-semibold text-ink disabled:opacity-60">
-                {bookingCopy.waitlistLink} ›
+                {bookingCopy.waitlistLink}<span aria-hidden> ›</span>
               </button>
             </div>
           </Panel>
@@ -848,10 +848,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-[14px] font-semibold">
               {/* Text links end in " ›", as everywhere else. */}
               <button type="button" onClick={() => setState(1)} className="text-link hover:opacity-80">
-                {x.review.editDetails} ›
+                {x.review.editDetails}<span aria-hidden> ›</span>
               </button>
               <button type="button" onClick={() => setState(2)} className="text-link hover:opacity-80">
-                {x.review.changeTime} ›
+                {x.review.changeTime}<span aria-hidden> ›</span>
               </button>
             </div>
             <button
