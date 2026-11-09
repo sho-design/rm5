@@ -145,7 +145,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   };
 
   useEffect(() => {
-    setDays(bookingDays());
+    // One spare day, so a visit that cannot start today still shows seven days (round 27, Derek).
+    setDays(bookingDays(undefined, 8));
     setWomensDays(womensDayBookingDays());
     // Links pass ?service=<division key>&visit=<visit key> (bookFor in lib/routes). Unknown keys are ignored.
     const params = new URLSearchParams(window.location.search);
@@ -187,8 +188,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const str = (k: string) => (typeof details[k] === "string" ? (details[k] as string) : "");
   // Women's health day is only on the last Sunday of the month: offer those dates instead of the next 7 days.
   // Clinic rule: only lab testing, aesthetics and IV wellness can be booked for today.
-  const noToday = !!visit && !visit.sameDay && visit.days !== "womensday" && days.some((d) => d.today);
-  const dayList = visit?.days === "womensday" ? womensDays : noToday ? days.filter((d) => !d.today) : days;
+  const noToday = !!visit && !visit.sameDay && visit.days !== "womensday" && days.some((d) => d.today && d.open && d.slots.length > 0);
+  const dayList = visit?.days === "womensday" ? womensDays : (noToday ? days.filter((d) => !d.today) : days).slice(0, 7);
   const day = dayList[dayIdx];
   useEffect(() => {
     setDayIdx(0);
@@ -516,6 +517,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                     </PillChip>
                   ))}
                 </div>
+                {/* Say it on the first step, not after the whole form (round 27, Owen). */}
+                {noToday ? <p className="pretty text-[13px] leading-[1.5] text-secondary">{linkPhones(x.noSameDay)}</p> : null}
                 {visit?.modes ? (
                   <div className="flex flex-col gap-2 pt-1">
                     <GroupLabel>{x.modeLabel}</GroupLabel>

@@ -51,7 +51,7 @@ export const teamPage = {
     eyebrow: "Founder and Medical Director",
     name: "Dr. Johnny Nguyen",
     role: "Medical Director, Interventional Pain Physician. MD, University of Toronto",
-    bio: "Dr. Nguyen grew up in the Jane and Finch community in Toronto and earned his Doctor of Medicine at the University of Toronto, where he received the Heaslip Scholarship. He completed residency in family medicine, a fellowship in emergency medicine, and advanced credentialing in interventional pain management. He has 11 years of combined experience as a family doctor, emergency doctor and pain management doctor, and is the owner of Restoration Medical Thornhill and Restoration Medical Maple.",
+    bio: "Dr. Nguyen grew up in the Jane and Finch community in Toronto and earned his Doctor of Medicine at the University of Toronto, where he received the Heaslip Scholarship. He completed residency in family medicine, a fellowship in emergency medicine, and advanced credentialing in interventional pain management. He has 11 years of combined experience as a family doctor, emergency doctor and pain management doctor, and is the owner of Restoration Medical Thornhill and the Restoration Medical Maple clinic, opening soon.",
     credentials: ["Family medicine residency", "Emergency medicine fellowship", "Advanced Diplomate, Interventional Pain Management", "Governor General’s Academic Medal"],
     preceptor: "Preceptor, TMU and Anderson College placements",
     portraitNote: "Dr. Nguyen portrait (from restorationmedical.ca)",
