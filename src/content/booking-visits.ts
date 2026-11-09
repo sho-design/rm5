@@ -5,6 +5,7 @@ import { deepDives, rehabCoverage } from "./deep";
 import { divisionOrder, divisions } from "./divisions";
 import { ironSteps } from "./iron";
 import { kidsCopy } from "./kids";
+import { infusionCopy } from "./infusion-site";
 import { womensHealthDay } from "./womens-day";
 import { bloodOptions, menFaq } from "./subpages";
 import { routes } from "@/lib/routes";
@@ -182,7 +183,8 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
         label: draft("First visit with a referral"),
         coverage: painCoverage,
         bring: [faqA("pain", "What should I bring?")],
-        hint: { text: draft("Your doctor sends the referral and we call you to book, usually within two to four weeks of it arriving. Already sent? You can ask for a time here, as a request; we confirm it once the referral is with us. Not heard from us after three weeks? Call 905-709-3222 and we check that it arrived. Not sent yet? There is no need to book.") },
+        // One message, matching the first-visit page: a referred patient waits for our call (round 27, Gloria).
+        hint: { text: draft("Already referred? There is no need to book. Your doctor sends the referral and we call you, usually within two to four weeks of it arriving. Not heard from us after four weeks? Call 905-709-3222 and we check that it arrived. No referral yet? Book a family medicine assessment first.") },
       },
       { key: "followup", label: menuLabel("pain", "Follow-up visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")], existing: true, noServiceNote: true },
       { key: "procedure", label: menuLabel("pain", "Procedure visit"), coverage: painCoverage, bring: [faqA("pain", "What should I bring?")], existing: true, noServiceNote: true },
@@ -198,8 +200,8 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
         coverage: draft("Assessment and bloodwork OHIP-insured"),
         bring: [healthCard, approved(ironSteps[0].d, "If you already have recent results, bring them and skip the wait.")],
       },
-      { key: "drip", sameDay: true, label: draft("An IV drip"), coverage: uninsured, bring: [faqA("infusion", "How do I prepare?")] },
-      { key: "shot", sameDay: true, label: draft("A shot from the Injection Bar"), coverage: uninsured, bring: [draft("Wear a top with sleeves that roll up.")] },
+      { key: "drip", sameDay: true, label: draft("An IV drip"), coverage: uninsured, bring: [faqA("infusion", "How do I prepare?")], hint: { text: infusionCopy.drip.unwell } },
+      { key: "shot", sameDay: true, label: draft("A shot from the Injection Bar"), coverage: uninsured, bring: [draft("Wear a top with sleeves that roll up.")], hint: { text: infusionCopy.drip.shotsUnwell } },
     ],
   },
   aesthetics: {

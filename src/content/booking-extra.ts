@@ -146,6 +146,8 @@ export const bookingExtra = {
   reasonLabel: draft("Reason for the visit"),
   rehabNewHint: draft("New to rehab here? Your first visit with physio or chiro is an initial assessment."),
   rehabNewAction: draft("Choose Initial assessment"),
+  aesNewHint: draft("New to aesthetics here? Treatment starts with a complimentary consult."),
+  aesNewAction: draft("Choose a consult"),
   /** Same-day bookings: 24 hours notice cannot apply. */
   changeOrCancelToday: draft("To change or cancel, call 905-709-3222 as soon as you can."),
   /** Shown when this tab already booked and the page was opened again with Back or Forward. */

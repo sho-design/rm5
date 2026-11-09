@@ -541,6 +541,15 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                     <span className="font-semibold text-ink">{x.reasonLabel}:</span> {reason}
                   </p>
                 ) : null}
+                {/* A new patient booked an injectables treatment for today with no consult (round 27, Lisa). */}
+                {visit?.key === "injectables" && who === 0 && service.visits.some((v) => v.key === "consult") ? (
+                  <p className="text-[13px] leading-[1.5] text-secondary">
+                    {x.aesNewHint}{" "}
+                    <button type="button" onClick={() => setVisitKey("consult")} className="border-b-[1.5px] border-ink font-semibold text-ink">
+                      {x.aesNewAction}<span aria-hidden> ›</span>
+                    </button>
+                  </p>
+                ) : null}
                 {/* A new patient picked Chiropractic and never saw that a first visit is an assessment. */}
                 {(visit?.key === "physio" || visit?.key === "chiro") && who === 0 && service.visits.some((v) => v.key === "assessment") ? (
                   <p className="text-[13px] leading-[1.5] text-secondary">
