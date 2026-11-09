@@ -57,7 +57,7 @@ export const viHome = {
   servicesLead: draft("Năm dịch vụ dưới một mái nhà, dùng chung một hồ sơ bệnh án."),
   services: [
     { k: "family", t: draft("Y khoa gia đình"), d: draft("Khám tổng quát, bệnh mãn tính như huyết áp cao và tiểu đường, trẻ em, sức khỏe phụ nữ và nam giới. OHIP chi trả."), to: "family" },
-    { k: "pain", t: draft("Trung tâm điều trị đau"), d: draft("Tiêm phong bế thần kinh, tiêm điểm đau và tiêm khớp do bác sĩ thực hiện, có siêu âm hướng dẫn. OHIP chi trả khi có giấy giới thiệu của bác sĩ."), to: "pain" },
+    { k: "pain", t: draft("Trung tâm điều trị đau"), d: draft("Tiêm phong bế thần kinh, tiêm điểm đau và tiêm khớp do bác sĩ thực hiện, có siêu âm hướng dẫn. OHIP chi trả khi có giấy giới thiệu của bác sĩ. Chưa có giấy giới thiệu? Bác sĩ gia đình của chúng tôi có thể khám và giới thiệu bạn ngay tại phòng khám."), to: "pain" },
     { k: "infusion", t: draft("Truyền dịch và truyền sắt"), d: draft("Truyền sắt cho người thiếu sắt, truyền dịch vitamin và tiêm vitamin như B12."), to: "viIron" },
     { k: "aesthetics", t: draft("Thẩm mỹ y khoa"), d: draft("Tư vấn, tiêm thẩm mỹ, chăm sóc da và laser, sau khi được đánh giá kỹ."), to: "aesthetics" },
     { k: "rehab", t: draft("Phục hồi chức năng"), d: draft("Vật lý trị liệu, nắn chỉnh cột sống, xoa bóp trị liệu và vận động trị liệu."), to: "rehab" },
