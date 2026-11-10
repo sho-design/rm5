@@ -3,7 +3,6 @@ import { pageMetadata } from "@/lib/seo";
 import { BookFlow } from "@/components/pages/book/BookFlow";
 import { bookingTitles } from "@/content/booking";
 import { bookingConfig } from "@/content/booking-visits";
-import { EmergencyNote } from "@/components/pages/help/EmergencyNote";
 
 const baseMetadata: Metadata = {
   title: bookingTitles.step1.title,
@@ -19,9 +18,6 @@ export default function BookPage() {
   return (
     <>
       <BookFlow config={bookingConfig()} />
-      <div className="px-4 pb-6 md:px-content">
-        <EmergencyNote id="emergency" className="max-w-[760px]" />
-      </div>
     </>
   );
 }

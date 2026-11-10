@@ -14,6 +14,7 @@ import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
 import { errorProps, fmtPhone, focusFirstError, formErrors, readForm, type FormErrors } from "@/lib/validate";
 import { cn } from "@/lib/cn";
 import { isEmergencyNote, isInfantFever } from "@/lib/search";
+import { EmergencyNote } from "@/components/pages/help/EmergencyNote";
 import { readReason, SENSITIVE_REASON } from "@/lib/routes";
 import { buttonClass } from "@/components/ui/Button";
 import { linkPhones } from "@/components/ui/Phones";
@@ -124,6 +125,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [days, setDays] = useState<BookingDay[]>([]);
   const [womensDays, setWomensDays] = useState<BookingDay[]>([]);
+  const [signs, setSigns] = useState(false);
   const [dayIdx, setDayIdx] = useState(0);
   const [slot, setSlot] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
@@ -442,7 +444,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   return (
     <div ref={root} className="grid grid-cols-1 gap-4 px-4 pb-8 pt-5 md:px-content md:pt-16 md:pb-10 lg:grid-cols-2 lg:items-start lg:gap-8">
       {/* Left: title, lead, live summary */}
-      <div className="flex flex-col gap-3 lg:sticky lg:top-[80px] lg:gap-3.5">
+      <div className={cn("flex flex-col gap-3 lg:gap-3.5", !signs && "lg:sticky lg:top-[80px]")}>
         {ocean ? null : <Steps state={state} className="lg:hidden" />}
         <Display as="h1" size="lg" className="pt-1 lg:pt-0">
           {title}
@@ -453,14 +455,17 @@ export function BookFlow({ config }: { config: BookingConfig }) {
         {state === 1 ? (
           <p className="pretty rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[14px] font-semibold leading-[1.5] text-ink">
             {bookingCopy.urgentLine}{" "}
-            <a href="#emergency" className="whitespace-nowrap font-semibold text-link">
-              {bookingCopy.urgentMore} ›
-            </a>
+            {/* The full list opens here, beside the form, instead of a second box under it (it looked stranded). */}
+            <button type="button" aria-expanded={signs} aria-controls="emergency" onClick={() => setSigns((v) => !v)} className="whitespace-nowrap font-semibold text-link">
+              {bookingCopy.urgentMore}
+              <span aria-hidden> {signs ? "‹" : "›"}</span>
+            </button>
             <a href="tel:988" className="mt-1 block font-semibold underline underline-offset-2">
               {bookingCopy.urgentCrisis}
             </a>
           </p>
         ) : null}
+        {state === 1 && signs ? <EmergencyNote id="emergency" headingLevel={3} /> : null}
         <dl aria-labelledby="book-summary" className={cn("mt-3 hidden flex-col gap-2.5 rounded-card-sm border border-border bg-card px-6 py-[22px] text-[14px] leading-[1.5]", (state === 1 || state === 2) && "lg:flex")}>
           <h2 id="book-summary" className="text-[12px] font-semibold text-muted">
             {bookingCopy.summaryTitle}
