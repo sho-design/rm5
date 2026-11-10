@@ -33,6 +33,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    // Keep resized photos cached for a month instead of the default 60 seconds, and skip the 3840px variant.
+    minimumCacheTTL: 2678400,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     remotePatterns: [
       { protocol: "https", hostname: "d8j0ntlcm91z4.cloudfront.net" },
       { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },

@@ -90,6 +90,8 @@ export const viRoutes = {
   home: "/vi",
   register: "/vi/benh-nhan-moi",
   iron: "/vi/truyen-sat",
+  family: "/vi/y-khoa-gia-dinh",
+  pain: "/vi/dieu-tri-dau",
   contact: "/vi/lien-he",
 } as const;
 
@@ -98,6 +100,8 @@ export const viPairs: Record<string, string> = {
   [routes.home]: viRoutes.home,
   [routes.register]: viRoutes.register,
   [routes.iron]: viRoutes.iron,
+  [routes.family]: viRoutes.family,
+  [routes.pain]: viRoutes.pain,
   [routes.contact]: viRoutes.contact,
 };
 

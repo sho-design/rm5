@@ -5,8 +5,11 @@
  * dress and casting rules in CLAUDE.md). Swap the URL here; nothing else
  * references the CDN.
  */
-const CDN = "https://d8j0ntlcm91z4.cloudfront.net/user_2vgr4LDcTnBdquYG4fMZ396AWcW/";
-const u = (f: string) => CDN + f;
+// Served from the site itself as compressed WebP (public/images, longest side 2000px). The originals were
+// 11 MB PNGs on a CDN, which made pages slow while the image optimizer fetched them. Regenerate with
+// scripts/localize-images.js when the photos change.
+const CDN = "/images/";
+const u = (f: string) => CDN + f.replace(/\.(png|jpe?g)$/i, ".webp");
 
 export const images = {
   /** Home hero slide 1 and Maple placeholder */

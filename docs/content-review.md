@@ -10,6 +10,12 @@ Approved copy is quoted through guards that fail the build if the source text ch
 
 Sub-navigation keeps its original items; six now use better-matching icons (new patients, trigger points, injectables, plans, chiropractic, FAQ). The access chips on Our clinics and Contact were removed in round 24 because they repeated the access text beside them.
 
+## Vietnamese family medicine and Pain Centre pages (November 2026)
+
+Source: `viFamily` and `viPain` in `src/content/vi.ts`. Two new pages, `/vi/y-khoa-gia-dinh` and `/vi/dieu-tri-dau`, now in the Vietnamese menu and linked from the Vietnamese home cards. Every line is draft and built only from approved English facts: new patients accepted, OHIP, both physicians speak Vietnamese, no female physicians yet and nurses (all women) do much of women's health, women's health day hours, no same-day doctor visits, $100 plus HST without OHIP; Pain Centre with a physician referral (never self-referral), our family doctors can assess and refer, usually 2 to 4 weeks, call after 4 weeks, procedures guided by Clarius wireless ultrasound with no X-ray, what to bring. The Vietnamese status bar ("Đang mở cửa đến…") is new too.
+
+- **Needs the fluent clinician's review** with the other Vietnamese pages, especially procedure names (phong bế nhánh giữa, tiêm khớp mặt, phong bế thần kinh chẩm).
+
 ## Aesthetics treatment menu redesign (November 2026)
 
 Source: `aesAreas` and the new `aesCopy` keys in `src/content/aesthetics-menu.ts`. The treatments page now opens with "Where would you like to start?": pick an area of the face (forehead, around the eyes, cheeks, lips and mouth, jawline and neck, all-over skin) or a concern, then see what is often considered, each with Consult, The visit, The days after and Coming back, and a downtime filter. The full menu follows as a printed menu (an accordion on phones). The goal planner was removed; links to it now land on the new section.

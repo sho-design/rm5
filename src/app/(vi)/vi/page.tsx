@@ -44,12 +44,13 @@ export default function ViHomePage() {
         <ul className="grid grid-cols-1 gap-card sm:grid-cols-2 lg:grid-cols-5">
           {c.services.map((s, i) => {
             const d = divisions[s.k as keyof typeof divisions];
-            const vi = s.to === "viIron";
+            const viTo: Record<string, string> = { viIron: viRoutes.iron, viFamily: viRoutes.family, viPain: viRoutes.pain };
+            const vi = s.to in viTo;
             const img = (images.location as Record<string, string>)[s.k] ?? d.img;
             return (
               <li key={s.k} className="rm-rise" style={{ animationDelay: `${i * 70}ms` }}>
                 <SmartLink
-                  to={vi ? viRoutes.iron : routes[s.to as keyof typeof routes]}
+                  to={vi ? viTo[s.to] : routes[s.to as keyof typeof routes]}
                   hrefLang={vi ? "vi" : "en-CA"}
                   className="group flex h-full flex-col gap-3 motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] hover:-translate-y-1"
                 >
