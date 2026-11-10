@@ -737,3 +737,12 @@ Changed so the site does not compare us with other providers or promote a paid s
 - Clinic fact: drips are mixed at the appointment, never ahead. New row in the infusion table: "When your drip is made" / "Mixed by our nurse at your appointment, after screening. Never made ahead."
 - Kingmaker renamed "Signature drip" (`/infusion-therapy/drips/signature`, the old address redirects): "Our house blend, the same for everyone. Ingredients and doses are confirmed with you at your consult." Square sells it as IV Kingmaker and IV Queenmaker, the same recipe; a men's or women's drip implies a sex-specific benefit. Rename the Square items to match when convenient. Name to be confirmed once the ingredients are known.
 - Still open, needs clinic decision: drip names that carry health claims ("NAD+ Longevity", "Beauty Elixir", "Bones & mood", "Healing (Myers')"), the evidence badges, and "Low energy & fatigue" as a drip "helps with" label.
+
+## Programs, combined plans and SkinCeuticals regimens (2026-11-10)
+
+New copy taken from the intake and treatment plan doc. All of it is `draft()` and needs clinic and physician approval before launch. Content lives in `src/content/programs.ts`.
+
+- `/medical-aesthetics/treatments#programs`: eight programs (Glass skin, Eye refresh, Jawline and lower face, Acne scar program, Redness and rosacea, Hair restoration, Event ready, Aging well yearly). Each shows who it is for, three ordered steps and a typical length. No prices: "Price in writing at your complimentary consult". The physicians need to confirm the steps, session counts and lengths.
+- `/infusion-therapy/pricing#combined`: five combined plans (Hair restoration plus, Tired all the time, Skin from within, Event ready plus, Active and recovering). Each starts with a doctor visit, consult or rehab assessment. The lead says OHIP-insured parts stay OHIP-insured and are never in a package price. "Recovery after resurfacing" from the doc is covered by the Recovery kit regimen, not repeated.
+- `/medical-aesthetics/skin-health-plans#regimens`: six SkinCeuticals regimens at suggested retail from the July 2, 2026 list, HST extra, with totals. Disclosure line: "We sell these products and earn from their sale. Buying them is never a condition of treatment." Confirm the clinic sells at SRP and stocks every listed product. Note that SkinCeuticals product names are the brand's own trademarks and are used only to name the product.
+- Search: "Treatment programs" and "SkinCeuticals regimens" rows added.

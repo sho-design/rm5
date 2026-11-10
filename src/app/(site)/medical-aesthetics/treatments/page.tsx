@@ -7,6 +7,7 @@ import { draft } from "@/content/review";
 import { bookFor } from "@/lib/routes";
 import { AesMenu } from "@/components/pages/aesthetics/AesMenu";
 import { AesFinder } from "@/components/pages/aesthetics/AesFinder";
+import { AesPrograms } from "@/components/pages/aesthetics/AesPrograms";
 import { AesCandidacy, AesTools } from "@/components/pages/aesthetics/AesSections";
 
 const title = draft("The menu.");
@@ -42,6 +43,7 @@ export default function AestheticsMenuPage() {
       />
       <AesFinder />
       <AesMenu />
+      <AesPrograms />
       <AesTools />
       <AesCandidacy />
       <CtaBand title={div.footCta ?? ""} sub={draft("A consult starts with screening. If a treatment is not right for you, we say so and suggest what is.")} cta={div.cta ?? "Book a consult"} ctaTo={bookFor("aesthetics", "consult")} />

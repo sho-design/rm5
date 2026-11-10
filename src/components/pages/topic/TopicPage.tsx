@@ -1,3 +1,4 @@
+import { SkinRegimens } from "@/components/pages/aesthetics/AesPrograms";
 import { BenefitCard, CtaBand, Display, Faq, FactGrid, Grid, PathSteps, Section, SectionHeader, SmartLink, SubPageHero } from "@/components/ui";
 import { CoverageChecker } from "@/components/pages/division/CoverageChecker";
 import { RenewalForm } from "@/components/pages/help/RenewalForm";
@@ -101,6 +102,7 @@ export function TopicPage({ t }: { t: Topic }) {
 
       {t.coverageChooser ? <CoverageChecker options={rehabCoverage} /> : null}
       {t.ladder ? <Ladder rungs={aestheticsLadder} /> : null}
+      {t.regimens ? <SkinRegimens /> : null}
 
       {t.benefits ? (
         <Section className="flex flex-col gap-6">

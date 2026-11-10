@@ -112,6 +112,21 @@ export const searchExtras: SearchDoc[] = [
     page: "/infusion-therapy/drips/signature",
     keys: "kingmaker queenmaker king maker queen maker iv kingmaker iv queenmaker signature house blend",
   },
+  // Programs and home skincare (drafts from the November 2026 plan).
+  {
+    kind: draft("Medical Aesthetics"),
+    label: draft("Treatment programs"),
+    sub: draft("Glass skin, eye refresh, acne scars, hair restoration and more"),
+    page: "/medical-aesthetics/treatments#programs",
+    keys: "program programs package packages bundle combined plan glass skin eye refresh event ready wedding acne scar program jawline aging well chương trình gói",
+  },
+  {
+    kind: draft("Medical Aesthetics"),
+    label: draft("SkinCeuticals regimens"),
+    sub: draft("Home skincare routines with prices"),
+    page: "/medical-aesthetics/skin-health-plans#regimens",
+    keys: "skinceuticals skin ceuticals ce ferulic phloretin vitamin c serum sunscreen spf retinol skincare skin care products regimen routine home care kem chống nắng",
+  },
   // PRP for thinning hair (aesthetics): the menu lists it under PRP, which nobody searches for.
   {
     kind: draft("Medical Aesthetics"),

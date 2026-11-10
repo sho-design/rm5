@@ -68,6 +68,8 @@ export interface Topic {
   coverageChooser?: boolean;
   /** Show the aesthetics "lightest option first" ladder. */
   ladder?: boolean;
+  /** Show the SkinCeuticals home regimens. */
+  regimens?: boolean;
   path?: { title: string; steps: PathStep[] };
   faq?: TopicFaq[];
   related?: { title: string; items: { t: string; d: string; page: string }[] };
@@ -379,6 +381,7 @@ const aesthetics: Topic[] = [
     img: images.services.aesthetics[3],
     imgAlt: draft("Clinician mapping a skin health plan with a patient"),
     ladder: true,
+    regimens: true,
     path: aesPath,
     faq: [fq("How is pricing set?"), dq("aesthetics", "How much does it cost?"), dq("aesthetics", "Is a consult free?")],
     band: aesBand,
