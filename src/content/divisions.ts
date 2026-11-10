@@ -191,7 +191,7 @@ export const divisions: Record<NavKey, Division> = {
   aesthetics: {
     key: "aesthetics",
     label: "Medical Aesthetics",
-    tag: "Physician-assessed, conservatively planned.",
+    tag: draft("Physician-directed, conservatively planned."),
     img: images.division.aesthetics,
     tint: tints[4],
     accent: "#8E5FB5",
