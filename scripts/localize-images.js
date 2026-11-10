@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- a plain Node script, run with node */
 // Downloads every placeholder photo named in src/content/images.ts and saves a compressed WebP copy
 // (longest side 2000px, quality 80) under public/images, so pages no longer pull 11 MB PNGs from the CDN.
 const fs = require('fs');
