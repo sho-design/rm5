@@ -13,7 +13,7 @@ export function FeatureRow() {
         <span className="relative text-[13px] font-semibold">New: Infusion Therapy</span>
         <div className="relative flex flex-col gap-2.5">
           <span className="display-tight text-[30px] md:text-[40px]" style={{ lineHeight: 1, letterSpacing: "-.02em" }}>
-            Come as you are. <em>Leave feeling restored.</em>
+            Come as you are. <em>We take it from there.</em>
           </span>
           <span className="text-[15px] text-white/75">Physician-reviewed, nurse-administered drips, shots and iron therapy.</span>
           <span className="text-[15px] font-semibold">Explore Infusion Therapy ›</span>

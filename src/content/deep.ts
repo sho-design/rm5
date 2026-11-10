@@ -175,7 +175,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
     faq: [
       { q: "Are you accepting new patients?", a: "Yes, at Thornhill. Register online or call and we will confirm and book your first visit." },
       { q: "Do I need to bring anything?", a: "Your Ontario health card, a list of medications and any recent test results. If you are transferring, we request your file for you." },
-      { q: "Can I be seen the same day?", a: "We hold same-week slots for existing patients. For urgent concerns call in the morning and we will do our best. Emergencies go to 911 or the nearest emergency department." },
+      { q: "Can I be seen the same day?", a: draft("Doctor visits are not booked for the same day; they start from the next clinic day. Bloodwork, aesthetics and IV wellness can be booked for today. Unwell today? Call us at 905-709-3222 during clinic hours. Emergencies go to 911 or the nearest emergency department.") },
       { q: "Do you do virtual visits?", a: "Phone visits are available for existing patients for renewals, results and follow-up. New concerns are seen in person." },
       { q: "What is not covered by OHIP?", a: "Forms, notes, travel consultations and some cosmetic services. We tell you the fee before the visit and give you a receipt." },
     ],
@@ -398,13 +398,13 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
     ],
     benefitsTitle: draft("Why a physician-led clinic."),
     benefits: [
-      { big: "MD", t: "A physician is always on site", d: "Every infusion happens in a medical clinic with a doctor in the building.", bg: "#E6F4EA" },
+      { big: "MD", t: draft("Physician-led"), d: draft("Every infusion is ordered and overseen by our physicians, in a medical clinic."), bg: "#E6F4EA" },
       { big: "1", t: draft("Clinic for assessment, labs and infusion"), d: draft("No separate lab trip. Iron is an assessment visit, then usually 3 infusion visits."), bg: "#FFF3C4" },
       { big: "$0", t: "For the assessment", d: "Iron assessments and bloodwork are OHIP-insured. Only the infusion visit is a fee.", bg: "#EEF5FC" },
     ],
-    pathTitle: "From booking to back on your feet.",
+    pathTitle: draft("From booking to heading home."),
     path: [
-      { n: "1", time: "2 minutes", t: "Book online", d: "Pick a drip or an iron assessment. Same-week times are common." },
+      { n: "1", time: "2 minutes", t: "Book online", d: draft("Pick a drip or an iron assessment. Drips can be booked for the same day.") },
       { n: "2", time: "On arrival", t: "Nurse screening", d: "Vitals, history and allergies. The physician reviews anything unusual." },
       { n: "3", time: draft("45 minutes to about 3 hours"), t: "Your infusion", d: "A lounge chair, a blanket and a nurse nearby. Bring headphones." },
       { n: "4", time: "Afterwards", t: "Go about your day", d: "No sedation. Iron patients get repeat bloodwork booked at 4 to 8 weeks." },
@@ -531,7 +531,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
       { q: draft("Pregnant or breastfeeding?"), a: draft("Tell us when you book. We talk it through at your consult before any treatment, and some treatments wait until after pregnancy and breastfeeding.") },
       { q: "How much does it cost?", a: "It depends on the plan. Prices are given in writing at your consult and include HST." },
       { q: "Will it look natural?", a: "We start conservatively and review at two weeks. You stay in control of how far to go." },
-      { q: "Is any of this covered by OHIP?", a: "Medical treatment of active acne is. Cosmetic treatments are not, and receipts are provided." },
+      { q: "Is any of this covered by OHIP?", a: draft("Seeing your family doctor for active acne is OHIP-insured. Cosmetic treatments are not, and receipts are provided.") },
     ],
     // Clinic, 10 November: a nurse does the consult, and a physician also sees the patient for some conditions.
     closing: draft("A complimentary consult with our nurse, and a physician when your concern needs one. Leave with a written plan and prices, and decide in your own time."),

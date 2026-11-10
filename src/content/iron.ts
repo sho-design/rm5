@@ -47,7 +47,7 @@ export const ironWho: TintCard[] = [
 
 export const ironSteps: PathStep[] = [
   { n: "1", time: "OHIP-insured", t: "Assessment and bloodwork", d: "A short visit with our physician and a blood draw on site. If you already have recent results, bring them and skip the wait." },
-  { n: "2", time: "Same week", t: "Your plan", d: "If your ferritin is low and tablets are not right for you, the physician chooses the iron and dose. We book your infusion, often within days." },
+  { n: "2", time: "Same week", t: "Your plan", d: "If your ferritin is low and tablets are not right for you, the physician chooses the iron and dose. We book your first infusion with you." },
   // The 30 minutes read as extra time on top of the 3 hours (round 23). Infusion days added (clinic, Nov 2026).
   { n: "3", time: draft("Usually 3 visits, about 3 hours each"), t: "The infusions", d: draft("On a Tuesday, Saturday or Sunday. A nurse places a small IV and you relax in a lounge chair while your iron runs in, then we watch you for 30 minutes. About 3 hours in all. Usually 3 visits, one to two weeks apart; your physician may direct 1 or 2.") },
 ];
@@ -82,7 +82,7 @@ export const ironPrices: IronPrice[] = [
     k: "Bring your own iron",
     t: "Administration only",
     price: "$250",
-    d: "We write the prescription, you fill it at your pharmacy and bring it in. Most private drug plans cover the iron. We supply the nursing, supplies and monitoring.",
+    d: "We write the prescription, you fill it at your pharmacy and bring it in. Many private drug plans cover the iron; check with yours. We supply the nursing, supplies and monitoring.",
     note: draft("Per visit, HST included. Usual course of 3: $750, plus the iron from your pharmacy"),
     bg: "#fff",
   },
@@ -101,7 +101,7 @@ export const ironFaq: QA[] = [
   { q: "Do I need a referral?", a: "No. Book an iron assessment directly. If you have a referral or recent bloodwork from another doctor, bring it and we will use it." },
   { q: "How soon will I feel different?", a: "Iron stores take time to rebuild and everyone responds differently. Your repeat bloodwork at 4 to 8 weeks is the reliable measure, and your physician reviews it with you." },
   { q: "Is it safe?", a: "Modern IV iron is well studied and given daily in hospitals and clinics across Canada. Serious reactions are rare. A nurse monitors you throughout and a physician is on site." },
-  { q: "Will my insurance cover it?", a: "Your assessment and bloodwork are OHIP-insured. Most private drug plans cover the iron itself when filled with our prescription. The infusion visit fee is paid out of pocket and we provide a receipt." },
+  { q: "Will my insurance cover it?", a: "Your assessment and bloodwork are OHIP-insured. Many private drug plans cover the iron itself when filled with our prescription; check with yours. The infusion visit fee is paid out of pocket and we provide a receipt." },
   { q: "Can I drive home?", a: "Yes. Iron infusions do not involve sedation. Most people return to their normal day." },
 ];
 

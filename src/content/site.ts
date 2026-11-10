@@ -119,7 +119,7 @@ export const heroSlides: HeroSlide[] = [
     alt: "Guest relaxing during an infusion",
     eyebrow: "New: Infusion Therapy",
     h1: "Come as you are.",
-    h1em: "Leave feeling restored.",
+    h1em: draft("We take it from there."),
     p: "Physician-reviewed, nurse-administered drips, shots and iron therapy.",
     cta: "Explore Infusion Therapy",
     page: "infusion",

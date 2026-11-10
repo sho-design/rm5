@@ -107,7 +107,7 @@ export const divisions: Record<NavKey, Division> = {
   pain: {
     key: "pain",
     label: "Pain Centre",
-    tag: "Interventional pain care that gets you moving.",
+    tag: draft("Interventional pain care, guided by ultrasound."),
     img: images.division.pain,
     tint: tints[3],
     accent: "#C4573A",
@@ -385,7 +385,7 @@ export const infusionPage = {
   hero: {
     pill: "Physician-led, nurse-administered",
     h2: "Come as you are.",
-    h2em: "Leave feeling restored.",
+    h2em: draft("We take it from there."),
     p: "From everyday energy to clinically indicated iron infusions, our therapies meet your body where it is. Reviewed by our physician, given by our nurses.",
     cta: "Book a consult",
     cta2: "Explore drips & shots",

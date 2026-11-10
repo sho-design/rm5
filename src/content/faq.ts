@@ -35,7 +35,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Visits",
     q: "How do I book?",
-    a: "Online in three steps, or call 905-709-3222 during clinic hours. Online requests are confirmed by our team the same day.",
+    a: "Online in three steps, or call 905-709-3222 during clinic hours. Online requests are confirmed by our team within one business day.",
     linkLabel: "Book a visit",
     linkPage: "book",
   },
@@ -290,7 +290,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Results",
     q: "Can I book online without calling?",
-    a: "Yes. The Book a visit form takes a couple of minutes and is confirmed by our team the same day. Existing patients can also request through the portal.",
+    a: "Yes. The Book a visit form takes a couple of minutes and is confirmed by our team within one business day. Existing patients can also request through the portal.",
     linkLabel: "Book a visit",
     linkPage: "book",
   },

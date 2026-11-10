@@ -10,6 +10,19 @@ Approved copy is quoted through guards that fail the build if the source text ch
 
 Sub-navigation keeps its original items; six now use better-matching icons (new patients, trigger points, injectables, plans, chiropractic, FAQ). The access chips on Our clinics and Contact were removed in round 24 because they repeated the access text beside them.
 
+## Compliance wording, 10 November 2026 (approved by the clinic owner in chat)
+
+- "Leave feeling restored." is now "We take it from there." (home infusion promo, Infusion Therapy hero and band).
+- "From booking to back on your feet." is now "From booking to heading home."
+- "Interventional pain care that gets you moving." is now "Interventional pain care, guided by ultrasound."
+- "A physician is always on site / Every infusion happens in a medical clinic with a doctor in the building." is now "Physician-led / Every infusion is ordered and overseen by our physicians, in a medical clinic." Restore the old card if a physician is confirmed in the building every infusion day.
+- "Same-week times are common." is now "Drips can be booked for the same day."
+- Iron: "often within days" is now "We book your first infusion with you."; "Most private drug plans" is now "Many private drug plans… check with yours" (2 places).
+- Aesthetics OHIP FAQ: "Seeing your family doctor for active acne is OHIP-insured. Cosmetic treatments are not, and receipts are provided."
+- Aesthetics consult: "Nurse, 20 min, with a physician when needed"; closing band and "Physician-directed" card say the nurse leads the consult and a physician sees you when your concern needs one. Pricing FAQ: price given in writing at the consult.
+- Timing: "Can I be seen the same day?" now says doctor visits start from the next clinic day; bloodwork, aesthetics and IV wellness can be booked for today. Children's FAQ "Call before 10am" is now "Call us when we open". "Unhurried" removed from the children's page (2 places). FAQ "confirmed by our team the same day" is now "within one business day" (2 places).
+- Kept: "10+ Years of physician experience" (Dr. Nguyen, more than 10 years).
+
 ## Round 27 lines (November 2026)
 
 New draft lines in booking: "Today's times are only for lab tests, aesthetics and IV wellness, so this visit starts from the next clinic day. Unwell today? Call us at 905-709-3222." (replaces the round 26 wording), "New to aesthetics here? Treatment starts with a complimentary consult." with "Choose a consult", "Sessions are 25 or 55 minutes. Say which in the note.", and the Pain Centre referral hint "Already referred? There is no need to book. Your doctor sends the referral and we call you, usually within two to four weeks of it arriving. Not heard from us after four weeks? Call 905-709-3222 and we check that it arrived. No referral yet? Book a family medicine assessment first." Drip and shot bookings reuse the approved-draft unwell lines from the infusion pages. Dr. Nguyen's bio: "the Restoration Medical Maple clinic, opening soon".

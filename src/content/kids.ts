@@ -46,7 +46,7 @@ export const kidsAges: KidsAge[] = [
     immIndex: 0,
     sub: "Well-baby visits",
     tags: ["Well-baby visits", "Growth checks", "Vaccines"],
-    title: "Frequent, unhurried visits in the first two years.",
+    title: draft("Frequent visits in the first two years."),
     p: "We follow the Rourke Baby Record used across Ontario: weight, length and head growth, feeding, sleep, development and the routine vaccine schedule. Questions are welcome; no concern is too small.",
     facts: [
       { k: "How often", v: "About 8 visits by age 2" },
@@ -110,7 +110,7 @@ export const kidsAges: KidsAge[] = [
 export const kidsFaq: QA[] = [
   { q: "Do you accept children as new patients?", a: "Yes, at Thornhill. A child can be registered with a parent already on our roster or on their own. Register online and we confirm within two business days." },
   { q: "Can my child see the same doctor as me?", a: "Yes. One family doctor and one chart per household is how we prefer to work. Book back to back and one trip covers everyone." },
-  { q: "What if my child is sick today?", a: "Call before 10am and we hold same-week visits for children who are unwell. If we are full, we tell you where to go rather than leaving you waiting." },
+  { q: "What if my child is sick today?", a: "Call us when we open and we hold same-week visits for children who are unwell. If we are full, we tell you where to go rather than leaving you waiting." },
   { q: "Do you give routine vaccines in clinic?", a: "Yes. We follow the Ontario publicly funded schedule and update the yellow card at each visit. School-based vaccines from public health are recorded too." },
   { q: "Is there a charge for school and camp forms?", a: "Forms for medical care are covered. Third-party forms such as camp, daycare and sports carry a small uninsured fee. We tell you the amount before the visit and give a receipt." },
   { q: "Do you see teenagers without a parent?", a: "Yes. Teens can book and attend on their own. Part of every teen visit is private, and what is discussed stays confidential within the limits of the law." },
@@ -232,7 +232,7 @@ export const kidsDocs: KidsDoctor[] = [
     role: "Physician, Family Medicine",
     initial: "T",
     bg: "#FFF3C4",
-    p: "Accepting new families at Thornhill. Well-baby visits, school-age care and unhurried first appointments.",
+    p: "Accepting new families at Thornhill. Well-baby visits and school-age care.",
     tags: ["English", "Tiếng Việt", "Accepting new patients"],
   },
 ];
