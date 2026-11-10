@@ -46,6 +46,7 @@ export const routes = {
   aesPhotos: "/medical-aesthetics/before-and-after",
   aesGift: "/gift-cards",
   aesMenu: "/medical-aesthetics/treatments",
+  aesSkincare: "/medical-aesthetics/skincare",
   rehabPhysio: "/rehab-recovery/physiotherapy",
   rehabChiro: "/rehab-recovery/chiropractic",
   rehabMassage: "/rehab-recovery/massage-therapy",

@@ -105,17 +105,18 @@ export const programsCopy = {
   regLead: draft("Every plan includes a home routine. These are starting points; your nurse adjusts them to your skin at the consult. Prices are SkinCeuticals suggested retail, HST extra."),
   regTotal: draft("Total"),
   regPairs: draft("Often paired with"),
+  seeAll: draft("See all the skincare we carry"),
   regNote: draft("We sell these products and earn from their sale. Buying them is never a condition of treatment."),
 };
 
-export type Regimen = { k: string; t: string; items: [string, number][]; pairs: string };
+export type Regimen = { k: string; t: string; items: string[]; pairs: string };
 
-/** SkinCeuticals suggested retail prices, July 2, 2026 list. */
+/** Product ids from `skincare.ts`; names and prices come from there. */
 export const regimens: Regimen[] = [
-  { k: "starter", t: draft("Starter"), items: [["CE Ferulic", 230], ["Physical Fusion UV Defense SPF 50", 68]], pairs: draft("Any first plan") },
-  { k: "pigment", t: draft("Pigment and tone"), items: [["Gentle Cleanser", 65], ["Phloretin CF", 230], ["Discoloration Defense", 170], ["Physical Fusion UV Defense SPF 50", 68]], pairs: draft("Glass skin, PicoSure, peels") },
-  { k: "aging", t: draft("Lines and aging"), items: [["Simply Clean", 65], ["CE Ferulic", 230], ["Retinol 0.3", 110], ["Sheer Physical UV Defense SPF 50", 68]], pairs: draft("Neuromodulator, Aging well, Baby CO₂") },
-  { k: "acne", t: draft("Oily and acne-prone"), items: [["LHA Cleansing Gel", 68], ["Silymarin CF", 230], ["LHA Serum", 145], ["Clear Daily Soothing UV Defense SPF 50", 65]], pairs: draft("Acne scar program, Clarity II") },
-  { k: "redness", t: draft("Redness and sensitive"), items: [["Soothing Cleanser", 65], ["Phyto Corrective Gel", 115], ["Serum 10 AOX+", 135], ["Clear Daily Soothing UV Defense SPF 50", 65]], pairs: draft("Redness and rosacea program") },
-  { k: "recovery", t: draft("Recovery kit"), items: [["Gentle Cleanser", 65], ["Phyto Corrective Gel", 115], ["Epidermal Repair", 105], ["Hydrating B5 Gel", 125], ["Physical Fusion UV Defense SPF 50", 68]], pairs: draft("After CO₂, plasma, PicoSure or a peel") },
+  { k: "starter", t: draft("Starter"), items: ["ce-ferulic", "physical-fusion"], pairs: draft("Any first plan") },
+  { k: "pigment", t: draft("Pigment and tone"), items: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pairs: draft("Glass skin, PicoSure, peels") },
+  { k: "aging", t: draft("Lines and aging"), items: ["simply-clean", "ce-ferulic", "retinol-03", "sheer-physical"], pairs: draft("Neuromodulator, Aging well, Baby CO\u2082") },
+  { k: "acne", t: draft("Oily and acne-prone"), items: ["lha-cleansing-gel", "silymarin-cf", "lha-serum", "clear-daily-soothing"], pairs: draft("Acne scar program, Clarity II") },
+  { k: "redness", t: draft("Redness and sensitive"), items: ["soothing-cleanser", "phyto-corrective-gel", "serum-10-aox", "clear-daily-soothing"], pairs: draft("Redness and rosacea program") },
+  { k: "recovery", t: draft("Recovery kit"), items: ["gentle-cleanser", "phyto-corrective-gel", "epidermal-repair", "hydrating-b5-gel", "physical-fusion"], pairs: draft("After CO\u2082, plasma, PicoSure or a peel") },
 ];

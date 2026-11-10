@@ -747,3 +747,13 @@ New copy taken from the intake and treatment plan doc. All of it is `draft()` an
 - `/medical-aesthetics/skin-health-plans#regimens`: six SkinCeuticals regimens at suggested retail from the July 2, 2026 list, HST extra, with totals. Disclosure line: "We sell these products and earn from their sale. Buying them is never a condition of treatment." Clinic confirmed (2026-11-10) it sells at suggested retail; still confirm every listed product is stocked. Note that SkinCeuticals product names are the brand's own trademarks and are used only to name the product.
 - Search: "Treatment programs" and "SkinCeuticals regimens" rows added.
 - Vietnamese (2026-11-10): programs and regimens on `/vi/tham-my-y-khoa`, combined plans on `/vi/truyen-sat`, from `src/content/vi-programs.ts`. Same order, products and prices; treatment and product brand names left in English. Needs a fluent clinician's review like the other Vietnamese pages.
+
+## SkinCeuticals product list (2026-11-10)
+
+New page `/medical-aesthetics/skincare` ("Skincare we carry"), linked from the Medical Aesthetics menu, the regimens section (English and Vietnamese) and search. Data in `src/content/skincare.ts`; the regimens now read their names and prices from it.
+
+- 46 retail products from the July 2, 2026 price list, in the brand's five groups, at suggested retail (clinic confirmed), HST extra. Professional sizes and net prices are not shown.
+- Descriptions are ours, plain and without results claims, all draft. Three are left blank because we were not sure what the product is: Advanced RGN-6, Advanced Sili-gel and A.G.E. Ultra Serum. Those cards say "Ask our nurses about this product." Please send a line for each, or remove any the clinic does not stock.
+- Photos: outline placeholders for now. Drop a square WebP per product into `public/images/skincare/` named after its id (for example `ce-ferulic.webp`) and it shows on the next build. Use the official images from the SkinCeuticals retailer asset portal or the clinic's own shelf photos.
+- "How to buy": "Ask at any visit, or call us to check what is in stock. We do not sell online." Confirm with the clinic.
+- Payload migration `20261110_120000_route_keys_and_skincare` adds the new page and four earlier pages (vaccines, pregnancy care, treatment menu, gift cards) to the CMS link and SEO pickers. It only adds missing values, so it is safe on any database.

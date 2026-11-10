@@ -32,6 +32,7 @@ export const viProgramsCopy: typeof programsCopy = {
   ),
   regTotal: draft("Tổng cộng"),
   regPairs: draft("Thường đi kèm với"),
+  seeAll: draft("Xem tất cả sản phẩm (tiếng Anh)"),
   regNote: draft("Chúng tôi bán các sản phẩm này và có lợi nhuận từ việc bán. Bạn không bao giờ phải mua sản phẩm để được điều trị."),
 };
 

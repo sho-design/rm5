@@ -209,6 +209,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Skin treatments", page: "aesSkin" },
       { label: "Laser", page: "aesLaser" },
       { label: "Skin health plans", page: "aesPlans" },
+      { label: draft("Skincare we carry"), page: "aesSkincare" },
       { label: "Men’s aesthetics", page: "aesMen" },
     ],
     book: [

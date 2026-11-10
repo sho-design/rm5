@@ -1,6 +1,7 @@
 import { Display, Eyebrow, Section, SmartLink, TextLink } from "@/components/ui";
 import { aesPrograms, combinedPlans, programsCopy, regimens } from "@/content/programs";
-import { bookFor } from "@/lib/routes";
+import { skinProduct } from "@/content/skincare";
+import { bookFor, routes } from "@/lib/routes";
 
 /** The aesthetics programs: each a short, ordered list of treatments with a typical length, priced at the consult. */
 export function AesPrograms({
@@ -98,16 +99,17 @@ export function SkinRegimens({ list = regimens, c = programsCopy }: { list?: typ
       </div>
       <ul className="grid grid-cols-1 gap-card md:grid-cols-2 xl:grid-cols-3">
         {list.map((r) => {
-          const total = r.items.reduce((s, [, p]) => s + p, 0);
+          const items = r.items.map(skinProduct);
+          const total = items.reduce((s, p) => s + p.srp, 0);
           return (
             <li key={r.k} className="flex flex-col gap-4 rounded-card bg-lilac-tint p-6">
               <h3 className="font-display text-[21px] font-medium leading-[1.15]">{r.t}</h3>
               <ul className="flex flex-col gap-1.5 text-[14px]">
-                {r.items.map(([name, price]) => (
-                  <li key={name} className="flex items-baseline gap-2">
-                    <span className="pretty">{name}</span>
+                {items.map((p) => (
+                  <li key={p.id} className="flex items-baseline gap-2">
+                    <span className="pretty">{p.name}</span>
                     <span aria-hidden className="min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-ink-3" />
-                    <span className="shrink-0 tabular-nums">${price}</span>
+                    <span className="shrink-0 tabular-nums">${p.srp}</span>
                   </li>
                 ))}
               </ul>
@@ -124,7 +126,12 @@ export function SkinRegimens({ list = regimens, c = programsCopy }: { list?: typ
           );
         })}
       </ul>
-      <p className="pretty max-w-[720px] text-[13px] leading-[1.5] text-muted">{c.regNote}</p>
+      <div className="flex flex-col gap-2">
+        <SmartLink to={routes.aesSkincare} className="w-fit" hrefLang={c === programsCopy ? undefined : "en-CA"}>
+          <TextLink className="text-[15px]">{c.seeAll}</TextLink>
+        </SmartLink>
+        <p className="pretty max-w-[720px] text-[13px] leading-[1.5] text-muted">{c.regNote}</p>
+      </div>
     </Section>
   );
 }

@@ -122,9 +122,9 @@ export const searchExtras: SearchDoc[] = [
   },
   {
     kind: draft("Medical Aesthetics"),
-    label: draft("SkinCeuticals regimens"),
-    sub: draft("Home skincare routines with prices"),
-    page: "/medical-aesthetics/skin-health-plans#regimens",
+    label: draft("SkinCeuticals skincare"),
+    sub: draft("Every product we carry, with prices"),
+    page: "/medical-aesthetics/skincare",
     keys: "skinceuticals skin ceuticals ce ferulic phloretin vitamin c serum sunscreen spf retinol skincare skin care products regimen routine home care kem chống nắng",
   },
   // PRP for thinning hair (aesthetics): the menu lists it under PRP, which nobody searches for.
