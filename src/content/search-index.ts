@@ -28,7 +28,6 @@ const handWritten: SearchEntry[] = [
   { kind: "Family Medicine", label: "Bloodwork and ECG on site", sub: "Drawn in clinic, fasting before 10am, 12-lead ECG", page: "blood" },
   { kind: "Family Medicine", label: "Children and youth", sub: "Well-baby visits, vaccines, school forms, teen care", page: "kids" },
   { kind: "Prevention", label: "Your year of staying well", sub: "Screenings and checks by season", page: "year" },
-  { kind: "Prevention", label: "Know your numbers", sub: "Ferritin, A1c, cholesterol, blood pressure explained", page: "numbers" },
   { kind: "New patients", label: "Register as a patient", sub: "Two minutes, we confirm in 2 days", page: "register" },
   { kind: "Contact", label: "Contact us", sub: "905-709-3222, fax, email, hours", page: "contact" },
   { kind: "About", label: "Uninsured services and fees", sub: "Forms, notes and services OHIP does not cover", page: "fees" },

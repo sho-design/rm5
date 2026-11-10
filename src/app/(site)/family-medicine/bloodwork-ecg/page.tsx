@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { Faq, SubChooser, SubPageHero } from "@/components/ui";
 import { divisions } from "@/content/divisions";
-import { bloodFaq, bloodOptions, bloodPath, bloodTips, subpageHero } from "@/content/subpages";
+import { bloodFaq, bloodOptions, bloodPath, subpageHero } from "@/content/subpages";
 import { Path } from "@/components/pages/blood/Path";
-import { Tips } from "@/components/pages/blood/Tips";
+import { Prepare } from "@/components/pages/blood/Prepare";
+import { draft } from "@/content/review";
 import { TintBand } from "@/components/pages/blood/TintBand";
 
 const title = "Bloodwork and ECG, before you leave.";
@@ -32,9 +33,8 @@ export default function BloodworkPage() {
         lead={lead}
         cta="Book a blood draw"
         ctaTo={bookFor("family", "bloodwork")}
-        cta2="Bring an outside requisition"
-        // Was the contact page: this books the draw and carries the reason.
-        cta2To={`${bookFor("family", "bloodwork")}&reason=${encodeURIComponent("Outside requisition")}`}
+        cta2={draft("How to prepare")}
+        cta2To="#prepare"
         coverage="OHIP-insured tests are covered. Fasting tests are best booked before 10am."
         tint={tint}
         accent={accent}
@@ -51,8 +51,8 @@ export default function BloodworkPage() {
         items={bloodOptions}
         tint={tint}
         accent={accent}
-        link="What the numbers mean"
-        linkTo="numbers"
+        link={draft("How to prepare for tests")}
+        linkTo="#prepare"
         titleSize="md"
       />
 
@@ -63,13 +63,13 @@ export default function BloodworkPage() {
         steps={bloodPath}
       />
 
-      <Tips eyebrow="Good to know" title="Before you come in." note="Small things that make the draw easier and the results cleaner." tips={bloodTips} accent={accent} />
+      <Prepare accent={accent} />
 
       <Faq title="Questions about bloodwork." sub="Your doctor explains every result at the follow-up. Nothing is left to guess." items={bloodFaq} />
 
       <TintBand
         title="One trip. Doctor, requisition, draw."
-        sub="Most checkups end at the lab chair down the hall. Results reach your doctor in about a week, and you hear either way."
+        sub={draft("Most checkups end at the lab chair down the hall. Results reach your doctor in about a week, and we suggest a follow-up 2 to 3 weeks after your test.")}
         cta="Book a checkup"
         tint={tint}
         subClassName="text-sage-ink"

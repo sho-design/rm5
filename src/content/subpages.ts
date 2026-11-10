@@ -133,7 +133,7 @@ export const menOptions: SubChooserItem[] = [
       { k: "Time", v: "15 minutes plus draw" },
       { k: "Fasting", v: "Yes, book before 10am" },
       { k: "Coverage", v: "OHIP" },
-      { k: "Related", v: "Know your numbers page" },
+      { k: "Related", v: draft("Bloodwork on site") },
     ],
     cta: "Book bloodwork",
   },
@@ -207,11 +207,11 @@ export const bloodOptions: SubChooserItem[] = [
   {
     label: "Fasting bloodwork",
     sub: "Cholesterol, sugars",
-    tags: ["Fast 8 to 12 hours", "Before 10am", "On site"],
-    title: "Nothing to eat after midnight, water is fine.",
-    p: "Cholesterol, fasting glucose and some other tests need an empty stomach. Book a slot before 10am, drink water, take your usual medications unless your doctor said otherwise.",
+    tags: [draft("Fast 4 to 12 hours"), "Before 10am", "On site"],
+    title: draft("Fasting, timed to your test."),
+    p: draft("Cholesterol, fasting glucose and some other tests need an empty stomach. How long depends on the test, from 4 to 12 hours, and a few tests mean no water either. See how to prepare below, and book a slot before 10am."),
     facts: [
-      { k: "Fast", v: "8 to 12 hours, water allowed" },
+      { k: "Fast", v: draft("4 to 12 hours, depending on the test") },
       { k: "Time", v: "10 minutes" },
       { k: "Results", v: "About a week" },
       { k: "Coverage", v: "OHIP" },
@@ -253,24 +253,24 @@ export const bloodOptions: SubChooserItem[] = [
     title: "A 12-lead ECG, done in the next room.",
     p: "Ordered for palpitations, chest discomfort, blood pressure follow-up, medication monitoring or pre-operative clearance. Small stickers on the chest, arms and legs record the heart rhythm for a few seconds. Our physician reads it the same day and calls if anything needs attention.",
     facts: [
-      { k: "Prep", v: "None; avoid chest lotion, wear an easy top" },
+      { k: "Prep", v: draft("See how to prepare below") },
       { k: "Time", v: "About 10 minutes" },
       { k: "Results", v: "Same day, physician read" },
-      { k: "Coverage", v: "OHIP when medically ordered" },
+      { k: "Coverage", v: draft("No cost for our patients") },
     ],
     cta: "Book an ECG",
   },
   {
-    label: "Outside requisition",
-    sub: "From another doctor",
-    tags: ["Bring the paper", "Results to them"],
-    title: "Yes, we draw for other doctors too.",
+    label: draft("Specialist requisition"),
+    sub: draft("For our patients"),
+    tags: [draft("Our patients only"), draft("Results to both doctors")],
+    title: draft("From your specialist, drawn here."),
     // A tester booked online, then read "Call ahead" and did not know whether the booking stood.
-    p: draft("Bring the requisition from your specialist or another clinic. We draw it here and results go to the doctor who ordered them, who shares them with you. You can book online. If you are not sure we can process a test, call ahead."),
+    p: draft("If Dr. Nguyen or Dr. Truong is your family doctor, bring the requisition from your specialist and we draw it here. Your specialist gets the results, with a copy to your family doctor here. We can only draw for patients registered with our doctors."),
     facts: [
       { k: "Bring", v: "Requisition and health card" },
       { k: "Time", v: "10 minutes" },
-      { k: "Results", v: "Sent to the ordering doctor" },
+      { k: "Results", v: draft("To your specialist, copy to your doctor here") },
       { k: "Coverage", v: "As per the requisition" },
     ],
     cta: "Call to confirm",
@@ -292,28 +292,62 @@ export const bloodOptions: SubChooserItem[] = [
 ];
 
 export const bloodPath: PathStep[] = [
-  { n: "1", time: "At the visit", t: "Your doctor writes the requisition", d: "Or you bring one from another clinic. We check which tests need fasting." },
+  { n: "1", time: "At the visit", t: "Your doctor writes the requisition", d: draft("Or you bring one from your specialist. We check which tests need fasting.") },
   { n: "2", time: "Same day or booked", t: "Sit down with the technician", d: "Down the hall. Health card checked, arm cleaned, usually one tube or a few. If an ECG is ordered, it is done in the same room right after." },
   { n: "3", time: "About a week", t: "Results reach your doctor", d: "Urgent results are called the same day. Everything else is reviewed at the follow-up." },
-  { n: "4", time: "Follow-up", t: "Every number explained", d: "By phone, portal or in person. What it means and what, if anything, changes." },
-];
-
-export const bloodTips: TintCard[] = [
-  { t: "Drink water", d: "Well hydrated veins are easier to find. Water is allowed even when fasting.", meta: "Morning of", bg: "#E6F4EA" },
-  { t: "Take your medications", d: "Unless your doctor said to hold one for the test. Ask if unsure.", meta: "As usual", bg: "#EEF5FC" },
-  { t: "Wear loose sleeves", d: "A sleeve that rolls above the elbow saves fiddling.", meta: "Small thing, helps", bg: "#FFF3C4" },
-  { t: "Say if you faint", d: "We have you lie down and take it slowly. No judgment, it is common.", meta: "Tell the technician", bg: "#FDE8E4" },
+  { n: "4", time: draft("2 to 3 weeks"), t: "Every number explained", d: "By phone, portal or in person. What it means and what, if anything, changes." },
 ];
 
 export const bloodFaq: QA[] = [
-  { q: "Do I need an appointment?", a: "Booking is best so the technician is free. Patients seen the same day are usually drawn right after their visit." },
-  { q: "How long until results?", a: "Most within a week. Urgent values are phoned the same day. Your doctor reviews everything before it reaches you." },
-  { q: "Is it covered?", a: "Tests ordered for medical reasons are covered by OHIP. A few, such as vitamin D or PSA without symptoms, carry a small provincial fee we tell you about beforehand." },
-  { q: "Can I see my own results?", a: "Yes, through the patient portal once your doctor has reviewed them, or at the follow-up." },
-  { q: "Do you draw for other clinics?", a: "Yes, with the paper requisition. Results go to the doctor who ordered them." },
-  { q: "Is the ECG covered by OHIP?", a: "Yes, when a physician orders it for a medical reason. ECGs for insurance, employment or fitness certificates are uninsured; the fee is told to you before the test." },
-  { q: "How do I prepare for an ECG?", a: "Nothing special. Wear a top that is easy to remove and skip lotion on the chest that morning so the stickers hold. It takes about ten minutes and does not hurt." },
+  {
+    q: draft("Do I need an appointment?"),
+    a: draft("Walk-ins are always welcome. Booking ahead keeps your wait shorter and lets our technicians get ready for you, so your visit goes more smoothly."),
+  },
+  {
+    q: draft("When can I get my results?"),
+    a: draft("For a follow-up appointment, we suggest booking 2 to 3 weeks ahead. If anything urgent comes up, we contact you right away. If you would rather have your results by email, we can send them in about a week, depending on how long the lab takes for your tests."),
+  },
+  {
+    q: "Is it covered?",
+    a: draft("We offer both OHIP-covered bloodwork and private-pay testing. Not sure which is right for you? Contact us. Our technicians can walk you through our private-pay wellness packages and help you find the option that suits you."),
+  },
+  {
+    q: draft("Can I bring a requisition from my specialist?"),
+    a: draft("Yes, if Dr. Nguyen or Dr. Truong is your family doctor. We draw it here, your specialist gets the results and your family doctor here receives a copy. We can only draw for patients registered with our doctors."),
+  },
 ];
+
+/** How to prepare for tests: fasting by test, the day of, and the ECG. Lists from the lab (Nov 2026). */
+export const bloodPrep = {
+  eyebrow: draft("How to prepare"),
+  title: draft("How to prepare for your tests."),
+  lead: draft("Most tests need nothing special. Some need you to fast first, and how long depends on the test. Your requisition lists your tests; find them below."),
+  fastingTitle: draft("Fasting, by test"),
+  fasting: [
+    { k: "12h", t: draft("10 to 12 hours"), rule: draft("Nothing to eat or drink except water for 10 to 12 hours."), tests: [] as string[], bg: "#EEF5FC" },
+    { k: "8h", t: draft("8 hours"), rule: draft("Nothing to eat or drink except water for 8 hours."), tests: [] as string[], bg: "#E6F4EA" },
+    { k: "4h", t: draft("4 hours"), rule: draft("Nothing to eat for 4 hours. Water is fine."), tests: [] as string[], bg: "#FFF3C4" },
+    { k: "4h-dry", t: draft("4 hours, no water"), rule: draft("Nothing to eat or drink, including water, for 4 hours."), tests: [] as string[], bg: "#FDE8E4" },
+  ],
+  noList: draft("Your requisition or our lab team can tell you which applies."),
+  dayTitle: draft("On the day"),
+  day: [
+    draft("Bring your Ontario health card and your requisition."),
+    draft("Drink water, unless your test is on the no-water list."),
+    draft("Take your usual medications, unless your doctor said to hold one."),
+    draft("Wear a sleeve that rolls above the elbow."),
+    draft("Book fasting tests before 10am."),
+  ],
+  ecgTitle: draft("For an ECG"),
+  ecg: [
+    draft("No fasting needed."),
+    draft("Wear a top that is easy to remove."),
+    draft("Skip lotion or oil on your chest that morning so the stickers hold."),
+    draft("It takes about 10 minutes and does not hurt."),
+  ],
+  askTitle: draft("Not sure how to prepare?"),
+  ask: draft("Email our lab team and we will tell you what your tests need."),
+};
 
 /* ------------------------------------------------------------------- Chronic care */
 
@@ -494,7 +528,7 @@ export const menCopy = {
     eyebrow: "What brings you in?",
     title: "Pick the closest match.",
     intro: "We show what the visit covers, what gets tested and how long it takes.",
-    link: "Know your numbers",
+    link: draft("Bloodwork on site"),
   },
   decades: {
     eyebrow: "By decade",

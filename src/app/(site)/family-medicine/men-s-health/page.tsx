@@ -38,7 +38,7 @@ export default function MensHealthPage() {
         imgAlt={menCopy.hero.alt}
         pills={[...menCopy.hero.pills]}
       />
-      <SubChooser ctaTo={bookFor("family", "checkup")} id="visit" eyebrow={menCopy.chooser.eyebrow} title={menCopy.chooser.title} intro={menCopy.chooser.intro} items={menOptions} tint={tint} accent={accent} link={menCopy.chooser.link} linkTo="numbers" titleSize="md" />
+      <SubChooser ctaTo={bookFor("family", "checkup")} id="visit" eyebrow={menCopy.chooser.eyebrow} title={menCopy.chooser.title} intro={menCopy.chooser.intro} items={menOptions} tint={tint} accent={accent} link={menCopy.chooser.link} linkTo="blood" titleSize="md" />
       <MenDecades />
       <Faq title={menCopy.faq.title} sub={menCopy.faq.sub} items={menFaq} />
       <TintBand tint={tint} title={menCopy.band.title} body={menCopy.band.body} bodyClass="text-secondary" cta={menCopy.band.cta} ctaTo={bookFor("family", "checkup")} link={menCopy.band.link} linkTo="year" />

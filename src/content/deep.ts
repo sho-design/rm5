@@ -140,8 +140,8 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         tags: ["Preventive", "OHIP"],
         cta: "Book a checkup",
         ctaPage: bookFor("family", "checkup"),
-        link: "Know your numbers",
-        linkPage: "numbers",
+        link: "Getting your results",
+        linkPage: "labs",
       },
       {
         title: "Forms and notes",

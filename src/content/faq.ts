@@ -90,7 +90,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Results",
     q: "How do I get my results?",
-    a: "Your doctor reviews everything first. Normal results are shared at your follow-up or through the portal; anything urgent is phoned the same day.",
+    a: draft("Your doctor reviews everything first. We suggest booking your follow-up 2 to 3 weeks after your test. If anything urgent comes up, we contact you right away. If you would rather have your results by email, we can send them in about a week, depending on how long the lab takes."),
   },
   {
     category: "Results",

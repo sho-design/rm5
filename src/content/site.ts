@@ -11,6 +11,7 @@ export const site = {
   fax: "905-761-7306",
   email: "contact@restorationmedical.ca",
   referralsEmail: "referrals@restorationmedical.ca",
+  labEmail: "lab@restorationmedical.ca",
   placementsEmail: "placements@restorationmedical.ca",
   careersEmail: "careers@restorationmedical.ca",
   description:

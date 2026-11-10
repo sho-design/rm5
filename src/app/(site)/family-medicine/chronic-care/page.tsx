@@ -48,9 +48,8 @@ export default function ChronicCarePage() {
         items={chronicOptions}
         tint={div.tint}
         accent={div.accent}
-        link="Know your numbers"
-        // Opens on A1c, the number most people here follow (diabetes is the first condition).
-        linkTo="/family-medicine/know-your-numbers#a1c"
+        link="Getting your results"
+        linkTo="labs"
         titleSize="md"
       />
 

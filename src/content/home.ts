@@ -82,7 +82,7 @@ export const carePaths: CarePath[] = [
     page: bookFor("family", "concern"),
     steps: [
       { svc: "Family Medicine", time: "Week 1", t: "Visit and bloodwork", d: "Ferritin, thyroid, B12 and sugars drawn on site.", page: "family", link: "Family Medicine" },
-      { svc: "Family Medicine", time: "Day 3", t: "Results, explained", d: draft("A call or results visit. Tiredness has many causes, and most people need no treatment beyond a plan with their doctor."), page: "numbers", link: "Know your numbers" },
+      { svc: "Family Medicine", time: "Day 3", t: "Results, explained", d: draft("A call or results visit. Tiredness has many causes, and most people need no treatment beyond a plan with their doctor."), page: "labs", link: "Getting your results" },
       { svc: "Family Medicine", time: "If needed", t: draft("Treatment, if your results show it"), d: draft("For low iron, usually tablets first. An iron infusion only if tablets are not right for you."), page: "iron", link: "Iron therapy" },
       { svc: "Family Medicine", time: "Week 6", t: "Recheck", d: "Repeat bloodwork shows the response. Your plan adjusts.", page: "year", link: "Your year" },
     ],
@@ -119,7 +119,7 @@ export const carePaths: CarePath[] = [
     steps: [
       { svc: "Family Medicine", time: "This month", t: "Preventive checkup", d: "Blood pressure, cholesterol, sugars, and a screening plan.", page: "family", link: "Family Medicine" },
       { svc: "Family Medicine", time: "This month", t: "Screening kit and requisitions", d: "FIT test, mammogram or PSA conversation, bloodwork on site.", page: "year", link: "Your year" },
-      { svc: "Family Medicine", time: "Week 2", t: "Numbers, explained", d: "Results in plain language with your targets.", page: "numbers", link: "Know your numbers" },
+      { svc: "Family Medicine", time: "Week 2", t: "Numbers, explained", d: "Results in plain language with your targets.", page: "labs", link: "Getting your results" },
       { svc: "Rehab & Recovery", time: "Ongoing", t: "Stay strong", d: "A movement plan from our kinesiologist to protect joints and balance.", page: "rehab", link: "Rehab & Recovery" },
     ],
   },

@@ -16,7 +16,6 @@ export const routes = {
   chronic: "/family-medicine/chronic-care",
   blood: "/family-medicine/bloodwork-ecg",
   year: "/family-medicine/your-year",
-  numbers: "/family-medicine/know-your-numbers",
   iron: "/infusion-therapy/iron-therapy",
   rx: "/family-medicine/prescription-renewals",
   labs: "/family-medicine/lab-results",
@@ -138,8 +137,11 @@ export const external = {
 export const bookFor = (division: string, visit?: string) => `${routes.book}?service=${division}${visit ? `&visit=${visit}` : ""}`;
 
 /** Resolve a prototype page key (or an already-built path) to an href. */
+/** Page keys that were removed but may still be saved in CMS links. */
+const retiredKeys: Record<string, string> = { numbers: "/family-medicine/lab-results" };
+
 export function href(key: PageKey | string): string {
-  return key in routes ? routes[key as PageKey] : key;
+  return key in routes ? routes[key as PageKey] : (retiredKeys[key] ?? key);
 }
 
 /** Reasons that should not be readable in a web address, history or server logs (a 17-year-old on the family

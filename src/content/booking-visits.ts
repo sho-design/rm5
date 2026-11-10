@@ -151,7 +151,7 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
       { key: "checkup", label: menuLabel("family", "Annual physical"), bring: [familyBring], fastingMaybe: true },
       // Phone and video visits are for existing patients (FAQ "Do you offer phone or video visits?").
       { key: "results", label: draft("Results or follow-up"), bring: [familyBring], existing: true, modes: true },
-      { key: "bloodwork", sameDay: true, label: draft("Bloodwork or ECG"), bring: [draft("Your Ontario health card, and your requisition if another clinic wrote one.")], fasting: true },
+      { key: "bloodwork", sameDay: true, label: draft("Bloodwork or ECG"), bring: [draft("Your Ontario health card, and your requisition if your specialist wrote one.")], fasting: true },
       // One visit can cover several vaccines: "Vaccines, including flu" for more than one, "Flu shot only" for just the flu shot.
       { key: "flu", label: draft("Flu shot only"), bring: [approved(kidsCopy.imm.whereNote, "Bring the yellow immunization card and health card.")], hint: { text: draft("One booking per person. Booking for your family? Book each person at the same time or back to back, and we see you together.") } },
       // A newcomer with no yellow card read "Bring the yellow immunization card" as a requirement.
