@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { CtaBand, Display, Section, SubPageHero } from "@/components/ui";
 import { ViFacts, ViSteps } from "@/components/vi/ViBits";
+import { AesPrograms, SkinRegimens } from "@/components/pages/aesthetics/AesPrograms";
+import { viAesPrograms, viProgramsCopy, viRegimens } from "@/content/vi-programs";
 import { aesFamilies, type AesFamily } from "@/content/aesthetics-menu";
 import { divisions } from "@/content/divisions";
 import { images } from "@/content/images";
@@ -52,6 +54,8 @@ export default function ViAestheticsPage() {
         </ul>
       </Section>
       <ViSteps title={c.stepsTitle} steps={c.steps} />
+      <AesPrograms programs={viAesPrograms} c={viProgramsCopy} bookTo={book} />
+      <SkinRegimens list={viRegimens} c={viProgramsCopy} />
       <Section>
         <ViFacts title={c.factsTitle} rows={c.facts} />
       </Section>

@@ -1,9 +1,13 @@
 import { Display, Eyebrow, Section, SmartLink, TextLink } from "@/components/ui";
-import { aesPrograms, combinedPlans, programsCopy as c, regimens } from "@/content/programs";
+import { aesPrograms, combinedPlans, programsCopy, regimens } from "@/content/programs";
 import { bookFor } from "@/lib/routes";
 
 /** The aesthetics programs: each a short, ordered list of treatments with a typical length, priced at the consult. */
-export function AesPrograms() {
+export function AesPrograms({
+  programs = aesPrograms,
+  c = programsCopy,
+  bookTo = bookFor("aesthetics", "consult"),
+}: { programs?: typeof aesPrograms; c?: typeof programsCopy; bookTo?: string }) {
   return (
     <Section id="programs" className="flex scroll-mt-24 flex-col gap-6">
       <div className="flex max-w-[720px] flex-col gap-3">
@@ -12,7 +16,7 @@ export function AesPrograms() {
         <p className="pretty text-[16px] leading-[1.55] text-secondary">{c.aesLead}</p>
       </div>
       <ul className="grid grid-cols-1 gap-card sm:grid-cols-2 xl:grid-cols-4">
-        {aesPrograms.map((p) => (
+        {programs.map((p) => (
           <li key={p.k} id={`program-${p.k}`} className="flex scroll-mt-24 flex-col gap-4 rounded-card border border-border bg-card p-6">
             <div className="flex flex-col gap-1.5">
               <span aria-hidden className="h-1.5 w-10 rounded-full" style={{ background: p.color }} />
@@ -39,7 +43,7 @@ export function AesPrograms() {
               </span>
               <span className="text-muted">{c.priceNote}</span>
             </div>
-            <SmartLink to={bookFor("aesthetics", "consult")} className="w-fit">
+            <SmartLink to={bookTo} className="w-fit">
               <TextLink>{c.book}</TextLink>
             </SmartLink>
           </li>
@@ -50,7 +54,7 @@ export function AesPrograms() {
 }
 
 /** Plans that start in Family Medicine or rehab and carry on into drips or aesthetics. Used on infusion pricing. */
-export function CombinedPlans() {
+export function CombinedPlans({ plans = combinedPlans, c = programsCopy }: { plans?: typeof combinedPlans; c?: typeof programsCopy }) {
   return (
     <Section id="combined" className="flex scroll-mt-24 flex-col gap-6">
       <div className="flex max-w-[720px] flex-col gap-3">
@@ -59,8 +63,8 @@ export function CombinedPlans() {
         <p className="pretty text-[16px] leading-[1.55] text-secondary">{c.combinedLead}</p>
       </div>
       <ul className="grid grid-cols-1 gap-card md:grid-cols-2 xl:grid-cols-3">
-        {combinedPlans.map((p) => (
-          <li key={p.k} className="flex flex-col gap-3 rounded-card bg-raised p-6">
+        {plans.map((p) => (
+          <li key={p.k} className="flex flex-col gap-3 rounded-card border border-border bg-card p-6">
             <h3 className="font-display text-[21px] font-medium leading-[1.15]">{p.t}</h3>
             <dl className="flex flex-col gap-2.5 text-[14px] leading-[1.45]">
               {(
@@ -84,7 +88,7 @@ export function CombinedPlans() {
 }
 
 /** SkinCeuticals home regimens with suggested retail prices. Used on the skin health plans page. */
-export function SkinRegimens() {
+export function SkinRegimens({ list = regimens, c = programsCopy }: { list?: typeof regimens; c?: typeof programsCopy }) {
   return (
     <Section id="regimens" className="flex scroll-mt-24 flex-col gap-6">
       <div className="flex max-w-[720px] flex-col gap-3">
@@ -93,7 +97,7 @@ export function SkinRegimens() {
         <p className="pretty text-[16px] leading-[1.55] text-secondary">{c.regLead}</p>
       </div>
       <ul className="grid grid-cols-1 gap-card md:grid-cols-2 xl:grid-cols-3">
-        {regimens.map((r) => {
+        {list.map((r) => {
           const total = r.items.reduce((s, [, p]) => s + p, 0);
           return (
             <li key={r.k} className="flex flex-col gap-4 rounded-card bg-lilac-tint p-6">

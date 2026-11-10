@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { CtaBand, Display, Section, SubPageHero } from "@/components/ui";
 import { ViFacts, ViSteps } from "@/components/vi/ViBits";
+import { CombinedPlans } from "@/components/pages/aesthetics/AesPrograms";
+import { viCombinedPlans, viProgramsCopy } from "@/content/vi-programs";
 import { divisions } from "@/content/divisions";
 import { images } from "@/content/images";
 import { site } from "@/content/site";
@@ -56,6 +58,7 @@ export default function ViIronPage() {
           <ViFacts title={c.timesTitle} rows={c.times} tint="var(--rm-sun-tint)" />
         </div>
       </Section>
+      <CombinedPlans plans={viCombinedPlans} c={viProgramsCopy} />
       <CtaBand title={c.bandTitle} sub={c.bandSub} cta={c.cta} ctaTo={book} callLine={false}>
         <a href={site.phoneHref} className="text-[15px] font-semibold">
           {viChrome.orCall}
