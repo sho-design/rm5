@@ -328,19 +328,26 @@
   display: block;
 }
 
-/* Vaul drawer (mobile menu): the site's motion, 350ms on cubic-bezier(.2,.8,.2,1), instead of Vaul's 500ms.
-   Higher specificity than Vaul's injected styles. With reduced motion the drawer appears and leaves at once. */
-.rm-menu[data-vaul-drawer],
-[data-vaul-overlay][data-vaul-snap-points="false"] {
-  transition-duration: 350ms;
-  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-  animation-duration: 350ms;
-  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+/* Mobile menu drawer: slides in from the right in 350ms on the site curve. When closed it is invisible (out of
+   the tab order and hidden from screen readers) once the slide has finished. Instant with reduced motion. */
+.rm-drawer-overlay,
+.rm-drawer-panel {
+  transition:
+    opacity 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 0s linear 350ms;
 }
+.rm-drawer[data-open="false"] .rm-drawer-overlay { opacity: 0; visibility: hidden; pointer-events: none; }
+.rm-drawer[data-open="false"] .rm-drawer-panel { transform: translateX(100%); visibility: hidden; }
+.rm-drawer[data-open="true"] .rm-drawer-overlay,
+.rm-drawer[data-open="true"] .rm-drawer-panel { visibility: visible; transition-delay: 0s; }
 @media (prefers-reduced-motion: reduce) {
-  .rm-menu[data-vaul-drawer],
-  [data-vaul-overlay][data-vaul-snap-points="false"] {
-    transition-duration: 0ms;
-    animation-duration: 1ms;
-  }
+  .rm-drawer-overlay,
+  .rm-drawer-panel { transition: none; }
+}
+
+/* Rolling digits (Flow): each column slides to its digit in the site's motion; instant with reduced motion. */
+.rm-digit { transition: transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .rm-digit { transition: none; }
 }
