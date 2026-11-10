@@ -19,7 +19,7 @@ export const searchAliases: Record<string, string> = {
   women: "phu khoa kham phu khoa phu nu kham phu nu suc khoe phu nu bac si nu y ta nu xet nghiem pap sti std stis stds sti test sexual health pap smear pap test cervical screening hpv menopause perimenopause hot flashes contraception birth control iud period periods womens health day women's health day last sunday testing nurse nurses",
   men: "libido low libido sex drive vitality low t low testosterone hormones hormone mens hormone health prostate psa testosterone checkup physical std stds sti stis std test sti test sexual health erectile",
   chronic: "huyet ap huyet ap cao tieu duong diabetes diabetic a1c sugar blood sugar glucose blood pressure hypertension cholesterol asthma thyroid copd kidney heart senior seniors elderly elder older adult older adults aging memory dementia caregiver caregivers complex care parkinson parkinsons ms multiple sclerosis stroke falls fall",
-  blood: "xet nghiem xet nghiem mau thu mau bloodwork blood test fasting ecg ekg lab draw requisition",
+  blood: "xet nghiem xet nghiem mau thu mau bloodwork blood test fasting ecg ekg 12 lead 12-lead lab draw requisition",
   numbers: "a1c ferritin cholesterol ldl blood pressure numbers results tired fatigue",
   year: "screening prevention checkup annual vaccine vaccines shingles shingrix rsv pneumonia immunization",
   kids: "concussion head injury return to play sports injury earache ear ache ear infection fever child kid fever newborn new baby well baby well-baby rourke child children kid kids baby babies infant daughter son teen teens teenager vaccine vaccines immunization immunizations school forms anxiety mental health mood confidential",

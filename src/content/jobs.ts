@@ -89,7 +89,7 @@ export const jobs: Job[] = [
     type: "Part time",
     schedule: "Weekday mornings",
     postedDate: "2026-09-05",
-    summary: "On-site blood draws, 10-lead ECG and specimen handling for the lab pickup.",
+    summary: "On-site blood draws, 12-lead ECG and specimen handling for the lab pickup.",
     tint: "#EEF5FC",
     featured: false,
     requirements: ["MLT or MLA/T certification", "ECG experience an asset"],

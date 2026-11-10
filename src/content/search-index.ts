@@ -25,7 +25,7 @@ const handWritten: SearchEntry[] = [
   { kind: "Family Medicine", label: "Women’s health", sub: "Pap, contraception, pregnancy, menopause", page: "women" },
   { kind: "Family Medicine", label: "Men’s health", sub: "Yearly checkup, prostate, heart, mood", page: "men" },
   { kind: "Family Medicine", label: "Chronic care", sub: "Diabetes, blood pressure, asthma, thyroid, heart, kidney", page: "chronic" },
-  { kind: "Family Medicine", label: "Bloodwork and ECG on site", sub: "Drawn in clinic, fasting before 10am, 10-lead ECG", page: "blood" },
+  { kind: "Family Medicine", label: "Bloodwork and ECG on site", sub: "Drawn in clinic, fasting before 10am, 12-lead ECG", page: "blood" },
   { kind: "Family Medicine", label: "Children and youth", sub: "Well-baby visits, vaccines, school forms, teen care", page: "kids" },
   { kind: "Prevention", label: "Your year of staying well", sub: "Screenings and checks by season", page: "year" },
   { kind: "Prevention", label: "Know your numbers", sub: "Ferritin, A1c, cholesterol, blood pressure explained", page: "numbers" },

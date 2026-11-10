@@ -10,7 +10,7 @@ import { TintBand } from "@/components/pages/blood/TintBand";
 
 const title = "Bloodwork and ECG, before you leave.";
 const lead =
-  "Our lab technician draws blood and runs 10-lead ECGs in clinic, so a requisition does not mean a second trip. Results go straight to the doctor who ordered them.";
+  "Our lab technician draws blood and runs 12-lead ECGs in clinic, so a requisition does not mean a second trip. Results go straight to the doctor who ordered them.";
 
 const baseMetadata: Metadata = { title: "Bloodwork and ECG on site", description: `${title} ${lead}` };
 

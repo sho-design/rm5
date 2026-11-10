@@ -250,7 +250,7 @@ export const bloodOptions: SubChooserItem[] = [
     label: "ECG (heart tracing)",
     sub: "Palpitations, blood pressure, clearance",
     tags: ["No fasting", "10 minutes", "Physician read"],
-    title: "A 10-lead ECG, done in the next room.",
+    title: "A 12-lead ECG, done in the next room.",
     p: "Ordered for palpitations, chest discomfort, blood pressure follow-up, medication monitoring or pre-operative clearance. Small stickers on the chest, arms and legs record the heart rhythm for a few seconds. Our physician reads it the same day and calls if anything needs attention.",
     facts: [
       { k: "Prep", v: "None; avoid chest lotion, wear an easy top" },

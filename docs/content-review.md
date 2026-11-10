@@ -757,3 +757,7 @@ New page `/medical-aesthetics/skincare` ("Skincare we carry"), linked from the M
 - Photos: outline placeholders for now. Drop a square WebP per product into `public/images/skincare/` named after its id (for example `ce-ferulic.webp`) and it shows on the next build. Use the official images from the SkinCeuticals retailer asset portal or the clinic's own shelf photos.
 - "How to buy": "Ask at any visit, or call us to check what is in stock. We do not sell online." Confirm with the clinic.
 - Payload migration `20261110_120000_route_keys_and_skincare` adds the new page and four earlier pages (vaccines, pregnancy care, treatment menu, gift cards) to the CMS link and SEO pickers. It only adds missing values, so it is safe on any database.
+
+## ECG is 12-lead (2026-11-10)
+
+Clinic correction: the ECG is 12-lead, not 10-lead. Changed on the bloodwork and ECG page (lead and ECG card title), the About equipment line, the search index and the lab technician job summary. The prototype said 10-lead; this is a clinic-approved fact change. If the Jobs collection is already seeded in the CMS, edit the lab technician posting there too, since the site reads the CMS copy.
