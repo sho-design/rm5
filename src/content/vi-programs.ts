@@ -19,20 +19,21 @@ export const viProgramsCopy: typeof programsCopy = {
   book: draft("Hỏi về chương trình này"),
   reason: (t: string) => (/^Chương trình/i.test(t) ? t : draft(`Chương trình ${t}`)),
   eventLink: draft("Lên kế hoạch từ ngày sự kiện"),
+  routine: (t: string) => draft(`Chăm sóc tại nhà: ${t}`),
   combinedEyebrow: draft("Kế hoạch kết hợp"),
   combinedTitle: draft("Bắt đầu từ một câu hỏi y khoa."),
   combinedLead: draft(
     "Bác sĩ, xét nghiệm máu, truyền dịch và thẩm mỹ dùng chung một hồ sơ, nên kế hoạch có thể bắt đầu bằng việc tìm nguyên nhân. Phần được OHIP chi trả vẫn do OHIP chi trả và không bao giờ nằm trong giá trọn gói.",
   ),
   startLabel: draft("Bắt đầu với"),
-  thenLabel: draft("Sau đó"),
+  thenLabel: draft("Sau đó, tự trả, có báo giá bằng văn bản trước"),
   upkeepLabel: draft("Duy trì"),
   regEyebrow: draft("Quy trình SkinCeuticals"),
   regTitle: draft("Chăm sóc da tại nhà."),
   regLead: draft(
     "Mỗi kế hoạch đều có quy trình chăm sóc tại nhà. Đây là gợi ý ban đầu; y tá sẽ điều chỉnh theo làn da của bạn tại buổi tư vấn. Giá theo giá bán lẻ đề nghị của SkinCeuticals, chưa gồm HST.",
   ),
-  regTotal: draft("Tổng cộng"),
+  regTotal: draft("Tổng cộng, chưa gồm HST"),
   regAm: draft("Buổi sáng"),
   regPm: draft("Buổi tối"),
   regPmNone: draft("Sữa rửa mặt và kem dưỡng bạn đang dùng."),
@@ -95,7 +96,7 @@ const prog: Record<string, Omit<Program, "k" | "color">> = {
 
 export const viAesPrograms: Program[] = aesPrograms.map((p) => ({ ...p, ...prog[p.k] }));
 
-const comb: Record<string, Omit<(typeof combinedPlans)[number], "k">> = {
+const comb: Record<string, Pick<(typeof combinedPlans)[number], "t" | "start" | "then" | "upkeep">> = {
   hair: {
     t: draft("Phục hồi tóc toàn diện"),
     start: draft("Khám bác sĩ và xét nghiệm máu (OHIP)"),
@@ -128,7 +129,15 @@ const comb: Record<string, Omit<(typeof combinedPlans)[number], "k">> = {
   },
 };
 
-export const viCombinedPlans = combinedPlans.map((p) => ({ ...p, ...comb[p.k] }));
+const viToLabel: Record<string, string> = {
+  hair: draft("Đặt lịch khám bác sĩ"),
+  tired: draft("Đặt lịch khám bác sĩ"),
+  skin: draft("Đặt lịch tư vấn miễn phí"),
+  event: draft("Đặt lịch tư vấn miễn phí"),
+  active: draft("Đặt lịch đánh giá phục hồi"),
+};
+
+export const viCombinedPlans = combinedPlans.map((p) => ({ ...p, ...comb[p.k], toLabel: viToLabel[p.k], to: `${p.to}&lang=vi` }));
 
 const reg: Record<string, Pick<Regimen, "t" | "pairs" | "note">> = {
   starter: { t: draft("Bắt đầu"), pairs: draft("Mọi kế hoạch đầu tiên") },

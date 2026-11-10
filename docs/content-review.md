@@ -793,3 +793,7 @@ All new copy is `draft()`.
 - Regimens (English and Vietnamese): morning and night order for each, plus a retinol note on Lines and aging ("Start retinol 2 or 3 nights a week and build up as your skin allows."). Nurse to confirm the order.
 - Search: every SkinCeuticals product and aesthetics program is searchable and opens its card. "/" or Ctrl+K (Cmd+K) opens search.
 - Phone menu opens with the current section expanded.
+
+## Round 28 fixes (2026-11-10)
+
+New or changed draft copy: event planner "As soon as you can, by …"; combined plans "Then, uninsured and priced in writing first" and first-step links ("Book a doctor visit", "Book a complimentary consult", "Book a rehab assessment"); "Home routine: …" on programs; specialist card "Book a draw, our patients only" and "Not registered? Register as a new patient first, or ask your specialist where else to go."; walk-in FAQ now "Walk-ins with a requisition are always welcome. No requisition yet? Book a doctor visit first."; ate-by-mistake FAQ starts "Call us at 905-709-3222 before you come"; fasting wording no longer mentions a "no-water list"; health note "How to read your lab requisition" fasting and results lines updated (update the CMS copy too if seeded); Vietnamese booking banner (911 and help line, needs a fluent reviewer); "Know your numbers has moved here…" note on Lab results; skincare "plus HST", "Total, HST extra", "Photo coming soon"; search rows for ate before a test, how to prepare, urine sample, walk-in bloodwork.

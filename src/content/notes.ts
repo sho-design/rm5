@@ -164,7 +164,7 @@ export const healthNotes: HealthNote[] = [
       { type: "h", text: "Fasting" },
       {
         type: "p",
-        text: "If fasting is required it is marked on the form. Fasting means nothing to eat or drink except water for 8 to 12 hours. Take regular medication unless told otherwise.",
+        text: "If fasting is required it is marked on the form. Fasting means nothing to eat or drink except water for 4 to 12 hours, depending on the test, and a few tests mean no water either. Take regular medication unless told otherwise.",
       },
       { type: "h", text: "Where to go" },
       {
@@ -174,7 +174,7 @@ export const healthNotes: HealthNote[] = [
       { type: "h", text: "Results" },
       {
         type: "p",
-        text: "Results return to your physician within a few days. We contact you if anything needs follow-up. You can also book a results visit if you want to go through them together.",
+        text: "Most results reach your physician in about a week. We contact you if anything needs follow-up. You can also book a results visit if you want to go through them together.",
       },
     ],
   },

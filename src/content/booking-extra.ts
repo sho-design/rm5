@@ -28,6 +28,11 @@ export const bookingExtra = {
   /** After booking a morning fasting draw: the stop times for this slot (10 and 12 hours before). */
   fastingBooked: (by10: string, by12: string) =>
     draft(`Fasting for this draw? Stop eating by ${by10} the night before, or by ${by12} if your requisition says 12 hours. Water is fine unless it says no water. Take your usual medications unless your doctor said otherwise.`),
+  /** Shown at the top of the form for people who came from a Vietnamese page (round 28, Anh). */
+  vi: {
+    emergency: draft("Đau ngực, khó thở, yếu hoặc tê một bên người, nói khó, hoặc chảy máu nhiều: gọi 911 ngay. Không đặt lịch."),
+    help: draft("Mẫu đặt lịch này bằng tiếng Anh. Cần giúp bằng tiếng Việt? Gọi 905-709-3222, bác sĩ và nhiều nhân viên nói tiếng Việt."),
+  },
   fastingIf: draft("If your doctor asked for fasting bloodwork with this visit:"),
   /** Review line for someone else's booking: "Thu Tran. You are their daughter." */
   youAreTheir: (relationship: string) => draft(`Your relationship: ${relationship.toLowerCase()}.`),

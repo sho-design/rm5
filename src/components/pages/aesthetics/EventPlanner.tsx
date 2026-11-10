@@ -30,7 +30,7 @@ export function EventPlanner() {
 
   const rows = useMemo(() => {
     if (!event || !today) return null;
-    return c.steps.map((s) => {
+    const out = c.steps.map((s) => {
       const from = new Date(event.getTime() - s.from * DAY);
       // A window ending on a Friday ends on the Thursday instead; the event day itself never moves.
       const end = new Date(event.getTime() - s.to * DAY);
@@ -38,7 +38,17 @@ export function EventPlanner() {
       const first = new Date(Math.max(from.getTime(), today.getTime() + DAY));
       if (to.getTime() <= today.getTime()) return { ...s, when: c.tooLate, late: true };
       const when = s.from === s.to ? fmt(s.k === "event" ? first : open(first)) : first.getTime() >= to.getTime() ? fmt(to) : c.between(fmt(first), fmt(to));
-      return { ...s, when, late: false };
+      return { ...s, when, late: false, start: first };
+    });
+    // The consult comes before every treatment: "As soon as you can, by" the day before the first dated step.
+    const firstStep = out
+      .filter((r) => !r.late && "start" in r && !["consult", "nolaser", "event"].includes(r.k))
+      .map((r) => (r as { start: Date }).start.getTime())
+      .sort((a, b) => a - b)[0];
+    return out.map((r) => {
+      if (r.k !== "consult") return r;
+      const by = firstStep ? new Date(Math.max(firstStep - DAY, today.getTime() + DAY)) : null;
+      return { ...r, when: by ? c.consultBy(fmt(open(by))) : c.consultSoon, late: false };
     });
   }, [event, today]);
 

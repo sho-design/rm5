@@ -23,7 +23,9 @@ export function SkinFilter({ counts, children }: { counts: Record<string, number
           {f.k === "any" ? c.showingAll(counts.any) : c.showing(counts[f.k], f.t)}. {c.filterNote}
         </span>
       </div>
-      <div id="skin-list">{children}</div>
+      <div id="skin-list" role="tabpanel" aria-label={f.t}>
+        {children}
+      </div>
     </div>
   );
 }

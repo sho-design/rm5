@@ -360,3 +360,12 @@
 .rm-skin[data-skin="mature"] [data-skin-types]:not([data-skin-types~="mature"]):not([data-skin-types~="all"]) {
   display: none;
 }
+
+/* A card opened from search or a link (#ce-ferulic, #regimen-aging) is outlined so it is easy to find (round 28). */
+[data-skin-types]:target,
+[id^="regimen-"]:target,
+[id^="program-"]:target {
+  outline: 3px solid var(--rm-sky);
+  outline-offset: 3px;
+}
+:root[data-theme="contrast"] .rm-skin svg { opacity: 1; }

@@ -20,11 +20,16 @@ export function AesPrograms({
   c = programsCopy,
   bookTo = bookFor("aesthetics", "consult"),
   eventPlan = false,
+  routines = regimens,
+  routinesAt = routes.aesPlans,
 }: {
   programs?: typeof aesPrograms;
   c?: typeof programsCopy;
   bookTo?: string;
   eventPlan?: boolean;
+  /** Regimens for the "Home routine" link, and where they live (another page in English, this page in Vietnamese). */
+  routines?: typeof regimens;
+  routinesAt?: string;
 }) {
   return (
     <Section id="programs" className="flex scroll-mt-24 flex-col gap-6">
@@ -86,6 +91,11 @@ export function AesPrograms({
               >
                 <TextLink>{c.book}</TextLink>
               </SmartLink>
+              {p.regimen ? (
+                <a href={`${routinesAt}#regimen-${p.regimen}`} className="w-fit">
+                  <TextLink>{c.routine(routines.find((r) => r.k === p.regimen)?.t ?? "")}</TextLink>
+                </a>
+              ) : null}
               {eventPlan && p.k === "event" ? (
                 <a href="#event-plan" className="w-fit">
                   <TextLink>{c.eventLink}</TextLink>
@@ -134,13 +144,16 @@ export function CombinedPlans({
                 ] as const
               ).map(([k, v]) => (
                 <div key={k} className="flex flex-col gap-0.5">
-                  <dt className="text-[12px] font-semibold uppercase tracking-[.1em] text-muted">
+                  <dt className="text-[13px] font-semibold text-muted">
                     {k}
                   </dt>
                   <dd className="pretty">{v}</dd>
                 </div>
               ))}
             </dl>
+            <SmartLink to={`${p.to}&reason=${encodeURIComponent(p.t)}`} className="mt-auto w-fit pt-1">
+              <TextLink>{p.toLabel}</TextLink>
+            </SmartLink>
           </li>
         ))}
       </ul>
@@ -172,6 +185,7 @@ export function SkinRegimens({
           return (
             <li
               key={r.k}
+              id={`regimen-${r.k}`}
               className="flex flex-col gap-4 rounded-card bg-lilac-tint p-6"
             >
               <h3 className="font-display text-[21px] font-medium leading-[1.15]">
@@ -202,7 +216,7 @@ export function SkinRegimens({
                   ] as const
                 ).map(([label, ids]) => (
                   <div key={label} className="flex flex-col gap-1">
-                    <span className="text-[12px] font-semibold uppercase tracking-[.1em] text-muted">
+                    <span className="text-[13px] font-semibold text-muted">
                       {label}
                     </span>
                     {ids.length ? (

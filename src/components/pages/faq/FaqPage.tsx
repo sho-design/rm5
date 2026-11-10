@@ -100,6 +100,8 @@ export function FaqPage({ items, categories }: Props) {
                   type="button"
                   role="tab"
                   aria-selected={on}
+                  aria-controls="faq-list"
+                  aria-label={`${c}, ${counts[i]} ${counts[i] === 1 ? "question" : "questions"}`}
                   tabIndex={on ? 0 : -1}
                   onClick={() => setCat(i)}
                   className={cn("flex items-center justify-between gap-3 rounded-[14px] px-4 py-3 text-left text-[14px] font-semibold transition-colors", on ? "bg-ink text-white" : "text-ink hover:bg-card")}
@@ -121,7 +123,7 @@ export function FaqPage({ items, categories }: Props) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-8 lg:gap-10">
+        <div id="faq-list" role="tabpanel" aria-label={categories[cat]} className="flex flex-col gap-8 lg:gap-10">
           {groups.map((g) => (
             <section key={g.label} className="flex flex-col gap-1.5" aria-labelledby={`faq-${g.label}`}>
               <h2 id={`faq-${g.label}`} className="eyebrow pb-2.5 text-link">

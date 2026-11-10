@@ -203,7 +203,11 @@ export function MobileMenu({
                   <button
                     type="button"
                     aria-expanded={on}
-                    onClick={() => setOpen(on ? null : k)}
+                    onClick={(e) => {
+                      const row = e.currentTarget;
+                      setOpen(on ? null : k);
+                      requestAnimationFrame(() => row.scrollIntoView({ block: "nearest" }));
+                    }}
                     className="grid grid-cols-[1fr_44px] items-center text-left"
                   >
                     <span className="display py-4 text-[26px] leading-none">

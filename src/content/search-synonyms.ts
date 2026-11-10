@@ -15,11 +15,11 @@ export const searchAliases: Record<string, string> = {
   vaccines: "vacuna vacunas tiem cum tiem phong vac xin chich ngua vaccine vaccines vaccination immunization immunizations shot shots flu shot shingles shingrix rsv pneumonia tdap whooping cough",
   pregnancy: "morning sickness nausea in pregnancy vomiting being sick throwing up hyperemesis pregnant pregnancy prenatal antenatal obstetrics obstetrician midwife midwifery baby expecting first trimester postpartum breastfeeding nursing mang thai",
   rx: "thuoc toa thuoc ke toa refill refills prescription prescriptions renew renewal medication medications meds pharmacy run out ran out",
-  labs: "xet nghiem xet nghiem mau results result bloodwork lab tests test results numbers a1c cholesterol ldl",
+  labs: "xet nghiem xet nghiem mau results result bloodwork lab tests test results numbers a1c cholesterol ldl know your numbers my numbers reference range reference ranges normal range what do my results mean",
   women: "phu khoa kham phu khoa phu nu kham phu nu suc khoe phu nu bac si nu y ta nu xet nghiem pap sti std stis stds sti test sexual health pap smear pap test cervical screening hpv menopause perimenopause hot flashes contraception birth control iud period periods womens health day women's health day last sunday testing nurse nurses",
   men: "libido low libido sex drive vitality low t low testosterone hormones hormone mens hormone health prostate psa testosterone checkup physical std stds sti stis std test sti test sexual health erectile",
   chronic: "huyet ap huyet ap cao tieu duong diabetes diabetic a1c sugar blood sugar glucose blood pressure hypertension cholesterol asthma thyroid copd kidney heart senior seniors elderly elder older adult older adults aging memory dementia caregiver caregivers complex care parkinson parkinsons ms multiple sclerosis stroke falls fall",
-  blood: "xet nghiem xet nghiem mau thu mau bloodwork blood test fasting ecg ekg 12 lead 12-lead lab draw requisition prepare preparation how to prepare fasting fast no water 8 hours 12 hours 4 hours",
+  blood: "xet nghiem xet nghiem mau thu mau bloodwork blood test cholesterol lipid lipids glucose sugar fasting ecg ekg 12 lead 12-lead lab draw requisition prepare preparation how to prepare fasting fast no water 8 hours 12 hours 4 hours",
   year: "screening prevention checkup annual vaccine vaccines shingles shingrix rsv pneumonia immunization",
   kids: "concussion head injury return to play sports injury earache ear ache ear infection fever child kid fever newborn new baby well baby well-baby rourke child children kid kids baby babies infant daughter son teen teens teenager vaccine vaccines immunization immunizations school forms anxiety mental health mood confidential",
   iron: "iron ferritin anemia anaemia anemic low iron tired fatigue exhausted monoferric iron infusion venofer iron sucrose postpartum breastfeeding thieu mau sat",
@@ -86,6 +86,11 @@ export function aliasesFor(page: string): string | undefined {
 
 /** Entries for things people search that have no page of their own. New wording, see docs/content-review.md. */
 export const searchExtras: SearchDoc[] = [
+  // Bloodwork answers people search in their own words (round 28): straight to the prepare section or the page.
+  { kind: draft("Bloodwork"), label: draft("Ate before a fasting test"), sub: draft("Call us before you come; a fasting test may need another day"), page: "/family-medicine/bloodwork-ecg#prepare", keys: "ate by mistake ate before blood test ate breakfast broke my fast had coffee fasting mistake" },
+  { kind: draft("Bloodwork"), label: draft("How to prepare for a blood test"), sub: draft("When to stop eating, water, medications, ECG and urine samples"), page: "/family-medicine/bloodwork-ecg#prepare", keys: "fasting how long fast no water stop eating prepare preparation before blood test medications" },
+  { kind: draft("Bloodwork"), label: draft("Urine sample"), sub: draft("How to give a urine sample, and taking a cup home"), page: "/family-medicine/bloodwork-ecg#prepare", keys: "urine test urine sample pee uti urinary tract infection bladder infection burning when peeing" },
+  { kind: draft("Bloodwork"), label: draft("Walk-in bloodwork"), sub: draft("Walk-ins with a requisition are welcome; call first so we can put you on the schedule"), page: "/family-medicine/bloodwork-ecg", keys: "walk in walk-in walkin no appointment come in today same day without appointment" },
   // Old drip names from receipts (renamed by contents, Nov 2026): a tester with a "Beauty Elixir" receipt landed on Aesthetics.
   { kind: draft("Infusion Therapy"), label: draft("Myers’ cocktail"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/myers", keys: "healing myers healing" },
   { kind: draft("Infusion Therapy"), label: draft("Antioxidant drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/antioxidant", keys: "radiance" },

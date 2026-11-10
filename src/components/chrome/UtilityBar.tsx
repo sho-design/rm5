@@ -42,10 +42,12 @@ export function UtilityBar() {
             <span aria-hidden className="rm-911-short">{emergencyCopy.call911}</span>
           </span>
         ) : null}
-        <TextControls inverse compact className="mr-3 hidden text-[13px] xl:flex" />
-        <SocialIcons className="hidden sm:flex" />
-        <span aria-hidden className={cn("mx-2.5 hidden h-4 w-px bg-white/25", status.ready && !status.open ? "md:block" : "sm:block")} />
-        <Link href={routes.referrals} className={cn("hidden whitespace-nowrap font-semibold text-sun hover:text-sun-soft", status.ready && !status.open ? "md:inline" : "min-[400px]:inline")}>
+        <TextControls inverse compact className="mr-3 hidden text-[13px] md:flex" />
+        <SocialIcons className="hidden xl:flex" />
+        {/* While closed on a tablet, the status, 911 and text size come first; the referral link (also in the menu and
+            footer) waits for a wider screen (round 28). */}
+        <span aria-hidden className={cn("mx-2.5 hidden h-4 w-px bg-white/25", status.ready && !status.open ? "lg:block" : "sm:block")} />
+        <Link href={routes.referrals} className={cn("hidden whitespace-nowrap font-semibold text-sun hover:text-sun-soft", status.ready && !status.open ? "lg:inline" : "min-[400px]:inline")}>
           For referring doctors ›
         </Link>
         {viEnabled ? (

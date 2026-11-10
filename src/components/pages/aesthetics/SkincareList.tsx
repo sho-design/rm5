@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Display,
   Eyebrow,
@@ -95,7 +96,10 @@ function Product({ p }: { p: SkinProduct }) {
             className="object-contain p-2 sm:p-4"
           />
         ) : (
-          <Silhouette shape={p.shape} />
+          <>
+            <Silhouette shape={p.shape} />
+            <span className="absolute inset-x-0 bottom-1.5 text-center text-[10px] font-semibold text-lilac-deep sm:bottom-2.5 sm:text-[12px]">{c.photoSoon}</span>
+          </>
         )}
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-1.5 p-4 sm:gap-2 sm:p-5">
@@ -107,7 +111,9 @@ function Product({ p }: { p: SkinProduct }) {
             ${p.srp}
           </span>
         </div>
-        <span className="text-[13px] font-semibold text-muted">{p.size}</span>
+        <span className="text-[13px] font-semibold text-muted">
+          {p.size}, {c.plusHst}
+        </span>
         <p className="pretty text-[14px] leading-[1.5] text-secondary">
           {p.d ?? c.noDesc}
         </p>
@@ -117,7 +123,9 @@ function Product({ p }: { p: SkinProduct }) {
             {inRegimens.map((r, i) => (
               <span key={r.k}>
                 {i ? ", " : ""}
-                {r.t}
+                <Link href={`${routes.aesPlans}#regimen-${r.k}`} className="font-semibold text-link hover:underline">
+                  {r.t}
+                </Link>
               </span>
             ))}
           </span>

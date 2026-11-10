@@ -266,14 +266,14 @@ export const bloodOptions: SubChooserItem[] = [
     tags: [draft("Our patients only"), draft("Results to both doctors")],
     title: draft("From your specialist, drawn here."),
     // A tester booked online, then read "Call ahead" and did not know whether the booking stood.
-    p: draft("If Dr. Nguyen or Dr. Truong is your family doctor, bring the requisition from your specialist and we draw it here. Your specialist gets the results, with a copy to your family doctor here. We can only draw for patients registered with our doctors."),
+    p: draft("If Dr. Nguyen or Dr. Truong is your family doctor, bring the requisition from your specialist and we draw it here. Your specialist gets the results, with a copy to your family doctor here. We can only draw for patients registered with our doctors. Not registered? Register as a new patient first, or ask your specialist where else to go."),
     facts: [
       { k: "Bring", v: "Requisition and health card" },
       { k: "Time", v: "10 minutes" },
       { k: "Results", v: draft("To your specialist, copy to your doctor here") },
       { k: "Coverage", v: "As per the requisition" },
     ],
-    cta: "Call to confirm",
+    cta: draft("Book a draw, our patients only"),
   },
   {
     label: "Children",
@@ -301,11 +301,11 @@ export const bloodPath: PathStep[] = [
 export const bloodFaq: QA[] = [
   {
     q: draft("Do I need an appointment?"),
-    a: draft("Walk-ins are always welcome. Please call us first at 905-709-3222 so we know you are coming and can put you on the schedule. Booking ahead keeps your wait shorter and lets our technicians get ready for you."),
+    a: draft("Walk-ins with a requisition are always welcome. No requisition yet? Book a doctor visit first. Please call us first at 905-709-3222 so we know you are coming and can put you on the schedule. Booking ahead keeps your wait shorter and lets our technicians get ready for you."),
   },
   {
     q: draft("When can I get my results?"),
-    a: draft("For a follow-up appointment, we suggest booking 2 to 3 weeks ahead. If anything urgent comes up, we contact you right away. If you would rather have your results by email, we can send them in about a week, depending on how long the lab takes for your tests."),
+    a: draft("We suggest a follow-up appointment 2 to 3 weeks after your test. If anything urgent comes up, we contact you right away. If you would rather have your results by email, we can send them in about a week, depending on how long the lab takes for your tests."),
   },
   {
     q: "Is it covered?",
@@ -313,11 +313,11 @@ export const bloodFaq: QA[] = [
   },
   {
     q: draft("Can I have coffee or gum while fasting?"),
-    a: draft("No. While fasting, have water only, and not even water if your test is on the no-water list. Coffee, tea, milk, juice and gum all count."),
+    a: draft("No. While fasting, have water only, and not even water if you are told your test needs no water. Coffee, tea, milk, juice and gum all count."),
   },
   {
     q: draft("What if I ate by mistake?"),
-    a: draft("Tell the technician. Some tests can still be done, and a fasting test may need to be moved to another day."),
+    a: draft("Call us at 905-709-3222 before you come, or tell the technician when you arrive. Some tests can still be done, and a fasting test may need to be moved to another day."),
   },
   {
     q: draft("Can I bring a requisition from my specialist?"),
@@ -329,8 +329,8 @@ export const bloodFaq: QA[] = [
 export const bloodPrep = {
   eyebrow: draft("How to prepare"),
   title: draft("How to prepare for your tests."),
-  lead: draft("Most tests need nothing special. Some need you to fast first, and how long depends on the test. Your requisition lists your tests; find them below."),
-  fastingTitle: draft("Fasting, by test"),
+  lead: draft("Most tests need nothing special. Some need you to fast first, and how long depends on the test. Your requisition or our lab team tells you which rule applies."),
+  fastingTitle: draft("How long to fast"),
   fasting: [
     { k: "12h", t: draft("10 to 12 hours"), window: [12, 10], dry: false, rule: draft("Nothing to eat or drink except water for 10 to 12 hours."), tests: [] as string[], bg: "#EEF5FC" },
     { k: "8h", t: draft("8 hours"), window: [8, 8], dry: false, rule: draft("Nothing to eat or drink except water for 8 hours."), tests: [] as string[], bg: "#E6F4EA" },
@@ -345,10 +345,10 @@ export const bloodPrep = {
   stopBy: (time: string, when: string, dry: boolean) => (dry ? draft(`Stop eating and drinking by ${time} ${when}.`) : draft(`Stop eating by ${time} ${when}.`)),
   stopBetween: (from: string, to: string, when: string) => draft(`Have your last food between ${from} and ${to} ${when}.`),
   dayTitle: draft("On the day"),
-  fastingMeans: draft("Fasting means no food, gum, coffee, tea, milk, juice or alcohol. Water only, unless your test is on the no-water list. Avoid smoking if you can."),
+  fastingMeans: draft("Fasting means no food, gum, coffee, tea, milk, juice or alcohol. Water only, unless you are told your test needs no water. Avoid smoking if you can."),
   day: [
     draft("Bring your Ontario health card and your requisition."),
-    draft("Drink enough water the day before and that morning, unless your test is on the no-water list."),
+    draft("Drink enough water the day before and that morning, unless you are told your test needs no water."),
     draft("Skip heavy exercise before your test. It can change some results."),
     draft("Tell the technician which medications you took that morning."),
     draft("Take your usual medications, unless your doctor said to hold one."),

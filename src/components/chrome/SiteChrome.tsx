@@ -1,3 +1,4 @@
+import { MovedNotice } from "./MovedNotice";
 import type { ReactNode } from "react";
 import { UtilityBar } from "./UtilityBar";
 import { Header } from "./Header";
@@ -37,6 +38,7 @@ export async function SiteChrome({ children }: { children: ReactNode }) {
       <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col">
         {/* tabIndex -1 so the skip link and page changes can move focus here. */}
         <main id="main" tabIndex={-1} className="flex flex-1 flex-col outline-none">
+          <MovedNotice />
           {children}
         </main>
         <TeachingPartners />

@@ -28,7 +28,7 @@ const loadFullIndex = () =>
     .catch(() => null));
 
 const copy = {
-  placeholder: "Search services, team, locations, FAQs",
+  placeholder: draft("Search services, products, team, FAQs"),
   placeholderShort: draft("Search the site"),
   label: "Search the site",
   count: (n: number) => (n === 1 ? "1 result" : `${n} results`),
@@ -41,6 +41,7 @@ const copy = {
   ),
   popular: "Popular",
   close: draft("Close"),
+  noneShort: draft("Nothing matched"),
   didYouMean: (fixed: string) => draft(`Showing results for “${fixed}”`),
   closeLabel: draft("Close search"),
 };
@@ -58,9 +59,12 @@ const isExternal = (url: string) => /^https?:/.test(url);
 export function SearchOverlay({
   onClose,
   mobile,
+  takeTyped,
 }: {
   onClose: () => void;
   mobile?: boolean;
+  /** Hands over the letters typed while search was loading (Header holds them), once, when the box appears. */
+  takeTyped?: () => string;
 }) {
   const [q, setQ] = useState("");
   // The long hint is cut off on a phone (and at larger text); use the short one there.
@@ -71,6 +75,12 @@ export function SearchOverlay({
   const [docs, setDocs] = useState<SearchDoc[]>(baseSearchDocs);
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    // Letters typed while the box was loading go into it (round 28, Jordan lost "chiro").
+    const early = takeTyped?.() ?? "";
+    if (early) setQ((v) => v + early);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     input.current?.focus();
@@ -118,11 +128,12 @@ export function SearchOverlay({
   const [announced, setAnnounced] = useState("");
   useEffect(() => {
     const t = window.setTimeout(
-      () => setAnnounced(query ? copy.count(results.length) : ""),
+      // Screen readers hear the correction and an empty result too, not only the count (round 28, Jordan).
+      () => setAnnounced(!query ? "" : !results.length ? copy.noneShort : `${fixed ? `${copy.didYouMean(fixed)}. ` : ""}${copy.count(results.length)}`),
       700,
     );
     return () => window.clearTimeout(t);
-  }, [query, results.length]);
+  }, [query, results.length, fixed]);
   const emergency = query ? isEmergencyQuery(query) : false;
   const emergencyBox = useRef<HTMLDivElement>(null);
 

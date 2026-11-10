@@ -54,7 +54,7 @@ export default function ViAestheticsPage() {
         </ul>
       </Section>
       <ViSteps title={c.stepsTitle} steps={c.steps} />
-      <AesPrograms programs={viAesPrograms} c={viProgramsCopy} bookTo={book} />
+      <AesPrograms programs={viAesPrograms} c={viProgramsCopy} bookTo={book} routines={viRegimens} routinesAt="" />
       <SkinRegimens list={viRegimens} c={viProgramsCopy} />
       <Section>
         <ViFacts title={c.factsTitle} rows={c.facts} />

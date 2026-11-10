@@ -53,6 +53,26 @@ export function Header() {
     setMobile(false);
   }, [pathname]);
 
+  // Letters typed between opening search and the search box appearing (it loads on first use).
+  const typedEarly = useRef("");
+  // Load the search code while the browser is idle, so the first open is quick.
+  useEffect(() => {
+    const load = () => void import("./SearchOverlay");
+    const w = window as Window & { requestIdleCallback?: (cb: () => void) => number };
+    if (w.requestIdleCallback) w.requestIdleCallback(load);
+    else window.setTimeout(load, 2000);
+  }, []);
+  useEffect(() => {
+    if (!search) return;
+    const onKey = (e: globalThis.KeyboardEvent) => {
+      const box = document.activeElement?.getAttribute("role") === "combobox";
+      if (box || e.ctrlKey || e.metaKey || e.altKey || e.key.length !== 1) return;
+      typedEarly.current += e.key;
+      e.preventDefault();
+    };
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
+  }, [search]);
   // "/" or Ctrl+K (Cmd+K on a Mac) opens search from anywhere, unless you are typing in a field.
   useEffect(() => {
     const onKey = (e: globalThis.KeyboardEvent) => {
@@ -62,6 +82,7 @@ export function Header() {
       const k = e.key.toLowerCase() === "k" && (e.ctrlKey || e.metaKey) && !e.altKey;
       if (!slash && !k) return;
       e.preventDefault();
+      typedEarly.current = "";
       setMenu(null);
       setMobile(false);
       setSearch(true);
@@ -183,7 +204,14 @@ export function Header() {
       {search ? (
         <div className="border-t border-border bg-card">
           <div className="mx-auto w-full max-w-[1440px]">
-            <SearchOverlay onClose={closeSearch} />
+            <SearchOverlay
+              onClose={closeSearch}
+              takeTyped={() => {
+                const t = typedEarly.current;
+                typedEarly.current = "";
+                return t;
+              }}
+            />
           </div>
         </div>
       ) : null}

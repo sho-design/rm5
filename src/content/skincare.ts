@@ -89,7 +89,7 @@ export const skinProducts: SkinProduct[] = [
   // Protect
   { id: "physical-fusion", skin: ["all"], name: "Physical Fusion UV Defense SPF 50", size: "50 ml", srp: 68, group: "protect", shape: "tube", d: draft("A tinted mineral sunscreen for daily use.") },
   { id: "sheer-physical", skin: ["oily"], name: "Sheer Physical UV Defense SPF 50", size: "50 ml", srp: 68, group: "protect", shape: "tube", d: draft("An untinted mineral sunscreen with a matte finish.") },
-  { id: "clear-daily-soothing", skin: ["sensitive"], name: "Clear Daily Soothing UV Defense SPF 50", size: "30 ml", srp: 65, group: "protect", shape: "tube", d: draft("A light sunscreen for sensitive and redness-prone skin.") },
+  { id: "clear-daily-soothing", skin: ["sensitive", "oily", "acne"], name: "Clear Daily Soothing UV Defense SPF 50", size: "30 ml", srp: 65, group: "protect", shape: "tube", d: draft("A light sunscreen for sensitive, redness-prone or oily skin.") },
 ];
 
 export const skinProduct = (id: string): SkinProduct => {
@@ -107,6 +107,8 @@ export const skincareCopy = {
   buyTitle: draft("How to buy"),
   buy: draft("Ask at any visit, or call us to check what is in stock. We do not sell online."),
   noDesc: draft("Ask our nurses about this product."),
+  plusHst: draft("plus HST"),
+  photoSoon: draft("Photo coming soon"),
   inRegimen: draft("In the regimen"),
   regimensLink: draft("See the regimens"),
   jump: draft("Jump to"),

@@ -79,7 +79,27 @@ function icsFor(day: BookingDay, slot: number, summary: string, mins = 30, note?
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
     "PRODID:-//Restoration Medical//Booking//EN",
+    // Some calendar apps (Outlook) need the time zone spelled out, a UID and a DTSTAMP (round 28, Linh).
+    "BEGIN:VTIMEZONE",
+    "TZID:America/Toronto",
+    "BEGIN:STANDARD",
+    "DTSTART:19701101T020000",
+    "RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU",
+    "TZOFFSETFROM:-0400",
+    "TZOFFSETTO:-0500",
+    "TZNAME:EST",
+    "END:STANDARD",
+    "BEGIN:DAYLIGHT",
+    "DTSTART:19700308T020000",
+    "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU",
+    "TZOFFSETFROM:-0500",
+    "TZOFFSETTO:-0400",
+    "TZNAME:EDT",
+    "END:DAYLIGHT",
+    "END:VTIMEZONE",
     "BEGIN:VEVENT",
+    `UID:${stamp(start)}-${Math.random().toString(36).slice(2, 10)}@restorationmedical.ca`,
+    `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "")}`,
     `DTSTART;TZID=America/Toronto:${stamp(start)}`,
     `DTEND;TZID=America/Toronto:${stamp(end)}`,
     `SUMMARY:Restoration Medical, ${summary}`,
@@ -119,6 +139,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const [payment, setPayment] = useState(-1);
   /** 0 English, 1 Tiếng Việt, 2 another language (named in a text box). */
   const [language, setLanguage] = useState(0);
+  /** Came from a Vietnamese page (?lang=vi): the form is English, so the key safety and help lines show in Vietnamese. */
+  const [fromVi, setFromVi] = useState(false);
   /** Results and follow-ups: 0 at the clinic, 1 by phone, 2 by video. */
   const [mode, setMode] = useState(0);
   /** This tab already booked (Back then Forward remounts the page on an empty form). Only a flag, no details. */
@@ -128,7 +150,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   /** Province or territory of a card from another province ("" until chosen). */
   const [province, setProvince] = useState("");
   /** Why they are coming, carried from the page they booked from (?reason=Perimenopause and menopause). */
-  const [reason, setReason] = useState("");
+  const [reasonText, setReason] = useState("");
+  /** The service and visit the reason came with. Switching to another one drops it, so a jawline program does not
+   *  follow someone into a Family Medicine visit marked OHIP-insured (round 28, Daniel); switching back restores it. */
+  const [reasonFor, setReasonFor] = useState<{ service: string; visit: string } | null>(null);
   const [details, setDetails] = useState<Details>({});
   const [errors, setErrors] = useState<FormErrors>({});
   const [days, setDays] = useState<BookingDay[]>([]);
@@ -166,6 +191,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     const why = readReason(params.get("reason")?.trim() ?? "").slice(0, 80);
     if (why) {
       setReason(why);
+      const sk = key && services.some((s) => s.key === key) ? key : (services[0]?.key ?? "");
+      const sv = services.find((s) => s.key === sk);
+      const vk = sv?.visits.find((v) => v.key === params.get("visit"))?.key ?? sv?.visits[0]?.key ?? "";
+      setReasonFor({ service: sk, visit: vk });
       // Keep the reason out of the address bar and history (a 15-year-old's family iPad showed "Sexual health").
       try {
         const u = new URL(window.location.href);
@@ -176,7 +205,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     // Links from children's pages pass &for=someone: the booking is for a child, not the parent.
     if (params.get("for") === "someone") setForOther(1);
     // Links from the Vietnamese pages pass &lang=vi so Tiếng Việt is already chosen (round 25, Anh).
-    if (params.get("lang") === "vi") setLanguage(1);
+    if (params.get("lang") === "vi") {
+      setLanguage(1);
+      setFromVi(true);
+    }
     try {
       setBookedBefore(sessionStorage.getItem("rm-booked") === "1");
       setBookedWhat(sessionStorage.getItem("rm-booked-what") ?? "");
@@ -236,6 +268,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
   const quebec = card === 1 && province === "Quebec";
   const coverage = card > 0 && /OHIP|health card/i.test(baseCoverage) ? (quebec ? x.quebecCoverage : x.card.coverage[card - 1]) : baseCoverage;
   const slotLabel = day && slot != null && day.open ? `${DOW[day.date.getDay()]} ${MON[day.date.getMonth()]} ${day.date.getDate()}, ${fmtTime(slot)}` : bookingConfirmLabel.slotNotChosen;
+  const reason = reasonText && (!reasonFor || (reasonFor.service === serviceKey && reasonFor.visit === visitKey)) ? reasonText : "";
   const serviceLine = [visit ? `${service.label}, ${visit.label}` : service.label, reason ? `(${reason})` : ""].filter(Boolean).join(" ");
   /** Sensitive reasons stay off what remains on screen or in this tab after booking (a teen on a family iPad,
    *  round 19); other reasons, such as the drip name, stay so the confirmation says what was booked (round 20). */
@@ -472,6 +505,12 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               {bookingCopy.urgentCrisis}
             </a>
           </p>
+        ) : null}
+        {fromVi && state === 1 ? (
+          <div lang="vi" className="pretty flex flex-col gap-1.5 rounded-tile border-[1.5px] border-[color:var(--rm-coral,#E0675A)] bg-card px-4 py-3 text-[14px] leading-[1.5]">
+            <strong className="text-[15px]">{x.vi.emergency}</strong>
+            <span>{x.vi.help}</span>
+          </div>
         ) : null}
         {state === 1 && signs ? <EmergencyNote id="emergency" headingLevel={3} /> : null}
         <dl aria-labelledby="book-summary" className={cn("mt-3 hidden flex-col gap-2.5 rounded-card-sm border border-border bg-card px-6 py-[22px] text-[14px] leading-[1.5]", (state === 1 || state === 2) && "lg:flex")}>

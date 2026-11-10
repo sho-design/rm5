@@ -1325,3 +1325,23 @@ What worked: the same-day rule held everywhere (Botox, a drip and bloodwork offe
 ## Test material
 
 Per-tester screenshots and step scripts were kept in the test session's scratchpad (not in the repo). Round 1 findings that were already listed above the round 2 table are folded into the combined list.
+
+## Round 28 (2026-11-10): today's additions, 20 personas
+
+Four groups of five: bloodwork prep, aesthetics programs and the event planner, the skincare page, and navigation (search, tabs, phone menu). No console errors, no horizontal scroll, no factual errors against the clinic facts. Iron planner totals correct for every iron and visit count.
+
+Fixed after the round:
+- Booking reason followed people into other services ("Jawline program" under Family Medicine, OHIP-insured). The reason now shows only with the service and visit it came with.
+- Event planner consult read "Between Sun Nov 15 and Thu Dec 24" under "6 to 8 weeks before". Now "As soon as you can, by" the day before the first treatment; HydraFacial window widened to 5 to 6 weeks.
+- "hair loss", "know your numbers", "ate before blood test", "UTI", "walk in" now find the right answers; programs and combined plans carry search words.
+- First letters typed after "/" were lost while search loaded; they are now kept, and search preloads when the browser is idle.
+- Phone menu: opening a second section kept its heading in view (it jumped 900px off screen).
+- Vietnamese header was 232px tall on a phone; the page links now sit in one sideways row under a 103px bar. Booking from a Vietnamese page shows the 911 line and a help line in Vietnamese.
+- Bloodwork: the "no-water list" wording (there is no list yet) replaced; "Call to confirm" on the specialist card (it opened booking) now "Book a draw, our patients only" with a next step for non-patients; walk-ins need a requisition; follow-up "2 to 3 weeks after your test"; the requisition health note matches (4 to 12 hours, about a week). Calendar file gains UID, DTSTAMP and the Toronto time zone.
+- Skincare: Clear Daily Soothing sunscreen now shows under Oily and Acne-prone; a product opened from search is outlined; "plus HST" on cards and "Total, HST extra" on regimens; placeholders say "Photo coming soon"; "In the regimen" links to the regimen; programs link to their home routine.
+- Combined plans: "Then, uninsured and priced in writing first" and a first-step booking link on each plan.
+- Old Know your numbers bookmark lands on Lab results with a short note saying it moved and why.
+- Screen readers hear the typo correction and "Nothing matched"; FAQ category tabs have a tabpanel and read "Visits, 12 questions".
+- Tablet: text size and high contrast in the top bar from 768px (social icons move to wide screens; while closed, the referral link waits for wider screens).
+
+Not changed, for the clinic: the fasting test list (still needed); Monday's first slot is 9:30am; skin health plans step 1 "From $150" and "Microneedling" (prototype lines on the open list); no prices on programs by design.
