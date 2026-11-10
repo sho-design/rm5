@@ -33,6 +33,10 @@ export function Header() {
   const [menu, setMenu] = useState<NavKey | null>(null);
   const [search, setSearch] = useState(false);
   const [mobile, setMobile] = useState(false);
+  const [menuLoaded, setMenuLoaded] = useState(false);
+  useEffect(() => {
+    if (mobile) setMenuLoaded(true);
+  }, [mobile]);
   /** Past the top bar: its 911 link has scrolled away, so the phone header shows one (a stroke tester lost it). */
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -164,8 +168,10 @@ export function Header() {
           </div>
         </div>
       ) : null}
-      {mobile ? (
+      {/* Mounted from the first open on, so the drawer can slide out as well as in. */}
+      {menuLoaded ? (
         <MobileMenu
+          open={mobile}
           onClose={() => setMobile(false)}
           onSearch={() => {
             setMobile(false);

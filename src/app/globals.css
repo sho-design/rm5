@@ -327,3 +327,20 @@
 :root[data-theme="contrast"] .rm-contrast-scrim {
   display: block;
 }
+
+/* Vaul drawer (mobile menu): the site's motion, 350ms on cubic-bezier(.2,.8,.2,1), instead of Vaul's 500ms.
+   Higher specificity than Vaul's injected styles. With reduced motion the drawer appears and leaves at once. */
+.rm-menu[data-vaul-drawer],
+[data-vaul-overlay][data-vaul-snap-points="false"] {
+  transition-duration: 350ms;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation-duration: 350ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rm-menu[data-vaul-drawer],
+  [data-vaul-overlay][data-vaul-snap-points="false"] {
+    transition-duration: 0ms;
+    animation-duration: 1ms;
+  }
+}
