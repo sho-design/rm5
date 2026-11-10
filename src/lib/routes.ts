@@ -92,6 +92,8 @@ export const viRoutes = {
   iron: "/vi/truyen-sat",
   family: "/vi/y-khoa-gia-dinh",
   pain: "/vi/dieu-tri-dau",
+  aesthetics: "/vi/tham-my-y-khoa",
+  rehab: "/vi/phuc-hoi-chuc-nang",
   contact: "/vi/lien-he",
 } as const;
 
@@ -102,6 +104,8 @@ export const viPairs: Record<string, string> = {
   [routes.iron]: viRoutes.iron,
   [routes.family]: viRoutes.family,
   [routes.pain]: viRoutes.pain,
+  [routes.aesthetics]: viRoutes.aesthetics,
+  [routes.rehab]: viRoutes.rehab,
   [routes.contact]: viRoutes.contact,
 };
 

@@ -39,7 +39,7 @@ export function ViHeader() {
               href={href}
               aria-current={on ? "page" : undefined}
               className={cn(
-                "inline-flex rounded-chip px-3.5 py-2 text-[14px] font-semibold motion-safe:transition-colors motion-safe:duration-200 md:px-4 md:text-[15px]",
+                "inline-flex rounded-chip px-3 py-2 text-[14px] font-semibold motion-safe:transition-colors motion-safe:duration-200 md:px-3.5 md:text-[15px]",
                 on ? "bg-ink text-white" : "text-primary hover:bg-raised",
               )}
             >
@@ -76,7 +76,7 @@ export function ViHeader() {
           <span className="hidden md:inline">
             <Wordmark size="lg" href={viRoutes.home} label="Restoration Medical, trang chủ tiếng Việt" />
           </span>
-          <nav aria-label={c.navLabel} className="hidden lg:block">
+          <nav aria-label={c.navLabel} className="hidden xl:block">
             {nav}
           </nav>
         </span>
@@ -89,7 +89,7 @@ export function ViHeader() {
           </Link>
         </div>
       </div>
-      <nav aria-label={c.navLabel} className="mx-auto w-full max-w-[1440px] px-3 pb-2.5 md:px-7 lg:hidden">
+      <nav aria-label={c.navLabel} className="mx-auto w-full max-w-[1440px] px-3 pb-2.5 md:px-7 xl:hidden">
         {nav}
       </nav>
     </header>

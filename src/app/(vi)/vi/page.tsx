@@ -44,7 +44,7 @@ export default function ViHomePage() {
         <ul className="grid grid-cols-1 gap-card sm:grid-cols-2 lg:grid-cols-5">
           {c.services.map((s, i) => {
             const d = divisions[s.k as keyof typeof divisions];
-            const viTo: Record<string, string> = { viIron: viRoutes.iron, viFamily: viRoutes.family, viPain: viRoutes.pain };
+            const viTo: Record<string, string> = { viIron: viRoutes.iron, viFamily: viRoutes.family, viPain: viRoutes.pain, viAesthetics: viRoutes.aesthetics, viRehab: viRoutes.rehab };
             const vi = s.to in viTo;
             const img = (images.location as Record<string, string>)[s.k] ?? d.img;
             return (

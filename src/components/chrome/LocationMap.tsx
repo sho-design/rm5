@@ -8,7 +8,8 @@ import { cn } from "@/lib/cn";
  * cookies, no tracking), in keeping with the site's no-outside-requests rule. The placeholder is a drawn street
  * grid with a pin, not a map.
  */
-export function LocationMap({ query, label, directions, className }: { query: string; label: string; directions: string; className?: string }) {
+/** Labels default to English; the Vietnamese footer passes its own. */
+export function LocationMap({ query, label, directions, className, t = { show: "Show map", directions: "Directions ›", loads: "Loads Google Maps" } }: { query: string; label: string; directions: string; className?: string; t?: { show: string; directions: string; loads: string } }) {
   const [on, setOn] = useState(false);
   const frame = useRef<HTMLIFrameElement>(null);
   // The button disappears when the map loads, so focus goes to the map rather than back to the top of the page.
@@ -39,13 +40,13 @@ export function LocationMap({ query, label, directions, className }: { query: st
           </span>
           <div className="absolute inset-x-3 bottom-3 flex flex-wrap items-center gap-2">
             <button type="button" onClick={() => setOn(true)} className="rounded-chip bg-white px-3.5 py-2 text-[13px] font-semibold text-ink shadow-[0_2px_8px_rgba(16,24,40,.12)] hover:bg-paper">
-              Show map
+              {t.show}
             </button>
             <a href={directions} target="_blank" rel="noopener" className="rounded-chip bg-ink px-3.5 py-2 text-[13px] font-semibold text-white hover:bg-ink-2">
-              Directions ›
+              {t.directions}
             </a>
           </div>
-          <span className="absolute right-3 top-2.5 text-[11px] font-semibold text-muted">Loads Google Maps</span>
+          <span className="absolute right-3 top-2.5 text-[11px] font-semibold text-muted">{t.loads}</span>
         </>
       )}
     </div>
