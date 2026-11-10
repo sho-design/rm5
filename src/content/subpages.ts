@@ -301,7 +301,7 @@ export const bloodPath: PathStep[] = [
 export const bloodFaq: QA[] = [
   {
     q: draft("Do I need an appointment?"),
-    a: draft("Walk-ins are always welcome. Booking ahead keeps your wait shorter and lets our technicians get ready for you, so your visit goes more smoothly."),
+    a: draft("Walk-ins are always welcome. Please call us first at 905-709-3222 so we know you are coming and can put you on the schedule. Booking ahead keeps your wait shorter and lets our technicians get ready for you."),
   },
   {
     q: draft("When can I get my results?"),
