@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 
 /**
  * How to prepare for tests: the four fasting rules with the tests under each (filled from the lab's list), what to
- * do on the day, the ECG, and the lab team's email for anything else.
+ * do on the day, the ECG, urine samples, and the lab team's email for anything else.
  */
 export function Prepare({ accent }: { accent: string }) {
   return (
@@ -19,6 +19,7 @@ export function Prepare({ accent }: { accent: string }) {
 
       <div className="flex flex-col gap-3">
         <h3 className="text-[17px] font-semibold">{c.fastingTitle}</h3>
+        <p className="pretty max-w-[720px] text-[15px] leading-[1.5] text-secondary">{c.fastingMeans}</p>
         <ul className="grid grid-cols-1 gap-card sm:grid-cols-2 lg:grid-cols-4">
           {c.fasting.map((f) => (
             <li key={f.k} className="flex flex-col gap-3 rounded-card-sm border border-border p-6 text-ink" style={{ background: f.bg }}>
@@ -41,10 +42,11 @@ export function Prepare({ accent }: { accent: string }) {
         </ul>
       </div>
 
-      <div className="grid grid-cols-1 gap-card lg:grid-cols-[1fr_1fr_1fr]">
+      <div className="grid grid-cols-1 gap-card md:grid-cols-2 xl:grid-cols-4">
         {[
           [c.dayTitle, c.day],
           [c.ecgTitle, c.ecg],
+          [c.urineTitle, c.urine],
         ].map(([t, items]) => (
           <div key={t as string} className="flex flex-col gap-3 rounded-card border border-border bg-card p-6">
             <h3 className="text-[17px] font-semibold">{t as string}</h3>

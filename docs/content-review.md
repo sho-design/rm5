@@ -773,3 +773,7 @@ Clinic-requested changes on `/family-medicine/bloodwork-ecg`:
 - "Do you draw for other clinics?" replaced by "Can I bring a requisition from my specialist?": only for patients registered with Dr. Nguyen or Dr. Truong; the specialist gets the results with a copy to the family doctor here. The "Outside requisition" card and booking hint now say the same. The hero's second button now goes to the prepare section.
 - ECG card: coverage "No cost for our patients".
 - If the FAQ collection is seeded in the CMS, update "How do I get my results?" there too.
+
+## Test preparation additions (2026-11-10)
+
+Clinic approved, adapted from Dynacare's "Preparing for my test" page and limited to what we do (blood draws, ECG, urine): what fasting means (no gum, coffee, tea, milk, juice or alcohol; avoid smoking); drink enough water; skip heavy exercise; tell the technician which medications you took. ECG box: what happens (top off, sheet, stickers on limbs and six on the chest, jewellery), avoid exercise right before, about 20 minutes (clinic confirmed; card updated from 10). New urine sample box: hold for an hour or two, clean first, which part of the stream as the nurse says (midstream for most, first part for some STI tests), take-home cups back within 2 hours or refrigerated within 24 hours. A physician should confirm the urine lines, and the 2 and 24 hour windows against the lab the clinic uses. New FAQs: "Can I have coffee or gum while fasting?" and "What if I ate by mistake?". Glucose tolerance test not added yet: waiting on the clinic to confirm it offers one.
