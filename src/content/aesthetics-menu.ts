@@ -12,7 +12,7 @@ export type AesFamily = "injectables" | "regenerative" | "energy" | "plasma" | "
 export const aesFamilies: Record<AesFamily, { t: string; d: string; color: string }> = {
   injectables: { t: draft("Injectables"), d: draft("Neuromodulators, dermal fillers and biostimulators, by injector."), color: "#B98AD9" },
   regenerative: { t: draft("Regenerative and boosters"), d: draft("PDRN, exosomes, PRP and PRF, micro-infused or injected."), color: "#E8A0A8" },
-  energy: { t: draft("Energy and laser"), d: draft("RF microneedling and laser: XERF, eCO₂, PicoSure and Clarity II."), color: "#F2B134" },
+  energy: { t: draft("Energy and laser"), d: draft("RF skin tightening and laser: XERF, eCO₂, PicoSure and Clarity II."), color: "#F2B134" },
   plasma: { t: draft("Plasma and lesions"), d: draft("PlexR Plus plasma and removal of small vessels and lesions."), color: "#6FB4E8" },
   facials: { t: draft("Facials and peels"), d: draft("HydraFacial, medical peels and prep facials, in a clinical setting."), color: "#7FC8A9" },
   skin: { t: draft("Skin health"), d: draft("SkinCeuticals medical-grade actives, prescribed and reviewed."), color: "#9BB0C9" },
@@ -121,12 +121,13 @@ export const aesTreatments: AesTreatment[] = [
     id: "xerf",
     family: "energy",
     brand: "XERF",
-    name: draft("RF microneedling"),
-    d: draft("Radiofrequency microneedling for tightening, texture, pores and scarring. Often paired with a glass facial or PRF."),
-    sessions: [{ t: draft("Face") }, { t: draft("Face and neck"), mins: 90 }, { t: draft("Body: scars, laxity, stretch marks"), mins: 90 }],
+    // XERF is needle-free radiofrequency skin tightening, not microneedling (corrected November 2026).
+    name: draft("RF skin tightening"),
+    d: draft("Needle-free radiofrequency for skin tightening and texture on the face, neck and body. Often paired with a glass facial or PRF."),
+    sessions: [{ t: draft("Face") }, { t: draft("Face and neck"), mins: 90 }, { t: draft("Body"), mins: 90 }],
     note: draft("Usually a series of 3."),
-    concerns: ["laxity", "texture", "acne"],
-    downtime: 1,
+    concerns: ["laxity", "texture"],
+    downtime: 0,
   },
   {
     id: "eco2",
@@ -241,7 +242,7 @@ export const aesGoalGroups: { t: string; goals: { t: string; ids: string[] }[] }
       { t: draft("Dark spots or melasma"), ids: ["picosure", "clarity", "peel"] },
       { t: draft("Sun damage"), ids: ["picosure", "peel", "skinplan"] },
       { t: draft("Acne"), ids: ["clarity", "hydrafacial", "peel"] },
-      { t: draft("Acne scars"), ids: ["eco2", "picosure", "xerf"] },
+      { t: draft("Acne scars"), ids: ["eco2", "picosure"] },
       { t: draft("Large pores"), ids: ["vamp", "xerf", "hydrafacial"] },
       { t: draft("Dry or dehydrated skin"), ids: ["hydrafacial", "vamp", "skinplan"] },
       { t: draft("Redness or sensitivity"), ids: ["clarity", "lesions", "skinplan"] },
@@ -272,8 +273,8 @@ export const aesGoalGroups: { t: string; goals: { t: string; ids: string[] }[] }
   {
     t: draft("Body, hair and spots"),
     goals: [
-      { t: draft("Stretch marks"), ids: ["xerf", "eco2", "picosure"] },
-      { t: draft("Scars"), ids: ["eco2", "picosure", "xerf"] },
+      { t: draft("Stretch marks"), ids: ["eco2", "picosure"] },
+      { t: draft("Scars"), ids: ["eco2", "picosure"] },
       { t: draft("Heavy sweating"), ids: ["neuromodulator"] },
       { t: draft("Tattoo removal"), ids: ["picosure"] },
       { t: draft("Unwanted hair"), ids: ["clarity"] },
@@ -286,12 +287,12 @@ export const aesGoalGroups: { t: string; goals: { t: string; ids: string[] }[] }
 /** Areas of the face for "Where would you like to start?". Treatments listed are starting points, not a plan (draft, clinic to confirm). */
 export type AesArea = { k: string; t: string; d: string; ids: string[]; x: number; y: number };
 export const aesAreas: AesArea[] = [
-  { k: "forehead", t: draft("Forehead"), d: draft("Expression lines across the forehead and between the brows."), ids: ["neuromodulator", "eco2", "skinplan"], x: 50, y: 15 },
-  { k: "eyes", t: draft("Around the eyes"), d: draft("Lines at the corners, the under-eye area and the eyelids."), ids: ["neuromodulator", "plexr", "prf"], x: 74, y: 34 },
-  { k: "cheeks", t: draft("Cheeks"), d: draft("Volume, redness, small vessels and pigment."), ids: ["filler", "biostimulator", "clarity", "picosure"], x: 18, y: 50 },
-  { k: "lips", t: draft("Lips and mouth"), d: draft("Lip volume and the lines around the mouth."), ids: ["filler", "neuromodulator", "eco2"], x: 75, y: 66 },
-  { k: "jaw", t: draft("Jawline and neck"), d: draft("Contour, a strong jaw muscle and skin on the neck."), ids: ["neuromodulator", "filler", "biostimulator", "xerf"], x: 22, y: 80 },
-  { k: "skin", t: draft("All-over skin"), d: draft("Tone, texture, glow, pores and acne."), ids: ["hydrafacial", "vamp", "exosome", "peel", "picosure", "clarity", "skinplan"], x: 73, y: 93 },
+  { k: "forehead", t: draft("Forehead"), d: draft("Expression lines across the forehead and between the brows."), ids: ["neuromodulator", "eco2", "skinplan"], x: 50, y: 25 },
+  { k: "eyes", t: draft("Around the eyes"), d: draft("Lines at the corners, the under-eye area and the eyelids."), ids: ["neuromodulator", "plexr", "prf"], x: 79, y: 42 },
+  { k: "cheeks", t: draft("Cheeks"), d: draft("Volume, redness, small vessels and pigment."), ids: ["filler", "biostimulator", "clarity", "picosure"], x: 21, y: 55 },
+  { k: "lips", t: draft("Lips and mouth"), d: draft("Lip volume and the lines around the mouth."), ids: ["filler", "neuromodulator", "eco2"], x: 74, y: 71 },
+  { k: "jaw", t: draft("Jawline and neck"), d: draft("Contour, a strong jaw muscle and skin on the neck."), ids: ["neuromodulator", "filler", "biostimulator", "xerf"], x: 28, y: 77 },
+  { k: "skin", t: draft("All-over skin"), d: draft("Tone, texture, glow, pores and acne."), ids: ["hydrafacial", "vamp", "exosome", "peel", "picosure", "clarity", "skinplan"], x: 68, y: 91 },
 ];
 
 export const aesCopy = {

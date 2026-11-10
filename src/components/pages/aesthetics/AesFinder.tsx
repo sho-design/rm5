@@ -5,6 +5,7 @@ import { aesAreas, aesConcerns, aesCopy as c, aesFamilies, aesTreatments, type A
 import { ChipRow, Display, Eyebrow, SmartLink } from "@/components/ui";
 import { bookFor } from "@/lib/routes";
 import { cn } from "@/lib/cn";
+import { FemaleFace, MaleFace, type Face } from "./AesFaces";
 
 /** Booking visit per family, so the consult lands with the right clinician. */
 const visitFor: Record<AesTreatment["family"], string> = { injectables: "injectables", regenerative: "skin", energy: "laser", plasma: "consult", facials: "skin", skin: "skin" };
@@ -26,6 +27,7 @@ export function AesFinder() {
   const [area, setArea] = useState(1);
   const [con, setCon] = useState(0);
   const [down, setDown] = useState(0);
+  const [face, setFace] = useState<Face>("female");
   useEffect(() => {
     const i = aesConcerns.findIndex((x) => x.k === new URLSearchParams(window.location.search).get("concern"));
     if (i >= 0) {
@@ -56,30 +58,43 @@ export function AesFinder() {
         <div className="flex flex-col gap-4 lg:sticky lg:top-28 lg:self-start">
           <ChipRow items={[c.byArea, c.byConcern]} value={mode} onChange={setMode} ariaLabel={c.startTitle} size="sm" controls="aes-results" />
           {mode === 0 ? (
-            <div role="group" aria-label={c.areaAria} className="relative mx-auto aspect-[10/11] w-full max-w-[440px] overflow-hidden rounded-block bg-lilac-tint">
-              <svg aria-hidden viewBox="0 0 400 440" className="absolute inset-0 h-full w-full">
-                <path d="M200 60 C130 60 98 124 100 196 C102 276 130 346 200 386 C270 346 298 276 300 196 C302 124 270 60 200 60 Z" fill="#fff" stroke="var(--rm-lilac-deep)" strokeWidth="2" />
-                <path d="M158 386 L158 440 M242 386 L242 440" stroke="var(--rm-lilac-deep)" strokeWidth="2" fill="none" />
-                <path d="M146 188 Q166 178 186 188 M214 188 Q234 178 254 188" stroke="var(--rm-ink)" strokeWidth="2" fill="none" strokeLinecap="round" />
-                <path d="M200 206 L193 262 L207 262" stroke="var(--rm-ink)" strokeWidth="2" fill="none" strokeLinejoin="round" />
-                <path d="M174 304 Q200 318 226 304" stroke="var(--rm-ink)" strokeWidth="2" fill="none" strokeLinecap="round" />
-              </svg>
-              {aesAreas.map((a, i) => (
-                <button
-                  key={a.k}
-                  type="button"
-                  aria-pressed={area === i}
-                  aria-controls="aes-results"
-                  onClick={() => setArea(i)}
-                  style={{ left: `${a.x}%`, top: `${a.y}%` }}
-                  className={cn(
-                    "absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-chip border px-3.5 py-2 text-[13px] font-semibold shadow-sm motion-safe:transition-colors md:text-[14px]",
-                    area === i ? "border-ink bg-ink text-white" : "border-lilac bg-white text-ink hover:border-ink",
-                  )}
-                >
-                  {a.t}
-                </button>
-              ))}
+            <div className="flex flex-col items-center gap-4 rounded-block bg-lilac-tint px-4 pb-6 pt-5 md:px-6">
+              {/* The same drawings as the face map on the aesthetics page, so the two feel like one tool. */}
+              <div role="radiogroup" aria-label={c.faceChoice} className="inline-flex rounded-chip bg-white p-1">
+                {(["female", "male"] as const).map((f) => (
+                  <button
+                    key={f}
+                    type="button"
+                    role="radio"
+                    aria-checked={face === f}
+                    onClick={() => setFace(f)}
+                    className={cn("rounded-chip px-4 py-2 text-[14px] font-semibold motion-safe:transition-colors motion-safe:duration-200", face === f ? "bg-ink text-white" : "text-secondary hover:text-primary")}
+                  >
+                    {f === "female" ? c.faceFemale : c.faceMale}
+                  </button>
+                ))}
+              </div>
+              <div role="group" aria-label={c.areaAria} className="relative aspect-[300/380] w-full max-w-[340px]">
+                <svg aria-hidden viewBox="0 0 300 380" className="absolute inset-0 h-full w-full">
+                  <g key={face} className="rm-fade">{face === "male" ? <MaleFace /> : <FemaleFace />}</g>
+                </svg>
+                {aesAreas.map((a, i) => (
+                  <button
+                    key={a.k}
+                    type="button"
+                    aria-pressed={area === i}
+                    aria-controls="aes-results"
+                    onClick={() => setArea(i)}
+                    style={{ left: `${a.x}%`, top: `${a.y}%` }}
+                    className={cn(
+                      "absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-chip border px-3 py-1.5 text-[13px] font-semibold shadow-sm motion-safe:transition-colors md:px-3.5 md:py-2 md:text-[14px]",
+                      area === i ? "border-ink bg-ink text-white" : "border-lilac-deep/40 bg-white text-ink hover:border-ink",
+                    )}
+                  >
+                    {a.t}
+                  </button>
+                ))}
+              </div>
             </div>
           ) : (
             <div role="group" aria-label={c.byConcern} className="flex flex-col gap-2">
