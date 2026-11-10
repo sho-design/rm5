@@ -55,7 +55,9 @@ export default function ViContactPage() {
               {viChrome.directions}
             </a>
           </div>
-          <ViFacts title={viChrome.hoursTitle} rows={viChrome.hours.map(([k, v]) => ({ k, v }))} />
+          <div id="gio" className="scroll-mt-32">
+            <ViFacts title={viChrome.hoursTitle} rows={viChrome.hours.map(([k, v]) => ({ k, v }))} />
+          </div>
           <div className="flex flex-col gap-2 rounded-card border border-border p-6">
             <span className="text-[15px] font-semibold">{c.mapleTitle}</span>
             <span className="text-[14px] text-secondary">{c.maple}</span>

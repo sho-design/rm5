@@ -103,8 +103,9 @@ export const aesTreatments: AesTreatment[] = [
     id: "prp",
     family: "regenerative",
     name: draft("PRP"),
-    d: draft("Platelet-rich plasma from your own blood, for the face or the scalp."),
-    sessions: [{ t: draft("Face or scalp"), mins: 75 }],
+    // PRP for thinning hair is offered and was easy to miss (November 2026): name the scalp session on its own.
+    d: draft("Platelet-rich plasma from your own blood, for the face, or for the scalp when hair is thinning."),
+    sessions: [{ t: draft("Face"), mins: 75 }, { t: draft("Scalp, for thinning hair"), mins: 75 }],
     note: draft("Usually a series of 3."),
     concerns: ["texture", "hair", "aging"],
     downtime: 1,
@@ -287,6 +288,7 @@ export const aesGoalGroups: { t: string; goals: { t: string; ids: string[] }[] }
 /** Areas of the face for "Where would you like to start?". Treatments listed are starting points, not a plan (draft, clinic to confirm). */
 export type AesArea = { k: string; t: string; d: string; ids: string[]; x: number; y: number };
 export const aesAreas: AesArea[] = [
+  { k: "hair", t: draft("Scalp and hair"), d: draft("Thinning hair, after a medical look at the cause."), ids: ["prp"], x: 50, y: 7 },
   { k: "forehead", t: draft("Forehead"), d: draft("Expression lines across the forehead and between the brows."), ids: ["neuromodulator", "eco2", "skinplan"], x: 50, y: 25 },
   { k: "eyes", t: draft("Around the eyes"), d: draft("Lines at the corners, the under-eye area and the eyelids."), ids: ["neuromodulator", "plexr", "prf"], x: 79, y: 42 },
   { k: "cheeks", t: draft("Cheeks"), d: draft("Volume, redness, small vessels and pigment."), ids: ["filler", "biostimulator", "clarity", "picosure"], x: 21, y: 55 },

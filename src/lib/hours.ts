@@ -120,3 +120,28 @@ export function bookingDays(now = torontoNow(), count = 7): BookingDay[] {
   }
   return out;
 }
+
+/** "9 giờ sáng", "3 giờ chiều", "6:30 tối": a Vietnamese clock time for the status bar. */
+function viTime(h: number): string {
+  const hh = Math.floor(h);
+  const mm = Math.round((h - hh) * 60);
+  const twelve = hh % 12 === 0 ? 12 : hh % 12;
+  const part = hh < 12 ? "sáng" : hh < 18 ? "chiều" : "tối";
+  return mm ? `${twelve}:${String(mm).padStart(2, "0")} ${part}` : `${twelve} giờ ${part}`;
+}
+
+const VI_DAYS = ["Chủ Nhật", "thứ Hai", "thứ Ba", "thứ Tư", "thứ Năm", "thứ Sáu", "thứ Bảy"];
+
+/** The open-now status in Vietnamese, for the Vietnamese pages (draft wording, a fluent reviewer to confirm). */
+export function viOpenStatus(now = torontoNow()): { text: string; open: boolean } {
+  const cur = now.getHours() + now.getMinutes() / 60;
+  const today = openingHours[now.getDay()];
+  if (today && cur >= today[0] && cur < today[1]) return { text: `Đang mở cửa đến ${viTime(today[1])}`, open: true };
+  if (today && cur < today[0]) return { text: `Đã đóng cửa, mở lại hôm nay lúc ${viTime(today[0])}`, open: false };
+  for (let i = 1; i <= 7; i++) {
+    const d = (now.getDay() + i) % 7;
+    const h = openingHours[d];
+    if (h) return { text: `Đã đóng cửa, mở lại ${i === 1 ? "ngày mai" : VI_DAYS[d]} lúc ${viTime(h[0])}`, open: false };
+  }
+  return { text: "", open: false };
+}

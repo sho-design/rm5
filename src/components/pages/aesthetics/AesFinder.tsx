@@ -24,7 +24,7 @@ function visitTime(t: AesTreatment) {
  */
 export function AesFinder() {
   const [mode, setMode] = useState(0);
-  const [area, setArea] = useState(1);
+  const [area, setArea] = useState(2);
   const [con, setCon] = useState(0);
   const [down, setDown] = useState(0);
   const [face, setFace] = useState<Face>("female");

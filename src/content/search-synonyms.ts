@@ -112,6 +112,14 @@ export const searchExtras: SearchDoc[] = [
     page: "/infusion-therapy/drips/signature",
     keys: "kingmaker queenmaker king maker queen maker iv kingmaker iv queenmaker signature house blend",
   },
+  // PRP for thinning hair (aesthetics): the menu lists it under PRP, which nobody searches for.
+  {
+    kind: draft("Medical Aesthetics"),
+    label: draft("PRP for thinning hair"),
+    sub: draft("Platelet-rich plasma for the scalp, usually a series of 3"),
+    page: "/medical-aesthetics/treatments?concern=hair#plan",
+    keys: "hair loss hair thinning thinning hair losing hair balding bald alopecia receding hairline prp hair prp scalp scalp rung toc",
+  },
   // STI testing for anyone, not only under Men's health (a nonbinary tester found it only there).
   {
     kind: draft("Family Medicine"),

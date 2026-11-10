@@ -42,6 +42,8 @@ export const viChrome = {
   orCall: draft("hoặc gọi 905-709-3222"),
   readMoreEn: draft("Đọc thêm (tiếng Anh) ›"),
   seeMore: draft("Xem thêm ›"),
+  /** Shorter than "Đọc thêm (tiếng Anh) ›": the services lead already says the other pages are in English. */
+  seeMoreEn: draft("Xem thêm (EN) ›"),
 };
 
 export const viHome = {
@@ -54,7 +56,7 @@ export const viHome = {
   pills: [draft("Hai bác sĩ nói tiếng Việt"), draft("Xét nghiệm máu tại chỗ"), draft("Mở tối thứ Ba và cuối tuần")],
   imgAlt: draft("Một gia đình nhiều thế hệ đi dạo trong công viên"),
   servicesTitle: draft("Chúng tôi có thể giúp gì."),
-  servicesLead: draft("Năm dịch vụ dưới một mái nhà, dùng chung một hồ sơ bệnh án."),
+  servicesLead: draft("Năm dịch vụ dưới một mái nhà, dùng chung một hồ sơ bệnh án. Trang chi tiết hiện bằng tiếng Anh, trừ trang truyền sắt."),
   services: [
     { k: "family", t: draft("Y khoa gia đình"), d: draft("Khám tổng quát, bệnh mãn tính như huyết áp cao và tiểu đường, trẻ em, sức khỏe phụ nữ và nam giới. OHIP chi trả."), to: "family" },
     { k: "pain", t: draft("Trung tâm điều trị đau"), d: draft("Tiêm phong bế thần kinh, tiêm điểm đau và tiêm khớp do bác sĩ thực hiện, có siêu âm hướng dẫn. OHIP chi trả khi có giấy giới thiệu của bác sĩ. Chưa có giấy giới thiệu? Bác sĩ gia đình của chúng tôi có thể khám và giới thiệu bạn ngay tại phòng khám."), to: "pain" },
