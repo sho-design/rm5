@@ -35,46 +35,56 @@ export function AesMenu() {
         <Display size="sm">{c.menuTitle}</Display>
         <p className="pretty max-w-[760px] text-[16px] leading-[1.55] text-secondary">{c.menuLead}</p>
       </div>
-      <div className="flex flex-col gap-2.5">
+      <ChipRow items={[c.anyConcern, ...aesConcerns.map((x) => x.t)]} value={con} onChange={setCon} ariaLabel="Filter by concern" size="sm" />
+      {/* Only the family row stays pinned, so it never covers more than one line of the menu. */}
+      <div className="sticky top-16 z-20 -mx-4 border-b border-border bg-page/95 px-4 py-2.5 backdrop-blur md:top-[76px] md:-mx-content md:px-content">
         <ChipRow items={[c.allFamilies, ...families.map((f) => aesFamilies[f].t)]} value={fam} onChange={setFam} ariaLabel="Filter by family" size="sm" />
-        <ChipRow items={[c.anyConcern, ...aesConcerns.map((x) => x.t)]} value={con} onChange={setCon} ariaLabel="Filter by concern" size="sm" />
       </div>
 
-      <div aria-live="polite" className="flex flex-col gap-10">
+      {/* An editorial menu: each family is a sticky heading beside rows of treatments, so no card sits half empty
+          and no row ends on a lone card. One booking link per family instead of one per treatment. */}
+      <div aria-live="polite" className="flex flex-col">
         {groups.length ? (
           groups.map(({ f, items }) => (
-            <div key={f} className="flex flex-col gap-4">
-              <div className="flex items-baseline gap-3 border-b border-border pb-3">
-                <span aria-hidden className="h-3 w-3 shrink-0 translate-y-[-2px] rounded-full" style={{ background: aesFamilies[f].color }} />
-                <h3 className="font-display text-[26px] font-medium leading-none tracking-[-.02em]">{aesFamilies[f].t}</h3>
-                <span className="hidden text-[14px] text-muted md:inline">{aesFamilies[f].d}</span>
+            <div key={f} className="grid grid-cols-1 gap-x-12 border-t border-border py-8 first:border-t-0 md:py-12 lg:grid-cols-[300px_1fr]">
+              <div className="mb-2 flex flex-col gap-3 lg:sticky lg:top-[156px] lg:mb-0 lg:self-start">
+                <span aria-hidden className="h-1.5 w-12 rounded-full" style={{ background: aesFamilies[f].color }} />
+                <h3 className="font-display text-[30px] font-medium leading-[1.02] tracking-[-.02em] md:text-[36px]">{aesFamilies[f].t}</h3>
+                <p className="pretty text-[15px] leading-[1.5] text-secondary">{aesFamilies[f].d}</p>
+                <span className="text-[13px] font-semibold text-muted">{c.count(items.length)}</span>
+                <SmartLink to={bookFor("aesthetics", visitFor[f])} className="mt-1 w-fit text-[14px] font-semibold text-link">
+                  {c.book}
+                  <span className="sr-only"> for {aesFamilies[f].t}</span>
+                  <span aria-hidden> ›</span>
+                </SmartLink>
               </div>
-              <div className="grid grid-cols-1 gap-card md:grid-cols-2 lg:grid-cols-3">
+              <ul className="flex flex-col divide-y divide-border">
                 {items.map((t) => (
-                  <article key={t.id} className="rm-fade flex flex-col gap-3 rounded-card border border-border bg-card p-5 md:p-6">
-                    <span className="flex flex-col gap-1">
-                      {t.brand ? <span className="text-[12px] font-semibold uppercase tracking-[.08em] text-muted">{t.brand}</span> : null}
-                      <span className="font-display text-[24px] font-medium leading-[1.05] tracking-[-.02em]">{t.name}</span>
-                    </span>
-                    <p className="pretty text-[15px] leading-[1.5] text-secondary">{t.d}</p>
+                  <li key={t.id} className="rm-fade grid grid-cols-1 gap-x-10 gap-y-4 py-6 first:pt-2 md:grid-cols-[1fr_minmax(240px,320px)] md:py-7 lg:first:pt-0">
+                    <div className="flex flex-col gap-2">
+                      {t.brand ? <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-muted">{t.brand}</span> : null}
+                      <h4 className="font-display text-[24px] font-medium leading-[1.08] tracking-[-.02em] md:text-[26px]">{t.name}</h4>
+                      <p className="pretty max-w-[520px] text-[15px] leading-[1.55] text-secondary">{t.d}</p>
+                      {t.note ? <span className="text-[13px] font-semibold text-muted">{t.note}</span> : null}
+                    </div>
                     {t.sessions?.length ? (
-                      <ul className="flex flex-col divide-y divide-border rounded-card-sm bg-raised px-4 text-[14px]">
+                      <ul className="flex flex-col gap-2.5 self-start text-[14px] md:pt-1">
                         {t.sessions.map((s) => (
-                          <li key={s.t} className="flex items-baseline justify-between gap-3 py-2.5">
-                            <span>{s.t}</span>
-                            {s.mins ? <span className="shrink-0 font-semibold text-muted">{c.minutes(s.mins)}</span> : null}
+                          <li key={s.t} className="flex items-baseline gap-2">
+                            <span className="pretty">{s.t}</span>
+                            {s.mins ? (
+                              <>
+                                <span aria-hidden className="min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-border-strong" />
+                                <span className="shrink-0 font-semibold tabular-nums">{c.minutes(s.mins)}</span>
+                              </>
+                            ) : null}
                           </li>
                         ))}
                       </ul>
                     ) : null}
-                    {t.note ? <span className="text-[13px] text-muted">{t.note}</span> : null}
-                    <SmartLink to={bookFor("aesthetics", visitFor[t.family])} className="mt-auto pt-1 text-[14px] font-semibold text-link">
-                      {c.book}
-                      <span className="sr-only"> for {t.name}</span> ›
-                    </SmartLink>
-                  </article>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))
         ) : (

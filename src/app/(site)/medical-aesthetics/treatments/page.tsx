@@ -10,7 +10,7 @@ import { AesPlanner } from "@/components/pages/aesthetics/AesPlanner";
 import { AesCandidacy, AesTools } from "@/components/pages/aesthetics/AesSections";
 
 const title = draft("The menu.");
-const lead = draft("Every treatment we offer, with how long it takes. Your price and plan are set at a consult, after screening, by your physician and clinician together.");
+const lead = draft("Every treatment we offer, with how long it takes. Your price and plan are set at a complimentary consult with our nurse, after screening, with a physician when your concern needs one.");
 
 const baseMetadata: Metadata = { title: "Aesthetic treatments", description: `${title} ${lead}` };
 
