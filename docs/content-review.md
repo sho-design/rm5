@@ -10,6 +10,12 @@ Approved copy is quoted through guards that fail the build if the source text ch
 
 Sub-navigation keeps its original items; six now use better-matching icons (new patients, trigger points, injectables, plans, chiropractic, FAQ). The access chips on Our clinics and Contact were removed in round 24 because they repeated the access text beside them.
 
+## Aesthetics treatment menu redesign (November 2026)
+
+Source: `aesAreas` and the new `aesCopy` keys in `src/content/aesthetics-menu.ts`. The treatments page now opens with "Where would you like to start?": pick an area of the face (forehead, around the eyes, cheeks, lips and mouth, jawline and neck, all-over skin) or a concern, then see what is often considered, each with Consult, The visit, The days after and Coming back, and a downtime filter. The full menu follows as a printed menu (an accordion on phones). The goal planner was removed; links to it now land on the new section.
+
+- **Needs clinic review:** which treatments are listed for each area (a starting point, not a plan), each area's one-line description, and the new labels ("Complimentary, with our nurse", "Consult with our nurse. A physician joins when your concern needs one.", "No downtime / A day or two / A few days", "As planned at consult").
+
 ## Compliance wording, 10 November 2026 (approved by the clinic owner in chat)
 
 - "Leave feeling restored." is now "We take it from there." (home infusion promo, Infusion Therapy hero and band).

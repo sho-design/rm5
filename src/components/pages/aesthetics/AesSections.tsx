@@ -18,7 +18,7 @@ export function AesConcerns({ title = c.concernsTitle }: { title?: string }) {
         {aesConcerns.map((x) => (
           <li key={x.k}>
             <SmartLink
-              to={`${routes.aesMenu}?concern=${x.k}#menu`}
+              to={`${routes.aesMenu}?concern=${x.k}#plan`}
               className="group flex h-full items-center justify-between gap-4 rounded-card-sm border border-border bg-card px-5 py-4 transition-colors hover:border-lilac"
             >
               <span className="flex flex-col gap-1">
@@ -96,7 +96,7 @@ export function AesFamilies() {
           return (
             <li key={f} className="rm-rise" style={{ animationDelay: `${i * 70}ms` }}>
               <SmartLink
-                to={`${routes.aesMenu}?family=${f}#menu`}
+                to={`${routes.aesMenu}#family-${f}`}
                 className="group relative flex h-full flex-col gap-4 overflow-hidden rounded-card border border-border bg-card p-6 motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] hover:-translate-y-1"
               >
                 <span aria-hidden className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-60 motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-125" style={{ background: aesFamilies[f].color }} />

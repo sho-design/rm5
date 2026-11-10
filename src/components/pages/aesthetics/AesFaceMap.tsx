@@ -190,7 +190,7 @@ export function AesFaceMap() {
             <SmartLink to={bookFor("aesthetics", "consult")} className={buttonClass("primary", "md")}>
               {c.book}
             </SmartLink>
-            <SmartLink to={`${routes.aesMenu}?concern=${k}#menu`} className="text-[15px] font-semibold text-link">
+            <SmartLink to={`${routes.aesMenu}?concern=${k}#plan`} className="text-[15px] font-semibold text-link">
               {c.seeConcern} ›
             </SmartLink>
           </div>

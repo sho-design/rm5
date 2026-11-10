@@ -6,7 +6,7 @@ import { images } from "@/content/images";
 import { draft } from "@/content/review";
 import { bookFor } from "@/lib/routes";
 import { AesMenu } from "@/components/pages/aesthetics/AesMenu";
-import { AesPlanner } from "@/components/pages/aesthetics/AesPlanner";
+import { AesFinder } from "@/components/pages/aesthetics/AesFinder";
 import { AesCandidacy, AesTools } from "@/components/pages/aesthetics/AesSections";
 
 const title = draft("The menu.");
@@ -31,7 +31,7 @@ export default function AestheticsMenuPage() {
         lead={lead}
         cta={div.cta ?? "Book a consult"}
         ctaTo={bookFor("aesthetics", "consult")}
-        cta2={draft("Not sure? Plan by goal")}
+        cta2={draft("Not sure? Start here")}
         cta2To="#plan"
         coverage={draft("Elective, not covered by OHIP. Physician-led, delivered by nurses and physicians.")}
         tint={div.tint}
@@ -40,9 +40,9 @@ export default function AestheticsMenuPage() {
         imgAlt=""
         pills={[draft("Screened first"), draft("Written plan"), draft("Care in English and Tiếng Việt")]}
       />
+      <AesFinder />
       <AesMenu />
       <AesTools />
-      <AesPlanner />
       <AesCandidacy />
       <CtaBand title={div.footCta ?? ""} sub={draft("A consult starts with screening. If a treatment is not right for you, we say so and suggest what is.")} cta={div.cta ?? "Book a consult"} ctaTo={bookFor("aesthetics", "consult")} />
     </>
