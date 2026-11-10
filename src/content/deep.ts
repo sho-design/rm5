@@ -439,7 +439,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         title: "Expression lines",
         p: "Neuromodulator injections relax the muscles that fold the skin. Dosing is conservative and reviewed at two weeks.",
         facts: [
-          { k: "Consult", v: "Physician, 20 min" },
+          { k: "Consult", v: draft("Nurse, 20 min, with a physician when needed") },
           { k: "Treatment time", v: "15 minutes" },
           { k: "Downtime", v: "None to minimal" },
           { k: "Review", v: "Included at 2 weeks" },
@@ -454,7 +454,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         title: "Volume and contour",
         p: "Hyaluronic acid fillers restore volume where it has thinned. We build gradually across visits rather than all at once.",
         facts: [
-          { k: "Consult", v: "Physician, 20 min" },
+          { k: "Consult", v: draft("Nurse, 20 min, with a physician when needed") },
           { k: "Treatment time", v: "30 to 45 minutes" },
           { k: "Downtime", v: "Swelling 2 to 3 days" },
           { k: "Approach", v: "Gradual, reversible" },
@@ -484,7 +484,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         title: "Acne and scarring",
         p: "Active acne is treated medically first. Scarring is addressed after, with microneedling or resurfacing.",
         facts: [
-          { k: "Consult", v: "Physician, 20 min" },
+          { k: "Consult", v: draft("Nurse, 20 min, with a physician when needed") },
           { k: "Active acne", v: "OHIP-insured visit" },
           { k: "Scar treatment", v: "Uninsured, quoted at consult" },
           { k: "Series", v: "Typically 3 to 6" },
@@ -499,7 +499,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         title: "A consult, no commitment",
         p: "Bring the concern. We assess skin, structure and lifestyle and suggest the lightest approach that fits, which may be skincare alone.",
         facts: [
-          { k: "Consult", v: "Physician, 20 min" },
+          { k: "Consult", v: draft("Nurse, 20 min, with a physician when needed") },
           { k: "Fee", v: "Complimentary" },
           { k: "Pressure", v: "None" },
           { k: "Plan", v: "Written, with prices" },
@@ -513,7 +513,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
     ],
     benefitsTitle: "Aesthetics inside a medical clinic.",
     benefits: [
-      { big: "MD", t: "Physician assessed", d: "Every plan starts with a doctor, and injectables are physician-directed.", bg: "#F3ECF8" },
+      { big: "MD", t: draft("Physician-directed"), d: draft("Our nurse leads your consult, a physician sees you when your concern needs one, and injectables are physician-directed."), bg: "#F3ECF8" },
       { big: "$", t: "Prices before you decide", d: "A written plan with prices at the consult. No surprises.", bg: "#FFF3C4" },
       { big: "0", t: "Pressure", d: "Less is a valid recommendation and we make it often.", bg: "#EEF5FC" },
     ],
@@ -533,7 +533,8 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
       { q: "Will it look natural?", a: "We start conservatively and review at two weeks. You stay in control of how far to go." },
       { q: "Is any of this covered by OHIP?", a: "Medical treatment of active acne is. Cosmetic treatments are not, and receipts are provided." },
     ],
-    closing: "A complimentary consult with a physician. Leave with a written plan and prices, and decide in your own time.",
+    // Clinic, 10 November: a nurse does the consult, and a physician also sees the patient for some conditions.
+    closing: draft("A complimentary consult with our nurse, and a physician when your concern needs one. Leave with a written plan and prices, and decide in your own time."),
   },
 
   rehab: {
@@ -708,7 +709,7 @@ export const aestheticsLadder: LadderRung[] = [
     tag: "1 to 3 days",
     d: "Microneedling and deeper peels for texture, tone and scarring. A short series.",
     facts: [
-      { k: "Consult", v: "Physician, 20 min" },
+      { k: "Consult", v: draft("Nurse, 20 min, with a physician when needed") },
       { k: "Per visit", v: "From $350" },
       { k: "Cadence", v: "4 to 6 weeks, 3 to 6 visits" },
     ],
@@ -719,7 +720,7 @@ export const aestheticsLadder: LadderRung[] = [
     tag: "Minimal",
     d: "Neuromodulators and fillers, physician-directed and conservatively dosed, with a two-week review.",
     facts: [
-      { k: "Consult", v: "Physician, 20 min" },
+      { k: "Consult", v: draft("Nurse, 20 min, with a physician when needed") },
       { k: "Quoted", v: "In writing at consult" },
       { k: "Review", v: "Included at 2 weeks" },
     ],

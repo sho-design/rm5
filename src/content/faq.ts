@@ -258,7 +258,7 @@ export const faqItems: FaqItem[] = [
   {
     category: "Aesthetics",
     q: "How is pricing set?",
-    a: "Per treatment or per unit, listed with HST, and confirmed at the consult before anything is done. Packages are optional, never required.",
+    a: draft("Per treatment or per unit, including HST. Your price is given in writing at the consult, before anything is done. Packages are optional, never required."),
   },
   {
     category: "Aesthetics",
