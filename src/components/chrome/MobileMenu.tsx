@@ -47,6 +47,16 @@ export function MobileMenu({
     close.current = onClose;
   });
 
+  // Opens at the section you are in: on an aesthetics page, Medical Aesthetics is already expanded.
+  useEffect(() => {
+    if (!shown) return;
+    const here = navOrder.find((k) => {
+      const base = href(divisions[k].explore[0]?.page ?? k);
+      return base !== "/" && (pathname === base || pathname?.startsWith(`${base}/`));
+    });
+    setOpen(here ?? null);
+  }, [shown, pathname]);
+
   useEffect(() => {
     if (!shown) return;
     const prev = document.body.style.overflow;

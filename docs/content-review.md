@@ -781,3 +781,15 @@ Clinic approved, adapted from Dynacare's "Preparing for my test" page and limite
 ## Search and small interface updates (2026-11-10)
 
 New string in search, draft: "Showing results for “…”" when a misspelled word is corrected (for example "ferriten" to "ferritin"). Search results are now grouped under their section names (Infusion Therapy, FAQ, Health note).
+
+## Follow-ups to today's additions (2026-11-10)
+
+All new copy is `draft()`.
+
+- Bloodwork prep: "Your appointment time" picker. Each fasting card shows when to stop, for example "Have your last food between 9pm and 11pm the night before" or "Stop eating and drinking by 5am that morning". Booking a morning fasting draw now says "Stop eating by 11pm the night before, or by 9pm if your requisition says 12 hours", and the calendar file carries the same line.
+- Event ready planner on the treatment menu (`#event-plan`): pick the event date and the program steps land on dates (consult, HydraFacial about 6 weeks before, neuromodulator 3 to 4 weeks, no lasers in the last 2 weeks, Glass facial in the last week, optional Hydration drip 1 or 2 days before). Steps with too little time say so. Single visits and window ends avoid Fridays. The nurse should confirm the timings and step descriptions.
+- "Ask about this program" now fills the booking reason with the program name (for example "Glass skin program"); the planner's link includes the event date.
+- Skincare page: skin type filter (All, Oily, Dry, Sensitive or red, Acne-prone, Mature). Tags are our best guess from each product's usual use; the nurse should check them. Three products with no description show only under All.
+- Regimens (English and Vietnamese): morning and night order for each, plus a retinol note on Lines and aging ("Start retinol 2 or 3 nights a week and build up as your skin allows."). Nurse to confirm the order.
+- Search: every SkinCeuticals product and aesthetics program is searchable and opens its card. "/" or Ctrl+K (Cmd+K) opens search.
+- Phone menu opens with the current section expanded.

@@ -94,6 +94,9 @@ export const programsCopy = {
   lengthLabel: draft("Length"),
   priceNote: draft("Price in writing at your complimentary consult"),
   book: draft("Ask about this program"),
+  /** The booking reason, so the nurse sees which program before the consult. */
+  reason: (t: string) => (/program/i.test(t) ? t : draft(`${t} program`)),
+  eventLink: draft("Plan from your event date"),
   combinedEyebrow: draft("Combined plans"),
   combinedTitle: draft("Start with a medical question."),
   combinedLead: draft("One chart covers your doctor, your bloodwork, drips and aesthetics, so a plan can start by finding the cause. OHIP-insured parts stay OHIP-insured and are never part of a package price."),
@@ -104,19 +107,53 @@ export const programsCopy = {
   regTitle: draft("A routine to take home."),
   regLead: draft("Every plan includes a home routine. These are starting points; your nurse adjusts them to your skin at the consult. Prices are SkinCeuticals suggested retail, HST extra."),
   regTotal: draft("Total"),
+  regAm: draft("Morning"),
+  regPm: draft("Night"),
+  regPmNone: draft("Your usual cleanser and moisturizer."),
+  regOrder: draft("Order to use them"),
   regPairs: draft("Often paired with"),
   seeAll: draft("See all the skincare we carry"),
   regNote: draft("We sell these products and earn from their sale. Buying them is never a condition of treatment."),
 };
 
-export type Regimen = { k: string; t: string; items: string[]; pairs: string };
+/** `am` and `pm` are the order to use them, by product id; an empty `pm` means the usual cleanser and moisturizer. */
+export type Regimen = { k: string; t: string; items: string[]; pairs: string; am: string[]; pm: string[]; note?: string };
 
 /** Product ids from `skincare.ts`; names and prices come from there. */
 export const regimens: Regimen[] = [
-  { k: "starter", t: draft("Starter"), items: ["ce-ferulic", "physical-fusion"], pairs: draft("Any first plan") },
-  { k: "pigment", t: draft("Pigment and tone"), items: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pairs: draft("Glass skin, PicoSure, peels") },
-  { k: "aging", t: draft("Lines and aging"), items: ["simply-clean", "ce-ferulic", "retinol-03", "sheer-physical"], pairs: draft("Neuromodulator, Aging well, Baby CO\u2082") },
-  { k: "acne", t: draft("Oily and acne-prone"), items: ["lha-cleansing-gel", "silymarin-cf", "lha-serum", "clear-daily-soothing"], pairs: draft("Acne scar program, Clarity II") },
-  { k: "redness", t: draft("Redness and sensitive"), items: ["soothing-cleanser", "phyto-corrective-gel", "serum-10-aox", "clear-daily-soothing"], pairs: draft("Redness and rosacea program") },
-  { k: "recovery", t: draft("Recovery kit"), items: ["gentle-cleanser", "phyto-corrective-gel", "epidermal-repair", "hydrating-b5-gel", "physical-fusion"], pairs: draft("After CO\u2082, plasma, PicoSure or a peel") },
+  { k: "starter", t: draft("Starter"), items: ["ce-ferulic", "physical-fusion"], pairs: draft("Any first plan"), am: ["ce-ferulic", "physical-fusion"], pm: [] },
+  { k: "pigment", t: draft("Pigment and tone"), items: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pairs: draft("Glass skin, PicoSure, peels"), am: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pm: ["gentle-cleanser", "tnxa-shot"] },
+  { k: "aging", t: draft("Lines and aging"), items: ["simply-clean", "ce-ferulic", "retinol-03", "sheer-physical"], pairs: draft("Neuromodulator, Aging well, Baby CO\u2082"), am: ["simply-clean", "ce-ferulic", "sheer-physical"], pm: ["simply-clean", "retinol-03"], note: draft("Start retinol 2 or 3 nights a week and build up as your skin allows.") },
+  { k: "acne", t: draft("Oily and acne-prone"), items: ["lha-cleansing-gel", "silymarin-cf", "lha-serum", "clear-daily-soothing"], pairs: draft("Acne scar program, Clarity II"), am: ["lha-cleansing-gel", "silymarin-cf", "clear-daily-soothing"], pm: ["lha-cleansing-gel", "lha-serum"] },
+  { k: "redness", t: draft("Redness and sensitive"), items: ["soothing-cleanser", "phyto-corrective-gel", "serum-10-aox", "clear-daily-soothing"], pairs: draft("Redness and rosacea program"), am: ["soothing-cleanser", "serum-10-aox", "phyto-corrective-gel", "clear-daily-soothing"], pm: ["soothing-cleanser", "phyto-corrective-gel"] },
+  { k: "recovery", t: draft("Recovery kit"), items: ["gentle-cleanser", "phyto-corrective-gel", "epidermal-repair", "hydrating-b5-gel", "physical-fusion"], pairs: draft("After CO\u2082, plasma, PicoSure or a peel"), am: ["gentle-cleanser", "phyto-corrective-gel", "hydrating-b5-gel", "physical-fusion"], pm: ["gentle-cleanser", "phyto-corrective-gel", "hydrating-b5-gel", "epidermal-repair"] },
 ];
+
+/**
+ * Event ready, planned back from the event date (EventPlanner). `from` and `to` are days before the event; a step
+ * with the same `from` and `to` is a single visit. Timings follow the Event ready program above; the nurse confirms
+ * them at the consult.
+ */
+export const eventPlan = {
+  eyebrow: draft("Event ready"),
+  title: draft("Plan back from your event."),
+  lead: draft("Pick the date and see roughly when each step of the Event ready program would fall. Your nurse confirms the plan and the dates at your consult."),
+  dateLabel: draft("Your event date"),
+  left: (n: number) => (n === 1 ? draft("Your event is tomorrow.") : n < 14 ? draft(`Your event is in ${n} days.`) : draft(`Your event is in about ${Math.round(n / 7)} weeks.`)),
+  short: draft("Some steps need more time than that. Your nurse suggests what still fits."),
+  tooLate: draft("Not enough time for this step. Your nurse suggests what still fits."),
+  between: (a: string, b: string) => draft(`Between ${a} and ${b}`),
+  reason: (d: string) => draft(`Event ready program, event on ${d}`),
+  reasonNoDate: draft("Event ready program"),
+  cta: draft("Book a complimentary consult"),
+  fine: draft("A planning guide, not a booking. Single visits avoid Fridays, when the clinic is closed."),
+  steps: [
+    { k: "consult", t: draft("Consult and screening"), rel: draft("6 to 8 weeks before"), from: 56, to: 1, d: draft("As early as you can. Your nurse confirms the plan."), color: "#9BB0C9" },
+    { k: "hydra", t: "HydraFacial", rel: draft("About 6 weeks before"), from: 42, to: 42, d: draft("Cleanses and hydrates, no downtime."), color: "#E8A0A8" },
+    { k: "neuro", t: draft("Neuromodulator"), rel: draft("3 to 4 weeks before"), from: 28, to: 21, d: draft("Time to settle before the day."), color: "#B98AD9" },
+    { k: "nolaser", t: draft("No laser treatments"), rel: draft("Last 2 weeks"), from: 14, to: 0, d: draft("Lasers can leave redness, so none in the last 2 weeks."), color: "#F2B134" },
+    { k: "glass", t: draft("Glass facial"), rel: draft("In the last week"), from: 7, to: 2, d: draft("A gentle facial in the final days."), color: "#E8A0A8" },
+    { k: "drip", t: draft("Hydration drip, if you like"), rel: draft("1 or 2 days before"), from: 2, to: 1, d: draft("After screening, at IV wellness."), color: "#7FC8A9" },
+    { k: "event", t: draft("Your event"), rel: "", from: 0, to: 0, d: draft("Pick a date to see it on the plan."), color: "#14202E" },
+  ],
+};

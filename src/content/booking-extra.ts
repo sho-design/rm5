@@ -25,7 +25,9 @@ export const bookingExtra = {
   },
   /** Before the approved fasting line on morning checkups. */
   /** After booking a morning fasting draw (the page line says "Book a slot before 10am", which no longer applies). */
-  fastingBooked: draft("Fast 8 to 12 hours before your visit. Nothing to eat after midnight, water is fine. Take your usual medications unless your doctor said otherwise."),
+  /** After booking a morning fasting draw: the stop times for this slot (10 and 12 hours before). */
+  fastingBooked: (by10: string, by12: string) =>
+    draft(`Fasting for this draw? Stop eating by ${by10} the night before, or by ${by12} if your requisition says 12 hours. Water is fine unless it says no water. Take your usual medications unless your doctor said otherwise.`),
   fastingIf: draft("If your doctor asked for fasting bloodwork with this visit:"),
   /** Review line for someone else's booking: "Thu Tran. You are their daughter." */
   youAreTheir: (relationship: string) => draft(`Your relationship: ${relationship.toLowerCase()}.`),

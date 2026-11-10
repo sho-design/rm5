@@ -145,3 +145,12 @@ export function viOpenStatus(now = torontoNow()): { text: string; open: boolean 
   }
   return { text: "", open: false };
 }
+
+/** Today in Toronto as a UTC-midnight date, so date arithmetic is the same for every visitor. Browser only. */
+export function torontoDate(): Date {
+  const [y, m, d] = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Toronto", year: "numeric", month: "2-digit", day: "2-digit" })
+    .format(new Date())
+    .split("-")
+    .map(Number);
+  return new Date(Date.UTC(y, m - 1, d));
+}

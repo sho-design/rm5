@@ -17,6 +17,8 @@ export const viProgramsCopy: typeof programsCopy = {
   lengthLabel: draft("Thời gian"),
   priceNote: draft("Báo giá bằng văn bản tại buổi tư vấn miễn phí"),
   book: draft("Hỏi về chương trình này"),
+  reason: (t: string) => (/^Chương trình/i.test(t) ? t : draft(`Chương trình ${t}`)),
+  eventLink: draft("Lên kế hoạch từ ngày sự kiện"),
   combinedEyebrow: draft("Kế hoạch kết hợp"),
   combinedTitle: draft("Bắt đầu từ một câu hỏi y khoa."),
   combinedLead: draft(
@@ -31,6 +33,10 @@ export const viProgramsCopy: typeof programsCopy = {
     "Mỗi kế hoạch đều có quy trình chăm sóc tại nhà. Đây là gợi ý ban đầu; y tá sẽ điều chỉnh theo làn da của bạn tại buổi tư vấn. Giá theo giá bán lẻ đề nghị của SkinCeuticals, chưa gồm HST.",
   ),
   regTotal: draft("Tổng cộng"),
+  regAm: draft("Buổi sáng"),
+  regPm: draft("Buổi tối"),
+  regPmNone: draft("Sữa rửa mặt và kem dưỡng bạn đang dùng."),
+  regOrder: draft("Thứ tự sử dụng"),
   regPairs: draft("Thường đi kèm với"),
   seeAll: draft("Xem tất cả sản phẩm (tiếng Anh)"),
   regNote: draft("Chúng tôi bán các sản phẩm này và có lợi nhuận từ việc bán. Bạn không bao giờ phải mua sản phẩm để được điều trị."),
@@ -124,10 +130,10 @@ const comb: Record<string, Omit<(typeof combinedPlans)[number], "k">> = {
 
 export const viCombinedPlans = combinedPlans.map((p) => ({ ...p, ...comb[p.k] }));
 
-const reg: Record<string, Pick<Regimen, "t" | "pairs">> = {
+const reg: Record<string, Pick<Regimen, "t" | "pairs" | "note">> = {
   starter: { t: draft("Bắt đầu"), pairs: draft("Mọi kế hoạch đầu tiên") },
   pigment: { t: draft("Sắc tố và màu da"), pairs: draft("Da căng bóng, PicoSure, peel") },
-  aging: { t: draft("Nếp nhăn và lão hóa"), pairs: draft("Thuốc giãn cơ, Lão hóa khỏe, Baby CO₂") },
+  aging: { t: draft("Nếp nhăn và lão hóa"), pairs: draft("Thuốc giãn cơ, Lão hóa khỏe, Baby CO₂"), note: draft("Bắt đầu retinol 2 hoặc 3 tối mỗi tuần, rồi tăng dần nếu da quen.") },
   acne: { t: draft("Da dầu, dễ nổi mụn"), pairs: draft("Chương trình sẹo mụn, Clarity II") },
   redness: { t: draft("Da đỏ và nhạy cảm"), pairs: draft("Chương trình đỏ da và rosacea") },
   recovery: { t: draft("Bộ phục hồi da"), pairs: draft("Sau CO₂, plasma, PicoSure hoặc peel") },

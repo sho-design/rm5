@@ -1,6 +1,7 @@
 import { Display, Eyebrow, Section } from "@/components/ui";
 import { bloodPrep as c } from "@/content/subpages";
 import { site } from "@/content/site";
+import { FastingCards } from "./FastingCards";
 
 /**
  * How to prepare for tests: the four fasting rules with the tests under each (filled from the lab's list), what to
@@ -20,26 +21,7 @@ export function Prepare({ accent }: { accent: string }) {
       <div className="flex flex-col gap-3">
         <h3 className="text-[17px] font-semibold">{c.fastingTitle}</h3>
         <p className="pretty max-w-[720px] text-[15px] leading-[1.5] text-secondary">{c.fastingMeans}</p>
-        <ul className="grid grid-cols-1 gap-card sm:grid-cols-2 lg:grid-cols-4">
-          {c.fasting.map((f) => (
-            <li key={f.k} className="flex flex-col gap-3 rounded-card-sm border border-border p-6 text-ink" style={{ background: f.bg }}>
-              <span className="display text-[24px] leading-[1.05] tracking-[-.02em]">{f.t}</span>
-              <span className="pretty text-[14px] font-semibold leading-[1.45]">{f.rule}</span>
-              {f.tests.length ? (
-                <ul className="flex flex-col gap-1 text-[14px] leading-[1.45] text-secondary">
-                  {f.tests.map((t) => (
-                    <li key={t} className="flex gap-2">
-                      <span aria-hidden>•</span>
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <span className="text-[13px] text-secondary">{c.noList}</span>
-              )}
-            </li>
-          ))}
-        </ul>
+        <FastingCards />
       </div>
 
       <div className="grid grid-cols-1 gap-card md:grid-cols-2 xl:grid-cols-4">

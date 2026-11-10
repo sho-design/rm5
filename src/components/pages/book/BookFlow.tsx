@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState, type FormEvent, type InputHTMLAtt
 import { Button, Display, Input, Lead, Select, SmartLink, StateCard, Textarea } from "@/components/ui";
 import { bookingConfirmLabel, bookingCopy, bookingCoverageFallback, bookingSteps, bookingTitleFor, bookingWho, registerCopy, registerLanguages, type BookingState } from "@/content/booking";
 import { bookingExtra as x } from "@/content/booking-extra";
+import { clock } from "@/lib/fasting";
 import { registerExtraCopy as rx } from "@/content/forms-copy";
 import type { BookingConfig, BookingService, BookingVisit } from "@/content/booking-visits";
 import { site } from "@/content/site";
@@ -62,7 +63,13 @@ function GroupLabel({ children }: { children: ReactNode }) {
   );
 }
 
-function icsFor(day: BookingDay, slot: number, summary: string, mins = 30): string {
+/** The fasting line for a morning slot, with the stop times worked out (round 28 follow-up). */
+const fastLine = (slot: number) => x.fastingBooked(clock(slot - 10), clock(slot - 12));
+
+/** Text for an iCalendar property: backslash, semicolon, comma and line breaks escaped (RFC 5545). */
+const icsText = (s: string) => s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+
+function icsFor(day: BookingDay, slot: number, summary: string, mins = 30, note?: string): string {
   const start = new Date(day.date);
   start.setHours(Math.floor(slot), slot % 1 ? 30 : 0, 0, 0);
   // The visit length when known (a 45-minute assessment showed as 30 in calendars, round 27).
@@ -77,6 +84,7 @@ function icsFor(day: BookingDay, slot: number, summary: string, mins = 30): stri
     `DTEND;TZID=America/Toronto:${stamp(end)}`,
     `SUMMARY:Restoration Medical, ${summary}`,
     `LOCATION:${bookingCopy.confirmed.whereValue}`,
+    ...(note ? [`DESCRIPTION:${icsText(note)}`] : []),
     "END:VEVENT",
     "END:VCALENDAR",
   ].join("\r\n");
@@ -253,8 +261,8 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     ...(visit?.bring ?? []).filter((l) => !typed(l) && !ontarioLine(l)),
     ...(card === 1 ? [x.card.bring] : card === 2 ? [x.card.bringNone] : []),
     ...(visit?.payment ? (payments[payment]?.bring ?? []) : []),
-    ...(visit?.fasting && slot != null ? [slot < 10 ? x.fastingBooked : config.fasting.late] : []),
-    ...(visit?.fastingMaybe && slot != null && slot < 10 ? [`${x.fastingIf} ${x.fastingBooked}`] : []),
+    ...(visit?.fasting && slot != null ? [slot < 10 ? fastLine(slot) : config.fasting.late] : []),
+    ...(visit?.fastingMaybe && slot != null && slot < 10 ? [`${x.fastingIf} ${fastLine(slot)}`] : []),
     ...(who === 0 ? [forOther ? x.firstVisitTheirs : config.firstVisit] : []),
   ].map((l) => (forOther ? l.replace(/^(?:Your )?(Ontario )?health card/i, (_m, on: string | undefined) => `Their ${on ?? ""}health card`) : l));
 
@@ -894,7 +902,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               title={bookingCopy.confirmed.title}
               actions={
                 <>
-                  <a href={`data:text/calendar;charset=utf-8,${encodeURIComponent(icsFor(day, slot, bookingCopy.calendarTitle, visit?.mins))}`} download="restoration-medical.ics" className={buttonClass("primary", "md")}>
+                  <a href={`data:text/calendar;charset=utf-8,${encodeURIComponent(icsFor(day, slot, bookingCopy.calendarTitle, visit?.mins, (visit?.fasting || visit?.fastingMaybe) && slot < 10 ? fastLine(slot) : undefined))}`} download="restoration-medical.ics" className={buttonClass("primary", "md")}>
                     {bookingCopy.confirmed.calendar}
                   </a>
                   {/* No directions for a phone or video visit. Outline next to the one primary (it was a borderless white pill). */}

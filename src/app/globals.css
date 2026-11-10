@@ -351,3 +351,12 @@
 @media (prefers-reduced-motion: reduce) {
   .rm-digit { transition: none; }
 }
+
+/* Skincare skin type filter (SkinFilter): hide cards that do not suit the chosen type. */
+.rm-skin[data-skin="oily"] [data-skin-types]:not([data-skin-types~="oily"]):not([data-skin-types~="all"]),
+.rm-skin[data-skin="dry"] [data-skin-types]:not([data-skin-types~="dry"]):not([data-skin-types~="all"]),
+.rm-skin[data-skin="sensitive"] [data-skin-types]:not([data-skin-types~="sensitive"]):not([data-skin-types~="all"]),
+.rm-skin[data-skin="acne"] [data-skin-types]:not([data-skin-types~="acne"]):not([data-skin-types~="all"]),
+.rm-skin[data-skin="mature"] [data-skin-types]:not([data-skin-types~="mature"]):not([data-skin-types~="all"]) {
+  display: none;
+}

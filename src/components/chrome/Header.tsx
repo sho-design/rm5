@@ -53,6 +53,23 @@ export function Header() {
     setMobile(false);
   }, [pathname]);
 
+  // "/" or Ctrl+K (Cmd+K on a Mac) opens search from anywhere, unless you are typing in a field.
+  useEffect(() => {
+    const onKey = (e: globalThis.KeyboardEvent) => {
+      const t = e.target as HTMLElement | null;
+      const typing = !!t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+      const slash = e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey && !typing;
+      const k = e.key.toLowerCase() === "k" && (e.ctrlKey || e.metaKey) && !e.altKey;
+      if (!slash && !k) return;
+      e.preventDefault();
+      setMenu(null);
+      setMobile(false);
+      setSearch(true);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   const closeMenu = useCallback(() => setMenu(null), []);
   const toggles = useRef<Partial<Record<NavKey, HTMLButtonElement | null>>>({});
 
@@ -139,6 +156,8 @@ export function Header() {
               setMenu(null);
             }}
             aria-label="Search"
+            aria-keyshortcuts="/ Control+K Meta+K"
+            title="Search (press /)"
             aria-expanded={search}
             className="flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-border transition-colors hover:border-sky md:h-[44px] md:w-[44px]"
           >

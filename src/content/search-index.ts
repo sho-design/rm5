@@ -5,6 +5,8 @@ import { infusionPages, signatureDrips } from "./infusion-site";
 import { dripRoute, noteRoute, routes } from "@/lib/routes";
 import { searchDocs, type SearchDoc } from "@/lib/search";
 import { aliasesFor, searchExtras } from "./search-synonyms";
+import { skinProducts } from "./skincare";
+import { aesPrograms } from "./programs";
 
 /**
  * Site search index, built the same way as the prototype's INDEX:
@@ -17,6 +19,9 @@ const pages: SearchEntry[] = [
   ...topics.map((t) => ({ kind: divisions[t.division].label, label: t.page, sub: t.lead, page: t.key })),
   ...infusionPages.map((p) => ({ kind: divisions.infusion.label, label: p.title, sub: p.description, page: p.key })),
   ...signatureDrips.map((d) => ({ kind: "Drip", label: d.t, sub: d.d, page: dripRoute(d.slug) })),
+  // Every SkinCeuticals product and aesthetics program, straight to its card ("CE Ferulic", "glass skin").
+  ...skinProducts.map((p) => ({ kind: "SkinCeuticals", label: p.name, sub: `$${p.srp}, ${p.size}${p.d ? `. ${p.d}` : ""}`, page: `${routes.aesSkincare}#${p.id}` })),
+  ...aesPrograms.map((p) => ({ kind: "Aesthetics program", label: p.t, sub: `${p.forWhom}. ${p.length}.`, page: `${routes.aesMenu}#program-${p.k}` })),
 ];
 
 const handWritten: SearchEntry[] = [
