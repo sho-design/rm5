@@ -1,5 +1,6 @@
 "use client";
 
+import { Flow } from "@/components/ui/Flow";
 import { useEffect, useMemo, useState } from "react";
 import { ironInfusionDays, ironPlanner as c } from "@/content/iron";
 import { Display, Eyebrow, Section, SmartLink } from "@/components/ui";
@@ -54,7 +55,7 @@ export function IronPlanner() {
   // the spacing visibly moves them; the bloodwork window keeps the last part.
   const pct = (d: Date) => (first ? ((d.getTime() - first.getTime()) / (28 * DAY)) * 62 : 0);
   // Course of 3 at the chosen iron's price per visit (Venofer $400, Monoferric $550, own iron $250).
-  const total = `$${(c.perVisit[iron] * n).toLocaleString("en-CA")}`;
+  const total = c.perVisit[iron] * n;
   const time = c.time(n);
 
   return (
@@ -110,14 +111,14 @@ export function IronPlanner() {
             <div className="flex flex-col gap-1">
               <dt className="text-[13px] font-semibold text-muted">{c.totalLabel(n)}</dt>
               <dd className="flex flex-col gap-0.5">
-                <span className="font-display text-[30px] font-medium leading-none tracking-[-.03em]">{total}</span>
+                <Flow value={total} prefix="$" className="font-display text-[30px] font-medium leading-none tracking-[-.03em]" />
                 <span className="text-[13px] leading-[1.4] text-muted">{c.totalSub[iron]}</span>
               </dd>
             </div>
             <div className="flex flex-col gap-1">
               <dt className="text-[13px] font-semibold text-muted">{c.timeLabel}</dt>
               <dd className="flex flex-col gap-0.5">
-                <span className="font-display text-[30px] font-medium leading-none tracking-[-.03em]">{time.v}</span>
+                <Flow value={time.hours} prefix={time.before} suffix={time.after} className="font-display text-[30px] font-medium leading-none tracking-[-.03em]" />
                 <span className="text-[13px] leading-[1.4] text-muted">{time.sub}</span>
               </dd>
             </div>

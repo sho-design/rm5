@@ -83,3 +83,20 @@ export function keepInView(el: HTMLElement | null, topOffset = 72) {
     }
   });
 }
+
+/**
+ * Keyboard support for a tab row, as screen reader users expect (WAI-ARIA tabs pattern): arrow keys move to the
+ * next or previous tab and select it, Home and End jump to the ends. Put the handler on the element with
+ * role="tablist" and give the selected tab tabIndex 0 and the rest -1, so Tab moves into the row once and out again.
+ */
+export function tabKeys(count: number, value: number, onChange: (i: number) => void) {
+  return (e: KeyboardEvent<HTMLElement>) => {
+    const k = e.key;
+    const next =
+      k === "ArrowRight" || k === "ArrowDown" ? (value + 1) % count : k === "ArrowLeft" || k === "ArrowUp" ? (value - 1 + count) % count : k === "Home" ? 0 : k === "End" ? count - 1 : -1;
+    if (next < 0) return;
+    e.preventDefault();
+    onChange(next);
+    e.currentTarget.querySelectorAll<HTMLElement>('[role="tab"]')[next]?.focus();
+  };
+}

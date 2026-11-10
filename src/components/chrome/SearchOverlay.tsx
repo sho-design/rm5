@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Command } from "cmdk";
 import { useRouter } from "next/navigation";
 import { baseSearchDocs } from "@/content/search-index";
 import { EmergencyNote } from "@/components/pages/help/EmergencyNote";
 import { draft } from "@/content/review";
 import { popularSearches, site } from "@/content/site";
 import { href } from "@/lib/routes";
-import { isCrisisQuery, isEmergencyQuery, searchDocs, type SearchDoc } from "@/lib/search";
+import { correctQuery, isCrisisQuery, isEmergencyQuery, searchDocs, type SearchDoc, type SearchHit } from "@/lib/search";
 import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
 import { linkPhones } from "@/components/ui/Phones";
@@ -30,17 +31,19 @@ const copy = {
   otherScript: draft(`Search works in English and Vietnamese for now. Call ${site.phone} and ask for an interpreter, at no cost to you.`),
   popular: "Popular",
   close: draft("Close"),
+  didYouMean: (fixed: string) => draft(`Showing results for “${fixed}”`),
   closeLabel: draft("Close search"),
 };
 
 const isExternal = (url: string) => /^https?:/.test(url);
 
 /**
- * Search overlay under the header. Matches every word of the query against
- * the built-in index straight away, then against the full index once it has
- * loaded. Top 8 results as links; arrow keys move through them, Enter opens
- * the first. Emergency words bring up the 911 and Health811 note first.
- * Esc closes (the Esc key hint shows only with a mouse; touch gets Close).
+ * Search overlay under the header, built on cmdk for the combobox pattern: focus stays in the box while the arrow
+ * keys move the highlight through the results, Enter opens the highlighted one, and screen readers hear each
+ * result as it is highlighted. Our own matcher does the ranking (cmdk's filter is off): every word of the query,
+ * synonyms and Vietnamese, then a typo correction when nothing matched. Results are grouped by section, groups
+ * in the order of their best result. Emergency words bring up the 911 and Health811 note first, and Enter then
+ * goes to the note instead of a result. Esc closes (the Esc key hint shows only with a mouse; touch gets Close).
  */
 export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile?: boolean }) {
   const [q, setQ] = useState("");
@@ -50,7 +53,8 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
   const [docs, setDocs] = useState<SearchDoc[]>(baseSearchDocs);
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
-  const list = useRef<HTMLUListElement>(null);
+  // A click on a result row is handled by its link; cmdk's select (for Enter) must not navigate a second time.
+  const clicked = useRef(false);
 
   useEffect(() => {
     input.current?.focus();
@@ -72,7 +76,19 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
   }, [onClose]);
 
   const query = q.trim();
-  const results = useMemo(() => (query ? searchDocs(docs, query) : []), [docs, query]);
+  const { results, fixed } = useMemo(() => {
+    if (!query) return { results: [] as SearchHit[], fixed: null as string | null };
+    const direct = searchDocs(docs, query);
+    if (direct.length) return { results: direct, fixed: null };
+    const f = correctQuery(docs, query);
+    return { results: f ? searchDocs(docs, f) : direct, fixed: f };
+  }, [docs, query]);
+  // Sections in the order of their best result, results kept in rank order within each.
+  const groups = useMemo(() => {
+    const m = new Map<string, SearchHit[]>();
+    for (const r of results) m.set(r.kind, [...(m.get(r.kind) ?? []), r]);
+    return [...m.entries()];
+  }, [results]);
   // Announce the count only once typing pauses, so screen readers do not read "0 results" mid-word.
   const [announced, setAnnounced] = useState("");
   useEffect(() => {
@@ -89,43 +105,29 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
     else router.push(url);
   };
 
-  const links = () => Array.from(list.current?.querySelectorAll<HTMLAnchorElement>("a") ?? []);
-  const onInputKey = (e: KeyboardEvent<HTMLInputElement>) => {
-    // Emergency words: Enter moves focus to the emergency note instead of opening the first result, which
-    // sent a tester with arm pain and breathlessness to the Pain Centre page with no warning.
-    if (e.key === "Enter" && emergency) {
-      e.preventDefault();
-      emergencyBox.current?.querySelector<HTMLElement>("aside")?.focus();
-    } else if (e.key === "Enter" && results[0]) {
-      e.preventDefault();
-      open(results[0].page);
-    } else if (e.key === "ArrowDown") {
-      e.preventDefault();
-      links()[0]?.focus();
-    }
-  };
-  const onListKey = (e: KeyboardEvent<HTMLUListElement>) => {
-    if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
-    e.preventDefault();
-    const all = links();
-    const i = all.indexOf(document.activeElement as HTMLAnchorElement);
-    const next = e.key === "ArrowDown" ? i + 1 : i - 1;
-    if (next < 0) input.current?.focus();
-    else all[Math.min(next, all.length - 1)]?.focus();
-  };
-
   const rowClass = cn(
-    "flex flex-col gap-0.5 rounded-field border border-border bg-raised px-3.5 py-3 text-left transition-colors hover:border-sky",
-    !mobile && "md:grid md:grid-cols-[140px_1fr_auto] md:items-center md:gap-4 md:px-4 md:py-3.5",
+    // data-selected is cmdk's highlight (arrow keys or pointer): the row Enter will open.
+    "flex flex-col gap-0.5 rounded-field border border-border bg-raised px-3.5 py-3 text-left transition-colors hover:border-sky data-[selected=true]:border-sky data-[selected=true]:bg-sky-soft",
+    !mobile && "md:grid md:grid-cols-[1fr_auto] md:items-center md:gap-4 md:px-4 md:py-3.5",
   );
 
   return (
     // Scrolls on its own: on a small phone the results are taller than the screen under the sticky header.
     // Tab stays inside while it covers the page: a keyboard tester tabbed into the hidden footer behind it.
-    <div
+    <Command
+      label={copy.label}
+      shouldFilter={false}
+      loop
       className={cn("flex max-h-[calc(100dvh-56px)] flex-col gap-4 overflow-y-auto overscroll-contain bg-card p-4", !mobile && "md:gap-6 md:px-8 md:pb-10 md:pt-8")}
       role="search"
       onKeyDown={(e) => {
+        // Emergency words: Enter moves focus to the emergency note instead of opening the first result, which
+        // sent a tester with arm pain and breathlessness to the Pain Centre page with no warning.
+        if (e.key === "Enter" && emergency && e.target === input.current) {
+          e.preventDefault();
+          emergencyBox.current?.querySelector<HTMLElement>("aside")?.focus();
+          return;
+        }
         if (e.key !== "Tab") return;
         const items = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])')).filter((el) => el.offsetParent !== null);
         if (!items.length) return;
@@ -146,16 +148,13 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
       <div className={cn("flex h-[52px] items-center gap-2.5 rounded-[14px] border-[1.5px] border-border bg-raised px-3.5 focus-within:border-sky", !mobile && "md:h-[60px] md:gap-3.5 md:rounded-row md:px-5")}>
         <Icon name="search" size={18} stroke={2} color="var(--rm-ink-3)" />
         {/* autoFocus focuses on mount, before effects run: testers typing straight away lost the first letters. */}
-        <input
+        <Command.Input
           autoFocus
           ref={input}
-          type="search"
           value={q}
-          onChange={(e) => setQ(e.target.value)}
-          onKeyDown={onInputKey}
+          onValueChange={setQ}
           placeholder={mobile || narrow ? copy.placeholderShort : copy.placeholder}
           aria-label={copy.label}
-          aria-controls="search-results"
           // The browser clear (x) sat over the end of long queries; Esc and Close already clear.
           enterKeyHint="search"
           autoComplete="off"
@@ -177,44 +176,54 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
             </div>
           ) : null}
           <span className="text-[12px] font-semibold text-muted" aria-hidden>
+            {fixed && results.length ? `${copy.didYouMean(fixed)}. ` : ""}
             {copy.count(results.length)}
           </span>
-          {results.length ? (
-            <ul id="search-results" ref={list} onKeyDown={onListKey} className="flex flex-col gap-1.5" aria-label={copy.count(results.length)}>
-              {results.map((r) => {
+          <Command.List aria-label={copy.count(results.length)}>
+            {groups.map(([kind, rows]) => (
+              <Command.Group key={kind} heading={kind} className="mb-2.5 last:mb-0 [&_[cmdk-group-heading]]:px-1 [&_[cmdk-group-heading]]:pb-1.5 [&_[cmdk-group-heading]]:text-[12px] [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:text-muted [&_[cmdk-group-items]]:flex [&_[cmdk-group-items]]:flex-col [&_[cmdk-group-items]]:gap-1.5">
+              {rows.map((r) => {
                 const url = href(r.page);
                 const inner = (
                   <>
-                    {/* Screen readers get "title, section" from the link's label (the summary read as a paragraph of commas); sighted people see all three. */}
-                    <span className="text-[15px] font-semibold md:col-start-2 md:row-start-1 md:font-medium">{r.label}</span>
-                    <span className="order-first text-[12px] font-semibold text-link md:order-none md:col-start-1 md:row-start-1">
-                      <span className="sr-only">, </span>
-                      {r.kind}
-                      <span className="sr-only">, </span>
-                    </span>
-                    {r.sub ? <span className={cn("pretty text-[13px] leading-[1.45] text-muted", !mobile && "md:col-start-3 md:row-start-1 md:max-w-[420px] md:text-right")}>{r.sub} ›</span> : null}
+                    {/* The section shows as the group heading; screen readers get "title, section" from the link's label. */}
+                    <span className={cn("text-[15px] font-semibold", !mobile && "md:col-start-1 md:row-start-1 md:font-medium")}>{r.label}</span>
+                    {r.sub ? <span className={cn("pretty text-[13px] leading-[1.45] text-muted", !mobile && "md:col-start-2 md:row-start-1 md:max-w-[420px] md:text-right")}>{r.sub} ›</span> : null}
                   </>
                 );
+                const key = `${r.group ?? r.page}|${r.label}`;
+                const onClick = () => {
+                  clicked.current = true;
+                  onClose();
+                };
                 return (
-                  <li key={`${r.group ?? r.page}|${r.label}`}>
+                  <Command.Item
+                    key={key}
+                    value={key}
+                    asChild
+                    onSelect={() => {
+                      if (clicked.current) return void (clicked.current = false);
+                      open(r.page);
+                    }}
+                  >
                     {isExternal(url) ? (
-                      <a href={url} target="_blank" rel="noopener" onClick={onClose} className={rowClass} aria-label={`${r.label}, ${r.kind}`}>
+                      <a href={url} target="_blank" rel="noopener" tabIndex={-1} onClick={onClick} className={rowClass} aria-label={`${r.label}, ${r.kind}`}>
                         {inner}
                       </a>
                     ) : (
-                      <Link href={url} onClick={onClose} className={rowClass} aria-label={`${r.label}, ${r.kind}`}>
+                      <Link href={url} tabIndex={-1} onClick={onClick} className={rowClass} aria-label={`${r.label}, ${r.kind}`}>
                         {inner}
                       </Link>
                     )}
-                  </li>
+                  </Command.Item>
                 );
               })}
-            </ul>
-          ) : (
-            <span id="search-results" className="py-3 text-[14px] text-muted">
+              </Command.Group>
+            ))}
+            <Command.Empty className="py-3 text-[14px] text-muted">
               {/[^\u0000-\u024F\u1E00-\u1EFF\s\d\p{P}]/u.test(query) ? linkPhones(copy.otherScript) : copy.none}
-            </span>
-          )}
+            </Command.Empty>
+          </Command.List>
         </div>
       ) : (
         <div className="flex flex-col gap-2.5">
@@ -228,6 +237,6 @@ export function SearchOverlay({ onClose, mobile }: { onClose: () => void; mobile
           </div>
         </div>
       )}
-    </div>
+    </Command>
   );
 }

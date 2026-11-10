@@ -1,5 +1,6 @@
 "use client";
 
+import { tabKeys } from "@/lib/a11y";
 import { useId, useState } from "react";
 import type { CarePath } from "@/content/home";
 import { Block, Button, Display, Eyebrow, SmartLink } from "@/components/ui";
@@ -25,7 +26,7 @@ export function CarePathways({ paths, tints }: { paths: CarePath[]; tints: Recor
         <p className="pretty text-[16px] leading-[1.55] text-white/75">Pick a situation and see how our services hand you from one to the next, with one chart and one team. This is what a clinic is for.</p>
       </div>
 
-      <div role="tablist" aria-label="Situations" className="scroll-x -mx-5 flex gap-1.5 px-5 md:mx-0 md:flex-wrap md:px-0">
+      <div role="tablist" aria-label="Situations" onKeyDown={tabKeys(paths.length, pick, setPick)} className="scroll-x -mx-5 flex gap-1.5 px-5 md:mx-0 md:flex-wrap md:px-0">
         {paths.map((p, i) => {
           const on = i === pick;
           return (
@@ -36,6 +37,7 @@ export function CarePathways({ paths, tints }: { paths: CarePath[]; tints: Recor
               id={`${id}-tab-${i}`}
               aria-selected={on}
               aria-controls={`${id}-panel`}
+              tabIndex={on ? 0 : -1}
               onClick={() => setPick(i)}
               className={cn(
                 "shrink-0 whitespace-nowrap rounded-chip border-[1.5px] px-[18px] py-[11px] text-[14px] font-semibold transition-all duration-[250ms]",

@@ -155,7 +155,8 @@ export const ironPlanner = {
   perVisit: [400, 550, 250] as const,
   totalSub: [draft("HST included, Venofer 300 mg, nursing"), draft("HST included, Monoferric 500 mg, nursing"), draft("HST included, plus the iron from your pharmacy")] as const,
   timeLabel: draft("Time at the clinic"),
-  time: (n: number) => ({ v: draft(`About ${n * 3} hours`), sub: n === 1 ? draft("In 1 visit") : draft(`Over ${n} visits`) }),
+  /** About 3 hours a visit; the number is shown on its own so it can roll when the visits change. */
+  time: (n: number) => ({ before: draft("About "), hours: n * 3, after: draft(" hours"), sub: n === 1 ? draft("In 1 visit") : draft(`Over ${n} visits`) }),
   labsShort: draft("Bloodwork"),
   fine: draft("A planning guide, not a booking. Your physician confirms the iron, the dose and the number of visits after your assessment, and we book the dates with you."),
   cta: draft("Book an iron assessment"),

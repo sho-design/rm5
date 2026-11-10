@@ -1,5 +1,6 @@
 "use client";
 
+import { tabKeys } from "@/lib/a11y";
 import { emergencyCopy } from "@/content/patient-help";
 import { useEffect, useState } from "react";
 import { Block, Button, Display, Photo, SmartLink } from "@/components/ui";
@@ -72,7 +73,7 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
   return (
     <>
       {/* Tabs */}
-      <div role="tablist" aria-label={c.eyebrow} className="scroll-x flex gap-1.5 px-4 pt-8 md:px-content md:pt-10">
+      <div role="tablist" aria-label={c.eyebrow} onKeyDown={tabKeys(locations.length, i, pick)} className="scroll-x flex gap-1.5 px-4 pt-8 md:px-content md:pt-10">
         {locations.map((l, n) => {
           const on = n === i;
           return (
@@ -83,6 +84,7 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
               id={`loc-tab-${l.key}`}
               aria-selected={on}
               aria-controls={`loc-panel-${l.key}`}
+              tabIndex={on ? 0 : -1}
               onClick={() => pick(n)}
               className={cn(
                 "shrink-0 rounded-chip border-[1.5px] px-5 py-[11px] text-[14px] font-semibold transition-all duration-[250ms] active:scale-[.98]",

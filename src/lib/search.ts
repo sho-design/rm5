@@ -228,3 +228,72 @@ export function isEmergencyNote(q: string, ageDays?: number): boolean {
   if (ageDays != null && ageDays >= 0 && ageDays < 92) return true;
   return /(newborn|\bbaby\b|\binfant\b|\b\d{1,2} ?(days?|weeks?|wks?) old\b|\b[12] ?months? old\b)/.test(f);
 }
+
+/* ------------------------------------------------------------------ Typo correction */
+
+/** Optimal string alignment distance (Levenshtein plus swapped neighbours), stopping early past `max`. */
+function distance(a: string, b: string, max: number): number {
+  if (Math.abs(a.length - b.length) > max) return max + 1;
+  const prev2: number[] = [];
+  let prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    const cur = [i];
+    let rowMin = i;
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      let v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) v = Math.min(v, prev2[j - 2] + 1);
+      cur[j] = v;
+      rowMin = Math.min(rowMin, v);
+    }
+    if (rowMin > max) return max + 1;
+    prev2.splice(0, prev2.length, ...prev);
+    prev = cur;
+  }
+  return prev[b.length];
+}
+
+const vocabCache = new WeakMap<SearchDoc[], string[]>();
+/** Every distinct word in labels, keywords, sections and summaries (not page text): what people are likely to mean. */
+function vocabulary(docs: SearchDoc[]): string[] {
+  let v = vocabCache.get(docs);
+  if (!v) {
+    const set = new Set<string>();
+    for (const d of docs) for (const w of words(`${d.label} ${d.keys ?? ""} ${d.kind} ${d.sub}`)) if (w.length >= 4 && !/\d/.test(w)) set.add(w);
+    v = [...set];
+    vocabCache.set(docs, v);
+  }
+  return v;
+}
+
+/**
+ * When a query word matches nothing anywhere, swap it for the closest word people search for ("ferriten" becomes
+ * "ferritin", "physoitherapy" becomes "physiotherapy"). One edit is allowed for words of 4 to 6 letters, two for
+ * longer words. Returns the corrected query, or null when nothing needed or could be corrected.
+ */
+export function correctQuery(docs: SearchDoc[], q: string): string | null {
+  const ps = prepared(docs);
+  const vocab = vocabulary(docs);
+  let changed = false;
+  const out = words(q).map((w) => {
+    if (w.length < 4 || STOP.has(w) || /\d/.test(w)) return w;
+    const s = stem(w);
+    if (ps.some((p) => scoreToken(p, s) > 0)) return w;
+    const max = w.length <= 6 ? 1 : 2;
+    let best: string | null = null;
+    let bestD = max + 1;
+    for (const v of vocab) {
+      const d = distance(w, v, max);
+      if (d < bestD || (d === bestD && best && v.length === w.length && best.length !== w.length)) {
+        best = v;
+        bestD = d;
+      }
+    }
+    if (best) {
+      changed = true;
+      return best;
+    }
+    return w;
+  });
+  return changed ? out.join(" ") : null;
+}

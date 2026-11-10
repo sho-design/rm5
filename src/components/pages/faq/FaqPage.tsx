@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { keepInView } from "@/lib/a11y";
+import { keepInView, tabKeys } from "@/lib/a11y";
 import { linkPhones } from "@/components/ui/Phones";
 import { Block, Button, ChipRow, Display, SmartLink } from "@/components/ui";
 import type { FaqItem } from "@/content/types";
@@ -91,7 +91,7 @@ export function FaqPage({ items, categories }: Props) {
       <div className="grid grid-cols-1 gap-6 px-4 pt-6 md:px-content md:pt-10 lg:grid-cols-[260px_1fr] lg:items-start lg:gap-10">
         <ChipRow items={railItems} value={cat} onChange={setCat} ariaLabel="Category" size="sm" className="lg:hidden" />
         <div className="hidden flex-col gap-1 lg:sticky lg:top-[80px] lg:flex">
-          <div role="tablist" aria-label="Category" aria-orientation="vertical" className="flex flex-col gap-1">
+          <div role="tablist" aria-label="Category" aria-orientation="vertical" onKeyDown={tabKeys(categories.length, cat, setCat)} className="flex flex-col gap-1">
             {categories.map((c, i) => {
               const on = cat === i;
               return (
@@ -100,6 +100,7 @@ export function FaqPage({ items, categories }: Props) {
                   type="button"
                   role="tab"
                   aria-selected={on}
+                  tabIndex={on ? 0 : -1}
                   onClick={() => setCat(i)}
                   className={cn("flex items-center justify-between gap-3 rounded-[14px] px-4 py-3 text-left text-[14px] font-semibold transition-colors", on ? "bg-ink text-white" : "text-ink hover:bg-card")}
                 >
