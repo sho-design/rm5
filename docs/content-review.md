@@ -801,3 +801,7 @@ New or changed draft copy: event planner "As soon as you can, by …"; combined 
 ## The tools we use (2026-11-11)
 
 The plain chip row on /medical-aesthetics/treatments is now a slow-moving row of tiles: brand name and what it is (for example "PicoSure, Picosecond laser", "Radiesse, Biostimulator", "Healite II, LED light therapy"), each opening its menu family. Pauses on hover, focus or with the Pause button; still grid with reduced motion. All descriptions are draft for the clinic to check. Logos: drop official files into `public/images/brands/` named by slug (see the README there) and they replace the typed names.
+
+## Iron page: "Where the iron goes" (2026-11-11)
+
+New animated diagram on /infusion-therapy/iron-therapy, after "How it works": IV bag into the arm, iron in the bloodstream, iron stores filling over three visits, new red cells, repeat bloodwork. Five steps beside it light up their part of the picture; it advances while on screen, pauses on Pause or a tapped step, and is still with reduced motion. Copy is education only, all draft, for the physician to check: "attached to a carrier protein called transferrin", "mainly in the liver and bone marrow. Ferritin on your bloodwork reflects these stores", "which takes weeks, not days", "Repeat bloodwork 4 to 8 weeks after your last visit shows how your levels have changed." Caption "Illustration, not your results."

@@ -174,3 +174,31 @@ export const ironDay = {
   ],
   note: draft("Eat normally beforehand, no fasting. Wear a top with sleeves that roll up, and bring a book, headphones or a laptop. You can drive home."),
 };
+
+/**
+ * "Where the iron goes" (IronJourney): how IV iron is used, in plain steps. Education only: no outcome claims;
+ * the last step points to bloodwork. Draft until the physician reviews it (Nov 2026).
+ */
+export const ironJourney = {
+  eyebrow: draft("How IV iron works"),
+  title: draft("Where the iron goes."),
+  lead: draft("A simple picture of what happens after each infusion. Your physician explains what your own bloodwork shows."),
+  play: draft("Play"),
+  pause: draft("Pause"),
+  note: draft("Illustration, not your results."),
+  figure: draft("Diagram: iron runs from an IV bag into the arm, travels in the blood to the body's iron stores, is used to make new red blood cells, and is checked with repeat bloodwork."),
+  labels: {
+    bag: draft("IV iron"),
+    blood: draft("Bloodstream"),
+    stores: draft("Iron stores"),
+    cells: draft("New red cells"),
+    check: draft("Bloodwork"),
+  },
+  steps: [
+    { t: draft("Into a vein"), d: draft("A nurse runs the iron through a small IV in your arm. Each visit takes about 3 hours, including time to watch how you feel afterwards.") },
+    { t: draft("Carried in the blood"), d: draft("The iron travels in your bloodstream, attached to a carrier protein called transferrin.") },
+    { t: draft("Kept in your stores"), d: draft("Your body stores iron, mainly in the liver and bone marrow. Ferritin on your bloodwork reflects these stores.") },
+    { t: draft("Used to make red cells"), d: draft("Bone marrow uses stored iron to make hemoglobin for new red blood cells, which takes weeks, not days.") },
+    { t: draft("Checked with bloodwork"), d: draft("Repeat bloodwork 4 to 8 weeks after your last visit shows how your levels have changed.") },
+  ],
+};

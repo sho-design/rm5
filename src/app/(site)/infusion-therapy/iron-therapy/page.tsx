@@ -9,6 +9,7 @@ import { IronCheck } from "@/components/pages/iron/IronCheck";
 import { IronPrices, IronSteps, IronWho } from "@/components/pages/iron/IronSections";
 import { IronDay } from "@/components/pages/iron/IronDay";
 import { IronPlanner } from "@/components/pages/iron/IronPlanner";
+import { IronJourney } from "@/components/pages/iron/IronJourney";
 
 const title = "Tired of being tired?";
 const lead =
@@ -49,6 +50,8 @@ export default function IronTherapyPage() {
       <IronWho cards={ironWho} />
 
       <IronSteps steps={ironSteps} />
+
+      <IronJourney />
 
       <IronDay noteHref={noteRoute("iron-infusion")} />
 

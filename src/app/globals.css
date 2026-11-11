@@ -390,3 +390,22 @@
   .rm-marquee-copy { display: none; }
 }
 @keyframes rmMarquee { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 6px)); } }
+
+/* Iron journey diagram (IronJourney): stores fill over three steps, red cells grow in. SVG SMIL motion and these
+   only render without reduced motion (the component checks). */
+@keyframes ijFill {
+  0% { transform: scaleX(0.04); }
+  22% { transform: scaleX(0.33); }
+  30% { transform: scaleX(0.33); }
+  52% { transform: scaleX(0.66); }
+  60% { transform: scaleX(0.66); }
+  82% { transform: scaleX(1); }
+  100% { transform: scaleX(1); }
+}
+@keyframes ijCell {
+  0% { transform: scale(0.2); opacity: 0; }
+  25% { transform: scale(1.06); opacity: 1; }
+  40% { transform: scale(1); }
+  85% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0; }
+}
