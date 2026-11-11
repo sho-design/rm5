@@ -1,6 +1,9 @@
 import { aesConcerns, aesCopy as c, aesFamilies, aesTreatments, type AesFamily } from "@/content/aesthetics-menu";
 import { Display, Eyebrow, Section, SmartLink } from "@/components/ui";
 import { routes } from "@/lib/routes";
+import { existsSync } from "node:fs";
+import path from "node:path";
+import { ToolsMarquee, type ToolTile } from "./ToolsMarquee";
 
 /** "Start with what you notice.": nine concerns, each opening the menu filtered to it. */
 export function AesConcerns({ title = c.concernsTitle }: { title?: string }) {
@@ -38,18 +41,21 @@ export function AesConcerns({ title = c.concernsTitle }: { title?: string }) {
 
 /** The devices and product lines the clinic names, as a quiet strip. */
 export function AesTools() {
+  // A logo shows once its file is in public/images/brands; until then the tile shows the name.
+  const tools: ToolTile[] = c.toolsDetail.map((t) => ({ name: t.name, what: t.what, family: t.family, logo: brandLogo(t.slug) }));
   return (
-    <Section tight className="flex flex-col gap-3">
-      <span className="text-[13px] font-semibold text-muted">{c.toolsTitle}</span>
-      <ul className="flex flex-wrap gap-2">
-        {c.tools.map((t) => (
-          <li key={t} className="rounded-chip border border-border bg-card px-3.5 py-1.5 text-[14px] font-semibold">
-            {t}
-          </li>
-        ))}
-      </ul>
+    <Section tight>
+      <ToolsMarquee tools={tools} />
     </Section>
   );
+}
+
+function brandLogo(slug: string): string | null {
+  for (const ext of ["svg", "png", "webp"]) {
+    const rel = `/images/brands/${slug}.${ext}`;
+    if (existsSync(path.join(process.cwd(), "public", rel))) return rel;
+  }
+  return null;
 }
 
 /** "Screened first, treated second.": who we screen out, what to expect, downtime, how long it lasts. */

@@ -369,3 +369,24 @@
   outline-offset: 3px;
 }
 :root[data-theme="contrast"] .rm-skin svg { opacity: 1; }
+
+/* "The tools we use" (ToolsMarquee): tiles drift left in a loop, 60s a lap, pausing on hover and focus or with
+   the Pause button. Edges fade so tiles slide in and out softly. Reduced motion: a still, wrapping grid. */
+.rm-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.rm-marquee-track { display: flex; gap: 12px; width: max-content; margin: 0; padding: 4px 0; list-style: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .rm-marquee-track { animation: rmMarquee 60s linear infinite; }
+  .rm-marquee:hover .rm-marquee-track,
+  .rm-marquee:focus-within .rm-marquee-track,
+  .rm-marquee-paused .rm-marquee-track { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rm-marquee { -webkit-mask-image: none; mask-image: none; }
+  .rm-marquee-track { flex-wrap: wrap; width: auto; }
+  .rm-marquee-copy { display: none; }
+}
+@keyframes rmMarquee { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 6px)); } }
