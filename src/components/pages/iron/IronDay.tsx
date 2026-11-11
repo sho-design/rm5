@@ -16,7 +16,7 @@ export function IronDay({ noteHref }: { noteHref?: string }) {
         <Display size="xs">{c.title}</Display>
       </div>
 
-      <ol className="flex flex-col gap-2.5 md:flex-row md:gap-1.5">
+      <ol className="rm-iron-day flex flex-col gap-2.5 md:flex-row md:gap-1.5">
         {c.parts.map((p, i) => (
           <li key={p.t} className="flex flex-col gap-2 md:min-w-0" style={{ flexGrow: p.w, flexBasis: 0 }}>
             <div className={`flex h-[56px] items-center gap-3 rounded-card-sm px-4 md:h-[64px] ${tints[i]} ${i === 0 ? "md:rounded-l-block" : ""} ${i === c.parts.length - 1 ? "md:rounded-r-block" : ""}`}>

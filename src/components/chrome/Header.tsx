@@ -73,6 +73,16 @@ export function Header() {
     window.addEventListener("keydown", onKey, true);
     return () => window.removeEventListener("keydown", onKey, true);
   }, [search]);
+  // A shortcut pressed before this mounted was caught by the head script (ThemeScript): open search with it.
+  useEffect(() => {
+    const w = window as Window & { __rmQ?: string | null; __rmReady?: boolean };
+    w.__rmReady = true;
+    if (typeof w.__rmQ === "string") {
+      typedEarly.current = w.__rmQ;
+      w.__rmQ = null;
+      setSearch(true);
+    }
+  }, []);
   // "/" or Ctrl+K (Cmd+K on a Mac) opens search from anywhere, unless you are typing in a field.
   useEffect(() => {
     const onKey = (e: globalThis.KeyboardEvent) => {

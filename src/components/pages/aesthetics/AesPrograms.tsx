@@ -88,6 +88,7 @@ export function AesPrograms({
               <SmartLink
                 to={`${bookTo}&reason=${encodeURIComponent(c.reason(p.t))}`}
                 className="w-fit"
+                aria-label={`${c.book}: ${p.t}`}
               >
                 <TextLink>{c.book}</TextLink>
               </SmartLink>

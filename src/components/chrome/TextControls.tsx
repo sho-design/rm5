@@ -14,7 +14,7 @@ export function TextControls({ inverse, compact, className }: { inverse?: boolea
   const btn = cn("inline-flex items-center justify-center rounded-[6px] border transition-colors", compact ? "min-h-7 min-w-8 px-1.5" : "min-h-10 min-w-10 px-2.5", inverse ? "border-white/35 hover:border-white" : "border-border hover:border-sky");
   return (
     <div role="group" aria-label="Text size and contrast" className={cn("flex items-center gap-1.5", inverse ? "text-white" : "text-muted", className)}>
-      <span className="mr-1 whitespace-nowrap">Text size</span>
+      <span className={cn("mr-1 whitespace-nowrap", compact && "rm-tc-label")}>Text size</span>
       <button type="button" onClick={down} aria-label="Decrease text size" disabled={step === 0} className={cn(btn, "disabled:opacity-50")}>
         A-
       </button>

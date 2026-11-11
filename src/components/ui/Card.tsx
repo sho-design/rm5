@@ -93,14 +93,14 @@ export function BenefitCard({ big, t, d, bg }: Benefit) {
  */
 export function BenefitStrip({ items }: { items: Benefit[] }) {
   return (
-    <ul className="grid grid-cols-1 overflow-hidden rounded-card border border-border bg-card md:grid-cols-3">
+    <ul className="grid grid-cols-1 overflow-hidden rounded-card border border-border bg-card lg:grid-cols-3">
       {items.map((b, i) => (
         <li
           key={b.t}
-          className="rm-rise flex items-center gap-4 p-5 max-md:[&:not(:first-child)]:border-t max-md:border-border md:[&:not(:first-child)]:border-l md:border-border lg:gap-5 lg:p-6"
+          className="rm-rise flex items-center gap-4 p-5 max-lg:[&:not(:first-child)]:border-t max-lg:border-border lg:[&:not(:first-child)]:border-l lg:border-border lg:gap-5 lg:p-6"
           style={{ animationDelay: `${i * 80}ms` }}
         >
-          <span className="display-tight flex h-[64px] min-w-[64px] shrink-0 items-center justify-center rounded-[18px] px-3 text-[30px] leading-none shadow-[inset_0_0_0_1px_rgba(15,31,46,0.07)] tracking-[-.03em] text-ink lg:h-[72px] lg:min-w-[72px] lg:text-[34px]" style={{ background: b.bg }}>
+          <span className="display-tight flex h-[64px] w-[76px] shrink-0 items-center justify-center rounded-[18px] text-[28px] leading-none shadow-[inset_0_0_0_1px_rgba(15,31,46,0.07)] tracking-[-.03em] text-ink lg:h-[72px] lg:w-[84px] lg:text-[32px]" style={{ background: b.bg }}>
             {b.big}
           </span>
           <span className="flex min-w-0 flex-col gap-1">

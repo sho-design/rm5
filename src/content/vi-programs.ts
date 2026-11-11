@@ -77,7 +77,7 @@ const prog: Record<string, Omit<Program, "k" | "color">> = {
   hair: {
     t: draft("Phục hồi tóc"),
     forWhom: draft("Tóc thưa"),
-    steps: [draft("Khám bác sĩ và xét nghiệm máu trước (OHIP)"), draft("Truyền sắt nếu ferritin thấp"), draft("PRP da đầu mỗi tháng, bốn lần, sau đó mỗi 3 đến 6 tháng")],
+    steps: [draft("Khám bác sĩ và xét nghiệm máu trước (OHIP)"), draft("Truyền sắt nếu ferritin thấp"), draft("PRP da đầu mỗi tháng một lần, trong bốn tháng, sau đó mỗi 3 đến 6 tháng")],
     length: draft("Khoảng 16 tuần, sau đó duy trì"),
   },
   event: {
@@ -100,7 +100,7 @@ const comb: Record<string, Pick<(typeof combinedPlans)[number], "t" | "start" | 
   hair: {
     t: draft("Phục hồi tóc toàn diện"),
     start: draft("Khám bác sĩ và xét nghiệm máu (OHIP)"),
-    then: draft("Truyền sắt nếu ferritin thấp, PRP da đầu mỗi tháng bốn lần, truyền Biotin mỗi tháng nếu bạn muốn"),
+    then: draft("Truyền sắt nếu ferritin thấp, PRP da đầu mỗi tháng một lần, trong bốn tháng, truyền Biotin mỗi tháng nếu bạn muốn"),
     upkeep: draft("PRP mỗi 3 đến 6 tháng; kiểm tra lại ferritin"),
   },
   tired: {

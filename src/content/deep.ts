@@ -292,7 +292,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
       { q: "Is it covered by OHIP?", a: "The assessment, nerve blocks, trigger point injections and joint injections are OHIP-covered when you are referred and have a valid health card. Private procedures are listed with their prices, and you are told the price before anything is booked." },
       { q: "Does a nerve block hurt?", a: "You feel the local anaesthetic, similar to dental freezing, then pressure. Most people describe the procedure as uncomfortable rather than painful, and it is usually over in minutes." },
       // A patient four weeks past referral found the "not heard back" answer only on the main FAQ (round 18).
-      { q: draft("My doctor sent a referral. What happens now?"), a: draft("We call you to book, usually within two to four weeks of the referral arriving. Not heard from us after four weeks? Call 905-709-3222 and we check that your referral arrived.") },
+      { q: draft("My doctor sent a referral. What happens now?"), a: draft("We call you to book. Your first assessment is usually within two to four weeks of the referral arriving. Not heard from us after four weeks? Call 905-709-3222 and we check that your referral arrived.") },
       { q: "How soon will I feel something?", a: "It varies by person and by procedure, and the physician will tell you what is typical for yours. Some people notice a change the same day; for others it takes longer, or the first procedure is diagnostic. Results vary from person to person." },
       { q: "Will I have to keep coming back?", a: "Some people need a short series; some need occasional repeat procedures; some need none after rehab. The physician sets the plan with you and reviews it at every visit. There is no automatic schedule." },
       { q: "Can I drive home?", a: "Usually yes after trigger point and most joint injections. After some nerve blocks the physician may ask you to have a ride. You are told at the time of booking." },
@@ -683,7 +683,7 @@ export const dripCopy = {
 export const bodySpots: BodySpot[] = [
   { label: "Head", short: "Head", x: 110, y: 32, optionIndex: 0 },
   { label: "Neck", short: "Neck", x: 110, y: 82, optionIndex: 1 },
-  { label: "Shoulder", short: "Shldr", x: 40, y: 100, optionIndex: 2 },
+  { label: "Shoulder", short: "Shoulder", x: 40, y: 100, optionIndex: 2 },
   { label: "Upper back muscles", short: "Muscle", x: 160, y: 130, optionIndex: 3 },
   { label: "Low back", short: "Back", x: 110, y: 215, optionIndex: 1 },
   { label: "Hip", short: "Hip", x: 60, y: 270, optionIndex: 2 },

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "@/components/chrome/Wordmark";
 import { buttonClass } from "@/components/ui/Button";
@@ -23,6 +23,13 @@ export function ViHeader() {
   const [status, setStatus] = useState<{ text: string; open: boolean } | null>(
     null,
   );
+  // The current page's link can sit off-screen in the sideways row on a phone; bring it into view (round 29, Huong).
+  const phoneNav = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const row = phoneNav.current?.querySelector<HTMLElement>(".scroll-x");
+    const on = phoneNav.current?.querySelector<HTMLElement>('[aria-current="page"]')?.parentElement;
+    if (row && on) row.scrollLeft = Math.max(0, on.offsetLeft - (row.clientWidth - on.offsetWidth) / 2);
+  }, [path]);
   useEffect(() => {
     const tick = () => setStatus(viOpenStatus());
     tick();
@@ -31,7 +38,7 @@ export function ViHeader() {
   }, []);
 
   const nav = (
-    <ul className="scroll-x flex gap-1 xl:flex-wrap">
+    <ul className="scroll-x relative flex gap-1 xl:flex-wrap">
       {c.nav.map((n) => {
         const href = viRoutes[n.k];
         const on = path === href;
@@ -131,6 +138,7 @@ export function ViHeader() {
         (it was 232px with three rows of links, round 28, Anh). */}
       <nav
         aria-label={c.navLabel}
+        ref={phoneNav}
         className="mx-auto w-full max-w-[1440px] border-b border-border px-3 py-2.5 md:px-7 xl:hidden"
       >
         {nav}

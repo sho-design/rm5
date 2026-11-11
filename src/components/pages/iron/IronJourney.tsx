@@ -5,7 +5,8 @@ import { Display, Eyebrow, Section } from "@/components/ui";
 import { ironJourney as c } from "@/content/iron";
 import { cn } from "@/lib/cn";
 
-const STEP_MS = 4200;
+/** Long enough to read the longest step (about 27 words) at a calm pace (round 29, Nadia). */
+const STEP_MS = 8000;
 const IRON = "#8A4B2A";
 const RED = "#E07A5F";
 
@@ -57,7 +58,7 @@ export function IronJourney() {
 
   // Each part of the picture is bright when its step is active, soft otherwise.
   const part = (i: number) => ({
-    opacity: step === i ? 1 : 0.5,
+    opacity: step === i ? 1 : 0.62,
     transition: "opacity 350ms cubic-bezier(.2,.8,.2,1)",
   });
   const anim = !reduced;
@@ -158,7 +159,7 @@ export function IronJourney() {
                 x="92"
                 y="46"
                 textAnchor="middle"
-                fontSize="13"
+                fontSize="17"
                 fontWeight="600"
                 fill="#5A4636"
               >
@@ -247,7 +248,7 @@ export function IronJourney() {
               <text
                 x="318"
                 y="236"
-                fontSize="13"
+                fontSize="17"
                 fontWeight="600"
                 fill="#8A3F2B"
               >
@@ -271,7 +272,7 @@ export function IronJourney() {
                 x="515"
                 y="104"
                 textAnchor="middle"
-                fontSize="13"
+                fontSize="17"
                 fontWeight="600"
                 fill="#5A4636"
               >
@@ -320,7 +321,7 @@ export function IronJourney() {
                 x="515"
                 y="166"
                 textAnchor="middle"
-                fontSize="12"
+                fontSize="15"
                 fill="#7A6656"
               >
                 Visit 1, 2, 3
@@ -365,7 +366,7 @@ export function IronJourney() {
                 x="400"
                 y="320"
                 textAnchor="middle"
-                fontSize="13"
+                fontSize="17"
                 fontWeight="600"
                 fill="#8A3F2B"
               >
@@ -409,7 +410,7 @@ export function IronJourney() {
                 x="566"
                 y="404"
                 textAnchor="middle"
-                fontSize="13"
+                fontSize="17"
                 fontWeight="600"
                 fill="#2C4A3A"
               >
@@ -420,6 +421,16 @@ export function IronJourney() {
           <figcaption className="text-[12px] text-muted">{c.note}</figcaption>
         </figure>
         <div className="flex flex-col gap-5 lg:col-start-1 lg:row-start-2">
+          {/* Pause sits above the steps, where a reader sees it before the text moves on (round 29). */}
+          {reduced ? null : (
+            <button
+              type="button"
+              onClick={() => setPlaying((p) => !p)}
+              className="self-start rounded-chip border-[1.5px] border-border bg-white px-4 py-2 text-[13px] font-semibold hover:border-sky"
+            >
+              {playing ? c.pause : c.play}
+            </button>
+          )}
           <ol className="flex flex-col gap-1.5">
             {c.steps.map((s, i) => {
               const on = step === i;
@@ -463,16 +474,6 @@ export function IronJourney() {
               );
             })}
           </ol>
-          {reduced ? null : (
-            <button
-              type="button"
-              onClick={() => setPlaying((p) => !p)}
-              aria-pressed={!playing}
-              className="self-start rounded-chip border-[1.5px] border-border bg-white px-4 py-2 text-[13px] font-semibold hover:border-sky"
-            >
-              {playing ? c.pause : c.play}
-            </button>
-          )}
         </div>
       </div>
     </Section>

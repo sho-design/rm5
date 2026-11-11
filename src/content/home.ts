@@ -82,7 +82,7 @@ export const carePaths: CarePath[] = [
     page: bookFor("family", "concern"),
     steps: [
       { svc: "Family Medicine", time: "Week 1", t: "Visit and bloodwork", d: "Ferritin, thyroid, B12 and sugars drawn on site.", page: "family", link: "Family Medicine" },
-      { svc: "Family Medicine", time: "Day 3", t: "Results, explained", d: draft("A call or results visit. Tiredness has many causes, and most people need no treatment beyond a plan with their doctor."), page: "labs", link: "Getting your results" },
+      { svc: "Family Medicine", time: draft("About a week"), t: "Results, explained", d: draft("A call or results visit. Tiredness has many causes, and most people need no treatment beyond a plan with their doctor."), page: "labs", link: "Getting your results" },
       { svc: "Family Medicine", time: "If needed", t: draft("Treatment, if your results show it"), d: draft("For low iron, usually tablets first. An iron infusion only if tablets are not right for you."), page: "iron", link: "Iron therapy" },
       { svc: "Family Medicine", time: "Week 6", t: "Recheck", d: "Repeat bloodwork shows the response. Your plan adjusts.", page: "year", link: "Your year" },
     ],

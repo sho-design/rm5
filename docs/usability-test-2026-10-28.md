@@ -1345,3 +1345,24 @@ Fixed after the round:
 - Tablet: text size and high contrast in the top bar from 768px (social icons move to wide screens; while closed, the referral link waits for wider screens).
 
 Not changed, for the clinic: the fasting test list (still needed); Monday's first slot is 9:30am; skin health plans step 1 "From $150" and "Microneedling" (prototype lines on the open list); no prices on programs by design.
+
+## Round 29 (2026-11-11): 20 personas after round 28's fixes
+
+Groups: iron and infusion, services and family medicine, aesthetics, navigation and edge cases. No console errors, no horizontal scroll; prices, hours, iron days and last starts, ECG and results timing all correct. The 3am chest-tightness persona got the emergency card first, 988 and 811 links, and "Do not book. Dial 911 now." on /book.
+
+Fixed after the round:
+- Afternoon fasting: picking 3pm said "last food between 3am and 5am" with no warning, and a 3pm fasting booking gave no guidance. The picker now notes that Tuesday afternoon suits a 4 hour fast and longer fasts are easier in the morning; booking at 10am or later shows the 4 hour stop time and how to move to a morning.
+- Vietnamese hair plan said scalp PRP "four times every month"; now "once a month, for four months" (both places).
+- Pain Centre wait: one meaning everywhere, "your first assessment is usually within two to four weeks of the referral arriving".
+- Vietnamese booking safety line now lists the same signs as English (seizure, fever under 3 months, a child hard to wake) and the 988 crisis line.
+- Facts strip: three across only from 1024px; number tiles one width so titles line up.
+- Iron diagram: 8 seconds a step (was about 4), Pause above the steps, larger labels, less faded inactive parts, full strength in high contrast; Pause no longer reads "Play, pressed".
+- "Most private plans cover the iron" now "Many", matching the FAQ and pricing page.
+- Tool tiles and any "#family-…" link now open the phone accordion; a product opened from search is outlined after in-site navigation too (new HashTarget).
+- Search: every aesthetics treatment is indexed ("Radiesse", "biostimulator"); product rows say "plus HST"; plans and programs rank below the page itself ("ferritin" now gives Iron therapy first).
+- "/" or Ctrl+K pressed before the page finished loading was lost (and spaces scrolled the page); the head script now catches it and search opens with the letters (5 of 5 runs).
+- Home "Low energy" pathway said results on "Day 3"; now "About a week".
+- Largest text: iron day timeline stacks instead of truncating; the tablet top bar drops the "Text size" word so the status keeps room.
+- Vietnamese page row scrolls the current page into view; program links have unique names; the event booking reason includes the year; "Shldr" spelled out.
+
+Not changed, for the clinic: Radiesse is not described on /medical-aesthetics/injectables and the menu does not say who injects it; /medical-aesthetics/pricing "From $150 / $350" and "Microneedling" (open item); the For physicians card's "Epidural, facet and medial branch blocks" with no fluoroscopy at the clinic; "Dial 911" stays plain text by clinic choice; "A longer first appointment" wording with a 30 minute visit.

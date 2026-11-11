@@ -294,7 +294,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     ...(visit?.bring ?? []).filter((l) => !typed(l) && !ontarioLine(l)),
     ...(card === 1 ? [x.card.bring] : card === 2 ? [x.card.bringNone] : []),
     ...(visit?.payment ? (payments[payment]?.bring ?? []) : []),
-    ...(visit?.fasting && slot != null ? [slot < 10 ? fastLine(slot) : config.fasting.late] : []),
+    ...(visit?.fasting && slot != null ? [slot < 10 ? fastLine(slot) : x.fastingLate(clock(slot - 4))] : []),
     ...(visit?.fastingMaybe && slot != null && slot < 10 ? [`${x.fastingIf} ${fastLine(slot)}`] : []),
     ...(who === 0 ? [forOther ? x.firstVisitTheirs : config.firstVisit] : []),
   ].map((l) => (forOther ? l.replace(/^(?:Your )?(Ontario )?health card/i, (_m, on: string | undefined) => `Their ${on ?? ""}health card`) : l));
@@ -509,6 +509,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
         {fromVi && state === 1 ? (
           <div lang="vi" className="pretty flex flex-col gap-1.5 rounded-tile border-[1.5px] border-[color:var(--rm-coral,#E0675A)] bg-card px-4 py-3 text-[14px] leading-[1.5]">
             <strong className="text-[15px]">{x.vi.emergency}</strong>
+            <span className="font-semibold">{x.vi.crisis}</span>
             <span>{x.vi.help}</span>
           </div>
         ) : null}

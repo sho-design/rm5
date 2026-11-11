@@ -86,7 +86,7 @@ export function IronPrices({ prices }: { prices: IronPrice[] }) {
           <Display size="xs">What it costs, plainly.</Display>
           <span className="text-[15px] text-muted">Your assessment and bloodwork are OHIP-insured. The infusion visit is not. Prices include HST.</span>
         </div>
-        <span className="max-w-[300px] text-[13px] leading-[1.5] text-muted md:text-right">Most private plans cover the iron itself with a prescription. We give you a receipt for the rest.</span>
+        <span className="max-w-[300px] text-[13px] leading-[1.5] text-muted md:text-right">Many private plans cover the iron itself with a prescription. We give you a receipt for the rest.</span>
       </div>
       <div className="grid grid-cols-1 gap-card md:grid-cols-2 lg:grid-cols-4">
         {prices.map((pr) => (

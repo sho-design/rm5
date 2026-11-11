@@ -7,6 +7,7 @@ import { searchDocs, type SearchDoc } from "@/lib/search";
 import { aliasesFor, searchExtras } from "./search-synonyms";
 import { skinProducts } from "./skincare";
 import { aesPrograms, combinedPlans } from "./programs";
+import { aesFamilies, aesTreatments } from "./aesthetics-menu";
 
 /**
  * Site search index, built the same way as the prototype's INDEX:
@@ -20,7 +21,7 @@ const pages: SearchEntry[] = [
   ...infusionPages.map((p) => ({ kind: divisions.infusion.label, label: p.title, sub: p.description, page: p.key })),
   ...signatureDrips.map((d) => ({ kind: "Drip", label: d.t, sub: d.d, page: dripRoute(d.slug) })),
   // Every SkinCeuticals product and aesthetics program, straight to its card ("CE Ferulic", "glass skin").
-  ...skinProducts.map((p) => ({ kind: "SkinCeuticals", label: p.name, sub: `$${p.srp}, ${p.size}${p.d ? `. ${p.d}` : ""}`, page: `${routes.aesSkincare}#${p.id}` })),
+  ...skinProducts.map((p) => ({ kind: "SkinCeuticals", label: p.name, sub: `$${p.srp} plus HST, ${p.size}${p.d ? `. ${p.d}` : ""}`, page: `${routes.aesSkincare}#${p.id}` })),
 ];
 
 const handWritten: SearchEntry[] = [
@@ -80,9 +81,18 @@ export const searchIndex: SearchEntry[] = [...generated, ...pages, ...handWritte
  */
 export const baseSearchDocs: SearchDoc[] = [
   ...searchIndex.map((r) => ({ kind: r.kind, label: r.label, sub: r.sub, page: r.page, keys: aliasesFor(r.page) })),
+  // Every treatment on the menu, by name and brand ("Radiesse", "biostimulator", round 29), to its family.
+  ...aesTreatments.map((t) => ({
+    kind: "Aesthetics treatment",
+    label: t.brand ? `${t.name}, ${t.brand}` : t.name,
+    sub: t.d,
+    page: `${routes.aesMenu}#family-${t.family}`,
+    group: `aes-${t.id}`,
+    keys: `${t.brand ?? ""} ${aesFamilies[t.family].t}`,
+  })),
   // Programs and combined plans, with the words people use ("hair loss" finds Hair restoration, round 28).
-  ...aesPrograms.map((p) => ({ kind: "Aesthetics program", label: p.t, sub: `${p.forWhom}. ${p.length}.`, page: `${routes.aesMenu}#program-${p.k}`, keys: p.keys })),
-  ...combinedPlans.map((p) => ({ kind: "Combined plan", label: p.t, sub: `${p.start}, then ${p.then.charAt(0).toLowerCase()}${p.then.slice(1)}.`, page: `${routes.infusionPricing}#combined`, group: `combined-${p.k}`, keys: p.keys })),
+  ...aesPrograms.map((p) => ({ kind: "Aesthetics program", label: p.t, sub: `${p.forWhom}. ${p.length}.`, page: `${routes.aesMenu}#program-${p.k}`, keys: p.keys, weight: 0.85 })),
+  ...combinedPlans.map((p) => ({ kind: "Combined plan", label: p.t, sub: `${p.start}, then ${p.then.charAt(0).toLowerCase()}${p.then.slice(1)}.`, page: `${routes.infusionPricing}#combined`, group: `combined-${p.k}`, keys: p.keys, weight: 0.7 })),
   ...searchExtras,
 ];
 

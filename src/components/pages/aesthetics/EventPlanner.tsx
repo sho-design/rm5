@@ -52,7 +52,7 @@ export function EventPlanner() {
     });
   }, [event, today]);
 
-  const reason = event ? c.reason(fmt(event)) : c.reasonNoDate;
+  const reason = event ? c.reason(`${fmt(event)}, ${event.getUTCFullYear()}`) : c.reasonNoDate;
   const book = `${bookFor("aesthetics", "consult")}&reason=${encodeURIComponent(reason)}`;
 
   return (

@@ -32,6 +32,7 @@ export function FastingCards() {
           ))}
         </select>
       </label>
+      {slot >= 12 ? <p className="pretty max-w-[720px] rounded-[12px] bg-sun-tint px-4 py-3 text-[14px] font-semibold leading-[1.5] text-sun-ink">{c.afternoon}</p> : null}
       <ul className="grid grid-cols-1 gap-card sm:grid-cols-2 lg:grid-cols-4" aria-live="polite">
         {c.fasting.map((f) => {
           const [from, to] = f.window;

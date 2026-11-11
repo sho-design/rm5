@@ -364,7 +364,10 @@
 /* A card opened from search or a link (#ce-ferulic, #regimen-aging) is outlined so it is easy to find (round 28). */
 [data-skin-types]:target,
 [id^="regimen-"]:target,
-[id^="program-"]:target {
+[id^="program-"]:target,
+[data-skin-types][data-hash-target],
+[id^="regimen-"][data-hash-target],
+[id^="program-"][data-hash-target] {
   outline: 3px solid var(--rm-sky);
   outline-offset: 3px;
 }
@@ -409,3 +412,11 @@
   85% { transform: scale(1); opacity: 1; }
   100% { transform: scale(0.9); opacity: 0; }
 }
+
+/* Largest text (round 29, Olivia): the iron day's four parts stack instead of squeezing into one row; the top
+   bar drops the "Text size" word below wide screens so the open or closed status keeps its room; the iron
+   journey diagram is full strength in high contrast. */
+:root[data-text] .rm-iron-day { flex-direction: column; }
+:root[data-text] .rm-iron-day .truncate { white-space: normal; overflow: visible; }
+@media (max-width: 1279px) { :root[data-text] .rm-tc-label { display: none; } }
+:root[data-theme="contrast"] #iron-journey svg g[style] { opacity: 1 !important; }

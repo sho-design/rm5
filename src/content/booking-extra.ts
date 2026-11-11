@@ -30,9 +30,13 @@ export const bookingExtra = {
     draft(`Fasting for this draw? Stop eating by ${by10} the night before, or by ${by12} if your requisition says 12 hours. Water is fine unless it says no water. Take your usual medications unless your doctor said otherwise.`),
   /** Shown at the top of the form for people who came from a Vietnamese page (round 28, Anh). */
   vi: {
-    emergency: draft("Đau ngực, khó thở, yếu hoặc tê một bên người, nói khó, hoặc chảy máu nhiều: gọi 911 ngay. Không đặt lịch."),
+    emergency: draft("Đau ngực, khó thở, yếu hoặc tê một bên người, nói khó, co giật, chảy máu nhiều, trẻ dưới 3 tháng bị sốt, hoặc trẻ lừ đừ khó đánh thức: gọi 911 ngay. Không đặt lịch."),
+    crisis: draft("Có ý nghĩ tự tử hoặc tự làm hại bản thân: gọi hoặc nhắn tin 988, bất cứ lúc nào."),
     help: draft("Mẫu đặt lịch này bằng tiếng Anh. Cần giúp bằng tiếng Việt? Gọi 905-709-3222, bác sĩ và nhiều nhân viên nói tiếng Việt."),
   },
+  /** Fasting bloodwork booked at 10am or later: what still works, and how to move it (round 29, Lena). */
+  fastingLate: (by4: string) =>
+    draft(`Fasting is easiest before 10am. At this time, a 4 hour fast means no food after ${by4}. If your requisition says 8 hours or more, call us at 905-709-3222 to move to a morning, or book a morning on another day.`),
   fastingIf: draft("If your doctor asked for fasting bloodwork with this visit:"),
   /** Review line for someone else's booking: "Thu Tran. You are their daughter." */
   youAreTheir: (relationship: string) => draft(`Your relationship: ${relationship.toLowerCase()}.`),
