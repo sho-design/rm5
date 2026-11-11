@@ -8,6 +8,7 @@ import { AmIDue } from "./AmIDue";
 import { CoverageChecker } from "./CoverageChecker";
 import { CompareTable, InfusionHandoff } from "./InfusionExtras";
 import { Ladder } from "./Ladder";
+import { PainGuide } from "./PainGuide";
 import { AesFamilies } from "@/components/pages/aesthetics/AesSections";
 import { InfusionDoors } from "@/components/pages/infusion/InfusionDoors";
 
@@ -25,6 +26,7 @@ export function DeepDive({ k, division, dive }: { k: DivisionKey; division: Divi
       {/* The concern chooser now opens the page (DivisionPage), ahead of the services. */}
 
       {k === "family" ? <AmIDue /> : null}
+      {k === "pain" ? <PainGuide /> : null}
       {/* Infusion funnel: how you feel, then the menu, then how it works here. The build-a-drip box was removed: its fixed prices did not match the drips page. */}
       {k === "infusion" ? (
         <>

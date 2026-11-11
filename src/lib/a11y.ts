@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
 const reducedMotion = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -99,4 +99,17 @@ export function tabKeys(count: number, value: number, onChange: (i: number) => v
     onChange(next);
     e.currentTarget.querySelectorAll<HTMLElement>('[role="tab"]')[next]?.focus();
   };
+}
+
+/** True when the visitor asked for less motion (live: follows a change in the system setting). */
+export function useReducedMotion(): boolean {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduced(m.matches);
+    on();
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
+  return reduced;
 }

@@ -420,3 +420,7 @@
 :root[data-text] .rm-iron-day .truncate { white-space: normal; overflow: visible; }
 @media (max-width: 1279px) { :root[data-text] .rm-tc-label { display: none; } }
 :root[data-theme="contrast"] #iron-journey svg g[style] { opacity: 1 !important; }
+
+/* Pain Centre guided injection diagram (PainGuide): the needle draws in; full strength in high contrast. */
+@keyframes pgNeedle { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+:root[data-theme="contrast"] .pg-figure svg g[style] { opacity: 1 !important; }

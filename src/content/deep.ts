@@ -862,3 +862,31 @@ export const dripBuilderCopy = {
   ctaDrip: draft("Book this drip"),
   ctaIron: draft("Book an iron assessment"),
 } as const;
+
+/**
+ * "How a guided injection works" (PainGuide): the Pain Centre's ultrasound-guided procedure in four steps.
+ * Facts: physician-led, OHIP with a referral, Clarius-style wireless handheld ultrasound with the image on a
+ * tablet, no fluoroscopy or X-ray. No outcome claims. Draft until Dr. Nguyen reviews it (Nov 2026).
+ */
+export const painGuide = {
+  eyebrow: draft("How a guided injection works"),
+  title: draft("Guided by what we can see."),
+  lead: draft("Procedures here are guided by a wireless handheld ultrasound, so the physician sees the area live on a tablet. No X-ray and no radiation."),
+  play: draft("Play"),
+  pause: draft("Pause"),
+  note: draft("Illustration. Your physician explains your own procedure."),
+  figure: draft("Diagram: a referral arrives, a wireless handheld ultrasound scanner on the skin shows a joint live on a tablet, a needle is guided to the target on the screen, and a note goes back to your doctor."),
+  labels: {
+    referral: draft("Referral"),
+    probe: draft("Wireless scanner"),
+    screen: draft("Live image"),
+    target: draft("Target"),
+    report: draft("Note to your doctor"),
+  },
+  steps: [
+    { t: draft("Referral and assessment"), d: draft("Your doctor sends a referral. Dr. Nguyen assesses you, looks at your imaging and explains your options before anything is done.") },
+    { t: draft("A live picture"), d: draft("A small wireless ultrasound scanner rests on your skin and shows muscles, nerves and joints on a tablet, as it happens.") },
+    { t: draft("Guided placement"), d: draft("The physician watches the needle on the screen and places the medicine at the spot planned at your assessment.") },
+    { t: draft("A note to your doctor"), d: draft("You get aftercare advice before you leave, and your family doctor receives a procedure note.") },
+  ],
+};
