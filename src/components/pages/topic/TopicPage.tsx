@@ -1,5 +1,5 @@
 import { SkinRegimens } from "@/components/pages/aesthetics/AesPrograms";
-import { BenefitCard, CtaBand, Display, Faq, FactGrid, Grid, PathSteps, Section, SectionHeader, SmartLink, SubPageHero } from "@/components/ui";
+import { BenefitStrip, CtaBand, Display, Faq, FactGrid, Grid, PathSteps, Section, SectionHeader, SmartLink, SubPageHero } from "@/components/ui";
 import { CoverageChecker } from "@/components/pages/division/CoverageChecker";
 import { RenewalForm } from "@/components/pages/help/RenewalForm";
 import { RehabCompare } from "@/components/pages/rehab/RehabCompare";
@@ -107,11 +107,7 @@ export function TopicPage({ t }: { t: Topic }) {
       {t.benefits ? (
         <Section className="flex flex-col gap-6">
           <Display size="xs">{t.benefits.title}</Display>
-          <Grid cols={3}>
-            {t.benefits.items.map((b) => (
-              <BenefitCard key={b.t} {...b} />
-            ))}
-          </Grid>
+          <BenefitStrip items={t.benefits.items} />
         </Section>
       ) : null}
 

@@ -5,7 +5,7 @@ export { Display, Eyebrow, Lead, TextLink } from "./Text";
 export { Section, Block, SectionHeader, Grid } from "./Section";
 export { Photo, PhotoPill } from "./Photo";
 export { Tag, Dot } from "./Tag";
-export { Card, FactTile, FactGrid, BenefitCard, TintCard } from "./Card";
+export { Card, FactTile, FactGrid, BenefitCard, BenefitStrip, TintCard } from "./Card";
 export { Faq, FaqList } from "./Faq";
 export type { FaqRowItem } from "./Faq";
 export { OptionList, ChipRow, CheckChip } from "./OptionList";

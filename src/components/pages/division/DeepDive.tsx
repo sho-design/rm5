@@ -1,4 +1,4 @@
-import { BenefitCard, CtaBand, Display, Faq, Grid, PathSteps, Section } from "@/components/ui";
+import { BenefitStrip, CtaBand, Display, Faq, PathSteps, Section } from "@/components/ui";
 import type { DeepDive as DeepDiveData } from "@/content/deep";
 import { aestheticsLadder, deepFootDefaults, deepFootFallback, infusionCompareRows, rehabCoverage } from "@/content/deep";
 import { infusionLinks } from "@/content/home";
@@ -43,11 +43,7 @@ export function DeepDive({ k, division, dive }: { k: DivisionKey; division: Divi
 
       <Section className="flex flex-col gap-5">
         <Display size="xs">{dive.benefitsTitle}</Display>
-        <Grid cols={3}>
-          {dive.benefits.map((b) => (
-            <BenefitCard key={b.t} {...b} />
-          ))}
-        </Grid>
+        <BenefitStrip items={dive.benefits} />
       </Section>
 
       <PathSteps title={dive.pathTitle} steps={dive.path} />

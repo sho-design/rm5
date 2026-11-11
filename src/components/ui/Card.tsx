@@ -87,6 +87,32 @@ export function BenefitCard({ big, t, d, bg }: Benefit) {
   );
 }
 
+/**
+ * Three short facts in one strip: each number sits in a small tinted tile beside its title and line, with
+ * dividers between them. Replaces three tall cards that were mostly empty space (Nov 2026). Stacks on a phone.
+ */
+export function BenefitStrip({ items }: { items: Benefit[] }) {
+  return (
+    <ul className="grid grid-cols-1 overflow-hidden rounded-card border border-border bg-card md:grid-cols-3">
+      {items.map((b, i) => (
+        <li
+          key={b.t}
+          className="rm-rise flex items-center gap-4 p-5 max-md:[&:not(:first-child)]:border-t max-md:border-border md:[&:not(:first-child)]:border-l md:border-border lg:gap-5 lg:p-6"
+          style={{ animationDelay: `${i * 80}ms` }}
+        >
+          <span className="display-tight flex h-[64px] min-w-[64px] shrink-0 items-center justify-center rounded-[18px] px-3 text-[30px] leading-none shadow-[inset_0_0_0_1px_rgba(15,31,46,0.07)] tracking-[-.03em] text-ink lg:h-[72px] lg:min-w-[72px] lg:text-[34px]" style={{ background: b.bg }}>
+            {b.big}
+          </span>
+          <span className="flex min-w-0 flex-col gap-1">
+            <span className="text-[16px] font-semibold leading-[1.3] tracking-[-.01em] text-ink lg:text-[17px]">{b.t}</span>
+            <span className="pretty text-[14px] leading-[1.45] text-ink-2">{b.d}</span>
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 /** Tinted content card with title, description and optional meta pill / link. */
 export function TintCard({ t, d, bg, meta, link, page, time, className }: TintCardData & { className?: string }) {
   return (
