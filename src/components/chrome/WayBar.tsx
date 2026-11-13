@@ -4,10 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import type { NavKey } from "@/content/types";
-import { divisionAccent, divisionTint, divisions } from "@/content/divisions";
+import { divisionAccent, divisionTint, divisions, navOrder } from "@/content/divisions";
 import { href } from "@/lib/routes";
 import { cn } from "@/lib/cn";
 import { bookingFor } from "./StickyBook";
+import { WayMenu } from "./WayMenu";
 
 type Section = { el: HTMLElement; label: string };
 
@@ -186,6 +187,18 @@ export function WayBar({
   };
 
   const division = active ? divisions[active].label : null;
+  // The other pages in this division: its "explore" list, then its "more" list.
+  const siblings = active
+    ? [
+        ...divisions[active].explore.map((it) => ({ ...it, group: undefined })),
+        ...divisions[active].more.map((it) => ({ ...it, group: "Also in " + divisions[active].label })),
+      ]
+        .map((it) => {
+          const h = href(it.page as string);
+          return { label: it.label, href: h, group: it.group, current: h === pathname };
+        })
+        .filter((it, i, a) => a.findIndex((x) => x.href === it.href) === i)
+    : [];
   const here = current >= 0 ? sections[current]?.label : null;
   const short = here ?? page ?? division ?? "Restoration Medical";
   const book = bookingFor(pathname);
@@ -202,7 +215,7 @@ export function WayBar({
           : "pointer-events-none -translate-y-3 opacity-0",
       )}
     >
-      <div className="relative mx-auto flex h-14 w-full max-w-[1392px] items-center gap-2 overflow-hidden rounded-[16px] border border-border bg-page pl-2 pr-2 shadow-sticky md:gap-3 md:pl-3">
+      <div className="relative mx-auto flex h-14 w-full max-w-[1392px] items-center gap-2 rounded-[16px] border border-border bg-page pl-2 pr-2 shadow-sticky md:gap-3 md:pl-3">
         <Link
           href="/"
           aria-label="Restoration Medical home"
@@ -249,18 +262,27 @@ export function WayBar({
           {/* Wider screens: the whole path. */}
           <span className="hidden min-w-0 items-center gap-2 md:flex">
             {active ? (
-              <Link
-                href={href(active)}
-                className="flex h-10 shrink-0 items-center gap-2 rounded-chip px-3 font-semibold"
-                style={{ background: divisionTint[active] }}
-              >
-                <span
-                  aria-hidden
-                  className="h-2 w-2 rounded-full"
-                  style={{ background: divisionAccent[active] }}
-                />
-                {division}
-              </Link>
+              // The division: hover or click for the other divisions.
+              <WayMenu
+                label={
+                  <>
+                    <span
+                      aria-hidden
+                      className="h-2 w-2 shrink-0 rounded-full"
+                      style={{ background: divisionAccent[active] }}
+                    />
+                    {division}
+                  </>
+                }
+                items={navOrder.map((k) => ({
+                  label: divisions[k].label,
+                  href: href(k),
+                  current: k === active,
+                }))}
+                tint={divisionTint[active]}
+                buttonClassName="h-10 shrink-0 rounded-chip px-3 font-semibold"
+                buttonStyle={{ background: divisionTint[active] }}
+              />
             ) : null}
             {page ? (
               <>
@@ -269,16 +291,26 @@ export function WayBar({
                     ›
                   </span>
                 ) : null}
-                <button
-                  type="button"
-                  onClick={() =>
-                    window.scrollTo({ top: 0, behavior: "smooth" })
-                  }
-                  className="truncate font-semibold hover:underline"
-                  title="Back to the top of this page"
-                >
-                  {page}
-                </button>
+                {active && siblings.length ? (
+                  // The page: hover or click for the other pages in this division.
+                  <WayMenu
+                    label={<span className="truncate">{page}</span>}
+                    items={siblings}
+                    tint={divisionTint[active]}
+                    buttonClassName="h-10 rounded-chip px-2 font-semibold hover:bg-card"
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
+                    className="truncate font-semibold hover:underline"
+                    title="Back to the top of this page"
+                  >
+                    {page}
+                  </button>
+                )}
               </>
             ) : null}
             {sections.length ? (
