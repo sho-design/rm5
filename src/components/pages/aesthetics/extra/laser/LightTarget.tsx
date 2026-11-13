@@ -50,11 +50,14 @@ const FAT = 322;
  * (SMIL timeline paused), still with reduced motion, full strength in high contrast. Education only: no results
  * are shown. Copy in content/aes-laser.ts.
  */
-export function LightTarget() {
+/** `start`: on a device's own page, open on that device and do not tour the others. */
+export function LightTarget({ start }: { start?: LaserDeviceKey } = {}) {
   const reduced = useReducedMotion();
-  const [frame, setFrame] = useState<Frame>("picosure");
+  const [frame, setFrame] = useState<Frame>(
+    () => FRAMES.find((f) => frameDevice(f) === start) ?? "picosure",
+  );
   const [playing, setPlaying] = useState(true);
-  const [auto, setAuto] = useState(true);
+  const [auto, setAuto] = useState(!start);
   const [inView, setInView] = useState(false);
   const box = useRef<HTMLDivElement>(null);
   const svg = useRef<SVGSVGElement>(null);
@@ -233,7 +236,7 @@ export function LightTarget() {
           ) : null}
           <svg
             ref={svg}
-            viewBox="0 0 640 440"
+            viewBox="-20 0 660 440"
             role="img"
             aria-label={f.alt}
             className="h-auto w-full rounded-[18px] bg-white"

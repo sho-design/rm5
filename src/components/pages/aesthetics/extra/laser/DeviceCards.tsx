@@ -4,6 +4,8 @@ import { useEffect, useState, type PointerEvent } from "react";
 import { Display, Eyebrow, Section } from "@/components/ui";
 import { laserCopy as c, laserDevices } from "@/content/aes-laser";
 import { useReducedMotion } from "@/lib/a11y";
+import Link from "next/link";
+import { devicePath } from "@/content/aes-laser-devices";
 
 /**
  * The six devices as cards. With a mouse, a card leans a little toward the pointer and a soft light follows it;
@@ -107,6 +109,13 @@ export function DeviceCards() {
                 <dd>{d.sessions}</dd>
               </div>
             </dl>
+            <Link
+              href={devicePath(d.k)}
+              className="w-fit text-[14px] font-semibold text-link"
+            >
+              More about {d.name}
+              <span aria-hidden> ›</span>
+            </Link>
           </li>
         ))}
       </ul>

@@ -3,18 +3,34 @@ import { dripRoute, noteRoute, routes, viRoutes } from "@/lib/routes";
 import { signatureDrips } from "@/content/infusion-site";
 import { site } from "@/content/site";
 import { getHealthNotes, getLegalPages } from "@/lib/cms";
+import { laserDevices } from "@/content/aes-laser";
+import { devicePath } from "@/content/aes-laser-devices";
 
 /** /sitemap.xml: every static route, each health note and each legal page. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [notes, legal] = await Promise.all([getHealthNotes(), getLegalPages()]);
   // Drip pages without full copy are noindex, so they stay out of the sitemap too.
-  const drips = signatureDrips.filter((d) => d.detail).map((d) => dripRoute(d.slug));
-  const paths = new Set<string>([...Object.values(routes), ...Object.values(viRoutes), ...drips, ...notes.map((n) => noteRoute(n.slug)), ...legal.map((p) => `/legal/${p.slug}`)]);
+  const drips = signatureDrips
+    .filter((d) => d.detail)
+    .map((d) => dripRoute(d.slug));
+  const paths = new Set<string>([
+    ...Object.values(routes),
+    ...Object.values(viRoutes),
+    ...drips,
+    ...laserDevices.map((d) => devicePath(d.k)),
+    ...notes.map((n) => noteRoute(n.slug)),
+    ...legal.map((p) => `/legal/${p.slug}`),
+  ]);
   const lastModified = new Date();
   return [...paths].map((p) => ({
     url: new URL(p, site.url).toString(),
     lastModified,
     changeFrequency: p === "/" ? "weekly" : "monthly",
-    priority: p === "/" ? 1 : p.startsWith("/legal") || p === routes.sitemap ? 0.3 : 0.7,
+    priority:
+      p === "/"
+        ? 1
+        : p.startsWith("/legal") || p === routes.sitemap
+          ? 0.3
+          : 0.7,
   }));
 }
