@@ -14,7 +14,8 @@ export function FemaleFace() {
       <path d="M58 150c-12-2-18 10-14 26 4 14 12 22 22 20M242 150c12-2 18 10 14 26-4 14-12 22-22 20" />
       <path d="M94 142c10-8 26-8 36-2M170 140c10-6 26-6 36 2" />
       <path d="M98 166c8-6 22-6 30 0M172 166c8-6 22-6 30 0" />
-      <path d="M150 158v40c-4 6-10 10-16 10M150 208c6 2 12 0 16-4" />
+      {/* Nose: a soft bridge on one side, rounded nostril wings and the base between them. */}
+      <path d="M145 158c1 16 0 29-7 39c-4 6-3 11 3 11M165 199c4 4 3 9-3 9M144 210c4 1.5 8 1.5 12 0" strokeWidth="2" />
       <path d="M124 246c10 8 42 8 52 0M124 246c14-6 38-6 52 0" />
     </g>
   );
@@ -31,7 +32,8 @@ export function MaleFace() {
       <path d="M62 150c-12-2-18 10-14 26 4 14 12 22 22 20M238 150c12-2 18 10 14 26-4 14-12 22-22 20" />
       <path d="M92 140c12-6 28-6 38-1M170 139c10-5 26-5 38 1" strokeWidth="4.2" />
       <path d="M98 166c8-6 22-6 30 0M172 166c8-6 22-6 30 0" />
-      <path d="M150 158v42c-4 6-10 10-16 10M150 210c6 2 12 0 16-4" />
+      {/* Nose: a soft bridge on one side, rounded nostril wings and the base between them. */}
+      <path d="M145 158c1 17 0 31-7 41c-4 6-3 12 3 12M165 201c4 4 3 10-3 10M144 213c4 1.5 8 1.5 12 0" strokeWidth="2.2" />
       <path d="M126 248c12 4 36 4 48 0" />
     </g>
   );
