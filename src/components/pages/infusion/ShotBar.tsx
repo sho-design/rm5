@@ -51,7 +51,7 @@ export function ShotBar() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-block bg-ink text-white">
+    <div className="relative overflow-hidden rounded-block rm-ink-surface bg-ink text-white">
       {/* Soft glow in the chosen colour. */}
       <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 h-[420px] w-[420px] rounded-full opacity-30 blur-3xl motion-safe:transition-colors motion-safe:duration-300" style={{ background: color }} />
       <div className="relative grid grid-cols-1 gap-8 p-6 md:p-10 lg:grid-cols-[1.4fr_1fr] lg:gap-12 lg:p-12">

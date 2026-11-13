@@ -13,7 +13,7 @@ export function SkinCare() {
   return (
     <Section
       id="skin-aftercare"
-      className="grid scroll-mt-24 grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8"
+      className="rm-paper grid scroll-mt-24 grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8"
     >
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-3">

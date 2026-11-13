@@ -73,7 +73,7 @@ export function SeriesPlanner() {
   const book = `${bookFor("aesthetics", "skin")}&reason=${encodeURIComponent(start ? c.reason(k.t, fmt(start)) : k.t)}`;
 
   return (
-    <Section id="series-planner" className="scroll-mt-24">
+    <Section id="series-planner" className="rm-paper scroll-mt-24">
       <div className="grid grid-cols-1 gap-8 rounded-block bg-lilac-tint p-6 text-ink md:p-10 lg:grid-cols-[1fr_1.2fr] lg:gap-12 lg:p-12">
         <div className="flex flex-col gap-5">
           <Eyebrow tone="inherit" className="text-lilac-text">

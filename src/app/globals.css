@@ -492,3 +492,58 @@
   .rm-bag-drop { opacity: 1; transform: translateY(3px); }
   .rm-bag-fluid { transition: none; }
 }
+
+/* Dark theme: ink is close to the page colour, so solid ink buttons, the logo tile and selected chips turn
+   white with ink text (the primary action colours), and outlined ink controls take the text colour. Dark
+   panels (.rm-ink-surface: footer card, utility bar, menu, photo cards) stay dark, one step lighter. */
+:root[data-theme="dark"] .bg-ink.text-white:not(.rm-ink-surface) {
+  background-color: var(--action-primary-bg);
+  color: var(--action-primary-fg);
+  border-color: var(--action-primary-bg);
+}
+:root[data-theme="dark"] .rm-ink-surface { background-color: var(--surface-raised); }
+:root[data-theme="dark"] .border-ink.text-ink:not(.bg-white),
+:root[data-theme="dark"] .bg-page.text-ink,
+:root[data-theme="dark"] .bg-card.text-ink { color: var(--text-primary); }
+:root[data-theme="dark"] .border-ink.text-ink:not(.bg-white) { border-color: var(--text-primary); }
+
+/* Dark theme: the illustrated explainers (any section holding a role="img" drawing) are drawn for paper, with
+   ink lines and pale tints. In dark mode each becomes a light card on the navy page, with the light tokens
+   restored inside it, instead of losing its words and lines. */
+:root[data-theme="dark"] main section:is(:has([role="img"]), .rm-paper) {
+  --bg-page: var(--rm-paper);
+  --surface-card: var(--rm-paper-2);
+  --surface-raised: var(--rm-paper);
+  --border-default: var(--rm-line);
+  --border-strong: var(--rm-ink);
+  --text-primary: var(--rm-ink);
+  --text-secondary: var(--rm-ink-2);
+  --text-muted: var(--rm-ink-3);
+  --text-link: color-mix(in srgb, var(--rm-sky) 80%, var(--rm-ink));
+  --action-primary-bg: var(--rm-ink);
+  --action-primary-fg: #FFFFFF;
+  --div-family: var(--rm-sky-soft);
+  --div-pain: var(--rm-terracotta-tint);
+  --div-infusion: var(--rm-sage-tint);
+  --div-aesthetics: var(--rm-lilac-tint);
+  --div-rehab: var(--rm-sun-tint);
+  --rm-sky-text: color-mix(in srgb, var(--rm-sky) 80%, var(--rm-ink));
+  --rm-sage-text: color-mix(in srgb, var(--rm-sage-deep) 70%, var(--rm-ink));
+  --rm-lilac-text: color-mix(in srgb, var(--rm-lilac-deep) 70%, var(--rm-ink));
+  --rm-amber-text: color-mix(in srgb, var(--rm-amber-deep) 70%, var(--rm-ink));
+  --rm-terracotta-text: color-mix(in srgb, var(--rm-terracotta-deep) 70%, var(--rm-ink));
+  color: var(--text-primary);
+  background: var(--bg-page);
+  border-radius: 28px;
+  margin: 48px 12px 0;
+  padding-bottom: 32px;
+}
+@media (min-width: 768px) {
+  :root[data-theme="dark"] main section:is(:has([role="img"]), .rm-paper) { margin: 64px 32px 0; padding-bottom: 48px; }
+}
+:root[data-theme="dark"] main section:is(:has([role="img"]), .rm-paper) .bg-ink.text-white:not(.rm-ink-surface) {
+  background-color: var(--rm-ink);
+  color: #FFFFFF;
+  border-color: var(--rm-ink);
+}
+:root[data-theme="dark"] main section:is(:has([role="img"]), .rm-paper) .border-ink.text-ink:not(.bg-white) { color: var(--rm-ink); border-color: var(--rm-ink); }

@@ -165,7 +165,7 @@ export function MobileMenu({
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
         onTouchCancel={onTouchEnd}
-        className="rm-drawer-panel fixed inset-y-0 right-0 z-50 flex w-full flex-col overflow-hidden bg-ink text-white md:max-w-[440px]"
+        className="rm-drawer-panel fixed inset-y-0 right-0 z-50 flex w-full flex-col overflow-hidden rm-ink-surface bg-ink text-white md:max-w-[440px]"
       >
         <div className="flex shrink-0 items-center justify-between px-4 pb-2.5 pt-3.5">
           <Wordmark size="sm" inverse />
@@ -332,7 +332,7 @@ export function MobileMenu({
             For referring doctors ›
           </Link>
         </div>
-        <div className="rm-menu-foot flex shrink-0 flex-col gap-2 border-t border-white/12 bg-ink px-4 pb-4 pt-2.5">
+        <div className="rm-menu-foot flex shrink-0 flex-col gap-2 border-t border-white/12 rm-ink-surface bg-ink px-4 pb-4 pt-2.5">
           {/* No tel:911 link anywhere on the site: the clinic does not want accidental emergency calls. 911 is plain text. */}
           <p
             aria-label={emergencyCopy.closedLine}

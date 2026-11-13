@@ -21,7 +21,7 @@ export function UtilityBar() {
   // Same page in Vietnamese where one exists, otherwise the Vietnamese home page.
   const vi = viPairs[path] ?? viRoutes.home;
   return (
-    <div role="region" aria-label="Clinic status and display settings" className="bg-ink text-white">
+    <div role="region" aria-label="Clinic status and display settings" className="rm-ink-surface bg-ink text-white">
     <div className="mx-auto flex h-[38px] w-full max-w-[1440px] items-center justify-between px-4 text-[13px] font-medium md:px-8">
       {/* Closed: the status leads to after-hours advice (911, Health811), not just the hours again. */}
       <Link

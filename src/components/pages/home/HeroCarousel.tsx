@@ -73,7 +73,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
       }}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      className="relative mx-3 mt-3 flex min-h-[440px] select-none items-end overflow-hidden rounded-card bg-ink text-white md:mx-gutter md:mt-6 md:min-h-[620px] md:rounded-block"
+      className="relative mx-3 mt-3 flex min-h-[440px] select-none items-end overflow-hidden rounded-card rm-ink-surface bg-ink text-white md:mx-gutter md:mt-6 md:min-h-[620px] md:rounded-block"
       style={{ touchAction: "pan-y" }}
     >
       <h1 className="sr-only">

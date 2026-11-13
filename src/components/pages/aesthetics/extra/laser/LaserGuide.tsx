@@ -15,7 +15,7 @@ import { routes } from "@/lib/routes";
 /** Concern by device: which tools are often considered for what. A starting point; the consult decides. */
 export function ConcernGrid() {
   return (
-    <Section id="which-device" className="flex scroll-mt-24 flex-col gap-6">
+    <Section id="which-device" className="rm-paper flex scroll-mt-24 flex-col gap-6">
       <div className="flex max-w-[720px] flex-col gap-3">
         <Eyebrow tone="inherit" className="text-lilac-text">
           {c.gridEyebrow}
@@ -97,7 +97,7 @@ export function ConcernGrid() {
 /** Downtime as a ruler: each device placed under no downtime, a day or two, or several days. */
 export function DowntimeRuler() {
   return (
-    <Section id="downtime" className="flex scroll-mt-24 flex-col gap-6">
+    <Section id="downtime" className="rm-paper flex scroll-mt-24 flex-col gap-6">
       <div className="flex max-w-[720px] flex-col gap-3">
         <Eyebrow tone="inherit" className="text-lilac-text">
           {c.rulerEyebrow}
@@ -146,7 +146,7 @@ export function SafetyCare() {
   return (
     <Section
       id="safety"
-      className="grid scroll-mt-24 grid-cols-1 gap-card lg:grid-cols-2"
+      className="rm-paper grid scroll-mt-24 grid-cols-1 gap-card lg:grid-cols-2"
     >
       <div className="flex flex-col gap-4 rounded-card border border-border bg-card p-6 md:p-8">
         <Eyebrow tone="inherit" className="text-lilac-text">

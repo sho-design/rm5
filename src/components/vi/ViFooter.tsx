@@ -105,7 +105,7 @@ export function ViFooter() {
         ))}
       </nav>
 
-      <div className="flex flex-col gap-5 rounded-[24px] bg-ink p-6 text-white md:p-8">
+      <div className="flex flex-col gap-5 rounded-[24px] rm-ink-surface bg-ink p-6 text-white md:p-8">
         <span className="font-display text-[34px] font-medium leading-none tracking-[-.03em] md:text-[44px]">
           Refined by <span className="text-sun">Medicine.</span>
         </span>

@@ -22,7 +22,7 @@ export function FaceMap() {
   const area = injAreas.find((a) => a.k === k) ?? injAreas[0];
 
   return (
-    <Section id="injectables-map" className="scroll-mt-24">
+    <Section id="injectables-map" className="rm-paper scroll-mt-24">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-12">
         <div className="flex flex-col items-center gap-5">
           <svg

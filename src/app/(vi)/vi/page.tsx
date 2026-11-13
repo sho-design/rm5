@@ -86,7 +86,7 @@ export default function ViHomePage() {
             ))}
           </ul>
         </div>
-        <div className="flex flex-col gap-4 rounded-block bg-ink p-6 text-white md:p-10">
+        <div className="flex flex-col gap-4 rounded-block rm-ink-surface bg-ink p-6 text-white md:p-10">
           <Eyebrow tone="sun">{c.doctorsTitle}</Eyebrow>
           <ul className="flex flex-col gap-5">
             {c.doctors.map((d) => (

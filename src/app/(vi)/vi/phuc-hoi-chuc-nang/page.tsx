@@ -49,7 +49,7 @@ export default function ViRehabPage() {
       </Section>
       <Section className="grid grid-cols-1 gap-card lg:grid-cols-[1.4fr_1fr]">
         <ViFacts title={c.priceTitle} rows={c.prices} />
-        <div className="flex flex-col gap-4 rounded-block bg-ink p-6 text-white md:p-8">
+        <div className="flex flex-col gap-4 rounded-block rm-ink-surface bg-ink p-6 text-white md:p-8">
           <span className="font-display text-[26px] leading-tight tracking-[-.02em]">{c.claimsTitle}</span>
           {c.claims.map((x) => (
             <div key={x.t} className="flex flex-col gap-1">

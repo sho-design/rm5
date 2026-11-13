@@ -44,7 +44,7 @@ function Card({ m, open, onToggle, index }: { m: TeamMember; open: boolean; onTo
             e.currentTarget.querySelector("button")?.focus();
           }
         }}
-        className="relative flex aspect-[3/4] flex-col justify-end rounded-block bg-ink text-white ring-1 ring-ink/5 shadow-[0_8px_24px_rgba(16,24,40,.06)] motion-safe:transition-[transform,box-shadow] motion-safe:duration-300 motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] hover:-translate-y-1.5 hover:shadow-[0_24px_50px_rgba(16,24,40,.16)]">
+        className="relative flex aspect-[3/4] flex-col justify-end rounded-block rm-ink-surface bg-ink text-white ring-1 ring-ink/5 shadow-[0_8px_24px_rgba(16,24,40,.06)] motion-safe:transition-[transform,box-shadow] motion-safe:duration-300 motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] hover:-translate-y-1.5 hover:shadow-[0_24px_50px_rgba(16,24,40,.16)]">
         {m.photo ? (
           <Image src={m.photo} alt="" fill sizes="(max-width: 640px) 50vw, 320px" className={cn("rounded-block object-cover object-[50%_20%] motion-safe:transition-transform motion-safe:duration-[400ms] motion-safe:ease-[cubic-bezier(.2,.8,.2,1)]", open && "motion-safe:scale-[1.04]")} />
         ) : (

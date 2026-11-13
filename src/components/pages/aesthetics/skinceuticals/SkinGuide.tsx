@@ -11,7 +11,7 @@ const stepTint = [
 /** Cleanse, correct, protect: the three jobs of a routine, for someone new to skincare. */
 export function CleanseCorrectProtect() {
   return (
-    <Section id="routine-steps" className="flex scroll-mt-24 flex-col gap-6">
+    <Section id="routine-steps" className="rm-paper flex scroll-mt-24 flex-col gap-6">
       <div className="flex max-w-[720px] flex-col gap-3">
         <Eyebrow tone="inherit" className="text-lilac-text">
           {scSteps.eyebrow}
@@ -53,7 +53,7 @@ export function ApplyAndCompare() {
   return (
     <Section
       id="how-to-apply"
-      className="grid scroll-mt-24 grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-12"
+      className="rm-paper grid scroll-mt-24 grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-12"
     >
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-3">

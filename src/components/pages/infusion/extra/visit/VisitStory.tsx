@@ -79,7 +79,7 @@ export function VisitStory() {
   const pct = Math.round(progress * 100);
 
   return (
-    <Section id="visit" className="scroll-mt-24">
+    <Section id="visit" className="rm-paper scroll-mt-24">
       <style>{`
         @keyframes vs-rise { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
         @keyframes vs-draw { from { stroke-dashoffset: 1 } to { stroke-dashoffset: 0 } }

@@ -40,7 +40,7 @@ export default function ViPainPage() {
         pills={c.pills}
       />
       <Section className="grid grid-cols-1 gap-card md:grid-cols-2">
-        <div className="flex flex-col gap-2 rounded-block bg-ink p-6 text-white md:p-8">
+        <div className="flex flex-col gap-2 rounded-block rm-ink-surface bg-ink p-6 text-white md:p-8">
           <span className="font-display text-[28px] leading-tight tracking-[-.02em]">{c.referredTitle}</span>
           <p className="pretty text-[15px] leading-[1.6] text-white/85">{c.referredBody}</p>
         </div>

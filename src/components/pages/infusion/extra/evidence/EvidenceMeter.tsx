@@ -139,7 +139,7 @@ export function EvidenceMeter() {
   let n = 0;
 
   return (
-    <Section id="whats-in-the-bag" className="scroll-mt-6">
+    <Section id="whats-in-the-bag" className="rm-paper scroll-mt-6">
       <style>{`
         .ev-tile { transition: transform 720ms cubic-bezier(.2,.8,.2,1), opacity 420ms cubic-bezier(.2,.8,.2,1), background-color 250ms, box-shadow 250ms; }
         .ev-chip { animation: ev-in 360ms cubic-bezier(.2,.8,.2,1) both; }

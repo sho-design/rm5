@@ -16,7 +16,7 @@ export function SkinLadder() {
   const picked: SkinGoal | null = goal === 0 ? null : c.goals[goal - 1].k;
 
   return (
-    <Section id="skin-ladder" className="flex scroll-mt-24 flex-col gap-6">
+    <Section id="skin-ladder" className="rm-paper flex scroll-mt-24 flex-col gap-6">
       <div className="flex max-w-[720px] flex-col gap-3">
         <Eyebrow tone="inherit" className="text-lilac-text">
           {c.eyebrow}

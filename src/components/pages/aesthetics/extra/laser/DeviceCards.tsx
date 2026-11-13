@@ -43,7 +43,7 @@ export function DeviceCards() {
   };
 
   return (
-    <Section id="devices" className="flex scroll-mt-24 flex-col gap-6">
+    <Section id="devices" className="rm-paper flex scroll-mt-24 flex-col gap-6">
       <style>{`
         .lx-card { transform: perspective(900px) rotateX(var(--lx-rx, 0deg)) rotateY(var(--lx-ry, 0deg)); transition: transform 300ms cubic-bezier(.2,.8,.2,1); }
         .lx-card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: var(--lx-glow, 0); transition: opacity 300ms cubic-bezier(.2,.8,.2,1);

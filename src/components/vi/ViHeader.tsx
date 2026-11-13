@@ -63,7 +63,7 @@ export function ViHeader() {
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-border bg-page/95 backdrop-blur">
-        <div className="bg-ink text-white">
+        <div className="rm-ink-surface bg-ink text-white">
           <div className="mx-auto flex h-[38px] w-full max-w-[1440px] items-center justify-between gap-3 px-4 text-[13px] font-medium md:px-8">
             <Link
               href={`${viRoutes.contact}#gio`}

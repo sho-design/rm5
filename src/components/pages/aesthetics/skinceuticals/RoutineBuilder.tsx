@@ -264,7 +264,7 @@ export function RoutineBuilder() {
   const total = items.reduce((s, p) => s + p.srp, 0);
 
   return (
-    <Section id="routine-builder" className="scroll-mt-24">
+    <Section id="routine-builder" className="rm-paper scroll-mt-24">
       <style>{css}</style>
       <div className="flex flex-col gap-8 rounded-block border border-border bg-card p-6 md:p-10 lg:p-12">
         <div className="flex max-w-[720px] flex-col gap-3">

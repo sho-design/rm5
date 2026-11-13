@@ -14,7 +14,7 @@ const cell: Record<DayState, string> = {
  */
 export function MenWeek() {
   return (
-    <Section id="men-week" className="flex scroll-mt-24 flex-col gap-6">
+    <Section id="men-week" className="rm-paper flex scroll-mt-24 flex-col gap-6">
       <style>{`
         @keyframes mn-fill { from { opacity: 0; transform: scaleX(.6) } to { opacity: 1; transform: none } }
         .mn-fill { transform-origin: left center; animation: mn-fill 420ms cubic-bezier(.2,.8,.2,1) both; }

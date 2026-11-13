@@ -14,7 +14,7 @@ export function MenRoutine() {
   const items = c.items.map((it) => ({ ...it, p: skinProduct(it.id) }));
   const total = items.reduce((s, x) => s + x.p.srp, 0);
   return (
-    <Section className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+    <Section className="rm-paper grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-3">
           <Eyebrow tone="inherit" className="text-lilac-text">

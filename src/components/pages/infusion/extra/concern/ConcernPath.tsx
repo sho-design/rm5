@@ -87,7 +87,7 @@ export function ConcernPath() {
   const draw = seen && !reduced;
 
   return (
-    <Section id="concern-route" className="scroll-mt-6">
+    <Section id="concern-route" className="rm-paper scroll-mt-6">
       <style>{`
         @keyframes cp-draw { from { stroke-dashoffset: 100 } to { stroke-dashoffset: 0 } }
         @keyframes cp-in { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }

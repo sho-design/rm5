@@ -65,7 +65,7 @@ function Card({ d, picked, onPick, full }: { d: Drip; picked: boolean; onPick: (
 /** Up to three drips side by side: family, time, what's inside, and a way to book or open each one. */
 function SideBySide({ drips, onClose, onRemove }: { drips: Drip[]; onClose: () => void; onRemove: (s: string) => void }) {
   return (
-    <section id="drip-compare" aria-label={cc.title} className="flex scroll-mt-24 flex-col gap-4 rounded-block bg-ink p-6 text-white md:p-8">
+    <section id="drip-compare" aria-label={cc.title} className="flex scroll-mt-24 flex-col gap-4 rounded-block rm-ink-surface bg-ink p-6 text-white md:p-8">
       <div className="flex items-center justify-between gap-4">
         <h2 className="font-display text-[28px] font-medium tracking-[-.02em] lg:text-[32px]">{cc.title}</h2>
         <button type="button" onClick={onClose} className="text-[14px] font-semibold text-white/80 hover:text-white">
