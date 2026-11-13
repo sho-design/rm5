@@ -236,7 +236,7 @@ export function LightTarget({ start }: { start?: LaserDeviceKey } = {}) {
           ) : null}
           <svg
             ref={svg}
-            viewBox="-20 0 660 440"
+            viewBox="-48 0 688 440"
             role="img"
             aria-label={f.alt}
             className="h-auto w-full rounded-[18px] bg-white"
@@ -830,7 +830,7 @@ export function LightTarget({ start }: { start?: LaserDeviceKey } = {}) {
 
             {/* Depth scale with a marker that follows the device */}
             <g>
-              <rect x="0" y="0" width="112" height="440" fill="#FFFFFF" />
+              <rect x="-48" y="0" width="160" height="440" fill="#FFFFFF" />
               <line
                 x1="96"
                 y1={SURFACE}
