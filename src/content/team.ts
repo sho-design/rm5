@@ -21,6 +21,11 @@ const TEAM: [string, string, string, string?][] = [
   ["Karen", "Lab Manager", "Family Medicine", "Preceptor, laboratory learners"],
 ];
 
+/** Headshots in public/images/team/. Dr. Nguyen's card is a closer crop than his portrait at the top of the page. */
+const photos: Record<string, string> = {
+  "Dr. Johnny Nguyen": "/images/team/dr-johnny-nguyen-card.webp",
+};
+
 const initialOf = (name: string): string => {
   if (name.startsWith("Dr. ")) {
     const parts = name.split(" ");
@@ -35,6 +40,7 @@ export const team: TeamMember[] = TEAM.map(([name, role, divisions, preceptorTag
   divisions: divisions.split(", "),
   ...(preceptorTag ? { preceptorTag } : {}),
   ...(name.startsWith("Dr. ") ? { languages: physicianLanguages } : {}),
+  ...(photos[name] ? { photo: photos[name] } : {}),
   initial: initialOf(name),
   tint: tints[i % 5],
 }));
