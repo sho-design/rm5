@@ -13,13 +13,17 @@ const u = (f: string) => CDN + f.replace(/\.(png|jpe?g)$/i, ".webp");
 
 export const images = {
   /** Home hero slide 1 and Maple placeholder */
-  heroFamilyPark: u("hf_20260909_211042_a7b5fb6e-1495-4937-b800-a600b041bfa1.png"),
+  heroFamilyPark: u(
+    "hf_20260909_211042_a7b5fb6e-1495-4937-b800-a600b041bfa1.png",
+  ),
 
   division: {
     family: u("hf_20260910_054249_bd7a3056-7a1d-4dbe-a847-bc8b6f8a47be.png"),
     pain: u("hf_20260909_211043_05a3377c-e39a-48b9-a370-cc57ac35b4ff.png"),
     infusion: u("hf_20260903_065035_4eb86c4d-cbea-4406-bab0-68391c4f0fe6.png"),
-    aesthetics: u("hf_20260909_210338_1f84abb8-ac77-4c13-9c48-3229a771d31d.png"),
+    aesthetics: u(
+      "hf_20260909_210338_1f84abb8-ac77-4c13-9c48-3229a771d31d.png",
+    ),
     rehab: u("hf_20260910_054249_a518bfca-7f1e-4738-913f-636c0be7311a.png"),
     about: u("hf_20260910_054249_827089e8-0c06-4cd4-8bf6-a5c62209099d.png"),
   },
@@ -67,20 +71,39 @@ export const images = {
     family: u("hf_20260910_054249_6d69b0c5-bf4a-409b-a4cc-f300008e4ff6.png"),
     pain: u("hf_20260910_053343_a16fe24a-bef4-4a55-8c39-e33b4e4d46a5.png"),
     infusion: u("hf_20260910_054249_92d534a6-fc85-47a1-b2d4-dfa0c042669f.png"),
-    aesthetics: u("hf_20260910_054249_b8452288-39db-4136-a01b-83d24d05d61e.png"),
+    aesthetics: u(
+      "hf_20260910_054249_b8452288-39db-4136-a01b-83d24d05d61e.png",
+    ),
     rehab: u("hf_20260910_054249_b106cbee-9ab4-4e8b-94f3-8de24911a742.png"),
   },
 
   /** Health note heroes */
   notes: {
-    "iron-infusion": u("hf_20260911_055325_6dbe2234-4d5c-4269-a3d5-594369bb3cf3.png"),
-    "iron-infusion-alt": u("hf_20260911_055325_a52ad731-f02d-4327-9bce-9b5e8afcade3.png"),
-    "flu-shot-faq": u("hf_20260911_055045_591c23b8-3c47-4870-8094-5c450ffd40e4.png"),
-    "headache-when-to-see": u("hf_20260911_055045_19619b82-9710-4027-8657-aecaea97a565.png"),
-    "nerve-block-prep": u("hf_20260911_055045_a31ae451-66b1-4b04-ba30-f12fb98b233a.png"),
-    "reading-requisition": u("hf_20260911_055046_8500143f-3de6-40a8-967d-0d7eef0f24fe.png"),
-    "physio-first-visit": u("hf_20260911_055045_a6946224-757a-40fc-95f9-7771e3565307.png"),
+    "iron-infusion": u(
+      "hf_20260911_055325_6dbe2234-4d5c-4269-a3d5-594369bb3cf3.png",
+    ),
+    "iron-infusion-alt": u(
+      "hf_20260911_055325_a52ad731-f02d-4327-9bce-9b5e8afcade3.png",
+    ),
+    "flu-shot-faq": u(
+      "hf_20260911_055045_591c23b8-3c47-4870-8094-5c450ffd40e4.png",
+    ),
+    "headache-when-to-see": u(
+      "hf_20260911_055045_19619b82-9710-4027-8657-aecaea97a565.png",
+    ),
+    "nerve-block-prep": u(
+      "hf_20260911_055045_a31ae451-66b1-4b04-ba30-f12fb98b233a.png",
+    ),
+    "reading-requisition": u(
+      "hf_20260911_055046_8500143f-3de6-40a8-967d-0d7eef0f24fe.png",
+    ),
+    "physio-first-visit": u(
+      "hf_20260911_055045_a6946224-757a-40fc-95f9-7771e3565307.png",
+    ),
   },
+
+  /** Men's aesthetics hero: a relaxed man in the clinic lounge (generated Nov 2026, placeholder). */
+  aesMen: u("hf_20261113_090006_6f8056dd-b5f1-4008-9cf5-37a78bbbd01d.png"),
 
   /** Iron therapy page hero photo */
   ironHero: u("hf_20260912_074608_821f2bd7-99fa-4c0a-91f9-20c88e407960.png"),

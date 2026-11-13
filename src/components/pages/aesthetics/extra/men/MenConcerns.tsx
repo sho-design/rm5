@@ -15,6 +15,7 @@ import {
 } from "@/content/aes-men";
 import { radioKeys, rovingTab, useReducedMotion } from "@/lib/a11y";
 import { cn } from "@/lib/cn";
+import { MaleFace } from "@/components/pages/aesthetics/AesFaces";
 
 const LILAC = "var(--rm-lilac-deep)";
 
@@ -40,8 +41,8 @@ const view: Record<
   },
   eyes: {
     glows: [
-      [166, 208, 30, 14],
-      [234, 208, 30, 14],
+      [157, 210, 30, 14],
+      [243, 210, 30, 14],
     ],
     ox: 50,
     oy: 38,
@@ -104,8 +105,8 @@ const view: Record<
   },
   masseter: {
     glows: [
-      [128, 292, 20, 36],
-      [272, 292, 20, 36],
+      [138, 292, 20, 36],
+      [262, 292, 20, 36],
     ],
     ox: 32,
     oy: 54,
@@ -115,8 +116,8 @@ const view: Record<
   },
   underarm: {
     glows: [
-      [80, 506, 34, 24],
-      [320, 506, 34, 24],
+      [88, 466, 34, 22],
+      [312, 466, 34, 22],
     ],
     ox: 50,
     oy: 90,
@@ -388,101 +389,40 @@ function Face({ area, label }: { area: MenArea | null; label: string }) {
           fill="url(#mn-g)"
         />
       ))}
-      {/* Shoulders, collar and arms. */}
+      {/* The same calm line drawing as the face map on the aesthetics pages (it replaced a darker, stiffer
+          drawing, Nov 2026), placed so the concern marks below line up with it. */}
+      <g transform="translate(26 15) scale(1.16)">
+        <MaleFace />
+      </g>
+      {/* Forehead and frown lines: faint, stronger when chosen. */}
       <path
         {...soft}
-        d="M60 540 C 66 470 112 440 168 424 M232 424 C 288 440 334 470 340 540"
-      />
-      <path {...soft} d="M168 424 L200 466 L232 424" />
-      <path
-        {...soft}
-        d="M84 540 C 86 512 92 494 104 482 M316 540 C 314 512 308 494 296 482"
-        className="mn-soft"
-        opacity=".55"
-      />
-      {/* Neck. */}
-      <path {...soft} d="M172 368 L170 424 M228 368 L230 424" />
-      {/* Head. */}
-      <path
-        {...soft}
-        d="M200 72 C 142 72 114 118 114 180 L116 248 C 118 298 142 344 176 368 C 189 377 211 377 224 368 C 258 344 282 298 284 248 L286 180 C 286 118 258 72 200 72 Z"
-        fill="var(--bg-page)"
-      />
-      {/* Hair: short, side part. */}
-      <path
-        d="M114 178 C 106 112 142 60 202 58 C 262 58 296 104 286 178 C 280 146 270 126 252 116 C 232 106 196 102 168 110 C 142 118 122 140 114 178 Z"
-        fill={ink}
-        opacity=".88"
-      />
-      <path
-        d="M168 110 C 182 92 214 86 236 96"
-        stroke="var(--bg-page)"
-        strokeWidth="2"
-        fill="none"
-        strokeLinecap="round"
-        opacity=".6"
-      />
-      {/* Ears. */}
-      <path
-        {...soft}
-        d="M115 196 C 100 190 94 214 101 234 C 105 246 114 248 118 242"
-      />
-      <path
-        {...soft}
-        d="M285 196 C 300 190 306 214 299 234 C 295 246 286 248 282 242"
-      />
-      {/* Forehead lines (faint) and brows. */}
-      <path
-        {...soft}
-        d="M162 138 Q200 132 238 138 M170 152 Q200 147 230 152"
-        strokeWidth="1.4"
-        className="mn-soft"
-        opacity={area === "forehead" ? 0.9 : 0.35}
-      />
-      <path
-        {...soft}
-        d="M148 176 Q168 165 188 172 M212 172 Q232 165 252 176"
-        strokeWidth="3"
-      />
-      <path
-        {...soft}
-        d="M196 170 L194 182 M204 170 L206 182"
+        d="M160 132 Q200 126 240 132 M168 146 Q200 141 232 146"
         strokeWidth="1.4"
         className="mn-soft"
         opacity={area === "forehead" ? 0.9 : 0.3}
       />
-      {/* Eyes, with soft under-eye lines. */}
-      <path {...soft} d="M154 200 Q170 190 186 200 Q170 207 154 200 Z" />
-      <path {...soft} d="M214 200 Q230 190 246 200 Q230 207 214 200 Z" />
-      <circle cx="170" cy="199" r="3.4" fill={ink} />
-      <circle cx="230" cy="199" r="3.4" fill={ink} />
       <path
         {...soft}
-        d="M156 214 Q170 220 184 214 M216 214 Q230 220 244 214"
+        d="M196 176 L194 190 M204 176 L206 190"
+        strokeWidth="1.4"
+        className="mn-soft"
+        opacity={area === "forehead" ? 0.9 : 0.25}
+      />
+      {/* Soft under-eye lines. */}
+      <path
+        {...soft}
+        d="M142 224 Q157 230 172 224 M228 224 Q243 230 258 224"
         strokeWidth="1.3"
         className="mn-soft"
-        opacity={area === "eyes" ? 0.9 : 0.35}
-      />
-      {/* Nose and mouth. */}
-      <path {...soft} d="M200 206 L195 254 Q200 262 211 256" />
-      <path {...soft} d="M178 302 Q200 312 222 302" />
-      {/* Beard shadow and stubble dots along the jaw. */}
-      <path
-        d="M134 280 C 146 330 170 360 200 364 C 230 360 254 330 266 280"
-        stroke={ink}
-        strokeWidth="1.2"
-        fill="none"
-        strokeDasharray="1 7"
-        strokeLinecap="round"
-        className="mn-soft"
-        opacity=".45"
+        opacity={area === "eyes" ? 0.9 : 0.3}
       />
       {/* Masseter muscles: shown, and pulsing, only for jaw clenching. */}
       {area === "masseter" ? (
         <g>
           <path
             className="mn-clench"
-            d="M120 262 C 112 286 116 314 132 328 C 140 312 142 284 136 262 Z"
+            d="M130 262 C 122 286 126 314 142 328 C 150 312 152 284 146 262 Z"
             fill="#8E5FB5"
             opacity=".42"
             stroke="#8E5FB5"
@@ -490,7 +430,7 @@ function Face({ area, label }: { area: MenArea | null; label: string }) {
           />
           <path
             className="mn-clench"
-            d="M280 262 C 288 286 284 314 268 328 C 260 312 258 284 264 262 Z"
+            d="M270 262 C 278 286 274 314 258 328 C 250 312 248 284 254 262 Z"
             fill="#8E5FB5"
             opacity=".42"
             stroke="#8E5FB5"
