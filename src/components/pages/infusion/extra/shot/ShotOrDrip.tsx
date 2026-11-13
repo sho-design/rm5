@@ -1,5 +1,6 @@
 "use client";
 
+import { IvBag } from "@/components/pages/infusion/DripArt";
 import { useEffect, useRef, useState } from "react";
 import { Display, Eyebrow, SmartLink } from "@/components/ui";
 import { shotDripCopy as c } from "@/content/inf-shot";
@@ -415,49 +416,23 @@ function DripArt({
       viewBox="0 -25 320 205"
       className="sb-art h-auto w-full"
     >
-      {/* Bag. */}
-      <rect
-        data-line
-        x="22"
-        y="6"
-        width="56"
-        height="62"
-        rx="10"
-        fill="var(--rm-sky-soft)"
+      {/* Bag (the same bag as every drip on the site). */}
+      <IvBag
+        id="sb-bag"
+        x={24}
+        y={12}
+        w={52}
+        color="color-mix(in srgb, var(--rm-sky) 40%, var(--rm-sky-soft))"
+        level={done ? 0.15 : 0.6}
+        still={done}
+        paused={anim === "paused"}
         stroke="var(--rm-sky)"
-        strokeWidth="2"
-      />
-      <path
-        data-fill
-        d="M26 30 H74 V58 Q74 64 68 64 H32 Q26 64 26 58 Z"
-        fill="var(--rm-sky)"
-        opacity=".35"
+        strokeOpacity={1}
+        lines={false}
       />
       <text x="88" y="24" fontSize="12" fontWeight="600" fill="var(--rm-ink)">
         {c.drip.bag}
       </text>
-      {/* Drip chamber with a falling drop. */}
-      <rect
-        data-line
-        x="42"
-        y="72"
-        width="16"
-        height="30"
-        rx="5"
-        fill="var(--bg-page)"
-        stroke="var(--rm-sky)"
-        strokeWidth="2"
-      />
-      {!done ? (
-        <circle
-          className="sb-drop"
-          cx="50"
-          cy="78"
-          r="2.6"
-          fill="var(--rm-sky)"
-          style={st}
-        />
-      ) : null}
       {/* Line down to the forearm. */}
       <path
         data-line

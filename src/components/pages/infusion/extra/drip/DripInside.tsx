@@ -1,5 +1,6 @@
 "use client";
 
+import { BAG_FLUID } from "@/components/pages/infusion/DripArt";
 import { useEffect, useRef, useState } from "react";
 import { Display, Eyebrow, Section } from "@/components/ui";
 import {
@@ -272,19 +273,38 @@ export function DripInside({
           >
             {/* The bag, as markup so its words stay readable at any size. */}
             <div aria-hidden className="flex flex-col items-center">
-              <span className="h-3 w-10 rounded-t-[8px] border-2 border-b-0 border-[color:var(--rm-ink-3)]" />
-              <div className="relative flex min-h-[230px] w-[188px] flex-col overflow-hidden rounded-[30px] border-2 border-[color:var(--rm-ink-3)] bg-[color:var(--rm-paper-2)] sm:w-[210px]">
+              {/* Same outline as every bag on the site (DripArt.tsx): hanging tab, square shoulders, rounded base. */}
+              <span className="h-3 w-9 rounded-t-[4px] bg-[color:var(--rm-ink-3)]" />
+              <div
+                className="relative flex min-h-[240px] w-[188px] flex-col overflow-hidden border-2 border-[color:var(--rm-ink-3)] bg-[color:var(--rm-paper-2)] sm:w-[210px]"
+                style={{ borderRadius: "14px 14px 31% 31% / 14px 14px 24% 24%" }}
+              >
                 <span
                   className="absolute inset-x-0 bottom-0 transition-[height] duration-700 ease-[cubic-bezier(.2,.8,.2,1)] motion-reduce:transition-none"
                   style={{
                     height: `${fill * 100}%`,
-                    background: `color-mix(in srgb, ${color} 34%, transparent)`,
+                    background: `color-mix(in srgb, ${color} 34%, var(--rm-paper-2))`,
                   }}
-                />
+                >
+                  {fill > 0 ? (
+                    <svg
+                      aria-hidden
+                      viewBox="0 -3 52 3"
+                      preserveAspectRatio="none"
+                      className="absolute inset-x-0 -top-[5px] h-[5px] w-full"
+                    >
+                      <path
+                        d={BAG_FLUID}
+                        className={anim ? "rm-bag-wave" : undefined}
+                        fill={`color-mix(in srgb, ${color} 34%, var(--rm-paper-2))`}
+                      />
+                    </svg>
+                  ) : null}
+                </span>
                 <span className="absolute inset-x-0 top-3 text-center text-[13px] font-semibold text-muted">
                   {d.t}
                 </span>
-                <ul className="relative mt-auto flex flex-col-reverse gap-1.5 p-3 pt-10">
+                <ul className="relative mt-auto flex flex-col-reverse gap-1.5 p-3 pb-9 pt-10">
                   {items.slice(0, shownTiles).map((it) => (
                     <li
                       key={`${cycle}-${d.slug}-${it}`}
@@ -312,7 +332,7 @@ export function DripInside({
                   </span>
                 ) : null}
               </div>
-              <span className="h-3 w-5 rounded-b-[6px] border-2 border-t-0 border-[color:var(--rm-ink-3)] bg-[color:var(--rm-paper-2)]" />
+              <span className="h-3 w-[3px] bg-[color:var(--rm-ink-3)]" />
             </div>
 
             {/* The line, the drip chamber, the forearm and the 45 minute ring. */}
@@ -371,56 +391,50 @@ export function DripInside({
                   transition: "opacity 350ms cubic-bezier(.2,.8,.2,1)",
                 }}
               >
-                <rect
-                  x="286"
-                  y="4"
-                  width="28"
-                  height="54"
-                  rx="8"
-                  fill="var(--rm-paper-2)"
-                  stroke="var(--rm-ink-3)"
-                  strokeWidth="2"
-                />
-                <rect
-                  x="288"
-                  y={58 - 18}
-                  width="24"
-                  height="16"
-                  rx="5"
-                  fill={color}
-                  opacity={flowing ? 0.55 : 0.18}
-                />
-                {flowing && anim ? (
-                  <circle cx="300" r="3.6" fill={color}>
-                    <animate
-                      attributeName="cy"
-                      values="12;40"
-                      dur="1.1s"
-                      repeatCount="indefinite"
+                {/* The same drip chamber as every bag, at 2.5 times its base size. */}
+                <g transform="translate(235 -178) scale(2.5)">
+                  <rect
+                    x="20"
+                    y="72"
+                    width="12"
+                    height="18"
+                    rx="4"
+                    fill="var(--rm-paper-2)"
+                    stroke="var(--rm-ink-3)"
+                    strokeWidth="2"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                  <rect
+                    x="21.5"
+                    y="83"
+                    width="9"
+                    height="5.5"
+                    rx="2.5"
+                    fill={color}
+                    opacity={flowing ? 0.75 : 0.2}
+                  />
+                  {flowing ? (
+                    <circle
+                      className={anim ? "rm-bag-drop" : undefined}
+                      cx="26"
+                      cy="75.5"
+                      r="1.9"
+                      fill={color}
                     />
-                    <animate
-                      attributeName="opacity"
-                      values="1;1;0"
-                      keyTimes="0;.85;1"
-                      dur="1.1s"
-                      repeatCount="indefinite"
-                    />
-                  </circle>
-                ) : flowing ? (
-                  <circle cx="300" cy="26" r="3.6" fill={color} />
-                ) : null}
+                  ) : null}
+                </g>
               </g>
               {/* Tube from the chamber to the arm. */}
               <path
                 id="dr-tube"
-                d="M300 58 C 300 120 330 150 400 160 S 470 168 500 170"
+                d="M300 47 C 300 120 330 150 400 160 S 470 168 500 170"
                 fill="none"
                 stroke="var(--rm-line)"
                 strokeWidth="7"
                 strokeLinecap="round"
               />
               <path
-                d="M300 58 C 300 120 330 150 400 160 S 470 168 500 170"
+                d="M300 47 C 300 120 330 150 400 160 S 470 168 500 170"
                 fill="none"
                 stroke={color}
                 strokeWidth="4"

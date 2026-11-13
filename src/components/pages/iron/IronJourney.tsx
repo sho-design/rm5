@@ -1,5 +1,6 @@
 "use client";
 
+import { IvBag } from "@/components/pages/infusion/DripArt";
 import { useEffect, useRef, useState } from "react";
 import { Display, Eyebrow, Section } from "@/components/ui";
 import { ironJourney as c } from "@/content/iron";
@@ -111,49 +112,18 @@ export function IronJourney() {
 
             {/* 1. IV bag and line into the arm */}
             <g style={part(0)}>
-              <rect
-                x="56"
-                y="26"
-                width="72"
-                height="112"
-                rx="16"
-                fill="#FFFFFF"
-                stroke="#D8CFC4"
-                strokeWidth="2"
-              />
-              <rect
-                x="64"
-                y="58"
-                width="56"
-                height="72"
-                rx="10"
-                fill="url(#ij-fluid)"
-                opacity="0.92"
-              >
-                {anim ? (
-                  <animate
-                    attributeName="height"
-                    values="72;60;72"
-                    dur="8s"
-                    repeatCount="indefinite"
-                  />
-                ) : null}
-                {anim ? (
-                  <animate
-                    attributeName="y"
-                    values="58;70;58"
-                    dur="8s"
-                    repeatCount="indefinite"
-                  />
-                ) : null}
-              </rect>
-              <rect
-                x="84"
-                y="16"
-                width="16"
-                height="14"
-                rx="4"
-                fill="#D8CFC4"
+              {/* The same bag as every drip on the site. */}
+              <IvBag
+                id="ij-bag"
+                x={56}
+                y={26}
+                w={72}
+                color="url(#ij-fluid)"
+                level={0.62}
+                still={!anim}
+                stroke="#B9AC9E"
+                strokeOpacity={1}
+                lines={false}
               />
               <text
                 x="92"

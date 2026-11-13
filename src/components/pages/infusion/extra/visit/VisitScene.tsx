@@ -1,5 +1,6 @@
 "use client";
 
+import { IvBag } from "@/components/pages/infusion/DripArt";
 import { useEffect, useRef } from "react";
 import { visitStory as c, type VisitStep } from "@/content/inf-visit";
 
@@ -322,36 +323,21 @@ function Mix({ a }: { a: boolean }) {
           </circle>
         </g>
       ))}
-      {/* Bag */}
-      <defs>
-        <clipPath id="vs-bag">
-          <rect x="112" y="128" width="112" height="140" rx="22" />
-        </clipPath>
-      </defs>
-      <rect
-        x="112"
-        y="128"
-        width="112"
-        height="140"
-        rx="22"
-        fill="#FFFFFF"
+      {/* Bag (the same bag as every drip on the site), filling as it is mixed */}
+      <IvBag
+        id="vs-mix"
+        x={116}
+        y={126}
+        w={104}
+        color="#BFE6D3"
+        level={0.62}
+        filling={a}
+        still={!a}
+        chamber={false}
         stroke={SAGE_INK}
-        strokeWidth="3"
+        strokeOpacity={1}
+        strokeWidth={3}
       />
-      <g clipPath="url(#vs-bag)">
-        <rect x="112" y={a ? 268 : 182} width="112" height="140" fill="#BFE6D3">
-          {a ? (
-            <animate
-              attributeName="y"
-              values="268;182;182"
-              keyTimes="0;0.7;1"
-              dur="4.2s"
-              repeatCount="indefinite"
-            />
-          ) : null}
-        </rect>
-      </g>
-      <rect x="156" y="268" width="24" height="16" rx="4" fill={SAGE_INK} />
       {/* Tag */}
       <g transform="translate(250 150)">
         <rect x="0" y="0" width="118" height="44" rx="22" fill={SAGE_INK} />
@@ -404,49 +390,21 @@ function Drip({ a }: { a: boolean }) {
         strokeWidth="4"
         strokeLinecap="round"
       />
-      <rect
-        x="74"
-        y="46"
-        width="44"
-        height="64"
-        rx="12"
-        fill="#FFFFFF"
+      <IvBag
+        id="vs-drip"
+        x={74}
+        y={50}
+        w={44}
+        color="#7FC8A9"
+        level={0.6}
+        still={!a}
         stroke={SAGE_INK}
-        strokeWidth="2.5"
+        strokeOpacity={1}
+        strokeWidth={2.5}
       />
-      <rect x="77" y="70" width="38" height="37" rx="9" fill="#BFE6D3" />
-      {/* Drip chamber with drops */}
-      <rect
-        x="88"
-        y="118"
-        width="16"
-        height="30"
-        rx="6"
-        fill="#FFFFFF"
-        stroke={SAGE_INK}
-        strokeWidth="2"
-      />
-      <circle cx="96" cy="124" r="3" fill="#7FC8A9" opacity={a ? 0 : 0.9}>
-        {a ? (
-          <animate
-            attributeName="cy"
-            values="122;142"
-            dur="1.1s"
-            repeatCount="indefinite"
-          />
-        ) : null}
-        {a ? (
-          <animate
-            attributeName="opacity"
-            values="1;0.2"
-            dur="1.1s"
-            repeatCount="indefinite"
-          />
-        ) : null}
-      </circle>
       {/* Tube to the chair arm */}
       <path
-        d="M96 148 C 96 200 150 196 186 186"
+        d="M96 126 C 96 200 150 196 186 186"
         fill="none"
         stroke="#9CC3EA"
         strokeWidth="3"

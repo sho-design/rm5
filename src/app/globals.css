@@ -474,3 +474,21 @@
 }
 /* Breadcrumb links in eyebrows reach the 24px minimum target on every screen. */
 .eyebrow a { display: inline-block; padding-block: 4px; }
+
+/* The one IV bag (components/pages/infusion/DripArt.tsx): the surface slides one wave, a drop falls in the
+   chamber, and a filling bag rises from empty. Card bags move only while their card is hovered or focused. */
+@keyframes rm-bag-wave { from { transform: translateX(0); } to { transform: translateX(-26px); } }
+@keyframes rm-bag-drop { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(7px); opacity: 0; } }
+@keyframes rm-bag-fill { 0% { transform: translateY(66px); } 70%, 100% { transform: translateY(var(--rm-bag-top)); } }
+.rm-bag-wave { animation: rm-bag-wave 2.8s linear infinite; }
+.rm-bag-drop { animation: rm-bag-drop 1.2s cubic-bezier(.4,0,.6,1) infinite; }
+.rm-bag-fluid { transition: transform 700ms cubic-bezier(.2,.8,.2,1); }
+.rm-bag-filling { animation: rm-bag-fill 4.2s cubic-bezier(.2,.8,.2,1) infinite; }
+.rm-bag-card .rm-bag-wave, .rm-bag-card .rm-bag-drop { animation-play-state: paused; }
+.group:hover .rm-bag-card .rm-bag-wave, .group:hover .rm-bag-card .rm-bag-drop,
+.group:focus-visible .rm-bag-card .rm-bag-wave, .group:focus-visible .rm-bag-card .rm-bag-drop { animation-play-state: running; }
+@media (prefers-reduced-motion: reduce) {
+  .rm-bag-wave, .rm-bag-drop, .rm-bag-filling { animation: none; }
+  .rm-bag-drop { opacity: 1; transform: translateY(3px); }
+  .rm-bag-fluid { transition: none; }
+}
