@@ -48,9 +48,9 @@ export function ExploreServices() {
             </span>
             <span className="flex flex-col gap-0.5">
               <span className="font-display text-[19px] font-medium tracking-[-.02em]">{d.label}</span>
-              <span className="text-[12px] leading-[1.4] text-muted">{d.tag}</span>
+              <span className="text-[13px] leading-[1.4] text-muted">{d.tag}</span>
             </span>
-            <span aria-hidden className="pr-1.5 text-[18px] text-sky">›</span>
+            <span aria-hidden className="pr-1.5 text-[18px] text-link">›</span>
           </SmartLink>
         ))}
       </div>

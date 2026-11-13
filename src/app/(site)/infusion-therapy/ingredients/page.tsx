@@ -45,7 +45,7 @@ export default function IngredientsPage() {
                   .filter((d) => d.ev === ev)
                   .map((d) => (
                     <li key={d.slug}>
-                      <SmartLink to={dripRoute(d.slug)} className="font-semibold hover:text-sky">
+                      <SmartLink to={dripRoute(d.slug)} className="font-semibold hover:text-link">
                         {d.t}
                       </SmartLink>
                     </li>

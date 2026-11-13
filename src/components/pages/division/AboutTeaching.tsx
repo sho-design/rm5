@@ -13,7 +13,7 @@ export function AboutTeaching() {
         <div className="grid grid-cols-1 gap-card pt-2 sm:grid-cols-2">
           {t.cards.map((c) => (
             <div key={c.k} className="flex flex-col gap-1.5 rounded-tile bg-raised p-5">
-              <span className="text-[12px] font-semibold text-muted">{c.k}</span>
+              <span className="text-[13px] font-semibold text-muted">{c.k}</span>
               <span className="text-[15px] leading-[1.5]">{c.v}</span>
             </div>
           ))}
@@ -23,7 +23,7 @@ export function AboutTeaching() {
         </SmartLink>
       </div>
       <div className="flex flex-col gap-card">
-        <span className="text-[12px] font-semibold text-muted">{t.partnersLabel}</span>
+        <span className="text-[13px] font-semibold text-muted">{t.partnersLabel}</span>
         <div className="grid grid-cols-2 gap-card">
           {t.partners.map((p) => (
             <div key={p.name} className="flex h-[120px] items-center justify-center rounded-tile border border-border bg-raised p-5">

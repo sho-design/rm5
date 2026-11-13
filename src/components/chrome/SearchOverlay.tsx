@@ -266,7 +266,7 @@ export function SearchOverlay({
               />
             </div>
           ) : null}
-          <span className="text-[12px] font-semibold text-muted" aria-hidden>
+          <span className="text-[13px] font-semibold text-muted" aria-hidden>
             {fixed && results.length ? `${copy.didYouMean(fixed)}. ` : ""}
             {copy.count(results.length)}
           </span>
@@ -286,7 +286,7 @@ export function SearchOverlay({
                 >
                   <div
                     id={`search-group-${gi}`}
-                    className="px-1 pt-1 text-[12px] font-semibold text-muted"
+                    className="px-1 pt-1 text-[13px] font-semibold text-muted"
                   >
                     {kind}
                   </div>
@@ -363,7 +363,7 @@ export function SearchOverlay({
         </div>
       ) : (
         <div className="flex flex-col gap-2.5">
-          <span className="text-[12px] font-semibold text-muted">
+          <span className="text-[13px] font-semibold text-muted">
             {copy.popular}
           </span>
           <div className="flex flex-wrap gap-2">

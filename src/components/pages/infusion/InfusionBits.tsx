@@ -41,7 +41,7 @@ export function InfusionHeader({
       />
       <header className="flex flex-col gap-5 px-4 pt-8 md:flex-row md:items-end md:justify-between md:gap-10 md:px-content md:pt-16">
         <div className="flex max-w-[860px] flex-col gap-4">
-          <span className="eyebrow text-[color:var(--div-infusion-accent)]">
+          <span className="eyebrow text-sage-text">
             <SmartLink to="infusion">{divisions.infusion.label}</SmartLink> ›{" "}
             {page}
           </span>
@@ -80,7 +80,7 @@ export function NumberedCards({
           key={s.n}
           className="flex flex-col gap-4 rounded-card border border-border bg-card p-6 md:p-7"
         >
-          <span className="font-display text-[34px] leading-none text-[color:var(--div-infusion-accent)]">
+          <span className="font-display text-[34px] leading-none text-sage-text">
             {s.n}
           </span>
           <span className="text-[18px] font-semibold tracking-[-.01em]">
@@ -107,7 +107,7 @@ export function EvidenceChip({
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center rounded-chip border border-border bg-raised px-2.5 py-1 text-[11px] font-semibold",
+        "inline-flex shrink-0 items-center rounded-chip border border-border bg-raised px-2.5 py-1 text-[12px] font-semibold",
         className,
       )}
     >
@@ -124,7 +124,7 @@ export function DripCard({ drip }: { drip: Drip }) {
       className="group flex min-h-[200px] flex-col gap-4 rounded-card border border-border bg-raised p-6 transition-colors hover:border-sky"
     >
       <span className="flex items-center justify-between gap-3">
-        <span className="flex items-center gap-2 text-[12px] font-semibold text-muted">
+        <span className="flex items-center gap-2 text-[13px] font-semibold text-muted">
           <span
             aria-hidden
             className="h-2.5 w-2.5 rounded-full"
@@ -197,7 +197,7 @@ export function InfusionBand({
 export function InfusionSmallPrint({ extra }: { extra?: string }) {
   return (
     <Section tight>
-      <p className="pretty max-w-[820px] text-[13px] leading-[1.55] text-muted">
+      <p className="pretty max-w-[62ch] text-[13px] leading-[1.55] text-muted">
         {extra ? `${extra} ` : ""}
         {infusionCopy.smallPrint}
       </p>

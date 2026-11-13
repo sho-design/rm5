@@ -107,7 +107,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
           <span className="sr-only">
             Slide {idx + 1} of {n}
           </span>
-          <span className="inline-flex self-start rounded-chip bg-sun px-2.5 py-[5px] text-[11px] font-semibold text-sun-ink md:px-3.5 md:py-[7px] md:text-[13px]">{hero.eyebrow}</span>
+          <span className="inline-flex self-start rounded-chip bg-sun px-2.5 py-[5px] text-[13px] font-semibold text-sun-ink md:px-3.5 md:py-[7px] md:text-[13px]">{hero.eyebrow}</span>
           <p className="display-tight balance text-[34px] md:text-[56px] lg:text-[78px]" aria-hidden={idx === 0 || undefined}>
             {hero.h1} <em>{hero.h1em}</em>
           </p>

@@ -17,7 +17,7 @@ export function Ladder({ rungs }: { rungs: LadderRung[] }) {
     <section className="flex flex-col gap-5 px-4 pt-12 md:px-content md:pt-section">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-8">
         <div className="flex flex-col gap-2">
-          <Eyebrow tone="inherit" className="text-lilac-deep">
+          <Eyebrow tone="inherit" className="text-lilac-text">
             {c.eyebrow}
           </Eyebrow>
           <Display size="xs">{c.title}</Display>
@@ -40,10 +40,10 @@ export function Ladder({ rungs }: { rungs: LadderRung[] }) {
               )}
             >
               <span className="flex items-center justify-between">
-                <span className="text-[12px] font-semibold text-muted">
+                <span className="text-[13px] font-semibold text-muted">
                   {c.step} {i + 1}
                 </span>
-                <span className="rounded-chip bg-raised px-2.5 py-[5px] text-[12px] font-semibold">{l.tag}</span>
+                <span className="rounded-chip bg-raised px-2.5 py-[5px] text-[13px] font-semibold">{l.tag}</span>
               </span>
               <span className="display-tight text-[24px] md:text-[28px]">{l.t}</span>
               <span className="text-[14px] leading-[1.5] text-secondary">{l.d}</span>

@@ -23,7 +23,7 @@ export default function InfusionTeamPage() {
             <span className="text-[13px] font-semibold text-muted">{d.role}</span>
             <Display size="xs">{d.name}</Display>
             <span className="text-[15px] font-semibold">{d.title}</span>
-            <p className="pretty max-w-[720px] text-[16px] leading-[1.6] text-secondary">{d.bio}</p>
+            <p className="pretty max-w-[62ch] text-[16px] leading-[1.6] text-secondary">{d.bio}</p>
             <ul className="flex flex-wrap gap-1.5 pt-1">
               {d.credentials.map((x) => (
                 <li key={x} className="rounded-chip border border-border bg-raised px-3 py-1.5 text-[13px] font-medium">

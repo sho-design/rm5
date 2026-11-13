@@ -9,7 +9,7 @@ import { SmartLink } from "@/components/ui";
 export function Announcements({ items }: { items: Announcement[] }) {
   return (
     <div className="mx-4 mt-card flex flex-col items-start gap-3 rounded-tile md:flex-row md:items-center md:gap-4 bg-inverse px-5 py-3.5 text-on-inverse md:mx-content">
-      <span className="shrink-0 rounded-chip bg-sun px-2.5 py-[5px] text-[12px] font-semibold text-sun-ink">What&rsquo;s new</span>
+      <span className="shrink-0 rounded-chip bg-sun px-2.5 py-[5px] text-[13px] font-semibold text-sun-ink">What&rsquo;s new</span>
       <ul className="scroll-x flex min-w-0 flex-1 flex-col gap-2 text-[14px] md:flex-row md:gap-7">
         {items.map((an) => (
           <li key={an.text} className="md:shrink-0">

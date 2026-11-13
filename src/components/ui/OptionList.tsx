@@ -118,7 +118,7 @@ export function ChipRow({
             )}
           >
             {label}
-            {count !== undefined ? <span className={cn("ml-1.5 text-[12px]", on ? "opacity-70" : "text-muted")}>{count}</span> : null}
+            {count !== undefined ? <span className={cn("ml-1.5 text-[13px]", on ? "opacity-70" : "text-muted")}>{count}</span> : null}
           </button>
         );
       })}

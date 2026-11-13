@@ -95,7 +95,7 @@ export function ContactForm() {
           <Textarea id="contact-message" name="message" required {...errorProps(errors, "contact-message")} />
         </FieldLabel>
         <div className="flex flex-col gap-1.5">
-          <span className="text-[12px] font-semibold text-muted">{contactExtraCopy.replyLabel}</span>
+          <span className="text-[13px] font-semibold text-muted">{contactExtraCopy.replyLabel}</span>
           <Choice options={contactExtraCopy.replyOptions} value={replyBy} onChange={setReplyBy} ariaLabel={contactExtraCopy.replyLabel} />
         </div>
         <ConsentRow id="contact-updates" name="updates">

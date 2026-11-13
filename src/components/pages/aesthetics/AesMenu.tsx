@@ -27,8 +27,8 @@ function Item({ t }: { t: AesTreatment }) {
   return (
     <div className="flex flex-col gap-1.5">
       <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
-        <h4 className="font-display text-[21px] font-medium leading-[1.15] tracking-[-.01em]">{t.name}</h4>
-        {t.brand ? <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-muted">{t.brand}</span> : null}
+        <h4 className="text-[18px] font-semibold leading-[1.25]">{t.name}</h4>
+        {t.brand ? <span className="text-[13px] font-semibold text-muted">{t.brand}</span> : null}
       </div>
       <p className="pretty text-[14px] leading-[1.5] text-secondary">{t.d}</p>
       {t.note ? <span className="text-[13px] font-semibold text-muted">{t.note}</span> : null}
@@ -78,17 +78,17 @@ export function AesMenu() {
 
       {/* Laptop and tablet: the printed menu sheet. */}
       <div className="hidden flex-col gap-10 rounded-block bg-lilac-tint px-10 py-14 md:flex lg:px-[72px] lg:py-16">
-        <div className="flex flex-col items-center gap-3 text-center">
-          <span className="text-[12px] font-semibold uppercase tracking-[.16em] text-lilac-deep">{c.menuEyebrow}</span>
-          <h2 className="font-display text-[48px] font-normal leading-none tracking-[-.02em] lg:text-[60px]">{c.menuTitleAll}</h2>
+        {/* Left-aligned and sentence case like the rest of the site (design review, Nov 2026). */}
+        <div className="flex flex-col gap-3">
+          <span className="eyebrow text-lilac-text">{c.menuEyebrow}</span>
+          <h2 className="display-tight text-[48px] leading-none">{c.menuTitleAll}</h2>
           <p className="pretty max-w-[600px] text-[16px] leading-[1.55] text-secondary">{c.menuLeadAll}</p>
-          <span aria-hidden className="mt-2 h-px w-12 bg-lilac-deep" />
         </div>
         <div className="grid grid-cols-2 gap-x-16 gap-y-12">
           {groups.map(({ f, items }) => (
             <section key={f} id={`family-${f}`} aria-labelledby={`family-${f}-h`} className="flex scroll-mt-28 flex-col gap-5">
-              <h3 id={`family-${f}-h`} className="flex items-center gap-2.5 border-b border-ink/20 pb-2.5 text-[13px] font-semibold uppercase tracking-[.14em]">
-                <span aria-hidden className="h-2 w-2 rounded-full" style={{ background: aesFamilies[f].color }} />
+              <h3 id={`family-${f}-h`} className="flex items-center gap-2.5 border-b border-ink/20 pb-3 font-display text-[28px] font-medium leading-[1.1] tracking-[-.01em]">
+                <span aria-hidden className="h-3 w-3 shrink-0 rounded-full" style={{ background: aesFamilies[f].color }} />
                 {aesFamilies[f].t}
               </h3>
               {items.map((t) => (
@@ -97,14 +97,14 @@ export function AesMenu() {
             </section>
           ))}
         </div>
-        <div className="flex flex-col items-center gap-3 pt-2">
+        <div className="flex flex-col items-start gap-3 pt-2">
           <SmartLink to={bookFor("aesthetics", "consult")} className="inline-flex h-[52px] items-center rounded-chip bg-ink px-7 text-[16px] font-semibold text-white">
             {c.book}
           </SmartLink>
           <span className="text-[13px] text-muted">{c.menuNote}</span>
         </div>
       </div>
-      <p className="pretty max-w-[760px] text-[14px] leading-[1.55] text-muted">{c.babyNote}</p>
+      <p className="pretty max-w-[62ch] text-[14px] leading-[1.55] text-muted">{c.babyNote}</p>
     </section>
   );
 }

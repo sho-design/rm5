@@ -22,7 +22,7 @@ export function YearPlanner({ header }: { header: ReactNode }) {
         {header}
         <div className="grid grid-cols-1 items-center gap-5 rounded-card bg-inverse p-6 text-on-inverse sm:grid-cols-2 lg:px-8 lg:py-7">
           <div className="flex flex-col gap-2">
-            <span id="year-sex-label" className="text-[12px] text-white/60">
+            <span id="year-sex-label" className="text-[13px] text-white/60">
               I am
             </span>
             <div role="radiogroup" aria-labelledby="year-sex-label" className="flex gap-1.5">
@@ -47,7 +47,7 @@ export function YearPlanner({ header }: { header: ReactNode }) {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-between text-[12px] text-white/60">
+            <div className="flex items-center justify-between text-[13px] text-white/60">
               <label htmlFor="year-age">My age</label>
               <span className="font-display text-[26px] leading-none text-white" aria-live="polite">
                 {age}
@@ -64,13 +64,13 @@ export function YearPlanner({ header }: { header: ReactNode }) {
             {/* Wraps under the name when the column is narrow (larger text) instead of one word per line. */}
             <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
               <span className="display text-[28px] tracking-[-.02em] lg:text-[30px]">{s.name}</span>
-              <span className="whitespace-nowrap text-[12px] font-semibold text-muted">{s.months}</span>
+              <span className="whitespace-nowrap text-[13px] font-semibold text-muted">{s.months}</span>
             </div>
             <div className="flex flex-1 flex-col gap-2">
               {s.items.map((i) => (
                 <SmartLink key={i.t} to={i.page} className="flex flex-col gap-0.5 rounded-[14px] bg-white/75 px-3.5 py-3 transition-colors hover:bg-white">
                   <span className="text-[14px] font-semibold">{i.t}</span>
-                  <span className="text-[12px] text-muted">{i.svc}</span>
+                  <span className="text-[13px] text-muted">{i.svc}</span>
                 </SmartLink>
               ))}
             </div>

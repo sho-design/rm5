@@ -32,7 +32,7 @@ const ghost = buttonClass("outline", "md");
 function Steps({ state, className }: { state: BookingState; className?: string }) {
   const current = state === "w" ? 2 : state === "e" ? 3 : state === "c" ? 0 : state;
   return (
-    <ol className={cn("flex items-center gap-1 text-[12px] font-semibold md:gap-1.5 md:text-[13px]", className)} aria-label="Booking steps">
+    <ol className={cn("flex items-center gap-1 text-[13px] font-semibold md:gap-1.5 md:text-[13px]", className)} aria-label="Booking steps">
       {bookingSteps.map(({ n, label }) => {
         const on = n === current;
         const done = state === "c" || n < current;
@@ -42,7 +42,7 @@ function Steps({ state, className }: { state: BookingState; className?: string }
             aria-current={on ? "step" : undefined}
             className={cn("flex flex-1 items-center justify-center gap-1.5 rounded-chip px-2 py-2 md:flex-none md:gap-2 md:px-3.5", on ? "bg-ink text-white" : done ? "bg-sage-tint text-ink" : "bg-white text-ink")}
           >
-            <span className={cn("flex h-[18px] w-[18px] items-center justify-center rounded-full text-[10px] md:h-5 md:w-5 md:text-[11px]", on ? "bg-sun text-sun-ink" : done ? "bg-sage-deep text-white" : "bg-line text-muted")} aria-hidden>
+            <span className={cn("flex h-[18px] w-[18px] items-center justify-center rounded-full text-[12px] md:h-5 md:w-5 md:text-[12px]", on ? "bg-sun text-sun-ink" : done ? "bg-sage-deep text-white" : "bg-line text-muted")} aria-hidden>
               <span aria-hidden>{done ? "✓" : n}</span>
             </span>
             {done ? <span className="sr-only">Done: </span> : on ? <span className="sr-only">{x.current}</span> : null}
@@ -457,7 +457,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
     );
   };
 
-  const callLine = <span className="text-[12px] leading-[1.5] text-muted md:text-[13px]">{linkPhones(bookingCopy.callLine)}</span>;
+  const callLine = <span className="text-[13px] leading-[1.5] text-muted md:text-[13px]">{linkPhones(bookingCopy.callLine)}</span>;
   const stepBox = (label: string) => ({ ref: setReveal, tabIndex: -1, role: "group" as const, "aria-label": label, className: "flex scroll-mt-20 flex-col gap-4 outline-none" });
 
   const reviewRows: [string, string][] = [
@@ -515,7 +515,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
         ) : null}
         {state === 1 && signs ? <EmergencyNote id="emergency" headingLevel={3} /> : null}
         <dl aria-labelledby="book-summary" className={cn("mt-3 hidden flex-col gap-2.5 rounded-card-sm border border-border bg-card px-6 py-[22px] text-[14px] leading-[1.5]", (state === 1 || state === 2) && "lg:flex")}>
-          <h2 id="book-summary" className="text-[12px] font-semibold text-muted">
+          <h2 id="book-summary" className="text-[13px] font-semibold text-muted">
             {bookingCopy.summaryTitle}
           </h2>
           {[
@@ -637,10 +637,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <div className="flex flex-col gap-2">
                 <GroupLabel>{x.statusLabel}</GroupLabel>
                 <Choice options={bookingWho} value={who} onChange={setWho} ariaLabel={x.statusLabel} />
-                <span className="text-[12px] text-muted">{x.statusHint}</span>
+                <span className="text-[13px] text-muted">{x.statusHint}</span>
                 {/* Booking is one visit; registering makes us your family doctor. New patients asked which to do. */}
                 {who === 0 && service.key === "family" ? (
-                  <span className="text-[12px] text-muted">
+                  <span className="text-[13px] text-muted">
                     {x.registerHint}{" "}
                     <SmartLink to="register" className="font-semibold text-link">
                       {x.registerLink}<span aria-hidden> ›</span>
@@ -651,7 +651,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               <div className="flex flex-col gap-2">
                 <GroupLabel>{registerCopy.fields.language}</GroupLabel>
                 <Choice options={[...registerLanguages, x.otherLanguage]} value={language} onChange={setLanguage} ariaLabel={registerCopy.fields.language} />
-                {language === 1 ? <span className="text-[12px] text-muted">{x.languageHint}</span> : null}
+                {language === 1 ? <span className="text-[13px] text-muted">{x.languageHint}</span> : null}
                 {language === 2 ? field("languageOther", x.otherLanguageField, { autoComplete: "off" }, { hint: x.otherLanguageHint }) : null}
               </div>
 
@@ -710,7 +710,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
               {visit?.claim ? (
                 <fieldset className="flex flex-col gap-2">
                   <legend className="mb-1 text-[13px] font-semibold text-primary">{x.claimTitle[visit.claim]}</legend>
-                  <p className="mb-1 text-[12px] leading-[1.5] text-muted">{who === 1 ? x.claimHintExisting : x.claimHint}</p>
+                  <p className="mb-1 text-[13px] leading-[1.5] text-muted">{who === 1 ? x.claimHintExisting : x.claimHint}</p>
                   <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
                     {field("claimNumber", x.fields.claimNumber, { autoComplete: "off" })}
                     {visit.claim === "mva" ? field("insurer", x.fields.insurer, { autoComplete: "off" }) : field("employer", x.fields.employer, { autoComplete: "organization" })}
@@ -782,7 +782,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   {x.reminders}
                 </ConsentRow>
                 {/* A 15-year-old booking birth control worried what a reminder on a shared phone would say (round 20). */}
-                {sensitive ? <p className="text-[12px] leading-[1.5] text-muted">{x.remindersPrivate}</p> : null}
+                {sensitive ? <p className="text-[13px] leading-[1.5] text-muted">{x.remindersPrivate}</p> : null}
                 <ConsentRow name="updates" defaultChecked={details.updates === true}>
                   {x.updates}
                   <SmartLink to="privacy" target="_blank" rel="noopener" className="font-semibold text-link">
@@ -826,10 +826,10 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                     }}
                     className={cn("flex min-w-[40px] flex-1 flex-col items-center gap-0.5 rounded-[12px] border-[1.5px] px-0.5 py-2 transition-all duration-[250ms] md:rounded-[14px] md:px-1 md:py-2.5", selClass(on), !d.open && !on && "border-dashed text-muted")}
                   >
-                    <span className="text-[10px] font-semibold opacity-70 md:text-[11px]">{d.today ? x.todayShort : d.dow}</span>
+                    <span className="text-[13px] font-semibold opacity-70 md:text-[13px]">{d.today ? x.todayShort : d.dow}</span>
                     <span className="font-display text-[17px] md:text-[20px]">{d.num}</span>
-                    {visit?.days === "womensday" ? <span className="text-[10px] font-semibold md:text-[11px]">{MON[d.date.getMonth()]}</span> : null}
-                    <span className="text-[9px] font-semibold md:text-[10px]">{d.open ? " " : x.closedShort}</span>
+                    {visit?.days === "womensday" ? <span className="text-[13px] font-semibold md:text-[13px]">{MON[d.date.getMonth()]}</span> : null}
+                    <span className="text-[11px] font-semibold md:text-[13px]">{d.open ? " " : x.closedShort}</span>
                   </button>
                 );
               })}

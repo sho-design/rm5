@@ -34,17 +34,17 @@ export default function ContactPage() {
 
       <div className="rm-contact-tiles grid grid-cols-2 gap-2 px-4 pt-6 md:px-content md:pt-10 lg:grid-cols-4 lg:gap-3">
         <a href={site.phoneHref} className={`${tile} bg-inverse text-on-inverse hover:opacity-95`}>
-          <span className="text-[12px] text-white/60">{contactCopy.tiles.call.k}</span>
+          <span className="text-[13px] text-white/60">{contactCopy.tiles.call.k}</span>
           <span className="whitespace-nowrap font-display text-[20px] tracking-[-.02em] md:text-[26px]">{site.phone}</span>
           <span className="text-[13px] text-white/70">{contactCopy.tiles.call.sub}</span>
         </a>
         <div className={`${tile} border border-border bg-card`}>
-          <span className="text-[12px] text-muted">{contactCopy.tiles.fax.k}</span>
+          <span className="text-[13px] text-muted">{contactCopy.tiles.fax.k}</span>
           <span className="whitespace-nowrap font-display text-[20px] tracking-[-.02em] md:text-[26px]">{site.fax}</span>
           <span className="text-[13px] text-muted">{contactCopy.tiles.fax.sub}</span>
         </div>
         <a href={`mailto:${site.email}`} className={`${tile} border border-border bg-card hover:border-sky`}>
-          <span className="text-[12px] text-muted">{contactCopy.tiles.email.k}</span>
+          <span className="text-[13px] text-muted">{contactCopy.tiles.email.k}</span>
           {/* Wrap at the @ on narrow tiles, never mid-word. */}
           <span className="break-words text-[15px] font-semibold md:text-[16px]">
             {site.email.split("@")[0]}
@@ -53,7 +53,7 @@ export default function ContactPage() {
           <span className="text-[13px] text-muted">{contactCopy.tiles.email.sub}</span>
         </a>
         <SmartLink to="locations" className={`${tile} bg-sun-soft text-ink hover:opacity-95`}>
-          <span className="text-[12px] text-ink/60">{contactCopy.tiles.visit.k}</span>
+          <span className="text-[13px] text-ink/60">{contactCopy.tiles.visit.k}</span>
           <span className="text-[15px] font-semibold md:text-[16px]">{contactCopy.tiles.visit.v}</span>
           <span className="text-[13px] text-ink/70">{contactCopy.tiles.visit.sub} ›</span>
         </SmartLink>
@@ -72,7 +72,7 @@ export default function ContactPage() {
           </Photo>
           <div className="grid grid-cols-1 gap-4 rounded-card-sm border border-border p-5 text-[14px] leading-[1.5] sm:grid-cols-2 md:p-6">
             <div className="flex flex-col gap-1">
-              <span className="text-[12px] font-semibold text-muted">{contactCopy.hoursTitle}</span>
+              <span className="text-[13px] font-semibold text-muted">{contactCopy.hoursTitle}</span>
               <table className="w-full border-collapse">
                 <tbody>
                   {thornhillHours.map(([d, h]) => (
@@ -87,7 +87,7 @@ export default function ContactPage() {
               </table>
             </div>
             <div className="flex flex-col gap-1">
-              <span className="text-[12px] font-semibold text-muted">{contactCopy.gettingHereTitle}</span>
+              <span className="text-[13px] font-semibold text-muted">{contactCopy.gettingHereTitle}</span>
               <span>{contactCopy.gettingHere}</span>
             </div>
           </div>

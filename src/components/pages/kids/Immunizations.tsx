@@ -12,7 +12,7 @@ export function Immunizations({ stages, value, onChange }: { stages: Immunizatio
   const sel = stages[value] ?? stages[0];
   return (
     <Section id="immunizations" className="flex flex-col gap-6">
-      <SubHeader eyebrow={kidsCopy.imm.eyebrow} accentClass="text-sage-deep" title={kidsCopy.imm.title} note={kidsCopy.imm.note} />
+      <SubHeader eyebrow={kidsCopy.imm.eyebrow} accentClass="text-sage-text" title={kidsCopy.imm.title} note={kidsCopy.imm.note} />
       {/* Wraps instead of scrolling sideways, so "4 to 6 years" is never off screen. */}
       <ChipRow items={stages.map((s) => s.label)} value={value} onChange={onChange} ariaLabel="Age" scroll={false} />
       <div className="grid grid-cols-1 gap-block lg:grid-cols-[1.4fr_1fr] lg:items-stretch">
@@ -33,7 +33,7 @@ export function Immunizations({ stages, value, onChange }: { stages: Immunizatio
         </div>
         <div className="flex flex-col gap-block">
           <div className="flex flex-1 flex-col gap-3 rounded-card border border-border bg-card p-6 md:p-7">
-            <span className="text-[12px] font-semibold text-muted">{kidsCopy.imm.whereLabel}</span>
+            <span className="text-[13px] font-semibold text-muted">{kidsCopy.imm.whereLabel}</span>
             <span className="text-[16px] font-semibold">{sel.where}</span>
             <span className="text-[14px] leading-[1.5] text-secondary">{kidsCopy.imm.whereNote}</span>
           </div>

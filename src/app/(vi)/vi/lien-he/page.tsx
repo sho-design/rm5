@@ -29,17 +29,17 @@ export default function ViContactPage() {
 
       <div className="grid grid-cols-1 gap-2 px-4 pt-6 sm:grid-cols-3 md:px-content md:pt-10 lg:gap-3">
         <a href={site.phoneHref} className={`${tile} bg-inverse text-on-inverse hover:opacity-95`}>
-          <span className="text-[12px] text-white/60">{viChrome.phoneLabel}</span>
+          <span className="text-[13px] text-white/60">{viChrome.phoneLabel}</span>
           <span className="whitespace-nowrap font-display text-[24px] tracking-[-.02em] md:text-[28px]">{site.phone}</span>
           <span className="text-[13px] text-white/70">{c.callSub}</span>
         </a>
         <a href={`mailto:${site.email}`} className={`${tile} bg-sky-soft hover:opacity-95`}>
-          <span className="text-[12px] text-muted">{viChrome.emailLabel}</span>
+          <span className="text-[13px] text-muted">{viChrome.emailLabel}</span>
           <span className="break-all text-[17px] font-semibold">{site.email}</span>
           <span className="text-[13px] text-secondary">{c.emailSub}</span>
         </a>
         <div className={`${tile} bg-raised`}>
-          <span className="text-[12px] text-muted">{viChrome.faxLabel}</span>
+          <span className="text-[13px] text-muted">{viChrome.faxLabel}</span>
           <span className="font-display text-[24px] tracking-[-.02em] md:text-[28px]">{site.fax}</span>
           <span className="text-[13px] text-secondary">{c.faxSub}</span>
         </div>

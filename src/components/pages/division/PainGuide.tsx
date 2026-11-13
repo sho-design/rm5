@@ -54,7 +54,7 @@ export function PainGuide() {
       >
         {/* Phone order: heading, picture, steps. Desktop: heading and steps on the left, picture on the right. */}
         <div className="flex flex-col gap-5">
-          <Eyebrow tone="inherit" className="text-[#C4573A]">
+          <Eyebrow tone="inherit" className="text-terracotta-text">
             {c.eyebrow}
           </Eyebrow>
           <Display size="sm">{c.title}</Display>
@@ -160,7 +160,7 @@ export function PainGuide() {
               <text x="450" y="424" fontSize="15" fontWeight="600" fill="#2C4A3A">{c.labels.report}</text>
             </g>
           </svg>
-          <figcaption className="text-[12px] text-muted">{c.note}</figcaption>
+          <figcaption className="text-[13px] text-muted">{c.note}</figcaption>
         </figure>
 
         <div className="flex flex-col gap-5 lg:col-start-1 lg:row-start-2">

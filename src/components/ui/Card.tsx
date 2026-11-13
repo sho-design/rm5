@@ -58,7 +58,7 @@ export function Card({
 export function FactTile({ k, v, inverse }: Fact & { inverse?: boolean }) {
   return (
     <div className={cn("flex flex-col gap-1 rounded-row px-[18px] py-4", inverse ? "bg-white/7" : "bg-card border border-border")}>
-      <span className={cn("text-[12px] font-semibold", inverse ? "text-white/55" : "text-muted")}>{k}</span>
+      <span className={cn("text-[13px] font-semibold", inverse ? "text-white/55" : "text-muted")}>{k}</span>
       <span className="text-[15px] font-semibold leading-[1.35]">{v}</span>
     </div>
   );
@@ -120,7 +120,7 @@ export function TintCard({ t, d, bg, meta, link, page, time, className }: TintCa
       {meta || time ? (
         <div className="flex items-center justify-between gap-3">
           <span className="text-[16px] font-semibold">{t}</span>
-          <span className="shrink-0 rounded-chip bg-white/70 px-2.5 py-1 text-[11px] font-semibold">{meta ?? time}</span>
+          <span className="shrink-0 rounded-chip bg-white/70 px-2.5 py-1 text-[13px] font-semibold">{meta ?? time}</span>
         </div>
       ) : (
         <span className="text-[16px] font-semibold">{t}</span>

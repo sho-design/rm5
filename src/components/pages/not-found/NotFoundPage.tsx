@@ -13,7 +13,7 @@ export function NotFoundPage() {
   return (
     <div className="grid grid-cols-1 items-center gap-8 px-4 pb-10 pt-10 md:px-content md:pt-20 lg:grid-cols-2 lg:gap-12">
       <div className="flex flex-col gap-3.5 md:gap-5">
-        <span aria-hidden className="font-display text-[88px] font-medium leading-[.9] tracking-[-.04em] text-sky md:text-[120px]">
+        <span aria-hidden className="font-display text-[88px] font-medium leading-[.9] tracking-[-.04em] text-link md:text-[120px]">
           404
         </span>
         <Display as="h1" size="md" className="!leading-none">

@@ -49,7 +49,7 @@ export function ReferralProcess({ steps }: { steps: RefStep[] }) {
         </div>
         <div className="grid grid-cols-1 gap-5 rounded-card border border-border bg-raised p-6 sm:grid-cols-2 md:p-8">
           <div className="flex flex-col gap-3">
-            <span className="text-[12px] font-semibold text-muted">{c.physiciansLabel}</span>
+            <span className="text-[13px] font-semibold text-muted">{c.physiciansLabel}</span>
             {c.physicians.map((p) => (
               <div key={p.name} className="flex flex-col gap-0.5">
                 <span className="text-[15px] font-semibold">{p.name}</span>
@@ -58,7 +58,7 @@ export function ReferralProcess({ steps }: { steps: RefStep[] }) {
             ))}
           </div>
           <div className="flex flex-col gap-3">
-            <span className="text-[12px] font-semibold text-muted">{c.goodToKnowLabel}</span>
+            <span className="text-[13px] font-semibold text-muted">{c.goodToKnowLabel}</span>
             <ul className="flex flex-col gap-2 text-[13px] leading-[1.45] text-muted">
               {c.goodToKnow.map((g) => (
                 <li key={g}>{g}</li>

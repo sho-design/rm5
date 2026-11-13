@@ -418,7 +418,7 @@ export function IronJourney() {
               </text>
             </g>
           </svg>
-          <figcaption className="text-[12px] text-muted">{c.note}</figcaption>
+          <figcaption className="text-[13px] text-muted">{c.note}</figcaption>
         </figure>
         <div className="flex flex-col gap-5 lg:col-start-1 lg:row-start-2">
           {/* Pause sits above the steps, where a reader sees it before the text moves on (round 29). */}

@@ -1,5 +1,6 @@
 import type { TintCard } from "@/content/types";
 import { Display, Eyebrow, Section, SmartLink } from "@/components/ui";
+import { accentText } from "@/lib/accent";
 
 /**
  * "Different doors" strip: header with a right-aligned note, then three
@@ -10,7 +11,7 @@ export function Compare({ eyebrow, title, note, cards, accent }: { eyebrow: stri
     <Section className="flex flex-col gap-5">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-8">
         <div className="flex flex-col gap-2">
-          <Eyebrow tone="inherit" style={{ color: accent }}>
+          <Eyebrow tone="inherit" style={{ color: accentText(accent) }}>
             {eyebrow}
           </Eyebrow>
           <Display size="xs">{title}</Display>

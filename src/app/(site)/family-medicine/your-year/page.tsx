@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import { Button, Display, Eyebrow } from "@/components/ui";
 import { divisions } from "@/content/divisions";
 import { YearPlanner } from "@/components/pages/year/YearPlanner";
+import { accentText } from "@/lib/accent";
 
 const title = "Your year of staying well.";
 const lead = "A calm rhythm of checks, spaced through the year, so problems are found early or never start. Adjust the two answers and we lay it out.";
@@ -19,7 +20,7 @@ export default function YourYearPage() {
       <YearPlanner
         header={
           <div className="flex flex-col gap-4">
-            <Eyebrow tone="inherit" style={{ color: divisions.family.accent }}>
+            <Eyebrow tone="inherit" style={{ color: accentText(divisions.family.accent) }}>
               Prevention
             </Eyebrow>
             <Display as="h1" size="lg">
@@ -55,7 +56,7 @@ export default function YourYearPage() {
         </div>
       </div>
 
-      <p className="max-w-[720px] px-4 pb-10 pt-6 text-[13px] leading-[1.5] text-muted md:px-content">
+      <p className="max-w-[62ch] px-4 pb-10 pt-6 text-[13px] leading-[1.5] text-muted md:px-content">
         Based on Ontario screening guidelines for adults without known risk factors. Your doctor adjusts this to your history. It does not replace medical advice.
       </p>
     </>

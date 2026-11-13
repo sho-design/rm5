@@ -59,7 +59,7 @@ export function EventPlanner() {
     <Section id="event-plan" className="scroll-mt-24">
       <div className="grid grid-cols-1 gap-8 rounded-block bg-lilac-tint p-6 text-ink md:p-10 lg:grid-cols-[1fr_1.3fr] lg:gap-12 lg:p-12">
         <div className="flex flex-col gap-5">
-          <Eyebrow tone="inherit" className="text-lilac-deep">
+          <Eyebrow tone="inherit" className="text-lilac-text">
             {c.eyebrow}
           </Eyebrow>
           <Display size="sm">{c.title}</Display>
@@ -102,7 +102,7 @@ export function EventPlanner() {
                   <span className="text-[16px] font-semibold">{s.t}</span>
                   <span className="text-[13px] font-semibold text-muted">{s.rel}</span>
                 </span>
-                <span className={cn("text-[14px] leading-[1.45]", r?.late ? "text-secondary" : r ? "font-semibold text-lilac-deep" : "text-secondary")}>
+                <span className={cn("text-[14px] leading-[1.45]", r?.late ? "text-secondary" : r ? "font-semibold text-lilac-text" : "text-secondary")}>
                   {r ? r.when : s.d}
                 </span>
               </li>

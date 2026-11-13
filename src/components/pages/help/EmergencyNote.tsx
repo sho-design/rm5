@@ -36,7 +36,7 @@ export function EmergencyNote({ className, id, headingLevel = 2, crisisFirst = f
       {/* No tel:911 link anywhere on the site: the clinic does not want accidental emergency calls. 911 is plain text. */}
       {/* Round 19: the only tappable numbers in the box were 988 and 811, under the 911 list. They now sit
           below a divider, labelled as other help, so they do not read as the way to get emergency help. */}
-      <p className="mt-1 border-t border-ink/15 pt-3 text-[12px] font-semibold text-muted">{c.otherHelp}</p>
+      <p className="mt-1 border-t border-ink/15 pt-3 text-[13px] font-semibold text-muted">{c.otherHelp}</p>
       {crisisFirst ? null : (
       <p className="pretty text-[14px] leading-[1.5] text-ink-2">
         {c.crisis}{" "}

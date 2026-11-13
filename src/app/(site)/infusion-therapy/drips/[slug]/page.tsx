@@ -54,7 +54,7 @@ export default async function DripPage({ params }: Params) {
       />
       <section className="relative mx-3 mt-3 grid grid-cols-1 gap-8 overflow-hidden rounded-block p-6 md:mx-gutter md:mt-6 md:p-10 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:p-12" style={{ background: `linear-gradient(135deg, var(--div-infusion) 55%, color-mix(in srgb, ${color} 30%, var(--div-infusion)))` }}>
         <div className="flex flex-col gap-6">
-        <span className="eyebrow text-[color:var(--div-infusion-accent)]">
+        <span className="eyebrow text-sage-text">
           <SmartLink to="infusion">{divisions.infusion.label}</SmartLink> › <SmartLink to="drips">{c.back}</SmartLink>
         </span>
         <span className="flex items-center gap-2 text-[13px] font-semibold">
@@ -158,7 +158,7 @@ export default async function DripPage({ params }: Params) {
               <ul className="flex flex-col gap-2 text-[16px] leading-[1.5] text-secondary">
                 {x.supports.map((s) => (
                   <li key={s} className="flex gap-2.5">
-                    <span aria-hidden className="text-sage-deep">✓</span>
+                    <span aria-hidden className="text-sage-text">✓</span>
                     {s}
                   </li>
                 ))}

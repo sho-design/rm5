@@ -62,7 +62,7 @@ export function IronPlanner() {
     <Section id="iron-plan" className="scroll-mt-6">
       <div className="grid grid-cols-1 gap-8 rounded-block bg-sage-tint p-6 text-ink md:p-10 lg:grid-cols-[1fr_1.35fr] lg:gap-12 lg:p-12">
         <div className="flex flex-col gap-5">
-          <Eyebrow tone="inherit" className="text-sage-deep">
+          <Eyebrow tone="inherit" className="text-sage-text">
             {c.eyebrow}
           </Eyebrow>
           <Display size="sm">{c.title}</Display>
@@ -104,7 +104,7 @@ export function IronPlanner() {
           <div className="flex flex-col gap-2">
             <span className="text-[13px] font-semibold text-secondary">{c.visitsLabel}</span>
             <Choice options={c.visitsOptions} value={count} onChange={setCount} ariaLabel={c.visitsLabel} />
-            <span className="text-[12px] leading-[1.5] text-muted">{c.visitsHint}</span>
+            <span className="text-[13px] leading-[1.5] text-muted">{c.visitsHint}</span>
           </div>
 
           <dl className="grid grid-cols-1 gap-3 rounded-card-sm bg-white p-5 sm:grid-cols-2" aria-live="polite">
@@ -129,7 +129,7 @@ export function IronPlanner() {
           {/* Desktop: a track that spans the first visit to the end of the bloodwork window. The visits slide along it. */}
           <div className="relative hidden h-[86px] lg:block" aria-hidden>
             <div className="absolute inset-x-0 top-[38px] h-[3px] rounded-full bg-white" />
-            <div className="absolute right-0 top-[30px] flex h-[19px] w-[26%] items-center justify-center rounded-chip bg-sun-tint text-[11px] font-semibold">{c.labsShort}</div>
+            <div className="absolute right-0 top-[30px] flex h-[19px] w-[26%] items-center justify-center rounded-chip bg-sun-tint text-[12px] font-semibold">{c.labsShort}</div>
             {visits.map((v, i) => (
               <div
                 key={i}
@@ -137,7 +137,7 @@ export function IronPlanner() {
                 style={{ left: `calc(22px + (100% - 44px) * ${(pct(v) / 100).toFixed(4)})` }}
               >
                 <span className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-ink font-display text-[18px] font-medium text-white ring-4 ring-sage-tint">{i + 1}</span>
-                <span className="whitespace-nowrap text-[12px] font-semibold">{short(v)}</span>
+                <span className="whitespace-nowrap text-[13px] font-semibold">{short(v)}</span>
               </div>
             ))}
           </div>

@@ -17,7 +17,7 @@ export function CoverageChecker({ options }: { options: CoverageOption[] }) {
     <section className="grid grid-cols-1 gap-block px-4 pt-12 md:px-content md:pt-section lg:grid-cols-[1fr_1.3fr] lg:items-stretch">
       <div className="flex flex-col gap-5 rounded-block border border-border bg-card p-6 md:p-10">
         <div className="flex flex-col gap-2">
-          <Eyebrow tone="inherit" className="text-amber-deep">
+          <Eyebrow tone="inherit" className="text-amber-text">
             {c.eyebrow}
           </Eyebrow>
           <Display size="2xs">{c.title}</Display>
@@ -27,7 +27,7 @@ export function CoverageChecker({ options }: { options: CoverageOption[] }) {
       <div className="flex flex-col justify-between gap-7 rounded-block bg-inverse p-6 text-on-inverse md:p-10">
         <div className="flex flex-col gap-[18px]">
           <div className="flex flex-col gap-1">
-            <span className="text-[12px] text-white/60">{c.payLabel}</span>
+            <span className="text-[13px] text-white/60">{c.payLabel}</span>
             <span className="display-tight text-[48px] text-sun md:text-[64px]" aria-live="polite">
               {cov.upfront}
             </span>

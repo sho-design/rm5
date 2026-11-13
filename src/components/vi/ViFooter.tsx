@@ -55,7 +55,7 @@ export function ViFooter() {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="text-[12px] font-semibold text-primary">{c.hoursTitle}</h3>
+              <h3 className="text-[13px] font-semibold text-primary">{c.hoursTitle}</h3>
               <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5">
                 {c.hours.map(([d, h]) => (
                   <div key={d} className="contents">
@@ -76,7 +76,7 @@ export function ViFooter() {
           <div className="flex flex-col gap-2 rounded-[20px] border border-border bg-raised px-5 py-4 text-[13px] leading-[1.5] text-muted md:flex-row md:items-center md:gap-5 md:px-6">
             <span className="flex shrink-0 items-center gap-2.5">
               <h2 className="display text-[18px] text-primary">{maple.name}</h2>
-              <span className="rounded-chip bg-sun-soft px-2.5 py-1 text-[12px] font-semibold text-sun-ink">{c.f.soon}</span>
+              <span className="rounded-chip bg-sun-soft px-2.5 py-1 text-[13px] font-semibold text-sun-ink">{c.f.soon}</span>
             </span>
             <span className="min-w-0 md:flex-1">{maple.addressLines.join(", ")}</span>
           </div>
@@ -109,7 +109,7 @@ export function ViFooter() {
         <span className="font-display text-[34px] font-medium leading-none tracking-[-.03em] md:text-[44px]">
           Refined by <span className="text-sun">Medicine.</span>
         </span>
-        <p className="border-t border-white/15 pt-4 text-[12px] leading-[1.6] text-white/65">
+        <p className="border-t border-white/15 pt-4 text-[13px] leading-[1.6] text-white/65">
           © {new Date().getFullYear()} {site.name}. {c.disclaimer}
         </p>
       </div>

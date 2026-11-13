@@ -44,7 +44,7 @@ export function SeasonCalendar({ month }: { month: number }) {
               <li key={mi} className={cn("flex flex-col gap-2.5 rounded-row border p-4", now ? "border-sky bg-raised" : "border-border bg-transparent")}>
                 <div className="flex items-center justify-between">
                   <span className="font-display text-[22px] font-medium tracking-[-.02em]">{monthShort[mi]}</span>
-                  {now ? <span className="text-[11px] font-semibold text-sky">Now</span> : null}
+                  {now ? <span className="text-[13px] font-semibold text-link">Now</span> : null}
                 </div>
                 <div className="flex flex-col gap-1.5">
                   {calendar[mi].map((ci) => (
@@ -58,7 +58,7 @@ export function SeasonCalendar({ month }: { month: number }) {
             );
           })}
         </ol>
-        <span className="text-[12px] text-muted">Clinic closures: {site.closures}</span>
+        <span className="text-[13px] text-muted">Clinic closures: {site.closures}</span>
       </div>
     </Section>
   );

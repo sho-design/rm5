@@ -35,7 +35,7 @@ function PainMap({ options, value, onChange }: { options: ChooserOption[]; value
               title={b.label}
               onClick={() => onChange(b.optionIndex)}
               className={cn(
-                "absolute -m-[22px] flex h-11 w-11 items-center justify-center rounded-full border-2 text-[11px] font-semibold shadow-hotspot transition-all duration-[250ms]",
+                "absolute -m-[22px] flex h-11 w-11 items-center justify-center rounded-full border-2 text-[12px] font-semibold shadow-hotspot transition-all duration-[250ms]",
                 on ? "scale-[1.15] border-ink bg-ink text-white" : "border-terracotta bg-white text-ink hover:scale-105",
               )}
               style={{ left: b.x, top: b.y }}
@@ -46,7 +46,7 @@ function PainMap({ options, value, onChange }: { options: ChooserOption[]; value
         })}
       </div>
       <div className="flex w-full flex-1 flex-col gap-1.5">
-        <span className="hidden pb-1 text-[12px] font-semibold text-muted sm:block">{deepModuleCopy.painHint}</span>
+        <span className="hidden pb-1 text-[13px] font-semibold text-muted sm:block">{deepModuleCopy.painHint}</span>
         <OptionList options={options} value={value} onChange={onChange} compact ariaLabel={deepModuleCopy.painMapLabel} />
       </div>
     </div>

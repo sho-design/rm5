@@ -54,6 +54,11 @@
   --color-on-inverse-muted: var(--text-on-inverse-muted);
   --color-on-accent: var(--text-on-accent);
   --color-link: var(--text-link);
+  --color-sky-text: var(--rm-sky-text);
+  --color-sage-text: var(--rm-sage-text);
+  --color-lilac-text: var(--rm-lilac-text);
+  --color-amber-text: var(--rm-amber-text);
+  --color-terracotta-text: var(--rm-terracotta-text);
 
   --color-div-family: var(--div-family);
   --color-div-family-accent: var(--div-family-accent);
@@ -92,6 +97,34 @@
   --default-transition-duration: var(--duration-base);
 }
 
+/* Accessible text colours (design review, Nov 2026). The brand accents are fill colours: as small text the
+   link blue was 4.1:1 on white and the division labels 2.8 to 3.9:1. These text versions are the same hues
+   mixed toward ink so they reach at least 4.5:1 on white and on every tint. Fills keep the brand values. */
+:root {
+  /* Smallest sizes raised one step (design review, Nov 2026): labels and tags 12 to 13px, tiny tags 11 to 12px. */
+  --text-3xs: 13px;
+  --text-4xs: 12px;
+  --rm-sky-text: color-mix(in srgb, var(--rm-sky) 80%, var(--rm-ink));
+  --rm-sage-text: color-mix(in srgb, var(--rm-sage-deep) 70%, var(--rm-ink));
+  --rm-lilac-text: color-mix(in srgb, var(--rm-lilac-deep) 70%, var(--rm-ink));
+  --rm-amber-text: color-mix(in srgb, var(--rm-amber-deep) 70%, var(--rm-ink));
+  --rm-terracotta-text: color-mix(in srgb, var(--rm-terracotta-deep) 70%, var(--rm-ink));
+}
+:root:not([data-theme="dark"]):not([data-theme="contrast"]) {
+  --text-link: var(--rm-sky-text);
+  --action-secondary-bg: var(--rm-sky-text);
+  --status-success-fg: var(--rm-sage-text);
+  --status-warning-fg: var(--rm-amber-text);
+  --status-error-fg: var(--rm-terracotta-text);
+  --status-info-fg: var(--rm-sky-text);
+}
+:root[data-theme="dark"] {
+  --rm-sky-text: #7FB8F0; --rm-sage-text: #7FC8A9; --rm-lilac-text: #D9B8EA; --rm-amber-text: #FFD84D; --rm-terracotta-text: #F0A08A;
+}
+:root[data-theme="contrast"] {
+  --rm-sky-text: #0B4FA8; --rm-sage-text: #1F6B4E; --rm-lilac-text: #5D2E85; --rm-amber-text: #6B4B00; --rm-terracotta-text: #8A2E14;
+}
+
 /* Self-hosted fonts come from next/font/local; point the token families at them.
    Unlayered on purpose so it wins over the imported token file. */
 :root {
@@ -100,6 +133,11 @@
 }
 
 @layer base {
+  /* Comfortable line length (design review, Nov 2026): body paragraphs stop at about 75 characters on wide
+     screens; some ran to 95 to 125. Centred paragraphs stay centred. A max-w-* class on a paragraph wins. */
+  main p { max-width: 62ch; }
+  main :where(.text-center) p, main p.text-center { margin-inline: auto; }
+
   /* Text size steps set by the A- / A+ controls. Most sizes on the site are
      in px (from the design tokens), so a root font-size change would miss
      them; zoom scales every size, spacing and the status bar together and
@@ -424,3 +462,15 @@
 /* Pain Centre guided injection diagram (PainGuide): the needle draws in; full strength in high contrast. */
 @keyframes pgNeedle { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 :root[data-theme="contrast"] .pg-figure svg g[style] { opacity: 1 !important; }
+
+/* Tap targets on phones (design review, Nov 2026): footer links were 21px tall and the top bar links 18 to 26px.
+   Footer links become 44px rows; links in the 38px top bar fill its height. */
+@media (max-width: 767px) {
+  #footer a, #footer nav button {
+    display: flex; align-items: center; min-height: 44px;
+  }
+  #footer nav .flex-col { row-gap: 0; }
+  [aria-label="Clinic status and display settings"] a { display: flex; align-items: center; min-height: 38px; }
+}
+/* Breadcrumb links in eyebrows reach the 24px minimum target on every screen. */
+.eyebrow a { display: inline-block; padding-block: 4px; }

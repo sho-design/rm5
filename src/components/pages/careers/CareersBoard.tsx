@@ -69,8 +69,8 @@ export function CareersBoard({ jobs, placements }: { jobs: BoardJob[]; placement
               <div className="flex flex-col gap-2">
                 <span className="display-tight text-[24px] leading-[1.05] tracking-[-.02em]">{r.title}</span>
                 <div className="flex flex-wrap gap-1.5">
-                  <span className="rounded-chip bg-white/75 px-2.5 py-[5px] text-[12px] font-semibold">{r.location}</span>
-                  <span className="rounded-chip bg-white/75 px-2.5 py-[5px] text-[12px] font-semibold">{r.type}</span>
+                  <span className="rounded-chip bg-white/75 px-2.5 py-[5px] text-[13px] font-semibold">{r.location}</span>
+                  <span className="rounded-chip bg-white/75 px-2.5 py-[5px] text-[13px] font-semibold">{r.type}</span>
                 </div>
                 <span className="text-[14px] leading-[1.5] text-ink-2">{r.summary}</span>
               </div>
@@ -141,7 +141,7 @@ export function CareersBoard({ jobs, placements }: { jobs: BoardJob[]; placement
 function ChipGroup({ label, items, value, onChange }: { label: string; items: readonly string[]; value: string; onChange: (v: string) => void }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-[12px] font-semibold text-muted">{label}</span>
+      <span className="text-[13px] font-semibold text-muted">{label}</span>
       <div role="radiogroup" aria-label={label} className="scroll-x -mx-5 flex gap-1.5 px-5 md:-mx-6 md:px-6 lg:mx-0 lg:flex-wrap lg:px-0">
         {items.map((it) => {
           const on = value === it;

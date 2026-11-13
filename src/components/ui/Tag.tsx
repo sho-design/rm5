@@ -11,7 +11,7 @@ export function Tag({ children, className, style, tone = "tint" }: { children: R
     line: "bg-white border border-border text-ink",
   }[tone];
   return (
-    <span style={style} className={cn("inline-flex items-center rounded-chip px-3 py-1.5 text-[12px] font-semibold leading-none", t, className)}>
+    <span style={style} className={cn("inline-flex items-center rounded-chip px-3 py-1.5 text-[13px] font-semibold leading-none", t, className)}>
       {children}
     </span>
   );

@@ -68,7 +68,7 @@ export function AesPrograms({
                 <li key={s} className="flex gap-3 text-[14px] leading-[1.45]">
                   <span
                     aria-hidden
-                    className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-lilac-tint text-[12px] font-semibold text-lilac-deep"
+                    className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-lilac-tint text-[13px] font-semibold text-lilac-text"
                   >
                     {i + 1}
                   </span>
@@ -226,7 +226,7 @@ export function SkinRegimens({
                           <li key={id} className="flex items-baseline gap-1.5">
                             <span
                               aria-hidden
-                              className="grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-lilac-deep text-[11px] font-semibold text-white"
+                              className="grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-lilac-deep text-[12px] font-semibold text-white"
                             >
                               {n + 1}
                             </span>
@@ -268,7 +268,7 @@ export function SkinRegimens({
         >
           <TextLink className="text-[15px]">{c.seeAll}</TextLink>
         </SmartLink>
-        <p className="pretty max-w-[720px] text-[13px] leading-[1.5] text-muted">
+        <p className="pretty max-w-[62ch] text-[13px] leading-[1.5] text-muted">
           {c.regNote}
         </p>
       </div>

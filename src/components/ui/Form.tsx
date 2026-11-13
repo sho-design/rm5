@@ -14,11 +14,11 @@ export function Field({ label, hint, error, required, htmlFor, children, classNa
       </label>
       {children}
       {error ? (
-        <span role="alert" className="text-[12px] font-semibold text-[color:var(--status-error-fg)]">
+        <span role="alert" className="text-[13px] font-semibold text-[color:var(--status-error-fg)]">
           {error}
         </span>
       ) : hint ? (
-        <span className="text-[12px] text-muted">{hint}</span>
+        <span className="text-[13px] text-muted">{hint}</span>
       ) : null}
     </div>
   );
@@ -54,7 +54,7 @@ export function Checkbox({ label, sub, className, ...rest }: ComponentProps<"inp
   return (
     <label className={cn("flex cursor-pointer items-start gap-3 text-[15px]", className)}>
       <input type="checkbox" className="peer sr-only" {...rest} />
-      <span aria-hidden className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] border-[1.5px] border-border bg-white text-[12px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
+      <span aria-hidden className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] border-[1.5px] border-border bg-white text-[13px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
         ✓
       </span>
       <span className="flex flex-col gap-0.5">

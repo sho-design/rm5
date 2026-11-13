@@ -16,7 +16,7 @@ function Card({ d, picked, onPick, full }: { d: Drip; picked: boolean; onPick: (
     <div className={cn("group relative flex flex-col gap-4 rounded-card border bg-raised p-6 transition-colors hover:border-sky", picked ? "border-ink" : "border-border")}>
       <span className="flex items-start justify-between gap-4">
         <span className="flex flex-col gap-2">
-          <span className="flex items-center gap-2 text-[12px] font-semibold text-muted">
+          <span className="flex items-center gap-2 text-[13px] font-semibold text-muted">
             <span aria-hidden className="h-2.5 w-2.5 rounded-full" style={{ background: color }} />
             {d.f}
           </span>
@@ -30,14 +30,14 @@ function Card({ d, picked, onPick, full }: { d: Drip; picked: boolean; onPick: (
       <span className="pretty flex-1 text-[15px] leading-[1.5] text-secondary">{d.d}</span>
       {inside ? (
         <span className="flex flex-col gap-2">
-          <span className="text-[12px] font-semibold text-muted">{bc.inside}</span>
+          <span className="text-[13px] font-semibold text-muted">{bc.inside}</span>
           <span className="flex flex-wrap gap-1.5">
             {inside.items.map((it) => (
-              <span key={it} className="rounded-chip px-2.5 py-1 text-[12px] font-semibold text-ink" style={{ background: `color-mix(in srgb, ${color} 28%, white)` }}>
+              <span key={it} className="rounded-chip px-2.5 py-1 text-[13px] font-semibold text-ink" style={{ background: `color-mix(in srgb, ${color} 28%, white)` }}>
                 {it}
               </span>
             ))}
-            {inside.consult ? <span className="rounded-chip border border-dashed border-border px-2.5 py-1 text-[12px] text-muted">{bc.atConsult}</span> : null}
+            {inside.consult ? <span className="rounded-chip border border-dashed border-border px-2.5 py-1 text-[13px] text-muted">{bc.atConsult}</span> : null}
           </span>
         </span>
       ) : null}
@@ -67,7 +67,7 @@ function SideBySide({ drips, onClose, onRemove }: { drips: Drip[]; onClose: () =
   return (
     <section id="drip-compare" aria-label={cc.title} className="flex scroll-mt-24 flex-col gap-4 rounded-block bg-ink p-6 text-white md:p-8">
       <div className="flex items-center justify-between gap-4">
-        <span className="font-display text-[30px] font-medium tracking-[-.02em]">{cc.title}</span>
+        <h2 className="font-display text-[28px] font-medium tracking-[-.02em] lg:text-[32px]">{cc.title}</h2>
         <button type="button" onClick={onClose} className="text-[14px] font-semibold text-white/80 hover:text-white">
           {cc.close}
         </button>
@@ -80,23 +80,23 @@ function SideBySide({ drips, onClose, onRemove }: { drips: Drip[]; onClose: () =
             <div key={d.slug} className="flex flex-col gap-4 rounded-card bg-white/[.07] p-5">
               <div className="flex items-start justify-between gap-3">
                 <span className="flex flex-col gap-1">
-                  <span className="font-display text-[24px] font-medium leading-[1.1] tracking-[-.02em]">{d.t}</span>
-                  <button type="button" onClick={() => onRemove(d.slug)} className="self-start text-[12px] text-white/60 hover:text-white">
+                  <h3 className="font-display text-[24px] font-medium leading-[1.1] tracking-[-.02em]">{d.t}</h3>
+                  <button type="button" onClick={() => onRemove(d.slug)} className="self-start text-[13px] text-white/60 hover:text-white">
                     Remove
                   </button>
                 </span>
                 <Bag color={color} className="h-[70px] w-[47px]" />
               </div>
               <dl className="flex flex-col gap-3 text-[14px]">
-                <div><dt className="text-[12px] text-white/55">{cc.family}</dt><dd className="flex items-center gap-2"><span aria-hidden className="h-2.5 w-2.5 rounded-full" style={{ background: color }} />{d.f}</dd></div>
-                <div><dt className="text-[12px] text-white/55">{cc.time}</dt><dd>{cc.timeV}</dd></div>
+                <div><dt className="text-[13px] text-white/55">{cc.family}</dt><dd className="flex items-center gap-2"><span aria-hidden className="h-2.5 w-2.5 rounded-full" style={{ background: color }} />{d.f}</dd></div>
+                <div><dt className="text-[13px] text-white/55">{cc.time}</dt><dd>{cc.timeV}</dd></div>
                 <div>
-                  <dt className="text-[12px] text-white/55">{cc.inside}</dt>
+                  <dt className="text-[13px] text-white/55">{cc.inside}</dt>
                   <dd className="mt-1 flex flex-wrap gap-1.5">
                     {inside?.items.map((it) => (
-                      <span key={it} className="rounded-chip px-2.5 py-1 text-[12px] font-semibold text-ink" style={{ background: `color-mix(in srgb, ${color} 55%, white)` }}>{it}</span>
+                      <span key={it} className="rounded-chip px-2.5 py-1 text-[13px] font-semibold text-ink" style={{ background: `color-mix(in srgb, ${color} 55%, white)` }}>{it}</span>
                     ))}
-                    {inside?.consult ? <span className="rounded-chip border border-dashed border-white/30 px-2.5 py-1 text-[12px] text-white/70">{bc.atConsult}</span> : null}
+                    {inside?.consult ? <span className="rounded-chip border border-dashed border-white/30 px-2.5 py-1 text-[13px] text-white/70">{bc.atConsult}</span> : null}
                   </dd>
                 </div>
               </dl>
@@ -125,11 +125,11 @@ function Compare({ drips }: { drips: Drip[] }) {
         <table className="w-full min-w-[720px] border-separate border-spacing-0 overflow-hidden rounded-card border border-border bg-card text-[14px]">
           <thead>
             <tr>
-              <th scope="col" className="sticky left-0 bg-card px-4 py-3 text-left text-[12px] font-semibold text-muted">
+              <th scope="col" className="sticky left-0 bg-card px-4 py-3 text-left text-[13px] font-semibold text-muted">
                 {bc.tableDrip}
               </th>
               {cols.map((c) => (
-                <th key={c} scope="col" className="px-2 py-3 text-center text-[12px] font-semibold text-muted">
+                <th key={c} scope="col" className="px-2 py-3 text-center text-[13px] font-semibold text-muted">
                   {c}
                 </th>
               ))}
@@ -146,7 +146,7 @@ function Compare({ drips }: { drips: Drip[] }) {
                       <span aria-hidden className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: color }} />
                       {d.t}
                     </SmartLink>
-                    {inside?.consult ? <span className="mt-0.5 block text-[12px] font-normal text-muted">{bc.atConsult}</span> : null}
+                    {inside?.consult ? <span className="mt-0.5 block text-[13px] font-normal text-muted">{bc.atConsult}</span> : null}
                   </th>
                   {cols.map((c) => {
                     const has = inside?.items.includes(c);

@@ -9,7 +9,7 @@ export function Placements() {
   return (
     <Block tone="none" className="grid grid-cols-1 items-center gap-8 bg-sun-tint p-6 md:p-10 lg:grid-cols-[1.2fr_1fr] lg:gap-10 lg:p-12">
       <div className="flex flex-col gap-3.5">
-        <Eyebrow tone="inherit" className="text-amber-deep">
+        <Eyebrow tone="inherit" className="text-amber-text">
           {p.eyebrow}
         </Eyebrow>
         <Display size="2xs">{p.title}</Display>
@@ -22,7 +22,7 @@ export function Placements() {
               <span className="text-[15px] font-semibold">{r.t}</span>
               <span className="text-[13px] text-ink-3">{r.sub}</span>
             </div>
-            <span className="text-[12px] font-semibold text-ink-3">{r.where}</span>
+            <span className="text-[13px] font-semibold text-ink-3">{r.where}</span>
           </div>
         ))}
         <a

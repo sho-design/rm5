@@ -7,6 +7,7 @@ import { reasonParam } from "@/lib/routes";
 import { Display, Eyebrow, Lead } from "./Text";
 import { OptionList } from "./OptionList";
 import { ResultCard } from "./ResultCard";
+import { accentText } from "@/lib/accent";
 
 /**
  * Chooser block: tinted 28px block, option list left (sticky), floating
@@ -59,7 +60,8 @@ export function Chooser({
     onChange?.(i);
   };
   const r = results[pick] ?? results[0];
-  const sizeClass = { md: "text-[36px] md:text-[44px] lg:text-[52px]", sm: "text-[32px] md:text-[40px] lg:text-[48px]", xs: "text-[30px] md:text-[36px] lg:text-[44px]" }[titleSize];
+  // One section size on the scale (design review, Nov 2026); titleSize is kept for callers.
+  const sizeClass = { md: "text-[32px] md:text-[40px] lg:text-[48px]", sm: "text-[32px] md:text-[40px] lg:text-[48px]", xs: "text-[32px] md:text-[40px] lg:text-[48px]" }[titleSize];
   return (
     <section
       id={id}
@@ -71,7 +73,7 @@ export function Chooser({
       style={{ background: tint }}
     >
       <div className="flex flex-col gap-5 lg:sticky lg:top-6">
-        <Eyebrow tone="inherit" style={{ color: accent }}>
+        <Eyebrow tone="inherit" style={{ color: accentText(accent) }}>
           {eyebrow}
         </Eyebrow>
         <Display size="md" className={sizeClass}>
@@ -81,7 +83,7 @@ export function Chooser({
         {left}
         {!left ? (
           <div className="flex flex-col gap-1.5 pt-1.5">
-            {optionsNote ? <span className="pb-1 text-[12px] font-semibold text-muted">{optionsNote}</span> : null}
+            {optionsNote ? <span className="pb-1 text-[13px] font-semibold text-muted">{optionsNote}</span> : null}
             <OptionList options={options} value={pick} onChange={set} compact={compactOptions} />
           </div>
         ) : null}

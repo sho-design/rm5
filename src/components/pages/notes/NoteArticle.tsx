@@ -4,6 +4,7 @@ import type { HealthNote } from "@/content/types";
 import { divisionDot } from "@/content/divisions";
 import { noteByline, notesPage } from "@/content/notes";
 import { InitialDisc, noteInitial, noteTint } from "./NoteCard";
+import { accentText } from "@/lib/accent";
 
 /**
  * Article column (max 720px): back link, 2:1 hero, division label, Fraunces
@@ -20,7 +21,7 @@ export function NoteArticle({ note }: { note: HealthNote }) {
         <Image src={note.img} alt="" fill priority sizes="(max-width: 1024px) 100vw, 720px" className="object-cover" />
       </div>
       <header className="flex flex-col gap-4">
-        <span className="eyebrow" style={{ color: divisionDot[note.division] }}>
+        <span className="eyebrow" style={{ color: accentText(divisionDot[note.division]) }}>
           {note.division}
         </span>
         <Display as="h1" size="md">

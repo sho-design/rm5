@@ -20,7 +20,7 @@ export default function DripsPage() {
       <InfusionHeader pageKey="drips" page="Drips" eyebrow={c.eyebrow} title={c.title} lead={c.lead} />
       <Section first className="flex flex-col gap-6 pt-10 md:pt-12">
         {/* The being-sick and pregnancy line sat only on each drip's own page (round 20); the list now leads with it. */}
-        <p className="pretty max-w-[760px] rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[15px] font-semibold leading-[1.5] text-ink">{infusionCopy.drip.unwell}</p>
+        <p className="pretty max-w-[62ch] rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[15px] font-semibold leading-[1.5] text-ink">{infusionCopy.drip.unwell}</p>
         <DripFinder />
         <DripBrowser drips={signatureDrips} />
       </Section>

@@ -71,7 +71,7 @@ export function AmIDue() {
             >
               <span className="text-[16px] font-semibold">{r.t}</span>
               <span className="text-[13px] leading-[1.45] text-secondary">{r.d}</span>
-              <span className="pt-1 text-[12px] font-semibold text-link">{r.how} ›</span>
+              <span className="pt-1 text-[13px] font-semibold text-link">{r.how} ›</span>
             </SmartLink>
           ))}
         </div>

@@ -3,6 +3,7 @@ import type { IronPrice } from "@/content/iron";
 import type { PathStep, TintCard } from "@/content/types";
 import { Block, Button, Display, Eyebrow, Photo, Section, SmartLink } from "@/components/ui";
 import { bookFor } from "@/lib/routes";
+import { accentText } from "@/lib/accent";
 
 /** "Often the people we see." Four tinted 22px cards. */
 export function IronWho({ cards }: { cards: TintCard[] }) {
@@ -38,7 +39,7 @@ export function IronSteps({ steps }: { steps: PathStep[] }) {
           <div key={st.n} className="flex flex-col gap-[18px] rounded-card-sm border border-white/10 bg-white/6 p-6 lg:p-7">
             <div className="flex items-center justify-between">
               <span className="font-display text-[44px] font-medium leading-none tracking-[-.03em] text-sun">{st.n}</span>
-              <span className="rounded-chip bg-white/12 px-2.5 py-[5px] text-[12px] font-semibold">{st.time}</span>
+              <span className="rounded-chip bg-white/12 px-2.5 py-[5px] text-[13px] font-semibold">{st.time}</span>
             </div>
             <span className="display text-[24px] leading-[1.05] tracking-[-.02em] lg:text-[26px]">{st.t}</span>
             <span className="text-[15px] leading-[1.55] text-white/75">{st.d}</span>
@@ -55,14 +56,14 @@ export function IronVisit({ items, img, noteHref, accent }: { items: string[]; i
     <Section className="grid grid-cols-1 gap-block lg:grid-cols-2 lg:items-stretch">
       <Photo src={img} alt="" radius="block" className="min-h-[260px] md:min-h-[360px] lg:min-h-[480px]" tint="var(--rm-sage-tint)" sizes="(max-width: 1024px) 150vw, 70vw" />
       <div className="flex flex-col justify-center gap-6 rounded-block border border-border bg-card p-6 md:p-10 lg:p-12">
-        <Eyebrow tone="inherit" style={{ color: accent }}>
+        <Eyebrow tone="inherit" style={{ color: accentText(accent) }}>
           The visit
         </Eyebrow>
         <Display size="xs">Bring a book. We handle the rest.</Display>
         <ul className="flex flex-col gap-3 text-[16px] leading-[1.55] text-ink">
           {items.map((v) => (
             <li key={v} className="flex items-start gap-3">
-              <span aria-hidden className="mt-0.5 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full bg-sage-tint text-[13px] text-sage-deep">
+              <span aria-hidden className="mt-0.5 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full bg-sage-tint text-[13px] text-sage-text">
                 ✓
               </span>
               <span>{v}</span>

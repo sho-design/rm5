@@ -72,7 +72,7 @@ export function FieldLabel({ label, hint, error, children, className, htmlFor, s
       </label>
       {control}
       {hint ? (
-        <span id={hintId} className="text-[12px] text-muted">
+        <span id={hintId} className="text-[13px] text-muted">
           {hint}
         </span>
       ) : null}
@@ -87,7 +87,7 @@ export function FieldError({ id, error }: { id: string; error?: string }) {
   return (
     // 14px and marked: a low-vision tester nearly missed the 12px error line.
     <span id={`${id}-error`} className="flex items-start gap-1.5 text-[14px] font-semibold leading-[1.4] text-[color:var(--status-error-fg)]">
-      <span aria-hidden className="mt-[1px] inline-flex h-4 w-4 flex-none items-center justify-center rounded-full bg-[color:var(--status-error-fg)] text-[11px] leading-none text-white">!</span>
+      <span aria-hidden className="mt-[1px] inline-flex h-4 w-4 flex-none items-center justify-center rounded-full bg-[color:var(--status-error-fg)] text-[12px] leading-none text-white">!</span>
       {error}
     </span>
   );
@@ -98,7 +98,7 @@ export function ConsentRow({ children, className, error, ...rest }: ComponentPro
   const row = (
     <label className={cn("flex cursor-pointer items-start gap-3 text-[13px] leading-[1.5] text-secondary", className)}>
       <input type="checkbox" className="peer sr-only" {...rest} />
-      <span aria-hidden className="mt-0.5 flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[5px] border-2 border-border-strong bg-white peer-aria-[invalid=true]:border-[color:var(--status-error-fg)] text-[11px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
+      <span aria-hidden className="mt-0.5 flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[5px] border-2 border-border-strong bg-white peer-aria-[invalid=true]:border-[color:var(--status-error-fg)] text-[12px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
         ✓
       </span>
       <span>{children}</span>
@@ -139,7 +139,7 @@ export function Panel({ children, className }: { children: ReactNode; className?
 export function OutcomeTile({ k, children, className }: { k: string; children: ReactNode; className?: string }) {
   return (
     <dl className={cn("flex flex-col gap-1 rounded-row bg-white px-5 py-[18px] text-primary", className)}>
-      <dt className="text-[12px] font-semibold text-muted">{k}</dt>
+      <dt className="text-[13px] font-semibold text-muted">{k}</dt>
       <dd className="flex flex-col gap-1">{children}</dd>
     </dl>
   );

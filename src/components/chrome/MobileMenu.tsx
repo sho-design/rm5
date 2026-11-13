@@ -232,7 +232,7 @@ export function MobileMenu({
                           )}
                         >
                           {gi > 0 ? (
-                            <span className="pb-1 pt-2 text-[11px] font-semibold tracking-[.04em] text-white/70">
+                            <span className="pb-1 pt-2 text-[13px] font-semibold tracking-[.04em] text-white/70">
                               {gi === 1
                                 ? menuHeadings.book(d)
                                 : menuHeadings.more(d)}
@@ -260,7 +260,7 @@ export function MobileMenu({
             })}
           </div>
           <div className="flex flex-col gap-2.5">
-            <span className="text-[11px] font-semibold tracking-[.04em] text-white/55">
+            <span className="text-[13px] font-semibold tracking-[.04em] text-white/55">
               CLINICS
             </span>
             {locations.map((l) => (
@@ -272,12 +272,12 @@ export function MobileMenu({
               >
                 <span className="flex min-w-0 flex-col gap-[3px]">
                   <span className="text-[15px] font-semibold">{l.name}</span>
-                  <span className="text-[12px] text-white/65">
+                  <span className="text-[13px] text-white/65">
                     {l.addressLines[0]}
                   </span>
                 </span>
                 {l.soon ? (
-                  <span className="flex items-center gap-1.5 whitespace-nowrap text-[12px] font-semibold text-sun">
+                  <span className="flex items-center gap-1.5 whitespace-nowrap text-[13px] font-semibold text-sun">
                     <span
                       aria-hidden
                       className="h-[7px] w-[7px] rounded-full bg-sun"

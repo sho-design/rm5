@@ -16,7 +16,7 @@ export function CareersBento() {
       <Photo src={c} alt={alts[2]} radius="card" className="min-h-[160px] md:min-h-[220px] lg:min-h-0" sizes="(max-width: 1024px) 100vw, 50vw" />
       <Photo src={d} alt={alts[3]} radius="card" className="min-h-[160px] md:min-h-[220px] lg:min-h-0" sizes="(max-width: 1024px) 100vw, 50vw" />
       <div className="flex min-h-[160px] flex-col justify-between gap-4 rounded-card bg-inverse p-5 text-on-inverse md:min-h-[220px] md:p-7 lg:min-h-0">
-        <span className="text-[12px] font-semibold text-white/60">{careersCopy.bento.eyebrow}</span>
+        <span className="text-[13px] font-semibold text-white/60">{careersCopy.bento.eyebrow}</span>
         <span className="display-tight text-[22px] leading-[1.1] tracking-[-.02em] md:text-[26px]">{careersCopy.bento.title}</span>
         <SmartLink to="locations" className="text-[14px] font-semibold text-white">
           {careersCopy.bento.link} ›

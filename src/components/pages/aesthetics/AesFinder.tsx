@@ -123,7 +123,7 @@ export function AesFinder() {
 
         <div id="aes-results" aria-live="polite" className="flex min-w-0 flex-col gap-4">
           <div className="flex flex-col gap-2 rounded-block bg-lilac-tint px-6 py-6 md:px-8 md:py-7">
-            <span className="text-[13px] font-semibold text-lilac-deep">{c.oftenConsidered(shown.length)}</span>
+            <span className="text-[13px] font-semibold text-lilac-text">{c.oftenConsidered(shown.length)}</span>
             <h3 className="font-display text-[32px] font-normal leading-[1.05] tracking-[-.02em] md:text-[40px]">{title}</h3>
             <p className="pretty text-[15px] leading-[1.55] text-secondary md:text-[16px]">{lead}</p>
           </div>
@@ -134,7 +134,7 @@ export function AesFinder() {
               {shown.map((t) => (
                 <li key={t.id} className="rm-fade flex flex-col gap-4 rounded-block border border-border p-5 md:p-7">
                   <div className="flex flex-col gap-1.5">
-                    <span className="inline-flex items-center gap-2 text-[12px] font-semibold text-secondary">
+                    <span className="inline-flex items-center gap-2 text-[13px] font-semibold text-secondary">
                       <span aria-hidden className="h-2 w-2 rounded-full" style={{ background: aesFamilies[t.family].color }} />
                       {t.brand ? `${aesFamilies[t.family].t}, ${t.brand}` : aesFamilies[t.family].t}
                     </span>
@@ -150,7 +150,7 @@ export function AesFinder() {
                       [c.stepBack, t.note ?? c.asPlanned],
                     ].map(([k, v], i) => (
                       <div key={k} className={cn("flex flex-col gap-1 rounded-card-sm px-3.5 py-3", i === 0 ? "bg-lilac-tint" : "bg-card")}>
-                        <dt className="text-[12px] text-muted">{k}</dt>
+                        <dt className="text-[13px] text-muted">{k}</dt>
                         <dd className="text-[14px] font-semibold leading-[1.35]">{v}</dd>
                       </div>
                     ))}

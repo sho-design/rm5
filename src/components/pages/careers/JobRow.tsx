@@ -42,7 +42,7 @@ export function JobRow({ job, open, onToggle, onApply }: { job: BoardJob; open: 
       {open ? (
         <div id={panelId} className="mx-5 grid grid-cols-1 gap-5 border-t border-border pb-6 md:mx-6 lg:grid-cols-[1.2fr_1fr] lg:gap-6">
           <div className="flex flex-col gap-3 pt-5">
-            <span className="text-[12px] font-semibold text-muted">{c.role}</span>
+            <span className="text-[13px] font-semibold text-muted">{c.role}</span>
             <p className="text-[15px] leading-[1.55] text-secondary">{job.summary}</p>
             <button
               type="button"
@@ -53,10 +53,10 @@ export function JobRow({ job, open, onToggle, onApply }: { job: BoardJob; open: 
             </button>
           </div>
           <div className="flex flex-col gap-2 pt-5">
-            <span className="text-[12px] font-semibold text-muted">{c.bring}</span>
+            <span className="text-[13px] font-semibold text-muted">{c.bring}</span>
             {job.requirements.map((q) => (
               <span key={q} className="flex gap-2 text-[14px] leading-[1.5] text-secondary">
-                <span className="text-sage-deep" aria-hidden>
+                <span className="text-sage-text" aria-hidden>
                   ✓
                 </span>
                 <span>{q}</span>

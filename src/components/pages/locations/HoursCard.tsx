@@ -45,7 +45,7 @@ export function HoursCard({ hours, live }: { hours: [string, string][]; live: bo
             <span className="font-medium">
               {d}
               {/* Bold alone did not mark today for a low-vision tester (round 25, Rosa). */}
-              {today ? <span className="ml-2 rounded-chip bg-sun px-2 py-0.5 text-[11px] font-semibold text-ink">{locationsCopy.today}</span> : null}
+              {today ? <span className="ml-2 rounded-chip bg-sun px-2 py-0.5 text-[13px] font-semibold text-ink">{locationsCopy.today}</span> : null}
             </span>
             <span className={cn("whitespace-nowrap text-right", today && t !== "Closed" ? "text-primary" : "text-muted")}>{shortRange(t)}</span>
           </div>

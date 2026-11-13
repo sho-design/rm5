@@ -4,6 +4,7 @@ import { Display, Eyebrow, Lead } from "./Text";
 import { Button } from "./Button";
 import { Photo, PhotoPill } from "./Photo";
 import { SmartLink } from "./SmartLink";
+import { accentText } from "@/lib/accent";
 
 /**
  * Sub-page hero: two-column block 24px from the edge. Tinted division card
@@ -50,7 +51,7 @@ export function SubPageHero({
     <section className="mx-3 mt-3 grid grid-cols-1 gap-block md:mx-gutter md:mt-6 lg:grid-cols-[1.1fr_1fr]">
       <div className="flex flex-col justify-between gap-8 rounded-block p-6 md:p-10 lg:p-12" style={{ background: tint }}>
         <div className="flex flex-col gap-5">
-          <span className="eyebrow" style={{ color: accent }}>
+          <span className="eyebrow" style={{ color: accentText(accent) }}>
             <SmartLink to={crumbTo}>{crumb}</SmartLink> › {page}
           </span>
           <Display as="h1" size="xl">

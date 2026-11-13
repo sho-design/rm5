@@ -15,8 +15,8 @@ export function InfusionHero() {
       </div>
       <div className="relative flex w-full flex-col gap-4 p-[18px] text-white md:p-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
         <div className="flex max-w-[760px] flex-col gap-3 md:gap-5">
-          <span className="inline-flex self-start rounded-chip bg-sun px-3.5 py-[7px] text-[12px] font-semibold text-sun-ink md:text-[13px]">{ip.hero.pill}</span>
-          <h2 className="display-tight balance text-[32px] md:text-[56px] lg:text-[72px]">
+          <span className="inline-flex self-start rounded-chip bg-sun px-3.5 py-[7px] text-[13px] font-semibold text-sun-ink md:text-[13px]">{ip.hero.pill}</span>
+          <h2 className="display-tight balance text-[32px] md:text-[44px] lg:text-[56px]">
             {ip.hero.h2} <em>{ip.hero.h2em}</em>
           </h2>
           <p className="pretty max-w-[600px] text-[14px] leading-[1.5] text-white/85 md:text-[19px]">{ip.hero.p}</p>
@@ -66,7 +66,7 @@ export function InfusionGrid() {
           </div>
           <span className="relative flex items-center justify-between">
             <span className="text-[13px] font-semibold">{g.iron.k}</span>
-            <span className="rounded-chip bg-white/22 px-2.5 py-[5px] text-[11px] font-semibold">{g.iron.tag}</span>
+            <span className="rounded-chip bg-white/22 px-2.5 py-[5px] text-[13px] font-semibold">{g.iron.tag}</span>
           </span>
           <span className="relative flex flex-col gap-2.5">
             <span className="display-tight text-[28px] md:text-[34px]">{g.iron.t}</span>
@@ -113,7 +113,7 @@ export function CompareTable({ rows }: { rows: CompareRow[] }) {
           <div key={r.k} className={`grid grid-cols-1 text-[15px] md:grid-cols-[1.4fr_2fr] ${i ? "border-t border-border" : ""}`}>
             <dt className="px-5 pt-4 font-semibold md:px-6 md:py-[18px]">{r.k}</dt>
             <dd className="flex items-start gap-2 bg-sage-tint px-5 py-3 md:px-6 md:py-[18px]">
-              <span aria-hidden className="text-sage-deep">
+              <span aria-hidden className="text-sage-text">
                 ✓
               </span>
               <span>{r.us}</span>
@@ -145,7 +145,7 @@ export function InfusionHandoff({ links }: { links: InfusionLink[] }) {
       <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
         {links.map((l) => (
           <SmartLink key={l.k} to={l.href} className="flex min-h-[150px] flex-col gap-2 rounded-[20px] border border-white/12 bg-white/6 p-[22px] transition-colors hover:bg-white/12">
-            <span className="text-[12px] font-semibold" style={{ color: l.c }}>
+            <span className="text-[13px] font-semibold" style={{ color: l.c }}>
               {l.k}
             </span>
             <span className="display-tight text-[22px]">{l.t}</span>

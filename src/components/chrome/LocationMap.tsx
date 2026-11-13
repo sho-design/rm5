@@ -46,7 +46,7 @@ export function LocationMap({ query, label, directions, className, t = { show: "
               {t.directions}
             </a>
           </div>
-          <span className="absolute right-3 top-2.5 text-[11px] font-semibold text-muted">{t.loads}</span>
+          <span className="absolute right-3 top-2.5 text-[13px] font-semibold text-muted">{t.loads}</span>
         </>
       )}
     </div>

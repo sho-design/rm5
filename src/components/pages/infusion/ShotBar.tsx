@@ -99,7 +99,7 @@ export function ShotBar() {
                     className="group flex flex-col items-center gap-2 rounded-tile pt-6 outline-offset-4"
                   >
                     <Vial color={col} on={on} i={i} />
-                    <span className={cn("flex h-[30px] items-start text-center text-[12px] font-semibold leading-[1.2]", on ? "text-white" : "text-white/65")}>{s.t}</span>
+                    <span className={cn("flex h-[30px] items-start text-center text-[13px] font-semibold leading-[1.2]", on ? "text-white" : "text-white/65")}>{s.t}</span>
                   </button>
                 );
               })}

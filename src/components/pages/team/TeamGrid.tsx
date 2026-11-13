@@ -58,7 +58,7 @@ function Card({ m, open, onToggle, index }: { m: TeamMember; open: boolean; onTo
         {m.photo ? <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 rounded-b-block bg-gradient-to-t from-black/50 to-transparent" /> : null}
 
         {m.languages && !open ? (
-          <span className="absolute left-3 top-3 rounded-chip bg-white/92 px-2.5 py-1 text-[11px] sm:left-4 sm:top-4 sm:px-3 sm:py-1.5 sm:text-[12px] font-semibold text-ink">Tiếng Việt</span>
+          <span className="absolute left-3 top-3 rounded-chip bg-white/92 px-2.5 py-1 text-[13px] sm:left-4 sm:top-4 sm:px-3 sm:py-1.5 sm:text-[13px] font-semibold text-ink">Tiếng Việt</span>
         ) : null}
 
         {/* Bottom sheet: the name button stays on top and opens the details beneath it, over the lower part of the card. */}
@@ -71,19 +71,19 @@ function Card({ m, open, onToggle, index }: { m: TeamMember; open: boolean; onTo
             </span>
             <span className="flex min-w-0 flex-col">
               <span className={cn("pretty text-[15px] font-semibold leading-[1.2] sm:text-[17px]", light ? "text-ink" : "drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.name}</span>
-              <span className={cn("pretty text-[12px] leading-[1.3] sm:text-[13px]", light ? "text-ink/70" : "text-white/85 drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.role}</span>
+              <span className={cn("pretty text-[13px] leading-[1.3] sm:text-[13px]", light ? "text-ink/70" : "text-white/85 drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.role}</span>
             </span>
           </button>
           <div id={id} hidden={!open} className="flex flex-col gap-2.5 px-5 pb-5 motion-safe:animate-[rm-rise_300ms_cubic-bezier(.2,.8,.2,1)_both]">
             {does ? <p className="pretty text-[15px] leading-[1.5]">{does}</p> : null}
             <ul className="flex flex-wrap gap-1.5">
               {m.divisions.map((d) => (
-                <li key={d} className="flex items-center gap-1.5 rounded-chip bg-white/12 px-2.5 py-1 text-[12px] font-semibold">
+                <li key={d} className="flex items-center gap-1.5 rounded-chip bg-white/12 px-2.5 py-1 text-[13px] font-semibold">
                   <span aria-hidden className="h-2 w-2 rounded-full" style={{ background: divisionDot[d] ?? "white" }} />
                   {d}
                 </li>
               ))}
-              {m.preceptorTag ? <li className="rounded-chip bg-sun px-2.5 py-1 text-[12px] font-semibold text-sun-ink">{m.preceptorTag}</li> : null}
+              {m.preceptorTag ? <li className="rounded-chip bg-sun px-2.5 py-1 text-[13px] font-semibold text-sun-ink">{m.preceptorTag}</li> : null}
             </ul>
             {m.languages ? <span className="text-[13px] text-white/80">{m.languages}</span> : null}
             {book ? (

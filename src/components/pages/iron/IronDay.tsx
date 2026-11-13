@@ -27,7 +27,7 @@ export function IronDay({ noteHref }: { noteHref?: string }) {
           </li>
         ))}
       </ol>
-      <p className="pretty max-w-[760px] text-[15px] leading-[1.55] text-secondary">
+      <p className="pretty max-w-[62ch] text-[15px] leading-[1.55] text-secondary">
         {c.note}{" "}
         {noteHref ? (
           <SmartLink to={noteHref} className="font-semibold text-link">

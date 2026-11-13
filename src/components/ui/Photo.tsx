@@ -40,5 +40,5 @@ export function Photo({ src, alt, protect, ratio, radius = "card", className, im
 
 /** White .92 pill caption placed over a photo. */
 export function PhotoPill({ children, className }: { children: ReactNode; className?: string }) {
-  return <span className={cn("inline-flex items-center gap-2 rounded-chip bg-white/92 px-3 py-1.5 text-[12px] font-semibold text-ink", className)}>{children}</span>;
+  return <span className={cn("inline-flex items-center gap-2 rounded-chip bg-white/92 px-3 py-1.5 text-[13px] font-semibold text-ink", className)}>{children}</span>;
 }

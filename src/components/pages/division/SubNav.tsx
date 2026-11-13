@@ -9,7 +9,7 @@ function Tile({ item }: { item: SubNavItem }) {
     <SmartLink
       to={item.page}
       {...bind}
-      className="flex flex-col items-center gap-1.5 rounded-[12px] px-1 py-2.5 text-center text-[11px] font-semibold text-primary transition-colors duration-[250ms] md:gap-2.5 md:rounded-[14px] md:px-1.5 md:py-2 md:text-[13px]"
+      className="flex flex-col items-center gap-1.5 rounded-[12px] px-1 py-2.5 text-center text-[13px] font-semibold text-primary transition-colors duration-[250ms] md:gap-2.5 md:rounded-[14px] md:px-1.5 md:py-2 md:text-[13px]"
     >
       <span className="flex h-9 w-9 items-center justify-center md:h-[72px] md:w-[72px]">
         <Icon name={item.icon} stroke={1.25} animate={on} className="h-9 w-9 md:h-12 md:w-12" />

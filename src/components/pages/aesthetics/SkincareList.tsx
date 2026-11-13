@@ -43,7 +43,7 @@ function Silhouette({ shape }: { shape: SkinShape }) {
   return (
     <svg
       viewBox="0 0 80 120"
-      className="h-[64px] w-auto text-lilac-deep/45 sm:h-[120px]"
+      className="h-[64px] w-auto text-lilac-text/45 sm:h-[120px]"
       aria-hidden
     >
       {shape === "dropper" ? (
@@ -98,7 +98,7 @@ function Product({ p }: { p: SkinProduct }) {
         ) : (
           <>
             <Silhouette shape={p.shape} />
-            <span className="absolute inset-x-0 bottom-1.5 text-center text-[10px] font-semibold text-lilac-deep sm:bottom-2.5 sm:text-[12px]">{c.photoSoon}</span>
+            <span className="absolute inset-x-0 bottom-1.5 text-center text-[13px] font-semibold text-lilac-text sm:bottom-2.5 sm:text-[13px]">{c.photoSoon}</span>
           </>
         )}
       </div>

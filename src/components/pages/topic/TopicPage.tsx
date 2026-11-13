@@ -75,15 +75,15 @@ export function TopicPage({ t }: { t: Topic }) {
             {t.cards.items.map((c, i) => (
               <div key={c.t + i} className="flex flex-col gap-4 rounded-card p-6 text-ink md:p-7" style={{ background: tints[i % tints.length] }}>
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="display-tight text-[24px] leading-[1.1] md:text-[26px]">{c.t}</h3>
-                  {c.meta ? <span className="shrink-0 rounded-chip bg-white/70 px-2.5 py-1 text-[11px] font-semibold">{c.meta}</span> : null}
+                  <h3 className="display-tight text-[24px] leading-[1.1] md:text-[24px]">{c.t}</h3>
+                  {c.meta ? <span className="shrink-0 rounded-chip bg-white/70 px-2.5 py-1 text-[13px] font-semibold">{c.meta}</span> : null}
                 </div>
                 <p className="pretty text-[15px] leading-[1.5] text-ink-2">{c.d}</p>
                 {c.facts ? (
                   <dl className="mt-auto grid grid-cols-1 gap-2 sm:grid-cols-2">
                     {c.facts.map((f) => (
                       <div key={f.k} className="flex flex-col gap-0.5 rounded-row bg-white/70 px-4 py-3">
-                        <dt className="text-[12px] font-semibold text-ink/60">{f.k}</dt>
+                        <dt className="text-[13px] font-semibold text-ink/60">{f.k}</dt>
                         <dd className="text-[14px] font-semibold leading-[1.35]">{f.v}</dd>
                       </div>
                     ))}
@@ -147,7 +147,7 @@ export function TopicPage({ t }: { t: Topic }) {
 
       {t.note ? (
         <Section tight>
-          <p className="pretty max-w-[760px] text-[13px] leading-[1.55] text-muted">{t.note}</p>
+          <p className="pretty max-w-[62ch] text-[13px] leading-[1.55] text-muted">{t.note}</p>
         </Section>
       ) : null}
 

@@ -127,7 +127,7 @@ export function AesFaceMap() {
 
         <div key={k} ref={panel} className="rm-fade flex scroll-mt-24 flex-col gap-5 self-center rounded-card bg-white p-6 md:p-8" aria-live="polite">
           <div className="flex flex-col gap-2">
-            <span className="text-[13px] font-semibold text-lilac-deep">{c.youNotice}</span>
+            <span className="text-[13px] font-semibold text-lilac-text">{c.youNotice}</span>
             <span className="display-tight text-[34px] md:text-[40px]">{concern.t}</span>
             <span className="pretty text-[16px] leading-[1.55] text-secondary">{concern.d}</span>
           </div>
@@ -141,7 +141,7 @@ export function AesFaceMap() {
                     <span aria-hidden className="h-3 w-3 shrink-0 rounded-full" style={{ background: aesFamilies[t.family].color }} />
                     <span className="flex min-w-0 flex-1 flex-col">
                       <span className="text-[15px] font-semibold">{t.brand ? `${t.name}, ${t.brand}` : t.name}</span>
-                      <span className="text-[12px] text-muted">{aesFamilies[t.family].t}</span>
+                      <span className="text-[13px] text-muted">{aesFamilies[t.family].t}</span>
                     </span>
                     {mins ? <span className="shrink-0 text-[13px] font-semibold text-muted">{c.minutes(mins)}</span> : null}
                   </li>

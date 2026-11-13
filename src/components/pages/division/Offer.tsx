@@ -18,7 +18,7 @@ function Tile({ s, tint, big, book }: { s: DivisionService; tint: string; big?: 
         </div>
       ) : null}
       <div className="relative flex max-w-[520px] flex-col gap-2.5 text-white">
-        <span className={cn("display-tight", big ? "text-[32px] lg:text-[40px]" : "text-[22px] lg:text-[24px]")}>{s.title}</span>
+        <h3 className={cn("display-tight", big ? "text-[28px] lg:text-[32px]" : "text-[22px] lg:text-[24px]")}>{s.title}</h3>
         <span className="text-[15px] leading-[1.5] text-white/85">{s.desc}</span>
         <div className="flex items-center gap-3.5 pt-1.5 text-[14px] font-semibold">
           {book ? (
@@ -81,9 +81,9 @@ export function Offer({ services, division }: { services: DivisionService[]; div
           <SmartLink key={s.title} to={s.page} className="flex items-center justify-between gap-3 rounded-row p-4 transition-opacity active:opacity-80" style={{ background: tintFor(i) }}>
             <span className="flex flex-col gap-[3px]">
               <span className="text-[16px] font-semibold">{s.title}</span>
-              <span className="text-[12px] leading-[1.4] text-muted">{s.desc}</span>
+              <span className="text-[13px] leading-[1.4] text-muted">{s.desc}</span>
             </span>
-            <span aria-hidden className="text-[18px] text-sky">
+            <span aria-hidden className="text-[18px] text-link">
               ›
             </span>
           </SmartLink>

@@ -39,7 +39,7 @@ export function Hero({
       </div>
       <div className="relative flex max-w-[760px] flex-col gap-2 p-[18px] text-white md:gap-4 md:p-12">
         {eyebrow ? (
-          <span className="self-start rounded-chip px-2.5 py-1 text-[12px] font-semibold text-sun md:px-3 md:py-1.5 md:text-[13px]" style={{ background: "color-mix(in srgb, var(--rm-ink) 75%, transparent)" }}>
+          <span className="self-start rounded-chip px-2.5 py-1 text-[13px] font-semibold text-sun md:px-3 md:py-1.5 md:text-[13px]" style={{ background: "color-mix(in srgb, var(--rm-ink) 75%, transparent)" }}>
             {eyebrow}
           </span>
         ) : null}

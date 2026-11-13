@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ironCheckBook, ironCheckLead, ironTally, type IronSymptom } from "@/content/iron";
 import { CheckChip, Display, Eyebrow, Section, SmartLink } from "@/components/ui";
 import { bookFor } from "@/lib/routes";
+import { accentText } from "@/lib/accent";
 
 /**
  * "Is this you?" symptom check: sticky intro left with the live tally line,
@@ -16,7 +17,7 @@ export function IronCheck({ symptoms, accent }: { symptoms: IronSymptom[]; accen
   return (
     <Section id="iron-check" className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.3fr] lg:items-start lg:gap-12">
       <div className="flex flex-col gap-3.5 lg:sticky lg:top-6">
-        <Eyebrow tone="inherit" style={{ color: accent }}>
+        <Eyebrow tone="inherit" style={{ color: accentText(accent) }}>
           Is this you?
         </Eyebrow>
         <Display size="sm">Low iron hides in everyday feelings.</Display>

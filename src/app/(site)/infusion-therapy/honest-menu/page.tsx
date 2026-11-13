@@ -22,11 +22,11 @@ export default function HonestMenuPage() {
           {honestClaims.map((x) => (
             <div key={x.p} className="flex flex-col gap-5 rounded-card border border-border bg-card p-6 md:p-7">
               <span className="flex flex-col gap-1.5">
-                <span className="text-[12px] font-semibold text-muted">{c.theySay}</span>
+                <span className="text-[13px] font-semibold text-muted">{c.theySay}</span>
                 <span className="display-tight text-[24px] leading-[1.15] text-muted line-through decoration-[color:var(--text-muted)]/40">{x.p}</span>
               </span>
               <span className="flex flex-col gap-1.5 border-t border-border pt-4">
-                <span className="text-[12px] font-semibold text-[color:var(--div-infusion-accent)]">{c.weSay}</span>
+                <span className="text-[13px] font-semibold text-sage-text">{c.weSay}</span>
                 <span className="pretty text-[16px] leading-[1.5]">{x.s}</span>
               </span>
             </div>

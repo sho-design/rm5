@@ -137,7 +137,7 @@ export function TeamIntro({
             <span className="text-[15px] text-secondary">{f.role}</span>
           </Reveal>
           <Reveal delay={100}>
-            <p className="pretty max-w-[720px] text-[16px] leading-[1.7] text-primary md:text-[18px]">
+            <p className="pretty max-w-[62ch] text-[16px] leading-[1.7] text-primary md:text-[18px]">
               {f.bio}
             </p>
           </Reveal>

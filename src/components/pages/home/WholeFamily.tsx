@@ -18,7 +18,7 @@ export function WholeFamily() {
       <div className="grid grid-cols-1 gap-card md:grid-cols-3">
         {familyTiles.map((f) => (
           <div key={f.t} className="flex flex-col gap-3.5 rounded-card border border-border p-[26px] text-ink" style={{ background: f.bg }}>
-            <h3 className="font-display text-[26px] font-medium leading-[1.05] tracking-[-.02em]">{f.t}</h3>
+            <h3 className="font-display text-[24px] font-medium leading-[1.05] tracking-[-.02em]">{f.t}</h3>
             <ul className="flex flex-1 flex-col gap-2 text-[14px] leading-[1.45] text-ink-2">
               {f.items.map((i) => (
                 <li key={i} className="flex items-start gap-2">

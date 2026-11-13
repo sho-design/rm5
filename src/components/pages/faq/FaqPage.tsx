@@ -107,7 +107,7 @@ export function FaqPage({ items, categories }: Props) {
                   className={cn("flex items-center justify-between gap-3 rounded-[14px] px-4 py-3 text-left text-[14px] font-semibold transition-colors", on ? "bg-ink text-white" : "text-ink hover:bg-card")}
                 >
                   <span>{c}</span>
-                  <span className="text-[12px] opacity-60">{counts[i]}</span>
+                  <span className="text-[13px] opacity-60">{counts[i]}</span>
                 </button>
               );
             })}

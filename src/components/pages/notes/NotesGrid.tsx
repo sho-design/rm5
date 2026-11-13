@@ -15,7 +15,11 @@ export function NotesGrid({ notes, filters }: { notes: HealthNote[]; filters: st
       <div className="px-4 pt-8 md:px-content md:pt-10">
         <ChipRow items={filters} value={i} onChange={setI} size="sm" ariaLabel="Filter notes by service" />
       </div>
-      <section aria-live="polite" className="px-4 pt-5 md:px-content md:pt-6">
+      <section aria-labelledby="notes-list-title" className="px-4 pt-5 md:px-content md:pt-6">
+        {/* Heading for the list so note titles (h3) do not skip a level after the page h1. */}
+        <h2 id="notes-list-title" className="sr-only" aria-live="polite">
+          {label === "All" ? "All health notes" : `${label} notes`}
+        </h2>
         <Grid cols={3}>
           {shown.map((n) => (
             <NoteCard key={n.slug} note={n} />

@@ -63,7 +63,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="text-[12px] font-semibold text-primary">Hours</h3>
+              <h3 className="text-[13px] font-semibold text-primary">Hours</h3>
               <span>
                 Mon, Wed, Thu 9am to 4pm
                 <br />
@@ -81,7 +81,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
           <div className="flex flex-col gap-2 rounded-[20px] border border-border bg-raised px-5 py-4 text-[13px] leading-[1.5] text-muted md:flex-row md:items-center md:gap-5 md:px-6">
             <span className="flex shrink-0 items-center gap-2.5">
               <h2 className="display text-[18px] text-primary">{maple.name}</h2>
-              <span className="rounded-chip bg-sun-soft px-2.5 py-1 text-[12px] font-semibold text-sun-ink">Coming soon</span>
+              <span className="rounded-chip bg-sun-soft px-2.5 py-1 text-[13px] font-semibold text-sun-ink">Coming soon</span>
             </span>
             <a href={external.mapleMaps} target="_blank" rel="noopener" className="min-w-0 hover:text-primary md:flex-1">
               {maple.addressLines.join(", ")}
@@ -134,7 +134,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
           {/* Wraps at larger text: "High contrast" ran off the screen on a small phone. */}
           <TextControls inverse className="flex-wrap text-[13px]" />
         </div>
-        <div className="flex flex-col gap-2 border-t border-white/15 pt-4 text-[12px] leading-[1.6] text-white/65">
+        <div className="flex flex-col gap-2 border-t border-white/15 pt-4 text-[13px] leading-[1.6] text-white/65">
           <span className="flex flex-wrap gap-x-4 gap-y-1">
             <span>© 2026 Restoration Medical</span>
             {knee ? (

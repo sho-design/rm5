@@ -64,7 +64,7 @@ export function ViHeader() {
     <>
       <header className="sticky top-0 z-40 border-b border-border bg-page/95 backdrop-blur">
         <div className="bg-ink text-white">
-          <div className="mx-auto flex h-[38px] w-full max-w-[1440px] items-center justify-between gap-3 px-4 text-[12px] font-medium md:px-8">
+          <div className="mx-auto flex h-[38px] w-full max-w-[1440px] items-center justify-between gap-3 px-4 text-[13px] font-medium md:px-8">
             <Link
               href={`${viRoutes.contact}#gio`}
               className="flex min-w-0 items-center gap-2 hover:underline"

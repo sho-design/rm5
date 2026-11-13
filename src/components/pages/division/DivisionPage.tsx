@@ -35,19 +35,21 @@ export function DivisionPage({ k }: { k: NavKey }) {
 
   return (
     <>
-      <header className="flex flex-col gap-4 px-4 pt-6 md:gap-10 md:px-content md:pt-16">
-        <SmartLink to="home" className="text-[12px] font-medium text-muted md:hidden">
+      {/* One headline per page (design review, Nov 2026): the division name is the page label (h1, subsection size)
+          and the photo headline below carries the message. Two headlines at 84 and 56px competed for attention. */}
+      <header className="flex flex-col gap-4 px-4 pt-6 md:gap-7 md:px-content md:pt-12">
+        <SmartLink to="home" className="text-[13px] font-medium text-muted md:hidden">
           ‹ {divisionPageCopy.home}
         </SmartLink>
         {isInfusion ? (
           <div className="flex items-end justify-between gap-8">
-            <Display as="h1" size="hero">
+            <Display as="h1" size="2xs">
               {d.label}
             </Display>
-            <span className="hidden pb-3 text-[14px] text-muted md:block">{infusionPage.tagline}</span>
+            <span className="hidden pb-1 text-[14px] text-muted md:block">{infusionPage.tagline}</span>
           </div>
         ) : (
-          <Display as="h1" size="hero">
+          <Display as="h1" size="2xs">
             {d.label}
           </Display>
         )}

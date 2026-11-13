@@ -97,12 +97,12 @@ export function RhythmRow() {
   const m = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
   return (
     <div className="flex flex-col gap-2" aria-hidden>
-      <span className="text-[12px] font-semibold text-white/60">{v.rhythmLabel}</span>
+      <span className="text-[13px] font-semibold text-white/60">{v.rhythmLabel}</span>
       <div className="grid grid-cols-12 gap-1.5">
         {m.map((x, i) => (
           <span key={`${x}${i}`} className="flex flex-col items-center gap-1.5">
             <span className="h-9 w-full rounded-[8px] bg-sun" />
-            <span className="text-[11px] text-white/55">{x}</span>
+            <span className="text-[13px] text-white/55">{x}</span>
           </span>
         ))}
       </div>

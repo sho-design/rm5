@@ -27,7 +27,7 @@ export default function ByConcernPage() {
                 className={"flex min-h-[220px] flex-col justify-between gap-6 rounded-card p-6 transition-opacity hover:opacity-95 " + (clinical ? "bg-inverse text-on-inverse" : "text-ink")}
                 style={clinical ? undefined : { background: tints[i % tints.length] }}
               >
-                <span className="flex items-center justify-between text-[12px] font-semibold opacity-75">
+                <span className="flex items-center justify-between text-[13px] font-semibold opacity-75">
                   <span>{String(i + 1).padStart(2, "0")}</span>
                   <span>{x.tag}</span>
                 </span>

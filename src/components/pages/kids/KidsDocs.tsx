@@ -28,7 +28,7 @@ export function KidsDocs() {
             <span className="flex-1 text-[15px] leading-[1.5] text-secondary">{d.p}</span>
             <div className="flex flex-wrap gap-1.5">
               {d.tags.map((t) => (
-                <span key={t} className="rounded-chip bg-white/80 px-3 py-1.5 text-[12px] font-semibold">
+                <span key={t} className="rounded-chip bg-white/80 px-3 py-1.5 text-[13px] font-semibold">
                   {t}
                 </span>
               ))}

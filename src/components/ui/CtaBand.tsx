@@ -55,7 +55,7 @@ export function CtaBand({
           ) : null}
         </div>
         {callLine ? (
-          <a href={site.phoneHref} className={cn("text-[14px] font-semibold", navy ? "text-white" : "text-ink")}>
+          <a href={site.phoneHref} className={cn("inline-flex min-h-[44px] items-center text-[14px] font-semibold", navy ? "text-white" : "text-ink")}>
             or call {site.phone}
           </a>
         ) : null}

@@ -5,8 +5,8 @@ function ServiceCard({ r }: { r: RefService }) {
   return (
     <article className="flex flex-col gap-3.5 rounded-card-sm border border-border p-5 md:p-[26px]" style={{ background: r.tint }}>
       <div className="flex items-center justify-between gap-3">
-        <h3 className="display-tight text-[26px] leading-[1.05] tracking-[-.02em]">{r.title}</h3>
-        <span className="shrink-0 whitespace-nowrap rounded-chip bg-white px-2.5 py-[5px] text-[12px] font-semibold">{r.lead}</span>
+        <h3 className="display-tight text-[24px] leading-[1.05] tracking-[-.02em]">{r.title}</h3>
+        <span className="shrink-0 whitespace-nowrap rounded-chip bg-white px-2.5 py-[5px] text-[13px] font-semibold">{r.lead}</span>
       </div>
       <p className="text-[14px] leading-[1.5] text-muted">{r.p}</p>
       <ul className="flex flex-col gap-1.5 border-t border-ink/8 pt-1.5 text-[14px] leading-[1.4]">

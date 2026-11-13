@@ -32,7 +32,7 @@ export function MetaTile({ t, d, meta, time, bg, minHeight = 190, className }: T
         <span className="display text-[22px] leading-[1.05]">{t}</span>
         <span className="text-[14px] leading-[1.5] text-secondary">{d}</span>
       </div>
-      <span className="text-[12px] font-semibold text-muted">{meta ?? time}</span>
+      <span className="text-[13px] font-semibold text-muted">{meta ?? time}</span>
     </div>
   );
 }

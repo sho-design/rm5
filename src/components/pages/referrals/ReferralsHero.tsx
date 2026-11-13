@@ -19,11 +19,11 @@ export function ReferralsHero() {
       </div>
       <dl className="grid grid-cols-1 gap-5 rounded-card bg-inverse p-6 text-on-inverse sm:grid-cols-[1.25fr_1fr] md:px-8 md:py-7">
         <div className="flex flex-col gap-1">
-          <dt className="text-[12px] text-white/60">{c.contactLabels.fax}</dt>
+          <dt className="text-[13px] text-white/60">{c.contactLabels.fax}</dt>
           <dd className="display-tight text-[26px] tracking-[-.02em]">{site.fax}</dd>
         </div>
         <div className="flex flex-col gap-1">
-          <dt className="text-[12px] text-white/60">{c.contactLabels.line}</dt>
+          <dt className="text-[13px] text-white/60">{c.contactLabels.line}</dt>
           <dd>
             <a href={site.phoneHref} className="display-tight text-[26px] tracking-[-.02em] hover:text-sun">
               {site.phone}
@@ -31,7 +31,7 @@ export function ReferralsHero() {
           </dd>
         </div>
         <div className="flex min-w-0 flex-col gap-1">
-          <dt className="text-[12px] text-white/60">{c.contactLabels.email}</dt>
+          <dt className="text-[13px] text-white/60">{c.contactLabels.email}</dt>
           <dd className="min-w-0">
             <a href={`mailto:${site.referralsEmail}`} className="text-[14px] font-semibold hover:text-sun lg:text-[15px] lg:tracking-[-.01em]">
               {site.referralsEmail}
@@ -39,7 +39,7 @@ export function ReferralsHero() {
           </dd>
         </div>
         <div className="flex flex-col gap-1">
-          <dt className="text-[12px] text-white/60">{c.contactLabels.also}</dt>
+          <dt className="text-[13px] text-white/60">{c.contactLabels.also}</dt>
           <dd className="text-[15px] font-semibold">{c.alsoAccepted}</dd>
         </div>
       </dl>

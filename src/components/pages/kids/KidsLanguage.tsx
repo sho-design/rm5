@@ -12,7 +12,7 @@ export function KidsLanguage() {
       <div className="flex flex-col justify-between gap-7 rounded-block bg-sage-tint p-7 text-ink md:p-10">
         <div className="flex flex-col gap-3">
           <span lang="vi">
-            <Eyebrow tone="inherit" className="text-sage-deep">
+            <Eyebrow tone="inherit" className="text-sage-text">
               {kidsCopy.vi.eyebrow}
             </Eyebrow>
           </span>
@@ -28,7 +28,7 @@ export function KidsLanguage() {
       </div>
       <div className="flex flex-col justify-between gap-7 rounded-block border border-border bg-card p-7 md:p-10">
         <div className="flex flex-col gap-3">
-          <Eyebrow tone="inherit" className="text-lilac-deep">
+          <Eyebrow tone="inherit" className="text-lilac-text">
             {kidsCopy.teens.eyebrow}
           </Eyebrow>
           <h2 className="display-tight balance text-[28px] lg:text-[32px]">{kidsCopy.teens.title}</h2>

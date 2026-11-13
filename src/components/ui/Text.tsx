@@ -5,15 +5,17 @@ type DisplaySize = "hero" | "xl" | "lg" | "md" | "sm" | "xs" | "2xs" | "title-lg
 
 /** Fraunces display sizes from tokens/typography.css, responsive below lg. */
 const sizeClass: Record<DisplaySize, string> = {
-  hero: "text-[44px] md:text-[64px] lg:text-[84px]",
+  // One fixed scale (design review, Nov 2026): page title 76, photo headline 56, section 48, subsection 32,
+  // card title 24, small card title 22. The old in-between sizes (84, 72, 44, 40, 30, 26) map onto it.
+  hero: "text-[40px] md:text-[56px] lg:text-[76px]",
   xl: "text-[40px] md:text-[56px] lg:text-[76px]",
-  lg: "text-[40px] md:text-[56px] lg:text-[72px]",
+  lg: "text-[40px] md:text-[56px] lg:text-[76px]",
   md: "text-[34px] md:text-[44px] lg:text-[56px]",
   sm: "text-[32px] md:text-[40px] lg:text-[48px]",
-  xs: "text-[30px] md:text-[36px] lg:text-[44px]",
-  "2xs": "text-[28px] md:text-[34px] lg:text-[40px]",
-  "title-lg": "text-[26px] lg:text-[30px]",
-  "title-md": "text-[24px] lg:text-[26px]",
+  xs: "text-[32px] md:text-[40px] lg:text-[48px]",
+  "2xs": "text-[26px] md:text-[28px] lg:text-[32px]",
+  "title-lg": "text-[26px] md:text-[28px] lg:text-[32px]",
+  "title-md": "text-[22px] lg:text-[24px]",
   "title-sm": "text-[22px] lg:text-[24px]",
   "title-xs": "text-[20px] lg:text-[22px]",
 };
@@ -49,7 +51,7 @@ interface EyebrowProps {
 
 /** 13px semibold eyebrow. Sentence case only. */
 export function Eyebrow({ children, className, style, tone = "muted" }: EyebrowProps) {
-  const toneClass = { muted: "text-muted", sun: "text-sun", sky: "text-sky", inherit: "" }[tone];
+  const toneClass = { muted: "text-muted", sun: "text-sun", sky: "text-link", inherit: "" }[tone];
   return (
     <span style={style} className={cn("eyebrow", toneClass, className)}>
       {children}

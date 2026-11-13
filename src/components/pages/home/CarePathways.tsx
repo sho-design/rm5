@@ -57,10 +57,10 @@ export function CarePathways({ paths, tints }: { paths: CarePath[]; tints: Recor
             <div key={s.t} className="lg:grid lg:grid-cols-[1fr_36px] lg:items-center">
               <div className="flex h-full min-h-[200px] flex-col gap-2.5 rounded-card-sm p-6 text-ink lg:min-h-[220px]" style={{ background: tints[s.svc] }}>
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-[12px] font-semibold text-muted">{s.svc}</span>
-                  <span className="rounded-chip bg-white/70 px-[9px] py-1 text-[11px] font-semibold">{s.time}</span>
+                  <span className="text-[13px] font-semibold text-muted">{s.svc}</span>
+                  <span className="rounded-chip bg-white/70 px-[9px] py-1 text-[13px] font-semibold">{s.time}</span>
                 </div>
-                <span className="font-display text-[24px] font-medium leading-[1.05] tracking-[-.02em]">{s.t}</span>
+                <h3 className="font-display text-[24px] font-medium leading-[1.05] tracking-[-.02em]">{s.t}</h3>
                 <span className="flex-1 text-[14px] leading-[1.5] text-ink-2">{s.d}</span>
                 <SmartLink to={s.page} className="text-[13px] font-semibold text-link">
                   {s.link} ›

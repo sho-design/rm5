@@ -12,7 +12,7 @@ export function OpenBadge({ className, inverse }: { className?: string; inverse?
   if (!s.ready) return <span className={className} />;
   const dot = s.open ? "var(--status-open)" : inverse ? "rgba(255,255,255,.45)" : "var(--text-muted)";
   return (
-    <span className={cn("flex items-center gap-1.5 text-[12px] font-semibold", className)}>
+    <span className={cn("flex items-center gap-1.5 text-[13px] font-semibold", className)}>
       <span aria-hidden className="h-[7px] w-[7px] shrink-0 rounded-full" style={{ background: dot }} />
       {s.short}
     </span>

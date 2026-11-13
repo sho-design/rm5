@@ -22,6 +22,7 @@ function noteCta(note: HealthNote): string {
   return noteBooking[note.slug] ?? (divisionKeys.includes(note.ctaPage) ? bookFor(note.ctaPage) : note.ctaPage);
 }
 import { noteTint } from "./NoteCard";
+import { accentText } from "@/lib/accent";
 
 /** Sticky right column: sun CTA card and "More notes" list. */
 export function NoteAside({ note, related }: { note: HealthNote; related: HealthNote[] }) {
@@ -35,7 +36,7 @@ export function NoteAside({ note, related }: { note: HealthNote; related: Health
       </SmartLink>
       {related.length ? (
         <nav aria-label={a.more} className="flex flex-col gap-3 rounded-card-sm border border-border bg-card p-6">
-          <span className="text-[12px] font-semibold text-muted">{a.more}</span>
+          <span className="text-[13px] font-semibold text-muted">{a.more}</span>
           <ul className="flex flex-col">
             {related.map((r) => (
               <li key={r.slug} className="border-t border-border">
@@ -44,7 +45,7 @@ export function NoteAside({ note, related }: { note: HealthNote; related: Health
                     <Image src={r.img} alt="" fill sizes="64px" className="object-cover" />
                   </span>
                   <span className="flex flex-col gap-[3px]">
-                    <span className="text-[12px] font-semibold" style={{ color: divisionDot[r.division] }}>
+                    <span className="text-[13px] font-semibold" style={{ color: accentText(divisionDot[r.division]) }}>
                       {r.division}
                     </span>
                     <span className="display-tight text-[17px] leading-[1.15] tracking-[-.01em] text-primary">{r.title}</span>

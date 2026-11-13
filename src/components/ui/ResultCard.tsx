@@ -43,13 +43,13 @@ export function ResultCard({
       {tags && tags.length ? (
         <div className="flex flex-wrap gap-1.5">
           {tags.map((t) => (
-            <span key={t} className="rounded-chip px-3 py-1.5 text-[12px] font-semibold text-ink" style={{ background: tagTint ?? "var(--surface-card)" }}>
+            <span key={t} className="rounded-chip px-3 py-1.5 text-[13px] font-semibold text-ink" style={{ background: tagTint ?? "var(--surface-card)" }}>
               {t}
             </span>
           ))}
         </div>
       ) : null}
-      <span className={cn("display-tight balance leading-none", titleSize === 40 ? "text-[32px] lg:text-[40px]" : "text-[30px] lg:text-[36px]")}>{title}</span>
+      <h3 className={cn("display-tight balance leading-none", titleSize === 40 ? "text-[28px] lg:text-[32px]" : "text-[26px] lg:text-[30px]")}>{title}</h3>
       <p className="pretty text-[16px] leading-[1.55] text-secondary">{p}</p>
       {facts ? <FactGrid facts={facts} className="flex-1" /> : null}
       {children}

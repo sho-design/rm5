@@ -110,22 +110,22 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
                 {loc.name}
               </Display>
               <div className="flex flex-col gap-1">
-                <span className="text-[12px] font-semibold text-white/60">{c.address}</span>
+                <span className="text-[13px] font-semibold text-white/60">{c.address}</span>
                 <span className="text-[16px] leading-[1.45]">{loc.address}</span>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-[12px] font-semibold text-white/60">{c.phone}</span>
+                <span className="text-[13px] font-semibold text-white/60">{c.phone}</span>
                 <a href={phoneHref} className="self-start text-[16px]">
                   {phone}
                 </a>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-[12px] font-semibold text-white/60">{c.access}</span>
+                <span className="text-[13px] font-semibold text-white/60">{c.access}</span>
                 <span className="text-[15px] leading-[1.45] text-white/80">{loc.access}</span>
               </div>
               {loc.findingUs ? (
                 <div className="flex flex-col gap-1">
-                  <span className="text-[12px] font-semibold text-white/60">{wayfindingCopy.title}</span>
+                  <span className="text-[13px] font-semibold text-white/60">{wayfindingCopy.title}</span>
                   <span className="whitespace-pre-line text-[15px] leading-[1.45] text-white/80">{loc.findingUs}</span>
                 </div>
               ) : null}

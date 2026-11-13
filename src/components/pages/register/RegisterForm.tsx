@@ -281,7 +281,7 @@ export function RegisterForm() {
             <div className="flex flex-col gap-1.5">
               <span className="text-[13px] font-semibold text-secondary">{x.clinic.label}</span>
               <Choice options={x.clinic.options} value={clinic} onChange={setClinic} ariaLabel={x.clinic.label} />
-              {clinic === 1 ? <span className="text-[12px] leading-[1.5] text-muted">{x.clinic.mapleNote}</span> : null}
+              {clinic === 1 ? <span className="text-[13px] leading-[1.5] text-muted">{x.clinic.mapleNote}</span> : null}
             </div>
             <div className="flex flex-col gap-1.5">
               <span className="text-[13px] font-semibold text-secondary">{caregiver ? x.languageCaregiver : registerCopy.fields.language}</span>
@@ -297,7 +297,7 @@ export function RegisterForm() {
               <span id="reg-family" className="text-[13px] font-semibold text-secondary">
                 {caregiver ? x.family.labelCaregiver : registerCopy.fields.family}
               </span>
-              <span id="reg-family-hint" className="text-[12px] text-muted">
+              <span id="reg-family-hint" className="text-[13px] text-muted">
                 {x.family.hint}
               </span>
               <div role="group" aria-labelledby="reg-family" aria-describedby="reg-family-hint" className="flex flex-wrap gap-2">

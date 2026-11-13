@@ -161,7 +161,7 @@ export function Header() {
                       setSearch(false);
                       setMenu(on ? null : k);
                     }}
-                    className="sr-only rounded-full text-[12px] focus-visible:not-sr-only focus-visible:absolute focus-visible:-bottom-3 focus-visible:left-1/2 focus-visible:z-10 focus-visible:-translate-x-1/2 focus-visible:bg-ink focus-visible:px-2 focus-visible:py-0.5 focus-visible:text-white"
+                    className="sr-only rounded-full text-[13px] focus-visible:not-sr-only focus-visible:absolute focus-visible:-bottom-3 focus-visible:left-1/2 focus-visible:z-10 focus-visible:-translate-x-1/2 focus-visible:bg-ink focus-visible:px-2 focus-visible:py-0.5 focus-visible:text-white"
                   >
                     <span aria-hidden>{on ? "▴" : "▾"}</span>
                     <span className="sr-only">{`${divisions[k].label} menu`}</span>

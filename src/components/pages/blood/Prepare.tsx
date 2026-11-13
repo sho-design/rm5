@@ -2,6 +2,7 @@ import { Display, Eyebrow, Section } from "@/components/ui";
 import { bloodPrep as c } from "@/content/subpages";
 import { site } from "@/content/site";
 import { FastingCards } from "./FastingCards";
+import { accentText } from "@/lib/accent";
 
 /**
  * How to prepare for tests: the four fasting rules with the tests under each (filled from the lab's list), what to
@@ -11,7 +12,7 @@ export function Prepare({ accent }: { accent: string }) {
   return (
     <Section id="prepare" className="flex scroll-mt-28 flex-col gap-6">
       <div className="flex max-w-[720px] flex-col gap-2">
-        <Eyebrow tone="inherit" style={{ color: accent }}>
+        <Eyebrow tone="inherit" style={{ color: accentText(accent) }}>
           {c.eyebrow}
         </Eyebrow>
         <Display size="xs">{c.title}</Display>
@@ -20,7 +21,7 @@ export function Prepare({ accent }: { accent: string }) {
 
       <div className="flex flex-col gap-3">
         <h3 className="text-[17px] font-semibold">{c.fastingTitle}</h3>
-        <p className="pretty max-w-[720px] text-[15px] leading-[1.5] text-secondary">{c.fastingMeans}</p>
+        <p className="pretty max-w-[62ch] text-[15px] leading-[1.5] text-secondary">{c.fastingMeans}</p>
         <FastingCards />
       </div>
 
@@ -35,7 +36,7 @@ export function Prepare({ accent }: { accent: string }) {
             <ul className="flex flex-col gap-2 text-[15px] leading-[1.5] text-secondary">
               {(items as string[]).map((x) => (
                 <li key={x} className="flex gap-2.5">
-                  <span aria-hidden style={{ color: accent }}>
+                  <span aria-hidden style={{ color: accentText(accent) }}>
                     ✓
                   </span>
                   <span className="pretty">{x}</span>
