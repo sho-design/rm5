@@ -99,8 +99,21 @@ function Card({ m, open, onToggle, index }: { m: TeamMember; open: boolean; onTo
 }
 
 /** Service chips over a grid of tall team cards, on the navy band. Each card opens to what that person does for you. */
-export function TeamGrid({ team, filters, note }: { team: TeamMember[]; filters: string[]; note: string }) {
+export function TeamGrid({ team: listed, filters, note }: { team: TeamMember[]; filters: string[]; note: string }) {
   const [i, setI] = useState(0);
+  // Physicians stay first, in their set order. Nurses and other staff come in a new random order on each visit,
+  // so no one is always last. Shuffled after the page loads, so the server and the browser agree on the first paint.
+  const [team, setTeam] = useState(listed);
+  useEffect(() => {
+    const isDoctor = (m: TeamMember) => m.name.startsWith("Dr. ") || m.role.startsWith("Physician");
+    const doctors = listed.filter(isDoctor);
+    const rest = listed.filter((m) => !isDoctor(m));
+    for (let n = rest.length - 1; n > 0; n--) {
+      const r = Math.floor(Math.random() * (n + 1));
+      [rest[n], rest[r]] = [rest[r], rest[n]];
+    }
+    setTeam([...doctors, ...rest]);
+  }, [listed]);
   const [open, setOpen] = useState<string | null>(null);
 
   // Menu links such as "Our clinicians" open the page filtered: /about/team?service=Medical%20Aesthetics
