@@ -48,7 +48,7 @@ function staticPageText(): Record<string, string> {
   add("kids", kids.kidsAges, kids.kidsFaq, kids.immunizations, kids.kidsPath, kids.kidsForms, kids.kidsSick, kids.kidsCopy);
   add("iron", iron.ironSymptoms, iron.ironWho, iron.ironSteps, iron.ironVisit, iron.ironPrices, iron.ironFaq);
   add("year", yearSeasons(45, true), yearSeasons(45, false), yearSeasons(70, true));
-  add("story", about.storyTimeline, about.storyValues, about.storyPage);
+  add("story", about.storyValues, about.storyPage);
   add("standards", about.standardsList, about.standardsPage);
   add("careers", about.careersWhy, about.careersCopy);
   add("locations", about.locationsCopy, wayfindingCopy);

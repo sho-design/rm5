@@ -22,7 +22,6 @@ import {
 } from "@/content/skincare";
 import { SkinFilter } from "./SkinFilter";
 import { site } from "@/content/site";
-import { routes } from "@/lib/routes";
 
 const groups = Object.keys(skinGroups) as SkinGroup[];
 
@@ -123,7 +122,7 @@ function Product({ p }: { p: SkinProduct }) {
             {inRegimens.map((r, i) => (
               <span key={r.k}>
                 {i ? ", " : ""}
-                <Link href={`${routes.aesPlans}#regimen-${r.k}`} className="font-semibold text-link hover:underline">
+                <Link href={`#regimen-${r.k}`} className="font-semibold text-link hover:underline">
                   {r.t}
                 </Link>
               </span>
@@ -205,7 +204,7 @@ export function SkincareList() {
           >
             {site.phone}
           </a>
-          <SmartLink to={`${routes.aesPlans}#regimens`} className="w-fit">
+          <SmartLink to={"#regimens"} className="w-fit">
             <TextLink className="text-[15px] text-white">
               {c.regimensLink}
             </TextLink>

@@ -49,3 +49,11 @@ export const photosCopy = {
     ),
   ],
 };
+
+/** The old "Before and after" page's title and lead, now introducing the photos section on About › Standards (Nov 2026). */
+export const photosSection = {
+  title: draft("Before and after photos"),
+  lead: draft(
+    "This site does not show before and after photos of patients. Photos taken at your consult stay in your chart.",
+  ),
+};

@@ -1,4 +1,5 @@
 import { draft } from "./review";
+import { routes } from "@/lib/routes";
 
 /*
  * "A year of care" on the skin health plans page (November 2026): what usually fits each month of an Ontario year.
@@ -187,7 +188,7 @@ export const plansCopy = {
     {
       t: draft("Your home routine"),
       d: draft("Cleanse, correct, protect, morning and night."),
-      link: "#regimens",
+      link: `${routes.aesSkincare}#regimens`,
     },
     {
       t: draft("Neuromodulator, if you have one"),

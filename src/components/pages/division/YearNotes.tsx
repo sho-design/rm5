@@ -1,36 +1,12 @@
-import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
-import { Button, Display, Eyebrow } from "@/components/ui";
-import { divisions } from "@/content/divisions";
-import { YearPlanner } from "@/components/pages/year/YearPlanner";
-import { accentText } from "@/lib/accent";
+import { Button } from "@/components/ui";
 
-const title = "Your year of staying well.";
-const lead = "A calm rhythm of checks, spaced through the year, so problems are found early or never start. Adjust the two answers and we lay it out.";
-
-const baseMetadata: Metadata = { title: "Your year", description: `${title} ${lead}` };
-
-export async function generateMetadata() {
-  return pageMetadata("year", baseMetadata);
-}
-
-export default function YourYearPage() {
+/**
+ * Under "Am I due?" on Family Medicine: what happens at every visit, seasonal reminders and the guideline note.
+ * These were the "Your year" page until November 2026, which repeated the same screening calculator.
+ */
+export function YearNotes() {
   return (
-    <>
-      <YearPlanner
-        header={
-          <div className="flex flex-col gap-4">
-            <Eyebrow tone="inherit" style={{ color: accentText(divisions.family.accent) }}>
-              Prevention
-            </Eyebrow>
-            <Display as="h1" size="lg">
-              {title}
-            </Display>
-            <p className="pretty text-[17px] leading-[1.5] text-muted lg:text-[18px]">{lead}</p>
-          </div>
-        }
-      />
-
+    <div id="your-year" className="scroll-mt-24">
       <div className="grid grid-cols-1 gap-block px-4 pt-8 md:grid-cols-2 md:px-content md:pt-10">
         <div className="flex flex-col gap-3 rounded-card border border-border bg-card p-6 lg:p-8">
           <span className="display text-[24px] tracking-[-.02em] lg:text-[26px]">Every visit, always</span>
@@ -59,6 +35,6 @@ export default function YourYearPage() {
       <p className="max-w-[62ch] px-4 pb-10 pt-6 text-[13px] leading-[1.5] text-muted md:px-content">
         Based on Ontario screening guidelines for adults without known risk factors. Your doctor adjusts this to your history. It does not replace medical advice.
       </p>
-    </>
+    </div>
   );
 }

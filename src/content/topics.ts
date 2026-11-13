@@ -20,7 +20,6 @@ import type { Benefit, Fact, NavKey, PathStep } from "./types";
 import {
   aestheticsLadder,
   deepDives,
-  deepModuleCopy,
   rehabCoverage,
 } from "./deep";
 import { divisions } from "./divisions";
@@ -360,53 +359,6 @@ const pain: Topic[] = [
     ],
     band: painBand,
   },
-  {
-    key: "painFirstVisit",
-    slug: "first-visit",
-    division: "pain",
-    page: "What happens at a first visit",
-    title: P.pathTitle,
-    // A referred 77-year-old found "no need to book" only inside the booking form (round 20).
-    lead: `${draft("Already referred? There is no need to book. We call you to book, and your first assessment is usually within two to four weeks of the referral arriving. Not heard from us after four weeks? Call 905-709-3222.")} ${fq("What happens at a first Pain Centre visit?").a}`,
-    description: fit(fq("What happens at a first Pain Centre visit?").a),
-    ...painHero,
-    img: images.services.pain[0],
-    imgAlt: draft(
-      "Physician talking with a patient at a first Pain Centre visit",
-    ),
-    benefits: { title: P.benefitsTitle, items: P.benefits },
-    path: painPath,
-    faq: [
-      dq("pain", "What should I bring?"),
-      dq("pain", "Do I need a referral?"),
-      fq("How long is the wait?"),
-      dq("pain", "Do you speak Vietnamese?"),
-    ],
-    band: painBand,
-  },
-  {
-    key: "painOhip",
-    slug: "ohip-coverage",
-    division: "pain",
-    page: "OHIP coverage",
-    title: "Is it covered by OHIP?",
-    lead: P.benefits[1]?.d ?? "",
-    description: fit(
-      P.benefits[1]?.d ?? "",
-      "Physician-led Pain Centre in Thornhill.",
-    ),
-    ...painHero,
-    img: images.division.pain,
-    imgAlt: draft("Reception desk at the Thornhill clinic"),
-    benefits: { title: P.benefitsTitle, items: P.benefits },
-    faq: [
-      dq("pain", "Is it covered by OHIP?"),
-      dq("pain", "Do I need a referral?"),
-      fq("Is the Pain Centre covered by OHIP?"),
-      fq("What if I do not have OHIP?"),
-    ],
-    band: painBand,
-  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -569,54 +521,6 @@ const aesthetics: Topic[] = [
     ],
     band: aesBand,
   },
-  {
-    key: "aesPricing",
-    slug: "pricing",
-    division: "aesthetics",
-    page: "Pricing",
-    title: A.benefits[1]?.t ?? "",
-    lead: A.benefits[1]?.d ?? "",
-    description: fit(
-      A.benefits[1]?.d ?? "",
-      "Medical Aesthetics prices in Thornhill, HST included, written at a complimentary consult.",
-    ),
-    ...aesHero,
-    img: images.services.aesthetics[3],
-    imgAlt: draft("Clinician going through a written plan with a patient"),
-    cards: {
-      title: deepModuleCopy.ladder.title,
-      items: [rung(0), rung(1), rung(2)],
-    },
-    faq: [
-      fq("How is pricing set?"),
-      dq("aesthetics", "How much does it cost?"),
-      dq("aesthetics", "Is a consult free?"),
-      dq("aesthetics", "Is any of this covered by OHIP?"),
-    ],
-    band: aesBand,
-  },
-  {
-    key: "aesPhotos",
-    slug: "before-and-after",
-    division: "aesthetics",
-    page: "Before & after",
-    title: draft("Before and after photos"),
-    lead: draft(
-      "This site does not show before and after photos of patients. Photos taken at your consult stay in your chart.",
-    ),
-    description: draft(
-      "Medical Aesthetics photos at Restoration Medical in Thornhill are taken at your consult for your file. This site does not show patient photos.",
-    ),
-    ...aesHero,
-    img: images.services.aesthetics[0],
-    imgAlt: draft("Consult room in the Medical Aesthetics suite"),
-    path: aesPath,
-    faq: [
-      dq("aesthetics", "Will it look natural?"),
-      dq("aesthetics", "Is a consult free?"),
-    ],
-    band: aesBand,
-  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -757,7 +661,6 @@ const rehab: Topic[] = [
       title: R.chooser.title,
       items: [asCard(result(R, 4)), asCard(result(R, 2))],
     },
-    path: rehabPath,
     faq: [
       dq("rehab", "Do I need a doctor's referral?"),
       dq("rehab", "Do you bill my insurance directly?"),
@@ -783,7 +686,6 @@ const rehab: Topic[] = [
       title: R.chooser.title,
       items: [asCard(result(R, 0)), asCard(result(R, 3))],
     },
-    path: rehabPath,
     faq: [
       dq("rehab", "How many visits will I need?"),
       dq("rehab", "Do you bill my insurance directly?"),
@@ -791,54 +693,38 @@ const rehab: Topic[] = [
     ],
     band: rehabBand,
   },
+  // Car accident and workplace injury were two pages until Nov 2026; one page now, both kinds of claim side by side.
   {
     key: "rehabMva",
-    slug: "motor-vehicle-accidents",
+    slug: "accident-and-injury",
     division: "rehab",
-    page: "Motor vehicle accidents",
-    title: result(R, 2).title,
-    lead: result(R, 2).p,
+    page: draft("Car accident or workplace injury"),
+    title: draft("Car accident or workplace injury"),
+    lead: `${result(R, 2).p} ${result(R, 3).p}`,
     description: fit(
-      `Car accident rehab in Thornhill. ${result(R, 2).p}`,
+      `Car accident (MVA) and WSIB rehab in Thornhill. ${result(R, 2).p}`,
       "No upfront cost.",
     ),
     cta: result(R, 2).cta,
     ctaTo: bookFor("rehab"),
-    coverage: cov(1).p,
     img: images.services.rehab[0],
     imgAlt: draft("Physiotherapist and patient reviewing a treatment plan"),
-    pills: result(R, 2).tags,
-    glance: { title: cov(1).label, p: cov(1).p, facts: cov(1).facts },
-    path: rehabPath,
+    pills: [...new Set([...(result(R, 2).tags ?? []), ...(result(R, 3).tags ?? [])])],
+    cards: {
+      title: draft("Two kinds of claim."),
+      items: [
+        { t: result(R, 2).title, d: cov(1).p },
+        { t: result(R, 3).title, d: cov(2).p },
+      ],
+    },
+    coverageChooser: true,
     faq: [
       fq("Do you handle MVA and WSIB claims?"),
       dq("rehab", "Do I need a doctor's referral?"),
       dq("rehab", "How many visits will I need?"),
-    ],
-    band: { ...rehabBand, cta: result(R, 2).cta },
-  },
-  {
-    key: "rehabWsib",
-    slug: "wsib",
-    division: "rehab",
-    page: "WSIB",
-    title: result(R, 3).title,
-    lead: result(R, 3).p,
-    description: fit(`WSIB rehab in Thornhill. ${result(R, 3).p}`),
-    cta: result(R, 3).cta,
-    ctaTo: bookFor("rehab"),
-    coverage: cov(2).p,
-    img: images.services.rehab[3],
-    imgAlt: draft("Kinesiologist guiding a graded return-to-work exercise"),
-    pills: result(R, 3).tags,
-    glance: { title: cov(2).label, p: cov(2).p, facts: cov(2).facts },
-    path: rehabPath,
-    faq: [
-      fq("Do you handle MVA and WSIB claims?"),
-      dq("rehab", "How many visits will I need?"),
       dq("rehab", "Can I see a doctor here too?"),
     ],
-    band: { ...rehabBand, cta: result(R, 3).cta },
+    band: { ...rehabBand, cta: result(R, 2).cta },
   },
   {
     key: "rehabBilling",
@@ -862,15 +748,16 @@ const rehab: Topic[] = [
     ],
     band: rehabBand,
   },
+  // What to bring and the home program were two short pages until Nov 2026.
   {
     key: "rehabBring",
-    slug: "what-to-bring",
+    slug: "your-visit",
     division: "rehab",
-    page: "What to bring",
-    title: draft("What to bring"),
-    lead: draft("A few things make your first visit quicker."),
+    page: draft("Before and after your visit"),
+    title: draft("Before and after your visit"),
+    lead: `${draft("A few things make your first visit quicker.")} ${R.closing}`,
     description: draft(
-      "What to bring to a first rehab visit in Thornhill: your insurance card, claim number, surgical report and clothing you can move in.",
+      "What to bring to a first rehab visit in Thornhill: your insurance card, claim number, surgical report and clothing you can move in. Then a home program between visits.",
     ),
     ...rehabHero,
     img: images.services.rehab[1],
@@ -887,27 +774,6 @@ const rehab: Topic[] = [
         },
       ],
     },
-    faq: [
-      dq("rehab", "What should I wear?"),
-      dq("rehab", "Do I need a doctor's referral?"),
-      dq("rehab", "How many visits will I need?"),
-    ],
-    band: rehabBand,
-  },
-  {
-    key: "rehabHome",
-    slug: "home-program",
-    division: "rehab",
-    page: "Home exercise portal",
-    title: draft("Your home program"),
-    lead: R.closing,
-    description: fit(
-      R.closing,
-      "Rehab & Recovery at Restoration Medical in Thornhill.",
-    ),
-    ...rehabHero,
-    img: images.services.rehab[3],
-    imgAlt: draft("Patient doing a home exercise routine"),
     glance: {
       title: draft("Between visits"),
       p: draft(`Questions about your program? Call ${site.phone}.`),
@@ -919,7 +785,11 @@ const rehab: Topic[] = [
         { k: R.path[0]?.time ?? "", v: R.path[0]?.d ?? "" },
       ],
     },
-    path: rehabPath,
+    faq: [
+      dq("rehab", "What should I wear?"),
+      dq("rehab", "Do I need a doctor's referral?"),
+      dq("rehab", "How many visits will I need?"),
+    ],
     band: rehabBand,
   },
 ];
@@ -961,38 +831,6 @@ const family: Topic[] = [
       fq("Can you send prescriptions to any pharmacy?"),
       fq("Do you offer phone or video visits?"),
     ],
-    band: familyBand,
-  },
-  {
-    key: "labs",
-    slug: "lab-results",
-    division: "family",
-    page: "Lab results",
-    title: draft("Lab results"),
-    lead: fq("How do I get my results?").a,
-    description: fit(
-      `Lab results at Restoration Medical in Thornhill. ${fq("How do I get my results?").a}`,
-    ),
-    cta: "Book a visit",
-    ctaTo: bookFor("family"),
-    img: images.services.family[5],
-    imgAlt: draft("Lab technician labelling a blood sample"),
-    faq: [
-      fq("How do I get my results?"),
-      fq("How long does bloodwork take?"),
-      fq("Can I get a copy of my records?"),
-    ],
-    related: {
-      title: draft("Before your bloodwork."),
-      items: [
-        { t: svc(FD, 5).title, d: svc(FD, 5).desc, page: "blood" },
-        {
-          t: "How to read your lab requisition",
-          d: "Health note",
-          page: "/health-notes/reading-requisition",
-        },
-      ],
-    },
     band: familyBand,
   },
   {
@@ -1326,7 +1164,13 @@ const about: Topic[] = [
     ],
     band: aboutBand,
   },
-  {
+];
+
+/**
+ * Coverage by service, shown on the merged Insurance, billing and fees page (about/insurance-billing, Nov 2026).
+ * Kept here because it reads the other divisions' approved copy.
+ */
+export const billingTopic: Topic = {
     key: "billing",
     slug: "insurance-billing",
     division: "about",
@@ -1392,8 +1236,7 @@ const about: Topic[] = [
       fq("Is rehab covered?"),
     ],
     band: aboutBand,
-  },
-];
+  };
 
 export const topics: Topic[] = [
   ...pain,

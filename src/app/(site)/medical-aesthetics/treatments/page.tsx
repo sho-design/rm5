@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import { CtaBand, SubPageHero } from "@/components/ui";
+import { CtaBand, Faq, SubPageHero } from "@/components/ui";
 import { divisions } from "@/content/divisions";
 import { images } from "@/content/images";
 import { draft } from "@/content/review";
 import { bookFor } from "@/lib/routes";
 import { AesMenu } from "@/components/pages/aesthetics/AesMenu";
 import { AesFinder } from "@/components/pages/aesthetics/AesFinder";
-import { AesPrograms } from "@/components/pages/aesthetics/AesPrograms";
 import { EventPlanner } from "@/components/pages/aesthetics/EventPlanner";
 import { AesCandidacy, AesTools } from "@/components/pages/aesthetics/AesSections";
+import { aesPricing } from "@/content/aes-pricing";
 
 const title = draft("The menu.");
 const lead = draft("Every treatment we offer, with how long it takes. Your price and plan are set at a complimentary consult with our nurse, after screening, with a physician when your concern needs one.");
@@ -20,7 +20,7 @@ export async function generateMetadata() {
   return pageMetadata("aesMenu", baseMetadata);
 }
 
-/** Funnel: the full menu (filterable), a goal planner for people who do not know the names, candidacy, then book. */
+/** Funnel: the full menu (filterable), a goal planner for people who do not know the names, pricing, candidacy, then book. Combined programs live on Skin health plans. */
 export default function AestheticsMenuPage() {
   const div = divisions.aesthetics;
   return (
@@ -44,8 +44,11 @@ export default function AestheticsMenuPage() {
       />
       <AesFinder />
       <AesMenu />
-      <AesPrograms eventPlan />
       <EventPlanner />
+      {/* Pricing (was its own page until Nov 2026): prices in writing at the consult, before anything is done. */}
+      <div id="pricing" className="scroll-mt-24">
+        <Faq title={aesPricing.title} sub={aesPricing.lead} items={aesPricing.faq} />
+      </div>
       <AesTools />
       <AesCandidacy />
       <CtaBand title={div.footCta ?? ""} sub={draft("A consult starts with screening. If a treatment is not right for you, we say so and suggest what is.")} cta={div.cta ?? "Book a consult"} ctaTo={bookFor("aesthetics", "consult")} />

@@ -127,3 +127,20 @@ export function AesFamilies() {
     </Section>
   );
 }
+
+/**
+ * Aesthetics home (consolidation, Nov 2026): one line pointing to the face picker on the treatment menu, instead of a
+ * second concern picker here.
+ */
+export function AesStartLink() {
+  return (
+    <Section className="flex flex-col gap-2">
+      <Eyebrow>{c.concernsEyebrow}</Eyebrow>
+      <Display size="sm">{c.concernsTitle}</Display>
+      <p className="pretty max-w-[640px] text-[16px] leading-[1.55] text-secondary">{c.concernsLead}</p>
+      <SmartLink to={`${routes.aesMenu}#plan`} className="mt-2 w-fit text-[15px] font-semibold text-link">
+        {c.planLink} ›
+      </SmartLink>
+    </Section>
+  );
+}

@@ -2,7 +2,6 @@ import type { ComponentType } from "react";
 import { InjectablesExtra } from "./InjectablesExtra";
 import { LaserExtra } from "./LaserExtra";
 import { MenExtra } from "./MenExtra";
-import { PhotosExtra } from "./PhotosExtra";
 import { PlansExtra } from "./PlansExtra";
 import { SkinExtra } from "./SkinExtra";
 
@@ -13,5 +12,4 @@ export const aesExtra: Partial<Record<string, ComponentType>> = {
   aesSkin: SkinExtra,
   aesMen: MenExtra,
   aesPlans: PlansExtra,
-  aesPhotos: PhotosExtra,
 };

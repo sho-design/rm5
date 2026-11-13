@@ -7,7 +7,7 @@ const physicianLanguages = draft("Speaks English and Tiếng Việt");
 
 /** [name, role, divisions (comma separated), preceptor tag?] as in the prototype. */
 const TEAM: [string, string, string, string?][] = [
-  ["Dr. Johnny Nguyen", "Physician, Medical Director", "Family Medicine, Pain Centre", "Preceptor, physician learners"],
+  ["Dr. Johnny Nguyen", "Physician, Medical Director", "Family Medicine, Pain Centre, Infusion Therapy", "Preceptor, physician learners"],
   ["Dr. Joseph Truong", "Physician", "Family Medicine"],
   ["Michelle", "Registered Nurse", "Infusion Therapy"],
   ["Anh", "Registered Nurse", "Infusion Therapy"],

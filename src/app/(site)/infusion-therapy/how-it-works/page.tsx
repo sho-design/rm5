@@ -13,9 +13,12 @@ import {
   whyPhysicianLed,
 } from "@/content/infusion-site";
 import { VisitStory } from "@/components/pages/infusion/extra/visit/VisitStory";
+import { CompareTable } from "@/components/pages/division/InfusionExtras";
+import { infusionCompareRows } from "@/content/deep";
 import { faqItems } from "@/content/faq";
 import { tints } from "@/content/divisions";
 import { pageMetadata } from "@/lib/seo";
+import { routes } from "@/lib/routes";
 
 const c = infusionCopy.how;
 const meta = infusionPages.find((p) => p.key === "infusionHow");
@@ -42,6 +45,9 @@ export default function HowItWorksPage() {
         <NumberedCards items={infusionSteps} />
       </Section>
       <VisitStory />
+      {/* "How an infusion works here": the one place for this comparison (it was on the Infusion home and the
+          honest menu too, Nov 2026). */}
+      <CompareTable rows={infusionCompareRows} />
       <Section id="screening" className="scroll-mt-6">
         <div className="flex flex-col gap-4 rounded-card bg-sun-soft p-6 text-ink md:p-10">
           <Eyebrow tone="inherit">{c.rightEyebrow}</Eyebrow>
@@ -78,7 +84,7 @@ export default function HowItWorksPage() {
       </Section>
       <Faq items={faq} />
       <InfusionSmallPrint />
-      <InfusionBand cta2To="concerns" />
+      <InfusionBand cta2To={routes.concerns} />
     </>
   );
 }

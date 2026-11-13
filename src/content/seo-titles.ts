@@ -16,7 +16,6 @@ export const seoTitles: Record<string, string> = {
   "/family-medicine/men-s-health": "Men’s health in Thornhill",
   "/family-medicine/chronic-care": "Chronic disease care in Thornhill",
   "/family-medicine/bloodwork-ecg": "Bloodwork and ECG in Thornhill",
-  "/family-medicine/your-year": "Your year of preventive care",
   "/family-medicine/prescription-renewals": "Prescription renewals in Thornhill",
 
   "/pain-centre": "Pain Centre in Thornhill",
@@ -24,8 +23,6 @@ export const seoTitles: Record<string, string> = {
   "/pain-centre/joint-pain": "Joint pain injections in Thornhill",
   "/pain-centre/nerve-blocks": "Nerve blocks in Thornhill",
   "/pain-centre/trigger-point-injections": "Trigger point injections in Thornhill",
-  "/pain-centre/first-visit": "Your first Pain Centre visit",
-  "/pain-centre/ohip-coverage": "Pain Centre OHIP coverage",
 
   "/infusion-therapy": "IV infusion therapy in Thornhill",
   "/infusion-therapy/iron-therapy": "Iron infusions in Thornhill",
@@ -38,7 +35,6 @@ export const seoTitles: Record<string, string> = {
   "/medical-aesthetics/skin-treatments": "Skin treatments in Thornhill",
   "/medical-aesthetics/laser": "Laser treatments in Thornhill",
   "/medical-aesthetics/mens-aesthetics": "Men’s aesthetics in Thornhill",
-  "/medical-aesthetics/pricing": "Medical aesthetics pricing",
   "/gift-cards": "Gift cards for any service",
 
   "/rehab-recovery": "Physio, chiro and massage in Thornhill",
@@ -46,13 +42,11 @@ export const seoTitles: Record<string, string> = {
   "/rehab-recovery/chiropractic": "Chiropractor in Thornhill",
   "/rehab-recovery/massage-therapy": "Massage therapy in Thornhill",
   "/rehab-recovery/kinesiology": "Kinesiology in Thornhill",
-  "/rehab-recovery/motor-vehicle-accidents": "Car accident rehab in Thornhill",
-  "/rehab-recovery/wsib": "WSIB rehab in Thornhill",
+  "/rehab-recovery/accident-and-injury": "Car accident and WSIB rehab in Thornhill",
+  "/rehab-recovery/your-visit": "Your rehab visit, before and after",
   "/rehab-recovery/insurance-billing": "Rehab insurance and direct billing",
-  "/rehab-recovery/what-to-bring": "What to bring to rehab",
 
   "/about": "About our Thornhill clinic",
-  "/about/clinics": "Clinics in Thornhill and Maple",
   "/about/contact": "Contact our Thornhill clinic",
   "/about/faq": "Frequently asked questions",
   "/about/careers": "Careers in Thornhill and Maple",

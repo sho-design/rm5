@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Button, Display, Section } from "@/components/ui";
+import { Button, Display, Section, SmartLink } from "@/components/ui";
 import { DripBrowser } from "@/components/pages/infusion/DripBrowser";
-import { DripFinder } from "@/components/pages/infusion/DripFinder";
-import { DripVisit } from "@/components/pages/infusion/DripVisit";
 import { DripInside } from "@/components/pages/infusion/extra/drip/DripInside";
 import {
   InfusionBand,
@@ -16,7 +14,8 @@ import {
   shots,
   signatureDrips,
 } from "@/content/infusion-site";
-import { bookFor } from "@/lib/routes";
+import { bookFor, routes } from "@/lib/routes";
+import { draft } from "@/content/review";
 import { pageMetadata } from "@/lib/seo";
 
 const c = infusionCopy.drips;
@@ -43,13 +42,25 @@ export default function DripsPage() {
         <p className="pretty max-w-[62ch] rounded-tile bg-[color:var(--div-pain)] px-4 py-3 text-[15px] font-semibold leading-[1.5] text-ink">
           {infusionCopy.drip.unwell}
         </p>
-        <DripFinder />
+        {/* The concern picker lives on the Infusion home (Nov 2026 consolidation); one line points to it. */}
+        <SmartLink
+          to={routes.concerns}
+          className="w-fit text-[15px] font-semibold text-link"
+        >
+          {draft("Not sure which drip? Start with how you feel")} ›
+        </SmartLink>
         <DripBrowser drips={signatureDrips} />
       </Section>
       {/* "Inside your drip": tours the menu until someone picks a drip. */}
       <DripInside />
-      <Section>
-        <DripVisit />
+      {/* The visit, step by step, lives on How it works; one line points to it. */}
+      <Section tight>
+        <SmartLink
+          to={routes.infusionHow}
+          className="w-fit text-[15px] font-semibold text-link"
+        >
+          {draft("About an hour, start to finish. See how a visit works")} ›
+        </SmartLink>
       </Section>
       <Section id="injection-bar" className="flex flex-col gap-5 scroll-mt-6">
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">

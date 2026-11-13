@@ -121,7 +121,7 @@ export const searchExtras: SearchDoc[] = [
     kind: draft("Medical Aesthetics"),
     label: draft("Treatment programs"),
     sub: draft("Glass skin, eye refresh, acne scars, hair restoration and more"),
-    page: "/medical-aesthetics/treatments#programs",
+    page: "/medical-aesthetics/skin-health-plans#programs",
     keys: "program programs package packages bundle combined plan glass skin eye refresh event ready wedding acne scar program jawline aging well chương trình gói",
   },
   {

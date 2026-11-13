@@ -8,6 +8,9 @@ import { pageMetadata } from "@/lib/seo";
 import { breadcrumbs } from "@/lib/schema";
 import { JsonLd } from "@/components/JsonLd";
 import { routes } from "@/lib/routes";
+import { billingTopic } from "@/content/topics";
+import { draft } from "@/content/review";
+import { Display } from "@/components/ui";
 import { ironPrices } from "@/content/iron";
 import { aestheticsLadder, drips, dripIronIndex, rehabCoverage } from "@/content/deep";
 import { SmartLink } from "@/components/ui/SmartLink";
@@ -38,27 +41,50 @@ const faq = (q: string) => {
 };
 const forms = faq("Do you charge for forms and notes?");
 
+const title = draft("Insurance, billing and fees");
+// Coverage by service, minus the card that pointed at the old fees page (it is this page now).
+const byService = (billingTopic.cards?.items ?? []).filter((x) => x.page !== "fees");
+
 export async function generateMetadata(): Promise<Metadata> {
-  return pageMetadata("fees", { title: c.title, description: `${forms.a} Restoration Medical, Thornhill.` });
+  return pageMetadata("billing", { title, description: billingTopic.description });
 }
 
 /**
- * Uninsured services and fees. The list comes from Site settings > Fees in
+ * Insurance, billing and fees (November 2026: the Insurance and billing and the Uninsured services and fees pages
+ * became this one). What OHIP covers by service, then uninsured fees. The list comes from Site settings > Fees in
  * the admin; until the clinic fills it in, the page says to ask the front
  * desk. Fees are never invented here.
  */
-export default async function FeesPage() {
+export default async function InsuranceBillingFeesPage() {
   const fees = await getUninsuredFees();
   return (
     <>
       <JsonLd
         data={breadcrumbs([
           [divisions.about.label, routes.about],
-          [c.title, routes.fees],
+          [title, routes.billing],
         ])}
       />
-      <PageHeader eyebrow={c.eyebrow} title={c.title} lead={c.lead} />
-      <Section className="pt-8 md:pt-10">
+      <PageHeader eyebrow={c.eyebrow} title={title} lead={billingTopic.lead} />
+      <Section className="flex flex-col gap-5 pt-8 md:pt-10">
+        <Display size="xs">{billingTopic.cards?.title}</Display>
+        <ul className="grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-3">
+          {byService.map((x) => (
+            <li key={x.t} className="flex flex-col gap-2 rounded-card border border-border bg-card p-5">
+              <span className="text-[17px] font-semibold">{x.t}</span>
+              <p className="pretty text-[14px] leading-[1.5] text-secondary">{x.d}</p>
+              {x.page && x.link ? (
+                <SmartLink to={x.page} className="mt-auto w-fit pt-1 text-[14px] font-semibold text-link">
+                  {x.link} ›
+                </SmartLink>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </Section>
+      <Section id="fees" className="scroll-mt-24 pt-10 md:pt-14">
+        <Display size="xs" className="pb-2">{c.title}</Display>
+        <p className="pretty max-w-[62ch] pb-5 text-[16px] leading-[1.55] text-secondary">{c.lead}</p>
         {fees.length ? (
           <div className="flex flex-col gap-3">
             <table className="w-full overflow-hidden rounded-card border border-border text-left text-[15px]">
@@ -124,7 +150,7 @@ export default async function FeesPage() {
           </div>
         ) : null}
       </Section>
-      <Faq items={[faq("What is covered by OHIP?"), faq("What if I do not have OHIP?"), forms]} />
+      <Faq items={[faq("What is covered by OHIP?"), faq("What if I do not have OHIP?"), forms, faq("Is rehab covered?")]} />
       <CtaBand title={divisions.about.footCta ?? ""} cta="Contact us" ctaTo="contact" />
     </>
   );

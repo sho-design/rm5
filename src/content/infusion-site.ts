@@ -402,17 +402,15 @@ export const infusionCopy = {
   },
 } as const;
 
-/** Page registry for search, sitemap and llms.txt. */
+/** Page registry for search, sitemap and llms.txt. By concern, the ingredient library and the team page were merged
+ *  into the Infusion home, the honest menu and About › Team (Nov 2026). */
 export const infusionPages: { key: PageKey; title: string; description: string }[] = [
   { key: "drips", title: infusionCopy.drips.title, description: infusionCopy.drips.lead },
   { key: "shots", title: infusionCopy.shots.title, description: draft("Ten vitamin and nutrient shots at Restoration Medical in Thornhill, about 10 minutes each, physician-reviewed and nurse-administered.") },
-  { key: "concerns", title: infusionCopy.concerns.title, description: infusionCopy.concerns.lead },
   { key: "metabolic", title: infusionCopy.metabolic.title, description: draft("A physician-supervised medical weight management program at Restoration Medical in Thornhill, with screening and follow-up.") },
   { key: "infusionHow", title: infusionCopy.how.title, description: infusionSteps.map((s) => s.t).join(", ") + ". " + infusionCopy.how.rightTitle },
   { key: "honest", title: infusionCopy.honest.title, description: draft("Common claims about IV drips, and what our physicians say. Screening first, medical oversight and registered nurses.") },
-  { key: "ingredients", title: infusionCopy.ingredients.title, description: draft("The ingredients in our drips and shots, what each one is for, and where the evidence is still developing.") },
   { key: "infusionPricing", title: infusionCopy.pricing.title, description: infusionCopy.pricing.lead },
-  { key: "infusionTeam", title: infusionTeam.title, description: infusionTeam.lead },
 ];
 
 /** Pricing page graphics (2026-11-05). Iron prices are clinic facts; the drip "from" price is the prototype's

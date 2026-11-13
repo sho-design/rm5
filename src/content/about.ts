@@ -1,11 +1,6 @@
 import { draft } from "./review";
 import type { TintCard } from "./types";
 
-export interface TimelineEntry {
-  y: string;
-  t: string;
-  d: string;
-}
 
 export interface StandardEntry {
   n: string;
@@ -20,38 +15,6 @@ export interface ReasonEntry {
 }
 
 /** Our story: timeline. */
-export const storyTimeline: TimelineEntry[] = [
-  {
-    y: "2015",
-    t: "Two doctors, one frustration",
-    d: "Working in emergency and family practice, Dr. Nguyen kept seeing the same thing: patients bounced between clinics that never spoke to each other. Pain went untreated while referrals sat in fax trays.",
-  },
-  {
-    y: "2019",
-    t: "The Pain Centre opens",
-    d: "Restoration Medical begins as an interventional pain practice in Thornhill, built on image guidance and a physician doing every procedure.",
-  },
-  {
-    y: "2021",
-    t: "Family Medicine joins",
-    d: "Patients asked for a doctor who could follow them between procedures. A family practice opens down the hall, sharing one chart.",
-  },
-  {
-    y: "2023",
-    t: "Rehab and Aesthetics",
-    d: "Physiotherapy, chiropractic and massage move in so injections and rehab happen in the same week. Medical Aesthetics opens under the same physician oversight.",
-  },
-  {
-    y: "2025",
-    t: "Infusion Therapy and Dr. Truong",
-    d: "Nurse-administered drips and clinical iron therapy launch. Dr. Joseph Truong joins Family Medicine and the roster opens to new patients.",
-  },
-  {
-    y: "2026",
-    t: "Maple",
-    d: draft("A second clinic at 2620 Rutherford Rd, built on the same standard. The Maple list is open."),
-  },
-];
 
 /** Our story: values. */
 export const storyValues: TintCard[] = [
@@ -265,14 +228,11 @@ export const locationsCopy = {
   },
 } as const;
 
-/** Page-level copy for /about/story (prototype isStory section). */
+/** Page-level copy for the story section on /about (prototype isStory section). */
 export const storyPage = {
   crumb: "Our story",
   title: "Built because the system kept losing people.",
-  lead: "Restoration Medical started as one pain clinic and grew into five divisions for one reason: patients should not have to carry their own story from building to building. Here, one chart and one physician-led standard follow you from the family doctor to the procedure room to rehab.",
   imgAlt: "Restoration Medical team in the Thornhill clinic",
-  timelineEyebrow: "How we got here",
-  timelineTitle: "Ten years, one address.",
   valuesTitle: "What we will not compromise on.",
   band: {
     title: "Meet the people who make it work.",

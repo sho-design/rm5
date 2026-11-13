@@ -208,7 +208,7 @@ export function SafetyCare() {
             ))}
           </ol>
         </div>
-        <SmartLink to={`${routes.aesPlans}#regimen-recovery`} className="w-fit">
+        <SmartLink to={`${routes.aesSkincare}#regimen-recovery`} className="w-fit">
           <TextLink>{c.afterLink}</TextLink>
         </SmartLink>
       </div>

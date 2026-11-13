@@ -15,7 +15,7 @@ const tel = (n: string) => `+1-${n}`;
 const ids = {
   org: `${url}/#organization`,
   website: `${url}/#website`,
-  thornhill: `${url}/about/clinics#thornhill`,
+  thornhill: `${url}/about/contact#thornhill`,
 };
 
 const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -57,7 +57,7 @@ export function siteGraph() {
         "@id": ids.thornhill,
         name: `${site.name} Thornhill`,
         parentOrganization: { "@id": ids.org },
-        url: abs("/about/clinics"),
+        url: abs("/about/contact"),
         telephone: tel(site.phone),
         faxNumber: tel(site.fax),
         email: site.email,

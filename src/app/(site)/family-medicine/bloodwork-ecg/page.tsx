@@ -7,6 +7,7 @@ import { bloodFaq, bloodOptions, bloodPath, subpageHero } from "@/content/subpag
 import { Path } from "@/components/pages/blood/Path";
 import { Prepare } from "@/components/pages/blood/Prepare";
 import { draft } from "@/content/review";
+import { faqItems } from "@/content/faq";
 import { TintBand } from "@/components/pages/blood/TintBand";
 
 const title = "Bloodwork and ECG, before you leave.";
@@ -65,7 +66,20 @@ export default function BloodworkPage() {
 
       <Prepare accent={accent} />
 
-      <Faq title="Questions about bloodwork." sub="Your doctor explains every result at the follow-up. Nothing is left to guess." items={bloodFaq} />
+      {/* Lab results (its own page until Nov 2026): how results reach you, and getting a copy. */}
+      <section id="results" className="scroll-mt-24">
+        <Faq
+          title="Questions about bloodwork."
+          sub="Your doctor explains every result at the follow-up. Nothing is left to guess."
+          items={[
+            ...bloodFaq,
+            ...["How do I get my results?", "Can I get a copy of my records?"].flatMap((q) => {
+              const f = faqItems.find((x) => x.q === q);
+              return f ? [{ q: f.q, a: f.a }] : [];
+            }),
+          ]}
+        />
+      </section>
 
       <TintBand
         title="One trip. Doctor, requisition, draw."

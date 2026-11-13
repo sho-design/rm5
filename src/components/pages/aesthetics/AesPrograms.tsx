@@ -20,15 +20,16 @@ export function AesPrograms({
   programs = aesPrograms,
   c = programsCopy,
   bookTo = bookFor("aesthetics", "consult"),
-  eventPlan = false,
+  eventHref,
   routines = regimens,
-  routinesAt = routes.aesPlans,
+  routinesAt = routes.aesSkincare,
 }: {
   programs?: typeof aesPrograms;
   c?: typeof programsCopy;
   bookTo?: string;
-  eventPlan?: boolean;
-  /** Regimens for the "Home routine" link, and where they live (another page in English, this page in Vietnamese). */
+  /** Where the event program's "Plan from your event date" link goes (the planner on the treatment menu). */
+  eventHref?: string;
+  /** Regimens for the "Home routine" link, and where they live (Skincare we carry in English, this page in Vietnamese). */
   routines?: typeof regimens;
   routinesAt?: string;
 }) {
@@ -126,15 +127,15 @@ export function AesPrograms({
                   {c.book}
                   <span aria-hidden className="pg-arrow text-[16px]">›</span>
                 </SmartLink>
-                {p.regimen || (eventPlan && p.k === "event") ? (
+                {p.regimen || (eventHref && p.k === "event") ? (
                   <span className="flex flex-col gap-1">
                     {p.regimen ? (
                       <a href={`${routinesAt}#regimen-${p.regimen}`} className="w-fit text-[14px]">
                         <TextLink>{c.routine(routines.find((r) => r.k === p.regimen)?.t ?? "")}</TextLink>
                       </a>
                     ) : null}
-                    {eventPlan && p.k === "event" ? (
-                      <a href="#event-plan" className="w-fit text-[14px]">
+                    {eventHref && p.k === "event" ? (
+                      <a href={eventHref} className="w-fit text-[14px]">
                         <TextLink>{c.eventLink}</TextLink>
                       </a>
                     ) : null}
@@ -201,7 +202,7 @@ export function CombinedPlans({
   );
 }
 
-/** SkinCeuticals home regimens with suggested retail prices. Used on the skin health plans page. */
+/** SkinCeuticals home regimens with suggested retail prices. Used on Skincare we carry (and the Vietnamese aesthetics page). */
 export function SkinRegimens({
   list = regimens,
   c = programsCopy,

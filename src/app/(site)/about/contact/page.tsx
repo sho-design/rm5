@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import { Display, Eyebrow, Photo, SmartLink } from "@/components/ui";
+import { Display, Eyebrow, Lead, Photo, SmartLink } from "@/components/ui";
+import { locationsCopy } from "@/content/about";
+import { divisions, divisionOrder, tints } from "@/content/divisions";
+import { getLocations } from "@/lib/cms";
+import { LocationsView } from "@/components/pages/locations/LocationsView";
+import type { LocationView } from "@/components/pages/locations/types";
 import { ContactForm } from "@/components/pages/contact/ContactForm";
 import { HoursLead } from "@/components/pages/contact/HoursLead";
 import { contactCopy } from "@/content/booking";
@@ -21,7 +26,13 @@ export async function generateMetadata() {
   return pageMetadata("contact", baseMetadata);
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const locations: LocationView[] = (await getLocations()).map((l) => ({
+    ...l,
+    tiles: divisionOrder
+      .filter((k) => l.services.includes(k))
+      .map((k, i) => ({ key: k, label: divisions[k].label, tag: divisions[k].tag, tint: tints[i % tints.length], img: images.location[k] })),
+  }));
   return (
     <>
       <header className="flex max-w-[820px] flex-col gap-4 px-4 pt-8 md:px-content md:pt-16">
@@ -93,6 +104,18 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+
+      {/* Our clinics (its own page until Nov 2026): Thornhill now, Maple coming soon. */}
+      <section id="clinics" className="scroll-mt-24">
+        <div className="flex max-w-[820px] flex-col gap-3 px-4 pt-12 md:px-content md:pt-section">
+          <Eyebrow tone="sky">{locationsCopy.eyebrow}</Eyebrow>
+          <Display size="sm">{locationsCopy.h1}</Display>
+          <Lead size="md" tone="muted">
+            {locationsCopy.lead}
+          </Lead>
+        </div>
+        <LocationsView locations={locations} />
+      </section>
     </>
   );
 }

@@ -18,7 +18,6 @@ import {
   type SkinShape,
 } from "@/content/skincare";
 import { radioKeys, rovingTab, useReducedMotion } from "@/lib/a11y";
-import { routes } from "@/lib/routes";
 import { cn } from "@/lib/cn";
 import { draft } from "@/content/review";
 
@@ -404,7 +403,7 @@ export function RoutineBuilder() {
 
           <div className="flex flex-col gap-2 border-t border-border pt-4">
             <SmartLink
-              to={`${routes.aesPlans}#regimen-${r.k}`}
+              to={`#regimen-${r.k}`}
               className="w-fit"
             >
               <TextLink className="text-[15px]">{c.seeRegimen}</TextLink>

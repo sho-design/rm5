@@ -6,10 +6,13 @@ import { site } from "@/content/site";
 import type { DivisionKey, NavKey } from "@/content/types";
 import { AboutTeaching } from "./AboutTeaching";
 import { DeepDive } from "./DeepDive";
+import { storyValues } from "@/content/about";
+import { StoryValues } from "@/components/pages/story/StoryValues";
 import { Hero } from "./Hero";
 import { InfusionHero } from "./InfusionExtras";
-import { AesFaceMap } from "@/components/pages/aesthetics/AesFaceMap";
+import { AesStartLink } from "@/components/pages/aesthetics/AesSections";
 import { DeepDiveChooser } from "./DeepDiveChooser";
+import { ConcernPath } from "@/components/pages/infusion/extra/concern/ConcernPath";
 import { Offer } from "./Offer";
 import { SubNav } from "./SubNav";
 
@@ -59,8 +62,9 @@ export function DivisionPage({ k }: { k: NavKey }) {
       {isInfusion ? (
         <>
           <InfusionHero />
-          {/* Patient first: how you feel comes before any list of services. */}
-          <DeepDiveChooser k="infusion" dive={deepDives.infusion} />
+          {/* Patient first: how you feel comes before any list of services. The By concern page merged in here
+              (Nov 2026): each concern draws its route through the clinic and ends in one next step. */}
+          <ConcernPath />
         </>
       ) : (
         <>
@@ -77,13 +81,18 @@ export function DivisionPage({ k }: { k: NavKey }) {
             helper={painHelper}
           />
           {/* Patient first: their concern or situation, then what we offer for it. */}
-          {k === "aesthetics" ? <AesFaceMap /> : !isAbout ? <DeepDiveChooser k={k as DivisionKey} dive={deepDives[k as DivisionKey]} /> : null}
+          {k === "aesthetics" ? <AesStartLink /> : !isAbout ? <DeepDiveChooser k={k as DivisionKey} dive={deepDives[k as DivisionKey]} /> : null}
           <Offer services={d.services ?? []} division={k} />
         </>
       )}
 
       {isAbout ? (
         <>
+          {/* What the clinic will not compromise on (the story page's values, Nov 2026). The story timeline and its
+              history were removed: they were not clinic facts. */}
+          <div id="story" className="scroll-mt-24">
+            <StoryValues values={storyValues} />
+          </div>
           <AboutTeaching />
           <CtaBand title={d.footCta ?? ""} cta="Contact us" ctaTo="contact" />
         </>

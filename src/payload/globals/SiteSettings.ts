@@ -34,7 +34,7 @@ export const SiteSettings: GlobalConfig = {
         },
         {
           label: "Fees",
-          description: "Uninsured services and their fees, shown on /about/fees. Leave empty to show \"ask the front desk\" instead.",
+          description: "Uninsured services and their fees, shown on /about/insurance-billing. Leave empty to show \"ask the front desk\" instead.",
           fields: [
             {
               name: "uninsuredFees",

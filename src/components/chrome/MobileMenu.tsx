@@ -266,7 +266,7 @@ export function MobileMenu({
             {locations.map((l) => (
               <Link
                 key={l.key}
-                href={`${routes.locations}#${l.key}`}
+                href={`${routes.contact}#${l.key}`}
                 onClick={onClose}
                 className="flex items-center justify-between gap-3 rounded-row bg-white/7 px-4 py-3.5"
               >

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { CtaBand, PageHeader } from "@/components/ui";
 import { SkincareList } from "@/components/pages/aesthetics/SkincareList";
+import { SkinRegimens } from "@/components/pages/aesthetics/AesPrograms";
 import { MorningShield } from "@/components/pages/aesthetics/skinceuticals/MorningShield";
 import { RoutineBuilder } from "@/components/pages/aesthetics/skinceuticals/RoutineBuilder";
 import {
@@ -35,6 +36,8 @@ export default function SkincarePage() {
       <CleanseCorrectProtect />
       <MorningShield />
       <RoutineBuilder />
+      {/* The regimen cards (Nov 2026: moved here from Skin health plans, so home routines live on one page). */}
+      <SkinRegimens />
       <ApplyAndCompare />
       <SkincareList />
       <CtaBand

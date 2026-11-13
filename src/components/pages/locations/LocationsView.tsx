@@ -25,7 +25,7 @@ export function LocationsView({ locations }: { locations: LocationView[] }) {
   const phone = loc.phone ?? site.phone;
   const phoneHref = `tel:${phone.replace(/\D/g, "")}`;
 
-  // /about/clinics#maple or #thornhill opens that tab and scrolls to its details (menu links);
+  // /about/contact#maple or #thornhill opens that tab and scrolls to its details (menu links);
   // #maple-waitlist also opens the waitlist form (FAQ "Join the Maple list").
   useEffect(() => {
     const select = () => {

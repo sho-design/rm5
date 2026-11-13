@@ -22,7 +22,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...legal.map((p) => `/legal/${p.slug}`),
   ]);
   const lastModified = new Date();
-  return [...paths].map((p) => ({
+  // Pages folded into others (Nov 2026) keep their route keys as anchors or filters; only real pages are listed.
+  return [...paths].filter((p) => !/[#?]/.test(p)).map((p) => ({
     url: new URL(p, site.url).toString(),
     lastModified,
     changeFrequency: p === "/" ? "weekly" : "monthly",

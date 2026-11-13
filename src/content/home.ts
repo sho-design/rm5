@@ -168,7 +168,7 @@ export const quickActions: QuickAction[] = [
   {
     label: draft("Join the Maple list"),
     sub: "Opening soon",
-    page: "/about/clinics#maple-waitlist",
+    page: "/about/contact#maple-waitlist",
     icon: ["M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z", "M12 12.5a2.5 2.5 0 1 0 0-5a2.5 2.5 0 1 0 0 5z"],
   },
 ];
@@ -265,7 +265,7 @@ export const infusionLinks: InfusionLink[] = [
     c: "#C9A0DC",
     t: "Know what is in the bag",
     d: draft("What each ingredient is for, and where the evidence is still developing."),
-    cta: "Ingredient library",
+    cta: draft("What is in each drip"),
     href: "ingredients",
   },
   {

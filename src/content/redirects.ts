@@ -37,7 +37,7 @@ export const legacyRedirects: [string, string][] = [
   // Gift cards became clinic-wide (Nov 2026): one card for any service you pay for.
   ["/medical-aesthetics/gift-cards", routes.aesGift],
   // Know your numbers removed (Nov 2026): the clinic prefers results explained by the doctor.
-  ["/family-medicine/know-your-numbers", `${routes.labs}?moved=numbers`],
+  ["/family-medicine/know-your-numbers", "/family-medicine/bloodwork-ecg?moved=numbers#results"],
   // Drip renamed from Kingmaker (one unisex drip).
   [`${routes.drips}/healing-myers`, `${routes.drips}/myers`],
   [`${routes.drips}/radiance`, `${routes.drips}/antioxidant`],

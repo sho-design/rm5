@@ -44,7 +44,7 @@ export function SkinCare() {
           ))}
         </ul>
         <SmartLink
-          to={`${routes.aesPlans}#regimen-recovery`}
+          to={`${routes.aesSkincare}#regimen-recovery`}
           className="flex flex-col gap-1 rounded-card-sm bg-lilac-tint p-5 transition-colors hover:bg-[color:var(--rm-lilac)]/30"
         >
           <span className="text-[16px] font-semibold">{a.kitTitle}</span>

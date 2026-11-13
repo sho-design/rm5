@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import { Display, SmartLink } from "@/components/ui";
+import { Display, Section, SmartLink } from "@/components/ui";
 import { standardsList, standardsPage } from "@/content/about";
 import { StandardsList } from "@/components/pages/standards/StandardsList";
 import { StandardsColleges } from "@/components/pages/standards/StandardsColleges";
 import { StandardsBand } from "@/components/pages/standards/StandardsBand";
+import { PhotoSteps } from "@/components/pages/aesthetics/extra/photos/PhotoSteps";
+import { photosSection } from "@/content/aes-photos";
 
 const baseMetadata: Metadata = {
   title: "Standards of care",
@@ -28,6 +30,14 @@ export default function StandardsPage() {
         <p className="pretty text-[16px] leading-[1.55] text-muted lg:text-[17px]">{standardsPage.lead}</p>
       </header>
       <StandardsList items={standardsList} />
+      {/* Aesthetics photos (was the "Before and after" page until Nov 2026): how they are taken and kept. */}
+      <div id="photos" className="scroll-mt-24">
+        <Section className="flex max-w-[820px] flex-col gap-3">
+          <Display size="xs">{photosSection.title}</Display>
+          <p className="pretty text-[16px] leading-[1.55] text-secondary">{photosSection.lead}</p>
+        </Section>
+        <PhotoSteps />
+      </div>
       <StandardsColleges />
       <StandardsBand />
     </>

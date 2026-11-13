@@ -142,7 +142,7 @@ export const faqItems: FaqItem[] = [
     q: "When does Maple open?",
     a: draft("Maple at 2620 Rutherford Rd is opening soon. Join the Maple list to hear when it opens, and register as a new patient now to have us as your family doctor there."),
     linkLabel: "Join the Maple list",
-    linkPage: "/about/clinics#maple-waitlist",
+    linkPage: "/about/contact#maple-waitlist",
   },
   {
     category: "Clinic",

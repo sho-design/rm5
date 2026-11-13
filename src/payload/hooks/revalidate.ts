@@ -22,7 +22,7 @@ const pathsFor: Record<string, string[]> = {
   jobs: ["/about/careers"],
   team: ["/about/team", "/family-medicine/children-youth"],
   faq: ["/about/faq"],
-  locations: ["/about/clinics", "/", "/about/contact"],
+  locations: ["/about/contact", "/"],
   announcements: ["/"],
   "legal-pages": ["/legal/privacy", "/legal/accessibility", "/legal/patient-rights", "/legal/terms"],
   "page-seo": ["/"],

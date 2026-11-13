@@ -1,4 +1,3 @@
-import { SkinRegimens } from "@/components/pages/aesthetics/AesPrograms";
 import { aesExtra } from "@/components/pages/aesthetics/extra";
 import { BenefitStrip, CtaBand, Display, Faq, FactGrid, Grid, PathSteps, Section, SectionHeader, SmartLink, SubPageHero } from "@/components/ui";
 import { CoverageChecker } from "@/components/pages/division/CoverageChecker";
@@ -11,7 +10,8 @@ import { aestheticsLadder, rehabCoverage } from "@/content/deep";
 import { divisionAccent, divisionTint, divisions, tints } from "@/content/divisions";
 import type { Topic } from "@/content/topics";
 import { cn } from "@/lib/cn";
-import { href } from "@/lib/routes";
+import { href, routes } from "@/lib/routes";
+import { draft } from "@/content/review";
 import { topicVisit } from "@/content/topic-visits";
 
 const withVisit = (to: string | undefined, visit: string | undefined) => (to && visit && to.startsWith("/book?service=") && !to.includes("&visit=") ? `${to}&visit=${visit}` : to);
@@ -108,7 +108,14 @@ export function TopicPage({ t }: { t: Topic }) {
 
       {t.coverageChooser ? <CoverageChecker options={rehabCoverage} /> : null}
       {t.ladder ? <Ladder rungs={aestheticsLadder} /> : null}
-      {t.regimens ? <SkinRegimens /> : null}
+      {/* Home routines live on Skincare we carry (Nov 2026); plans pages point there. */}
+      {t.regimens ? (
+        <Section tight>
+          <SmartLink to={`${routes.aesSkincare}#regimens`} className="w-fit text-[16px] font-semibold text-link">
+            {draft("A routine to take home: see Skincare we carry")} ›
+          </SmartLink>
+        </Section>
+      ) : null}
 
       {t.benefits ? (
         <Section className="flex flex-col gap-6">
@@ -117,7 +124,19 @@ export function TopicPage({ t }: { t: Topic }) {
         </Section>
       ) : null}
 
-      {t.path ? <PathSteps title={t.path.title} steps={t.path.steps} ctaTo={band.ctaTo} /> : null}
+      {/* Aesthetics shows "How a treatment plan comes together" in full on its home page only (Nov 2026); its other pages link there. */}
+      {t.path && t.division === "aesthetics" ? (
+        <Section tight className="flex flex-col gap-1.5">
+          <p className="pretty text-[16px] leading-[1.55] text-secondary">
+            {draft("Consult, treatment, a review at two weeks, then upkeep that fits your budget.")}
+          </p>
+          <SmartLink to={href("aesthetics")} className="w-fit text-[15px] font-semibold text-link">
+            {t.path.title.replace(/\.$/, "")} ›
+          </SmartLink>
+        </Section>
+      ) : t.path ? (
+        <PathSteps title={t.path.title} steps={t.path.steps} ctaTo={band.ctaTo} />
+      ) : null}
 
       {t.related ? (
         <Section className="flex flex-col gap-5">

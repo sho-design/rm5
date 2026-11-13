@@ -170,7 +170,6 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Drips", page: "drips" },
       { label: "The Injection Bar", page: "shots" },
       { label: "Iron therapy", page: "iron" },
-      { label: "By concern", page: "concerns" },
       { label: "Metabolic program", page: "metabolic" },
     ],
     book: [
@@ -260,9 +259,8 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Chiropractic", page: "rehabChiro" },
       { label: "Massage therapy", page: "rehabMassage" },
       { label: "Kinesiology", page: "rehabKines" },
-      { label: "Motor vehicle accidents", page: "rehabMva" },
-      // WSIB only had a booking link here; people wanted to read about cost first.
-      { label: draft("WSIB and work injuries"), page: "rehabWsib" },
+      // One page for car accidents and WSIB work injuries (Nov 2026).
+      { label: draft("Car accident or work injury"), page: "rehabMva" },
     ],
     book: [
       { label: "Book a session", page: bookFor("rehab") },
@@ -272,8 +270,7 @@ export const divisions: Record<NavKey, Division> = {
     ],
     more: [
       { label: "Insurance & direct billing", page: "rehabBilling" },
-      { label: "What to bring", page: "rehabBring" },
-      { label: "Home exercise portal", page: "rehabHome" },
+      { label: draft("Before and after your visit"), page: "rehabBring" },
       { label: "Hours & location", page: "locations" },
       { label: draft("Gift cards"), page: "aesGift" },
     ],
@@ -282,8 +279,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Chiro", icon: "chiro", page: "rehabChiro" },
       { label: "Massage", icon: "massage", page: "rehabMassage" },
       { label: "Kinesiology", icon: "kines", page: "rehabKines" },
-      { label: "MVA", icon: "mva", page: "rehabMva" },
-      { label: "WSIB", icon: "wsib", page: "rehabWsib" },
+      { label: draft("MVA and WSIB"), icon: "mva", page: "rehabMva" },
     ],
     services: [
       { title: "Physiotherapy", desc: "Assessment and individualized treatment plans.", page: "rehabPhysio", image: images.services.rehab[0] },
@@ -312,21 +308,20 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Our clinics", page: "locations" },
       { label: "Health notes", page: "notes" },
       { label: "FAQ", page: "faq" },
-      { label: "Our story", page: "story" },
+      { label: draft("What we stand for"), page: "story" },
       { label: "Standards of care", page: "standards" },
       { label: "Careers", page: "careers" },
     ],
     book: [
       { label: "Contact us", page: "contact" },
-      { label: "Thornhill clinic", page: "/about/clinics#thornhill" },
-      { label: "Maple clinic (coming soon)", page: "/about/clinics#maple" },
+      { label: "Thornhill clinic", page: "/about/contact#thornhill" },
+      { label: "Maple clinic (coming soon)", page: "/about/contact#maple" },
       { label: "Hours & directions", page: "locations" },
     ],
     more: [
       { label: "Patient forms", page: "forms" },
-      { label: "Insurance & billing", page: "billing" },
-      // FAQ is already under Explore; this column gets the fees list instead.
-      { label: "Fees", page: "fees" },
+      // Insurance, billing and fees are one page (Nov 2026).
+      { label: draft("Insurance, billing and fees"), page: "billing" },
       { label: "Privacy", page: "privacy" },
       { label: "Accessibility", page: "accessibility" },
     ],
@@ -334,14 +329,14 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Team", icon: "team", page: "team" },
       { label: "Clinics", icon: "clinic", page: "locations" },
       { label: "FAQ", icon: "faq", page: "faq" },
-      { label: "Story", icon: "story", page: "story" },
+      { label: draft("Values"), icon: "story", page: "story" },
       { label: "Standards", icon: "standards", page: "standards" },
       { label: "Careers", icon: "careers", page: "careers" },
     ],
     services: [
       { title: "Our team", desc: "Physicians, nurses, therapists and clinicians, in one place.", page: "team", image: images.services.about[0] },
       { title: "Our clinics", desc: "Thornhill today, Maple opening soon.", page: "locations", image: images.services.about[1] },
-      { title: "Our story", desc: "Why we built a clinic around one standard of care.", page: "story", image: images.services.about[2] },
+      { title: draft("What we stand for"), desc: draft("What we will not compromise on, in every division."), page: "story", image: images.services.about[2] },
       { title: "Standards of care", desc: "Who does what, and how we keep it safe.", page: "standards", image: images.services.about[3] },
     ],
   },

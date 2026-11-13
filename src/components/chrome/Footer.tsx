@@ -86,7 +86,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
             <a href={external.mapleMaps} target="_blank" rel="noopener" className="min-w-0 hover:text-primary md:flex-1">
               {maple.addressLines.join(", ")}
             </a>
-            <Link href={`${routes.locations}#maple-waitlist`} className="shrink-0 font-semibold text-link">
+            <Link href={`${routes.contact}#maple-waitlist`} className="shrink-0 font-semibold text-link">
               Join the Maple list ›
             </Link>
           </div>

@@ -1,3 +1,4 @@
+import { draft } from "./review";
 import type { SearchEntry } from "./types";
 import { divisions, navOrder } from "./divisions";
 import { topics } from "./topics";
@@ -163,8 +164,8 @@ const handWritten: SearchEntry[] = [
   },
   {
     kind: "About",
-    label: "Our story",
-    sub: "Why one clinic, one standard of care",
+    label: draft("What we stand for"),
+    sub: draft("What we will not compromise on"),
     page: "story",
   },
   {

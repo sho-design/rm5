@@ -1,5 +1,5 @@
 import { Block, Button, Display, Eyebrow, Lead, Photo, Section, SmartLink } from "@/components/ui";
-import { divisions, infusionConcerns, infusionPage as ip } from "@/content/divisions";
+import { divisions, infusionPage as ip } from "@/content/divisions";
 import { deepModuleCopy } from "@/content/deep";
 import type { CompareRow } from "@/content/deep";
 import type { InfusionLink } from "@/content/home";
@@ -83,20 +83,7 @@ export function InfusionGrid() {
           </span>
         </SmartLink>
 
-        <SmartLink to="concerns" className="grid grid-cols-1 items-center gap-5 rounded-card border border-border bg-card p-6 transition-colors hover:border-sky md:col-span-2 md:grid-cols-[1fr_1.3fr] md:gap-6 md:p-7">
-          <span className="flex flex-col gap-1.5">
-            <span className="text-[13px] font-semibold text-muted">{g.concerns.k}</span>
-            <span className="display-tight text-[24px] md:text-[28px]">{g.concerns.t}</span>
-            <span className="pt-1.5 text-[13px] font-semibold text-link">{g.concerns.cta} ›</span>
-          </span>
-          <span className="scroll-x -mx-6 flex gap-1.5 px-6 md:mx-0 md:flex-wrap md:px-0">
-            {infusionConcerns.map((c) => (
-              <span key={c} className="shrink-0 rounded-chip border border-border bg-raised px-3.5 py-2 text-[13px] font-medium">
-                {c}
-              </span>
-            ))}
-          </span>
-        </SmartLink>
+        {/* The concern route is on this page now (Nov 2026), so no card points to it. */}
       </div>
     </section>
   );
