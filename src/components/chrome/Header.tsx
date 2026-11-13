@@ -2,20 +2,35 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Fragment, useCallback, useEffect, useRef, useState, type FocusEvent, type KeyboardEvent } from "react";
+import {
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type FocusEvent,
+  type KeyboardEvent,
+} from "react";
 import type { NavKey } from "@/content/types";
-import { divisions, navOrder } from "@/content/divisions";
+import { divisionAccent, divisions, navOrder } from "@/content/divisions";
 import { site } from "@/content/site";
 import { href, routes } from "@/lib/routes";
 import { cn } from "@/lib/cn";
 import { Wordmark } from "./Wordmark";
 import { MegaMenu } from "./MegaMenu";
+import { WayBar } from "./WayBar";
 import dynamic from "next/dynamic";
 
 // Search (with its index) and the phone menu load only when opened, so they do not delay
 // the first page on a slow phone.
-const SearchOverlay = dynamic(() => import("./SearchOverlay").then((m) => m.SearchOverlay), { ssr: false });
-const MobileMenu = dynamic(() => import("./MobileMenu").then((m) => m.MobileMenu), { ssr: false });
+const SearchOverlay = dynamic(
+  () => import("./SearchOverlay").then((m) => m.SearchOverlay),
+  { ssr: false },
+);
+const MobileMenu = dynamic(
+  () => import("./MobileMenu").then((m) => m.MobileMenu),
+  { ssr: false },
+);
 import { Icon } from "@/components/ui/Icon";
 
 /**
@@ -47,6 +62,54 @@ export function Header() {
   }, []);
   const pathname = usePathname();
 
+  /**
+   * Slim "you are here" bar (navigation review, Nov 2026). Past the page's opening (its first section heading),
+   * scrolling down hides the full header and shows the bar; scrolling back up about 80px, or reaching the top,
+   * brings the header back. Small scroll wobbles do nothing.
+   */
+  const [compact, setCompact] = useState(false);
+  useEffect(() => {
+    setCompact(false);
+    let last = window.scrollY;
+    let up = 0;
+    let down = 0;
+    const start = () => {
+      const h = document.querySelector("main h2");
+      const t = h ? h.getBoundingClientRect().top + window.scrollY - 160 : 640;
+      return Math.max(420, t);
+    };
+    let threshold = start();
+    const t = window.setTimeout(() => (threshold = start()), 800);
+    const on = () => {
+      const y = window.scrollY;
+      const d = y - last;
+      last = y;
+      if (y < threshold) {
+        up = down = 0;
+        setCompact(false);
+        return;
+      }
+      if (d > 0) {
+        down += d;
+        up = 0;
+        if (down > 24) setCompact(true);
+      } else if (d < 0) {
+        up -= d;
+        down = 0;
+        if (up > 80) setCompact(false);
+      }
+    };
+    const resize = () => (threshold = start());
+    window.addEventListener("scroll", on, { passive: true });
+    window.addEventListener("resize", resize);
+    return () => {
+      window.clearTimeout(t);
+      window.removeEventListener("scroll", on);
+      window.removeEventListener("resize", resize);
+    };
+  }, [pathname]);
+  const slim = compact && !menu && !search && !mobile;
+
   useEffect(() => {
     setMenu(null);
     setSearch(false);
@@ -58,7 +121,9 @@ export function Header() {
   // Load the search code while the browser is idle, so the first open is quick.
   useEffect(() => {
     const load = () => void import("./SearchOverlay");
-    const w = window as Window & { requestIdleCallback?: (cb: () => void) => number };
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void) => number;
+    };
     if (w.requestIdleCallback) w.requestIdleCallback(load);
     else window.setTimeout(load, 2000);
   }, []);
@@ -66,7 +131,8 @@ export function Header() {
     if (!search) return;
     const onKey = (e: globalThis.KeyboardEvent) => {
       const box = document.activeElement?.getAttribute("role") === "combobox";
-      if (box || e.ctrlKey || e.metaKey || e.altKey || e.key.length !== 1) return;
+      if (box || e.ctrlKey || e.metaKey || e.altKey || e.key.length !== 1)
+        return;
       typedEarly.current += e.key;
       e.preventDefault();
     };
@@ -87,9 +153,13 @@ export function Header() {
   useEffect(() => {
     const onKey = (e: globalThis.KeyboardEvent) => {
       const t = e.target as HTMLElement | null;
-      const typing = !!t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
-      const slash = e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey && !typing;
-      const k = e.key.toLowerCase() === "k" && (e.ctrlKey || e.metaKey) && !e.altKey;
+      const typing =
+        !!t &&
+        (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+      const slash =
+        e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey && !typing;
+      const k =
+        e.key.toLowerCase() === "k" && (e.ctrlKey || e.metaKey) && !e.altKey;
       if (!slash && !k) return;
       e.preventDefault();
       typedEarly.current = "";
@@ -126,116 +196,175 @@ export function Header() {
     });
   }, []);
 
-  const active = navOrder.find((k) => pathname === href(k) || (k !== "about" ? pathname.startsWith(href(k) + "/") : pathname.startsWith("/about")));
+  const active = navOrder.find(
+    (k) =>
+      pathname === href(k) ||
+      (k !== "about"
+        ? pathname.startsWith(href(k) + "/")
+        : pathname.startsWith("/about")),
+  );
 
   return (
-    <header data-scrolled={scrolled || undefined} className={cn("rm-header sticky top-0 z-40 border-b border-border transition-colors", menu ? "bg-card" : "bg-page")} onMouseLeave={closeMenu} onKeyDown={onKeyDown} onBlur={onBlur}>
-      {/* Taller bar on larger screens (76px), after FIGS: more air, a larger wordmark and roomier pills. */}
-      <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between gap-3 px-4 md:h-[76px] md:px-8">
-        <div onMouseEnter={closeMenu}>
-          <Wordmark className="md:hidden" />
-          <Wordmark size="lg" className="hidden md:flex" />
-        </div>
-        <nav className="rm-desktop-nav hidden gap-1 text-[15px] xl:flex" aria-label="Primary">
-          {navOrder.map((k) => {
-            const on = menu === k;
-            return (
-              <Fragment key={k}>
-                <span data-menu={k} className="relative flex items-center">
-                  <Link
-                    href={href(k)}
-                    onMouseEnter={() => setMenu(k)}
-                    aria-current={active === k ? "page" : undefined}
-                    className={cn("whitespace-nowrap rounded-chip px-4 py-2.5 transition-colors", on ? "bg-ink text-white" : "hover:bg-card", active === k ? "font-semibold" : "font-medium")}
-                  >
-                    {divisions[k].label}
-                  </Link>
-                  <button
-                    ref={(el) => {
-                      toggles.current[k] = el;
-                    }}
-                    type="button"
-                    aria-expanded={on}
-                    aria-controls={`mega-${k}`}
-                    onClick={() => {
-                      setSearch(false);
-                      setMenu(on ? null : k);
-                    }}
-                    className="sr-only rounded-full text-[13px] focus-visible:not-sr-only focus-visible:absolute focus-visible:-bottom-3 focus-visible:left-1/2 focus-visible:z-10 focus-visible:-translate-x-1/2 focus-visible:bg-ink focus-visible:px-2 focus-visible:py-0.5 focus-visible:text-white"
-                  >
-                    <span aria-hidden>{on ? "▴" : "▾"}</span>
-                    <span className="sr-only">{`${divisions[k].label} menu`}</span>
-                  </button>
-                </span>
-                {on && !search ? (
-                  <div id={`mega-${k}`} data-menu={k} className="absolute inset-x-0 top-full border-y border-border bg-card shadow-card">
-                    <div className="mx-auto w-full max-w-[1440px]">
-                      <MegaMenu menuKey={k} onNavigate={closeMenu} />
+    <>
+      <header
+        data-scrolled={scrolled || undefined}
+        data-slim={slim || undefined}
+        className={cn(
+          "rm-header sticky top-0 z-40 border-b border-border transition-[background-color,transform] duration-300 ease-[cubic-bezier(.2,.8,.2,1)] motion-reduce:transition-none",
+          menu ? "bg-card" : "bg-page",
+          slim && "-translate-y-full",
+        )}
+        onMouseLeave={closeMenu}
+        onKeyDown={onKeyDown}
+        onBlur={onBlur}
+        // Tabbing into the hidden header brings it back.
+        onFocusCapture={() => setCompact(false)}
+      >
+        {/* Taller bar on larger screens (76px), after FIGS: more air, a larger wordmark and roomier pills. */}
+        <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between gap-3 px-4 md:h-[76px] md:px-8">
+          <div onMouseEnter={closeMenu}>
+            <Wordmark className="md:hidden" />
+            <Wordmark size="lg" className="hidden md:flex" />
+          </div>
+          <nav
+            className="rm-desktop-nav hidden gap-1 text-[15px] xl:flex"
+            aria-label="Primary"
+          >
+            {navOrder.map((k) => {
+              const on = menu === k;
+              return (
+                <Fragment key={k}>
+                  <span data-menu={k} className="relative flex items-center">
+                    <Link
+                      href={href(k)}
+                      onMouseEnter={() => setMenu(k)}
+                      aria-current={active === k ? "page" : undefined}
+                      className={cn(
+                        "relative whitespace-nowrap rounded-chip px-4 py-2.5 transition-colors",
+                        on ? "bg-ink text-white" : "hover:bg-card",
+                        active === k ? "font-semibold" : "font-medium",
+                      )}
+                    >
+                      {divisions[k].label}
+                      {/* You are here: a bar in the section's colour under its name (navigation review, Nov 2026). */}
+                      {active === k ? (
+                        <span
+                          aria-hidden
+                          className="absolute inset-x-4 bottom-0.5 h-[3px] rounded-full"
+                          style={{ background: divisionAccent[k] }}
+                        />
+                      ) : null}
+                    </Link>
+                    <button
+                      ref={(el) => {
+                        toggles.current[k] = el;
+                      }}
+                      type="button"
+                      aria-expanded={on}
+                      aria-controls={`mega-${k}`}
+                      onClick={() => {
+                        setSearch(false);
+                        setMenu(on ? null : k);
+                      }}
+                      className="sr-only rounded-full text-[13px] focus-visible:not-sr-only focus-visible:absolute focus-visible:-bottom-3 focus-visible:left-1/2 focus-visible:z-10 focus-visible:-translate-x-1/2 focus-visible:bg-ink focus-visible:px-2 focus-visible:py-0.5 focus-visible:text-white"
+                    >
+                      <span aria-hidden>{on ? "▴" : "▾"}</span>
+                      <span className="sr-only">{`${divisions[k].label} menu`}</span>
+                    </button>
+                  </span>
+                  {on && !search ? (
+                    <div
+                      id={`mega-${k}`}
+                      data-menu={k}
+                      className="absolute inset-x-0 top-full border-y border-border bg-card shadow-card"
+                    >
+                      <div className="mx-auto w-full max-w-[1440px]">
+                        <MegaMenu menuKey={k} onNavigate={closeMenu} />
+                      </div>
                     </div>
-                  </div>
-                ) : null}
-              </Fragment>
-            );
-          })}
-        </nav>
-        <div className="flex items-center gap-1.5 text-[14px] font-medium md:gap-2 md:text-[15px]" onMouseEnter={closeMenu}>
-          <button
-            ref={searchButton}
-            type="button"
-            onClick={() => {
-              setSearch((s) => !s);
-              setMenu(null);
-            }}
-            aria-label="Search"
-            aria-keyshortcuts="/ Control+K Meta+K"
-            title="Search (press /)"
-            aria-expanded={search}
-            className="flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-border transition-colors hover:border-sky md:h-[44px] md:w-[44px]"
+                  ) : null}
+                </Fragment>
+              );
+            })}
+          </nav>
+          <div
+            className="flex items-center gap-1.5 text-[14px] font-medium md:gap-2 md:text-[15px]"
+            onMouseEnter={closeMenu}
           >
-            <Icon name="search" size={16} stroke={2} />
-          </button>
-          <a href={site.phoneHref} className="rm-header-phone hidden whitespace-nowrap rounded-chip border-[1.5px] border-border px-4 py-[11px] transition-colors hover:border-sky md:block">
-            {site.phone}
-          </a>
-          <Link href={routes.book} className="hidden rounded-chip bg-ink px-5 py-[11px] text-white hover:opacity-90 sm:block">
-            Book
-          </Link>
-          <button
-            type="button"
-            onClick={() => setMobile(true)}
-            aria-label="Menu"
-            aria-expanded={mobile}
-            className="rm-menu-btn flex h-[38px] w-[38px] md:h-[44px] md:w-[44px] items-center justify-center rounded-full border-[1.5px] border-border text-[16px] xl:hidden"
-          >
-            ☰
-          </button>
-        </div>
-      </div>
-      {search ? (
-        <div className="border-t border-border bg-card">
-          <div className="mx-auto w-full max-w-[1440px]">
-            <SearchOverlay
-              onClose={closeSearch}
-              takeTyped={() => {
-                const t = typedEarly.current;
-                typedEarly.current = "";
-                return t;
+            <button
+              ref={searchButton}
+              type="button"
+              onClick={() => {
+                setSearch((s) => !s);
+                setMenu(null);
               }}
-            />
+              aria-label="Search"
+              aria-keyshortcuts="/ Control+K Meta+K"
+              title="Search (press /)"
+              aria-expanded={search}
+              className="flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-border transition-colors hover:border-sky md:h-[44px] md:w-[44px]"
+            >
+              <Icon name="search" size={16} stroke={2} />
+            </button>
+            <a
+              href={site.phoneHref}
+              className="rm-header-phone hidden whitespace-nowrap rounded-chip border-[1.5px] border-border px-4 py-[11px] transition-colors hover:border-sky md:block"
+            >
+              {site.phone}
+            </a>
+            <Link
+              href={routes.book}
+              className="hidden rounded-chip bg-ink px-5 py-[11px] text-white hover:opacity-90 sm:block"
+            >
+              Book
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMobile(true)}
+              aria-label="Menu"
+              aria-expanded={mobile}
+              className="rm-menu-btn flex h-[38px] w-[38px] md:h-[44px] md:w-[44px] items-center justify-center rounded-full border-[1.5px] border-border text-[16px] xl:hidden"
+            >
+              ☰
+            </button>
           </div>
         </div>
-      ) : null}
-      {/* Mounted from the first open on, so the drawer can slide out as well as in. */}
-      {menuLoaded ? (
-        <MobileMenu
-          open={mobile}
-          onClose={() => setMobile(false)}
-          onSearch={() => {
-            setMobile(false);
-            setSearch(true);
-          }}
-        />
-      ) : null}
-    </header>
+        {search ? (
+          <div className="border-t border-border bg-card">
+            <div className="mx-auto w-full max-w-[1440px]">
+              <SearchOverlay
+                onClose={closeSearch}
+                takeTyped={() => {
+                  const t = typedEarly.current;
+                  typedEarly.current = "";
+                  return t;
+                }}
+              />
+            </div>
+          </div>
+        ) : null}
+        {/* Mounted from the first open on, so the drawer can slide out as well as in. */}
+        {menuLoaded ? (
+          <MobileMenu
+            open={mobile}
+            onClose={() => setMobile(false)}
+            onSearch={() => {
+              setMobile(false);
+              setSearch(true);
+            }}
+          />
+        ) : null}
+      </header>
+      <WayBar
+        show={slim}
+        active={active}
+        onMenu={() => {
+          // Wide screens: the full header comes back with its menus. Smaller: the phone menu opens.
+          if (window.matchMedia("(min-width: 1280px)").matches)
+            setCompact(false);
+          else setMobile(true);
+        }}
+      />
+    </>
   );
 }

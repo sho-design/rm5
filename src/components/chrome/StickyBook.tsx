@@ -18,7 +18,7 @@ const sections: [string, string][] = [
 /** Pages whose own booking or form would sit under the bar. */
 const hiddenOn = [routes.book, routes.register, routes.contact, routes.referrals, routes.careers];
 
-function bookingFor(pathname: string): string {
+export function bookingFor(pathname: string): string {
   const section = sections.find(([prefix]) => pathname === prefix || pathname.startsWith(prefix + "/"));
   if (!section) return routes.book;
   const topic = Object.entries(topicVisit).find(([key]) => routes[key as PageKey] === pathname);
