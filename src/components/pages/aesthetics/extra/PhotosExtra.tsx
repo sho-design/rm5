@@ -1,4 +1,6 @@
-/** Photos page: added sections and motion explainer (Nov 2026). Filled in by its builder. */
+import { PhotoSteps } from "./photos/PhotoSteps";
+
+/** Before and after page: "How we take your photos", while the site shows no patient photos (Nov 2026). */
 export function PhotosExtra() {
-  return null;
+  return <PhotoSteps />;
 }

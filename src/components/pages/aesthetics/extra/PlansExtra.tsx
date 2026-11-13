@@ -1,4 +1,6 @@
-/** Plans page: added sections and motion explainer (Nov 2026). Filled in by its builder. */
+import { YearWheel } from "./plans/YearWheel";
+
+/** Plans page: "A year of care", the month wheel and what usually fits each season (Nov 2026). */
 export function PlansExtra() {
-  return null;
+  return <YearWheel />;
 }
