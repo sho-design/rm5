@@ -39,6 +39,26 @@ export const viProgramsCopy: typeof programsCopy = {
   regPmNone: draft("Sữa rửa mặt và kem dưỡng bạn đang dùng."),
   regOrder: draft("Thứ tự sử dụng"),
   regPairs: draft("Thường đi kèm với"),
+  regHow: draft("Các sản phẩm phối hợp thế nào"),
+  roles: {
+    "gentle-cleanser": draft("Sữa rửa mặt. Làm sạch dầu, trang điểm và kem chống nắng mà không làm khô da."),
+    "simply-clean": draft("Sữa rửa mặt. Làm sạch da sau một ngày."),
+    "soothing-cleanser": draft("Sữa rửa mặt dịu nhẹ cho da dễ rát."),
+    "lha-cleansing-gel": draft("Gel rửa mặt có acid nhẹ cho lỗ chân lông."),
+    "ce-ferulic": draft("Serum vitamin C. Chống oxy hóa, thoa dưới kem chống nắng."),
+    "phloretin-cf": draft("Serum vitamin C. Chống oxy hóa cho da không đều màu."),
+    "silymarin-cf": draft("Serum vitamin C dành cho da dầu."),
+    "serum-10-aox": draft("Serum vitamin C nồng độ thấp cho da nhạy cảm."),
+    "tnxa-shot": draft("Serum làm đều màu da. Tranexamic acid cho đốm nâu."),
+    "retinol-03": draft("Retinol, một dạng vitamin A, nồng độ cho người mới. Chỉ dùng buổi tối."),
+    "lha-serum": draft("Serum lỗ chân lông. Acid nhẹ giúp lỗ chân lông thông thoáng."),
+    "phyto-corrective-gel": draft("Gel làm dịu từ thực vật, cho da đỏ."),
+    "hydrating-b5-gel": draft("Gel cấp ẩm có vitamin B5. Giữ nước cho da."),
+    "epidermal-repair": draft("Kem dưỡng. Làm dịu và bảo vệ da khi đang lành."),
+    "physical-fusion": draft("Kem chống nắng khoáng SPF 50, có màu nhẹ."),
+    "sheer-physical": draft("Kem chống nắng khoáng SPF 50, hoàn thiện lì."),
+    "clear-daily-soothing": draft("Kem chống nắng SPF 50 nhẹ cho da nhạy cảm."),
+  } as Record<string, string>,
   seeAll: draft("Xem tất cả sản phẩm (tiếng Anh)"),
   regNote: draft("Chúng tôi bán các sản phẩm này và có lợi nhuận từ việc bán. Bạn không bao giờ phải mua sản phẩm để được điều trị."),
 };
@@ -139,13 +159,37 @@ const viToLabel: Record<string, string> = {
 
 export const viCombinedPlans = combinedPlans.map((p) => ({ ...p, ...comb[p.k], toLabel: viToLabel[p.k], to: `${p.to}&lang=vi` }));
 
-const reg: Record<string, Pick<Regimen, "t" | "pairs" | "note">> = {
-  starter: { t: draft("Bắt đầu"), pairs: draft("Mọi kế hoạch đầu tiên") },
-  pigment: { t: draft("Sắc tố và màu da"), pairs: draft("Da căng bóng, PicoSure, peel") },
-  aging: { t: draft("Nếp nhăn và lão hóa"), pairs: draft("Thuốc giãn cơ, Lão hóa khỏe, Baby CO₂"), note: draft("Bắt đầu retinol 2 hoặc 3 tối mỗi tuần, rồi tăng dần nếu da quen.") },
-  acne: { t: draft("Da dầu, dễ nổi mụn"), pairs: draft("Chương trình sẹo mụn, Clarity II") },
-  redness: { t: draft("Da đỏ và nhạy cảm"), pairs: draft("Chương trình đỏ da và rosacea") },
-  recovery: { t: draft("Bộ phục hồi da"), pairs: draft("Sau CO₂, plasma, PicoSure hoặc peel") },
+const reg: Record<string, Pick<Regimen, "t" | "why" | "how" | "pairs" | "note">> = {
+  starter: {
+    t: draft("Bắt đầu"),
+    why: draft("Mới chăm sóc da? Hãy bắt đầu từ đây. Hai bước mỗi sáng, buổi tối không cần thêm gì mới."),
+    how: draft("Serum thoa trước lên da sạch để thấm vào. Kem chống nắng thoa lên trên để bảo vệ da khỏi ánh nắng cả ngày. Nếu chỉ giữ một bước, hãy giữ kem chống nắng."),
+    pairs: draft("Mọi kế hoạch đầu tiên") },
+  pigment: {
+    t: draft("Sắc tố và màu da"),
+    why: draft("Cho đốm nâu, mảng sậm hoặc màu da không đều, kể cả sau laser hoặc peel."),
+    how: draft("Rửa mặt nhẹ nhàng giúp serum thấm tốt. Serum vitamin C chống oxy hóa, còn serum làm đều màu da tác động lên đốm nâu, sáng và tối. Kem chống nắng quan trọng nhất ở đây, vì ánh nắng có thể làm đốm sậm lại."),
+    pairs: draft("Da căng bóng, PicoSure, peel") },
+  aging: {
+    t: draft("Nếp nhăn và lão hóa"),
+    why: draft("Cho nếp nhăn nhỏ và da kém săn chắc. Buổi sáng bảo vệ, buổi tối tái tạo."),
+    how: draft("Buổi sáng: rửa mặt, serum vitamin C, rồi kem chống nắng. Buổi tối: rửa mặt, rồi retinol, một dạng vitamin A làm việc khi bạn ngủ. Lúc đầu retinol có thể làm da khô hoặc ửng hồng, nên dùng từ từ và luôn thoa kem chống nắng vào hôm sau."),
+    pairs: draft("Thuốc giãn cơ, Lão hóa khỏe, Baby CO₂"), note: draft("Bắt đầu retinol 2 hoặc 3 tối mỗi tuần, rồi tăng dần nếu da quen.") },
+  acne: {
+    t: draft("Da dầu, dễ nổi mụn"),
+    why: draft("Cho da dầu, mụn đầu đen và mụn viêm."),
+    how: draft("Sữa rửa mặt và serum buổi tối có acid nhẹ giúp làm sạch dầu trong lỗ chân lông. Serum vitamin C buổi sáng dành cho da dầu, và kem chống nắng nhẹ bảo vệ mà không bết. Vài tuần đầu da có thể hơi khô. Báo y tá nếu da bị rát."),
+    pairs: draft("Chương trình sẹo mụn, Clarity II") },
+  redness: {
+    t: draft("Da đỏ và nhạy cảm"),
+    why: draft("Cho da hay ửng đỏ, dễ rát hoặc dễ kích ứng với sản phẩm mới."),
+    how: draft("Mọi bước đều dịu nhẹ. Sữa rửa mặt êm, serum vitamin C nồng độ thấp, rồi gel làm dịu, sáng và tối. Kem chống nắng nhẹ hoàn tất buổi sáng, vì nắng và nóng có thể làm da đỏ lên."),
+    pairs: draft("Chương trình đỏ da và rosacea") },
+  recovery: {
+    t: draft("Bộ phục hồi da"),
+    why: draft("Cho những ngày và tuần sau laser, plasma hoặc peel, khi da đang lành."),
+    how: draft("Rửa mặt nhẹ nhàng, rồi thoa gel làm dịu và gel cấp ẩm giữ nước cho da. Buổi tối, kem dưỡng bảo vệ da trong lúc lành. Kem chống nắng khoáng thoa mỗi sáng, vì da đang lành dễ bị cháy nắng hơn. Y tá sẽ cho bạn biết khi nào quay lại quy trình thường ngày."),
+    pairs: draft("Sau CO₂, plasma, PicoSure hoặc peel") },
 };
 
 export const viRegimens: Regimen[] = regimens.map((r) => ({ ...r, ...reg[r.k] }));

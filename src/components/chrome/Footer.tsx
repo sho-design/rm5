@@ -99,7 +99,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
           const links = k === "about" ? d.explore.filter((e) => ["Our team", "Our clinics", "Health notes", "FAQ", "Careers"].includes(e.label)) : d.explore.slice(1, 5);
           const shown = links.filter((l) => !grouped.has(href(l.page)));
           return (
-            <div key={k} className="flex flex-col gap-2.5 text-[14px]">
+            <div key={k} className="flex flex-col gap-1.5 text-[14px]">
               <Link href={href(k)} className="group mb-1 flex items-center gap-2 font-semibold text-primary">
                 <span aria-hidden className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: divisionDot[d.label] ?? "var(--rm-ink)" }} />
                 <span className="group-hover:underline group-hover:underline-offset-4">{d.label}</span>
@@ -113,7 +113,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
           );
         })}
         {linkGroups.map((g) => (
-          <div key={g.t} className="flex flex-col gap-2.5 text-[14px]">
+          <div key={g.t} className="flex flex-col gap-1.5 text-[14px]">
             <h2 className="mb-1 font-semibold text-primary">{g.t}</h2>
             {g.links.map(([label, to]) => (
               <Link key={label} href={to} className="w-fit text-muted transition-colors hover:text-primary">

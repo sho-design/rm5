@@ -189,21 +189,34 @@ export function SkinRegimens({
               id={`regimen-${r.k}`}
               className="flex flex-col gap-4 rounded-card bg-lilac-tint p-6"
             >
-              <h3 className="font-display text-[21px] font-medium leading-[1.15]">
-                {r.t}
-              </h3>
-              <ul className="flex flex-col gap-1.5 text-[14px]">
+              <div className="flex flex-col gap-1.5">
+                <h3 className="font-display text-[22px] font-medium leading-[1.15] lg:text-[24px]">
+                  {r.t}
+                </h3>
+                {/* Who it is for, in plain words (Nov 2026: written for someone new to skincare). */}
+                <p className="pretty text-[15px] leading-[1.45] text-secondary">{r.why}</p>
+              </div>
+              <ul className="flex flex-col gap-2.5 text-[14px]">
                 {items.map((p) => (
-                  <li key={p.id} className="flex items-baseline gap-2">
-                    <span className="pretty">{p.name}</span>
-                    <span
-                      aria-hidden
-                      className="min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-ink-3"
-                    />
-                    <span className="shrink-0 tabular-nums">${p.srp}</span>
+                  <li key={p.id} className="flex flex-col gap-0.5">
+                    <span className="flex items-baseline gap-2">
+                      <span className="pretty font-semibold">{p.name}</span>
+                      <span
+                        aria-hidden
+                        className="min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-ink-3"
+                      />
+                      <span className="shrink-0 tabular-nums">${p.srp}</span>
+                    </span>
+                    {c.roles[p.id] ? (
+                      <span className="pretty text-[13px] leading-[1.4] text-secondary">{c.roles[p.id]}</span>
+                    ) : null}
                   </li>
                 ))}
               </ul>
+              <div className="flex flex-col gap-1">
+                <span className="text-[13px] font-semibold text-lilac-text">{c.regHow}</span>
+                <p className="pretty text-[14px] leading-[1.5]">{r.how}</p>
+              </div>
               {/* The order to use them, morning and night (round 28 follow-up). */}
               <div
                 className="flex flex-col gap-2 rounded-[14px] bg-white/70 p-3.5"

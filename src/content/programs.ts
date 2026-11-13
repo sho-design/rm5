@@ -130,21 +130,73 @@ export const programsCopy = {
   regPmNone: draft("Your usual cleanser and moisturizer."),
   regOrder: draft("Order to use them"),
   regPairs: draft("Often paired with"),
+  regHow: draft("How they work together"),
+  /** What each product is, in plain words, shown under its name in the regimen cards. */
+  roles: {
+    "gentle-cleanser": draft("Cleanser. Washes off oil, makeup and sunscreen without drying."),
+    "simply-clean": draft("Cleanser. Washes the day off your skin."),
+    "soothing-cleanser": draft("Cleanser. A mild wash for skin that stings easily."),
+    "lha-cleansing-gel": draft("Cleanser. A gel wash with gentle acids for pores."),
+    "ce-ferulic": draft("Vitamin C serum. Antioxidant care under your sunscreen."),
+    "phloretin-cf": draft("Vitamin C serum. Antioxidant care for uneven tone."),
+    "silymarin-cf": draft("Vitamin C serum made for oily skin."),
+    "serum-10-aox": draft("Vitamin C serum at a lower strength, for sensitive skin."),
+    "tnxa-shot": draft("Tone serum. Tranexamic acid for dark spots."),
+    "retinol-03": draft("Retinol, a form of vitamin A, at a starter strength. Night only."),
+    "lha-serum": draft("Pore serum. Gentle acids that keep pores clear."),
+    "phyto-corrective-gel": draft("Calming gel with botanicals, for redness."),
+    "hydrating-b5-gel": draft("Hydrating gel with vitamin B5. Holds water in the skin."),
+    "epidermal-repair": draft("Moisturizer. Calming and protective while skin heals."),
+    "physical-fusion": draft("Sunscreen. Mineral SPF 50 with a sheer tint."),
+    "sheer-physical": draft("Sunscreen. Mineral SPF 50 with a matte finish."),
+    "clear-daily-soothing": draft("Sunscreen. A light SPF 50 for sensitive skin."),
+  } as Record<string, string>,
   seeAll: draft("See all the skincare we carry"),
   regNote: draft("We sell these products and earn from their sale. Buying them is never a condition of treatment."),
 };
 
 /** `am` and `pm` are the order to use them, by product id; an empty `pm` means the usual cleanser and moisturizer. */
-export type Regimen = { k: string; t: string; items: string[]; pairs: string; am: string[]; pm: string[]; note?: string };
+/** `why`: who the routine is for. `how`: how the products work together, for someone new to skincare. */
+export type Regimen = { k: string; t: string; why: string; how: string; items: string[]; pairs: string; am: string[]; pm: string[]; note?: string };
 
 /** Product ids from `skincare.ts`; names and prices come from there. */
 export const regimens: Regimen[] = [
-  { k: "starter", t: draft("Starter"), items: ["ce-ferulic", "physical-fusion"], pairs: draft("Any first plan"), am: ["ce-ferulic", "physical-fusion"], pm: [] },
-  { k: "pigment", t: draft("Pigment and tone"), items: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pairs: draft("Glass skin, PicoSure, peels"), am: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pm: ["gentle-cleanser", "tnxa-shot"] },
-  { k: "aging", t: draft("Lines and aging"), items: ["simply-clean", "ce-ferulic", "retinol-03", "sheer-physical"], pairs: draft("Neuromodulator, Aging well, Baby CO\u2082"), am: ["simply-clean", "ce-ferulic", "sheer-physical"], pm: ["simply-clean", "retinol-03"], note: draft("Start retinol 2 or 3 nights a week and build up as your skin allows.") },
-  { k: "acne", t: draft("Oily and acne-prone"), items: ["lha-cleansing-gel", "silymarin-cf", "lha-serum", "clear-daily-soothing"], pairs: draft("Acne scar program, Clarity II"), am: ["lha-cleansing-gel", "silymarin-cf", "clear-daily-soothing"], pm: ["lha-cleansing-gel", "lha-serum"] },
-  { k: "redness", t: draft("Redness and sensitive"), items: ["soothing-cleanser", "phyto-corrective-gel", "serum-10-aox", "clear-daily-soothing"], pairs: draft("Redness and rosacea program"), am: ["soothing-cleanser", "serum-10-aox", "phyto-corrective-gel", "clear-daily-soothing"], pm: ["soothing-cleanser", "phyto-corrective-gel"] },
-  { k: "recovery", t: draft("Recovery kit"), items: ["gentle-cleanser", "phyto-corrective-gel", "epidermal-repair", "hydrating-b5-gel", "physical-fusion"], pairs: draft("After CO\u2082, plasma, PicoSure or a peel"), am: ["gentle-cleanser", "phyto-corrective-gel", "hydrating-b5-gel", "physical-fusion"], pm: ["gentle-cleanser", "phyto-corrective-gel", "hydrating-b5-gel", "epidermal-repair"] },
+  {
+    k: "starter",
+    t: draft("Starter"),
+    why: draft("New to skincare? Start here. Two steps each morning, and nothing new at night."),
+    how: draft("The serum goes on clean skin first and soaks in. The sunscreen goes on top and shields your skin from the sun all day. If you keep only one step, keep the sunscreen."),
+    items: ["ce-ferulic", "physical-fusion"], pairs: draft("Any first plan"), am: ["ce-ferulic", "physical-fusion"], pm: [] },
+  {
+    k: "pigment",
+    t: draft("Pigment and tone"),
+    why: draft("For dark spots, patches or uneven colour, including after a laser or a peel."),
+    how: draft("A gentle wash lets the serums soak in. The vitamin C serum gives antioxidant care, and the tone serum works on dark spots, morning and night. Sunscreen matters most here, because daylight can darken spots again."),
+    items: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pairs: draft("Glass skin, PicoSure, peels"), am: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pm: ["gentle-cleanser", "tnxa-shot"] },
+  {
+    k: "aging",
+    t: draft("Lines and aging"),
+    why: draft("For fine lines and skin that feels less firm. Mornings protect, nights renew."),
+    how: draft("In the morning: wash, vitamin C serum, then sunscreen to protect from daylight. At night: wash, then retinol, a form of vitamin A that works while you sleep. Retinol can make skin dry or pink at first, so go slowly and always wear sunscreen the next day."),
+    items: ["simply-clean", "ce-ferulic", "retinol-03", "sheer-physical"], pairs: draft("Neuromodulator, Aging well, Baby CO\u2082"), am: ["simply-clean", "ce-ferulic", "sheer-physical"], pm: ["simply-clean", "retinol-03"], note: draft("Start retinol 2 or 3 nights a week and build up as your skin allows.") },
+  {
+    k: "acne",
+    t: draft("Oily and acne-prone"),
+    why: draft("For oily skin, blackheads and breakouts."),
+    how: draft("The cleanser and the night serum use gentle acids that clear oil out of pores. The morning vitamin C serum is made for oily skin, and a light sunscreen protects without feeling heavy. Skin can feel a little dry in the first weeks. Tell your nurse if it stings."),
+    items: ["lha-cleansing-gel", "silymarin-cf", "lha-serum", "clear-daily-soothing"], pairs: draft("Acne scar program, Clarity II"), am: ["lha-cleansing-gel", "silymarin-cf", "clear-daily-soothing"], pm: ["lha-cleansing-gel", "lha-serum"] },
+  {
+    k: "redness",
+    t: draft("Redness and sensitive"),
+    why: draft("For skin that flushes, stings easily or reacts to new products."),
+    how: draft("Every step is mild. A soft cleanser, a lower strength vitamin C serum, then a calming gel, morning and night. A light sunscreen finishes the morning, because sun and heat can bring on redness."),
+    items: ["soothing-cleanser", "phyto-corrective-gel", "serum-10-aox", "clear-daily-soothing"], pairs: draft("Redness and rosacea program"), am: ["soothing-cleanser", "serum-10-aox", "phyto-corrective-gel", "clear-daily-soothing"], pm: ["soothing-cleanser", "phyto-corrective-gel"] },
+  {
+    k: "recovery",
+    t: draft("Recovery kit"),
+    why: draft("For the days and weeks after a laser, plasma or peel, while your skin heals."),
+    how: draft("Wash gently, then layer a calming gel and a hydrating gel that holds water in the skin. At night, a moisturizer protects it while it heals. Mineral sunscreen goes on every morning, because healing skin burns more easily. Your nurse tells you when to go back to your usual routine."),
+    items: ["gentle-cleanser", "phyto-corrective-gel", "epidermal-repair", "hydrating-b5-gel", "physical-fusion"], pairs: draft("After CO\u2082, plasma, PicoSure or a peel"), am: ["gentle-cleanser", "phyto-corrective-gel", "hydrating-b5-gel", "physical-fusion"], pm: ["gentle-cleanser", "phyto-corrective-gel", "hydrating-b5-gel", "epidermal-repair"] },
 ];
 
 /**

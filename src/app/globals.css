@@ -464,10 +464,10 @@
 :root[data-theme="contrast"] .pg-figure svg g[style] { opacity: 1 !important; }
 
 /* Tap targets on phones (design review, Nov 2026): footer links were 21px tall and the top bar links 18 to 26px.
-   Footer links become 44px rows; links in the 38px top bar fill its height. */
+   Footer links become 36px rows (44px felt loose; still above the 24px minimum); top bar links fill the bar. */
 @media (max-width: 767px) {
   #footer a, #footer nav button {
-    display: flex; align-items: center; min-height: 44px;
+    display: flex; align-items: center; min-height: 36px;
   }
   #footer nav .flex-col { row-gap: 0; }
   [aria-label="Clinic status and display settings"] a { display: flex; align-items: center; min-height: 38px; }
