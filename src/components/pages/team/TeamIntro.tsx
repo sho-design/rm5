@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Fragment } from "react";
 import { Eyebrow } from "@/components/ui";
 import { teamCarousel, teamPage } from "@/content/team";
@@ -44,9 +45,12 @@ function Title({ text }: { text: string }) {
 export function TeamIntro({
   physicians,
   nurses,
+  photo,
 }: {
   physicians: number;
   nurses: number;
+  /** Dr. Nguyen's headshot, once it is in public/images/team/ (see the team page). */
+  photo?: string;
 }) {
   const f = teamPage.founder;
   const s = teamCarousel.stats;
@@ -99,28 +103,52 @@ export function TeamIntro({
         aria-labelledby="founder"
         className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,420px)_1fr] lg:gap-16"
       >
-        {/* Portrait panel: the headshot of Dr. Nguyen replaces the initials once supplied. */}
+        {/* Portrait panel: Dr. Nguyen's headshot in an arch, with the brand's sky and sun circles behind it and the
+            orbit ring around it. Initials stand in until the photo is supplied. */}
         <Reveal className="relative mx-auto w-full max-w-[420px]">
-          <div
-            aria-hidden
-            className="relative aspect-square overflow-hidden rounded-full bg-sky-soft shadow-[0_30px_80px_rgba(16,24,40,.14)] lg:aspect-[4/5] lg:rounded-[200px]"
-          >
-            <span className="rm-drift absolute -right-16 -top-16 h-64 w-64 rounded-full bg-sky opacity-70" />
-            <span
-              className="rm-drift absolute -bottom-14 -left-14 h-52 w-52 rounded-full bg-sun opacity-80"
-              style={{ animationDelay: "-8s" }}
-            />
-            <span className="absolute inset-0 flex items-center justify-center font-display text-[130px] font-medium tracking-[-.04em] text-ink md:text-[170px]">
-              {initials}
-            </span>
-          </div>
-          {/* Orbit ring with a sun dot, turning slowly. */}
-          <div
-            aria-hidden
-            className="rm-orbit pointer-events-none absolute -inset-4 rounded-full border border-dashed border-ink/20 lg:rounded-[220px]"
-          >
-            <span className="absolute left-1/2 top-[-6px] h-3 w-3 -translate-x-1/2 rounded-full bg-sun shadow-[0_0_16px_var(--rm-sun)]" />
-          </div>
+          {photo ? (
+            <>
+              <span aria-hidden className="rm-drift absolute -right-8 -top-8 h-48 w-48 rounded-full bg-sky opacity-80 md:-right-12 md:-top-10 md:h-60 md:w-60" />
+              <span
+                aria-hidden
+                className="rm-drift absolute -bottom-8 -left-8 h-40 w-40 rounded-full bg-sun md:-bottom-10 md:-left-12 md:h-52 md:w-52"
+                style={{ animationDelay: "-8s" }}
+              />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-t-[210px] rounded-b-[32px] bg-sky-soft shadow-[0_30px_80px_rgba(16,24,40,.18)] ring-[6px] ring-[color:var(--surface-raised)]">
+                <Image
+                  src={photo}
+                  alt={f.name}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 90vw, 420px"
+                  className="object-cover object-[50%_22%]"
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <div
+                aria-hidden
+                className="relative aspect-square overflow-hidden rounded-full bg-sky-soft shadow-[0_30px_80px_rgba(16,24,40,.14)] lg:aspect-[4/5] lg:rounded-[200px]"
+              >
+                <span className="rm-drift absolute -right-16 -top-16 h-64 w-64 rounded-full bg-sky opacity-70" />
+                <span
+                  className="rm-drift absolute -bottom-14 -left-14 h-52 w-52 rounded-full bg-sun opacity-80"
+                  style={{ animationDelay: "-8s" }}
+                />
+                <span className="absolute inset-0 flex items-center justify-center font-display text-[130px] font-medium tracking-[-.04em] text-ink md:text-[170px]">
+                  {initials}
+                </span>
+              </div>
+              {/* Orbit ring with a sun dot, turning slowly. */}
+              <div
+                aria-hidden
+                className="rm-orbit pointer-events-none absolute -inset-4 rounded-full border border-dashed border-ink/20 lg:rounded-[220px]"
+              >
+                <span className="absolute left-1/2 top-[-6px] h-3 w-3 -translate-x-1/2 rounded-full bg-sun shadow-[0_0_16px_var(--rm-sun)]" />
+              </div>
+            </>
+          )}
         </Reveal>
 
         <div className="flex flex-col gap-6">

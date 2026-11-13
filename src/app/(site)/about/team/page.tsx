@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { teamFilters, teamPage } from "@/content/team";
@@ -16,6 +18,11 @@ export async function generateMetadata() {
   return pageMetadata("team", baseMetadata);
 }
 
+/** Dr. Nguyen's headshot: drop it in public/images/team/ with one of these names and the portrait uses it. */
+const founderPhoto = ["dr-johnny-nguyen.webp", "dr-johnny-nguyen.jpg", "dr-johnny-nguyen.png"]
+  .map((f) => `/images/team/${f}`)
+  .find((p) => existsSync(join(process.cwd(), "public", p)));
+
 export default async function TeamPage() {
   const team = await getTeam();
   return (
@@ -26,7 +33,7 @@ export default async function TeamPage() {
       </noscript>
       {/* Spotlight band: founder and team on one soft band with drifting colour glows. */}
       <TeamBand className="mx-3 mt-3 flex flex-col gap-14 rounded-block bg-raised pb-10 text-primary md:mx-gutter md:mt-6 md:gap-20 md:pb-16">
-        <TeamIntro physicians={team.filter((m) => m.role.startsWith("Physician")).length} nurses={team.filter((m) => m.role.includes("Nurse")).length} />
+        <TeamIntro photo={founderPhoto} physicians={team.filter((m) => m.role.startsWith("Physician")).length} nurses={team.filter((m) => m.role.includes("Nurse")).length} />
         <TeamGrid team={team} filters={teamFilters.filter((f) => f === "All" || team.some((m) => m.divisions.includes(f)))} note={teamPage.photosNote} />
       </TeamBand>
       <SmallBand title={teamPage.band.title} sub={teamPage.band.sub} cta={teamPage.band.cta} ctaTo="book" />
