@@ -12,11 +12,20 @@ export type RouteKind = "clinical" | "wellness" | "program" | "stop";
 
 export type RouteStep = { t: string; d: string; to: string; tag?: string };
 
+/** Where the route sends you: one booking button, and one page to read first if you are not ready. */
+export type RouteNext = {
+  lead: string;
+  cta: string;
+  to: string;
+  more: { t: string; to: string };
+};
+
 export type ConcernRoute = {
   key: string;
   label: string;
   kind: RouteKind;
   steps: RouteStep[];
+  next?: RouteNext;
 };
 
 const familyVisit = (reason: string) =>
@@ -55,6 +64,12 @@ function routeFor(c: Concern, i: number): ConcernRoute {
           to: routes.iron,
         },
       ],
+      next: {
+        lead: draft("Your first step is an iron assessment with our physician."),
+        cta: draft("Book an iron assessment"),
+        to: bookFor("infusion", "iron"),
+        more: { t: draft("Read about iron therapy"), to: routes.iron },
+      },
     };
   }
   if (c.tag === "Clinical") {
@@ -90,6 +105,12 @@ function routeFor(c: Concern, i: number): ConcernRoute {
           to: routes.iron,
         },
       ],
+      next: {
+        lead: draft("Your first step is a family doctor visit. It is OHIP-insured."),
+        cta: draft("Book a family doctor visit"),
+        to: familyVisit("Low energy"),
+        more: { t: draft("Read about bloodwork"), to: routes.blood },
+      },
     };
   }
   if (c.tag === "Program") {
@@ -114,6 +135,12 @@ function routeFor(c: Concern, i: number): ConcernRoute {
           to: routes.metabolic,
         },
       ],
+      next: {
+        lead: draft("Your first step is a consult, with screening by our physician."),
+        cta: draft("Book a metabolic consult"),
+        to: bookFor("infusion", "consult"),
+        more: { t: draft("Read about the metabolic program"), to: routes.metabolic },
+      },
     };
   }
   return {
@@ -142,6 +169,12 @@ function routeFor(c: Concern, i: number): ConcernRoute {
       },
       { t: c.t, d: c.d, to: c.page, tag: draft("About 45 minutes") },
     ],
+    next: {
+      lead: draft("Your first step is a consult. Screening comes first, and you decide after."),
+      cta: draft("Book a drip consult"),
+      to: bookFor("infusion", "consult"),
+      more: { t: draft("Compare these drips"), to: c.page },
+    },
   };
 }
 
@@ -165,7 +198,7 @@ export const concernPathCopy = {
   eyebrow: draft("Where your concern goes first"),
   title: draft("Pick what brings you in."),
   lead: draft(
-    "Each concern takes its own route through the clinic. Clinical concerns start with a doctor and bloodwork. Wellness drips start with screening. Tap a step to read more.",
+    "Each concern takes its own route through the clinic. Clinical concerns start with a doctor and bloodwork. Wellness drips start with screening. Your first step is under the route.",
   ),
   pickLabel: draft("What brings you in?"),
   routeLabel: (label: string) => draft(`The route for ${label}`),
@@ -178,6 +211,7 @@ export const concernPathCopy = {
   } as Record<RouteKind, string>,
   pause: draft("Pause"),
   play: draft("Play"),
+  nextEyebrow: draft("Your next step"),
   illustration: draft(
     "Illustration of the usual route. Your doctor or nurse may suggest another, or nothing at all.",
   ),

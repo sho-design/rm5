@@ -274,10 +274,9 @@ export function ConcernPath() {
                       )}
                       style={{ animationDelay: `${i * DRAW_MS}ms` }}
                     >
-                      <SmartLink
-                        to={s.to}
+                      <div
                         className={cn(
-                          "group relative flex h-full flex-col gap-2 rounded-card border p-4 transition-[border-color,box-shadow] duration-300 md:p-5",
+                          "relative flex h-full flex-col gap-2 rounded-card border p-4 transition-[border-color,box-shadow,background-color] duration-300 md:p-5",
                           on ? "shadow-[0_8px_24px_rgba(15,31,46,.10)]" : "",
                         )}
                         style={{
@@ -311,19 +310,13 @@ export function ConcernPath() {
                           ) : null}
                         </span>
                         <span className="sr-only">{c.stepOf(i + 1, n)}: </span>
-                        <span className="text-[17px] font-semibold leading-[1.25] group-hover:underline group-hover:underline-offset-4">
+                        <h3 className="text-[17px] font-semibold leading-[1.25]">
                           {s.t}
-                        </span>
-                        <span className="pretty text-[14px] leading-[1.45] text-secondary">
+                        </h3>
+                        <p className="pretty text-[14px] leading-[1.45] text-secondary">
                           {s.d}
-                        </span>
-                        <span
-                          aria-hidden
-                          className="mt-auto pt-1 text-[14px] font-semibold text-link"
-                        >
-                          ›
-                        </span>
-                      </SmartLink>
+                        </p>
+                      </div>
                     </li>
                   </Fragment>
                 );
@@ -331,6 +324,34 @@ export function ConcernPath() {
             </ol>
           )}
           <p className="text-[13px] text-muted">{c.illustration}</p>
+          {route.next ? (
+            <div
+              key={`next-${route.key}`}
+              className="mt-1 flex flex-col gap-4 rounded-card p-5 md:flex-row md:items-center md:justify-between md:gap-8 md:p-6"
+              style={{ background: tone.soft }}
+            >
+              <div className="flex flex-col gap-1.5">
+                <span
+                  className="text-[13px] font-semibold"
+                  style={{ color: tone.text }}
+                >
+                  {c.nextEyebrow}
+                </span>
+                <p className="pretty text-[17px] font-semibold leading-[1.35]">
+                  {route.next.lead}
+                </p>
+              </div>
+              <div className="flex shrink-0 flex-wrap items-center gap-x-5 gap-y-2">
+                <Button to={route.next.to}>{route.next.cta}</Button>
+                <SmartLink
+                  to={route.next.more.to}
+                  className="flex min-h-[44px] items-center text-[15px] font-semibold text-link"
+                >
+                  {route.next.more.t} ›
+                </SmartLink>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </Section>

@@ -8,6 +8,7 @@ import {
 import { ConcernPath } from "@/components/pages/infusion/extra/concern/ConcernPath";
 import { infusionCopy } from "@/content/infusion-site";
 import { bookFor } from "@/lib/routes";
+import { draft } from "@/content/review";
 import { pageMetadata } from "@/lib/seo";
 
 const c = infusionCopy.concerns;
@@ -28,8 +29,13 @@ export default function ByConcernPage() {
         eyebrow={c.eyebrow}
         title={c.title}
         lead={c.lead}
+        action={
+          <Button to="#concern-route" variant="outline">
+            {draft("Pick your concern")}
+          </Button>
+        }
       />
-      {/* Each concern draws its own route through the clinic (November 2026); every step links on. */}
+      {/* Each concern draws its own route through the clinic (November 2026); each route ends in one next step. */}
       <ConcernPath />
       <Section>
         <div className="flex flex-col items-start gap-4 rounded-card border border-border bg-card p-6 md:p-10">
