@@ -30,7 +30,8 @@ export const storyValues: TintCard[] = [
   },
   {
     t: "Care in your language",
-    d: "Nearly half our team speaks Vietnamese. The front desk, the nurse and the doctor can all talk to you directly.",
+    // Approved FAQ wording. "Nearly half our team speaks Vietnamese" was not a confirmed figure (removed Nov 2026).
+    d: "Both physicians and several staff speak Vietnamese.",
     bg: "#E6F4EA",
   },
   {
