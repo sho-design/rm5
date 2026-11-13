@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import type { NavKey } from "@/content/types";
 import { divisionAccent, divisionTint, divisions } from "@/content/divisions";
 import { href } from "@/lib/routes";
@@ -73,6 +73,38 @@ export function WayBar({
   const bar = useRef<HTMLDivElement>(null);
   const progress = useRef<HTMLDivElement>(null);
   const listId = useId();
+  // Mouse users: the section list opens on hover after a short pause and closes a moment after the pointer
+  // leaves the button and the list (so it does not flash open in passing). Click, keyboard and touch unchanged.
+  const hoverTimer = useRef<number | undefined>(undefined);
+  const byHover = useRef(false);
+  // The list sits under the section button on wider screens.
+  const toggle = useRef<HTMLButtonElement>(null);
+  const [listLeft, setListLeft] = useState<number | null>(null);
+  useEffect(() => {
+    if (!open || !toggle.current || !bar.current) return;
+    const b = bar.current.firstElementChild?.getBoundingClientRect();
+    const t = toggle.current.getBoundingClientRect();
+    setListLeft(b && t.width ? Math.max(0, t.left - b.left) : null);
+  }, [open]);
+  const hoverIn = (e: { pointerType: string }) => {
+    if (e.pointerType !== "mouse") return;
+    window.clearTimeout(hoverTimer.current);
+    if (open) return;
+    hoverTimer.current = window.setTimeout(() => {
+      byHover.current = true;
+      setOpen(true);
+    }, 140);
+  };
+  const hoverOut = (e: { pointerType: string }) => {
+    if (e.pointerType !== "mouse") return;
+    window.clearTimeout(hoverTimer.current);
+    if (!byHover.current) return;
+    hoverTimer.current = window.setTimeout(() => {
+      byHover.current = false;
+      setOpen(false);
+    }, 280);
+  };
+  useEffect(() => () => window.clearTimeout(hoverTimer.current), []);
 
   // Read the page once it has rendered (and again shortly after, for sections that load late).
   useEffect(() => {
@@ -141,6 +173,7 @@ export function WayBar({
   }, [open]);
 
   const go = (s: Section) => {
+    byHover.current = false;
     setOpen(false);
     s.el.scrollIntoView({
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -256,9 +289,17 @@ export function WayBar({
                   </span>
                 ) : null}
                 <button
+                  ref={toggle}
                   type="button"
                   data-way-toggle
-                  onClick={() => setOpen((o) => !o)}
+                  onClick={() => {
+                    window.clearTimeout(hoverTimer.current);
+                    // A click on a list opened by hover keeps it open; otherwise it toggles.
+                    if (byHover.current && open) byHover.current = false;
+                    else setOpen((o) => !o);
+                  }}
+                  onPointerEnter={hoverIn}
+                  onPointerLeave={hoverOut}
                   aria-expanded={open}
                   aria-controls={listId}
                   className="flex h-10 min-w-0 items-center gap-1.5 rounded-chip border border-border px-3 text-secondary transition-colors hover:border-ink"
@@ -303,8 +344,13 @@ export function WayBar({
         </Link>
       </div>
       {open ? (
-        <div id={listId} className="mx-auto mt-2 w-full max-w-[1392px]">
-          <ul className="max-h-[60vh] w-full overflow-auto rounded-[16px] border border-border bg-page p-2 shadow-sticky md:ml-[64px] md:w-[360px]">
+        <div id={listId} className="mx-auto w-full max-w-[1392px] pt-2">
+          <ul
+            onPointerEnter={hoverIn}
+            onPointerLeave={hoverOut}
+            className="max-h-[60vh] w-full overflow-auto rounded-[16px] border border-border bg-page p-2 shadow-sticky md:ml-[var(--way-left)] md:w-[360px]"
+            style={{ "--way-left": `${listLeft ?? 64}px` } as CSSProperties}
+          >
             <li>
               <button
                 type="button"
