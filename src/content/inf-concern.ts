@@ -95,7 +95,7 @@ function routeFor(c: Concern, i: number): ConcernRoute {
           d: draft(
             "Most people need no treatment beyond a plan with their doctor.",
           ),
-          to: routes.labs,
+          to: (routes.blood + "#results"),
         },
         {
           t: draft("Treatment, only if it fits"),

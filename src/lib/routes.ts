@@ -15,34 +15,25 @@ export const routes = {
   men: "/family-medicine/men-s-health",
   chronic: "/family-medicine/chronic-care",
   blood: "/family-medicine/bloodwork-ecg",
-  year: "/family-medicine#your-year",
   iron: "/infusion-therapy/iron-therapy",
   rx: "/family-medicine/prescription-renewals",
-  labs: "/family-medicine/bloodwork-ecg#results",
   vaccines: "/family-medicine/vaccines",
   pregnancy: "/family-medicine/pregnancy-care",
   painBack: "/pain-centre/back-neck",
   painJoints: "/pain-centre/joint-pain",
   painNerve: "/pain-centre/nerve-blocks",
   painTrigger: "/pain-centre/trigger-point-injections",
-  painFirstVisit: "/pain-centre#first-visit",
-  painOhip: "/pain-centre#ohip",
   drips: "/infusion-therapy/drips",
   shots: "/infusion-therapy/injection-bar",
-  concerns: "/infusion-therapy#concern-route",
   metabolic: "/infusion-therapy/metabolic-program",
   infusionHow: "/infusion-therapy/how-it-works",
   honest: "/infusion-therapy/honest-menu",
-  ingredients: "/infusion-therapy/honest-menu#ingredients",
   infusionPricing: "/infusion-therapy/pricing",
-  infusionTeam: "/about/team?service=Infusion%20Therapy",
   aesInjectables: "/medical-aesthetics/injectables",
   aesSkin: "/medical-aesthetics/skin-treatments",
   aesLaser: "/medical-aesthetics/laser",
   aesPlans: "/medical-aesthetics/skin-health-plans",
   aesMen: "/medical-aesthetics/mens-aesthetics",
-  aesPricing: "/medical-aesthetics/treatments#pricing",
-  aesPhotos: "/about/standards#photos",
   aesGift: "/gift-cards",
   aesMenu: "/medical-aesthetics/treatments",
   aesSkincare: "/medical-aesthetics/skincare",
@@ -51,20 +42,15 @@ export const routes = {
   rehabMassage: "/rehab-recovery/massage-therapy",
   rehabKines: "/rehab-recovery/kinesiology",
   rehabMva: "/rehab-recovery/accident-and-injury",
-  rehabWsib: "/rehab-recovery/accident-and-injury",
   rehabBilling: "/rehab-recovery/insurance-billing",
   rehabBring: "/rehab-recovery/your-visit",
-  rehabHome: "/rehab-recovery/your-visit",
   referrals: "/for-physicians",
   about: "/about",
   team: "/about/team",
-  locations: "/about/contact#clinics",
-  story: "/about#story",
   standards: "/about/standards",
   careers: "/about/careers",
   forms: "/about/patient-forms",
   billing: "/about/insurance-billing",
-  fees: "/about/insurance-billing#fees",
   faq: "/about/faq",
   contact: "/about/contact",
   notes: "/health-notes",
@@ -141,7 +127,11 @@ export const bookFor = (division: string, visit?: string) => `${routes.book}?ser
 const retiredKeys: Record<string, string> = { numbers: "/family-medicine/lab-results" };
 
 export function href(key: PageKey | string): string {
-  return key in routes ? routes[key as PageKey] : (retiredKeys[key] ?? key);
+  if (key in routes) return routes[key as PageKey];
+  // A page key with a section or filter: "blood#results", "team?service=Infusion%20Therapy".
+  const m = /^([A-Za-z]+)([#?].*)$/.exec(key);
+  if (m && m[1] in routes) return routes[m[1] as PageKey] + m[2];
+  return retiredKeys[key] ?? key;
 }
 
 /** Reasons that should not be readable in a web address, history or server logs (a 17-year-old on the family

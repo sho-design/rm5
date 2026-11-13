@@ -121,14 +121,14 @@ export const faqItems: FaqItem[] = [
     q: "Where do I park?",
     a: "Free on-site parking at 700 Centre St, inside the Walmart plaza. Accessible spaces are close to the entrance.",
     linkLabel: "Our clinics",
-    linkPage: "locations",
+    linkPage: "contact#clinics",
   },
   {
     category: "Clinic",
     q: "What are your hours?",
     a: "Mon, Wed, Thu 9am to 4pm; Tue 3pm to 9pm; Sat 8am to 4pm; Sun 8am to 2pm. Closed Fridays and statutory holidays. The bar at the top of the site shows whether we are open right now.",
     linkLabel: "Hours and directions",
-    linkPage: "locations",
+    linkPage: "contact#clinics",
   },
   {
     category: "Clinic",

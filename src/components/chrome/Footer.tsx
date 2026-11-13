@@ -13,7 +13,7 @@ import { divisionDot } from "@/content/divisions";
 
 /** Grouped so the eleven loose links read as three short lists. */
 const linkGroups: { t: string; links: [string, string][] }[] = [
-  { t: "For patients", links: [["New patients", routes.register], ["Contact", routes.contact], ["Fees", routes.fees], ["Your year", routes.year], ["How to prepare for tests", `${routes.blood}#prepare`], ["Gift cards", routes.aesGift], ["Referrals for doctors", routes.referrals]] },
+  { t: "For patients", links: [["New patients", routes.register], ["Contact", routes.contact], ["Fees", (routes.billing + "#fees")], ["Your year", (routes.family + "#your-year")], ["How to prepare for tests", `${routes.blood}#prepare`], ["Gift cards", routes.aesGift], ["Referrals for doctors", routes.referrals]] },
   { t: "Policies", links: [["Privacy policy", routes.privacy], ["Accessibility statement", routes.accessibility], ["Patient rights", routes.rights], ["Terms of use", routes.terms], ["Sitemap", routes.sitemap]] },
 ];
 

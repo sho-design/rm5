@@ -318,7 +318,7 @@ export default async function DripPage({ params }: Params) {
                   {x.helpsWith.map((h) => (
                     <SmartLink
                       key={h}
-                      to="concerns"
+                      to="infusion#concern-route"
                       className="rounded-chip border border-border bg-raised px-3 py-1.5 text-[13px] font-medium hover:border-sky"
                     >
                       {h}

@@ -82,9 +82,9 @@ export const carePaths: CarePath[] = [
     page: bookFor("family", "concern"),
     steps: [
       { svc: "Family Medicine", time: "Week 1", t: "Visit and bloodwork", d: "Ferritin, thyroid, B12 and sugars drawn on site.", page: "family", link: "Family Medicine" },
-      { svc: "Family Medicine", time: draft("About a week"), t: "Results, explained", d: draft("A call or results visit. Tiredness has many causes, and most people need no treatment beyond a plan with their doctor."), page: "labs", link: "Getting your results" },
+      { svc: "Family Medicine", time: draft("About a week"), t: "Results, explained", d: draft("A call or results visit. Tiredness has many causes, and most people need no treatment beyond a plan with their doctor."), page: "blood#results", link: "Getting your results" },
       { svc: "Family Medicine", time: "If needed", t: draft("Treatment, if your results show it"), d: draft("For low iron, usually tablets first. An iron infusion only if tablets are not right for you."), page: "iron", link: "Iron therapy" },
-      { svc: "Family Medicine", time: "Week 6", t: "Recheck", d: "Repeat bloodwork shows the response. Your plan adjusts.", page: "year", link: "Your year" },
+      { svc: "Family Medicine", time: "Week 6", t: "Recheck", d: "Repeat bloodwork shows the response. Your plan adjusts.", page: "family#your-year", link: "Your year" },
     ],
   },
   {
@@ -118,8 +118,8 @@ export const carePaths: CarePath[] = [
     page: bookFor("family", "checkup"),
     steps: [
       { svc: "Family Medicine", time: "This month", t: "Preventive checkup", d: "Blood pressure, cholesterol, sugars, and a screening plan.", page: "family", link: "Family Medicine" },
-      { svc: "Family Medicine", time: "This month", t: "Screening kit and requisitions", d: "FIT test, mammogram or PSA conversation, bloodwork on site.", page: "year", link: "Your year" },
-      { svc: "Family Medicine", time: "Week 2", t: "Numbers, explained", d: "Results in plain language with your targets.", page: "labs", link: "Getting your results" },
+      { svc: "Family Medicine", time: "This month", t: "Screening kit and requisitions", d: "FIT test, mammogram or PSA conversation, bloodwork on site.", page: "family#your-year", link: "Your year" },
+      { svc: "Family Medicine", time: "Week 2", t: "Numbers, explained", d: "Results in plain language with your targets.", page: "blood#results", link: "Getting your results" },
       { svc: "Rehab & Recovery", time: "Ongoing", t: "Stay strong", d: "A movement plan from our kinesiologist to protect joints and balance.", page: "rehab", link: "Rehab & Recovery" },
     ],
   },
@@ -150,7 +150,7 @@ export const familyTiles: FamilyTile[] = [
     bg: "#FFF3C4",
     items: ["One family doctor for both of you", "Screenings on a shared reminder", "Rehab, pain and infusion under one roof"],
     link: "Build your year",
-    page: "year",
+    page: "family#your-year",
   },
   {
     t: "Parents and grandparents",
@@ -228,7 +228,7 @@ export const calendar: Record<number, CalendarItem[]> = {
   8: [{ label: "School and camp forms", page: "family" }, { label: "Fall wellness visits", page: "family" }],
   9: [{ label: "Flu shots begin", page: "family" }, { label: "Thanksgiving closure Oct 12", page: null }],
   10: [{ label: "Flu shots continue", page: "family" }, { label: "Winter pain prep", page: "pain" }],
-  11: [{ label: "Holiday hours posted", page: "locations" }, { label: "Use benefits before year end", page: "rehab" }],
+  11: [{ label: "Holiday hours posted", page: "contact#clinics" }, { label: "Use benefits before year end", page: "rehab" }],
 };
 
 /** Dot colour per calendar page key. Items with a null page use "#5A6B7B". */
@@ -238,7 +238,7 @@ export const calendarDots: Record<string, string> = {
   infusion: "#7FC8A9",
   aesthetics: "#C9A0DC",
   rehab: "#F2B134",
-  locations: "#0F1F2E",
+  "contact#clinics": "#0F1F2E",
 };
 
 export const calendarClosureDot = "#5A6B7B";
@@ -266,7 +266,7 @@ export const infusionLinks: InfusionLink[] = [
     t: "Know what is in the bag",
     d: draft("What each ingredient is for, and where the evidence is still developing."),
     cta: draft("What is in each drip"),
-    href: "ingredients",
+    href: "honest#ingredients",
   },
   {
     k: "Pricing",

@@ -24,7 +24,7 @@ The site's editable content and search settings live in Payload CMS, embedded in
 | Job postings | Roles with location, type, schedule, requirements, featured flag, open or closed | `/about/careers` |
 | Team members | Names, roles, divisions, headshots, credentials, preceptor tag, order | `/about/team` |
 | FAQ | Question, answer, category, optional link | `/about/faq` |
-| Clinics | Address, hours, phone, fax, access notes, "Finding us" text and photo, services, coming-soon flag | `/about/clinics`, footer, contact |
+| Clinics | Address, hours, phone, fax, access notes, "Finding us" text and photo, services, coming-soon flag | `/about/contact` (clinics section), footer, contact |
 | Announcements | "What's new" strip items with start and end dates | Home |
 | Legal pages | Privacy, accessibility, patient rights, terms | `/legal/[slug]` |
 | Images | Uploads, resized to thumbnail, card and hero sizes | Anywhere an image field is set |

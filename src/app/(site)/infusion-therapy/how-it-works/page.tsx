@@ -84,7 +84,7 @@ export default function HowItWorksPage() {
       </Section>
       <Faq items={faq} />
       <InfusionSmallPrint />
-      <InfusionBand cta2To={routes.concerns} />
+      <InfusionBand cta2To={(routes.infusion + "#concern-route")} />
     </>
   );
 }

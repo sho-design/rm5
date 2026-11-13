@@ -27,7 +27,7 @@ function groups(): Group[] {
       page: "home",
       links: [
         { label: "Book an appointment", page: "book" },
-        { label: "Locations", page: "locations" },
+        { label: "Locations", page: "contact#clinics" },
         { label: "Our team", page: "team" },
       ],
     },
@@ -48,11 +48,11 @@ function groups(): Group[] {
       page: "about",
       links: [
         { label: "Our team", page: "team" },
-        { label: "Our clinics", page: "locations" },
+        { label: "Our clinics", page: "contact#clinics" },
         { label: "FAQ", page: "faq" },
         ...about.explore.slice(3).filter((l) => l.label !== "FAQ"),
         ...topicsFor("about").map((t) => ({ label: t.page, page: t.key as LinkTarget })),
-        { label: "Uninsured services and fees", page: "fees" },
+        { label: "Uninsured services and fees", page: "billing#fees" },
       ],
     },
     {

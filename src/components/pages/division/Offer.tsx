@@ -109,7 +109,7 @@ function Tile({
  */
 /** Pages that compare a division's services side by side ("Compare all ›"). */
 const comparePage: Partial<Record<NavKey, string>> = {
-  aesthetics: "aesPricing",
+  aesthetics: "aesMenu#pricing",
   infusion: "drips",
 };
 

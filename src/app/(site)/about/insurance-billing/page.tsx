@@ -43,7 +43,7 @@ const forms = faq("Do you charge for forms and notes?");
 
 const title = draft("Insurance, billing and fees");
 // Coverage by service, minus the card that pointed at the old fees page (it is this page now).
-const byService = (billingTopic.cards?.items ?? []).filter((x) => x.page !== "fees");
+const byService = (billingTopic.cards?.items ?? []).filter((x) => x.page !== "billing#fees");
 
 export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata("billing", { title, description: billingTopic.description });

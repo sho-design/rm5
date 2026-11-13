@@ -63,7 +63,7 @@ export default async function ContactPage() {
           </span>
           <span className="text-[13px] text-muted">{contactCopy.tiles.email.sub}</span>
         </a>
-        <SmartLink to="locations" className={`${tile} bg-sun-soft text-ink hover:opacity-95`}>
+        <SmartLink to="contact#clinics" className={`${tile} bg-sun-soft text-ink hover:opacity-95`}>
           <span className="text-[13px] text-ink/60">{contactCopy.tiles.visit.k}</span>
           <span className="text-[15px] font-semibold md:text-[16px]">{contactCopy.tiles.visit.v}</span>
           <span className="text-[13px] text-ink/70">{contactCopy.tiles.visit.sub} ›</span>

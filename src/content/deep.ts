@@ -111,7 +111,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         cta: "Book a visit",
         ctaPage: bookFor("family", "concern"),
         link: "See our hours",
-        linkPage: "locations",
+        linkPage: "contact#clinics",
       },
       {
         title: "Renewal or referral visit",
@@ -141,7 +141,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         cta: "Book a checkup",
         ctaPage: bookFor("family", "checkup"),
         link: "Getting your results",
-        linkPage: "labs",
+        linkPage: "blood#results",
       },
       {
         title: "Forms and notes",
@@ -156,7 +156,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         cta: "Book a form visit",
         ctaPage: bookFor("family", "forms"),
         link: "See the fee list",
-        linkPage: "fees",
+        linkPage: "billing#fees",
       },
     ],
     benefitsTitle: "What having a family doctor here means for you.",

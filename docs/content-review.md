@@ -179,7 +179,7 @@ Source: `src/content/patient-help.ts` and `src/content/consent.ts`. All new word
 
 - Emergency note on booking, registration, contact and the renewal form: "Is this an emergency? Call 911 or go to the nearest emergency department. For health advice any time, day or night, call Health811 at 811 or visit health811.ontario.ca. Online requests are read during clinic hours."
 - Prescription renewal request form on `/family-medicine/prescription-renewals`: labels, the "existing patient" and contact consent lines, the success message ("Request sent. Allow two business days. If a visit is needed first, we call you to book one.") and the failure line.
-- Uninsured fees page `/about/fees`: heading, "Ask us for the current list." and the receipts line. The fee list itself is entered by the clinic in the admin (Site settings > Fees); no fees are written in code.
+- Uninsured fees (the fees section of `/about/insurance-billing`): heading, "Ask us for the current list." and the receipts line. The fee list itself is entered by the clinic in the admin (Site settings > Fees); no fees are written in code.
 - "Finding us" on the clinics page: shown only when the clinic writes it in the admin (Clinics > Finding us), with an optional photo.
 - Cookie banner: "Can we count visits?" and its body, "Allow analytics", "No thanks", "Cookie settings".
 - The privacy policy should add one paragraph on Google Analytics: used only with consent, never on form pages, no health information, how to change the choice.
@@ -678,7 +678,7 @@ Adapted from the clinic's Medical Aesthetics guide site (ma1-indol.vercel.app) a
   - "Health Canada licensed" wording;
   - named injectors other than Dr. Nguyen (the filler tiers say "Senior Registered Nurse").
 - **To confirm:**
-  - **Prices online.** The guide says prices are shared at a complimentary consult and not listed online, but our `/medical-aesthetics/pricing` page lists prices. Which is right?
+  - **Prices online.** The guide says prices are shared at a complimentary consult and not listed online, but the pricing section of `/medical-aesthetics/treatments` lists prices. Which is right?
   - **Free consult.** Is the consult complimentary?
   - **Memberships.** Should the Essentials, Refined and Signature tiers appear on the site?
 
@@ -711,7 +711,7 @@ Adapted from the clinic's Medical Aesthetics guide site (ma1-indol.vercel.app) a
 ## Facts to confirm
 
 - **Infusion prices.** The Infusion Therapy page drip builder shows per-drip prices (prototype), while the Infusion design says pricing is shared at the consult. Pick one.
-- **Infusion team.** First names on `/infusion-therapy/team` come from the Infusion design file. Confirm each person is on staff and agrees to be listed.
+- **Infusion team.** First names on `/about/team` (Infusion Therapy filter) come from the Infusion design file and `src/content/team.ts`. Confirm each person is on staff and agrees to be listed.
 - **Drip pages.** Only Healing (Myers') has full copy. The other 11 drip pages show the one-line description and are `noindex` and out of the sitemap until the clinic supplies ingredients, doses and what to expect.
 - **Metabolic program.** The page uses only the design file's lines. Confirm the program details and that no outcome or weight-loss claims are wanted.
 - **Laser.** No device or treatment list exists. The page says only "Redness, pigment and texture." plus the consult and pricing FAQ.

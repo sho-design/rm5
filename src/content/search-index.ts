@@ -94,7 +94,7 @@ const handWritten: SearchEntry[] = [
     kind: "Prevention",
     label: "Your year of staying well",
     sub: "Screenings and checks by season",
-    page: "year",
+    page: "family#your-year",
   },
   {
     kind: "New patients",
@@ -112,7 +112,7 @@ const handWritten: SearchEntry[] = [
     kind: "About",
     label: "Uninsured services and fees",
     sub: "Forms, notes and services OHIP does not cover",
-    page: "fees",
+    page: "billing#fees",
   },
   {
     kind: "Family Medicine",
@@ -166,7 +166,7 @@ const handWritten: SearchEntry[] = [
     kind: "About",
     label: draft("What we stand for"),
     sub: draft("What we will not compromise on"),
-    page: "story",
+    page: "about#story",
   },
   {
     kind: "About",
@@ -184,13 +184,13 @@ const handWritten: SearchEntry[] = [
     kind: "Location",
     label: "Thornhill clinic",
     sub: "700 Centre St",
-    page: "locations",
+    page: "contact#clinics",
   },
   {
     kind: "Location",
     label: "Maple clinic",
     sub: "Opening soon",
-    page: "locations",
+    page: "contact#clinics",
   },
   {
     kind: "Team",

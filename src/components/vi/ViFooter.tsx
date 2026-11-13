@@ -23,7 +23,7 @@ export function ViFooter() {
   ];
   const groups: { t: string; links: [string, string, string?][] }[] = [
     { t: c.f.patients, links: [[c.f.register, viRoutes.register], [c.f.contact, viRoutes.contact], [c.f.book, `${routes.book}?lang=vi`]] },
-    { t: c.f.english, links: [[c.f.allSite, routes.home, "en-CA"], [c.f.fees, routes.fees, "en-CA"], [c.f.privacy, routes.privacy, "en-CA"], [c.f.accessibility, routes.accessibility, "en-CA"]] },
+    { t: c.f.english, links: [[c.f.allSite, routes.home, "en-CA"], [c.f.fees, (routes.billing + "#fees"), "en-CA"], [c.f.privacy, routes.privacy, "en-CA"], [c.f.accessibility, routes.accessibility, "en-CA"]] },
   ];
   return (
     <footer id="footer" tabIndex={-1} className="m-3 flex flex-col gap-10 rounded-block border border-border bg-card p-6 outline-none md:m-gutter md:p-12">

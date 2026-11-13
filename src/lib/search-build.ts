@@ -47,22 +47,22 @@ function staticPageText(): Record<string, string> {
   add("chronic", sub.chronicOptions, sub.chronicRhythm, sub.chronicVsPain, sub.chronicFaq);
   add("kids", kids.kidsAges, kids.kidsFaq, kids.immunizations, kids.kidsPath, kids.kidsForms, kids.kidsSick, kids.kidsCopy);
   add("iron", iron.ironSymptoms, iron.ironWho, iron.ironSteps, iron.ironVisit, iron.ironPrices, iron.ironFaq);
-  add("year", yearSeasons(45, true), yearSeasons(45, false), yearSeasons(70, true));
-  add("story", about.storyValues, about.storyPage);
+  add("family#your-year", yearSeasons(45, true), yearSeasons(45, false), yearSeasons(70, true));
+  add("about#story", about.storyValues, about.storyPage);
   add("standards", about.standardsList, about.standardsPage);
   add("careers", about.careersWhy, about.careersCopy);
-  add("locations", about.locationsCopy, wayfindingCopy);
+  add("contact#clinics", about.locationsCopy, wayfindingCopy);
   add("referrals", referrals.refServices, referrals.refSteps, referrals.referralsPage);
-  add("fees", feesCopy);
+  add("billing#fees", feesCopy);
   add("drips", infusionCopy.drips, signatureDrips);
   add("shots", infusionCopy.shots, shots);
-  add("ingredients", infusionCopy.ingredients, ingredients);
-  add("concerns", infusionCopy.concerns, concerns);
+  add("honest#ingredients", infusionCopy.ingredients, ingredients);
+  add("infusion#concern-route", infusionCopy.concerns, concerns);
   add("honest", infusionCopy.honest, honestClaims);
   add("infusionHow", infusionCopy.how, infusionSteps);
   add("infusionPricing", infusionCopy.pricing, pricingPrinciples, memberships);
   add("metabolic", infusionCopy.metabolic);
-  add("infusionTeam", infusionTeam);
+  add("team?service=Infusion%20Therapy", infusionTeam);
   for (const p of infusionPages) add(p.key, p.description);
   return t;
 }
@@ -85,8 +85,8 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
   const [faq, notes, team, jobs, locations, fees, legal] = await Promise.all([getFaq(), getHealthNotes(), getTeam(), getJobs(), getLocations(), getUninsuredFees(), getLegalPages()]);
 
   const text = staticPageText();
-  for (const l of locations) text.locations = `${text.locations ?? ""} ${l.name} ${l.address} ${l.access} ${l.findingUs ?? ""} ${l.hours.map((h) => h.join(" ")).join(" ")}`;
-  text.fees = `${text.fees ?? ""} ${fees.map((f) => `${f.service} ${f.note ?? ""}`).join(" ")}`;
+  for (const l of locations) text["contact#clinics"] = `${text["contact#clinics"] ?? ""} ${l.name} ${l.address} ${l.access} ${l.findingUs ?? ""} ${l.hours.map((h) => h.join(" ")).join(" ")}`;
+  text["billing#fees"] = `${text["billing#fees"] ?? ""} ${fees.map((f) => `${f.service} ${f.note ?? ""}`).join(" ")}`;
   for (const p of legal) text[p.key] = `${p.title} ${p.intro} ${p.sections.map((s) => `${s.h} ${s.p.join(" ")}`).join(" ")}`;
 
   // Page text goes on the first row for each destination; later rows for the same page stay label-only.

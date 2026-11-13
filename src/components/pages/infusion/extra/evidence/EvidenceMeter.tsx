@@ -277,7 +277,7 @@ export function EvidenceMeter() {
             {c.note}
           </p>
           <SmartLink
-            to="ingredients"
+            to="honest#ingredients"
             className="shrink-0 text-[15px] font-semibold text-link"
           >
             {c.ingredientsLink} ›

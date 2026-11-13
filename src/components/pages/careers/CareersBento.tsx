@@ -18,7 +18,7 @@ export function CareersBento() {
       <div className="flex min-h-[160px] flex-col justify-between gap-4 rounded-card bg-inverse p-5 text-on-inverse md:min-h-[220px] md:p-7 lg:min-h-0">
         <span className="text-[13px] font-semibold text-white/60">{careersCopy.bento.eyebrow}</span>
         <span className="display-tight text-[22px] leading-[1.1] tracking-[-.02em] md:text-[26px]">{careersCopy.bento.title}</span>
-        <SmartLink to="locations" className="text-[14px] font-semibold text-white">
+        <SmartLink to="contact#clinics" className="text-[14px] font-semibold text-white">
           {careersCopy.bento.link} ›
         </SmartLink>
       </div>

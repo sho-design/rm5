@@ -949,7 +949,7 @@ const family: Topic[] = [
         {
           t: draft("Your year of staying well"),
           d: draft("Screenings and vaccines by age"),
-          page: "year",
+          page: "family#your-year",
         },
       ],
     },
@@ -1145,7 +1145,7 @@ const about: Topic[] = [
           t: draft("Third-party forms"),
           d: fq("Do you charge for forms and notes?").a,
           link: draft("Uninsured services and fees"),
-          page: "fees",
+          page: "billing#fees",
         },
         {
           t: "Refer a patient",
@@ -1202,7 +1202,7 @@ export const billingTopic: Topic = {
           t: PD.label,
           d: P.benefits[1]?.d ?? "",
           link: PD.label,
-          page: "painOhip",
+          page: "pain#ohip",
         },
         {
           t: RD.label,
@@ -1220,13 +1220,13 @@ export const billingTopic: Topic = {
           t: AD.label,
           d: dq("aesthetics", "Is any of this covered by OHIP?").a,
           link: AD.label,
-          page: "aesPricing",
+          page: "aesMenu#pricing",
         },
         {
           t: draft("Forms and notes"),
           d: fq("Do you charge for forms and notes?").a,
           link: draft("Uninsured services and fees"),
-          page: "fees",
+          page: "billing#fees",
         },
       ],
     },

@@ -49,7 +49,7 @@ export default function ChronicCarePage() {
         tint={div.tint}
         accent={div.accent}
         link="Getting your results"
-        linkTo="labs"
+        linkTo="blood#results"
         titleSize="md"
       />
 

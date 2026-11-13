@@ -52,7 +52,7 @@ export default function ChildrenYouthPage() {
       <KidsPath />
       <KidsLanguage />
       <Faq title={kidsCopy.faq.title} sub={kidsCopy.faq.sub} items={kidsFaq} />
-      <TintBand tint="var(--rm-sage-tint)" title={kidsCopy.band.title} body={kidsCopy.band.body} bodyClass="text-sage-ink" cta={kidsCopy.band.cta} ctaTo="/register?for=someone" link={kidsCopy.band.link} linkTo="year" />
+      <TintBand tint="var(--rm-sage-tint)" title={kidsCopy.band.title} body={kidsCopy.band.body} bodyClass="text-sage-ink" cta={kidsCopy.band.cta} ctaTo="/register?for=someone" link={kidsCopy.band.link} linkTo="family#your-year" />
     </>
   );
 }

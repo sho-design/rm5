@@ -947,7 +947,7 @@ export function BookFlow({ config }: { config: BookingConfig }) {
                   </a>
                   {/* No directions for a phone or video visit. Outline next to the one primary (it was a borderless white pill). */}
                   {visit?.modes && mode > 0 ? null : (
-                    <Button to="locations" variant="outline">
+                    <Button to="contact#clinics" variant="outline">
                       {bookingCopy.confirmed.directions}
                     </Button>
                   )}

@@ -33,7 +33,7 @@ export function SeasonCalendar({ month }: { month: number }) {
       <div className="flex flex-col gap-[18px] rounded-card border border-border bg-card p-5 md:px-8 md:py-7">
         <div className="flex items-baseline justify-between gap-4">
           <h2 className="font-display text-[26px] font-medium tracking-[-.02em]">Health calendar</h2>
-          <SmartLink to="year" className="whitespace-nowrap text-[13px] font-semibold text-link">
+          <SmartLink to="family#your-year" className="whitespace-nowrap text-[13px] font-semibold text-link">
             Build your year ›
           </SmartLink>
         </div>
@@ -48,7 +48,7 @@ export function SeasonCalendar({ month }: { month: number }) {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   {calendar[mi].map((ci) => (
-                    <SmartLink key={ci.label} to={ci.page ?? "locations"} className="flex items-start gap-[7px] text-[13px] leading-[1.35] hover:text-link">
+                    <SmartLink key={ci.label} to={ci.page ?? "contact#clinics"} className="flex items-start gap-[7px] text-[13px] leading-[1.35] hover:text-link">
                       <span aria-hidden className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: ci.page ? calendarDots[ci.page] : calendarClosureDot }} />
                       <span>{ci.label}</span>
                     </SmartLink>

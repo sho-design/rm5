@@ -40,7 +40,7 @@ export default function WomensHealthPage() {
         imgAlt={womenCopy.hero.alt}
         pills={[...womenCopy.hero.pills]}
       />
-      <SubChooser ctaTo={bookFor("family", "concern")} id="stage" eyebrow={womenCopy.chooser.eyebrow} title={womenCopy.chooser.title} intro={womenCopy.chooser.intro} items={womenOptions} tint={tint} accent={accent} link={womenCopy.chooser.link} linkTo="year" titleSize="md" />
+      <SubChooser ctaTo={bookFor("family", "concern")} id="stage" eyebrow={womenCopy.chooser.eyebrow} title={womenCopy.chooser.title} intro={womenCopy.chooser.intro} items={womenOptions} tint={tint} accent={accent} link={womenCopy.chooser.link} linkTo="family#your-year" titleSize="md" />
       <WomensHealthDay />
       <WomenScreening />
       <Faq title={womenCopy.faq.title} sub={womenCopy.faq.sub} items={womenFaq} />

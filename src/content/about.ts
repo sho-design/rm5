@@ -228,18 +228,9 @@ export const locationsCopy = {
   },
 } as const;
 
-/** Page-level copy for the story section on /about (prototype isStory section). */
+/** Title of the values section on /about (the story page and its timeline were removed in Nov 2026). */
 export const storyPage = {
-  crumb: "Our story",
-  title: "Built because the system kept losing people.",
-  imgAlt: "Restoration Medical team in the Thornhill clinic",
   valuesTitle: "What we will not compromise on.",
-  band: {
-    title: "Meet the people who make it work.",
-    sub: "Physicians, nurses, therapists and the front desk. All on one page.",
-    cta: "Our team",
-    cta2: "Standards of care",
-  },
 } as const;
 
 /** Page-level copy for /about/standards (prototype isStandards section). */

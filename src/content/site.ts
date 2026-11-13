@@ -172,8 +172,8 @@ export const popularSearches: { label: string; page: string }[] = [
   { label: "Book an appointment", page: "book" },
   { label: "Iron therapy", page: "iron" },
   { label: "New patients", page: "register" },
-  { label: "Hours & directions", page: "locations" },
+  { label: "Hours & directions", page: "contact#clinics" },
   { label: "Our team", page: "team" },
   { label: "Prescription renewals", page: "rx" },
-  { label: "Pricing", page: "fees" },
+  { label: "Pricing", page: "billing#fees" },
 ];

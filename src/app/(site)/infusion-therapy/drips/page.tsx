@@ -44,7 +44,7 @@ export default function DripsPage() {
         </p>
         {/* The concern picker lives on the Infusion home (Nov 2026 consolidation); one line points to it. */}
         <SmartLink
-          to={routes.concerns}
+          to={(routes.infusion + "#concern-route")}
           className="w-fit text-[15px] font-semibold text-link"
         >
           {draft("Not sure which drip? Start with how you feel")} ›
