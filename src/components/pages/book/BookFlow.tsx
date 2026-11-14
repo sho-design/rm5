@@ -8,7 +8,7 @@ import { clock } from "@/lib/fasting";
 import { registerExtraCopy as rx } from "@/content/forms-copy";
 import type { BookingConfig, BookingService, BookingVisit } from "@/content/booking-visits";
 import { site } from "@/content/site";
-import { bookingDays, fmtTime, womensDayBookingDays, DOW, MON, type BookingDay } from "@/lib/hours";
+import { bookingDays, fmtTime, womensDayBookingDays, DOW, MON, SLOT_MINUTES, type BookingDay } from "@/lib/hours";
 import { openingHours } from "@/content/site";
 import { submitForm } from "@/lib/forms";
 import { radioKeys, rovingTab, useRevealOnChange } from "@/lib/a11y";
@@ -69,9 +69,9 @@ const fastLine = (slot: number) => x.fastingBooked(clock(slot - 10), clock(slot 
 /** Text for an iCalendar property: backslash, semicolon, comma and line breaks escaped (RFC 5545). */
 const icsText = (s: string) => s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
 
-function icsFor(day: BookingDay, slot: number, summary: string, mins = 30, note?: string): string {
+function icsFor(day: BookingDay, slot: number, summary: string, mins = SLOT_MINUTES, note?: string): string {
   const start = new Date(day.date);
-  start.setHours(Math.floor(slot), slot % 1 ? 30 : 0, 0, 0);
+  start.setHours(0, Math.round(slot * 60), 0, 0);
   // The visit length when known (a 45-minute assessment showed as 30 in calendars, round 27).
   const end = new Date(start.getTime() + mins * 60_000);
   const stamp = (d: Date) => `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}T${String(d.getHours()).padStart(2, "0")}${String(d.getMinutes()).padStart(2, "0")}00`;

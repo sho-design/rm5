@@ -25,7 +25,7 @@ const endStop = (t: string) => (/[.?!]$/.test(t.trim()) ? t : `${t}.`);
 export type BookingClaim = "mva" | "wsib";
 
 export interface BookingVisit {
-  /** Minutes the visit takes, when longer than a half-hour slot; later start times are not offered. */
+  /** Minutes the visit takes, when longer than one 20-minute slot; later start times are not offered. */
   mins?: number;
   key: string;
   label: string;

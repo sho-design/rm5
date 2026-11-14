@@ -6,11 +6,12 @@ import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { bloodPrep as c } from "@/content/subpages";
 import { fastingClockCopy as k } from "@/content/blood-prep";
 import { clock } from "@/lib/fasting";
+import { slotTimes } from "@/lib/hours";
 import { radioKeys, rovingTab, useReducedMotion } from "@/lib/a11y";
 import { cn } from "@/lib/cn";
 
-/** Draw times people can pick: every half hour the clinic is open on some day, 8am to 8:30pm. */
-const TIMES = Array.from({ length: 26 }, (_, i) => 8 + i / 2);
+/** Draw times people can pick: every appointment start (every 20 minutes) the clinic is open on some day, 8am to 8:40pm. */
+const TIMES = slotTimes(8, 21);
 
 /** "the night before" (midnight counts), "that morning" or "that day", for a stop time `t` hours after midnight of the draw day. */
 const when = (t: number) => (t <= 0 ? c.whenBefore : t < 12 ? c.whenMorning : c.whenDay);

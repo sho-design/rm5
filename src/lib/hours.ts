@@ -55,10 +55,18 @@ export function openStatus(now = torontoNow()): { text: string; open: boolean } 
 export const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-/** Format a decimal hour (9, 15.5) as "9:00 am" / "3:30 pm". */
+/** Appointments start every 20 minutes (clinic, Nov 2026). */
+export const SLOT_MINUTES = 20;
+
+/** Start times from `from` to `to` (decimal hours), every 20 minutes: 9, 9.333, 9.667, 10 ... */
+export const slotTimes = (from: number, to: number): number[] =>
+  Array.from({ length: Math.round(((to - from) * 60) / SLOT_MINUTES) }, (_, j) => (from * 60 + j * SLOT_MINUTES) / 60);
+
+/** Format a decimal hour (9, 9.333, 15.667) as "9:00 am" / "9:20 am" / "3:40 pm". */
 export function fmtTime(t: number): string {
-  const hh = Math.floor(t);
-  const mm = t % 1 ? "30" : "00";
+  const total = Math.round(t * 60);
+  const hh = Math.floor(total / 60);
+  const mm = String(total % 60).padStart(2, "0");
   return `${((hh + 11) % 12) + 1}:${mm} ${hh < 12 ? "am" : "pm"}`;
 }
 
@@ -92,7 +100,7 @@ export function womensDayBookingDays(now = torontoNow(), count = 3): BookingDay[
   return nextWomensDays(now, count + 1)
     .map((d, i) => {
       const today = ymd(d) === ymd(now);
-      let slots = h ? Array.from({ length: (h[1] - h[0]) * 2 }, (_, j) => h[0] + j / 2).filter((_, j) => (j * 5 + i * 3) % 6 !== 2) : [];
+      let slots = h ? slotTimes(h[0], h[1]).filter((_, j) => (j * 5 + i * 3) % 6 !== 2) : [];
       if (today) slots = slots.filter((t) => t >= nowHours + 1);
       const tomorrow = ymd(d) === ymd(new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1));
       return { date: d, iso: ymd(d), dow: DOW[d.getDay()], num: d.getDate(), open: !!h, today, tomorrow, slots };
@@ -108,7 +116,7 @@ export function bookingDays(now = torontoNow(), count = 7): BookingDay[] {
     const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
     const h = openingHours[d.getDay()];
     let slots = h
-      ? Array.from({ length: (h[1] - h[0]) * 2 }, (_, j) => h[0] + j / 2)
+      ? slotTimes(h[0], h[1])
           .filter((_, j) => (j * 7 + i * 3) % 5 !== 1)
           .slice(0, 12)
       : [];
