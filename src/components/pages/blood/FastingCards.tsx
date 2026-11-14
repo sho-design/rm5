@@ -1,5 +1,7 @@
 "use client";
 
+import { draft } from "@/content/review";
+
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { bloodPrep as c } from "@/content/subpages";
 import { fastingClockCopy as k } from "@/content/blood-prep";
@@ -90,7 +92,8 @@ export function FastingCards() {
         {/* Controls */}
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-2.5">
-            <span id={`${id}-rule`} className="text-[15px] font-semibold">
+            <span id={`${id}-rule`} className="flex items-center gap-2 text-[15px] font-semibold">
+              <span aria-hidden className="grid h-6 w-6 place-items-center rounded-full bg-ink text-[13px] font-bold text-white">1</span>
               {k.ruleLabel}
             </span>
             <div role="radiogroup" aria-labelledby={`${id}-rule`} onKeyDown={radioKeys} className="grid grid-cols-2 gap-2">
@@ -119,20 +122,49 @@ export function FastingCards() {
             <p className="pretty max-w-[60ch] text-[14px] leading-[1.5] text-secondary">{f.rule}</p>
           </div>
 
-          <label className="flex flex-wrap items-center gap-2.5 text-[15px] font-semibold">
-            {c.timeLabel}
-            <select
-              value={slot}
-              onChange={(e) => setSlot(Number(e.target.value))}
-              className="rounded-field border-[1.5px] border-border bg-raised px-3 py-2 text-[15px] font-semibold focus:border-sky"
-            >
-              {TIMES.map((t) => (
-                <option key={t} value={t}>
-                  {clock(t)}
-                </option>
-              ))}
-            </select>
-          </label>
+          {/* Appointment time, made prominent: the time in large type with earlier and later buttons; tapping the
+              time itself opens the full list. */}
+          <div className="flex flex-col gap-2.5 rounded-[18px] border-2 border-ink bg-[color:var(--rm-sky-soft)] p-4 shadow-[0_8px_24px_rgba(15,31,46,.08)] md:p-5">
+            <label htmlFor={`${id}-time`} className="flex items-center gap-2 text-[15px] font-semibold">
+              <span aria-hidden className="grid h-6 w-6 place-items-center rounded-full bg-ink text-[13px] font-bold text-white">2</span>
+              {c.timeLabel}
+            </label>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setSlot(TIMES[Math.max(0, TIMES.indexOf(slot) - 1)])}
+                disabled={slot === TIMES[0]}
+                aria-label={draft("Earlier")}
+                className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-[1.5px] border-ink bg-white text-[22px] font-semibold text-ink transition-opacity disabled:opacity-30"
+              >
+                <span aria-hidden>−</span>
+              </button>
+              <div className="relative min-w-0 flex-1">
+                <select
+                  id={`${id}-time`}
+                  value={slot}
+                  onChange={(e) => setSlot(Number(e.target.value))}
+                  className="h-14 w-full cursor-pointer appearance-none rounded-[14px] border-[1.5px] border-[color:var(--border-default)] bg-white px-4 pr-10 text-center font-display text-[30px] font-medium leading-none tracking-[-.02em] text-ink focus:border-sky"
+                >
+                  {TIMES.map((t) => (
+                    <option key={t} value={t}>
+                      {clock(t)}
+                    </option>
+                  ))}
+                </select>
+                <span aria-hidden className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[14px] text-ink/60">▾</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSlot(TIMES[Math.min(TIMES.length - 1, TIMES.indexOf(slot) + 1)])}
+                disabled={slot === TIMES[TIMES.length - 1]}
+                aria-label={draft("Later")}
+                className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-[1.5px] border-ink bg-white text-[22px] font-semibold text-ink transition-opacity disabled:opacity-30"
+              >
+                <span aria-hidden>+</span>
+              </button>
+            </div>
+          </div>
           {slot >= 12 ? (
             <p className="pretty max-w-[62ch] rounded-[12px] bg-sun-tint px-4 py-3 text-[14px] font-semibold leading-[1.5] text-sun-ink">{c.afternoon}</p>
           ) : slot >= 10 && from >= 8 ? (
