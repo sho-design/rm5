@@ -41,8 +41,9 @@ export default function WomensHealthPage() {
         pills={[...womenCopy.hero.pills]}
       />
       <SubChooser ctaTo={bookFor("family", "concern")} id="stage" eyebrow={womenCopy.chooser.eyebrow} title={womenCopy.chooser.title} intro={womenCopy.chooser.intro} items={womenOptions} tint={tint} accent={accent} link={womenCopy.chooser.link} linkTo="family#your-year" titleSize="md" />
-      <WomensHealthDay />
+      {/* Patient order: what is due for you, when you can get it done, then who does it. */}
       <WomenScreening />
+      <WomensHealthDay />
       <Faq title={womenCopy.faq.title} sub={womenCopy.faq.sub} items={womenFaq} />
       <TintBand tint={tint} title={womenCopy.band.title} body={womenCopy.band.body} bodyClass="text-secondary" cta={womenCopy.band.cta} ctaTo="register" link={womenCopy.band.link} linkTo="kids" />
     </>

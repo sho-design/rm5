@@ -18,7 +18,7 @@ export function AmIDue() {
   const id = useId();
   const rows = screeningDue(age, sex === 0);
   return (
-    <section className="grid grid-cols-1 gap-block px-4 pt-12 md:px-content md:pt-section lg:grid-cols-[1fr_1.4fr] lg:items-stretch">
+    <section id="am-i-due" className="grid scroll-mt-24 grid-cols-1 gap-block px-4 pt-12 md:px-content md:pt-section lg:grid-cols-[1fr_1.4fr] lg:items-stretch">
       <div className="flex flex-col gap-7 rounded-block bg-inverse p-6 text-on-inverse md:p-10">
         <div className="flex flex-col gap-2.5">
           <Eyebrow tone="sun">{c.eyebrow}</Eyebrow>
