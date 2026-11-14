@@ -6,6 +6,8 @@ import { divisions } from "@/content/divisions";
 import { bloodFaq, bloodOptions, subpageHero } from "@/content/subpages";
 import { VisitJourney } from "@/components/pages/blood/VisitJourney";
 import { HeroPulse } from "@/components/pages/blood/HeroPulse";
+import { EcgExplainer } from "@/components/pages/blood/EcgExplainer";
+import { RequisitionPeek } from "@/components/pages/blood/RequisitionPeek";
 import { Prepare } from "@/components/pages/blood/Prepare";
 import { draft } from "@/content/review";
 import { faqItems } from "@/content/faq";
@@ -63,6 +65,9 @@ export default function BloodworkPage() {
       <VisitJourney />
 
       <Prepare accent={accent} />
+
+      <EcgExplainer />
+      <RequisitionPeek />
 
       {/* Lab results (its own page until Nov 2026): how results reach you, and getting a copy. */}
       <section id="results" className="scroll-mt-24">
