@@ -1,4 +1,5 @@
 import { aesExtra } from "@/components/pages/aesthetics/extra";
+import { familyExtra } from "@/components/pages/vaccines";
 import { BenefitStrip, CtaBand, Display, Faq, FactGrid, Grid, PathSteps, Section, SectionHeader, SmartLink, SubPageHero } from "@/components/ui";
 import { CoverageChecker } from "@/components/pages/division/CoverageChecker";
 import { RenewalForm } from "@/components/pages/help/RenewalForm";
@@ -102,7 +103,7 @@ export function TopicPage({ t }: { t: Topic }) {
       ) : null}
 
       {(() => {
-        const Extra = aesExtra[t.key];
+        const Extra = aesExtra[t.key] ?? familyExtra[t.key];
         return Extra ? <Extra /> : null;
       })()}
 
