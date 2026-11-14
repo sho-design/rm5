@@ -840,7 +840,7 @@ const family: Topic[] = [
     page: draft("Vaccines"),
     title: draft("Vaccines for every age."),
     lead: draft(
-      "Flu shots, routine vaccines for children and adults, and catch-up doses, given in clinic and recorded in your chart.",
+      "Flu shots, routine vaccines for children and adults, and catch-up doses, given in clinic and recorded in your chart. Given at Thornhill, 700 Centre St. Maple is not open yet.",
     ),
     description: fit(
       draft(
@@ -856,82 +856,6 @@ const family: Topic[] = [
     ),
     img: images.services.family[6],
     imgAlt: draft("Nurse preparing a vaccine for a patient"),
-    glance: {
-      title: draft("At a glance"),
-      p: approved(
-        kidsCopy.imm.whereNote,
-        "Bring the yellow immunization card and health card.",
-      ),
-      facts: [
-        { k: draft("Flu shot"), v: draft("From October, every fall") },
-        { k: draft("Shingles"), v: draft("Publicly funded 65 to 70") },
-        { k: draft("Children"), v: draft("Ontario routine schedule") },
-        { k: draft("Records"), v: draft("Added to your chart") },
-        // A Maple resident had to start booking to learn shots are given at Thornhill (round 17).
-        {
-          k: draft("Where"),
-          v: draft("Thornhill, 700 Centre St. Maple is not open yet."),
-        },
-      ],
-    },
-    cards: {
-      title: draft("What we give."),
-      sub: draft(
-        "Funding rules change from season to season. If a vaccine is not funded for you, we tell you the cost before it is given.",
-      ),
-      items: [
-        {
-          t: draft("Flu shot"),
-          d: draft(
-            "Every fall from October, for everyone 6 months and older. Publicly funded, so no cost to you. Due for other vaccines too? Tell us when you book and we plan them together.",
-          ),
-          meta: draft("Every fall"),
-          link: draft("Flu shot questions, answered"),
-          page: "/health-notes/flu-shot-faq",
-        },
-        {
-          t: draft("Children and teens"),
-          d: approved(
-            kidsCopy.imm.note,
-            "All routine vaccines are given in clinic and recorded on the yellow card.",
-          ),
-          meta: draft("Birth to 18"),
-          link: draft("See the schedule by age"),
-          page: "/family-medicine/children-youth#immunizations",
-        },
-        {
-          t: draft("Shingles"),
-          d: draft(
-            "Publicly funded from 65 to 70. Outside that range, ask us about the cost before your visit.",
-          ),
-          meta: draft("65 to 70"),
-        },
-        {
-          t: draft("Pregnancy"),
-          d: draft(
-            "Some vaccines are recommended in every pregnancy, such as the flu shot and whooping cough (Tdap). We go through them at your prenatal visits.",
-          ),
-          meta: draft("Each pregnancy"),
-          link: draft("Pregnancy care"),
-          page: "pregnancy",
-        },
-        {
-          t: draft("RSV and pneumonia"),
-          d: draft(
-            "Older adults and people with some health conditions may qualify for publicly funded RSV and pneumonia vaccines. Ask us whether you are eligible.",
-          ),
-          meta: draft("Ask us"),
-        },
-        {
-          t: draft("Catch-up and records"),
-          d: approved(
-            kidsCopy.imm.catchBody,
-            "Catch-up is common after a move or a gap in care. Bring whatever records you have and we plan the rest.",
-          ),
-          meta: draft("Any age"),
-        },
-      ],
-    },
     related: {
       title: draft("Related."),
       items: [
@@ -941,8 +865,8 @@ const family: Topic[] = [
           page: "kids",
         },
         {
-          t: draft("Your year of staying well"),
-          d: draft("Screenings and vaccines by age"),
+          t: draft("Am I due for screening?"),
+          d: draft("The screenings that apply at your age"),
           page: "family#your-year",
         },
       ],

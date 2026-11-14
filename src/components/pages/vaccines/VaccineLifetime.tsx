@@ -16,8 +16,10 @@ const linkFor = (k: string) =>
   k === "baby" || k === "child" || k === "teen"
     ? `${routes.kids}#immunizations`
     : k === "flu"
-      ? bookFor("family", "flu")
-      : bookFor("family", "vaccine");
+      ? "#flu"
+      : k === "pregnancy"
+        ? routes.pregnancy
+        : bookFor("family", "vaccine");
 
 /**
  * A simple line figure for each stage: baby, child, teen, adult, older adult, and a small leaf ring for the yearly flu
@@ -45,6 +47,8 @@ function Figure({ k }: { k: string }) {
     teen: { head: 12, top: 30, body: 44, leg: 40, arm: 24 },
     adult: { head: 12, top: 22, body: 48, leg: 46, arm: 26 },
     older: { head: 12, top: 26, body: 46, leg: 44, arm: 24 },
+    pregnancy: { head: 12, top: 22, body: 48, leg: 46, arm: 26 },
+    rsv: { head: 12, top: 26, body: 46, leg: 44, arm: 24 },
   }[k as "baby"] ?? { head: 12, top: 22, body: 48, leg: 46, arm: 26 };
   const cx = 60;
   const neck = f.top + f.head * 2 + 2;
@@ -65,7 +69,8 @@ function Figure({ k }: { k: string }) {
       <path d={`M${cx} ${neck}v${f.body}`} />
       <path d={`M${cx} ${neck + 8}l-${f.arm * 0.7} ${f.arm * 0.8}M${cx} ${neck + 8}l${f.arm * 0.7} ${f.arm * 0.8}`} />
       <path d={`M${cx} ${hip}l-${f.leg * 0.32} ${f.leg}M${cx} ${hip}l${f.leg * 0.32} ${f.leg}`} />
-      {k === "older" ? <path d={`M${cx + f.arm * 0.7 + 4} ${neck + f.arm * 0.8}v${hip + f.leg - neck - f.arm * 0.8}`} stroke={SAGE} /> : null}
+      {k === "pregnancy" ? <path d={`M${cx + 1} ${neck + f.body * 0.42} q 16 9 0 22`} stroke={SKY} strokeWidth={2.4} fill="none" strokeLinecap="round" /> : null}
+      {k === "older" || k === "rsv" ? <path d={`M${cx + f.arm * 0.7 + 4} ${neck + f.arm * 0.8}v${hip + f.leg - neck - f.arm * 0.8}`} stroke={SAGE} /> : null}
       {k === "teen" ? <path d={`M${cx - 10} ${neck + 6}h20v18h-20z`} stroke={SKY} strokeWidth={2} /> : null}
     </g>
   );

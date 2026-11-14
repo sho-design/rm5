@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Button, Display, Eyebrow, Section } from "@/components/ui";
+import { Button, Display, Eyebrow, Section, SmartLink } from "@/components/ui";
 import { fluCopy as c } from "@/content/vaccines-extra";
 import { bookFor } from "@/lib/routes";
 import { useReducedMotion } from "@/lib/a11y";
@@ -63,9 +63,15 @@ export function FluYear() {
           </Eyebrow>
           <Display size="sm">{c.title}</Display>
           <p className="font-display text-[26px] leading-[1.15] tracking-[-.01em] text-ink md:text-[30px]">{c.line}.</p>
-          <Button to={bookFor("family", "flu")} className="w-fit">
-            {c.cta}
-          </Button>
+          <p className="pretty max-w-[52ch] text-[16px] leading-[1.55] text-secondary">{c.detail}</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Button to={bookFor("family", "flu")} className="w-fit">
+              {c.cta}
+            </Button>
+            <SmartLink to="/health-notes/flu-shot-faq" className="flex min-h-[44px] items-center text-[15px] font-semibold text-link">
+              {c.more} ›
+            </SmartLink>
+          </div>
         </div>
         <figure className="m-0 flex flex-col items-center gap-2">
           {!reduced ? (
