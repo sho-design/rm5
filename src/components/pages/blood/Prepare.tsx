@@ -5,12 +5,12 @@ import { FastingCards } from "./FastingCards";
 import { accentText } from "@/lib/accent";
 
 /**
- * How to prepare for tests: the four fasting rules with the tests under each (filled from the lab's list), what to
- * do on the day, the ECG, urine samples, and the lab team's email for anything else.
+ * How to prepare for tests: the "When to stop eating" clock for the four fasting rules (Nov 2026, it replaced the four
+ * cards), what to do on the day, the ECG, urine samples, and the lab team's email for anything else.
  */
 export function Prepare({ accent }: { accent: string }) {
   return (
-    <Section id="prepare" className="flex scroll-mt-28 flex-col gap-6">
+    <Section id="prepare" className="rm-paper flex scroll-mt-28 flex-col gap-6">
       <div className="flex max-w-[720px] flex-col gap-2">
         <Eyebrow tone="inherit" style={{ color: accentText(accent) }}>
           {c.eyebrow}

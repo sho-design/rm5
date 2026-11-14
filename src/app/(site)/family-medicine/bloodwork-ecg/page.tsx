@@ -8,6 +8,7 @@ import { VisitJourney } from "@/components/pages/blood/VisitJourney";
 import { HeroPulse } from "@/components/pages/blood/HeroPulse";
 import { EcgExplainer } from "@/components/pages/blood/EcgExplainer";
 import { RequisitionPeek } from "@/components/pages/blood/RequisitionPeek";
+import { TubeLayers } from "@/components/pages/blood/TubeLayers";
 import { Prepare } from "@/components/pages/blood/Prepare";
 import { draft } from "@/content/review";
 import { faqItems } from "@/content/faq";
@@ -64,10 +65,13 @@ export default function BloodworkPage() {
       {/* The visit and what comes after, as one route; the needle note and breathing circle sit in its header. */}
       <VisitJourney />
 
+      {/* Reading order: the form your doctor gives you, how to prepare, what happens to the sample, the ECG, then results. */}
+      <RequisitionPeek />
+
       <Prepare accent={accent} />
 
+      <TubeLayers />
       <EcgExplainer />
-      <RequisitionPeek />
 
       {/* Lab results (its own page until Nov 2026): how results reach you, and getting a copy. */}
       <section id="results" className="scroll-mt-24">
