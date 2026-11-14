@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { Faq, SubChooser, SubPageHero } from "@/components/ui";
 import { divisions } from "@/content/divisions";
-import { bloodFaq, bloodOptions, bloodPath, subpageHero } from "@/content/subpages";
-import { Path } from "@/components/pages/blood/Path";
+import { bloodFaq, bloodOptions, subpageHero } from "@/content/subpages";
+import { VisitJourney } from "@/components/pages/blood/VisitJourney";
+import { HeroPulse } from "@/components/pages/blood/HeroPulse";
 import { Prepare } from "@/components/pages/blood/Prepare";
 import { draft } from "@/content/review";
 import { faqItems } from "@/content/faq";
@@ -43,6 +44,7 @@ export default function BloodworkPage() {
         imgAlt="Lab technician preparing a blood draw"
         pills={["No second trip", "Fasting slots before 10am", "ECG read the same day"]}
       />
+      <HeroPulse color={accent} />
 
       <SubChooser
         ctaTo={bookFor("family", "bloodwork")}
@@ -57,12 +59,8 @@ export default function BloodworkPage() {
         titleSize="md"
       />
 
-      <Path
-        eyebrow="The visit"
-        title="About ten minutes, start to finish."
-        note="Nervous about needles? Tell the technician. We can have you lie down and take it slowly."
-        steps={bloodPath}
-      />
+      {/* The visit and what comes after, as one route; the needle note and breathing circle sit in its header. */}
+      <VisitJourney />
 
       <Prepare accent={accent} />
 
@@ -83,7 +81,7 @@ export default function BloodworkPage() {
 
       <TintBand
         title="One trip. Doctor, requisition, draw."
-        sub={draft("Most checkups end at the lab chair down the hall. Results reach your doctor in about a week, and we suggest a follow-up 2 to 3 weeks after your test.")}
+        sub={draft("Most checkups end at the lab chair down the hall.")}
         cta="Book a checkup"
         tint={tint}
         subClassName="text-sage-ink"
