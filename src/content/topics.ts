@@ -872,12 +872,6 @@ const family: Topic[] = [
           k: draft("Where"),
           v: draft("Thornhill, 700 Centre St. Maple is not open yet."),
         },
-        {
-          k: draft("Families"),
-          v: draft(
-            "One booking per person. Book each person back to back and we see you together.",
-          ),
-        },
       ],
     },
     cards: {

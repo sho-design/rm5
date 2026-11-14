@@ -10,8 +10,8 @@ function VaccinesExtra() {
     <>
       <VaccineLifetime />
       <FluYear />
-      <CardToChart />
       <FamilyLineUp />
+      <CardToChart />
     </>
   );
 }

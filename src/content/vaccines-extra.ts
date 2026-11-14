@@ -73,7 +73,7 @@ export const lifetimeCopy = {
     { k: "baby", age: draft("Baby"), t: draft("Ontario routine schedule"), d: draft("Given in clinic at well-baby visits and recorded on the yellow card."), link: draft("See what is due at each age") },
     { k: "child", age: draft("4 to 6 years"), t: draft("The preschool booster"), d: draft("Given at the yearly checkup, with daycare and school forms done the same visit."), link: draft("See what is due at each age") },
     { k: "teen", age: draft("Grade 7 and high school"), t: draft("HPV, meningococcal, hepatitis B"), d: draft("Teens can see the doctor on their own for part of the visit."), link: draft("See what is due at each age") },
-    { k: "adult", age: draft("Adults"), t: draft("Catch-up doses"), d: draft("Common after a move or a gap in care. Bring whatever records you have and we plan the rest."), link: draft("Book a vaccine visit") },
+    { k: "adult", age: draft("Adults"), t: draft("Catch-up doses"), d: draft("For a dose you missed or are not sure you had. Your doctor checks your record with you."), link: draft("Book a vaccine visit") },
     { k: "older", age: draft("65 to 70"), t: draft("Shingles"), d: draft("Publicly funded 65 to 70."), link: draft("Book a vaccine visit") },
     { k: "flu", age: draft("Every fall"), t: draft("The flu shot"), d: draft("From October, every fall."), link: draft("Book a flu shot") },
   ],
@@ -84,7 +84,7 @@ export const lifetimeCopy = {
 export const fluCopy = {
   eyebrow: draft("Flu season"),
   title: draft("Every fall, the flu shot."),
-  line: draft("From October, every fall"),
+  line: draft("Starting in October"),
   cta: draft("Book a flu shot"),
   alt: draft("Illustration of a year as a ring of twelve months, with October lit for the flu shot and a marker going around once a year."),
   illustration: draft("Illustration"),
