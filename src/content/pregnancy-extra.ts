@@ -58,7 +58,11 @@ export const teamsCopy = {
   book: draft("Book a pregnancy visit"),
   register: "Register as a patient",
   illustration: draft("Illustration. Your own care may differ."),
-  legendLabel: draft("What the lines show"),
+  // Swim lanes (Nov 2026): the band where both teams care for you, and the replay button.
+  overlap: draft("Two teams at once"),
+  overlapNote: draft("From 12 weeks until the baby arrives, both teams care for you."),
+  replay: draft("Show again"),
+  listLabel: draft("Your pregnancy with us, step by step"),
   lanes: {
     us: draft("With us"),
     obs: draft("Obstetrics or midwifery"),
