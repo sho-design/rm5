@@ -5,6 +5,7 @@ import { Faq, SubChooser, SubPageHero } from "@/components/ui";
 import { subpageHero, womenCopy, womenFaq, womenOptions } from "@/content/subpages";
 import { divisions } from "@/content/divisions";
 import { WomenScreening } from "@/components/pages/women/WomenScreening";
+import { WhoYouSee } from "@/components/pages/women/WhoYouSee";
 import { WomensHealthDay } from "@/components/pages/women/WomensHealthDay";
 import { TintBand } from "@/components/pages/kids/FamilySubBits";
 
@@ -44,6 +45,7 @@ export default function WomensHealthPage() {
       {/* Patient order: what is due for you, when you can get it done, then who does it. */}
       <WomenScreening />
       <WomensHealthDay />
+      <WhoYouSee />
       <Faq title={womenCopy.faq.title} sub={womenCopy.faq.sub} items={womenFaq} />
       <TintBand tint={tint} title={womenCopy.band.title} body={womenCopy.band.body} bodyClass="text-secondary" cta={womenCopy.band.cta} ctaTo="register" link={womenCopy.band.link} linkTo="kids" />
     </>
