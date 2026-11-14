@@ -12,13 +12,53 @@ const BLACK = "#1B1F24";
 const SKIN = ["#F2D2B6", "#C98E62", "#E8B994", "#8D5A3B", "#F5DCC6", "#B57A52"];
 
 /** A simple standing figure in scrubs: head, V-neck top, legs, white sneakers. */
-function Person({ x, scrub, skin, hair, delay, shown, tall = 1 }: { x: number; scrub: string; skin: string; hair: string; delay: number; shown: boolean; tall?: number }) {
+type Hair = "short" | "long" | "bun" | "bob" | "ponytail";
+
+/** Hair drawn behind and over the head (centre 0,16, radius 14), so the figures read as different people. */
+function HairShape({ style, fill }: { style: Hair; fill: string }) {
+  const cap = <path d="M-15 17 a15 15 0 0 1 30 0 q-3 -7 -15 -8 q-12 1 -15 8z" fill={fill} />;
+  if (style === "short") return <path d="M-15 16 a15 15 0 0 1 30 -1 q-2 -5 -6 -6 q-9 -3 -18 1 q-5 2 -6 6z" fill={fill} />;
+  if (style === "long")
+    return (
+      <>
+        <path d="M-16 14 a16 16 0 0 1 32 0 v26 q-5 3 -9 0 v-18 h-14 v18 q-4 3 -9 0z" fill={fill} />
+        {cap}
+      </>
+    );
+  if (style === "bob")
+    return (
+      <>
+        <path d="M-16 15 a16 16 0 0 1 32 0 v12 q-4 3 -8 0 v-8 h-16 v8 q-4 3 -8 0z" fill={fill} />
+        {cap}
+      </>
+    );
+  if (style === "bun")
+    return (
+      <>
+        <circle cx="0" cy="-2" r="7" fill={fill} />
+        {cap}
+      </>
+    );
+  return (
+    <>
+      <path d="M13 10 q12 6 6 24 q-3 -10 -9 -14z" fill={fill} />
+      {cap}
+    </>
+  );
+}
+
+function Person({ x, scrub, skin, hair, hairStyle = "short", delay, shown, tall = 1 }: { x: number; scrub: string; skin: string; hair: string; hairStyle?: Hair; delay: number; shown: boolean; tall?: number }) {
   const h = 120 * tall;
   return (
     <g className="wy-person" style={{ transitionDelay: `${delay}ms`, opacity: shown ? 1 : 0, transform: shown ? "none" : "translateY(14px)" }}>
       <g transform={`translate(${x} ${150 - h})`}>
+        {hairStyle === "long" || hairStyle === "bob" ? <HairShape style={hairStyle} fill={hair} /> : null}
         <circle cx="0" cy="16" r="14" fill={skin} />
-        <path d={`M-14 12 a14 14 0 0 1 28 0 v-2 a14 10 0 0 0 -28 0z`} fill={hair} />
+        {hairStyle === "long" || hairStyle === "bob" ? (
+          <path d="M-15 17 a15 15 0 0 1 30 0 q-3 -7 -15 -8 q-12 1 -15 8z" fill={hair} />
+        ) : (
+          <HairShape style={hairStyle} fill={hair} />
+        )}
         <path d={`M-20 36 q20 -8 40 0 v${h * 0.42} h-40z`} fill={scrub} />
         <path d="M-6 36 l6 10 l6 -10" fill="none" stroke="#fff" strokeOpacity=".5" strokeWidth="1.5" />
         <rect x="-16" y={36 + h * 0.42} width="13" height={h * 0.4} rx="5" fill={scrub} />
@@ -68,7 +108,7 @@ export function WhoYouSee() {
           <Person x={80} scrub={NAVY} skin={SKIN[0]} hair="#2A1E16" delay={0} shown={shown} tall={1.06} />
           <Person x={150} scrub={NAVY} skin={SKIN[4]} hair="#1B1F24" delay={90} shown={shown} tall={1.02} />
           {nurses.map((n) => (
-            <Person key={n} x={270 + n * 72} scrub={BLACK} skin={SKIN[(n + 1) % SKIN.length]} hair={n % 2 ? "#3B2A20" : "#1B1F24"} delay={220 + n * 90} shown={shown} tall={n % 2 ? 0.94 : 0.98} />
+            <Person key={n} x={270 + n * 72} scrub={BLACK} skin={SKIN[(n + 1) % SKIN.length]} hair={n % 2 ? "#3B2A20" : "#1B1F24"} hairStyle={(["long", "bun", "bob", "ponytail"] as const)[n % 4]} delay={220 + n * 90} shown={shown} tall={n % 2 ? 0.94 : 0.98} />
           ))}
           <text x="115" y="196" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0F1F2E">
             {c.physicians}
