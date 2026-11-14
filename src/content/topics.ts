@@ -26,7 +26,7 @@ import { divisions } from "./divisions";
 import { faqItems } from "./faq";
 import { images } from "./images";
 import { kidsCopy } from "./kids";
-import { womenFaq, womenOptions } from "./subpages";
+import { womenFaq } from "./subpages";
 import { womensHealthDay } from "./womens-day";
 import { site } from "./site";
 
@@ -157,12 +157,6 @@ function womenFaqQA(q: string) {
   return f;
 }
 const womenFaqA = (q: string) => womenFaqQA(q).a;
-/** Approved text of a women's health chooser result, by its option label. */
-function womenResult(label: string) {
-  const o = womenOptions.find((x) => x.label === label);
-  if (!o) throw new Error(`topics.ts: women's option "${label}" missing`);
-  return [o.title, o.p, ...o.facts.map((f) => `${f.k} ${f.v}`)].join(" ");
-}
 const svc = (
   d: { services?: { title: string; desc: string }[] },
   i: number,
@@ -900,75 +894,7 @@ const family: Topic[] = [
     ),
     img: images.services.family[3],
     imgAlt: draft("Family physician talking with a pregnant patient"),
-    glance: {
-      title: draft("What to expect"),
-      p: draft(
-        "Book as soon as you know you are pregnant. If you are new to us, register as well so we can stay your family doctor after the baby arrives.",
-      ),
-      facts: [
-        {
-          k: draft("First visit"),
-          v: draft("Confirm the pregnancy, first tests"),
-        },
-        { k: draft("Bloodwork"), v: draft("Drawn on site") },
-        {
-          k: draft("Referral"),
-          v: approved(
-            womenResult("Planning a pregnancy"),
-            "Referral to obstetrics or midwifery by 12 weeks",
-          ),
-        },
-        { k: draft("After the baby"), v: draft("Well-baby visits here") },
-        {
-          k: draft("Who you see"),
-          v: draft("One of our physicians, with our nurses for testing"),
-        },
-        // A pregnant tester with bad nausea found no warning signs, and search sent "nausea" to drips (round 18).
-        {
-          k: draft("Call us the same day"),
-          v: draft(
-            "If you are being sick and cannot keep fluids down, feel faint, or have bleeding. When we are closed, call Health811 at 811 for advice any time. For heavy bleeding or severe pain, dial 911.",
-          ),
-        },
-      ],
-    },
-    path: {
-      title: draft("Your first trimester with us."),
-      steps: [
-        {
-          n: "1",
-          time: draft("As soon as you know"),
-          t: draft("First visit"),
-          d: draft(
-            "We confirm the pregnancy, go through your health and medications, and answer your questions.",
-          ),
-        },
-        {
-          n: "2",
-          time: draft("Same week"),
-          t: draft("First-trimester tests"),
-          d: draft(
-            "Bloodwork drawn on site and any other tests your doctor orders.",
-          ),
-        },
-        {
-          n: "3",
-          time: draft("By 12 weeks"),
-          t: draft("Referral"),
-          d: draft(
-            "We refer you to obstetrics or midwifery, your choice where it fits, and share your results.",
-          ),
-        },
-        {
-          n: "4",
-          time: draft("Throughout"),
-          t: draft("Still your family doctor"),
-          d: draft(
-            "We stay your family doctor during the pregnancy and see your baby for well-baby visits after.",
-          ),
-        },
-      ],
-    },
+    // "What to expect" and the first-trimester steps live in the Two teams journey; warning signs in When to call us (Nov 2026).
     related: {
       title: draft("Related."),
       items: [
