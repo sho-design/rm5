@@ -2,14 +2,14 @@ import { draft } from "./review";
 
 /*
  * Bloodwork & ECG: "One trip, start to finish" (November 2026). Facts only from bloodPath (content/subpages.ts) and
- * the page's closing band: about ten minutes at the clinic, results reach your doctor in about a week, urgent results
- * are called the same day, follow-up 2 to 3 weeks after the test.
+ * the page's closing band: about ten minutes at the clinic, results reach your doctor in about a week, a follow-up
+ * with your doctor 2 to 3 weeks after the test (critical results flag the clinic right away).
  */
 export const journeyCopy = {
   eyebrow: "The visit",
   title: "About ten minutes, start to finish.",
   alt: draft(
-    "Illustration of one trip through the clinic: from the doctor's room with a requisition, down the hall to the lab chair, then results back to your doctor in about a week and a follow-up 2 to 3 weeks after the test. Urgent results are called the same day.",
+    "Illustration of one trip through the clinic: from the doctor's room with a requisition, down the hall to the lab chair, then results back to your doctor in about a week and a follow-up 2 to 3 weeks after the test. If something is critical, the clinic is flagged right away.",
   ),
   illustration: draft("Illustration. Your own visit may differ."),
   pause: draft("Pause"),
@@ -24,7 +24,6 @@ export const journeyCopy = {
     results: draft("Your doctor"),
     followUp: draft("Follow-up"),
   },
-  urgent: draft("Urgent results are called the same day"),
   stepLabel: (n: number, total: number) => draft(`Step ${n} of ${total}`),
 };
 

@@ -62,16 +62,18 @@ export default function BloodworkPage() {
         titleSize="md"
       />
 
-      {/* The visit and what comes after, as one route; the needle note and breathing circle sit in its header. */}
-      <VisitJourney />
-
-      {/* Reading order: the form your doctor gives you, how to prepare, what happens to the sample, the ECG, then results. */}
+      {/* In the order a patient goes through it: the requisition, getting ready, the visit and its results, the ECG
+          if one is ordered, then what happens to the sample. Questions close the page. */}
       <RequisitionPeek />
 
       <Prepare accent={accent} />
 
-      <TubeLayers />
+      {/* The visit and what comes after, as one route; the needle note and breathing circle sit in its header. */}
+      <VisitJourney />
+
       <EcgExplainer />
+
+      <TubeLayers />
 
       {/* Lab results (its own page until Nov 2026): how results reach you, and getting a copy. */}
       <section id="results" className="scroll-mt-24">

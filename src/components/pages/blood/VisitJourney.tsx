@@ -33,8 +33,8 @@ function stepAt(t: number) {
  * "One trip, start to finish" (Bloodwork & ECG, November 2026). Replaces the plain visit steps. A line drawing of the
  * clinic: a dot leaves the doctor's room with the requisition, goes down the hall to the lab chair while a clock ticks
  * to about ten minutes, then a dashed line carries on through the weeks after (results reach your doctor in about a
- * week, the follow-up 2 to 3 weeks after the test), with a sun-coloured branch for urgent results called the same
- * day. The four steps are written out below and light up with the dot. It plays while on screen (Pause stops it);
+ * week, the follow-up 2 to 3 weeks after the test). Critical results flag the clinic right away (no separate branch, Nov 2026).
+ * The four steps are written out below and light up with the dot. It plays while on screen (Pause stops it);
  * with reduced motion the whole route is shown still. The navy block keeps its own colours in dark mode.
  */
 export function VisitJourney() {
@@ -78,7 +78,6 @@ export function VisitJourney() {
   const active = reduced ? -1 : stepAt(shown);
   const minutes = Math.min(10, Math.round((Math.min(shown, VISIT) / VISIT) * 10));
   const visitDone = reduced || shown >= VISIT;
-  const urgentLit = !reduced && shown >= VISIT && shown < 0.78;
 
   // Colours on navy.
   const LINE = "rgba(255,255,255,.35)";
@@ -165,18 +164,6 @@ export function VisitJourney() {
           <path d={`M${START_X} ${ROUTE_Y} H 400`} stroke="#fff" strokeOpacity=".5" strokeWidth="3" strokeLinecap="round" />
           <path d={`M400 ${ROUTE_Y} H 540`} stroke="#fff" strokeOpacity=".5" strokeWidth="3" strokeLinecap="round" />
           <path d={`M540 ${ROUTE_Y} H ${END_X}`} stroke="#fff" strokeOpacity=".45" strokeWidth="3" strokeDasharray="2 10" strokeLinecap="round" />
-          {/* Urgent branch: from the lab straight to your doctor, the same day. */}
-          <path
-            d={`M410 ${ROUTE_Y - 6} C 470 110, 590 96, 690 ${ROUTE_Y - 14}`}
-            fill="none"
-            stroke={SUN}
-            strokeOpacity={urgentLit ? 1 : 0.45}
-            strokeWidth="2.5"
-            strokeDasharray="6 7"
-          />
-          <text x="560" y="112" fontSize="15" fill={SUN} opacity={urgentLit ? 1 : 0.7}>
-            {c.urgent}
-          </text>
 
           {/* The weeks after: your doctor, then the follow-up. */}
           {[

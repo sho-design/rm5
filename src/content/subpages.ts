@@ -293,8 +293,8 @@ export const bloodOptions: SubChooserItem[] = [
 
 export const bloodPath: PathStep[] = [
   { n: "1", time: "At the visit", t: "Your doctor writes the requisition", d: draft("Or you bring one from your specialist. We check which tests need fasting.") },
-  { n: "2", time: "Same day or booked", t: "Sit down with the technician", d: "Down the hall. Health card checked, arm cleaned, usually one tube or a few. If an ECG is ordered, it is done in the same room right after." },
-  { n: "3", time: "About a week", t: "Results reach your doctor", d: "Urgent results are called the same day. Everything else is reviewed at the follow-up." },
+  { n: "2", time: "Same day or booked", t: "Sit down with the technician", d: draft("Down the hall. Health card checked. If an ECG is ordered, it is done first, in the same room. Then the blood draw: arm cleaned, usually one tube or a few.") },
+  { n: "3", time: "About a week", t: "Results reach your doctor", d: draft("If something is critical, the clinic is flagged right away. Otherwise, you have a follow-up with your doctor in 2 to 3 weeks.") },
   { n: "4", time: draft("2 to 3 weeks"), t: "Every number explained", d: "By phone, portal or in person. What it means and what, if anything, changes." },
 ];
 
@@ -305,7 +305,7 @@ export const bloodFaq: QA[] = [
   },
   {
     q: draft("When can I get my results?"),
-    a: draft("We suggest a follow-up appointment 2 to 3 weeks after your test. If anything urgent comes up, we contact you right away. If you would rather have your results by email, we can send them in about a week, depending on how long the lab takes for your tests."),
+    a: draft("We suggest a follow-up appointment 2 to 3 weeks after your test. If something is critical, the clinic is flagged right away. If you would rather have your results by email, we can send them in about a week, depending on how long the lab takes for your tests."),
   },
   {
     q: "Is it covered?",
