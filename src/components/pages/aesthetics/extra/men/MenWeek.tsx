@@ -29,8 +29,31 @@ export function MenWeek() {
           {c.lead}
         </p>
       </div>
-      <div className="overflow-x-auto rounded-card bg-lilac-tint p-4 md:p-6">
-        <table className="w-full min-w-[620px] border-separate border-spacing-1.5 text-[13px]">
+      <div className="rounded-card bg-lilac-tint p-4 md:p-6">
+        {/* Phones and tablets (round 30: the table scrolled sideways at 360px with no cue, and "Treatment" overflowed its cell):
+            one block per treatment, with a seven-day strip coloured by the key and the day names above it. */}
+        <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:hidden">
+          {c.rows.map((r, ri) => (
+            <li key={r.t} className="flex flex-col gap-2">
+              <span className="text-[15px] font-semibold text-primary">{r.t}</span>
+              <span className="text-[13px] leading-[1.4] text-secondary">{r.note}</span>
+              <ol className="grid grid-cols-7 gap-1" aria-label={r.t}>
+                {r.days.map((s, di) => (
+                  <li key={di} className="flex flex-col items-center gap-1">
+                    <span aria-hidden className="text-[12px] font-semibold text-muted">{c.days[di]}</span>
+                    <span
+                      aria-hidden
+                      className={cn("mn-fill block h-7 w-full rounded-[8px]", cell[s], s === "clear" && "border border-[color:var(--border-default)]")}
+                      style={{ animationDelay: `${ri * 90 + di * 45}ms` }}
+                    />
+                    <span className="sr-only">{`${c.days[di]}: ${c.legend[s]}`}</span>
+                  </li>
+                ))}
+              </ol>
+            </li>
+          ))}
+        </ul>
+        <table className="hidden w-full border-separate border-spacing-1.5 text-[13px] lg:table">
           <caption className="sr-only">{c.title}</caption>
           <thead>
             <tr>

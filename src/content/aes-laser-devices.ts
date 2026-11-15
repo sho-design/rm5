@@ -114,6 +114,8 @@ export const deviceCopy = {
   othersTitle: draft("Our other lasers and devices"),
   allDevices: draft("Compare every device on the laser page"),
   book: draft("Book a laser consult"),
+  // Round 30: pricing was only an FAQ answer on the laser pages.
+  pricing: draft("How pricing works"),
   covered: {
     q: draft("Is it covered by OHIP?"),
     a: draft(
@@ -130,8 +132,8 @@ export const deviceCopy = {
 
 /** Questions for a device page, answered from the device's own facts. */
 export function deviceFaq(d: LaserDevice) {
+  // "What is <device>?" repeated the hero lead word for word (round 30), so the questions start at "Does it hurt?".
   return [
-    { q: draft(`What is ${d.name}?`), a: d.plain },
     { q: draft("Does it hurt?"), a: d.feels },
     { q: draft("Is there downtime?"), a: d.downtime },
     { q: draft("How many visits will I need?"), a: d.sessions },

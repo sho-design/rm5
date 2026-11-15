@@ -21,7 +21,8 @@ export const fastingClockCopy = {
   noWater: draft("Nothing at all, not even water, for these 4 hours."),
   // The hero's own sentence, shown when a fasting draw is booked late in the morning.
   lateMorning: "Fasting tests are best booked before 10am.",
-  allRules: (time: string) => draft(`Every rule for a ${time} appointment`),
+  // "an 8am", "an 11am", "a 9am".
+  allRules: (time: string) => draft(`Every rule for ${/^(8|11)(?!\d)/.test(time) ? "an" : "a"} ${time} appointment`),
   ruleCol: draft("Rule"),
   stopCol: draft("When to stop"),
   clockAlt: (stop: string) => draft(`Clock: ${stop}`),

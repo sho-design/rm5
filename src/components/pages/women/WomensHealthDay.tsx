@@ -13,7 +13,7 @@ const MONTH = ["January", "February", "March", "April", "May", "June", "July", "
 const PAGE_MS = 900;
 
 /** One month page: weekday heads, the days, and the last Sunday lit. */
-function MonthPage({ d, lit }: { d: Date; lit: boolean }) {
+function MonthPage({ d, lit, past = false }: { d: Date; lit: boolean; past?: boolean }) {
   const y = d.getFullYear();
   const m = d.getMonth();
   const first = new Date(y, m, 1).getDay();
@@ -35,8 +35,9 @@ function MonthPage({ d, lit }: { d: Date; lit: boolean }) {
           return (
             <span
               key={i}
-              className={`wd-cell grid aspect-square place-items-center rounded-full ${on ? "wd-on font-bold text-white" : "text-ink/75"} ${on && lit ? "wd-pop" : ""}`}
-              style={on ? { background: "var(--rm-terracotta-deep)" } : undefined}
+              // Lead-in months (already passed) mark their day quietly; only the next day is lit.
+              className={`wd-cell grid aspect-square place-items-center rounded-full ${on ? (past ? "font-bold text-ink" : "wd-on font-bold text-white") : "text-ink/75"} ${on && lit && !past ? "wd-pop" : ""}`}
+              style={on ? { background: past ? "var(--rm-line)" : "var(--rm-terracotta-deep)" } : undefined}
             >
               {n ?? ""}
             </span>
@@ -61,8 +62,14 @@ export function WomensHealthDay() {
   const [seen, setSeen] = useState(false);
   const box = useRef<HTMLDivElement>(null);
 
+  // The flip runs up to the next date, not past it (round 30: showing December and January first, then jumping
+  // back to November, read as if the next day was later). Two earlier months lead in, then it stops on the next.
+  const [lead, setLead] = useState<Date[]>([]);
   useEffect(() => {
-    setDates(nextWomensDays(torontoNow(), 3));
+    const now = torontoNow();
+    const [nx] = nextWomensDays(now, 1);
+    setDates([nx]);
+    setLead(nextWomensDays(new Date(nx.getFullYear(), nx.getMonth() - 2, 1), 2));
   }, []);
 
   useEffect(() => {
@@ -75,11 +82,12 @@ export function WomensHealthDay() {
 
   // Flip forward through the months, then back to the next one.
   useEffect(() => {
-    if (!seen || reduced || dates.length < 2) {
+    if (!seen || reduced || !lead.length) {
       setPage(0);
       return;
     }
-    const order = [...dates.map((_, i) => i), 0];
+    // Negative pages are the lead-in months (-2, -1); 0 is the next women's health day.
+    const order = [...lead.map((_, i) => i - lead.length), 0];
     let i = 0;
     setPage(order[0]);
     const t = window.setInterval(() => {
@@ -88,10 +96,10 @@ export function WomensHealthDay() {
       setPage(order[i]);
     }, PAGE_MS);
     return () => window.clearInterval(t);
-  }, [seen, reduced, dates, run]);
+  }, [seen, reduced, lead, run]);
 
   const next = dates[0] ?? null;
-  const shown = dates[page] ?? next;
+  const shown = (page < 0 ? lead[lead.length + page] : dates[page]) ?? next;
   const nextLabel = next ? `${DAY[next.getDay()]}, ${MON[next.getMonth()]} ${next.getDate()}` : " ";
 
   return (
@@ -135,11 +143,11 @@ export function WomensHealthDay() {
           <div role="img" aria-label={shown ? k.alt(`${MONTH[shown.getMonth()]} ${shown.getFullYear()}`, `${MON[shown.getMonth()]} ${shown.getDate()}`) : c.title} className="min-h-[300px]">
             {shown ? (
               <div key={`${run}-${page}`} className="wd-page">
-                <MonthPage d={shown} lit={!reduced} />
+                <MonthPage d={shown} lit={!reduced} past={page < 0} />
               </div>
             ) : null}
           </div>
-          {!reduced && dates.length > 1 ? (
+          {!reduced && lead.length ? (
             <button
               type="button"
               onClick={() => {

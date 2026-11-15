@@ -32,10 +32,10 @@ export const lineCopy = {
   ageValue: (a: number) => draft(`${a} years old`),
   dueNow: draft("Due now"),
   next: draft("Coming up next"),
-  nextAt: (age: number) => draft(`From ${age}`),
+  nextAt: (from: number, to: number) => draft(`${from} to ${to}`),
   noneNow: draft("Nothing on this list is due at this age. Your doctor checks what fits you at a checkup."),
   noneNext: draft("Nothing further on this list. Your doctor talks through what still makes sense for you."),
-  doneOnce: draft("Once, at 65 or after"),
+  doneOnce: draft("Once from 65, if you have not had one"),
   someoneElse: draft("Checking for someone else? Try Am I due?"),
   illustration: draft("Illustration. Drag the handle or use the arrow keys."),
   alt: draft(

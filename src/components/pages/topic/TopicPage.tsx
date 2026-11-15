@@ -32,6 +32,15 @@ export function TopicPage({ t }: { t: Topic }) {
   const band = { ...t.band, ctaTo: withVisit(t.band.ctaTo, visit) ?? t.band.ctaTo, cta2To: withVisit(t.band.cta2To, visit) };
   const tint = divisionTint[t.division];
   const accent = divisionAccent[t.division];
+  const glance = t.glance ? (
+    <Section className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-12">
+      <div className="flex flex-col gap-3">
+        <Display size="xs">{t.glance.title}</Display>
+        <p className="pretty max-w-[520px] text-[16px] leading-[1.55] text-secondary">{t.glance.p}</p>
+      </div>
+      <FactGrid facts={t.glance.facts} />
+    </Section>
+  ) : null;
   return (
     <>
       <JsonLd
@@ -58,15 +67,7 @@ export function TopicPage({ t }: { t: Topic }) {
         pills={t.pills}
       />
 
-      {t.glance ? (
-        <Section className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-12">
-          <div className="flex flex-col gap-3">
-            <Display size="xs">{t.glance.title}</Display>
-            <p className="pretty max-w-[520px] text-[16px] leading-[1.55] text-secondary">{t.glance.p}</p>
-          </div>
-          <FactGrid facts={t.glance.facts} />
-        </Section>
-      ) : null}
+      {t.glance && !t.glanceAfterCards ? glance : null}
 
       {t.compare ? <RehabCompare current={t.key} /> : null}
 
@@ -102,12 +103,19 @@ export function TopicPage({ t }: { t: Topic }) {
         </Section>
       ) : null}
 
+      {t.glance && t.glanceAfterCards ? glance : null}
+
       {(() => {
         const Extra = aesExtra[t.key] ?? familyExtra[t.key];
         return Extra ? <Extra /> : null;
       })()}
 
-      {t.coverageChooser ? <CoverageChecker options={rehabCoverage} /> : null}
+      {t.coverageChooser ? (
+        <CoverageChecker
+          options={rehabCoverage}
+          initial={t.key === "rehabMva" ? rehabCoverage.findIndex((o) => o.label === "Car accident (MVA)") : 0}
+        />
+      ) : null}
       {t.ladder ? <Ladder rungs={aestheticsLadder} /> : null}
       {/* Home routines live on Skincare we carry (Nov 2026); plans pages point there. */}
       {t.regimens ? (

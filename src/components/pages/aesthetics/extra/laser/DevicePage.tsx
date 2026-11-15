@@ -80,6 +80,8 @@ export function DevicePage({ d }: { d: LaserDevice }) {
         lead={d.plain}
         cta={c.book}
         ctaTo={book}
+        cta2={c.pricing}
+        cta2To={href("aesMenu#pricing")}
         tint={divisionTint.aesthetics}
         accent={divisionAccent.aesthetics}
         img={laser?.img ?? ""}
@@ -203,8 +205,10 @@ export function DevicePage({ d }: { d: LaserDevice }) {
         </SmartLink>
       </Section>
 
+      {/* Same band as the laser page, with its line under the title (round 30: the band here had no body). */}
       <CtaBand
-        title={divisions.aesthetics.footCta ?? c.book}
+        title={laser?.band.title || divisions.aesthetics.footCta || c.book}
+        sub={laser?.band.sub}
         cta={c.book}
         ctaTo={book}
       />

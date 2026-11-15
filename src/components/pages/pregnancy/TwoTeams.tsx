@@ -308,18 +308,20 @@ export function TwoTeams() {
         {/* Phones and tablets: the lanes turn vertical, side by side; each moment is a row. */}
         <div aria-hidden className="flex flex-col lg:hidden">
           <div className="grid grid-cols-[72px_minmax(0,1fr)] gap-x-3 pb-2">
-            <div className="grid grid-cols-3 text-center">
-              {LANES.map((l) => (
-                <span key={l.k} className="mx-auto h-2.5 w-2.5 rounded-full" style={{ background: l.color }} />
-              ))}
-            </div>
+            {/* Round 30: an unlabelled row of three dots sat here; the key to the right names every line,
+                including the dashed one. */}
+            <span />
             <div className="flex flex-wrap gap-x-3 gap-y-1 text-[13px] font-semibold">
               {LANES.map((l) => (
                 <span key={l.k} className="flex items-center gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: l.color }} />
+                  <span className="h-[4px] w-4 rounded-full" style={{ background: l.color }} />
                   {l.label}
                 </span>
               ))}
+              <span className="flex items-center gap-1.5">
+                <span className="w-4" style={{ borderTop: `2.5px dashed ${SKY}` }} />
+                {c.lanes.family}
+              </span>
             </div>
           </div>
           {MOMENTS.map((m, i) => {

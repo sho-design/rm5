@@ -168,7 +168,6 @@ export function EcgExplainer() {
               <button
                 type="button"
                 onClick={() => setPlaying((p) => !p)}
-                aria-pressed={!playing}
                 className="flex min-h-[44px] items-center gap-2 rounded-chip border border-[color:var(--border-default)] bg-[color:var(--bg-page)] px-4 text-[14px] font-semibold"
               >
                 <span aria-hidden>{playing ? "❚❚" : "▶"}</span>

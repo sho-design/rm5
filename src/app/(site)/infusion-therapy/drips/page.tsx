@@ -71,7 +71,8 @@ export default function DripsPage() {
         </div>
         <ShotGrid shots={shots} />
       </Section>
-      <Section>
+      {/* "Build your own drip" in the mega menu lands here (round 30: #build pointed at nothing). */}
+      <Section id="build">
         <div className="flex flex-col items-start justify-between gap-5 rounded-card bg-sun-soft p-6 md:flex-row md:items-center md:p-8">
           <div className="flex flex-col gap-2">
             <Display size="2xs">{c.buildTitle}</Display>

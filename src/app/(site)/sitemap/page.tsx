@@ -26,9 +26,8 @@ function groups(): Group[] {
       label: "Home",
       page: "home",
       links: [
+        // Round 30: "Locations" and "Our team" also sat under About, to the same pages. They stay there only.
         { label: "Book an appointment", page: "book" },
-        { label: "Locations", page: "contact#clinics" },
-        { label: "Our team", page: "team" },
       ],
     },
     ...divisionList.map((d) => {
@@ -52,7 +51,8 @@ function groups(): Group[] {
         { label: "FAQ", page: "faq" },
         ...about.explore.slice(3).filter((l) => l.label !== "FAQ"),
         ...topicsFor("about").map((t) => ({ label: t.page, page: t.key as LinkTarget })),
-        { label: "Uninsured services and fees", page: "billing#fees" },
+        // Same name as the page heading and the About menu (round 30).
+        { label: "Insurance, billing and fees", page: "billing" },
       ],
     },
     {

@@ -10,8 +10,7 @@ import { ContactForm } from "@/components/pages/contact/ContactForm";
 import { HoursLead } from "@/components/pages/contact/HoursLead";
 import { contactCopy } from "@/content/booking";
 import { images } from "@/content/images";
-import { site, thornhillHours } from "@/content/site";
-import { shortRange } from "@/lib/hours";
+import { site } from "@/content/site";
 import { external } from "@/lib/routes";
 import { EmergencyNote } from "@/components/pages/help/EmergencyNote";
 
@@ -81,26 +80,13 @@ export default async function ContactPage() {
               {contactCopy.mapLink} ›
             </a>
           </Photo>
-          <div className="grid grid-cols-1 gap-4 rounded-card-sm border border-border p-5 text-[14px] leading-[1.5] sm:grid-cols-2 md:p-6">
-            <div className="flex flex-col gap-1">
-              <span className="text-[13px] font-semibold text-muted">{contactCopy.hoursTitle}</span>
-              <table className="w-full border-collapse">
-                <tbody>
-                  {thornhillHours.map(([d, h]) => (
-                    <tr key={d}>
-                      <th scope="row" className="py-0.5 pr-3 text-left font-normal text-secondary">
-                        {d}
-                      </th>
-                      <td className="whitespace-nowrap py-0.5 text-right tabular-nums sm:text-left">{shortRange(h)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-[13px] font-semibold text-muted">{contactCopy.gettingHereTitle}</span>
-              <span>{contactCopy.gettingHere}</span>
-            </div>
+          {/* Round 30: the hours were listed here and again under Our clinics below. They stay below only. */}
+          <div className="flex flex-col gap-2 rounded-card-sm border border-border p-5 text-[14px] leading-[1.5] md:p-6">
+            <span className="text-[13px] font-semibold text-muted">{contactCopy.gettingHereTitle}</span>
+            <span>{contactCopy.gettingHere}</span>
+            <SmartLink to="contact#thornhill-hours" className="w-fit pt-1 text-[14px] font-semibold text-link">
+              {contactCopy.hoursTitle} ›
+            </SmartLink>
           </div>
         </div>
       </div>

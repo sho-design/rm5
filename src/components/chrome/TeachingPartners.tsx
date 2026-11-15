@@ -20,7 +20,10 @@ export function TeachingPartners() {
       <div className="flex min-w-0 max-w-full flex-wrap items-center gap-4 md:gap-11">
         <Image src={images.logos.tmu} alt="Toronto Metropolitan University" width={160} height={56} className="h-9 w-auto max-w-[45vw] object-contain md:h-14" />
         <span aria-hidden className="hidden h-10 w-px bg-border sm:block" />
-        <Image src={images.logos.anderson} alt="Anderson College of Health, Business and Technology" width={220} height={34} className="h-6 w-auto max-w-[45vw] object-contain md:h-[34px]" />
+        {/* The Anderson wordmark is dark ink: in dark mode it sits on a white tile (round 30: dark on dark). */}
+        <span className="rm-logo-tile inline-flex rounded-[8px]">
+          <Image src={images.logos.anderson} alt="Anderson College of Health, Business and Technology" width={220} height={34} className="h-6 w-auto max-w-[45vw] object-contain md:h-[34px]" />
+        </span>
       </div>
     </section>
   );

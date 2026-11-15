@@ -187,6 +187,14 @@ export const viFamily = {
     { t: draft("Xét nghiệm máu và điện tâm đồ"), d: draft("Lấy máu ngay tại phòng khám. Xét nghiệm cần nhịn ăn nên đặt trước 10 giờ sáng.") },
     { t: draft("Gia hạn đơn thuốc"), d: draft("Dành cho bệnh nhân hiện tại. Cho chúng tôi hai ngày làm việc.") },
   ],
+  // Round 30: vaccine questions were a dead end in Vietnamese. Same facts as the English vaccines page, then a link.
+  vaccines: {
+    t: draft("Tiêm chủng cho cả gia đình"),
+    d: draft(
+      "Mỗi người cần một lịch hẹn riêng, nên đặt liền nhau cho cả nhà. Vắc xin zona được chi trả từ 65 đến hết 70 tuổi. Đã tiêm ở nước khác? Mang theo mọi giấy tờ tiêm chủng bạn có. Cập nhật thẻ vàng tiêm chủng đôi khi cần thêm thời gian.",
+    ),
+    link: draft("Xem trang tiêm chủng (tiếng Anh)"),
+  },
   stepsTitle: draft("Trở thành bệnh nhân của chúng tôi."),
   steps: [
     { t: draft("Gửi mẫu đăng ký"), d: draft("Trực tuyến (bằng tiếng Anh) hoặc gọi điện và xin nói tiếng Việt.") },

@@ -78,7 +78,6 @@ export function FluYear() {
             <button
               type="button"
               onClick={() => setPlaying((p) => !p)}
-              aria-pressed={!playing}
               className="min-h-[40px] self-end rounded-chip border border-[color:var(--border-default)] bg-white px-4 text-[13px] font-semibold text-ink"
             >
               {playing ? c.pause : c.play}
@@ -87,6 +86,11 @@ export function FluYear() {
           <svg role="img" aria-label={c.alt} viewBox="0 0 260 260" className="fy-art h-auto w-full max-w-[280px]">
             <circle cx="130" cy="130" r={R} fill="none" stroke="#FFFFFF" strokeWidth="26" />
             <circle data-soft cx="130" cy="130" r={R} fill="none" stroke="#E7DEC4" strokeWidth="26" strokeDasharray="1 47.17" opacity=".9" />
+            {/* The rest of the season, November to February, in a paler amber: the shot is still offered after
+                October (round 30: an October-only ring read as "too late" in November). */}
+            {[10, 11, 0, 1].map((m) => (
+              <path key={m} d={arc(m)} fill="none" stroke="#F5C77E" strokeOpacity=".45" strokeWidth="26" />
+            ))}
             <path d={arc(OCT)} fill="none" stroke="#F5C77E" strokeWidth="26" />
             <path className="fy-oct" style={{ animationPlayState: moving ? "running" : "paused" }} d={arc(OCT)} fill="none" stroke="#E0A84A" strokeWidth="26" />
             {c.months.map((m, i) => {

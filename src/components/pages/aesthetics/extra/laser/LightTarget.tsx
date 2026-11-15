@@ -227,7 +227,6 @@ export function LightTarget({ start }: { start?: LaserDeviceKey } = {}) {
             <button
               type="button"
               onClick={() => setPlaying((p) => !p)}
-              aria-pressed={!playing}
               className="flex min-h-[40px] items-center gap-2 self-start rounded-chip border border-border bg-white px-4 text-[14px] font-semibold"
             >
               <span aria-hidden>{playing ? "❚❚" : "▶"}</span>

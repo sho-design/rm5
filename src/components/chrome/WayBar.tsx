@@ -57,6 +57,8 @@ function findSections(): Section[] {
  * the page you are reading, with a progress line and the page's own booking button. The last part opens a
  * list of the page's sections. Scrolling back up, or tabbing into the header, brings the full header back.
  */
+const wayPagesLabel = "Pages";
+
 export function WayBar({
   show,
   active,
@@ -71,6 +73,10 @@ export function WayBar({
   const [sections, setSections] = useState<Section[]>([]);
   const [current, setCurrent] = useState(-1);
   const [open, setOpen] = useState(false);
+  // Keyboard users reach the bar with Tab even while it is tucked away; it slides in while it holds focus
+  // (round 30: it was inert at the top of the page, so only mouse users had the section list).
+  const [focusIn, setFocusIn] = useState(false);
+  const shown = show || focusIn;
   const bar = useRef<HTMLDivElement>(null);
   const progress = useRef<HTMLDivElement>(null);
   const listId = useId();
@@ -124,10 +130,15 @@ export function WayBar({
     let raf = 0;
     const update = () => {
       raf = 0;
-      const line = 120;
+      // A section counts once its top passes about a third of the way down the screen (round 30: at a fixed
+      // 120px the label lagged one section behind while the next one filled the screen). At the very bottom,
+      // the last section that is on screen wins, since a short last section never reaches the line.
+      const line = Math.max(120, window.innerHeight * 0.35);
+      const atEnd = window.scrollY >= document.documentElement.scrollHeight - window.innerHeight - 4;
       let i = -1;
       sections.forEach((s, n) => {
-        if (s.el.getBoundingClientRect().top < line) i = n;
+        const top = s.el.getBoundingClientRect().top;
+        if (top < line || (atEnd && top < window.innerHeight)) i = n;
       });
       setCurrent(i);
       const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -149,8 +160,8 @@ export function WayBar({
 
   // The list closes on Escape, on a tap outside, and when the bar hides.
   useEffect(() => {
-    if (!show) setOpen(false);
-  }, [show]);
+    if (!shown) setOpen(false);
+  }, [shown]);
   useEffect(() => {
     if (!open) return;
     const key = (e: KeyboardEvent) => {
@@ -206,11 +217,13 @@ export function WayBar({
   return (
     <div
       ref={bar}
-      inert={!show}
-      aria-hidden={!show}
+      onFocus={() => setFocusIn(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocusIn(false);
+      }}
       className={cn(
         "rm-waybar fixed inset-x-0 top-2 z-40 px-2 transition-[opacity,transform] duration-300 ease-[cubic-bezier(.2,.8,.2,1)] motion-reduce:transition-opacity md:px-gutter",
-        show
+        shown
           ? "translate-y-0 opacity-100"
           : "pointer-events-none -translate-y-3 opacity-0",
       )}
@@ -311,6 +324,20 @@ export function WayBar({
                     {page}
                   </button>
                 )}
+              </>
+            ) : active && siblings.length ? (
+              // A division's own landing page has no page name, but the other pages are still one hover away
+              // (round 30: from Medical Aesthetics a tester could not reach Laser from the bar).
+              <>
+                <span aria-hidden className="text-muted">
+                  ›
+                </span>
+                <WayMenu
+                  label={<span className="truncate">{wayPagesLabel}</span>}
+                  items={siblings}
+                  tint={divisionTint[active]}
+                  buttonClassName="h-10 rounded-chip px-2 font-semibold hover:bg-card"
+                />
               </>
             ) : null}
             {sections.length ? (

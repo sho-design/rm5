@@ -49,6 +49,7 @@ export const searchAliases: Record<string, string> = {
   "billing#fees": "price prices cost costs fee fees uninsured sick note note form forms letter charge charges disability form insurance form employer",
   forms: "forms patient forms records medical records transfer chart",
   "contact#clinics": "gio mo cua horario maple waitlist hours directions address parking map walmart thornhill maple vaughan woodbridge step free entrance bus transit open closed",
+  "about#story": "values value mission principles what we stand for beliefs",
   contact: "feedback complaint concern phone call email fax contact message",
   careers: "job jobs career careers hiring work nurse rn apply employment",
   standards: "complication complications side effect side effects safety safe emergency kit something went wrong reaction student students placement placements learner learners teaching nursing student supervision complaint complaints",
@@ -187,5 +188,30 @@ export const searchExtras: SearchDoc[] = [
     sub: draft("Health811 at 811, any time, day or night"),
     page: "https://health811.ontario.ca",
     keys: "after hours afterhours night evening weekend urgent advice nurse line 811 health811 telehealth",
+    weight: 0.7,
+  },
+  // Round 30: "hours" put the external Health811 line first and "Our clinics" 7th.
+  {
+    kind: draft("Location"),
+    label: draft("Our clinics and hours"),
+    sub: draft("Thornhill hours, address and directions"),
+    page: "contact#clinics",
+    keys: "hours opening hours open closed when are you open times",
+    weight: 1.3,
+  },
+  // Round 30: "what to bring", "values" and "by concern" found nothing useful.
+  {
+    kind: draft("Rehab & Recovery"),
+    label: draft("What to bring to your first rehab visit"),
+    sub: draft("Clothing, benefits card, claim numbers and what happens"),
+    page: "rehabBring",
+    keys: "what to bring bring first visit first appointment clothing wear what to wear physio chiro massage",
+  },
+  {
+    kind: draft("Infusion Therapy"),
+    label: draft("Find a drip by concern"),
+    sub: draft("Start from what you want help with"),
+    page: "infusion#concern-route",
+    keys: "by concern concern concerns which drip choose a drip help me choose",
   },
 ];

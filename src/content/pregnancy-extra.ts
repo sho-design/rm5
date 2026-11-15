@@ -42,7 +42,7 @@ export const callCopy = {
     { label: draft("Heavy bleeding"), tier: 2 },
     { label: draft("Severe pain"), tier: 2 },
   ],
-  matched: (chip: string, tier: string) => draft(`${chip}: ${tier}.`),
+  matched: (chip: string, tier: string) => draft(`${chip}: ${tier}`),
 };
 
 /**
@@ -75,7 +75,8 @@ export const teamsCopy = {
   findBody: draft(
     "Book as soon as you know you are pregnant. If you are new to us, register as well so we can stay your family doctor after the baby arrives.",
   ),
-  firstTime: draft("As soon as you know"),
+  // "As soon as you know" next to "Day one" read as two separate steps (round 30).
+  firstTime: draft("Soon after"),
   firstTitle: draft("First visit"),
   firstBody: draft("We confirm the pregnancy, go through your health and medications, and answer your questions."),
   testsTime: draft("Same week"),

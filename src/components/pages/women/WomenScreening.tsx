@@ -207,7 +207,7 @@ export function WomenScreening() {
               <div className="sl-card flex flex-col gap-1 rounded-card p-4" style={{ background: next.tint, borderLeft: `4px solid ${next.color}` }}>
                 <span className="flex items-baseline justify-between gap-3">
                   <span className="text-[16px] font-semibold text-ink">{next.card.t}</span>
-                  <span className="text-[13px] text-ink/70">{next.every ? c.nextAt(next.from) : next.card.meta}</span>
+                  <span className="text-[13px] text-ink/70">{next.every ? c.nextAt(next.from, next.to) : next.card.meta}</span>
                 </span>
                 <p className="pretty text-[14px] leading-[1.5] text-ink/80">{next.card.d}</p>
               </div>

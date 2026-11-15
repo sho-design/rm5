@@ -54,7 +54,11 @@ export function ConsentBanner({ enabled }: { enabled: boolean }) {
     const onFocus = (e: FocusEvent) => {
       const el = e.target as HTMLElement | null;
       if (!el || !box.current || box.current.contains(el)) return;
+      // Route changes focus <main> and section jumps focus whole sections: scrolling those would
+      // throw the reader to the bottom of the page. Only nudge small controls clear of the banner.
+      if (el.id === "main" || el.tabIndex === -1) return;
       const r = el.getBoundingClientRect();
+      if (r.height > window.innerHeight / 2) return;
       const top = box.current.getBoundingClientRect().top;
       if (r.bottom > top - 8 && r.top < window.innerHeight) window.scrollBy({ top: r.bottom - top + 16 });
     };

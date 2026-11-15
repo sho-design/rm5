@@ -26,7 +26,7 @@ export default function ViRegisterPage() {
         title={c.h1}
         lead={c.lead}
         cta={c.cta}
-        ctaTo={oceanRegisterUrl ?? routes.register}
+        ctaTo={oceanRegisterUrl ?? `${routes.register}?lang=vi`}
         cta2={c.bandCta}
         cta2To={site.phoneHref}
         coverage={viChrome.formsNote}

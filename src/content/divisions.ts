@@ -175,7 +175,7 @@ export const divisions: Record<NavKey, Division> = {
     book: [
       { label: "Book a consult", page: bookFor("infusion", "consult") },
       { label: "Iron assessment", page: bookFor("infusion", "iron") },
-      { label: "Build your own drip", page: "/infusion-therapy#build" },
+      { label: "Build your own drip", page: "drips#build" },
       { label: "Memberships", page: "/infusion-therapy/pricing#memberships" },
     ],
     more: [
@@ -260,7 +260,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Massage therapy", page: "rehabMassage" },
       { label: "Kinesiology", page: "rehabKines" },
       // One page for car accidents and WSIB work injuries (Nov 2026).
-      { label: draft("Car accident or work injury"), page: "rehabMva" },
+      { label: draft("Car accident or workplace injury"), page: "rehabMva" },
     ],
     book: [
       { label: "Book a session", page: bookFor("rehab") },
@@ -329,7 +329,7 @@ export const divisions: Record<NavKey, Division> = {
       { label: "Team", icon: "team", page: "team" },
       { label: "Clinics", icon: "clinic", page: "contact#clinics" },
       { label: "FAQ", icon: "faq", page: "faq" },
-      { label: draft("Values"), icon: "story", page: "about#story" },
+      { label: draft("What we stand for"), icon: "story", page: "about#story" },
       { label: "Standards", icon: "standards", page: "standards" },
       { label: "Careers", icon: "careers", page: "careers" },
     ],

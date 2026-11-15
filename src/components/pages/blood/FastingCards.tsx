@@ -134,9 +134,10 @@ export function FastingCards() {
               <button
                 type="button"
                 onClick={() => setSlot(TIMES[Math.max(0, TIMES.indexOf(slot) - 1)])}
-                disabled={slot === TIMES[0]}
+                // aria-disabled, not disabled: a disabled button drops keyboard focus to the page (round 30).
+                aria-disabled={slot === TIMES[0]}
                 aria-label={draft("Earlier")}
-                className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-[1.5px] border-ink bg-white text-[22px] font-semibold text-ink transition-opacity disabled:opacity-30"
+                className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-[1.5px] border-ink bg-white text-[22px] font-semibold text-ink transition-opacity aria-disabled:opacity-30"
               >
                 <span aria-hidden>−</span>
               </button>
@@ -158,9 +159,9 @@ export function FastingCards() {
               <button
                 type="button"
                 onClick={() => setSlot(TIMES[Math.min(TIMES.length - 1, TIMES.indexOf(slot) + 1)])}
-                disabled={slot === TIMES[TIMES.length - 1]}
+                aria-disabled={slot === TIMES[TIMES.length - 1]}
                 aria-label={draft("Later")}
-                className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-[1.5px] border-ink bg-white text-[22px] font-semibold text-ink transition-opacity disabled:opacity-30"
+                className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-[1.5px] border-ink bg-white text-[22px] font-semibold text-ink transition-opacity aria-disabled:opacity-30"
               >
                 <span aria-hidden>+</span>
               </button>
@@ -279,11 +280,12 @@ export function FastingCards() {
         </figure>
       </div>
 
-      {/* Every rule for this appointment time, as text: the four rules stay readable without the dial. */}
-      <div className="overflow-x-auto rounded-card border border-border">
-        <table className="w-full min-w-[480px] text-left text-[14px]">
+      {/* Every rule for this appointment time, as text: the four rules stay readable without the dial. Phones stack
+          each rule over its stop time (round 30: at 360px the "When to stop" column was cut off). */}
+      <div className="overflow-hidden rounded-card border border-border">
+        <table className="w-full text-left text-[14px]">
           <caption className="bg-card px-5 py-3 text-left text-[14px] font-semibold">{k.allRules(clock(slot))}</caption>
-          <thead className="text-[13px] text-muted">
+          <thead className="text-[13px] text-muted max-sm:sr-only">
             <tr className="border-t border-border">
               <th scope="col" className="px-5 py-2.5 font-semibold">
                 {k.ruleCol}
@@ -295,12 +297,15 @@ export function FastingCards() {
           </thead>
           <tbody>
             {c.fasting.map((x, i) => (
-              <tr key={x.k} className={cn("border-t border-border align-top", i === rule && "bg-[color:var(--rm-sky-soft)]")}>
-                <th scope="row" className="px-5 py-3 font-semibold">
+              <tr key={x.k} className={cn("border-t border-border align-top max-sm:flex max-sm:flex-col max-sm:pb-2", i === rule && "bg-[color:var(--rm-sky-soft)]")}>
+                <th scope="row" className="px-5 py-3 font-semibold max-sm:px-4 max-sm:pb-1">
                   {x.t}
                   <span className="block pt-0.5 text-[13px] font-normal text-secondary">{x.rule}</span>
                 </th>
-                <td className="pretty px-5 py-3">{stopText(x)}</td>
+                <td className="pretty px-5 py-3 max-sm:px-4 max-sm:pt-0">
+                  <span className="block text-[13px] text-muted sm:hidden">{k.stopCol}</span>
+                  {stopText(x)}
+                </td>
               </tr>
             ))}
           </tbody>

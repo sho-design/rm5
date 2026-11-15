@@ -12,6 +12,16 @@ export function InfusionHero() {
     <section className="relative mx-3 mt-4 flex min-h-[420px] items-end overflow-hidden rounded-[22px] bg-ink md:mx-gutter md:mt-8 md:min-h-[620px] md:rounded-block">
       <div className="absolute inset-0">
         <Photo src={divisions.infusion.img} alt={ip.hero.alt} radius="none" protect className="h-full w-full" priority sizes="100vw" />
+        {/* Round 30: on this light photo the white words sat on the woman's face and were barely readable. A deeper
+            ink scrim under the text block, clearing toward the top so the photo still shows. */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, color-mix(in srgb, var(--rm-ink) 90%, transparent) 0%, color-mix(in srgb, var(--rm-ink) 72%, transparent) 45%, color-mix(in srgb, var(--rm-ink) 20%, transparent) 80%, transparent 100%)",
+          }}
+        />
       </div>
       <div className="relative flex w-full flex-col gap-4 p-[18px] text-white md:p-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
         <div className="flex max-w-[760px] flex-col gap-3 md:gap-5">

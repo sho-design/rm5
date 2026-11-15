@@ -306,7 +306,17 @@ export function SkinRegimens({
                   <span className="tabular-nums">${total}</span>
                 </span>
                 <span className="text-[13px] text-secondary">
-                  {c.regPairs}: {r.pairs}
+                  {c.regPairs}:{" "}
+                  {r.pairsTo
+                    ? r.pairsTo.map((x, i) => (
+                        <span key={x.to}>
+                          {i ? ", " : null}
+                          <SmartLink to={x.to} className="font-semibold text-link underline-offset-2 hover:underline">
+                            {x.t}
+                          </SmartLink>
+                        </span>
+                      ))
+                    : r.pairs}
                 </span>
               </div>
             </li>

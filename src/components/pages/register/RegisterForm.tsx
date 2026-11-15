@@ -100,6 +100,8 @@ export function RegisterForm() {
     if (q.get("for") === "someone") setForWhom(1);
     // From the Maple list: start on Maple (a tester nearly registered at Thornhill by default).
     if (q.get("clinic") === "maple") setClinic(1);
+    // From a Vietnamese page (?lang=vi, as booking does): Tiếng Việt is already chosen (round 30).
+    if (q.get("lang") === "vi") setLang(registerLanguages.indexOf("Tiếng Việt"));
   }, []);
 
   const toggle = (r: Relation) => {

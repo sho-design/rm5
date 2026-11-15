@@ -62,7 +62,7 @@ export const healthNotes: HealthNote[] = [
       { type: "h", text: "When to book" },
       {
         type: "p",
-        text: "Vaccine typically arrives in October. Protection takes about two weeks to build, so booking in October or November covers the peak season.",
+        text: "Vaccine typically arrives in October. Your body takes about two weeks to respond to the shot, so many people book in October or November, before the busiest weeks.",
       },
       { type: "h", text: "What to expect" },
       {

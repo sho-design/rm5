@@ -466,11 +466,12 @@
 /* Tap targets on phones (design review, Nov 2026): footer links were 21px tall and the top bar links 18 to 26px.
    Footer links become 36px rows (44px felt loose; still above the 24px minimum); top bar links fill the bar. */
 @media (max-width: 767px) {
-  #footer a, #footer nav button {
+  /* :not(.hidden): a link hidden on phones (the referral link while closed) must stay hidden (round 30). */
+  #footer a:not(.hidden), #footer nav button:not(.hidden) {
     display: flex; align-items: center; min-height: 36px;
   }
   #footer nav .flex-col { row-gap: 0; }
-  [aria-label="Clinic status and display settings"] a { display: flex; align-items: center; min-height: 38px; }
+  [aria-label="Clinic status and display settings"] a:not(.hidden) { display: flex; align-items: center; min-height: 38px; }
 }
 /* Breadcrumb links in eyebrows reach the 24px minimum target on every screen. */
 .eyebrow a { display: inline-block; padding-block: 4px; }
@@ -502,6 +503,21 @@
   border-color: var(--action-primary-bg);
 }
 :root[data-theme="dark"] .rm-ink-surface { background-color: var(--surface-raised); }
+:root[data-theme="dark"] .bg-ink.text-white:not(.rm-ink-surface) [class*="text-white"] { color: inherit; }
+/* Fixed ink text (text-ink, text-ink-2, text-ink/70) follows the semantic text colours in dark mode: light on the
+   navy page and dark cards, ink again inside the pale surfaces above, which restore the light tokens (round 30:
+   the 911 panel, team cards and benefit lists were ink on navy). */
+:root[data-theme="dark"] .text-ink { color: var(--text-primary); }
+:root[data-theme="dark"] .text-ink-2, :root[data-theme="dark"] [class*="text-ink/"] { color: var(--text-secondary); }
+:root[data-theme="dark"] .text-ink-3 { color: var(--text-muted); }
+/* Inverse panels (contact tiles, careers and skincare bands) stay dark in dark mode: their words are drawn in
+   white and sun, which vanished when the inverse surface flipped to white (round 30). */
+:root[data-theme="dark"] .bg-inverse {
+  --text-on-inverse: #FFFFFF;
+  --text-on-inverse-muted: rgba(255, 255, 255, .72);
+  background-color: #1C3146;
+  color: #FFFFFF;
+}
 :root[data-theme="dark"] .border-ink.text-ink:not(.bg-white),
 :root[data-theme="dark"] .bg-page.text-ink,
 :root[data-theme="dark"] .bg-card.text-ink { color: var(--text-primary); }
@@ -510,7 +526,14 @@
 /* Dark theme: the illustrated explainers (any section holding a role="img" drawing) are drawn for paper, with
    ink lines and pale tints. In dark mode each becomes a light card on the navy page, with the light tokens
    restored inside it, instead of losing its words and lines. */
-:root[data-theme="dark"] main section:is(:has([role="img"]), .rm-paper) {
+/* Dark theme, pale surfaces (round 30: About cards, the contact tiles, tinted heroes and bands measured 1.1:1).
+   Fixed tints, white cards and sun fills keep their paper colours in dark mode, so the light text tokens are
+   restored inside them, the same way as the explainer cards below. White chips and inputs drawn with the
+   semantic text colour turn into dark cards instead, so a selected (white) chip still stands out. The hex tints
+   (content/divisions.ts `tints`, set inline on heroes, choosers and bands) are matched by their inline style. */
+:root[data-theme="dark"] .bg-white:is(.text-primary, .text-secondary, .text-muted) { background-color: var(--surface-card); }
+:root[data-theme="dark"] :is(.bg-white:not(.text-primary, .text-secondary, .text-muted), .bg-paper, .bg-paper-2, .bg-canvas, .bg-sky-soft, .bg-sun-soft, .bg-sun-tint, .bg-sun, .bg-sage-tint, .bg-lilac-tint, .bg-terracotta-tint, [style*="#EEF5FC" i], [style*="#FFF3C4" i], [style*="#E6F4EA" i], [style*="#FDE8E4" i], [style*="#EEE9FA" i], [style*="#F5F8FB" i], [style*="#F3ECF8" i], [style*="background:#fff" i], [style*="background:var(--rm-paper" i], [style*="background:var(--rm-sky-soft)" i], [style*="background:var(--rm-sun-soft)" i], [style*="background:var(--rm-sun-tint)" i], [style*="background:var(--rm-sage-tint)" i], [style*="background:var(--rm-lilac-tint)" i], [style*="background:var(--rm-terracotta-tint)" i], .bg-white\/60, .bg-white\/70, .bg-white\/75, .bg-white\/80, .bg-white\/85, .bg-white\/90, .bg-white\/92, .bg-white\/95, [style*="%, white)" i], [style*="#FFE58A" i]),
+:root[data-theme="dark"] main section:is(:has([role="img"]), .rm-paper):not(.bg-inverse) {
   --bg-page: var(--rm-paper);
   --surface-card: var(--rm-paper-2);
   --surface-raised: var(--rm-paper);
@@ -533,6 +556,8 @@
   --rm-amber-text: color-mix(in srgb, var(--rm-amber-deep) 70%, var(--rm-ink));
   --rm-terracotta-text: color-mix(in srgb, var(--rm-terracotta-deep) 70%, var(--rm-ink));
   color: var(--text-primary);
+}
+:root[data-theme="dark"] main section:is(:has([role="img"]), .rm-paper):not(.bg-inverse) {
   background: var(--bg-page);
   border-radius: 28px;
   margin: 48px 12px 0;
@@ -547,3 +572,6 @@
   border-color: var(--rm-ink);
 }
 :root[data-theme="dark"] main section:is(:has([role="img"]), .rm-paper) .border-ink.text-ink:not(.bg-white) { color: var(--rm-ink); border-color: var(--rm-ink); }
+
+/* Partner logos drawn in dark ink get a white tile in dark mode (footer teaching partners). */
+:root[data-theme="dark"] .rm-logo-tile { background: #FFFFFF; padding: 6px 10px; }

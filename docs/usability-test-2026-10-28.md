@@ -1366,3 +1366,33 @@ Fixed after the round:
 - Vietnamese page row scrolls the current page into view; program links have unique names; the event booking reason includes the year; "Shldr" spelled out.
 
 Not changed, for the clinic: Radiesse is not described on /medical-aesthetics/injectables and the menu does not say who injects it; /medical-aesthetics/pricing "From $150 / $350" and "Microneedling" (open item); the For physicians card's "Epidural, facet and medial branch blocks" with no fluoroscopy at the clinic; "Dial 911" stays plain text by clinic choice; "A longer first appointment" wording with a 30 minute visit.
+
+## Round 30 (2026-11-15): 10 personas on the new explainers, Sunday about 6:30am (clinic closed, opens 8am)
+
+Pairs: bloodwork and booking (Android 360px, keyboard at 1440px), pregnancy and women's health (phone, desktop dark mode), vaccines and families (Android 360px, desktop at the largest text size), aesthetics and laser (desktop, Android 360px), navigation and About (desktop, iPhone in dark mode). No console or page errors, no 4xx or 5xx, and no contradictions with clinic facts on address, hours, Maple status, iron, ECG order, results timing or shingles funding. Ease ranged from 3/7 (dark mode on About) to 6/7.
+
+Fixed after the round:
+- Dark mode: pale tinted cards, white chips, heroes and bands kept their light colours while their words turned white (about 1.1:1 on About, the contact tiles and chips, the women's health hero, the 911 panel). Pale surfaces now keep ink text in dark mode, white chips become dark cards, inverse panels stay dark, and fixed ink text follows the theme. A contrast sweep of all 87 pages at 390px in dark mode now finds nothing under 3:1. The Anderson College logo sits on a white tile in dark mode.
+- Phone top bar while closed: the referral link showed through a tap-target rule, cutting the status to "O.." and running "Dial 911" into "For referring doctors". It now reads "Opens today at 8am | Dial 911 | Tiếng Việt".
+- Following a link on a phone with the consent banner unanswered landed at the bottom of the new page. The banner no longer scrolls to whole-page focus targets.
+- Booking: each day was capped at 12 times, which hid Tuesday after 7:40pm and Sunday after 12:40pm. Every open 20-minute start up to closing now shows. Times read "8am" and "8:40pm". Aesthetics consults now say "Complimentary consult" on the review, not "Uninsured fee".
+- When to call (pregnancy): "Bleeding" said "Call us the same day" while the clinic was closed. It now points to Health811 while we are closed. The double full stop in the spoken line is gone.
+- Swim lanes on phones: the unlabelled dot row is gone, the key names the dashed line ("Still your family doctor"), and "As soon as you know" after "Day one" is now "Soon after".
+- Women's health: the calendar flips up to the next date instead of showing December and January first; the Pap card reads "25 to 69"; bone density reads "Once from 65, if you have not had one".
+- Bloodwork: the "Every rule" table stacks on phones (the "When to stop" column was cut off); "a 8am" is now "an 8am"; the Earlier and Later buttons keep keyboard focus at either end; the walk-in answer no longer reads as a contradiction.
+- Vaccines: "Protects against pneumococcal infection" and "Protection takes about two weeks to build" removed (protection claims); shingles reads "65 up to and including 70"; the flu ring shades November to February as the rest of the season.
+- Slim bar: the section label switches when a section fills the screen, not one section late; keyboard users can Tab to it; division landing pages get a "Pages" menu.
+- Pause buttons no longer announce "pressed" while their label changes to Play.
+- Aesthetics: the men's busy-week grid stacks on phones; duplicate "Individual results vary." removed; the after-care eyebrow is "Around your visit"; Laser and device pages link to "How pricing works"; the PicoSure end band has its line; the "What is PicoSure?" FAQ that repeated the hero is gone; skincare pairings are links with the real program names; hero cards no longer leave a 150px gap above the buttons. The infusion hero has a scrim so its words read over the photo.
+- Navigation and About: "Build your own drip" lands on the build section; search finds "what to bring", "values" and "by concern", and "hours" puts Our clinics first; menu labels match page headings; sitemap duplicates removed; the fees page no longer points to itself, and the infusion card no longer starts with "No."; the accident page's cost chooser opens on car accident; "Bring these" lists things to bring, before "Between visits"; the Thornhill hours show once on Contact; Maple no longer repeats Thornhill's parking and transit copy.
+- Vietnamese: register links carry the Vietnamese language choice into the form, and the Vietnamese family medicine page has a vaccines card linking to the English page.
+
+Not changed, for the clinic:
+- Bloodwork timing: the page says "About ten minutes, start to finish" while an ECG "takes about 20 minutes". Someone having both cannot tell how long the visit is.
+- Skincare routines say "HST extra"; the aesthetics pricing answer says prices include HST.
+- "Both physicians speak Vietnamese" and "Preceptor: Lab Manager" are not in the clinic facts.
+- No date of birth field in booking (two testers looked for one). Likely intended for privacy; confirm.
+- Treatments "Prices before you decide" has no numbers, and /about/standards#photos repeats "no patient photos" three times without saying whether examples are shown at a consult.
+- New draft wording this round needs approval: complimentary consult line, flu season line, walk-in answer order, Maple access line, rehab "Bring these" notes, Vietnamese vaccines card.
+
+Left for a later round: illustration labels are small on phones (journey, family and record drawings), the tube captions sit partly behind the cap, the women's day and fasting dials push their answer below the fold on phones, and the men's aesthetics page carries two FAQ blocks back to back.

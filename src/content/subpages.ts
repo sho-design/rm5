@@ -301,7 +301,8 @@ export const bloodPath: PathStep[] = [
 export const bloodFaq: QA[] = [
   {
     q: draft("Do I need an appointment?"),
-    a: draft("Walk-ins with a requisition are always welcome. No requisition yet? Book a doctor visit first. Please call us first at 905-709-3222 so we know you are coming and can put you on the schedule. Booking ahead keeps your wait shorter and lets our technicians get ready for you."),
+    // Round 30: "always welcome" then "please call us first" read as a contradiction; same facts, in order.
+    a: draft("Booking is best, and walk-ins with a requisition are welcome too. If you are walking in, please call us first at 905-709-3222 so we know you are coming and can put you on the schedule. Booking ahead keeps your wait shorter and lets our technicians get ready for you. No requisition yet? Book a doctor visit first."),
   },
   {
     q: draft("When can I get my results?"),

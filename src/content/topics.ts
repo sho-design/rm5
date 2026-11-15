@@ -66,6 +66,8 @@ export interface Topic {
   imgAlt: string;
   pills?: string[];
   glance?: { title: string; p: string; facts: Fact[] };
+  /** Show the glance box after the cards (a "between visits" box that should follow what to bring, round 30). */
+  glanceAfterCards?: boolean;
   cards?: { title: string; sub?: string; items: TopicCard[] };
   benefits?: { title: string; items: Benefit[] };
   /** Show the rehab "what will I pay?" coverage chooser. */
@@ -455,6 +457,9 @@ const aesthetics: Topic[] = [
       "Planned after a consult at Restoration Medical in Thornhill. Individual results vary.",
     ),
     ...aesHeroFor("laser"),
+    // Round 30: pricing was only an FAQ answer here; the treatments page has the pricing section.
+    cta2: draft("How pricing works"),
+    cta2To: "aesMenu#pricing",
     img: images.services.aesthetics[2],
     imgAlt: draft("Treatment room prepared for a laser consult"),
     cards: { title: A.chooser.title, items: [asCard(result(A, 4))] },
@@ -501,6 +506,8 @@ const aesthetics: Topic[] = [
     lead: AD.blurb ?? "",
     description: fit(AD.blurb ?? ""),
     ...aesHero,
+    // The lead (the division blurb) already ends "Individual results vary."; the coverage line said it again (round 30).
+    coverage: undefined,
     img: images.aesMen,
     imgAlt: draft("A relaxed man sitting in the clinic lounge"),
     cards: {
@@ -759,15 +766,18 @@ const rehab: Topic[] = [
     cards: {
       title: draft("Bring these."),
       items: [
-        { t: "Insurance card", d: cov(0).p },
-        { t: "Claim number, insurer", d: cov(1).p },
-        { t: "Surgical report and protocol", d: result(R, 1).p },
+        // Round 30: these notes were billing copy, and the clothing card repeated its own title. Each note now
+        // says what the thing is for.
+        { t: "Insurance card", d: draft("Your extended health card, so we can bill your plan directly at the desk.") },
+        { t: "Claim number, insurer", d: draft("For a car accident or a WSIB claim. No claim number yet is fine, we can start without one.") },
+        { t: "Surgical report and protocol", d: draft("If you had surgery, the report and any rehab protocol from your surgeon.") },
         {
           t: draft("Clothing you can move in"),
-          d: dq("rehab", "What should I wear?").a,
+          d: dq("rehab", "What should I wear?").a.replace(/^Clothing you can move in\.\s*/, ""),
         },
       ],
     },
+    glanceAfterCards: true,
     glance: {
       title: draft("Between visits"),
       p: draft(`Questions about your program? Call ${site.phone}.`),
@@ -1050,13 +1060,15 @@ export const billingTopic: Topic = {
         },
         {
           t: RD.label,
-          d: fq("Is rehab covered?").a,
+          // This card sits on the fees page itself (round 30), so the FAQ's "on our fees page" points down instead.
+          d: fq("Is rehab covered?").a.replace("Self-pay rates are on our fees page and at the desk.", draft("Self-pay rates are in the fees section below.")),
           link: draft("Insurance and direct billing"),
           page: "rehabBilling",
         },
         {
           t: divisions.infusion.label,
-          d: fq("Are drips covered by OHIP?").a,
+          // The FAQ answer opens with "No." to its question; as a card it reads as a statement (round 30).
+          d: fq("Are drips covered by OHIP?").a.replace(/^No\.\s*/, ""),
           link: divisions.infusion.label,
           page: "infusionPricing",
         },

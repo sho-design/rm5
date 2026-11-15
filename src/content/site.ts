@@ -73,8 +73,8 @@ export const locations: Location[] = [
     name: "Maple",
     address: "2620 Rutherford Rd, Unit 105 to 107, Maple, ON L4K 0H1",
     addressLines: ["2620 Rutherford Rd, Unit 105 to 107", "Maple, ON L4K 0H1"],
-    access:
-      "Wheelchair accessible entryways, hallways, restrooms and facilities. Free on-site parking. Near major bus routes. Family-friendly waiting areas.",
+    // Round 30: Maple repeated the Thornhill access copy for a clinic that is not open. No Maple facts yet.
+    access: draft("We will share access, parking and transit details before Maple opens."),
     map: external.mapleMapsShort,
     img: images.heroFamilyPark,
     soon: true,

@@ -67,7 +67,8 @@ export function fmtTime(t: number): string {
   const total = Math.round(t * 60);
   const hh = Math.floor(total / 60);
   const mm = String(total % 60).padStart(2, "0");
-  return `${((hh + 11) % 12) + 1}:${mm} ${hh < 12 ? "am" : "pm"}`;
+  // House style: "8am", "8:40pm".
+  return `${((hh + 11) % 12) + 1}${mm === "00" ? "" : `:${mm}`}${hh < 12 ? "am" : "pm"}`;
 }
 
 export interface BookingDay {
@@ -116,9 +117,8 @@ export function bookingDays(now = torontoNow(), count = 7): BookingDay[] {
     const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
     const h = openingHours[d.getDay()];
     let slots = h
-      ? slotTimes(h[0], h[1])
-          .filter((_, j) => (j * 7 + i * 3) % 5 !== 1)
-          .slice(0, 12)
+      ? // Every open 20-minute start to closing (round 30: a cap of 12 hid Tuesday evenings and Sunday after 12:40pm).
+        slotTimes(h[0], h[1]).filter((_, j) => (j * 7 + i * 3) % 5 !== 1)
       : [];
     if (i === 0) {
       slots = slots.filter((t) => t >= nowHours + 1);

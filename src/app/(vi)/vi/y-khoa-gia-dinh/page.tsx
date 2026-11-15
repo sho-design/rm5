@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CtaBand, Display, Section, SubPageHero } from "@/components/ui";
+import { CtaBand, Display, Section, SmartLink, SubPageHero } from "@/components/ui";
 import { ViFacts, ViSteps } from "@/components/vi/ViBits";
 import { divisions } from "@/content/divisions";
 import { images } from "@/content/images";
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 /** Family medicine in Vietnamese: what we look after, how to join, and the facts people ask first. */
 export default function ViFamilyPage() {
-  const register = oceanRegisterUrl ?? routes.register;
+  const register = oceanRegisterUrl ?? `${routes.register}?lang=vi`;
   return (
     <>
       <SubPageHero
@@ -47,6 +47,13 @@ export default function ViFamilyPage() {
             </li>
           ))}
         </ul>
+        <div className="flex flex-col gap-2 rounded-card border border-border p-6">
+          <span className="text-[17px] font-semibold">{c.vaccines.t}</span>
+          <p className="pretty text-[15px] leading-[1.55] text-secondary">{c.vaccines.d}</p>
+          <SmartLink to="vaccines" hrefLang="en-CA" className="w-fit pt-1 text-[15px] font-semibold text-link">
+            {c.vaccines.link} ›
+          </SmartLink>
+        </div>
       </Section>
       <ViSteps title={c.stepsTitle} steps={c.steps} />
       <Section>

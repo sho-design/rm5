@@ -107,7 +107,6 @@ export function VisitJourney() {
             <button
               type="button"
               onClick={() => setPlaying((p) => !p)}
-              aria-pressed={!playing}
               className="min-h-[44px] rounded-chip border border-white/40 px-4 text-[13px] font-semibold text-white hover:border-white"
             >
               {playing ? c.pause : c.play}

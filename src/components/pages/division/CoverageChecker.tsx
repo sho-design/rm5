@@ -9,9 +9,10 @@ import { deepModuleCopy } from "@/content/deep";
  * Rehab & Recovery deep dive: pick how you are covered on the left, see the
  * upfront cost, explanation, facts and CTA on the navy card to the right.
  */
-export function CoverageChecker({ options }: { options: CoverageOption[] }) {
+/** `initial`: the option shown first (the accident page opens on the car accident option, round 30). */
+export function CoverageChecker({ options, initial = 0 }: { options: CoverageOption[]; initial?: number }) {
   const c = deepModuleCopy.coverage;
-  const [pick, setPick] = useState(0);
+  const [pick, setPick] = useState(Math.max(0, initial));
   const cov = options[pick] ?? options[0];
   return (
     <section className="grid grid-cols-1 gap-block px-4 pt-12 md:px-content md:pt-section lg:grid-cols-[1fr_1.3fr] lg:items-stretch">

@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Display, Eyebrow, Section } from "@/components/ui";
 import { callCopy as c } from "@/content/pregnancy-extra";
 import { site } from "@/content/site";
+import { openStatus } from "@/lib/hours";
 import { radioKeys, rovingTab, useReducedMotion } from "@/lib/a11y";
 import { cn } from "@/lib/cn";
 
@@ -29,7 +30,17 @@ export function WhenToCall() {
   const box = useRef<HTMLDivElement>(null);
   const tiers = useRef<(HTMLLIElement | null)[]>([]);
   const ladder = useRef<HTMLOListElement>(null);
-  const tier = pick >= 0 ? c.chips[pick].tier : -1;
+  // Round 30: "Call us the same day" while the clinic is closed sent people to a phone nobody answers. When we are
+  // closed, the same-day tier points to the closed tier (Health811) instead. Read after mount (Toronto time).
+  const [clinicOpen, setClinicOpen] = useState(true);
+  useEffect(() => {
+    const check = () => setClinicOpen(openStatus().open);
+    check();
+    const id = window.setInterval(check, 60_000);
+    return () => window.clearInterval(id);
+  }, []);
+  const chipTier = pick >= 0 ? c.chips[pick].tier : -1;
+  const tier = chipTier === 0 && !clinicOpen ? 1 : chipTier;
 
   useEffect(() => {
     const el = box.current;

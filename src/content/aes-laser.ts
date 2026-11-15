@@ -191,7 +191,7 @@ export const laserCopy = {
     draft("Take medication that makes you sensitive to light."),
     draft("Have a tattoo or permanent makeup in the area."),
   ],
-  careEyebrow: draft("Before and after"),
+  careEyebrow: draft("Around your visit"),
   careTitle: draft("Simple care makes a difference."),
   before: draft("Before your visit"),
   beforeItems: [

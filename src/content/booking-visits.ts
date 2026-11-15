@@ -124,6 +124,8 @@ const mvaCoverage = fact(resultsFact("rehab", "Motor vehicle accident"), "Covera
 const wsibCoverage = fact(resultsFact("rehab", "WSIB return to work"), "Coverage");
 const painCoverage = fact(resultsFact("pain", deepDives.pain.results[0].title), "Coverage");
 const uninsured = "Uninsured fee, receipt provided";
+// Consults are complimentary (aesthetics deep dive "Fee: Complimentary"); the review said "Uninsured fee" (round 30).
+const consultCoverage = draft("Complimentary consult. Treatment prices are given in writing before you decide.");
 const formsTitle = deepDives.family.results.find((r) => r.cta === "Book a form visit")?.title ?? "";
 const selfPayFacts = rehabCoverage.find((o) => o.label === "Paying myself")?.facts ?? [];
 /** Self-pay lines from the rehab coverage checker: "$135 plus HST" assessments, "$100 plus HST" treatments. */
@@ -207,10 +209,10 @@ const services: Record<DivisionKey, Omit<BookingService, "key" | "label">> = {
   aesthetics: {
     coverage: bookingCoverage[label("aesthetics")],
     visits: [
-      { key: "consult", sameDay: true, label: draft("A consult"), bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
+      { key: "consult", sameDay: true, label: draft("A consult"), coverage: consultCoverage, bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
       { key: "injectables", sameDay: true, label: menuLabel("aesthetics", "Injectables appointment"), coverage: uninsured, bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
-      { key: "skin", sameDay: true, label: menuLabel("aesthetics", "Skin consult"), bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
-      { key: "laser", sameDay: true, label: menuLabel("aesthetics", "Laser consult"), bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
+      { key: "skin", sameDay: true, label: menuLabel("aesthetics", "Skin consult"), coverage: consultCoverage, bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
+      { key: "laser", sameDay: true, label: menuLabel("aesthetics", "Laser consult"), coverage: consultCoverage, bring: [draft("A list of your medications."), draft("Any past treatments and when you had them.")] },
     ],
   },
   rehab: {

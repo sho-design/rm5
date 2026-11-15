@@ -242,7 +242,6 @@ export function DripInside({
               <button
                 type="button"
                 onClick={() => setPlaying((p) => !p)}
-                aria-pressed={!playing}
                 className="flex min-h-[44px] items-center gap-2 rounded-chip border border-[color:var(--border-default)] bg-page px-4 text-[14px] font-semibold hover:border-ink"
               >
                 <svg

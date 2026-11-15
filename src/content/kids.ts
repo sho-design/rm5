@@ -125,7 +125,7 @@ export const immunizations: ImmunizationStage[] = [
     where: "In clinic, with us",
     shots: [
       { n: "DTaP-IPV-Hib", d: "Diphtheria, tetanus, pertussis, polio, Hib" },
-      { n: "Pneumococcal (Pneu-C)", d: "Protects against pneumococcal infection" },
+      { n: "Pneumococcal (Pneu-C)", d: "Pneumococcal disease" },
       { n: "Rotavirus", d: "Oral drops, not a needle" },
     ],
     note: "Usually given at the 2 month well-baby visit. A little fussiness or a mild fever afterwards is common.",

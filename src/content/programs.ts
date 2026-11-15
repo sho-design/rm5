@@ -157,7 +157,8 @@ export const programsCopy = {
 
 /** `am` and `pm` are the order to use them, by product id; an empty `pm` means the usual cleanser and moisturizer. */
 /** `why`: who the routine is for. `how`: how the products work together, for someone new to skincare. */
-export type Regimen = { k: string; t: string; why: string; how: string; items: string[]; pairs: string; am: string[]; pm: string[]; note?: string };
+/** pairsTo (round 30): the "Often paired with" items as links, in order, when each has a page to go to. */
+export type Regimen = { k: string; t: string; why: string; how: string; items: string[]; pairs: string; pairsTo?: { t: string; to: string }[]; am: string[]; pm: string[]; note?: string };
 
 /** Product ids from `skincare.ts`; names and prices come from there. */
 export const regimens: Regimen[] = [
@@ -172,25 +173,25 @@ export const regimens: Regimen[] = [
     t: draft("Pigment and tone"),
     why: draft("For dark spots, patches or uneven colour, including after a laser or a peel."),
     how: draft("A gentle wash lets the serums soak in. The vitamin C serum gives antioxidant care, and the tone serum works on dark spots, morning and night. Sunscreen matters most here, because daylight can darken spots again."),
-    items: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pairs: draft("Glass skin, PicoSure, peels"), am: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pm: ["gentle-cleanser", "tnxa-shot"] },
+    items: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pairs: draft("Glass skin, PicoSure, peels"), pairsTo: [{ t: draft("Glass skin"), to: "aesPlans#program-glass" }, { t: "PicoSure", to: "/medical-aesthetics/laser/picosure" }, { t: draft("Peels"), to: "aesMenu#family-facials" }], am: ["gentle-cleanser", "phloretin-cf", "tnxa-shot", "physical-fusion"], pm: ["gentle-cleanser", "tnxa-shot"] },
   {
     k: "aging",
     t: draft("Lines and aging"),
     why: draft("For fine lines and skin that feels less firm. Mornings protect, nights renew."),
     how: draft("In the morning: wash, vitamin C serum, then sunscreen to protect from daylight. At night: wash, then retinol, a form of vitamin A that works while you sleep. Retinol can make skin dry or pink at first, so go slowly and always wear sunscreen the next day."),
-    items: ["simply-clean", "ce-ferulic", "retinol-03", "sheer-physical"], pairs: draft("Neuromodulator, Aging well, Baby CO\u2082"), am: ["simply-clean", "ce-ferulic", "sheer-physical"], pm: ["simply-clean", "retinol-03"], note: draft("Start retinol 2 or 3 nights a week and build up as your skin allows.") },
+    items: ["simply-clean", "ce-ferulic", "retinol-03", "sheer-physical"], pairs: draft("Neuromodulator, Aging well, yearly, Baby CO\u2082"), pairsTo: [{ t: draft("Neuromodulator"), to: "aesInjectables" }, { t: draft("Aging well, yearly"), to: "aesPlans#program-yearly" }, { t: "Baby CO\u2082", to: "/medical-aesthetics/laser/eco2" }], am: ["simply-clean", "ce-ferulic", "sheer-physical"], pm: ["simply-clean", "retinol-03"], note: draft("Start retinol 2 or 3 nights a week and build up as your skin allows.") },
   {
     k: "acne",
     t: draft("Oily and acne-prone"),
     why: draft("For oily skin, blackheads and breakouts."),
     how: draft("The cleanser and the night serum use gentle acids that clear oil out of pores. The morning vitamin C serum is made for oily skin, and a light sunscreen protects without feeling heavy. Skin can feel a little dry in the first weeks. Tell your nurse if it stings."),
-    items: ["lha-cleansing-gel", "silymarin-cf", "lha-serum", "clear-daily-soothing"], pairs: draft("Acne scar program, Clarity II"), am: ["lha-cleansing-gel", "silymarin-cf", "clear-daily-soothing"], pm: ["lha-cleansing-gel", "lha-serum"] },
+    items: ["lha-cleansing-gel", "silymarin-cf", "lha-serum", "clear-daily-soothing"], pairs: draft("Acne scar program, Clarity II"), pairsTo: [{ t: draft("Acne scar program"), to: "aesPlans#program-scars" }, { t: "Clarity II", to: "/medical-aesthetics/laser/clarity-ii" }], am: ["lha-cleansing-gel", "silymarin-cf", "clear-daily-soothing"], pm: ["lha-cleansing-gel", "lha-serum"] },
   {
     k: "redness",
     t: draft("Redness and sensitive"),
     why: draft("For skin that flushes, stings easily or reacts to new products."),
     how: draft("Every step is mild. A soft cleanser, a lower strength vitamin C serum, then a calming gel, morning and night. A light sunscreen finishes the morning, because sun and heat can bring on redness."),
-    items: ["soothing-cleanser", "phyto-corrective-gel", "serum-10-aox", "clear-daily-soothing"], pairs: draft("Redness and rosacea program"), am: ["soothing-cleanser", "serum-10-aox", "phyto-corrective-gel", "clear-daily-soothing"], pm: ["soothing-cleanser", "phyto-corrective-gel"] },
+    items: ["soothing-cleanser", "phyto-corrective-gel", "serum-10-aox", "clear-daily-soothing"], pairs: draft("Redness and rosacea program"), pairsTo: [{ t: draft("Redness and rosacea program"), to: "aesPlans#program-redness" }], am: ["soothing-cleanser", "serum-10-aox", "phyto-corrective-gel", "clear-daily-soothing"], pm: ["soothing-cleanser", "phyto-corrective-gel"] },
   {
     k: "recovery",
     t: draft("Recovery kit"),

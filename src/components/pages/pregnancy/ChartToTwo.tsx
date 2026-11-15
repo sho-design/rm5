@@ -101,7 +101,6 @@ export function ChartToTwo() {
               <button
                 type="button"
                 onClick={() => setPlaying((p) => !p)}
-                aria-pressed={!playing}
                 className="min-h-[44px] rounded-chip border border-[color:var(--border-default)] bg-white px-4 text-[13px] font-semibold text-ink hover:border-ink"
               >
                 {playing ? c.pause : c.play}
