@@ -9,7 +9,7 @@ import { cn } from "@/lib/cn";
  * grid with a pin, not a map.
  */
 /** Labels default to English; the Vietnamese footer passes its own. */
-export function LocationMap({ query, label, directions, className, t = { show: "Show map", directions: "Directions ›", loads: "Loads Google Maps" } }: { query: string; label: string; directions: string; className?: string; t?: { show: string; directions: string; loads: string } }) {
+export function LocationMap({ query, label, directions, className, t = { show: "Show map", directions: "Directions ›", loads: "Loads Google Maps" } }: { query: string; label: string; directions: string; className?: string; t?: { show: string; directions: string; loads: string; map?: string } }) {
   const [on, setOn] = useState(false);
   const frame = useRef<HTMLIFrameElement>(null);
   // The button disappears when the map loads, so focus goes to the map rather than back to the top of the page.
@@ -20,7 +20,7 @@ export function LocationMap({ query, label, directions, className, t = { show: "
   return (
     <div className={cn("relative overflow-hidden rounded-[14px] border border-border bg-sky-soft", className)}>
       {on ? (
-        <iframe ref={frame} src={src} title={`Map: ${label}`} loading="lazy" referrerPolicy="no-referrer" className="absolute inset-0 h-full w-full border-0" />
+        <iframe ref={frame} src={src} title={`${t.map ?? "Map"}: ${label}`} loading="lazy" referrerPolicy="no-referrer" className="absolute inset-0 h-full w-full border-0" />
       ) : (
         <>
           <svg aria-hidden viewBox="0 0 320 160" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full text-white">

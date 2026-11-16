@@ -595,8 +595,9 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         tags: ["MVA", "No upfront cost"],
         cta: "Start an MVA claim",
         ctaPage: bookFor("rehab", "mva"),
-        link: "Refer a patient",
-        linkPage: "referrals",
+        // Patient-facing card: what to bring, not the doctors' referral page (round 31).
+        link: draft("What to bring to your first visit"),
+        linkPage: "rehabBring",
       },
       {
         title: "WSIB return to work",
@@ -610,8 +611,8 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         tags: ["WSIB"],
         cta: draft("Book a WSIB visit"),
         ctaPage: bookFor("rehab", "wsib"),
-        link: "For referring doctors",
-        linkPage: "referrals",
+        link: draft("What to bring to your first visit"),
+        linkPage: "rehabBring",
       },
       {
         title: "Desk and posture pain",
@@ -699,7 +700,7 @@ export const aestheticsLadder: LadderRung[] = [
     d: "Medical-grade skincare, light peels and sun protection. Often enough on its own.",
     facts: [
       { k: "Consult", v: "Nurse, 20 min" },
-      { k: "Per visit", v: "From $150" },
+      { k: "Per visit", v: draft("From $150, plus HST") },
       { k: "Cadence", v: "Monthly" },
     ],
     h: 300,
@@ -710,7 +711,7 @@ export const aestheticsLadder: LadderRung[] = [
     d: "Microneedling and deeper peels for texture, tone and scarring. A short series.",
     facts: [
       { k: "Consult", v: draft("Nurse, 20 min, with a physician when needed") },
-      { k: "Per visit", v: "From $350" },
+      { k: "Per visit", v: draft("From $350, plus HST") },
       { k: "Cadence", v: "4 to 6 weeks, 3 to 6 visits" },
     ],
     h: 360,

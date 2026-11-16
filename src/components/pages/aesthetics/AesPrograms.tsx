@@ -206,9 +206,12 @@ export function CombinedPlans({
 export function SkinRegimens({
   list = regimens,
   c = programsCopy,
+  seeAll = true,
 }: {
   list?: typeof regimens;
   c?: typeof programsCopy;
+  /** Off on the skincare page itself, where the link pointed to the same page (round 31). */
+  seeAll?: boolean;
 }) {
   return (
     <Section id="regimens" className="flex scroll-mt-24 flex-col gap-6">
@@ -324,13 +327,15 @@ export function SkinRegimens({
         })}
       </ul>
       <div className="flex flex-col gap-2">
-        <SmartLink
-          to={routes.aesSkincare}
-          className="w-fit"
-          hrefLang={c === programsCopy ? undefined : "en-CA"}
-        >
-          <TextLink className="text-[15px]">{c.seeAll}</TextLink>
-        </SmartLink>
+        {seeAll ? (
+          <SmartLink
+            to={routes.aesSkincare}
+            className="w-fit"
+            hrefLang={c === programsCopy ? undefined : "en-CA"}
+          >
+            <TextLink className="text-[15px]">{c.seeAll}</TextLink>
+          </SmartLink>
+        ) : null}
         <p className="pretty max-w-[62ch] text-[13px] leading-[1.5] text-muted">
           {c.regNote}
         </p>

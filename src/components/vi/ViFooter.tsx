@@ -69,7 +69,7 @@ export function ViFooter() {
               query="Restoration Medical, 700 Centre St, Thornhill, ON L4J 0A7"
               label={thornhill.name}
               directions={external.thornhillMaps}
-              t={{ show: c.f.showMap, directions: c.directions, loads: c.f.loadsMap }}
+              t={{ show: c.f.showMap, directions: c.directions, loads: c.f.loadsMap, map: "Bản đồ" }}
               className="h-[150px] sm:col-span-2 xl:col-span-1 xl:h-full xl:min-h-[150px]"
             />
           </div>
@@ -78,7 +78,7 @@ export function ViFooter() {
               <h2 className="display text-[18px] text-primary">{maple.name}</h2>
               <span className="rounded-chip bg-sun-soft px-2.5 py-1 text-[13px] font-semibold text-sun-ink">{c.f.soon}</span>
             </span>
-            <span className="min-w-0 md:flex-1">{maple.addressLines.join(", ")}</span>
+            <span className="min-w-0 md:flex-1">{maple.addressLines.join(", ").replace("Unit 105 to 107", "Unit 105 đến 107")}</span>
           </div>
         </div>
       </div>

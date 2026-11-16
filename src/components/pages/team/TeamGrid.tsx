@@ -30,6 +30,7 @@ function Card({ m, open, onToggle, index }: { m: TeamMember; open: boolean; onTo
   const does = whatTheyDo(m);
   const accent = divisionDot[m.divisions[0]] ?? "var(--rm-ink)";
   // Tinted portrait (no photo) and closed: ink text on the pastel; otherwise white on the photo or the open sheet.
+  // Fixed ink (not text-ink, which follows the theme): the pastel stays pale in dark mode (round 31).
   const light = !m.photo && !open;
   return (
     // On a phone the grid is two across, so an open card widens to the full row to fit its details.
@@ -85,8 +86,8 @@ function Card({ m, open, onToggle, index }: { m: TeamMember; open: boolean; onTo
               </svg>
             </span>
             <span className="flex min-w-0 flex-col">
-              <span className={cn("pretty text-[15px] font-semibold leading-[1.2] sm:text-[17px]", light ? "text-ink" : "drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.name}</span>
-              <span className={cn("pretty text-[13px] leading-[1.3] sm:text-[13px]", light ? "text-ink/70" : "text-white/85 drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.role}</span>
+              <span className={cn("pretty text-[15px] font-semibold leading-[1.2] sm:text-[17px]", light ? "text-[color:var(--rm-ink)]" : "drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.name}</span>
+              <span className={cn("pretty text-[13px] leading-[1.3] sm:text-[13px]", light ? "text-[color:var(--rm-ink-2)]" : "text-white/85 drop-shadow-[0_1px_6px_rgba(0,0,0,.35)]")}>{m.role}</span>
             </span>
           </button>
           <div id={id} hidden={!open} className="flex flex-col gap-2.5 px-5 pb-5 motion-safe:animate-[rm-rise_300ms_cubic-bezier(.2,.8,.2,1)_both]">

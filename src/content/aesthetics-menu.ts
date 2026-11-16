@@ -221,7 +221,7 @@ export const aesTreatments: AesTreatment[] = [
     family: "skin",
     brand: "SkinCeuticals",
     name: draft("Skin health plan"),
-    d: draft("A prescribed home routine, included with every treatment plan and reviewed as your skin changes."),
+    d: draft("A prescribed home routine for every treatment plan, with products sold separately, reviewed as your skin changes."),
     concerns: ["pigment", "texture", "redness", "acne", "aging"],
     downtime: 0,
   },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import type { ChooserOption, ChooserResult, SubChooserItem } from "@/content/types";
 import { cn } from "@/lib/cn";
 import { reasonParam } from "@/lib/routes";
@@ -55,9 +55,21 @@ export function Chooser({
 }) {
   const [inner, setInner] = useState(defaultValue);
   const pick = value ?? inner;
+  const resultBox = useRef<HTMLDivElement>(null);
   const set = (i: number) => {
     setInner(i);
     onChange?.(i);
+    // Phones stack the options above the result: when the result is out of sight, bring its top into view so the
+    // tap visibly does something (round 31: "Car accident" only moved the highlight).
+    requestAnimationFrame(() => {
+      const el = resultBox.current;
+      if (!el || window.matchMedia("(min-width: 1024px)").matches) return;
+      const top = el.getBoundingClientRect().top;
+      if (top > window.innerHeight - 120) {
+        const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollBy({ top: top - 96, behavior: smooth ? "smooth" : "auto" });
+      }
+    });
   };
   const r = results[pick] ?? results[0];
   // One section size on the scale (design review, Nov 2026); titleSize is kept for callers.
@@ -88,7 +100,9 @@ export function Chooser({
           </div>
         ) : null}
       </div>
-      <ResultCard tags={r.tags} tagTint={tint} title={r.title} p={r.p} facts={r.facts} cta={r.cta} ctaTo={r.ctaPage ?? ctaTo} link={r.linkPage && r.linkPage === (r.ctaPage ?? ctaTo) ? undefined : r.link} linkTo={r.linkPage} />
+      <div ref={resultBox} className="min-w-0">
+        <ResultCard tags={r.tags} tagTint={tint} title={r.title} p={r.p} facts={r.facts} cta={r.cta} ctaTo={r.ctaPage ?? ctaTo} link={r.linkPage && r.linkPage === (r.ctaPage ?? ctaTo) ? undefined : r.link} linkTo={r.linkPage} />
+      </div>
     </section>
   );
 }

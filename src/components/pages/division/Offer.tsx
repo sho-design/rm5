@@ -121,7 +121,9 @@ export function Offer({
   division: NavKey;
 }) {
   // About pages (story, standards, team) are not bookable, so their tiles have no Book button.
-  const book = division === "about" ? undefined : bookFor(division);
+  // Pain Centre visits start from a physician referral, not a booking (round 31: "Book Nerve blocks" led a patient
+  // with no referral into the referral visit). Its cards keep "Learn more"; the page offers the family medicine route.
+  const book = division === "about" || division === "pain" ? undefined : bookFor(division);
   // Family Medicine: "New patients" is already the first answer in the chooser above, so it is not repeated here,
   // and its six services sit in an even grid instead of one tall feature beside a long stack.
   const even = division === "family";

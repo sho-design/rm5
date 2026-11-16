@@ -23,7 +23,7 @@ export const skinLadder = {
   eyebrow: draft("From gentle to deeper"),
   title: draft("Four steps, lightest first."),
   lead: draft(
-    "Most people start at the top of the ladder. Your nurse suggests the lightest step that fits your skin, and you only step down if you want to.",
+    "Most people start at the top of the ladder. Your nurse suggests the lightest step that fits your skin, and you only move to a stronger step if you want to.",
   ),
   goalsLabel: draft("Pick your goal"),
   all: draft("Show all"),

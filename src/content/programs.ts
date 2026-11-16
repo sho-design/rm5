@@ -75,7 +75,8 @@ export const aesPrograms: Program[] = [
   {
     k: "event",
     t: draft("Event ready"),
-    forWhom: draft("A wedding or event about 6 weeks away"),
+    // The planner starts treatment 6 weeks out, after a consult, so 8 weeks leaves room (round 31).
+    forWhom: draft("A wedding or event about 8 weeks away"),
     steps: [draft("HydraFacial at 6 weeks"), draft("Neuromodulator at 3 to 4 weeks"), draft("Glass facial in the last week; no lasers in the last 2 weeks")],
     length: draft("6 weeks"),
     color: "#7FC8A9",
@@ -123,7 +124,7 @@ export const programsCopy = {
   upkeepLabel: draft("Upkeep"),
   regEyebrow: draft("SkinCeuticals regimens"),
   regTitle: draft("A routine to take home."),
-  regLead: draft("Every plan includes a home routine. These are starting points; your nurse adjusts them to your skin at the consult. Prices are SkinCeuticals suggested retail, HST extra."),
+  regLead: draft("Every plan comes with a recommended home routine, with products sold separately. These are starting points; your nurse adjusts them to your skin at the consult. Prices are SkinCeuticals suggested retail, HST extra."),
   regTotal: draft("Total, HST extra"),
   regAm: draft("Morning"),
   regPm: draft("Night"),

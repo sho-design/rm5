@@ -707,7 +707,10 @@ const rehab: Topic[] = [
       "No upfront cost.",
     ),
     cta: result(R, 2).cta,
-    ctaTo: bookFor("rehab"),
+    ctaTo: bookFor("rehab", "mva"),
+    // The page covers work injuries too (round 31: no WSIB button).
+    cta2: result(R, 3).cta,
+    cta2To: bookFor("rehab", "wsib"),
     img: images.services.rehab[0],
     imgAlt: draft("Physiotherapist and patient reviewing a treatment plan"),
     pills: [...new Set([...(result(R, 2).tags ?? []), ...(result(R, 3).tags ?? [])])],

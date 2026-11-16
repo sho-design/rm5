@@ -37,7 +37,7 @@ export default function SkincarePage() {
       <MorningShield />
       <RoutineBuilder />
       {/* The regimen cards (Nov 2026: moved here from Skin health plans, so home routines live on one page). */}
-      <SkinRegimens />
+      <SkinRegimens seeAll={false} />
       <ApplyAndCompare />
       <SkincareList />
       <CtaBand

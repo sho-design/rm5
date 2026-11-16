@@ -42,7 +42,7 @@ function Steps({ state, className }: { state: BookingState; className?: string }
             aria-current={on ? "step" : undefined}
             className={cn("flex flex-1 items-center justify-center gap-1.5 rounded-chip px-2 py-2 md:flex-none md:gap-2 md:px-3.5", on ? "bg-ink text-white" : done ? "bg-sage-tint text-ink" : "bg-white text-ink")}
           >
-            <span className={cn("flex h-[18px] w-[18px] items-center justify-center rounded-full text-[12px] md:h-5 md:w-5 md:text-[12px]", on ? "bg-sun text-sun-ink" : done ? "bg-sage-deep text-white" : "bg-line text-muted")} aria-hidden>
+            <span className={cn("flex h-[18px] w-[18px] items-center justify-center rounded-full text-[12px] md:h-5 md:w-5 md:text-[12px]", on ? "bg-sun text-sun-ink" : done ? "bg-sage-deep text-white" : "bg-line text-[color:var(--rm-ink-2)]")} aria-hidden>
               <span aria-hidden>{done ? "✓" : n}</span>
             </span>
             {done ? <span className="sr-only">Done: </span> : on ? <span className="sr-only">{x.current}</span> : null}
