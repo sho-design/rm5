@@ -193,7 +193,7 @@ export const registerCopy = {
     /** Maple registrations: no first visit is booked until Maple opens (it contradicted the line above). */
     bodyMaple: draft("We review it within 2 business days and confirm by phone or email. We contact you to book your first visit once Maple opens. Until then you can be seen at Thornhill. If you told us about a previous clinic, we request your records now."),
     waitTitle: "While you wait",
-    waitBody: "Make a list of your medications and any questions. Your first visit is 30 minutes so there is time for them.",
+    waitBody: "Make a list of your medications and any questions. Your first visit is 20 minutes, so a written list helps us cover everything.",
     notes: "Read our health notes",
     home: "Back to home",
   },

@@ -32,7 +32,7 @@ function stepAt(t: number) {
 /**
  * "One trip, start to finish" (Bloodwork & ECG, November 2026). Replaces the plain visit steps. A line drawing of the
  * clinic: a dot leaves the doctor's room with the requisition, goes down the hall to the lab chair while a clock ticks
- * to about ten minutes, then a dashed line carries on through the weeks after (results reach your doctor in about a
+ * to about 20 minutes, then a dashed line carries on through the weeks after (results reach your doctor in about a
  * week, the follow-up 2 to 3 weeks after the test). Critical results flag the clinic right away (no separate branch, Nov 2026).
  * The four steps are written out below and light up with the dot. It plays while on screen (Pause stops it);
  * with reduced motion the whole route is shown still. The navy block keeps its own colours in dark mode.
@@ -76,7 +76,7 @@ export function VisitJourney() {
   const frac = along(shown);
   const x = START_X + frac * (END_X - START_X);
   const active = reduced ? -1 : stepAt(shown);
-  const minutes = Math.min(10, Math.round((Math.min(shown, VISIT) / VISIT) * 10));
+  const minutes = Math.min(20, Math.round((Math.min(shown, VISIT) / VISIT) * 20));
   const visitDone = reduced || shown >= VISIT;
 
   // Colours on navy.
@@ -149,10 +149,10 @@ export function VisitJourney() {
             </g>
           ))}
 
-          {/* Clock: ticks to about ten minutes during the visit. */}
+          {/* Clock: ticks to about 20 minutes during the visit (one 20-minute slot covers the ECG and the draw). */}
           <g transform="translate(270 244)">
             <circle r="22" fill="#0F1F2E" stroke="#fff" strokeOpacity=".6" strokeWidth="2" />
-            <path d="M0 0 V-14" stroke={SUN} strokeWidth="2.5" strokeLinecap="round" transform={`rotate(${minutes * 36})`} />
+            <path d="M0 0 V-14" stroke={SUN} strokeWidth="2.5" strokeLinecap="round" transform={`rotate(${minutes * 18})`} />
             <circle r="2.5" fill={SUN} />
             <text x="34" y="6" fontSize="16" fontWeight="600" fill="#fff">
               {visitDone ? c.clockDone : c.minutes(minutes)}

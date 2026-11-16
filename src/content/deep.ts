@@ -85,9 +85,9 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
     results: [
       {
         title: "New patient visit",
-        p: "A longer first appointment to get to know you, your history and your medications. You leave with a plan and a doctor who knows your name.",
+        p: draft("A first appointment to get to know you, your history and your medications. You leave with a plan and a doctor who knows your name."),
         facts: [
-          { k: "Time", v: "30 minutes" },
+          { k: "Time", v: "20 minutes" },
           { k: "Coverage", v: "OHIP-insured" },
           { k: "Bring", v: "Health card, medication list" },
           { k: "Doctor", v: "Dr. Truong or Dr. Nguyen" },
@@ -529,7 +529,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
       { q: "Is a consult free?", a: "Yes. You leave with a written plan and prices, and no obligation." },
       // A breastfeeding tester searched and found only iron therapy (round 23). Physician to confirm the policy.
       { q: draft("Pregnant or breastfeeding?"), a: draft("Tell us when you book. We talk it through at your consult before any treatment, and some treatments wait until after pregnancy and breastfeeding.") },
-      { q: "How much does it cost?", a: "It depends on the plan. Prices are given in writing at your consult and include HST." },
+      { q: "How much does it cost?", a: draft("It depends on the plan. Prices are given in writing at your consult, plus HST.") },
       { q: "Will it look natural?", a: "We start conservatively and review at two weeks. You stay in control of how far to go." },
       { q: "Is any of this covered by OHIP?", a: draft("Seeing your family doctor for active acne is OHIP-insured. Cosmetic treatments are not, and receipts are provided.") },
     ],

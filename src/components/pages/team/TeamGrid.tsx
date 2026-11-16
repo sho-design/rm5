@@ -46,7 +46,22 @@ function Card({ m, open, onToggle, index }: { m: TeamMember; open: boolean; onTo
         }}
         className="relative flex aspect-[3/4] flex-col justify-end rounded-block rm-ink-surface bg-ink text-white ring-1 ring-ink/5 shadow-[0_8px_24px_rgba(16,24,40,.06)] motion-safe:transition-[transform,box-shadow] motion-safe:duration-300 motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] hover:-translate-y-1.5 hover:shadow-[0_24px_50px_rgba(16,24,40,.16)]">
         {m.photo ? (
-          <Image src={m.photo} alt="" fill sizes="(max-width: 640px) 50vw, 320px" className={cn("rounded-block object-cover object-[50%_20%] motion-safe:transition-transform motion-safe:duration-[400ms] motion-safe:ease-[cubic-bezier(.2,.8,.2,1)]", open && "motion-safe:scale-[1.04]")} />
+          <>
+            <Image src={m.photo} alt="" fill sizes="(max-width: 640px) 50vw, 320px" className={cn("rounded-block object-cover object-[50%_20%] motion-safe:transition-transform motion-safe:duration-[400ms] motion-safe:ease-[cubic-bezier(.2,.8,.2,1)]", open && "motion-safe:scale-[1.04]")} />
+            {/* A second pose fades in on hover, focus or when the card opens. Reduced motion swaps without the fade. */}
+            {m.photo2 ? (
+              <Image
+                src={m.photo2}
+                alt=""
+                fill
+                sizes="(max-width: 640px) 50vw, 320px"
+                className={cn(
+                  "rounded-block object-cover object-[50%_18%] opacity-0 motion-safe:transition-opacity motion-safe:duration-[400ms] motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] group-hover:opacity-100 group-focus-within:opacity-100",
+                  open && "opacity-100",
+                )}
+              />
+            ) : null}
+          </>
         ) : (
           <div aria-hidden className="absolute inset-0 overflow-hidden rounded-block" style={{ background: m.tint }}>
             <span className="absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-50 motion-safe:transition-transform motion-safe:duration-[400ms] motion-safe:ease-[cubic-bezier(.2,.8,.2,1)] group-hover:scale-125 sm:h-56 sm:w-56" style={{ background: accent }} />

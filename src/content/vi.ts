@@ -273,7 +273,7 @@ export const viAesthetics = {
   stepsTitle: draft("Cách bắt đầu."),
   steps: [
     { t: draft("Tư vấn miễn phí"), d: draft("Khoảng 20 phút với điều dưỡng, có bác sĩ khi cần. Chúng tôi sàng lọc trước khi điều trị.") },
-    { t: draft("Kế hoạch bằng văn bản"), d: draft("Kèm giá đã gồm HST. Bạn quyết định khi nào sẵn sàng, không áp lực.") },
+    { t: draft("Kế hoạch bằng văn bản"), d: draft("Kèm giá, chưa gồm HST. Bạn quyết định khi nào sẵn sàng, không áp lực.") },
     { t: draft("Điều trị"), d: draft("Ngay tại buổi tư vấn hoặc vào ngày khác. Có thể đặt trong ngày.") },
   ],
   factsTitle: draft("Điều cần biết"),

@@ -81,7 +81,7 @@ export const womenOptions: SubChooserItem[] = [
     title: "Symptoms are real and there are options.",
     p: "Sleep, mood, hot flashes, cycle changes. We talk through hormone and non-hormone options, check bone health and heart risk, and revisit the plan each year.",
     facts: [
-      { k: "Time", v: "30 minutes" },
+      { k: "Time", v: "20 minutes" },
       { k: "Coverage", v: "OHIP" },
       { k: "Bring", v: "A note of symptoms and timing" },
       { k: "Also", v: "Bone density requisition at 65 or earlier" },
@@ -130,7 +130,7 @@ export const menOptions: SubChooserItem[] = [
     title: "The numbers that matter most after 40.",
     p: "Blood pressure at every visit, fasting cholesterol and A1c every three to five years, sooner with family history. If a number is off we explain it plainly and agree a plan.",
     facts: [
-      { k: "Time", v: "15 minutes plus draw" },
+      { k: "Time", v: "20 minutes, plus the draw" },
       { k: "Fasting", v: "Yes, book before 10am" },
       { k: "Coverage", v: "OHIP" },
       { k: "Related", v: draft("Bloodwork on site") },
@@ -158,7 +158,7 @@ export const menOptions: SubChooserItem[] = [
     title: "Tired, flat or not sleeping deserves a proper look.",
     p: "We check thyroid, iron, sugars and testosterone where it fits, and talk about stress, alcohol and sleep without judgment. A plan follows the results, not a guess.",
     facts: [
-      { k: "Time", v: "30 minutes" },
+      { k: "Time", v: "20 minutes" },
       { k: "Coverage", v: "OHIP" },
       { k: "Bloodwork", v: "On site, same visit" },
       { k: "Follow-up", v: "Two weeks, with results" },
@@ -212,7 +212,7 @@ export const bloodOptions: SubChooserItem[] = [
     p: draft("Cholesterol, fasting glucose and some other tests need an empty stomach. How long depends on the test, from 4 to 12 hours, and a few tests mean no water either. See how to prepare below, and book a slot before 10am."),
     facts: [
       { k: "Fast", v: draft("4 to 12 hours, depending on the test") },
-      { k: "Time", v: "10 minutes" },
+      { k: "Time", v: "About 20 minutes" },
       { k: "Results", v: "About a week" },
       { k: "Coverage", v: "OHIP" },
     ],
@@ -226,7 +226,7 @@ export const bloodOptions: SubChooserItem[] = [
     p: "Ferritin, hemoglobin, thyroid, kidney and liver panels and most vitamin levels do not need fasting. If your requisition mixes fasting and non-fasting tests, fast and come early.",
     facts: [
       { k: "Fast", v: "No" },
-      { k: "Time", v: "10 minutes" },
+      { k: "Time", v: "About 20 minutes" },
       { k: "Results", v: "About a week" },
       { k: "Coverage", v: "OHIP" },
     ],
@@ -240,7 +240,7 @@ export const bloodOptions: SubChooserItem[] = [
     p: "A ferritin and hemoglobin check drawn here, reviewed by our physician within days. If iron is low and tablets are not right for you, the infusion is booked from the same chart.",
     facts: [
       { k: "Fast", v: "No" },
-      { k: "Time", v: "10 minutes" },
+      { k: "Time", v: "About 20 minutes" },
       { k: "Results", v: "2 to 3 days" },
       { k: "Next", v: "Iron therapy visit if indicated" },
     ],
@@ -269,7 +269,7 @@ export const bloodOptions: SubChooserItem[] = [
     p: draft("If Dr. Nguyen or Dr. Truong is your family doctor, bring the requisition from your specialist and we draw it here. Your specialist gets the results, with a copy to your family doctor here. We can only draw for patients registered with our doctors. Not registered? Register as a new patient first, or ask your specialist where else to go."),
     facts: [
       { k: "Bring", v: "Requisition and health card" },
-      { k: "Time", v: "10 minutes" },
+      { k: "Time", v: "About 20 minutes" },
       { k: "Results", v: draft("To your specialist, copy to your doctor here") },
       { k: "Coverage", v: "As per the requisition" },
     ],

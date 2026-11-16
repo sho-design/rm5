@@ -25,6 +25,10 @@ const TEAM: [string, string, string, string?][] = [
 const photos: Record<string, string> = {
   "Dr. Johnny Nguyen": "/images/team/dr-johnny-nguyen-card.webp",
 };
+/** Second poses, generated from his portrait (Nov 2026). Also on file: -arms-folded and -seated. */
+const photos2: Record<string, string> = {
+  "Dr. Johnny Nguyen": "/images/team/dr-johnny-nguyen-laughing.webp",
+};
 
 const initialOf = (name: string): string => {
   if (name.startsWith("Dr. ")) {
@@ -41,6 +45,7 @@ export const team: TeamMember[] = TEAM.map(([name, role, divisions, preceptorTag
   ...(preceptorTag ? { preceptorTag } : {}),
   ...(name.startsWith("Dr. ") ? { languages: physicianLanguages } : {}),
   ...(photos[name] ? { photo: photos[name] } : {}),
+  ...(photos2[name] ? { photo2: photos2[name] } : {}),
   initial: initialOf(name),
   tint: tints[i % 5],
 }));

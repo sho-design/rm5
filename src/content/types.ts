@@ -115,6 +115,8 @@ export interface TeamMember {
   tint: string;
   /** Headshot URL when one has been uploaded in the CMS. */
   photo?: string;
+  /** A second pose, shown when the card is hovered or opened (Dr. Nguyen, Nov 2026). */
+  photo2?: string;
   bio?: string;
   credentials?: string[];
 }

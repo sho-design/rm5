@@ -240,7 +240,7 @@ export const kidsDocs: KidsDoctor[] = [
 export const kidsPath: PathStep[] = [
   { n: "1", time: "Today", t: "Register online", d: "Two minutes. Add your child to your own registration or start one for them." },
   { n: "2", time: "Within 2 business days", t: "We call to confirm", d: "A short call in English or Vietnamese to book the first visit and answer questions." },
-  { n: "3", time: "First visit, 30 min", t: "History, growth and a plan", d: "Bring the health card and yellow card. We review history, measure growth and note what is due." },
+  { n: "3", time: draft("First visit, 20 min"), t: "History, growth and a plan", d: "Bring the health card and yellow card. We review history, measure growth and note what is due." },
   { n: "4", time: "Ongoing", t: "Checkups and sick visits", d: "Yearly checkups, vaccines on schedule and same-week visits when they are unwell." },
 ];
 
