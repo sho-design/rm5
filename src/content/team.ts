@@ -25,9 +25,9 @@ const TEAM: [string, string, string, string?][] = [
 const photos: Record<string, string> = {
   "Dr. Johnny Nguyen": "/images/team/dr-johnny-nguyen-card.webp",
 };
-/** Second poses, generated from his portrait (Nov 2026). Also on file: -arms-folded and -seated. */
+/** Second poses, generated from his portrait (Nov 2026). Also on file: -arms-folded and -seated (hands in frame). */
 const photos2: Record<string, string> = {
-  "Dr. Johnny Nguyen": "/images/team/dr-johnny-nguyen-laughing.webp",
+  "Dr. Johnny Nguyen": "/images/team/dr-johnny-nguyen-turned.webp",
 };
 
 const initialOf = (name: string): string => {
