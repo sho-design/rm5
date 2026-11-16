@@ -49,7 +49,7 @@ function Card({ d, picked, onPick, full }: { d: Drip; picked: boolean; onPick: (
           aria-pressed={picked}
           disabled={!picked && full}
           className={cn(
-            "relative z-[1] flex items-center gap-1.5 rounded-chip border-[1.5px] px-3 py-1.5 text-[13px] font-semibold motion-safe:transition-colors disabled:opacity-45",
+            "relative z-[1] flex items-center gap-1.5 rounded-chip border-[1.5px] px-3 py-1.5 text-[13px] font-semibold motion-safe:transition-colors disabled:opacity-60",
             picked ? "border-ink bg-ink text-white" : "border-border bg-white text-ink hover:border-sky",
           )}
         >

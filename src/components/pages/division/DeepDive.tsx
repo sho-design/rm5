@@ -65,7 +65,7 @@ export function DeepDive({ k, division, dive }: { k: DivisionKey; division: Divi
         // The visit, start to finish, is told in full on How it works (Nov 2026); here it is one line.
         <Section tight>
           <SmartLink to={routes.infusionHow} className="w-fit text-[16px] font-semibold text-link">
-            {draft("About an hour, start to finish. See how a visit works")} ›
+            {draft("A drip visit is about an hour, start to finish. Iron takes about 3 hours. See how a visit works")} ›
           </SmartLink>
         </Section>
       ) : (

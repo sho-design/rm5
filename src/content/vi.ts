@@ -150,7 +150,7 @@ export const viIron = {
     { t: draft("Ngày truyền"), d: draft("Mỗi lần khoảng 3 giờ, vào thứ Ba, thứ Bảy và Chủ Nhật.") },
   ],
   priceTitle: draft("Chi phí mỗi lần truyền."),
-  priceLead: draft("Phí tự trả, có biên lai. Buổi đánh giá và xét nghiệm máu do OHIP chi trả."),
+  priceLead: draft("Phí tự trả, đã gồm HST, có biên lai. Thường 3 lần, cách nhau 1 đến 2 tuần, theo chỉ định của bác sĩ. Buổi đánh giá và xét nghiệm máu do OHIP chi trả."),
   prices: [
     { t: draft("Venofer (sắt sucrose) 300 mg"), d: draft("Do phòng khám cung cấp. Loại được dùng nhiều nhất."), p: "$400" },
     { t: draft("Monoferric 500 mg"), d: draft("Do phòng khám cung cấp."), p: "$550" },
