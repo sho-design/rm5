@@ -829,7 +829,7 @@ const family: Topic[] = [
     cta2: "Book a visit",
     // The existing "Prescription renewal" visit type (round 31: it opened "A health concern").
     cta2To: bookFor("family", "renewal"),
-    img: images.services.family[1],
+    img: images.services.rxHero,
     imgAlt: draft(
       "Family physician reviewing a medication list with a patient",
     ),
@@ -863,7 +863,7 @@ const family: Topic[] = [
       "Publicly funded vaccines are free with your Ontario health card. We tell you before the visit if one is not.",
     ),
     img: images.services.family[6],
-    imgAlt: draft("Nurse preparing a vaccine for a patient"),
+    imgAlt: draft("Nurse giving a father a vaccine while his daughter watches"),
     related: {
       title: draft("Related."),
       items: [

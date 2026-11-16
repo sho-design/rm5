@@ -36,7 +36,7 @@ export default function ChronicCarePage() {
         tint={div.tint}
         accent={div.accent}
         img={subpageHero.chronic}
-        imgAlt="Physician reviewing a care plan with a patient"
+        imgAlt="Physician checking a patient's blood pressure"
         pills={["Same doctor every visit", "Bloodwork and ECG on site", "Tiếng Việt spoken"]}
       />
 

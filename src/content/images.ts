@@ -32,13 +32,17 @@ export const images = {
   services: {
     family: [
       u("hf_20260910_060105_8329f471-e16c-4599-a5fd-eff9f29e5099.png"),
-      u("hf_20260910_060105_9b4d161b-dd26-4b8e-924b-c14a0b0b4781.png"),
+      // Nov 2026: male physician (the clinic has no female physicians yet; the old photo implied one).
+      u("hf_20261116_074833_6ef798c0-83f0-4941-bf7e-e90a797c19f4.png"),
       u("hf_20260910_060501_0a575c64-3c00-4281-b6fa-284409f91a6b.png"),
       u("hf_20260903_071606_44b313fa-3033-44bf-a024-17701e5927ec.png"),
       u("hf_20260910_073149_153c186f-0341-4d36-8958-e6247e19e5a6.png"),
       u("hf_20260910_073149_293484ff-e14d-4d0f-972a-1b668d03266f.png"),
-      u("hf_20260910_060106_c7475602-29ee-4141-a321-16e71b5c1059.png"),
+      // Nov 2026: nurse in black scrubs giving a vaccine (the old photo showed a woman in physician navy).
+      u("hf_20261116_074836_f7f71ecb-4cbc-4e2c-a4c4-8618c2ee5362.png"),
     ],
+    /** Prescription renewals hero (Nov 2026): male physician reviewing medications. */
+    rxHero: u("hf_20261116_074835_5050687b-2ddf-4b22-9227-bf8db3ee3879.png"),
     pain: [
       u("hf_20260910_060105_c154b387-2385-491a-ac68-dc6b9755e457.png"),
       u("hf_20260910_061842_d0319aa0-35a0-42ca-96da-4b1503a2b0a2.png"),
