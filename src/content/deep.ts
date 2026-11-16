@@ -147,7 +147,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         title: "Forms and notes",
         p: "School, camp, daycare, employment, travel and insurance forms. Most are done in one short visit.",
         facts: [
-          { k: "Time", v: "10 to 15 minutes" },
+          { k: "Time", v: "20 minutes" },
           { k: "Coverage", v: "Uninsured fee, receipt provided" },
           { k: "Bring", v: "The form, partly filled" },
           { k: "Ready", v: "Usually same day" },

@@ -18,7 +18,7 @@ export const callCopy = {
     {
       k: "clinic",
       t: draft("Call us the same day"),
-      d: draft("If you are being sick and cannot keep fluids down, feel faint, or have bleeding."),
+      d: draft("If you are being sick and cannot keep fluids down, feel faint, or have spotting or light bleeding."),
       action: draft("Call 905-709-3222"),
     },
     {
@@ -37,7 +37,8 @@ export const callCopy = {
   chips: [
     { label: draft("Being sick, can't keep fluids down"), tier: 0 },
     { label: draft("Feeling faint"), tier: 0 },
-    { label: draft("Bleeding"), tier: 0 },
+    // Round 31: "Bleeding" next to "Heavy bleeding" had no line between them. The threshold is for the clinic to set.
+    { label: draft("Spotting or light bleeding"), tier: 0 },
     { label: draft("We are closed"), tier: 1 },
     { label: draft("Heavy bleeding"), tier: 2 },
     { label: draft("Severe pain"), tier: 2 },

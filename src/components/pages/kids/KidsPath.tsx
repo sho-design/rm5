@@ -12,7 +12,7 @@ export function KidsPath() {
             {kidsCopy.path.title}
           </Display>
         </div>
-        <Button to="register" variant="accent">
+        <Button to="/register?for=someone" variant="accent">
           {kidsCopy.path.cta}
         </Button>
       </div>

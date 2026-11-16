@@ -245,7 +245,7 @@ export const kidsPath: PathStep[] = [
 ];
 
 export const kidsForms: TintCard[] = [
-  { t: "School and daycare", d: "Entry forms, medication at school, allergy and asthma plans.", time: "10 to 15 minute visit", bg: "#EEF5FC" },
+  { t: "School and daycare", d: "Entry forms, medication at school, allergy and asthma plans.", time: draft("20 minute visit"), bg: "#EEF5FC" },
   { t: "Camp and travel", d: "Camp health forms and travel letters, including vaccine records.", time: "Often same visit as a checkup", bg: "#FFF3C4" },
   { t: "Sports and activities", d: "Sports physicals, fitness-to-play notes and return-to-play after injury.", time: "15 minute visit", bg: "#FDE8E4" },
   { t: "Absence and sick notes", d: "School absence notes and letters for extended illness or recovery.", time: "During the sick visit", bg: "#E6F4EA" },

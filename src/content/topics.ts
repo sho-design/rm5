@@ -827,7 +827,8 @@ const family: Topic[] = [
     cta: draft("Request a renewal"),
     ctaTo: "#request",
     cta2: "Book a visit",
-    cta2To: bookFor("family"),
+    // The existing "Prescription renewal" visit type (round 31: it opened "A health concern").
+    cta2To: bookFor("family", "renewal"),
     img: images.services.family[1],
     imgAlt: draft(
       "Family physician reviewing a medication list with a patient",

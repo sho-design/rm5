@@ -57,7 +57,7 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
                   {site.phone}
                 </a>
                 <span className="text-muted">Fax {site.fax}</span>
-                <a href={`mailto:${site.email}`} className="break-all">
+                <a href={`mailto:${site.email}`} className="[overflow-wrap:anywhere]">
                   {site.email}
                 </a>
               </div>

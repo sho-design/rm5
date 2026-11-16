@@ -1,4 +1,4 @@
-import { bookFor } from "@/lib/routes";
+import { bookFor, reasonParam } from "@/lib/routes";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { Faq, SubChooser, SubPageHero } from "@/components/ui";
@@ -31,7 +31,7 @@ export default function WomensHealthPage() {
         title={womenCopy.hero.title}
         lead={womenCopy.hero.lead}
         cta={womenCopy.hero.cta}
-        ctaTo={bookFor("family", "checkup")}
+        ctaTo={`${bookFor("family", "concern")}&reason=${reasonParam("Women's health")}`}
         cta2={womenCopy.hero.cta2}
         cta2To="register"
         coverage={womenCopy.hero.coverage}

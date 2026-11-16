@@ -35,7 +35,7 @@ export default function ViContactPage() {
         </a>
         <a href={`mailto:${site.email}`} className={`${tile} bg-sky-soft hover:opacity-95`}>
           <span className="text-[13px] text-muted">{viChrome.emailLabel}</span>
-          <span className="break-all text-[17px] font-semibold">{site.email}</span>
+          <span className="[overflow-wrap:anywhere] text-[17px] font-semibold">{site.email}</span>
           <span className="text-[13px] text-secondary">{c.emailSub}</span>
         </a>
         <div className={`${tile} bg-raised`}>

@@ -39,7 +39,7 @@ export const womenOptions: SubChooserItem[] = [
     title: "The option that fits your life, not a default.",
     p: "We go through pill, patch, ring, injection, IUD and implant, side effects and cost. IUDs are inserted in clinic with a follow-up check at six weeks.",
     facts: [
-      { k: "Time", v: "15 to 30 minutes" },
+      { k: "Time", v: "20 minutes" },
       { k: "Coverage", v: "Visit OHIP; device or prescription varies" },
       { k: "Also", v: "Emergency contraception, same day" },
       { k: "Privacy", v: "Confidential, any age" },

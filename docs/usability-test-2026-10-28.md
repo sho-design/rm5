@@ -1396,3 +1396,33 @@ Not changed, for the clinic:
 - New draft wording this round needs approval: complimentary consult line, flu season line, walk-in answer order, Maple access line, rehab "Bring these" notes, Vietnamese vaccines card.
 
 Left for a later round: illustration labels are small on phones (journey, family and record drawings), the tube captions sit partly behind the cap, the women's day and fasting dials push their answer below the fold on phones, and the men's aesthetics page carries two FAQ blocks back to back.
+
+## Round 31 (2026-11-16): 20 personas across the whole site
+
+Groups of four: family medicine (register a family, pregnancy, women's health, keyboard chronic care), booking and bloodwork (fasting ECG, flu and shingles at 70, three booking flows by keyboard, chest tightness at 3am Friday), infusion and iron (iron costs, drip comparison, a skeptic in dark mode, Vietnamese iron page), aesthetics (wedding planner, men's downtime, which laser, home skincare and HST), and Pain Centre, rehab and About (no family doctor, car accident, dark and high contrast with search, Vietnamese). No console or page errors, no 4xx or 5xx, no horizontal scroll at 360 to 1440. Prices, hours, iron days, physio and chiro prices, Maple status and the "physician referral" wording all matched the clinic facts. Ease 4/7 to 6/7.
+
+Fixed after the round:
+- Pain Centre service cards no longer show "Book", which put patients with no referral into the referral visit; the family medicine route stays.
+- Rehab: choosing an option on a phone scrolls its answer into view; the car accident and WSIB cards link to "What to bring", not the referring doctors page; the accident page has a WSIB button and books the MVA visit directly.
+- Team cards in dark mode: names on the pastel cards were white on pale; they are ink again.
+- Dark mode search: the highlighted result was white on pale blue; it now uses a theme-aware tint (same for the home quick actions).
+- Visit lengths: register ("20 minute appointment"), chronic care, contraception and school forms now match the 20-minute slots.
+- Women's health: the calendar opens on the next date (it showed September beside "Next one Sunday, Nov 29"); the date chip is darker; "Book a visit" opens a women's health visit, not an annual physical.
+- Pregnancy "When to call": "Bleeding" is now "Spotting or light bleeding" beside "Heavy bleeding".
+- Children: the forms button preselects a forms visit for your child, and "Register your child" opens the form for someone else.
+- Renewals: "Book a visit" opens the Prescription renewal visit.
+- Aesthetics: "From $150" and "From $350" say "plus HST"; plans say products are sold separately; the skincare page no longer links to itself; the event plan says about 8 weeks; the ladder no longer says both "step up" and "step down".
+- Infusion: the booking note no longer reads like internal logic; "About an hour" beside iron facts now separates drips from 3-hour iron visits; the Vietnamese iron page says HST included and the 1 to 2 week spacing; compare chips are easier to read when full.
+- Vietnamese footer: Maple address and map title in Vietnamese. Emails wrap at the @ only when needed. Booking step numbers darker.
+
+Not changed, for the clinic:
+- Booking for someone else asks an optional date of birth. It drives the newborn fever check (a baby under 3 months with a fever is told not to book). Keep it, or replace with an age field.
+- No prices for laser, drips or shots; "IV drips from $150" is not in the clinic facts. Massage "From $95" has no "plus HST".
+- Infusion: "a consult first" (buttons) versus "a short nurse screening the first time, then book straight in" (FAQ). Ingredient lines like "supports steady energy" sit next to "we do not make treatment claims". The "evidence still developing" section only says "Ask at your consult".
+- Rehab first visit 45 minutes. "9 registered nurses" on the team page. lab@, placements@ and careers@ addresses are not in the clinic facts.
+- The light-bleeding versus heavy-bleeding threshold wording.
+- Microneedling is missing from the full treatments menu.
+- Hero photos on chronic care, renewals and vaccines show a woman in doctor's navy scrubs and blue gloves (implies a female physician).
+- "Dial 911" stays plain text by clinic choice.
+
+Left for later: the sticky section bar adds tab stops before the page on every page; booking cannot list several vaccines or tests except in the note; the top bar status is cut at the largest text size; dark mode keeps explainers as light cards by design.

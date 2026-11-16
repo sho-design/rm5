@@ -37,7 +37,7 @@ function MonthPage({ d, lit, past = false }: { d: Date; lit: boolean; past?: boo
               key={i}
               // Lead-in months (already passed) mark their day quietly; only the next day is lit.
               className={`wd-cell grid aspect-square place-items-center rounded-full ${on ? (past ? "font-bold text-ink" : "wd-on font-bold text-white") : "text-ink/75"} ${on && lit && !past ? "wd-pop" : ""}`}
-              style={on ? { background: past ? "var(--rm-line)" : "var(--rm-terracotta-deep)" } : undefined}
+              style={on ? { background: past ? "var(--rm-line)" : "color-mix(in srgb, var(--rm-terracotta-deep) 82%, var(--rm-ink))" } : undefined}
             >
               {n ?? ""}
             </span>
@@ -69,7 +69,9 @@ export function WomensHealthDay() {
     const now = torontoNow();
     const [nx] = nextWomensDays(now, 1);
     setDates([nx]);
-    setLead(nextWomensDays(new Date(nx.getFullYear(), nx.getMonth() - 2, 1), 2));
+    // Round 31: even a lead-in read "September 2026" beside "Next one Sunday, Nov 29". The calendar now opens on
+    // the next date and only its page flips in; no other month is shown.
+    setLead([]);
   }, []);
 
   useEffect(() => {

@@ -86,7 +86,7 @@ export default function GiftCardsPage() {
           </a>
           <a href={`mailto:${site.email}`} className="flex flex-col gap-1 rounded-card-sm border border-border bg-card px-4 py-3.5 hover:border-sky">
             <span className="text-[13px] text-muted">Email</span>
-            <span className="break-all text-[16px] font-semibold">{site.email}</span>
+            <span className="[overflow-wrap:anywhere] text-[16px] font-semibold">{site.email}</span>
           </a>
         </div>
       </Section>

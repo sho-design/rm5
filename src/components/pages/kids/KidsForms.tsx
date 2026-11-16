@@ -1,4 +1,5 @@
 import { Button, Display, Eyebrow, Section } from "@/components/ui";
+import { bookFor } from "@/lib/routes";
 import { kidsCopy, kidsForms } from "@/content/kids";
 import { MetaTile } from "./FamilySubBits";
 
@@ -12,7 +13,7 @@ export function KidsForms() {
           <Display size="2xs">{kidsCopy.forms.title}</Display>
           <p className="pretty text-[15px] leading-[1.55] text-white/75">{kidsCopy.forms.body}</p>
         </div>
-        <Button to="book" variant="accent" className="self-start">
+        <Button to={`${bookFor("family", "forms")}&for=someone`} variant="accent" className="self-start">
           {kidsCopy.forms.cta}
         </Button>
       </div>

@@ -76,7 +76,7 @@ export interface RegisterStep {
 export const registerSteps: RegisterStep[] = [
   { n: "1", t: "Send this form", d: "Two minutes. No documents needed yet." },
   { n: "2", t: "We confirm", d: "Within 2 business days by phone or email." },
-  { n: "3", t: "First visit", d: "A 30 minute appointment to meet your doctor." },
+  { n: "3", t: "First visit", d: draft("A 20 minute appointment to meet your doctor.") },
 ];
 
 export const registerLanguages = ["English", "Tiếng Việt"] as const;

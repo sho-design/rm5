@@ -146,7 +146,7 @@ export function SearchOverlay({
 
   const rowClass = cn(
     // data-selected is the highlight (arrow keys or pointer): the row Enter will open.
-    "flex flex-col gap-0.5 rounded-field border border-border bg-raised px-3.5 py-3 text-left transition-colors hover:border-sky data-[selected=true]:border-sky data-[selected=true]:bg-sky-soft",
+    "flex flex-col gap-0.5 rounded-field border border-border bg-raised px-3.5 py-3 text-left transition-colors hover:border-sky data-[selected=true]:border-sky data-[selected=true]:bg-[color:color-mix(in_srgb,var(--rm-sky)_16%,var(--surface-raised))]",
     !mobile &&
       "md:grid md:grid-cols-[1fr_auto] md:items-center md:gap-4 md:px-4 md:py-3.5",
   );

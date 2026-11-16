@@ -72,7 +72,7 @@ export default function ChronicCarePage() {
 
       <TintBand
         title="Bring every bottle. We will sort the rest."
-        sub="A first chronic care visit is 30 minutes. Medications reconciled, bloodwork and ECG done on the way out, targets agreed before you leave."
+        sub="A first chronic care visit is 20 minutes. Medications reconciled, bloodwork and ECG done on the way out, targets agreed before you leave."
         cta="Book a first visit"
         ctaTo={bookFor("family", "chronic")}
         link="Bloodwork and ECG on site"
