@@ -8,7 +8,7 @@
 // Served from the site itself as compressed WebP (public/images, longest side 2000px). The originals were
 // 11 MB PNGs on a CDN, which made pages slow while the image optimizer fetched them. Regenerate with
 // scripts/localize-images.js when the photos change.
-/** Dr. Nguyen appears (from his portrait) in the chronic care, renewals, consult and Pain Centre shots, in his white lab coat over navy scrubs and white canvas sneakers with a red stripe (Nov 2026). */
+/** Dr. Nguyen appears (from his portrait) in the chronic care, renewals, consult, nerve block, toddler and baby shots, in his white lab coat over navy scrubs and white canvas sneakers with a red stripe (Nov 2026). */
 const CDN = "/images/";
 const u = (f: string) => CDN + f.replace(/\.(png|jpe?g)$/i, ".webp");
 
@@ -35,7 +35,7 @@ export const images = {
       u("hf_20260910_060105_8329f471-e16c-4599-a5fd-eff9f29e5099.png"),
       // Nov 2026: male physician (the clinic has no female physicians yet; the old photo implied one).
       u("hf_20261117_054950_fce5a313-b9bc-43b3-bcc4-744f5f8dfb2b.png"),
-      u("hf_20260910_060501_0a575c64-3c00-4281-b6fa-284409f91a6b.png"),
+      u("hf_20261117_174615_b84b6323-7c66-4d30-8eb8-8f36f4bce7e5.png"),
       u("hf_20260903_071606_44b313fa-3033-44bf-a024-17701e5927ec.png"),
       u("hf_20261117_173627_21022858-2072-4d9b-a919-aa684d7be158.png"),
       u("hf_20260910_073149_293484ff-e14d-4d0f-972a-1b668d03266f.png"),
@@ -73,7 +73,7 @@ export const images = {
 
   /** Location page service tiles */
   location: {
-    family: u("hf_20260910_054249_6d69b0c5-bf4a-409b-a4cc-f300008e4ff6.png"),
+    family: u("hf_20261117_174618_4394e7af-c32c-4012-8adc-07519d1a7388.png"),
     pain: u("hf_20260910_053343_a16fe24a-bef4-4a55-8c39-e33b4e4d46a5.png"),
     infusion: u("hf_20260910_054249_92d534a6-fc85-47a1-b2d4-dfa0c042669f.png"),
     aesthetics: u(
