@@ -8,6 +8,7 @@
 // Served from the site itself as compressed WebP (public/images, longest side 2000px). The originals were
 // 11 MB PNGs on a CDN, which made pages slow while the image optimizer fetched them. Regenerate with
 // scripts/localize-images.js when the photos change.
+/** Dr. Nguyen appears (from his portrait) in the chronic care, renewals, consult and Pain Centre shots (Nov 2026). */
 const CDN = "/images/";
 const u = (f: string) => CDN + f.replace(/\.(png|jpe?g)$/i, ".webp");
 
@@ -33,16 +34,16 @@ export const images = {
     family: [
       u("hf_20260910_060105_8329f471-e16c-4599-a5fd-eff9f29e5099.png"),
       // Nov 2026: male physician (the clinic has no female physicians yet; the old photo implied one).
-      u("hf_20261116_074833_6ef798c0-83f0-4941-bf7e-e90a797c19f4.png"),
+      u("hf_20261117_050220_9580c19e-1ac4-47a9-99f0-d3e3d2fecbff.png"),
       u("hf_20260910_060501_0a575c64-3c00-4281-b6fa-284409f91a6b.png"),
       u("hf_20260903_071606_44b313fa-3033-44bf-a024-17701e5927ec.png"),
-      u("hf_20260910_073149_153c186f-0341-4d36-8958-e6247e19e5a6.png"),
+      u("hf_20261117_050223_8e86d768-da17-4984-972b-61c84cac0d10.png"),
       u("hf_20260910_073149_293484ff-e14d-4d0f-972a-1b668d03266f.png"),
       // Nov 2026: nurse in black scrubs giving a vaccine (the old photo showed a woman in physician navy).
       u("hf_20261116_074836_f7f71ecb-4cbc-4e2c-a4c4-8618c2ee5362.png"),
     ],
     /** Prescription renewals hero (Nov 2026): male physician reviewing medications. */
-    rxHero: u("hf_20261116_074835_5050687b-2ddf-4b22-9227-bf8db3ee3879.png"),
+    rxHero: u("hf_20261117_050222_70e17a21-919b-40c6-af45-3289cbd7aa97.png"),
     pain: [
       u("hf_20260910_060105_c154b387-2385-491a-ac68-dc6b9755e457.png"),
       u("hf_20260910_061842_d0319aa0-35a0-42ca-96da-4b1503a2b0a2.png"),
@@ -96,7 +97,7 @@ export const images = {
       "hf_20260911_055045_19619b82-9710-4027-8657-aecaea97a565.png",
     ),
     "nerve-block-prep": u(
-      "hf_20260911_055045_a31ae451-66b1-4b04-ba30-f12fb98b233a.png",
+      "hf_20261117_050225_2db9cbf8-2c25-416c-b047-8fc7109cb550.png",
     ),
     "reading-requisition": u(
       "hf_20260911_055046_8500143f-3de6-40a8-967d-0d7eef0f24fe.png",
