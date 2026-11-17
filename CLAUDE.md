@@ -25,7 +25,8 @@ Public website for Restoration Medical, a physician-led multi-service clinic in 
 Apply to every generated photo of clinic staff or clinic interiors:
 - Nurses: black V-neck scrubs, modern tailored fit (Figs-style).
 - Doctors: navy blue V-neck scrubs, same modern fit.
-- Everyone on staff: white New Balance-style sneakers.
+- Everyone on staff: white New Balance-style sneakers, except Dr. Johnny Nguyen.
+- Dr. Johnny Nguyen: usually a white Figs-style tailored lab coat over navy V-neck scrubs, and white Chuck Taylor-style canvas sneakers with a red stripe on the sole. No visible brand logos.
 - Chairs and tables: black or white only.
 - Doctors: light blue nitrile gloves. Aesthetic nurses: black nitrile gloves.
 - Around 45% of people shown are Vietnamese / East Asian.

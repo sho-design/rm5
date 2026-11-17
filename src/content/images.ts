@@ -8,7 +8,7 @@
 // Served from the site itself as compressed WebP (public/images, longest side 2000px). The originals were
 // 11 MB PNGs on a CDN, which made pages slow while the image optimizer fetched them. Regenerate with
 // scripts/localize-images.js when the photos change.
-/** Dr. Nguyen appears (from his portrait) in the chronic care, renewals, consult and Pain Centre shots, in a white lab coat over navy scrubs (Nov 2026). */
+/** Dr. Nguyen appears (from his portrait) in the chronic care, renewals, consult and Pain Centre shots, in his white lab coat over navy scrubs and white canvas sneakers with a red stripe (Nov 2026). */
 const CDN = "/images/";
 const u = (f: string) => CDN + f.replace(/\.(png|jpe?g)$/i, ".webp");
 
@@ -37,7 +37,7 @@ export const images = {
       u("hf_20261117_054950_fce5a313-b9bc-43b3-bcc4-744f5f8dfb2b.png"),
       u("hf_20260910_060501_0a575c64-3c00-4281-b6fa-284409f91a6b.png"),
       u("hf_20260903_071606_44b313fa-3033-44bf-a024-17701e5927ec.png"),
-      u("hf_20261117_054954_3bca66da-6398-49d8-a268-79ce47c19018.png"),
+      u("hf_20261117_173627_21022858-2072-4d9b-a919-aa684d7be158.png"),
       u("hf_20260910_073149_293484ff-e14d-4d0f-972a-1b668d03266f.png"),
       // Nov 2026: nurse in black scrubs giving a vaccine (the old photo showed a woman in physician navy).
       u("hf_20261116_074836_f7f71ecb-4cbc-4e2c-a4c4-8618c2ee5362.png"),
@@ -97,7 +97,7 @@ export const images = {
       "hf_20260911_055045_19619b82-9710-4027-8657-aecaea97a565.png",
     ),
     "nerve-block-prep": u(
-      "hf_20261117_054955_4b9e94b1-96a8-4a5b-ac38-5d8faec32270.png",
+      "hf_20261117_173629_f77cda8b-80e8-4722-8d7e-e3da521eb24c.png",
     ),
     "reading-requisition": u(
       "hf_20260911_055046_8500143f-3de6-40a8-967d-0d7eef0f24fe.png",
