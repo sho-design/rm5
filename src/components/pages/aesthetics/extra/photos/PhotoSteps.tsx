@@ -44,7 +44,11 @@ function Front() {
   );
 }
 
-/** Head and shoulders in profile, facing left. Mirrored for the right side. */
+/**
+ * Head and shoulders in profile, facing left, drawn like Front (round 31 feedback: the old profile looked off): the
+ * same shoulders, two-line neck, oval head and lilac hair cap, with a nose, eye, ear and mouth in the same line.
+ * Mirrored for the right side.
+ */
 function Side({ mirror }: { mirror?: boolean }) {
   return (
     <g
@@ -55,20 +59,20 @@ function Side({ mirror }: { mirror?: boolean }) {
       strokeLinejoin="round"
     >
       <path
-        d="M240 304 C 252 268 280 254 316 252 C 346 252 372 266 382 304"
+        d="M232 304 C 242 266 274 252 310 252 C 346 252 378 266 388 304"
         fill="var(--rm-lilac-tint)"
       />
+      <path d="M298 214 L298 254 M334 214 L334 254" fill="none" />
+      <ellipse cx="314" cy="152" rx="52" ry="66" fill="#FFFFFF" />
+      {/* Nose: an open path, so its white fill covers the head line behind it and only the outside is drawn. */}
+      <path d="M264 138 L250 168 Q253 173 264 173" fill="#FFFFFF" />
       <path
-        d="M330 88 C 300 86 278 102 272 128 L264 148 L272 152 C 270 162 272 170 278 174 L274 182 C 276 190 284 196 292 198 C 296 210 300 220 304 228 L304 254 L346 254 L346 214 C 362 198 372 176 372 150 C 372 112 356 90 330 88 Z"
-        fill="#FFFFFF"
-      />
-      <path
-        d="M330 88 C 356 90 372 112 372 140 C 360 120 344 110 322 108 C 304 106 290 110 280 118 C 290 98 308 88 330 88 Z"
+        d="M262 128 C 264 98 286 84 314 84 C 344 84 366 104 366 140 C 352 116 334 106 312 106 C 292 106 274 114 262 128 Z"
         fill="var(--rm-lilac)"
         fillOpacity=".55"
       />
       <path
-        d="M288 146 Q294 143 300 146 M330 150 C 338 146 344 152 342 160 C 340 166 334 168 330 164"
+        d="M276 150 Q282 146 288 150 M276 185 Q282 188 289 185 M334 146 C 344 142 350 150 348 158 C 346 165 340 167 336 163"
         fill="none"
       />
     </g>
