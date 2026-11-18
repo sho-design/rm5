@@ -167,7 +167,7 @@ export const registerCopy = {
   eyebrow: "New patients",
   title: "Register with a family doctor.",
   // Agrees with the confirmation now (a tester could not tell whether to book or wait for a call).
-  lead: draft("Two minutes now. We confirm within 2 business days. If you have not booked a first visit online, we book it with you: a longer appointment so your doctor can get to know you."),
+  lead: draft("Two minutes now. We confirm within 2 business days. If you have not booked a first visit online, we book it with you: a first appointment so your doctor can get to know you."),
   formTitle: "About you",
   fields: {
     first: "First name",

@@ -340,7 +340,7 @@ export const bloodPrep = {
   ],
   noList: draft("Your requisition or our lab team can tell you which applies."),
   timeLabel: draft("Your appointment time"),
-  afternoon: draft("Fasting tests are easiest in the morning. Our only afternoon is Tuesday, 3pm to 9pm: fine for a 4 hour fast, but for 8 hours or more, a morning on another day means fasting overnight instead of all day."),
+  afternoon: draft("Fasting tests are easiest in the morning. Our only evening hours are Tuesday, 3pm to 9pm: fine for a 4 hour fast, but for 8 hours or more, a morning on another day means fasting overnight instead of all day."),
   whenBefore: draft("the night before"),
   whenMorning: draft("that morning"),
   whenDay: draft("that day"),
@@ -512,7 +512,7 @@ export const womenCopy = {
     cta: "Book a visit",
     cta2: "Register as a patient",
     coverage: "Insured visits are covered by OHIP. Bring your health card and any recent results.",
-    alt: "Family doctor speaking with a patient",
+    alt: draft("A woman relaxing at home with a warm drink"),
     pills: ["OHIP covered", "Women’s health with our nurses", "Care in English and Tiếng Việt"],
   },
   chooser: {

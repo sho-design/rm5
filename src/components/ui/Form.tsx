@@ -54,7 +54,7 @@ export function Checkbox({ label, sub, className, ...rest }: ComponentProps<"inp
   return (
     <label className={cn("flex cursor-pointer items-start gap-3 text-[15px]", className)}>
       <input type="checkbox" className="peer sr-only" {...rest} />
-      <span aria-hidden className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] border-[1.5px] border-border bg-white text-[13px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
+      <span aria-hidden className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] border-[1.5px] border-border bg-[color:var(--surface-raised)] text-[13px] text-transparent transition-colors peer-checked:border-[color:var(--action-primary-bg)] peer-checked:bg-[color:var(--action-primary-bg)] peer-checked:text-[color:var(--action-primary-fg)] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
         ✓
       </span>
       <span className="flex flex-col gap-0.5">

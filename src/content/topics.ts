@@ -907,7 +907,7 @@ const family: Topic[] = [
       "OHIP-insured. Bring your health card. Card from another province? We may be able to bill your home province.",
     ),
     img: images.services.family[3],
-    imgAlt: draft("Family physician talking with a pregnant patient"),
+    imgAlt: draft("A woman relaxing at home with a warm drink"),
     // "What to expect" and the first-trimester steps live in the Two teams journey; warning signs in When to call us (Nov 2026).
     related: {
       title: draft("Related."),

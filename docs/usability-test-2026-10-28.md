@@ -1426,3 +1426,32 @@ Not changed, for the clinic:
 - "Dial 911" stays plain text by clinic choice.
 
 Left for later: the sticky section bar adds tab stops before the page on every page; booking cannot list several vaccines or tests except in the note; the top bar status is cut at the largest text size; dark mode keeps explainers as light cards by design.
+
+## Round 32 (2026-11-18): 10 personas
+
+Pairs: family medicine (pregnant with a toddler on a phone; 64 in dark mode at the largest text), booking and bloodwork (keyboard only with a fasting requisition and ECG; a 2-month-old with a fever at 10pm Friday), infusion (always tired, choosing between a doctor, iron and a drip; a Vietnamese-only reader booking iron), aesthetics (photo privacy and the photo steps drawing; lasers, pricing and HST in dark mode), Pain Centre, rehab and team (WSIB knee; choosing a doctor and judging the doctor photos). No console or page errors, no 4xx or 5xx, no sideways scroll. Iron prices, days and times matched the clinic facts in English and Vietnamese; the baby fever safety block worked; the redrawn photo steps read as one person from three angles; Dr. Nguyen's photos were consistent and followed the image rules. Ease 5/7 to 6/7.
+
+Fixed after the round:
+- Dark mode checkboxes looked reversed (an empty box showed a tick); boxes now use the theme colours and show a tick only when checked.
+- Nerve block note no longer mentions contrast (the clinic does not use X-ray guidance); note photos crop to the upper third so faces show.
+- Skincare builder picks the vitamin C serum for the chosen skin type (dry and mature got the oily-skin serum).
+- Photo steps: on phones the drawing comes before the steps, and its labels are larger.
+- Infusion: "iron therapy only if your results show it is needed" (it said "or a drip"); the ice-craving tile matches its line; "ten quick shots" (some are blends); the tired-all-the-time route lists all three iron prices with HST included.
+- Visit lengths: sports physicals 20 minutes; registration no longer promises "a longer appointment".
+- Fasting note: "our only evening hours are Tuesday" (every day but Friday has an afternoon).
+- The pregnancy and women's health photo alt text describes the photo (a woman at home with a drink), not a physician.
+
+Checked and left: "When to call" lights and announces Health811 while the clinic is closed and "call us the same day" while open, as intended. The laser picker already exposes its selected state.
+
+For the clinic:
+- Bloodwork plus ECG: the page says "about 20 minutes, start to finish" for both together; booking gives one 20-minute slot. Confirm whether both fit in 20 minutes or need two slots.
+- Nerve block: 15 to 30 minutes and "avoid driving that day" (note) versus under 20 minutes and "most people drive themselves home" (Pain Centre page).
+- Rehab FAQ "Do I need a doctor's referral?" does not mention WSIB; "Dr. Nguyen sees rehab patients for imaging, injections" reads as if injections skip the referral.
+- "Tired all the time" plan suggests a monthly drip when bloodwork is normal; the infusion hero says "from everyday energy".
+- No drip, shot or laser prices; the drips page says "no pricing surprises".
+- What temperature counts as a fever for a baby (38.0) is not stated; "a mild fever afterwards is common" after 2-month vaccines sits beside "fever under 3 months: emergency".
+- Cervical screening "every 3 years from 25" may need updating for Ontario's HPV testing (every 5 years).
+- Not in the clinic facts: "front desk and nurses speak Vietnamese", Dr. Nguyen's awards and "11 years of combined experience", "pharmacist review available".
+- Photos: rehab photos have wood furniture and a visible sports logo; the men's health photo shows a city street (the clinic is inside Walmart); the nerve block scanner does not look like a Clarius handheld; Dr. Truong has no photo.
+
+Left for later: booking defaults to "New patient" from pages aimed at existing patients; the compact header adds tab stops; a future or impossible date of birth is dropped silently; /vi has no text size control; the booking form is English only.

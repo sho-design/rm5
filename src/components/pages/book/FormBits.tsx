@@ -98,7 +98,7 @@ export function ConsentRow({ children, className, error, ...rest }: ComponentPro
   const row = (
     <label className={cn("flex cursor-pointer items-start gap-3 text-[13px] leading-[1.5] text-secondary", className)}>
       <input type="checkbox" className="peer sr-only" {...rest} />
-      <span aria-hidden className="mt-0.5 flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[5px] border-2 border-border-strong bg-white peer-aria-[invalid=true]:border-[color:var(--status-error-fg)] text-[12px] text-white transition-colors peer-checked:border-ink peer-checked:bg-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
+      <span aria-hidden className="mt-0.5 flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[5px] border-2 border-border-strong bg-[color:var(--surface-raised)] peer-aria-[invalid=true]:border-[color:var(--status-error-fg)] text-[12px] text-transparent transition-colors peer-checked:border-[color:var(--action-primary-bg)] peer-checked:bg-[color:var(--action-primary-bg)] peer-checked:text-[color:var(--action-primary-fg)] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-sky">
         ✓
       </span>
       <span>{children}</span>
