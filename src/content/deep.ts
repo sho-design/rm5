@@ -324,7 +324,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         facts: [
           { k: "Step one", v: "OHIP-insured assessment" },
           { k: "Bloodwork", v: "On site" },
-          { k: "If needed", v: draft("Iron infusion, $250 per visit with your own iron, or $400 per visit with our Venofer") },
+          { k: "If needed", v: draft("Iron infusion, from $250 per visit with your own iron to $400 (Venofer) or $550 (Monoferric) with ours, HST included") },
           { k: "Days", v: "Tue, Sat, Sun" },
         ],
         tags: ["Iron", "Physician first"],
