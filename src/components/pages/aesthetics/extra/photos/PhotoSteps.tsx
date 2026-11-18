@@ -127,6 +127,8 @@ export function PhotoSteps() {
   return (
     <Section id="photo-steps" className="scroll-mt-24">
       <style>{`
+        /* At phone width the 560-wide drawing shrinks by half: labels grow in drawing units so they stay readable. */
+        @media (max-width: 639px) { .ph-label { font-size: 22px; } }
         @keyframes ph-flash { 0% { opacity: .9 } 100% { opacity: 0 } }
         .ph-flash { animation: ph-flash 700ms ${ease} both; }
         @keyframes ph-glow { 0%,100% { opacity: .55 } 50% { opacity: .85 } }
@@ -200,7 +202,8 @@ export function PhotoSteps() {
           </p>
         </div>
 
-        <div className="flex min-w-0 flex-col gap-3">
+        {/* Phones show the drawing first, so a tapped step changes something on screen (round 32). */}
+        <div className="order-first flex min-w-0 flex-col gap-3 lg:order-none">
           <span className="text-[13px] font-semibold text-muted">
             {c.illustration}
           </span>
@@ -249,7 +252,7 @@ export function PhotoSteps() {
                   x="84"
                   y="290"
                   textAnchor="middle"
-                  fontSize="13"
+                  fontSize="13" className="ph-label"
                   fill="var(--rm-ink-2)"
                 >
                   {c.light}
@@ -297,7 +300,7 @@ export function PhotoSteps() {
                 x="310"
                 y="312"
                 textAnchor="middle"
-                fontSize="13"
+                fontSize="13" className="ph-label"
                 fontWeight="600"
                 fill="var(--rm-ink)"
               >
@@ -327,7 +330,7 @@ export function PhotoSteps() {
                   x="487"
                   y="346"
                   textAnchor="middle"
-                  fontSize="13"
+                  fontSize="13" className="ph-label"
                   fontWeight="600"
                   fill="var(--rm-ink)"
                 >

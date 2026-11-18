@@ -14,6 +14,7 @@ import { programsCopy, regimens } from "@/content/programs";
 import {
   skinFilters,
   skinProduct,
+  skinProducts,
   type SkinGroup,
   type SkinShape,
 } from "@/content/skincare";
@@ -259,7 +260,13 @@ export function RoutineBuilder() {
     note = c.gentle;
   }
   const r = regimens.find((x) => x.k === regKey) ?? regimens[0];
-  const items = r.items.map(skinProduct);
+  // The vitamin C serum follows the skin type (round 32: dry and mature skin got Phloretin CF, which the serum table
+  // marks for oily skin). Other steps stay as the regimen sets them.
+  const items = r.items.map(skinProduct).map((p) => {
+    if (skin === "any" || p.group !== "prevent" || p.skin.includes("all") || p.skin.includes(skin as (typeof p.skin)[number])) return p;
+    const fit = skinProducts.find((q) => q.group === "prevent" && q.shape === p.shape && q.skin.includes(skin as (typeof q.skin)[number]));
+    return fit ?? p;
+  });
   const total = items.reduce((s, p) => s + p.srp, 0);
 
   return (

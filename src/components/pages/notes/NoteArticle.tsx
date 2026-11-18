@@ -18,7 +18,8 @@ export function NoteArticle({ note }: { note: HealthNote }) {
         ‹ {a.back}
       </SmartLink>
       <div className="relative aspect-[2/1] overflow-hidden rounded-card" style={{ background: noteTint(note) }}>
-        <Image src={note.img} alt="" fill priority sizes="(max-width: 1024px) 100vw, 720px" className="object-cover" />
+        {/* Square photos in a wide frame: aim the crop at the upper third, where faces are (round 32: a cropped head). */}
+        <Image src={note.img} alt="" fill priority sizes="(max-width: 1024px) 100vw, 720px" className="object-cover object-[50%_25%]" />
       </div>
       <header className="flex flex-col gap-4">
         <span className="eyebrow" style={{ color: accentText(divisionDot[note.division]) }}>

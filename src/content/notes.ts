@@ -130,7 +130,7 @@ export const healthNotes: HealthNote[] = [
       { type: "h", text: "The day before" },
       {
         type: "p",
-        text: "Tell us about blood thinners, diabetes medication or allergies to contrast or local anaesthetic. Do not stop any medication unless the physician tells you to. Arrange a ride home.",
+        text: "Tell us about blood thinners, diabetes medication or allergies to local anaesthetic or any medication. Do not stop any medication unless the physician tells you to. Arrange a ride home.",
       },
       { type: "h", text: "The day of" },
       {
