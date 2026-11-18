@@ -27,7 +27,8 @@ export const ironSymptoms: IronSymptom[] = [
   { label: "Heavy periods", sub: "Soaking through pads or tampons" },
   { label: "Hair thinning or brittle nails", sub: "Often overlooked" },
   { label: "Restless legs at night", sub: "An urge to move that disturbs sleep" },
-  { label: "Craving ice or dizziness", sub: "Standing up too fast" },
+  // Round 32: the label and its line did not match.
+  { label: draft("Craving ice, or dizzy on standing"), sub: draft("Chewing ice, or light-headed when you stand up") },
 ];
 
 /** Tally line under the symptom checklist, for `n` selected symptoms. */

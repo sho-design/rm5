@@ -100,7 +100,7 @@ function routeFor(c: Concern, i: number): ConcernRoute {
         {
           t: draft("Treatment, only if it fits"),
           d: draft(
-            "For low iron, usually tablets first. Iron therapy or a drip only if your results show it.",
+            "For low iron, usually tablets first. Iron therapy only if your results show it is needed.",
           ),
           to: routes.iron,
         },

@@ -584,7 +584,7 @@ export const infusionDoors = [
     kind: draft("Wellness, elective"),
     t: draft("The Injection Bar"),
     time: draft("About 10 minutes"),
-    d: draft("Ten single-nutrient shots, such as B12 and vitamin D. Screened first, then a quick injection."),
+    d: draft("Ten quick shots, such as B12 and vitamin D. Screened first, then a quick injection."),
     cta: draft("Tap a vial"),
     to: "shots",
   },
