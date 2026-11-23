@@ -12,7 +12,7 @@ import { cn } from "@/lib/cn";
 const TIER = [
   { bg: "var(--rm-sky-soft)", line: "var(--rm-sky)", ink: "var(--rm-sky-text)", href: site.phoneHref },
   { bg: "var(--rm-sun-tint)", line: "var(--rm-amber-deep)", ink: "var(--rm-amber-text)", href: "tel:811" },
-  { bg: "var(--rm-terracotta-tint)", line: "var(--rm-terracotta-deep)", ink: "var(--rm-terracotta-text)", href: "tel:911" },
+  { bg: "var(--rm-terracotta-tint)", line: "var(--rm-terracotta-deep)", ink: "var(--rm-terracotta-text)", href: "" },
 ];
 
 /**
@@ -166,12 +166,19 @@ export function WhenToCall() {
                       {t.d}
                     </span>
                   </div>
-                  <a
-                    href={tc.href}
-                    className="flex min-h-[44px] w-fit shrink-0 items-center rounded-chip bg-ink px-4 text-[15px] font-semibold text-white hover:opacity-90"
-                  >
-                    {t.action}
-                  </a>
+                  {/* 911 is plain text everywhere on the site, by clinic choice (no tel:911 link; round 33 found this one). */}
+                  {tc.href ? (
+                    <a
+                      href={tc.href}
+                      className="flex min-h-[44px] w-fit shrink-0 items-center rounded-chip bg-ink px-4 text-[15px] font-semibold text-white hover:opacity-90"
+                    >
+                      {t.action}
+                    </a>
+                  ) : (
+                    <span className="flex min-h-[44px] w-fit shrink-0 items-center rounded-chip border-2 border-[color:var(--rm-terracotta-deep)] px-4 text-[15px] font-bold" style={{ color: "var(--rm-terracotta-text)" }}>
+                      {t.action}
+                    </span>
+                  )}
                 </li>
               );
             })}

@@ -1,4 +1,5 @@
 import { Display, Eyebrow, Section } from "@/components/ui";
+import { EmailText } from "@/components/ui/EmailText";
 import { bloodPrep as c } from "@/content/subpages";
 import { site } from "@/content/site";
 import { FastingCards } from "./FastingCards";
@@ -50,8 +51,7 @@ export function Prepare({ accent }: { accent: string }) {
           <p className="pretty text-[15px] leading-[1.5] text-white/80">{c.ask}</p>
           <a href={`mailto:${site.labEmail}`} className="mt-auto w-fit text-[16px] font-semibold text-sun hover:underline">
             {/* Break only at the @ (round 33: "lab@restorationmedical / .ca" at the largest text). */}
-            {site.labEmail.split("@")[0]}
-            <wbr />@{site.labEmail.split("@")[1]}
+            <EmailText email={site.labEmail} />
           </a>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EmailText } from "@/components/ui/EmailText";
 import { Wordmark } from "@/components/chrome/Wordmark";
 import { LocationMap } from "@/components/chrome/LocationMap";
 import { buttonClass } from "@/components/ui/Button";
@@ -49,8 +50,8 @@ export function ViFooter() {
                 <span className="text-muted">
                   {c.faxLabel} {site.fax}
                 </span>
-                <a href={`mailto:${site.email}`} className="[overflow-wrap:anywhere]">
-                  {site.email}
+                <a href={`mailto:${site.email}`}>
+                  <EmailText email={site.email} />
                 </a>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EmailText } from "@/components/ui/EmailText";
 import { pageMetadata } from "@/lib/seo";
 import { Display, Eyebrow, Lead, Photo, SmartLink } from "@/components/ui";
 import { locationsCopy } from "@/content/about";
@@ -56,17 +57,17 @@ export default async function ContactPage() {
         <a href={`mailto:${site.email}`} className={`${tile} border border-border bg-card hover:border-sky`}>
           <span className="text-[13px] text-muted">{contactCopy.tiles.email.k}</span>
           {/* Wrap at the @ on narrow tiles, never mid-word. */}
-          <span className="break-words text-[15px] font-semibold md:text-[16px]">
-            {site.email.split("@")[0]}
-            <wbr />@{site.email.split("@")[1]}
+          <span className="text-[15px] font-semibold md:text-[16px]">
+            <EmailText email={site.email} />
           </span>
           <span className="text-[13px] text-muted">{contactCopy.tiles.email.sub}</span>
         </a>
-        <SmartLink to="contact#clinics" className={`${tile} bg-sun-soft text-ink hover:opacity-95`}>
+        {/* "Directions ›" opens the map; it only jumped down this page (round 33). */}
+        <a href={external.thornhillMapsShort} target="_blank" rel="noopener" className={`${tile} bg-sun-soft text-ink hover:opacity-95`}>
           <span className="text-[13px] text-ink/60">{contactCopy.tiles.visit.k}</span>
           <span className="text-[15px] font-semibold md:text-[16px]">{contactCopy.tiles.visit.v}</span>
           <span className="text-[13px] text-ink/70">{contactCopy.tiles.visit.sub} ›</span>
-        </SmartLink>
+        </a>
       </div>
 
       <div className="grid grid-cols-1 gap-4 px-4 pb-8 pt-6 md:px-content md:pt-10 md:pb-10 lg:grid-cols-2 lg:items-start lg:gap-8">

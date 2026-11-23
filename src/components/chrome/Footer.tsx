@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EmailText } from "@/components/ui/EmailText";
 import { buttonClass } from "@/components/ui/Button";
 import { divisions, navOrder } from "@/content/divisions";
 import { locations, network, site } from "@/content/site";
@@ -57,8 +58,8 @@ export function Footer({ analytics = false }: { analytics?: boolean }) {
                   {site.phone}
                 </a>
                 <span className="text-muted">Fax {site.fax}</span>
-                <a href={`mailto:${site.email}`} className="[overflow-wrap:anywhere]">
-                  {site.email}
+                <a href={`mailto:${site.email}`}>
+                  <EmailText email={site.email} />
                 </a>
               </div>
             </div>

@@ -1455,3 +1455,28 @@ For the clinic:
 - Photos: rehab photos have wood furniture and a visible sports logo; the men's health photo shows a city street (the clinic is inside Walmart); the nerve block scanner does not look like a Clarius handheld; Dr. Truong has no photo.
 
 Left for later: booking defaults to "New patient" from pages aimed at existing patients; the compact header adds tab stops; a future or impossible date of birth is dropped silently; /vi has no text size control; the booking form is English only.
+
+## Round 33 (2026-11-23): 20 personas
+
+Groups of four: family medicine (a family of four registering, a Vietnamese speaker wanting a Pap test with a woman, a 71-year-old with diabetes at the largest text, a 17-year-old asking about privacy), booking, contact and emergencies (keyboard and screen reader booking for herself and her mother, a slow phone connection, severe abdominal pain on a Sunday evening, back-to-back flu shots in high contrast), infusion (low iron in pregnancy, a same-day hangover drip, own iron prescription, shot or drip), aesthetics (frown lines, acne scars, a 10-week wedding countdown, sun spots and hair), and Pain Centre, rehab, About and Vietnamese (a referring physician, a car accident, a Vietnamese-only reader, a nursing student). No console or page errors, no 4xx or 5xx, no sideways scroll. Hours, iron prices, days and last starts, physio and chiro prices, Maple status and the referral wording all matched. Ease 3/7 (severe abdominal pain, shot versus drip) to 6/7.
+
+Fixed after the round:
+- Emergencies: searching "abdominal pain", "stomach pain", "belly pain" or "hospital" shows the emergency card first; the booking note warns on "severe abdominal pain" (not on mild stomach pain). The pregnancy "When to call" 911 step is plain text, like every other 911 on the site.
+- Contact: the "Directions ›" tile opens the map; email addresses wrap only at the @ or before ".ca" (they broke mid-word on phones and in the footer).
+- For physicians: interventional pain and joint injections name the wireless ultrasound guidance and "no fluoroscopy or X-ray". The Pain Centre's referral line includes the referrals email.
+- Infusion: shot labels three across on phones (they overlapped); the shot or drip table fits at 360px; shots described as "from single vitamins to blends"; the booking coverage line reads "Uninsured fee, receipt provided. The iron assessment and bloodwork are OHIP-insured."
+- Aesthetics: the laser concern table keeps its concern column while devices scroll; "three are lasers" (it said most); the event plan reads "6 weeks of treatment, after your consult"; planner ranges never start on a Friday.
+- Family medicine: "Register your family" opens the normal registration; the fasting note no longer says "today" over tomorrow's times; "a first appointment" replaces a leftover "longer appointment"; the Vietnamese first visit says 20 minutes; the lab email wraps cleanly.
+
+For the clinic:
+- Tuesday iron: last start 6:30pm plus about 3 hours ends near 9:30pm, after the 9pm close.
+- Iron in pregnancy is not addressed; the concern chooser sends a pregnant patient to the drip warning. No booking type for someone who already has an iron plan or prescription.
+- Same-day drips: booking shows no same-day times and does not explain.
+- "Epidural, facet and medial branch blocks" on the physicians page are not on the Pain Centre page; confirm they are done with ultrasound only.
+- Visit lengths: chronic care "several at once" 30 to 40 minutes; rehab first visit 45 minutes; hair PRP "a series of 3" versus four monthly visits.
+- Not in the clinic facts: nurses speaking Vietnamese, "by phone or portal", "pharmacist review available", lab@, the Pain Centre and referral turnaround times, "9 registered nurses", "11 years".
+- Emergency sign lists do not mention severe abdominal pain, and no emergency department is named.
+- Photos: wood or coloured chairs and tables (infusion hero, aesthetics plans and hub, rehab), a sports logo and small scrub logos, a "nerve blocks" photo that reads as a manicure and a "trigger point" photo with a cart monitor.
+- The booking form for someone else still asks an optional date of birth (it drives the baby fever check).
+
+Left for later: booking another person retypes your own details; Tab reaches "Book" only after 26 stops; booking errors have no summary; /vi booking and registration are English; dark mode keeps light panels by design.
