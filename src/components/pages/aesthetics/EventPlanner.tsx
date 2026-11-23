@@ -14,6 +14,8 @@ const fmt = (d: Date) => `${WD[d.getUTCDay()]} ${MON[d.getUTCMonth()]} ${d.getUT
 const iso = (d: Date) => d.toISOString().slice(0, 10);
 /** Fridays the clinic is closed: a single-day step moves to the Thursday before. */
 const open = (d: Date) => (d.getUTCDay() === 5 ? new Date(d.getTime() - DAY) : d);
+/** A window starting on a Friday (closed) starts on the Saturday instead (round 33). */
+const openFrom = (d: Date) => (d.getUTCDay() === 5 ? new Date(d.getTime() + DAY) : d);
 
 /**
  * Event ready, from the event date back: pick the date and each step of the program lands on the calendar, with
@@ -37,7 +39,7 @@ export function EventPlanner() {
       const to = s.to > 0 ? open(end) : end;
       const first = new Date(Math.max(from.getTime(), today.getTime() + DAY));
       if (to.getTime() <= today.getTime()) return { ...s, when: c.tooLate, late: true };
-      const when = s.from === s.to ? fmt(s.k === "event" ? first : open(first)) : first.getTime() >= to.getTime() ? fmt(to) : c.between(fmt(first), fmt(to));
+      const when = s.from === s.to ? fmt(s.k === "event" ? first : open(first)) : first.getTime() >= to.getTime() ? fmt(to) : c.between(fmt(openFrom(first)), fmt(to));
       return { ...s, when, late: false, start: first };
     });
     // The consult comes before every treatment: "As soon as you can, by" the day before the first dated step.

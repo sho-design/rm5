@@ -543,7 +543,7 @@ export const shotInfo: Record<string, { g: ShotGroup; note?: string; program?: b
 export const shotBar = {
   eyebrow: draft("The bar"),
   title: draft("Tap a vial."),
-  lead: draft("Ten shots, each a single vitamin, mineral or nutrient. Every one starts with a short screening, and your nurse confirms the dose with you."),
+  lead: draft("Ten quick shots, from single vitamins to blends. Every one starts with a short screening, and your nurse confirms the dose with you."),
   all: draft("All shots"),
   time: draft("About 10 minutes"),
   screened: draft("Screened first"),
@@ -558,7 +558,7 @@ export const shotBar = {
   ],
   vsTitle: draft("A shot or a drip?"),
   vs: [
-    { t: draft("A shot"), big: draft("About 10 minutes"), d: draft("A single vitamin, mineral or nutrient, in one quick injection."), page: "shots" },
+    { t: draft("A shot"), big: draft("About 10 minutes"), d: draft("A vitamin, mineral or blend, in one quick injection."), page: "shots" },
     { t: draft("A drip"), big: draft("About 45 minutes"), d: draft("Fluids with a blend of nutrients, in a lounge chair."), page: "drips" },
   ],
 };

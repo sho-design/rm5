@@ -21,10 +21,11 @@ export const refServices: RefService[] = [
     title: "Pain Centre",
     lead: "Dr. Johnny Nguyen",
     tint: "#FDE8E4",
-    p: "Image-guided interventional pain management for chronic and post-injury pain.",
+    // Round 33: name the guidance (clinic fact: Clarius wireless ultrasound, no fluoroscopy or X-ray).
+    p: draft("Interventional pain management for chronic and post-injury pain, guided by wireless handheld ultrasound. No fluoroscopy or X-ray."),
     items: [
       "Epidural, facet and medial branch blocks",
-      "Image-guided joint injections (knee, hip, shoulder)",
+      draft("Ultrasound-guided joint injections (knee, hip, shoulder)"),
       "Peripheral nerve blocks and headache procedures",
       "Radiofrequency ablation candidacy assessment",
     ],

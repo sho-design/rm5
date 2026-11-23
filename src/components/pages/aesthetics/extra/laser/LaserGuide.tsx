@@ -34,7 +34,8 @@ export function ConcernGrid() {
         <table className="w-full min-w-[680px] border-collapse text-[14px]">
           <thead>
             <tr className="bg-card">
-              <th scope="col" className="px-4 py-3 text-left font-semibold">
+              {/* The concern column stays put while the devices scroll on phones (round 33: rows lost their labels). */}
+              <th scope="col" className="sticky left-0 z-[1] bg-card px-4 py-3 text-left font-semibold">
                 {c.gridConcern}
               </th>
               {laserDevices.map((d) => (
@@ -58,7 +59,7 @@ export function ConcernGrid() {
           <tbody>
             {laserConcerns.map((row) => (
               <tr key={row.t} className="border-t border-border">
-                <th scope="row" className="px-4 py-3 text-left font-medium">
+                <th scope="row" className="sticky left-0 z-[1] max-w-[150px] bg-card px-4 py-3 text-left font-medium shadow-[6px_0_8px_-6px_rgba(15,31,46,.18)]">
                   {row.t}
                 </th>
                 {laserDevices.map((d) => {

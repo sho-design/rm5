@@ -124,20 +124,20 @@ export function ShotOrDrip() {
         <Display as="h3" size="2xs">
           {c.compareTitle}
         </Display>
+        {/* Tighter cells on phones: at 360px the last column was clipped by 13px (round 33). */}
         <div className="overflow-hidden rounded-card border border-[color:var(--border-default)]">
-          <table className="w-full border-collapse text-left text-[15px] leading-[1.45]">
+          <table className="w-full border-collapse text-left text-[14px] leading-[1.45] sm:text-[15px]">
             <thead className="bg-sage-tint">
               <tr>
                 <th
                   scope="col"
-                  className="w-[28%] px-4 py-3 text-[13px] font-semibold text-sage-text"
+                  className="w-[28%] px-2.5 py-3 sm:px-4 text-[13px] font-semibold text-sage-text"
                 >
-                  <span className="sr-only">{c.compareTitle}</span>
                 </th>
-                <th scope="col" className="px-4 py-3 text-[15px] font-semibold">
+                <th scope="col" className="px-2.5 py-3 sm:px-4 text-[15px] font-semibold">
                   {c.shotHead}
                 </th>
-                <th scope="col" className="px-4 py-3 text-[15px] font-semibold">
+                <th scope="col" className="px-2.5 py-3 sm:px-4 text-[15px] font-semibold">
                   {c.dripHead}
                 </th>
               </tr>
@@ -150,12 +150,12 @@ export function ShotOrDrip() {
                 >
                   <th
                     scope="row"
-                    className="px-4 py-3 text-[13px] font-semibold text-sage-text"
+                    className="px-2.5 py-3 sm:px-4 text-[13px] font-semibold text-sage-text"
                   >
                     {r.k}
                   </th>
-                  <td className="pretty px-4 py-3">{r.shot}</td>
-                  <td className="pretty px-4 py-3">{r.drip}</td>
+                  <td className="pretty px-2.5 py-3 sm:px-4">{r.shot}</td>
+                  <td className="pretty px-2.5 py-3 sm:px-4">{r.drip}</td>
                 </tr>
               ))}
             </tbody>

@@ -48,8 +48,10 @@ export function Prepare({ accent }: { accent: string }) {
         <div className="flex flex-col gap-3 rounded-card bg-inverse p-6 text-on-inverse">
           <h3 className="text-[17px] font-semibold">{c.askTitle}</h3>
           <p className="pretty text-[15px] leading-[1.5] text-white/80">{c.ask}</p>
-          <a href={`mailto:${site.labEmail}`} className="mt-auto w-fit [overflow-wrap:anywhere] text-[16px] font-semibold text-sun hover:underline">
-            {site.labEmail}
+          <a href={`mailto:${site.labEmail}`} className="mt-auto w-fit text-[16px] font-semibold text-sun hover:underline">
+            {/* Break only at the @ (round 33: "lab@restorationmedical / .ca" at the largest text). */}
+            {site.labEmail.split("@")[0]}
+            <wbr />@{site.labEmail.split("@")[1]}
           </a>
         </div>
       </div>

@@ -78,7 +78,7 @@ export const aesPrograms: Program[] = [
     // The planner starts treatment 6 weeks out, after a consult, so 8 weeks leaves room (round 31).
     forWhom: draft("A wedding or event about 8 weeks away"),
     steps: [draft("HydraFacial at 6 weeks"), draft("Neuromodulator at 3 to 4 weeks"), draft("Glass facial in the last week; no lasers in the last 2 weeks")],
-    length: draft("6 weeks"),
+    length: draft("6 weeks of treatment, after your consult"),
     color: "#7FC8A9",
     keys: "wedding bride party event photos graduation dam cuoi",
     regimen: "starter",

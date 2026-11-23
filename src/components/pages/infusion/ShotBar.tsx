@@ -84,7 +84,8 @@ export function ShotBar() {
           </div>
           {/* The shelf */}
           <div role="radiogroup" aria-label="Shots" onKeyDown={onKey} className="relative">
-            <div className="grid grid-cols-5 gap-x-1 gap-y-4 pb-3 lg:grid-cols-10">
+            {/* Three across on phones: at five, "Vitamin D" ran into "Glutathione" (round 33). */}
+            <div className="grid grid-cols-3 gap-x-2 gap-y-4 pb-3 sm:grid-cols-5 lg:grid-cols-10">
               {shown.map((s, i) => {
                 const on = s.t === sel.t;
                 const col = shotInfo[s.t] ? shotGroups[shotInfo[s.t].g] : "#fff";
@@ -99,7 +100,7 @@ export function ShotBar() {
                     className="group flex flex-col items-center gap-2 rounded-tile pt-6 outline-offset-4"
                   >
                     <Vial color={col} on={on} i={i} />
-                    <span className={cn("flex h-[30px] items-start text-center text-[13px] font-semibold leading-[1.2]", on ? "text-white" : "text-white/65")}>{s.t}</span>
+                    <span className={cn("flex min-h-[30px] items-start text-center text-[13px] font-semibold leading-[1.2]", on ? "text-white" : "text-white/65")}>{s.t}</span>
                   </button>
                 );
               })}

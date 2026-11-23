@@ -199,7 +199,7 @@ export const viFamily = {
   steps: [
     { t: draft("Gửi mẫu đăng ký"), d: draft("Trực tuyến (bằng tiếng Anh) hoặc gọi điện và xin nói tiếng Việt.") },
     { t: draft("Chúng tôi xác nhận"), d: draft("Trong vòng 2 ngày làm việc.") },
-    { t: draft("Lần khám đầu tiên"), d: draft("Một buổi hẹn 30 phút để gặp bác sĩ của bạn.") },
+    { t: draft("Lần khám đầu tiên"), d: draft("Một buổi hẹn 20 phút để gặp bác sĩ của bạn.") },
   ],
   factsTitle: draft("Điều cần biết"),
   facts: [

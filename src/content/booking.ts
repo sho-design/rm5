@@ -4,7 +4,7 @@ import { draft } from "./review";
 export const bookingCoverage: Record<string, string> = {
   "Family Medicine": "OHIP-insured",
   "Pain Centre": "OHIP-insured assessment",
-  "Infusion Therapy": draft("Iron assessment OHIP-insured; drips and infusions are an uninsured fee"),
+  "Infusion Therapy": draft("Uninsured fee, receipt provided. The iron assessment and bloodwork are OHIP-insured."),
   "Medical Aesthetics": "Complimentary consult",
   "Rehab & Recovery": "Insurance, MVA, WSIB or self-pay",
 };

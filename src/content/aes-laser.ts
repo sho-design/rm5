@@ -155,7 +155,7 @@ export const laserCopy = {
   devicesEyebrow: draft("The devices we use"),
   devicesTitle: draft("Six tools, each for a different job."),
   devicesLead: draft(
-    "Most are lasers. One uses radio waves, one uses plasma and one uses gentle LED light. Your nurse matches the tool to your skin and your concern.",
+    "Three are lasers. One uses radio waves, one uses plasma and one uses gentle LED light. Your nurse matches the tool to your skin and your concern.",
   ),
   usedFor: draft("Often used for"),
   feels: draft("How it feels"),

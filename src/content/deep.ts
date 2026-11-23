@@ -169,7 +169,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
     path: [
       { n: "1", time: "Today", t: "Register online or call", d: "Two minutes. We confirm we have room and set your first visit." },
       { n: "2", time: "Before you come", t: "Send your records", d: "Your previous clinic transfers your file. We handle the request." },
-      { n: "3", time: "First visit", t: "Meet your doctor", d: "A longer appointment to go through history, medications and goals." },
+      { n: "3", time: "First visit", t: "Meet your doctor", d: draft("A first appointment to go through history, medications and goals.") },
       { n: "4", time: "Ongoing", t: "Care that follows you", d: "Reminders for screening, quick renewals and same-week visits when something comes up." },
     ],
     faq: [
@@ -299,7 +299,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
       { q: "Do you speak Vietnamese?", a: draft("Yes. Both physicians and several staff speak Vietnamese.") },
       { q: "What should I bring?", a: "Your health card, your referral if you have it, any imaging reports, and a list of medications and treatments you have tried." },
     ],
-    closing: "Have a family doctor? Ask them to fax a referral to 905-761-7306 or send it by Ocean eReferral. No family doctor? Book a family medicine assessment and we handle the referral inside the clinic. This page is general information, not medical advice. Results vary from person to person.",
+    closing: "Have a family doctor? Ask them to fax a referral to 905-761-7306, email referrals@restorationmedical.ca or send it by Ocean eReferral. No family doctor? Book a family medicine assessment and we handle the referral inside the clinic. This page is general information, not medical advice. Results vary from person to person.",
   },
 
   infusion: {
