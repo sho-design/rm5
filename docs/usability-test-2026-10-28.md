@@ -1469,7 +1469,7 @@ Fixed after the round:
 - Family medicine: "Register your family" opens the normal registration; the fasting note no longer says "today" over tomorrow's times; "a first appointment" replaces a leftover "longer appointment"; the Vietnamese first visit says 20 minutes; the lab email wraps cleanly.
 
 For the clinic:
-- Tuesday iron: last start 6:30pm plus about 3 hours ends near 9:30pm, after the 9pm close.
+- Tuesday iron: last start 6:30pm plus about 3 hours ends near 9:30pm, after the 9pm close. Clinic answer (24 Nov): that is fine, no change.
 - Iron in pregnancy is not addressed; the concern chooser sends a pregnant patient to the drip warning. No booking type for someone who already has an iron plan or prescription.
 - Same-day drips: booking shows no same-day times and does not explain.
 - "Epidural, facet and medial branch blocks" on the physicians page are not on the Pain Centre page; confirm they are done with ultrasound only.
