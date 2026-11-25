@@ -77,7 +77,7 @@ export default function HonestMenuPage() {
           <Eyebrow>{ing.title}</Eyebrow>
           <Display size="xs">{ing.coreTitle}</Display>
         </div>
-        <div className="grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-4">
           {ingredients.map((i) => (
             <div
               key={i.t}

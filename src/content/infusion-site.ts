@@ -181,10 +181,14 @@ export const shots: { t: string; d: string }[] = [
 ];
 
 export const ingredients: { t: string; d: string }[] = [
-  { t: "Vitamin C", d: draft("A water-soluble vitamin. Your dose is listed at your consult.") },
+  { t: draft("Vitamin A"), d: draft("A fat-soluble vitamin.") },
   { t: "B-Complex", d: draft("Several B vitamins.") },
+  { t: "Vitamin C", d: draft("A water-soluble vitamin. Your dose is listed at your consult.") },
+  { t: draft("Vitamin D"), d: draft("A fat-soluble vitamin.") },
+  { t: draft("Vitamin E"), d: draft("A fat-soluble vitamin.") },
+  { t: "Biotin", d: draft("A B vitamin. Tell us before any blood test, as biotin can affect some results.") },
   { t: "Magnesium", d: draft("A mineral, added only on a physician's order.") },
-  { t: "Glutathione", d: draft("An antioxidant, added only on a physician's order.") },
+  { t: "Glutathione", d: draft("An antioxidant.") },
 ];
 
 export interface Concern {
