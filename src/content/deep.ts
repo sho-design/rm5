@@ -365,12 +365,13 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         linkPage: "pregnancy",
       },
       {
-        title: "Recovery drip",
-        p: "Fluids, electrolytes and amino acids after hard training or a race. Booked around your schedule.",
+        // The recovery drip came off the menu (clinic drip sheet, November 2026); the Hydration drip replaces it.
+        title: draft("Hydration drip"),
+        p: draft("Fluids and electrolytes after hard training or a race. Booked around your schedule."),
         facts: [
           { k: "Time", v: "60 minutes" },
           { k: "Price", v: "$200, HST incl." },
-          { k: "Add-on", v: draft("Vitamin C") },
+          { k: "Add-ons", v: draft("Planned at your consult") },
           { k: "Coverage", v: "Not OHIP-insured" },
         ],
         tags: ["Recovery"],
@@ -658,8 +659,8 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
 /** Infusion drip builder options. Add-ons have `mins` of 0. */
 export const drips: Drip[] = [
   { name: "Hydration", desc: "Fluids and electrolytes", mins: 45, price: 150 },
-  { name: "Vitamin blend", desc: "B vitamins, vitamin C, zinc", mins: 60, price: 200 },
-  { name: "Recovery", desc: "Amino acids and electrolytes", mins: 60, price: 200 },
+  // Clinic drip sheet, November 2026: the vitamin blend is now the Multivitamin drip; Recovery came off the menu.
+  { name: draft("Multivitamin"), desc: draft("Vitamins A, B complex, C, D and E"), mins: 60, price: 200 },
   // The anti-nausea add-on is gone: the builder sold it ($190 with hydration) while every page says someone
   // being sick should see a doctor first (public health reviewer, round 22).
   { name: "Vitamin C add-on", desc: "Added to any drip", mins: 0, price: 40 },

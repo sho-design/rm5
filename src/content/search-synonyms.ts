@@ -95,9 +95,8 @@ export const searchExtras: SearchDoc[] = [
   { kind: draft("Infusion Therapy"), label: draft("Myers’ cocktail"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/myers", keys: "healing myers healing" },
   { kind: draft("Infusion Therapy"), label: draft("Antioxidant drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/antioxidant", keys: "radiance" },
   { kind: draft("Infusion Therapy"), label: draft("Biotin drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/biotin", keys: "hair and nails hair nails" },
-  { kind: draft("Infusion Therapy"), label: draft("Vitamin C, zinc and B vitamins"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/vitamin-c-zinc", keys: "seasonal support seasonal" },
-  { kind: draft("Infusion Therapy"), label: draft("Hydration after exercise"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/after-exercise", keys: "recover recovery" },
-  { kind: draft("Infusion Therapy"), label: draft("Hydration drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/hydration", keys: "revive" },
+  { kind: draft("Infusion Therapy"), label: draft("Multivitamin drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/multivitamin", keys: "seasonal support seasonal vitamin c zinc multivitamin vitamins a b c d e" },
+  { kind: draft("Infusion Therapy"), label: draft("Hydration drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/hydration", keys: "foundation recover recovery revive after exercise electrolytes" },
   { kind: draft("Infusion Therapy"), label: draft("NAD+ drip"), sub: draft("Drip names changed in November 2026"), page: "/infusion-therapy/drips/nad", keys: "nad longevity longevity" },
   { kind: draft("Infusion Therapy"), label: draft("Skin and hair drips"), sub: draft("Beauty Elixir is no longer offered. See the skin and hair drips"), page: "/infusion-therapy/drips?family=Skin%20and%20hair", keys: "beauty elixir elixir" },
   // Teens searching "reminder text" did not find the children and youth FAQ.

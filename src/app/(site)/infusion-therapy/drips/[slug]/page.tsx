@@ -28,9 +28,9 @@ import { site } from "@/content/site";
 import { JsonLd } from "@/components/JsonLd";
 
 const tiredDrips = new Set([
-  "foundation",
+  "hydration",
   "myers",
-  "vitamin-c-zinc",
+  "multivitamin",
   "signature",
   "nad",
 ]);

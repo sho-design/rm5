@@ -24,7 +24,6 @@ export type IngredientKind =
   | "Vitamins"
   | "Minerals"
   | "Fluids and electrolytes"
-  | "Amino acids"
   | "Antioxidant and coenzyme"
   | "Program add-ons";
 
@@ -32,7 +31,6 @@ export const kindColor: Record<IngredientKind, string> = {
   Vitamins: "#F5C451",
   Minerals: "#B9C4CF",
   "Fluids and electrolytes": "#9BD0E0",
-  "Amino acids": "#7FC8A9",
   "Antioxidant and coenzyme": "#F0955C",
   "Program add-ons": "#6FB4E8",
 };
@@ -54,12 +52,12 @@ const shotNote = (name: string) => shotInfo[name]?.note;
 const shotD = (name: string) => shots.find((s) => s.t === name)?.d;
 
 export const ingredientList: Ingredient[] = [
+  { k: "vitamin-a", t: draft("Vitamin A"), kind: "Vitamins", d: draft("A fat-soluble vitamin.") },
   {
     k: "b-complex",
     t: "B-Complex",
     kind: "Vitamins",
-    d: shotD("B-Complex") ?? draft("Several B vitamins"),
-    shot: true,
+    d: draft("Several B vitamins."),
   },
   {
     k: "b12",
@@ -72,8 +70,7 @@ export const ingredientList: Ingredient[] = [
     k: "vitamin-c",
     t: draft("Vitamin C"),
     kind: "Vitamins",
-    d: draft("A vitamin. Your dose is listed at your consult."),
-    shot: true,
+    d: draft("A water-soluble vitamin. Your dose is listed at your consult."),
   },
   {
     k: "vitamin-d",
@@ -82,6 +79,7 @@ export const ingredientList: Ingredient[] = [
     d: shotD("Vitamin D") ?? draft("A fat-soluble vitamin"),
     shot: true,
   },
+  { k: "vitamin-e", t: draft("Vitamin E"), kind: "Vitamins", d: draft("A fat-soluble vitamin.") },
   {
     k: "biotin",
     t: "Biotin",
@@ -95,19 +93,7 @@ export const ingredientList: Ingredient[] = [
     t: draft("Magnesium"),
     kind: "Minerals",
     d: draft("A mineral."),
-  },
-  {
-    k: "calcium",
-    t: draft("Calcium"),
-    kind: "Minerals",
-    d: draft("A mineral."),
-  },
-  {
-    k: "zinc",
-    t: draft("Zinc"),
-    kind: "Minerals",
-    d: draft("A mineral."),
-    shot: true,
+    addOn: true,
   },
   {
     k: "fluids",
@@ -116,13 +102,6 @@ export const ingredientList: Ingredient[] = [
     d: draft(
       "Sterile fluid with salts such as sodium and potassium, the base of most drips.",
     ),
-  },
-  {
-    k: "amino",
-    t: draft("Amino blend"),
-    kind: "Amino acids",
-    d: shotD("Amino blend") ?? draft("Amino acids"),
-    shot: true,
   },
   {
     k: "glutathione",
@@ -141,14 +120,6 @@ export const ingredientList: Ingredient[] = [
     note: shotNote("NAD+"),
   },
   {
-    k: "mic",
-    t: draft("MIC blend"),
-    kind: "Program add-ons",
-    d: draft("A program add-on."),
-    shot: true,
-    note: shotNote("MIC blend"),
-  },
-  {
     k: "carnitine",
     t: "L-Carnitine",
     kind: "Program add-ons",
@@ -164,16 +135,16 @@ export const ingredientList: Ingredient[] = [
  * `detail.inside` (infusion-site.ts) are matched too, so fuller drip pages fill this in on their own.
  */
 const knownInside: Record<string, string[]> = {
-  myers: ["b-complex", "vitamin-c", "magnesium", "calcium", "b12", "fluids"],
-  "vitamin-c-zinc": ["vitamin-c", "zinc", "b-complex", "fluids"],
-  biotin: ["biotin", "fluids"],
-  "after-exercise": ["fluids", "amino"],
   hydration: ["fluids"],
+  myers: ["vitamin-c", "b-complex", "fluids"],
+  antioxidant: ["glutathione", "fluids"],
+  biotin: ["biotin", "fluids"],
+  multivitamin: ["vitamin-a", "b-complex", "vitamin-c", "vitamin-d", "vitamin-e", "fluids"],
   nad: ["nad", "fluids"],
 };
 /** Physician-ordered add-ons a drip's page already names. */
 const knownAddOns: Record<string, string[]> = {
-  myers: ["glutathione", "zinc", "amino"],
+  myers: ["magnesium", "glutathione"],
 };
 
 const byName = (name: string) => {

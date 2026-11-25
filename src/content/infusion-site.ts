@@ -26,12 +26,11 @@ export const showEvidenceLabels = false;
 /** Treatment families and their accent colours (from the Infusion design file). */
 export const dripFamilies = {
   // Families renamed to describe contents, not results (clinic decision, Nov 2026). Colours unchanged.
-  Foundation: "#7FC8A9",
-  "Skin and hair": "#D9A6E0",
+  Hydration: "#9BD0E0",
   Vitamins: "#F5C451",
+  "Skin and hair": "#D9A6E0",
   "Signature and NAD+": "#F0955C",
   Program: "#6FB4E8",
-  Hydration: "#9BD0E0",
 } as const;
 
 export type DripFamily = keyof typeof dripFamilies;
@@ -64,17 +63,18 @@ export interface Drip {
 }
 
 // Names describe what is in the drip, not a result (CPSO, Health Canada prescription drug advertising).
-// Old names, for staff: Healing (Myers'), Radiance, Hair & Nails, Seasonal Support, Kingmaker/Queenmaker,
-// Recover, Revive, NAD+ Longevity. Pregnancy Care was removed (a pregnant patient needing fluids sees a doctor,
+// Old names, for staff: Foundation (now Hydration), Healing (Myers'), Radiance, Hair & Nails, Seasonal Support
+// (now Multivitamin), Kingmaker/Queenmaker, NAD+ Longevity. Recover, Revive and Metabolic were taken off the
+// menu (clinic drip sheet, November 2026) and redirect. Pregnancy Care was removed (a pregnant patient needing fluids sees a doctor,
 // round 18) and now redirects to pregnancy care. Beauty Elixir was removed (it overlapped Radiance and
 // made a beauty claim); Metabolic now shows only on the metabolic program page. Old addresses redirect.
 export const signatureDrips: Drip[] = [
-  { slug: "foundation", t: "Foundation", f: "Foundation", d: "Hydration and core nutrients to start from.", ev: "Established",
+  { slug: "hydration", was: "Foundation", t: draft("Hydration drip"), f: "Hydration", d: draft("Fluids and electrolytes."), ev: "Established",
     detail: {
-      whatItIs: draft("Our starting drip: hydration and core nutrients."),
-      supports: [draft("Given with fluids, so it adds hydration."), draft("Core nutrients, confirmed with you at your consult.")],
-      insideNote: draft("Ingredients and doses are confirmed with you at your consult, after screening."),
-      inside: ["Fluids"],
+      whatItIs: draft("Fluids and electrolytes, given through a small IV in your arm."),
+      supports: [draft("Contains fluids and electrolytes.")],
+      insideNote: draft("A consult and screening confirm the final blend for you."),
+      inside: ["Fluids", "Electrolytes"],
       addOns: draft("Planned with you at your consult"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
       expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
@@ -83,27 +83,27 @@ export const signatureDrips: Drip[] = [
   {
     slug: "myers", was: "Healing (Myers’)",
     t: draft("Myers’ cocktail"),
-    f: "Foundation",
-    d: "A classic blend of B vitamins, vitamin C, magnesium and calcium.",
+    f: "Vitamins",
+    d: draft("Vitamin C and B complex, with magnesium or glutathione added if your physician orders them."),
     ev: "Established",
     detail: {
-      whatItIs: draft("Our version of the classic Myers’ cocktail, a well-known blend of B vitamins, vitamin C, magnesium and calcium."),
-      supports: [draft("Contains B vitamins, vitamin C, magnesium and calcium."), draft("Given with fluids, so it also adds hydration.")],
-      insideNote: "A consult and screening confirm the final blend for you.",
-      inside: ["B-Complex", "Vitamin C", "Magnesium", "Calcium", "B12 (methylcobalamin)"],
-      addOns: "Glutathione, zinc, amino blend",
+      whatItIs: draft("Our version of the Myers’ cocktail: vitamin C and B complex, given with fluids."),
+      supports: [draft("Contains vitamin C and B complex."), draft("Given with fluids, so it also adds hydration.")],
+      insideNote: draft("A consult and screening confirm the final blend for you."),
+      inside: ["Vitamin C", "B-Complex"],
+      addOns: draft("Magnesium, glutathione"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
-      expect: "Around forty-five minutes in the chair. The magnesium can bring a gentle warmth, which your nurse paces for comfort.",
+      expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance. If magnesium is added, it can bring a gentle warmth, which your nurse paces for comfort."),
       helpsWith: [draft("Vitamins"), draft("Hydration")],
       screen: "Kidney health screened",
     },
   },
-  { slug: "antioxidant", was: "Radiance", t: draft("Antioxidant drip"), f: "Skin and hair", d: draft("Antioxidant vitamins. Ingredients and doses are confirmed with you at your consult."), ev: "Supported",
+  { slug: "antioxidant", was: "Radiance", t: draft("Antioxidant drip"), f: "Skin and hair", d: draft("Built around glutathione, an antioxidant."), ev: "Supported",
     detail: {
-      whatItIs: draft("A drip built around antioxidant vitamins."),
-      supports: [draft("Contains antioxidant vitamins."), draft("Given with fluids, so it also adds hydration.")],
-      insideNote: draft("Ingredients and doses are confirmed with you at your consult, after screening."),
-      inside: ["Antioxidant vitamins"],
+      whatItIs: draft("A drip built around glutathione, an antioxidant."),
+      supports: [draft("Contains glutathione."), draft("Given with fluids, so it also adds hydration.")],
+      insideNote: draft("A consult and screening confirm the final blend for you."),
+      inside: ["Glutathione"],
       addOns: draft("Planned with you at your consult"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
       expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
@@ -121,12 +121,12 @@ export const signatureDrips: Drip[] = [
       helpsWith: [draft("Vitamins")],
       screen: draft("Tell us before any blood test"),
     },},
-  { slug: "vitamin-c-zinc", was: "Seasonal Support", t: draft("Vitamin C, zinc and B vitamins"), f: "Vitamins", d: draft("A vitamin and mineral blend."), ev: "Supported",
+  { slug: "multivitamin", was: "Seasonal Support", t: draft("Multivitamin drip"), f: "Vitamins", d: draft("Vitamins A, B complex, C, D and E."), ev: "Supported",
     detail: {
-      whatItIs: draft("A vitamin and mineral blend of vitamin C, zinc and B vitamins."),
-      supports: [draft("Contains vitamin C, zinc and B vitamins."), draft("Given with fluids, so it also adds hydration.")],
+      whatItIs: draft("A multivitamin drip with vitamins A, B complex, C, D and E."),
+      supports: [draft("Contains vitamins A, B complex, C, D and E."), draft("Given with fluids, so it also adds hydration.")],
       insideNote: draft("A consult and screening confirm the final blend for you."),
-      inside: ["Vitamin C", "Zinc", "B vitamins"],
+      inside: ["Vitamin A", "B-Complex", "Vitamin C", "Vitamin D", "Vitamin E"],
       addOns: draft("Planned with you at your consult"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
       expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
@@ -145,28 +145,6 @@ export const signatureDrips: Drip[] = [
       expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
       helpsWith: [],
     },},
-  { slug: "after-exercise", was: "Recover", t: draft("Hydration after exercise"), f: "Hydration", d: draft("Fluids and electrolytes, with amino acids."), ev: "Supported",
-    detail: {
-      whatItIs: draft("Fluids and electrolytes, with amino acids."),
-      supports: [draft("Contains fluids and electrolytes."), draft("Includes amino acids.")],
-      insideNote: draft("A consult and screening confirm the final blend for you."),
-      inside: ["Fluids", "Electrolytes", "Amino acids"],
-      addOns: draft("Planned with you at your consult"),
-      addOnsNote: draft("Added only on a physician's order, after a quick screening."),
-      expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
-      helpsWith: [draft("Hydration")],
-    },},
-  { slug: "hydration", was: "Revive", t: draft("Hydration drip"), f: "Hydration", d: draft("Fluids and electrolytes."), ev: "Supported",
-    detail: {
-      whatItIs: draft("Fluids and electrolytes, given through a small IV in your arm."),
-      supports: [draft("Contains fluids and electrolytes.")],
-      insideNote: draft("A consult and screening confirm the final blend for you."),
-      inside: ["Fluids", "Electrolytes"],
-      addOns: draft("Planned with you at your consult"),
-      addOnsNote: draft("Added only on a physician's order, after a quick screening."),
-      expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
-      helpsWith: [draft("Hydration")],
-    },},
   { slug: "nad", was: "NAD+ Longevity", t: draft("NAD+ drip"), f: "Signature and NAD+", d: draft("NAD+, a coenzyme found in every cell. The evidence for NAD+ drips is still developing."), ev: "Emerging",
     detail: {
       whatItIs: draft("A drip built around NAD+, a coenzyme found in every cell."),
@@ -181,9 +159,6 @@ export const signatureDrips: Drip[] = [
     },},
 ];
 
-/** Part of the medical weight management program only, so not on the drip menu (no weight-loss marketing). */
-export const metabolicDrip: Drip = { slug: "metabolic", t: "Metabolic", f: "Program", d: "Part of our physician-supervised medical weight management program.", ev: "Emerging" };
-
 export const dripBySlug = (slug: string) => signatureDrips.find((d) => d.slug === slug);
 
 /** Filter chips: only families that have a drip on the menu (a tester found "Program" with 0 drips). */
@@ -192,23 +167,18 @@ export const dripFamilyList = (Object.keys(dripFamilies) as DripFamily[]).filter
 /** The Injection Bar. */
 export const shots: { t: string; d: string }[] = [
   { t: "B12", d: draft("A B vitamin") },
-  { t: "B-Complex", d: draft("Several B vitamins") },
   { t: "Vitamin D", d: draft("A fat-soluble vitamin") },
   { t: "Glutathione", d: draft("An antioxidant") },
-  { t: "Vitamin C + Zinc", d: draft("A vitamin and a mineral") },
-  { t: "MIC blend", d: "Program add-on" },
   { t: "L-Carnitine", d: "Program add-on" },
-  { t: "Amino blend", d: draft("Amino acids") },
   { t: "NAD+", d: draft("A coenzyme") },
   { t: "Biotin", d: draft("A B vitamin") },
 ];
 
 export const ingredients: { t: string; d: string }[] = [
-  { t: "B-Complex", d: "A full B-vitamin team for energy metabolism." },
-  { t: "Vitamin C", d: "An antioxidant vitamin. Dose listed at your consult." },
-  { t: "Magnesium", d: "Supports muscle function and recovery." },
-  { t: "Calcium", d: "Supports bones and muscle function." },
-  { t: "B12 (methylcobalamin)", d: "Supports steady energy and a healthy nervous system." },
+  { t: "Vitamin C", d: draft("A water-soluble vitamin. Your dose is listed at your consult.") },
+  { t: "B-Complex", d: draft("Several B vitamins.") },
+  { t: "Magnesium", d: draft("A mineral, added only on a physician's order.") },
+  { t: "Glutathione", d: draft("An antioxidant, added only on a physician's order.") },
 ];
 
 export interface Concern {
@@ -224,9 +194,8 @@ const dripsIn = (f: DripFamily) => `/infusion-therapy/drips?family=${encodeURICo
 export const concerns: Concern[] = [
   // Fatigue goes to a doctor's visit first, not straight to paid drips (CPSO: no promoting services a patient may not need).
   { t: "Low energy & fatigue", d: draft("Start with a family doctor visit and bloodwork. OHIP-insured."), cta: draft("Book a visit"), tag: "Clinical", page: `${bookFor("family", "concern")}&reason=${encodeURIComponent("Low energy")}` },
-  { t: draft("Vitamin drips"), d: draft("Vitamin and mineral blends, given by a nurse."), cta: "Explore", tag: "Wellness", page: dripsIn("Vitamins") },
+  { t: draft("Vitamin drips"), d: draft("Vitamin blends, given by a nurse."), cta: "Explore", tag: "Wellness", page: dripsIn("Vitamins") },
   { t: draft("Skin and hair"), d: draft("Antioxidant and biotin drips."), cta: "Explore", tag: "Wellness", page: dripsIn("Skin and hair") },
-  { t: draft("After exercise"), d: draft("Fluids, electrolytes and amino acids."), cta: "Explore", tag: "Wellness", page: dripsIn("Hydration") },
   { t: draft("NAD+"), d: draft("Where the evidence is still developing, we say so."), cta: "Explore", tag: "Wellness", page: dripsIn("Signature and NAD+") },
   { t: "Weight & metabolism", d: "Physician-supervised medical weight management.", cta: "Explore", tag: "Program", page: "metabolic" },
   { t: "Iron deficiency & low ferritin", d: "When fatigue may be about iron.", cta: "Clinical pathway", tag: "Clinical", page: "iron" },
@@ -445,14 +414,12 @@ export const pricingVisual = {
 /** What is in each drip, only as far as the menu already says. Drips whose ingredients are set at the consult
  *  say so instead of listing anything (2026-11-05). */
 export const dripInside: Record<string, { items: string[]; consult?: boolean }> = {
-  foundation: { items: [draft("Fluids")], consult: true },
-  myers: { items: [draft("B vitamins"), draft("Vitamin C"), draft("Magnesium"), draft("Calcium")] },
-  antioxidant: { items: [draft("Antioxidant vitamins")], consult: true },
-  biotin: { items: [draft("Biotin")] },
-  "vitamin-c-zinc": { items: [draft("Vitamin C"), draft("Zinc"), draft("B vitamins")] },
-  signature: { items: [], consult: true },
-  "after-exercise": { items: [draft("Fluids"), draft("Electrolytes"), draft("Amino acids")] },
   hydration: { items: [draft("Fluids"), draft("Electrolytes")] },
+  myers: { items: [draft("Vitamin C"), draft("B complex")] },
+  antioxidant: { items: [draft("Glutathione")] },
+  biotin: { items: [draft("Biotin")] },
+  multivitamin: { items: [draft("Vitamin A"), draft("B complex"), draft("Vitamin C"), draft("Vitamin D"), draft("Vitamin E")] },
+  signature: { items: [], consult: true },
   nad: { items: [draft("NAD+")] },
 };
 
@@ -485,9 +452,9 @@ export const dripFinder = {
   title: draft("What brings you in?"),
   lead: draft("Pick the closest match to see drips that fit. A consult confirms what is right for you, and we may suggest something else, or nothing at all."),
   options: [
-    { t: draft("After exercise or a long day outdoors"), drips: ["after-exercise", "hydration"] },
-    { t: draft("Travel or a busy week"), drips: ["hydration", "foundation"] },
-    { t: draft("A regular vitamin routine"), drips: ["myers", "vitamin-c-zinc", "foundation"] },
+    { t: draft("After exercise or a long day outdoors"), drips: ["hydration"] },
+    { t: draft("Travel or a busy week"), drips: ["hydration"] },
+    { t: draft("A regular vitamin routine"), drips: ["myers", "multivitamin"] },
     { t: draft("A skin and hair routine"), drips: ["biotin", "antioxidant"] },
     { t: draft("Curious about NAD+"), drips: ["nad"] },
     { t: draft("Not sure yet"), consult: true },
@@ -524,26 +491,21 @@ export const dripCompareCopy = {
 export const shotGroups = {
   Vitamins: "#F5C451",
   "Antioxidant and coenzyme": "#F0955C",
-  "Amino acids": "#9BD0E0",
   "Program add-ons": "#6FB4E8",
 } as const;
 export type ShotGroup = keyof typeof shotGroups;
 export const shotInfo: Record<string, { g: ShotGroup; note?: string; program?: boolean }> = {
   B12: { g: "Vitamins" },
-  "B-Complex": { g: "Vitamins" },
   "Vitamin D": { g: "Vitamins" },
-  "Vitamin C + Zinc": { g: "Vitamins" },
   Biotin: { g: "Vitamins", note: draft("Tell us before any blood test, as biotin can affect some results.") },
   Glutathione: { g: "Antioxidant and coenzyme" },
   "NAD+": { g: "Antioxidant and coenzyme", note: draft("The evidence for NAD+ is still developing.") },
-  "Amino blend": { g: "Amino acids" },
-  "MIC blend": { g: "Program add-ons", program: true, note: draft("Only as part of our physician-supervised program.") },
   "L-Carnitine": { g: "Program add-ons", program: true, note: draft("Only as part of our physician-supervised program.") },
 };
 export const shotBar = {
   eyebrow: draft("The bar"),
   title: draft("Tap a vial."),
-  lead: draft("Ten quick shots, from single vitamins to blends. Every one starts with a short screening, and your nurse confirms the dose with you."),
+  lead: draft("Six quick shots. Every one starts with a short screening, and your nurse confirms the dose with you."),
   all: draft("All shots"),
   time: draft("About 10 minutes"),
   screened: draft("Screened first"),
@@ -558,7 +520,7 @@ export const shotBar = {
   ],
   vsTitle: draft("A shot or a drip?"),
   vs: [
-    { t: draft("A shot"), big: draft("About 10 minutes"), d: draft("A vitamin, mineral or blend, in one quick injection."), page: "shots" },
+    { t: draft("A shot"), big: draft("About 10 minutes"), d: draft("A single vitamin or nutrient, in one quick injection."), page: "shots" },
     { t: draft("A drip"), big: draft("About 45 minutes"), d: draft("Fluids with a blend of nutrients, in a lounge chair."), page: "drips" },
   ],
 };
@@ -584,7 +546,7 @@ export const infusionDoors = [
     kind: draft("Wellness, elective"),
     t: draft("The Injection Bar"),
     time: draft("About 10 minutes"),
-    d: draft("Ten quick shots, such as B12 and vitamin D. Screened first, then a quick injection."),
+    d: draft("Six quick shots, such as B12 and vitamin D. Screened first, then a quick injection."),
     cta: draft("Tap a vial"),
     to: "shots",
   },

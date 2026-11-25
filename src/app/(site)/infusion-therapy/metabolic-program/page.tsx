@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Display, Section } from "@/components/ui";
 import {
-  DripCard,
   InfusionBand,
   InfusionHeader,
   InfusionSmallPrint,
@@ -9,7 +8,6 @@ import {
   ShotGrid,
 } from "@/components/pages/infusion/InfusionBits";
 import {
-  metabolicDrip,
   honestClaims,
   infusionCopy,
   infusionPages,
@@ -30,7 +28,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function MetabolicPage() {
-  const drip = metabolicDrip;
   const claim = honestClaims[0];
   const programShots = shots.filter((s) => s.d === "Program add-on");
   return (
@@ -60,10 +57,7 @@ export default function MetabolicPage() {
       <MetabolicPath />
       <Section className="flex flex-col gap-5">
         <Display size="xs">{c.partsTitle}</Display>
-        <div className="grid grid-cols-1 gap-card lg:grid-cols-[1fr_2fr] lg:items-start">
-          {drip ? <DripCard drip={drip} /> : null}
-          <ShotGrid shots={programShots} />
-        </div>
+        <ShotGrid shots={programShots} />
       </Section>
       <Section className="flex flex-col gap-6">
         <NumberedCards items={infusionSteps} />

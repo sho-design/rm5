@@ -126,7 +126,7 @@ const comb: Record<string, Pick<(typeof combinedPlans)[number], "t" | "start" | 
   tired: {
     t: draft("Lúc nào cũng mệt"),
     start: draft("Khám bác sĩ và xét nghiệm máu (OHIP)"),
-    then: draft("Truyền sắt nếu thiếu sắt, tiêm B12 hoặc vitamin D nếu thiếu, nếu không thì truyền Foundation định kỳ"),
+    then: draft("Truyền sắt nếu thiếu sắt, tiêm B12 hoặc vitamin D nếu thiếu, nếu không thì truyền Hydration hoặc Multivitamin định kỳ"),
     upkeep: draft("Truyền dịch hoặc tiêm mỗi tháng; xét nghiệm máu hằng năm"),
   },
   skin: {
@@ -144,7 +144,7 @@ const comb: Record<string, Pick<(typeof combinedPlans)[number], "t" | "start" | 
   active: {
     t: draft("Vận động và hồi phục"),
     start: draft("Đánh giá phục hồi chức năng"),
-    then: draft("Vật lý trị liệu hoặc chỉnh hình cột sống, truyền Hydration sau khi tập và tiêm Amino blend quanh các sự kiện thể thao"),
+    then: draft("Vật lý trị liệu hoặc chỉnh hình cột sống, và truyền Hydration quanh các sự kiện thể thao"),
     upkeep: draft("Xoa bóp 25 hoặc 55 phút, mỗi tháng"),
   },
 };
