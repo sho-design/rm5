@@ -65,7 +65,7 @@ export const visitStory = {
       k: "drip",
       t: drip.t,
       d: drip.d,
-      when: draft("About 45 minutes"),
+      when: draft("About an hour"),
       who: draft("Your nurse, close by"),
     },
     {
@@ -88,7 +88,7 @@ export const visitStory = {
       "Illustration: an empty drip bag filling from small vials, labelled mixed now.",
     ),
     drip: draft(
-      "Illustration: a lounge chair beside a drip stand, drops falling in the drip chamber and a 45 minute timer.",
+      "Illustration: a lounge chair beside a drip stand, drops falling in the drip chamber and a one hour timer.",
     ),
     home: draft(
       "Illustration: a small bandage, a tick and an open door with daylight.",

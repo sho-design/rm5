@@ -29,7 +29,7 @@ export const dripFamilies = {
   Hydration: "#9BD0E0",
   Vitamins: "#F5C451",
   "Skin and hair": "#D9A6E0",
-  "Signature and NAD+": "#F0955C",
+  "NAD+": "#F0955C",
   Program: "#6FB4E8",
 } as const;
 
@@ -77,7 +77,7 @@ export const signatureDrips: Drip[] = [
       inside: ["Fluids", "Electrolytes"],
       addOns: draft("Planned with you at your consult"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
-      expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
+      expect: draft("About an hour in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
       helpsWith: [draft("Hydration")],
     },},
   {
@@ -93,7 +93,7 @@ export const signatureDrips: Drip[] = [
       inside: ["Vitamin C", "B-Complex"],
       addOns: draft("Magnesium, glutathione"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
-      expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance. If magnesium is added, it can bring a gentle warmth, which your nurse paces for comfort."),
+      expect: draft("About an hour in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance. If magnesium is added, it can bring a gentle warmth, which your nurse paces for comfort."),
       helpsWith: [draft("Vitamins"), draft("Hydration")],
       screen: "Kidney health screened",
     },
@@ -106,7 +106,7 @@ export const signatureDrips: Drip[] = [
       inside: ["Glutathione"],
       addOns: draft("Planned with you at your consult"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
-      expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
+      expect: draft("About an hour in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
       helpsWith: [draft("Vitamins")],
     },},
   { slug: "biotin", was: "Hair & Nails", t: draft("Biotin drip"), f: "Skin and hair", d: draft("Built around biotin, a B vitamin. Tell us before any blood test, as biotin can affect some results."), ev: "Supported",
@@ -117,7 +117,7 @@ export const signatureDrips: Drip[] = [
       inside: ["Biotin"],
       addOns: draft("Planned with you at your consult"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
-      expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance. Tell us, and the lab, before any blood test, as biotin can affect some results."),
+      expect: draft("About an hour in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance. Tell us, and the lab, before any blood test, as biotin can affect some results."),
       helpsWith: [draft("Vitamins")],
       screen: draft("Tell us before any blood test"),
     },},
@@ -129,23 +129,24 @@ export const signatureDrips: Drip[] = [
       inside: ["Vitamin A", "B-Complex", "Vitamin C", "Vitamin D", "Vitamin E"],
       addOns: draft("Planned with you at your consult"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
-      expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
+      expect: draft("About an hour in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
       helpsWith: [draft("Vitamins")],
     },},
   // Was "Kingmaker", "Vitality support for men". Square sells it as IV Kingmaker and IV Queenmaker, the same
   // recipe; a men's or women's drip implies a sex-specific benefit (CPSO), so the site shows one unisex drip.
-  { slug: "signature", t: draft("Signature drip"), f: "Signature and NAD+", d: draft("Our house blend, the same for everyone. Ingredients and doses are confirmed with you at your consult."), ev: "Supported",
+  // Copy from the clinic (Nov 2026): formulations are based on your health goals, confirmed at the consult.
+  { slug: "signature", t: draft("Signature drip"), f: "Vitamins", d: draft("Our signature formulations are based on your health goals. Ingredients are confirmed with you at your consult."), ev: "Supported",
     detail: {
-      whatItIs: draft("Our house blend, the same for everyone."),
-      supports: [draft("The same recipe for everyone."), draft("Ingredients and doses confirmed with you at your consult.")],
+      whatItIs: draft("Our signature formulations are based on your health goals."),
+      supports: [draft("Formulated around your health goals."), draft("Ingredients confirmed with you at your consult, after screening.")],
       insideNote: draft("Ingredients and doses are confirmed with you at your consult, after screening."),
       inside: [],
       addOns: draft("Planned with you at your consult"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
-      expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
+      expect: draft("About an hour in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
       helpsWith: [],
     },},
-  { slug: "nad", was: "NAD+ Longevity", t: draft("NAD+ drip"), f: "Signature and NAD+", d: draft("NAD+, a coenzyme found in every cell. The evidence for NAD+ drips is still developing."), ev: "Emerging",
+  { slug: "nad", was: "NAD+ Longevity", t: draft("NAD+ drip"), f: "NAD+", d: draft("NAD+, a coenzyme found in every cell. The evidence for NAD+ drips is still developing."), ev: "Emerging",
     detail: {
       whatItIs: draft("A drip built around NAD+, a coenzyme found in every cell."),
       supports: [draft("Contains NAD+, a coenzyme found in every cell.")],
@@ -153,11 +154,17 @@ export const signatureDrips: Drip[] = [
       inside: ["NAD+"],
       addOns: draft("Planned with you at your consult"),
       addOnsNote: draft("Added only on a physician's order, after a quick screening."),
-      expect: draft("About 45 minutes in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
+      expect: draft("About an hour in the chair, after a short screening with your nurse. Your drip is mixed at your appointment, never premixed or made in advance."),
       helpsWith: [],
       screen: draft("Evidence still developing"),
     },},
 ];
+
+// Sorted by family, in the order of dripFamilies, so the menu reads group by group (clinic, November 2026).
+{
+  const order = Object.keys(dripFamilies);
+  signatureDrips.sort((a, b) => order.indexOf(a.f) - order.indexOf(b.f));
+}
 
 export const dripBySlug = (slug: string) => signatureDrips.find((d) => d.slug === slug);
 
@@ -166,12 +173,11 @@ export const dripFamilyList = (Object.keys(dripFamilies) as DripFamily[]).filter
 
 /** The Injection Bar. */
 export const shots: { t: string; d: string }[] = [
-  { t: "B12", d: draft("A B vitamin") },
+  { t: "B12", d: draft("A B vitamin, as cyanocobalamin") },
   { t: "Vitamin D", d: draft("A fat-soluble vitamin") },
   { t: "Glutathione", d: draft("An antioxidant") },
-  { t: "L-Carnitine", d: "Program add-on" },
+  { t: "L-Carnitine", d: draft("A nutrient made from amino acids") },
   { t: "NAD+", d: draft("A coenzyme") },
-  { t: "Biotin", d: draft("A B vitamin") },
 ];
 
 export const ingredients: { t: string; d: string }[] = [
@@ -196,7 +202,7 @@ export const concerns: Concern[] = [
   { t: "Low energy & fatigue", d: draft("Start with a family doctor visit and bloodwork. OHIP-insured."), cta: draft("Book a visit"), tag: "Clinical", page: `${bookFor("family", "concern")}&reason=${encodeURIComponent("Low energy")}` },
   { t: draft("Vitamin drips"), d: draft("Vitamin blends, given by a nurse."), cta: "Explore", tag: "Wellness", page: dripsIn("Vitamins") },
   { t: draft("Skin and hair"), d: draft("Antioxidant and biotin drips."), cta: "Explore", tag: "Wellness", page: dripsIn("Skin and hair") },
-  { t: draft("NAD+"), d: draft("Where the evidence is still developing, we say so."), cta: "Explore", tag: "Wellness", page: dripsIn("Signature and NAD+") },
+  { t: draft("NAD+"), d: draft("Where the evidence is still developing, we say so."), cta: "Explore", tag: "Wellness", page: dripsIn("NAD+") },
   { t: "Weight & metabolism", d: "Physician-supervised medical weight management.", cta: "Explore", tag: "Program", page: "metabolic" },
   { t: "Iron deficiency & low ferritin", d: "When fatigue may be about iron.", cta: "Clinical pathway", tag: "Clinical", page: "iron" },
   { t: draft("Hydration"), d: draft("Fluids and electrolytes."), cta: "Explore", tag: "Wellness", page: dripsIn("Hydration") },
@@ -280,7 +286,7 @@ export const infusionCopy = {
     lead: draft("Drips are grouped by what is in them. Pick a group to narrow the list, or browse everything."),
     all: "All families",
     signature: draft("All drips"),
-    count: (n: number) => `${n} drips, about 45 minutes in the chair`,
+    count: (n: number) => `${n} drips, about an hour in the chair`,
     shotsTitle: "Shots: The Injection Bar",
     shotsSub: "10 shots, about 10 minutes",
     buildTitle: "Build your own",
@@ -290,7 +296,7 @@ export const infusionCopy = {
   },
   drip: {
     back: "All drips",
-    time: "~45 min",
+    time: "~1 hour",
     elective: "Elective wellness",
     /** Clinic fact: every drip is mixed at the appointment, never ahead (a tester found it only on the claims page). */
     mixed: draft("Mixed by our nurse at your appointment"),
@@ -330,7 +336,6 @@ export const infusionCopy = {
     title: draft("Metabolic program"),
     lead: "Physician-supervised medical weight management.",
     whatWeSayTitle: draft("What we say."),
-    partsTitle: draft("Part of the program."),
     prefill: "I’m interested in the physician-guided metabolic program.",
   },
   how: {
@@ -434,14 +439,14 @@ export const dripBrowserCopy = {
 };
 
 /** Drip visit timeline, finder and compare tray (2026-11-05). Times: the 10 minute screening is from the drip
- *  builder note, about 45 minutes is the menu time, mixing at the appointment is a clinic fact. */
+ *  builder note, about an hour is the menu time (clinic, November 2026), mixing at the appointment is a clinic fact. */
 export const dripVisit = {
   eyebrow: draft("A drip visit"),
-  title: draft("About an hour, start to finish."),
+  title: draft("About an hour and a quarter, start to finish."),
   parts: [
     { t: draft("Screening"), d: draft("About 10 minutes with your nurse: health history, vitals and any questions."), w: 2.2 },
     { t: draft("Mixed for you"), d: draft("Your drip is mixed at your appointment, after screening. Never made ahead."), w: 2 },
-    { t: draft("The drip"), d: draft("About 45 minutes in a lounge chair. Read, work or rest."), w: 4.5 },
+    { t: draft("The drip"), d: draft("About an hour in a lounge chair. Read, work or rest."), w: 6 },
     { t: draft("Back to your day"), d: draft("Your nurse removes the IV and checks in with you before you go."), w: 2.2 },
   ],
 };
@@ -479,7 +484,7 @@ export const dripCompareCopy = {
   title: draft("Side by side."),
   family: draft("Family"),
   time: draft("Time in the chair"),
-  timeV: draft("About 45 minutes"),
+  timeV: draft("About an hour"),
   inside: draft("What's inside"),
   close: draft("Close"),
   similar: draft("Similar drips"),
@@ -487,25 +492,24 @@ export const dripCompareCopy = {
 };
 
 /** Injection Bar page (2026-11-05). Groups describe what is in each shot. Notes repeat what the site already says
- *  (biotin and blood tests, NAD+ evidence, program add-ons only inside the physician-supervised program). */
+ *  (biotin and blood tests, NAD+ evidence). */
 export const shotGroups = {
   Vitamins: "#F5C451",
   "Antioxidant and coenzyme": "#F0955C",
-  "Program add-ons": "#6FB4E8",
+  "Amino acids": "#6FB4E8",
 } as const;
 export type ShotGroup = keyof typeof shotGroups;
 export const shotInfo: Record<string, { g: ShotGroup; note?: string; program?: boolean }> = {
   B12: { g: "Vitamins" },
   "Vitamin D": { g: "Vitamins" },
-  Biotin: { g: "Vitamins", note: draft("Tell us before any blood test, as biotin can affect some results.") },
   Glutathione: { g: "Antioxidant and coenzyme" },
   "NAD+": { g: "Antioxidant and coenzyme", note: draft("The evidence for NAD+ is still developing.") },
-  "L-Carnitine": { g: "Program add-ons", program: true, note: draft("Only as part of our physician-supervised program.") },
+  "L-Carnitine": { g: "Amino acids" },
 };
 export const shotBar = {
   eyebrow: draft("The bar"),
   title: draft("Tap a vial."),
-  lead: draft("Six quick shots. Every one starts with a short screening, and your nurse confirms the dose with you."),
+  lead: draft("Five quick shots. Every one starts with a short screening, and your nurse confirms the dose with you."),
   all: draft("All shots"),
   time: draft("About 10 minutes"),
   screened: draft("Screened first"),
@@ -521,7 +525,7 @@ export const shotBar = {
   vsTitle: draft("A shot or a drip?"),
   vs: [
     { t: draft("A shot"), big: draft("About 10 minutes"), d: draft("A single vitamin or nutrient, in one quick injection."), page: "shots" },
-    { t: draft("A drip"), big: draft("About 45 minutes"), d: draft("Fluids with a blend of nutrients, in a lounge chair."), page: "drips" },
+    { t: draft("A drip"), big: draft("About an hour"), d: draft("Fluids with a blend of nutrients, in a lounge chair."), page: "drips" },
   ],
 };
 
@@ -535,7 +539,7 @@ export const infusionDoors = [
     who: draft("You would like fluids and vitamins, in a calm hour."),
     kind: draft("Wellness, elective"),
     t: draft("Drips"),
-    time: draft("About 45 minutes"),
+    time: draft("About an hour"),
     d: draft("Nine drips, grouped by what is in them. Mixed by your nurse at the visit, after screening."),
     cta: draft("Find your drip"),
     to: "drips",
@@ -546,7 +550,7 @@ export const infusionDoors = [
     kind: draft("Wellness, elective"),
     t: draft("The Injection Bar"),
     time: draft("About 10 minutes"),
-    d: draft("Six quick shots, such as B12 and vitamin D. Screened first, then a quick injection."),
+    d: draft("Five quick shots, such as B12 and vitamin D. Screened first, then a quick injection."),
     cta: draft("Tap a vial"),
     to: "shots",
   },

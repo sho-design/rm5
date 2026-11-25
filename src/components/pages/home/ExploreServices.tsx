@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { focusOf } from "@/content/image-focus";
 import { divisionList } from "@/content/divisions";
 import { images } from "@/content/images";
 
@@ -44,7 +45,7 @@ export function ExploreServices() {
         {divisionList.map((d) => (
           <SmartLink key={d.key} to={d.key} className="grid grid-cols-[72px_1fr_auto] items-center gap-3.5 rounded-tile p-2.5 active:scale-[.98]" style={{ background: d.tint }}>
             <span className="relative block h-[72px] w-[72px] overflow-hidden rounded-[14px]">
-              <Image src={cardImg(d.key) || d.img} alt="" fill sizes="160px" quality={85} className="object-cover" />
+              <Image src={cardImg(d.key) || d.img} alt="" fill sizes="160px" quality={85} className="object-cover" style={{ objectPosition: focusOf(cardImg(d.key) || d.img) }} />
             </span>
             <span className="flex flex-col gap-0.5">
               <span className="font-display text-[19px] font-medium tracking-[-.02em]">{d.label}</span>

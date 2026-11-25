@@ -337,7 +337,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
         title: "Hydration and vitamin drip",
         p: "Fluids with electrolytes and a vitamin blend, given by a nurse after a short screening. About an hour in a lounge chair.",
         facts: [
-          { k: "Time", v: "45 to 60 minutes" },
+          { k: "Time", v: draft("About an hour") },
           { k: "Price", v: "$150 to $200, HST incl." },
           { k: "Screening", v: "Nurse, 10 minutes" },
           { k: "Coverage", v: "Not OHIP-insured" },
@@ -407,7 +407,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
     path: [
       { n: "1", time: "2 minutes", t: "Book online", d: draft("Pick a drip or an iron assessment. Drips can be booked for the same day.") },
       { n: "2", time: "On arrival", t: "Nurse screening", d: "Vitals, history and allergies. The physician reviews anything unusual." },
-      { n: "3", time: draft("45 minutes to about 3 hours"), t: "Your infusion", d: "A lounge chair, a blanket and a nurse nearby. Bring headphones." },
+      { n: "3", time: draft("About 1 to 3 hours"), t: "Your infusion", d: "A lounge chair, a blanket and a nurse nearby. Bring headphones." },
       { n: "4", time: "Afterwards", t: "Go about your day", d: "No sedation. Iron patients get repeat bloodwork booked at 4 to 8 weeks." },
     ],
     faq: [
@@ -658,7 +658,7 @@ export const deepDives: Record<DivisionKey, DeepDive> = {
 
 /** Infusion drip builder options. Add-ons have `mins` of 0. */
 export const drips: Drip[] = [
-  { name: "Hydration", desc: "Fluids and electrolytes", mins: 45, price: 150 },
+  { name: "Hydration", desc: "Fluids and electrolytes", mins: 60, price: 150 },
   // Clinic drip sheet, November 2026: the vitamin blend is now the Multivitamin drip; Recovery came off the menu.
   { name: draft("Multivitamin"), desc: draft("Vitamins A, B complex, C, D and E"), mins: 60, price: 200 },
   // The anti-nausea add-on is gone: the builder sold it ($190 with hydration) while every page says someone

@@ -88,7 +88,7 @@ export default async function DripPage({ params }: Params) {
           procedureType: "https://schema.org/PercutaneousProcedure",
           url: `${site.url}${dripRoute(d.slug)}`,
           howPerformed:
-            "Screened first by a registered nurse, mixed at the appointment, then given through a small IV in the arm over about 45 minutes.",
+            "Screened first by a registered nurse, mixed at the appointment, then given through a small IV in the arm over about an hour.",
         }}
       />
       <section

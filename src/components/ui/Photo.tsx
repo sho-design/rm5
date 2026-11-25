@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { focusOf } from "@/content/image-focus";
 import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
@@ -31,7 +32,7 @@ const radii = { block: "rounded-block", card: "rounded-card", "card-sm": "rounde
 export function Photo({ src, alt, protect, ratio, radius = "card", className, imgClassName, style, priority, sizes = "(max-width: 768px) 100vw, 50vw", children, tint }: PhotoProps) {
   return (
     <div className={cn("relative overflow-hidden", radii[radius], className)} style={{ aspectRatio: ratio, background: tint, ...style }}>
-      <Image src={src} alt={alt} fill priority={priority} sizes={sizes} quality={85} className={cn("object-cover", imgClassName)} />
+      <Image src={src} alt={alt} fill priority={priority} sizes={sizes} quality={85} className={cn("object-cover", imgClassName)} style={/object-(top|bottom|left|right|center|\[)/.test(imgClassName ?? "") ? undefined : { objectPosition: focusOf(src) }} />
       {protect ? <div aria-hidden className="absolute inset-0" style={{ background: "var(--photo-protection)" }} /> : null}
       {children}
     </div>

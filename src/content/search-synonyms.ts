@@ -111,7 +111,7 @@ export const searchExtras: SearchDoc[] = [
   {
     kind: draft("Infusion Therapy"),
     label: draft("Signature drip"),
-    sub: draft("Our house blend, the same for everyone"),
+    sub: draft("Based on your health goals, confirmed at your consult"),
     page: "/infusion-therapy/drips/signature",
     keys: "kingmaker queenmaker king maker queen maker iv kingmaker iv queenmaker signature house blend",
   },

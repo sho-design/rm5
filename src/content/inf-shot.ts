@@ -37,7 +37,7 @@ export const shotDripCopy = {
     t: drip.t,
     time: drip.big,
     alt: draft(
-      "Illustration: a bag of fluid drips slowly through a thin line into a vein in the forearm. A clock beside it shows about 45 minutes.",
+      "Illustration: a bag of fluid drips slowly through a thin line into a vein in the forearm. A clock beside it shows about an hour.",
     ),
     bag: draft("Fluid bag"),
     vein: draft("Vein"),
@@ -49,7 +49,7 @@ export const shotDripCopy = {
       k: draft("Time"),
       shot: shot.big,
       drip: draft(
-        "About 45 minutes in the chair, about an hour start to finish",
+        "About an hour in the chair, about an hour and a quarter start to finish",
       ),
     },
     {

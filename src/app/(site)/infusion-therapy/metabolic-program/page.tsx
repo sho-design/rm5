@@ -5,14 +5,12 @@ import {
   InfusionHeader,
   InfusionSmallPrint,
   NumberedCards,
-  ShotGrid,
 } from "@/components/pages/infusion/InfusionBits";
 import {
   honestClaims,
   infusionCopy,
   infusionPages,
   infusionSteps,
-  shots,
 } from "@/content/infusion-site";
 import { MetabolicPath } from "@/components/pages/infusion/extra/metabolic/MetabolicPath";
 import { pageMetadata } from "@/lib/seo";
@@ -29,7 +27,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function MetabolicPage() {
   const claim = honestClaims[0];
-  const programShots = shots.filter((s) => s.d === "Program add-on");
   return (
     <>
       <InfusionHeader
@@ -55,10 +52,6 @@ export default function MetabolicPage() {
         </Section>
       ) : null}
       <MetabolicPath />
-      <Section className="flex flex-col gap-5">
-        <Display size="xs">{c.partsTitle}</Display>
-        <ShotGrid shots={programShots} />
-      </Section>
       <Section className="flex flex-col gap-6">
         <NumberedCards items={infusionSteps} />
       </Section>

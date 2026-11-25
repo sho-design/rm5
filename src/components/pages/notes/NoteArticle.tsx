@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { focusOf } from "@/content/image-focus";
 import { Display, SmartLink } from "@/components/ui";
 import type { HealthNote } from "@/content/types";
 import { divisionDot } from "@/content/divisions";
@@ -19,7 +20,7 @@ export function NoteArticle({ note }: { note: HealthNote }) {
       </SmartLink>
       <div className="relative aspect-[2/1] overflow-hidden rounded-card" style={{ background: noteTint(note) }}>
         {/* Square photos in a wide frame: aim the crop at the upper third, where faces are (round 32: a cropped head). */}
-        <Image src={note.img} alt="" fill priority sizes="(max-width: 1024px) 100vw, 720px" className="object-cover object-[50%_25%]" />
+        <Image src={note.img} alt="" fill priority sizes="(max-width: 1024px) 100vw, 720px" className="object-cover" style={{ objectPosition: focusOf(note.img) ?? "50% 25%" }} />
       </div>
       <header className="flex flex-col gap-4">
         <span className="eyebrow" style={{ color: accentText(divisionDot[note.division]) }}>

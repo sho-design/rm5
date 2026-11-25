@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { focusOf } from "@/content/image-focus";
 import { SmartLink } from "@/components/ui";
 import type { HealthNote } from "@/content/types";
 import { divisionDot } from "@/content/divisions";
@@ -42,7 +43,7 @@ export function NoteAside({ note, related }: { note: HealthNote; related: Health
               <li key={r.slug} className="border-t border-border">
                 <SmartLink to={noteRoute(r.slug)} className="grid grid-cols-[64px_1fr] items-center gap-3 py-2.5 transition-colors hover:text-link">
                   <span className="relative block aspect-square overflow-hidden rounded-field" style={{ background: noteTint(r) }}>
-                    <Image src={r.img} alt="" fill sizes="64px" className="object-cover" />
+                    <Image src={r.img} alt="" fill sizes="64px" className="object-cover" style={{ objectPosition: focusOf(r.img) }} />
                   </span>
                   <span className="flex flex-col gap-[3px]">
                     <span className="text-[13px] font-semibold" style={{ color: accentText(divisionDot[r.division]) }}>

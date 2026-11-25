@@ -167,7 +167,7 @@ function routeFor(c: Concern, i: number): ConcernRoute {
         ),
         to: routes.drips,
       },
-      { t: c.t, d: c.d, to: c.page, tag: draft("About 45 minutes") },
+      { t: c.t, d: c.d, to: c.page, tag: draft("About an hour") },
     ],
     next: {
       lead: draft("Your first step is a consult. Screening comes first, and you decide after."),

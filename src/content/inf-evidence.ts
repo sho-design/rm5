@@ -25,14 +25,14 @@ export type IngredientKind =
   | "Minerals"
   | "Fluids and electrolytes"
   | "Antioxidant and coenzyme"
-  | "Program add-ons";
+  | "Amino acids";
 
 export const kindColor: Record<IngredientKind, string> = {
   Vitamins: "#F5C451",
   Minerals: "#B9C4CF",
   "Fluids and electrolytes": "#9BD0E0",
   "Antioxidant and coenzyme": "#F0955C",
-  "Program add-ons": "#6FB4E8",
+  "Amino acids": "#6FB4E8",
 };
 
 export type Ingredient = {
@@ -84,9 +84,8 @@ export const ingredientList: Ingredient[] = [
     k: "biotin",
     t: "Biotin",
     kind: "Vitamins",
-    d: shotD("Biotin") ?? draft("A B vitamin"),
-    shot: true,
-    note: shotNote("Biotin"),
+    d: draft("A B vitamin."),
+    note: draft("Tell us before any blood test, as biotin can affect some results."),
   },
   {
     k: "magnesium",
@@ -122,10 +121,9 @@ export const ingredientList: Ingredient[] = [
   {
     k: "carnitine",
     t: "L-Carnitine",
-    kind: "Program add-ons",
-    d: draft("A program add-on."),
+    kind: "Amino acids",
+    d: shotD("L-Carnitine") ?? draft("A nutrient made from amino acids"),
     shot: true,
-    note: shotNote("L-Carnitine"),
   },
 ];
 
@@ -188,7 +186,6 @@ export const evidenceCopy = {
   foundIn: draft("Found in"),
   foundInNone: draft("Not in a drip on the menu. Ask at your consult."),
   injectionBar: draft("The Injection Bar, as a quick shot"),
-  programOnly: draft("Only inside our physician-supervised program"),
   seeDrip: draft("See the drip"),
   seeShots: draft("See the shots"),
   close: draft("Close"),

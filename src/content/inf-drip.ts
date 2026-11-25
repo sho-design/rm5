@@ -19,7 +19,7 @@ export const dripInsideCopy = {
   note: draft("Illustration. Your nurse confirms what goes into your drip."),
   consult: draft("Confirmed at your consult"),
   stamp: draft("Mixed at your appointment, after screening"),
-  timer: draft("About 45 minutes"),
+  timer: draft("About an hour"),
   inArm: draft("Into a vein in your arm"),
   steps: [
     {
@@ -41,7 +41,7 @@ export const dripInsideCopy = {
       ),
     },
     {
-      t: draft("About 45 minutes"),
+      t: draft("About an hour"),
       d: draft(
         "Sit back in a lounge chair. Read, work or rest while your nurse checks in.",
       ),
@@ -55,7 +55,7 @@ export const dripInsideCopy = {
 export const dripSeo = (d: Drip) => ({
   title: draft(`${d.t.replace(/ drip$/i, "")} IV drip in Thornhill`),
   description: draft(
-    `${d.d} About 45 minutes, screened first, mixed at your appointment and given by a registered nurse at Restoration Medical in Thornhill.`,
+    `${d.d} About an hour, screened first, mixed at your appointment and given by a registered nurse at Restoration Medical in Thornhill.`,
   ),
 });
 
@@ -66,7 +66,7 @@ export function dripFaq(d: Drip) {
     {
       q: draft("How long does it take?"),
       a: draft(
-        "About 45 minutes in the chair, plus about 10 minutes of screening with your nurse first.",
+        "About an hour in the chair, plus about 10 minutes of screening with your nurse first.",
       ),
     },
     {

@@ -392,7 +392,6 @@ function Detail({ id, onClose }: { id: string; onClose: () => void }) {
   if (!ing) return null;
   const drips = dripsWith(ing.k);
   const addOnIn = signatureDrips.filter((d) => addOnsOf(d).includes(ing.k));
-  const program = ing.kind === "Program add-ons";
   return (
     <Card
       title={ing.t}
@@ -430,15 +429,12 @@ function Detail({ id, onClose }: { id: string; onClose: () => void }) {
               {d.t}: {c.addOns.toLowerCase()}
             </li>
           ))}
-          {ing.shot && !program ? (
+          {ing.shot ? (
             <li className="ev-chip">
               <SmartLink to="shots" className="font-semibold hover:text-link">
                 {c.injectionBar} ›
               </SmartLink>
             </li>
-          ) : null}
-          {program ? (
-            <li className="ev-chip text-secondary">{c.programOnly}</li>
           ) : null}
           {!drips.length && !addOnIn.length && !ing.shot ? (
             <li className="text-secondary">{c.foundInNone}</li>

@@ -1,5 +1,6 @@
 import { draft } from "@/content/review";
 import Image from "next/image";
+import { focusOf } from "@/content/image-focus";
 import { trust } from "@/content/site";
 import { images } from "@/content/images";
 import { Section, SmartLink } from "@/components/ui";
@@ -9,7 +10,7 @@ export function FeatureRow() {
   return (
     <Section tight className="grid grid-cols-1 gap-block pb-6 lg:grid-cols-2">
       <SmartLink to="infusion" className="relative flex min-h-[260px] flex-col justify-between gap-10 overflow-hidden rounded-card bg-inverse p-6 text-on-inverse transition-opacity hover:opacity-95 md:min-h-[340px] md:gap-20 md:p-9">
-        <Image src={images.division.infusion} alt="" fill sizes="(max-width: 1024px) 100vw, 610px" className="object-cover opacity-35" />
+        <Image src={images.division.infusion} alt="" fill sizes="(max-width: 1024px) 100vw, 610px" className="object-cover opacity-35" style={{ objectPosition: focusOf(images.division.infusion) }} />
         <span className="relative text-[13px] font-semibold">New: Infusion Therapy</span>
         <div className="relative flex flex-col gap-2.5">
           <span className="display-tight text-[30px] md:text-[40px]" style={{ lineHeight: 1, letterSpacing: "-.02em" }}>

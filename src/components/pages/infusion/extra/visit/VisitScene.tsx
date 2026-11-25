@@ -357,7 +357,7 @@ function Mix({ a }: { a: boolean }) {
   );
 }
 
-/** The drip: a lounge chair, a drip stand with falling drops and a timer ring counting toward 45 minutes. */
+/** The drip: a lounge chair, a drip stand with falling drops and a timer ring counting toward an hour. */
 function Drip({ a }: { a: boolean }) {
   const ring = 2 * Math.PI * 34;
   return (
@@ -490,7 +490,7 @@ function Drip({ a }: { a: boolean }) {
           fontWeight="700"
           fill={INK}
         >
-          45
+          60
         </text>
         <text
           x="0"

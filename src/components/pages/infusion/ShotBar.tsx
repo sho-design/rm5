@@ -85,7 +85,7 @@ export function ShotBar() {
           {/* The shelf */}
           <div role="radiogroup" aria-label="Shots" onKeyDown={onKey} className="relative">
             {/* Three across on phones: at five, "Vitamin D" ran into "Glutathione" (round 33). */}
-            <div className="grid grid-cols-3 gap-x-2 gap-y-4 pb-3 sm:grid-cols-5 lg:grid-cols-10">
+            <div className="grid grid-cols-3 gap-x-2 gap-y-4 pb-3 sm:grid-cols-6">
               {shown.map((s, i) => {
                 const on = s.t === sel.t;
                 const col = shotInfo[s.t] ? shotGroups[shotInfo[s.t].g] : "#fff";

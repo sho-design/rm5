@@ -12,7 +12,7 @@ import { dripInsideCopy as c } from "@/content/inf-drip";
 import { radioKeys, rovingTab, useReducedMotion } from "@/lib/a11y";
 import { cn } from "@/lib/cn";
 
-/** Phases of one drip: 0 screened, 1 mixed (tiles drop in, then the stamp), 2 into a vein, 3 the 45 minutes. */
+/** Phases of one drip: 0 screened, 1 mixed (tiles drop in, then the stamp), 2 into a vein, 3 the hour in the chair. */
 type Phase = 0 | 1 | 2 | 3;
 const TILE_MS = 650;
 const PHASE_MS: Record<Phase, number> = { 0: 2200, 1: 2600, 2: 3400, 3: 4200 };
@@ -27,7 +27,7 @@ function itemsFor(slug: string): string[] {
 /**
  * "Inside your drip": an IV bag that starts empty. Pick a drip and its ingredient tiles drop into the bag one by
  * one, a "Mixed at your appointment, after screening" stamp lands, the fluid runs down the line through the drip
- * chamber (falling drops) to a vein in the forearm, and a calm ring counts the 45 minutes. Only ingredients the
+ * chamber (falling drops) to a vein in the forearm, and a calm ring counts the hour. Only ingredients the
  * menu states are shown; the rest reads "Confirmed at your consult". Plays only on screen, Pause stops it, a still
  * finished frame with reduced motion, full strength in high contrast. With `drip` (a drip's own page) it shows
  * that drip only; without it, it tours the menu until someone picks one.
@@ -334,7 +334,7 @@ export function DripInside({
               <span className="h-3 w-[3px] bg-[color:var(--rm-ink-3)]" />
             </div>
 
-            {/* The line, the drip chamber, the forearm and the 45 minute ring. */}
+            {/* The line, the drip chamber, the forearm and the one hour ring. */}
             <svg
               ref={svg}
               aria-hidden
@@ -371,7 +371,7 @@ export function DripInside({
                   fontWeight="700"
                   fill="var(--rm-ink)"
                 >
-                  45
+                  60
                 </text>
                 <text
                   textAnchor="middle"

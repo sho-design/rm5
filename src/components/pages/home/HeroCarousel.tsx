@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { focusOf } from "@/content/image-focus";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { HeroSlide } from "@/content/types";
 import { site } from "@/content/site";
@@ -92,7 +93,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
             draggable={false}
             aria-hidden={!on}
             className="object-cover"
-            style={{ opacity: on ? 1 : 0, transform: `scale(${on && !reduced ? 1.06 : 1})`, transition: reduced ? "opacity .3s ease" : "opacity .9s ease, transform 6s linear" }}
+            style={{ objectPosition: focusOf(s.img), transformOrigin: focusOf(s.img), opacity: on ? 1 : 0, transform: `scale(${on && !reduced ? 1.06 : 1})`, transition: reduced ? "opacity .3s ease" : "opacity .9s ease, transform 6s linear" }}
           />
         );
       })}
