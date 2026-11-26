@@ -576,6 +576,7 @@
 /* Partner logos drawn in dark ink get a white tile in dark mode (footer teaching partners). */
 :root[data-theme="dark"] .rm-logo-tile { background: #FFFFFF; padding: 6px 10px; }
 
-/* Logo lettering: navy on light surfaces, white in the dark theme (the header and footer turn navy). */
-:root[data-theme="dark"] .rm-logo-light { display: none; }
-:root[data-theme="dark"] .rm-logo-dark { display: block; }
+/* The clinic name beside the RM monogram (Wordmark): the logo navy on light surfaces, white in the dark theme. */
+:root { --rm-logo-navy: #2C326D; }
+.rm-logo-name { color: var(--rm-logo-navy); }
+:root[data-theme="dark"] .rm-logo-name { color: #FFFFFF; }

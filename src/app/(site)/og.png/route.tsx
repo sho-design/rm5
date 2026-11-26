@@ -14,18 +14,16 @@ const size = { width: 1200, height: 630 };
 export async function GET() {
   // Static instances: the image renderer cannot read variable fonts.
   const dir = path.join(process.cwd(), "src/fonts/static");
-  const [fraunces, regular, semibold] = await Promise.all(["Fraunces-Regular.ttf", "InstrumentSans-Regular.ttf", "InstrumentSans-SemiBold.ttf"].map((f) => readFile(path.join(dir, f))));
-  // The clinic's logo files (public/logos): the monogram tile and the lettering in white for the navy ground.
-  const logo = path.join(process.cwd(), "public/logos");
-  const [mark, name] = await Promise.all(["rm-mark.png", "rm-name-white.png"].map(async (f) => `data:image/png;base64,${(await readFile(path.join(logo, f))).toString("base64")}`));
+  const [fraunces, frauncesMedium, regular, semibold] = await Promise.all(["Fraunces-Regular.ttf", "Fraunces-Medium.ttf", "InstrumentSans-Regular.ttf", "InstrumentSans-SemiBold.ttf"].map((f) => readFile(path.join(dir, f))));
+  // The RM monogram from the clinic's logo artwork (public/logos), with the name set in Fraunces beside it.
+  const mark = `data:image/png;base64,${(await readFile(path.join(process.cwd(), "public/logos/rm-mark.png"))).toString("base64")}`;
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#0F1F2E", color: "#FFFFFF", padding: "72px 80px", fontFamily: "Instrument Sans" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 13 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={mark} width={64} height={64} alt="" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={name} width={416} height={64} alt="" />
+          <div style={{ fontFamily: "Fraunces", fontWeight: 500, fontSize: 42, letterSpacing: -0.8 }}>Restoration Medical</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <div style={{ display: "flex", alignSelf: "flex-start", background: "#FFD84D", color: "#0F1F2E", borderRadius: 999, padding: "10px 22px", fontSize: 24, fontWeight: 600 }}>Thornhill, Ontario</div>
@@ -41,6 +39,7 @@ export async function GET() {
       ...size,
       fonts: [
         { name: "Fraunces", data: fraunces, weight: 400, style: "normal" },
+        { name: "Fraunces", data: frauncesMedium, weight: 500, style: "normal" },
         { name: "Instrument Sans", data: regular, weight: 400, style: "normal" },
         { name: "Instrument Sans", data: semibold, weight: 600, style: "normal" },
       ],
