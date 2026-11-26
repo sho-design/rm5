@@ -1,0 +1,713 @@
+{
+ "v": 3,
+ "layout": "files",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-26T18:05:00Z"
+ },
+ "title": "Restoration Medical Website",
+ "namespace": "RM",
+ "libraries": [
+  {
+   "name": "react",
+   "version": "18"
+  },
+  {
+   "name": "react-dom",
+   "version": "18"
+  }
+ ],
+ "sections": {},
+ "groups": [
+  "Logos",
+  "Photography",
+  "Icons"
+ ],
+ "assetGroups": {
+  "Photography": {
+   "name": "Photography",
+   "tile": "l",
+   "order": [
+    "aesthetics-consult.webp",
+    "doctor-with-family.webp",
+    "dr-johnny-nguyen.webp",
+    "family-medicine.webp",
+    "infusion-therapy.webp",
+    "iron-visit.webp",
+    "pain-centre.webp",
+    "reception.webp",
+    "rehab-recovery.webp"
+   ],
+   "files": {
+    "aesthetics-consult.webp": {
+     "name": "aesthetics-consult.webp",
+     "blob": "6f419a1edaf023bf3fdb231161c55b36",
+     "size": 76628,
+     "type": "image/webp"
+    },
+    "doctor-with-family.webp": {
+     "name": "doctor-with-family.webp",
+     "blob": "f456076fb07f7088275f6852908992e0",
+     "size": 65874,
+     "type": "image/webp"
+    },
+    "dr-johnny-nguyen.webp": {
+     "name": "dr-johnny-nguyen.webp",
+     "blob": "522828165996f558bc0124df586e5d30",
+     "size": 42472,
+     "type": "image/webp"
+    },
+    "family-medicine.webp": {
+     "name": "family-medicine.webp",
+     "blob": "a1d82252cfd768443860f5304d1190fa",
+     "size": 112464,
+     "type": "image/webp"
+    },
+    "infusion-therapy.webp": {
+     "name": "infusion-therapy.webp",
+     "blob": "cf39235b9585dcba08f61c3386541e52",
+     "size": 84788,
+     "type": "image/webp"
+    },
+    "iron-visit.webp": {
+     "name": "iron-visit.webp",
+     "blob": "379ba0499a52ea0c4eaa90fe47e0ad22",
+     "size": 46646,
+     "type": "image/webp"
+    },
+    "pain-centre.webp": {
+     "name": "pain-centre.webp",
+     "blob": "e2d9843b9e0a6bd9502bf3990624c6a4",
+     "size": 372016,
+     "type": "image/webp"
+    },
+    "reception.webp": {
+     "name": "reception.webp",
+     "blob": "3e28b018a969e0a76a6c6298814519bc",
+     "size": 79072,
+     "type": "image/webp"
+    },
+    "rehab-recovery.webp": {
+     "name": "rehab-recovery.webp",
+     "blob": "8b0d40b6d01daeb5134daf6106b27ac9",
+     "size": 123636,
+     "type": "image/webp"
+    }
+   }
+  },
+  "Icons": {
+   "name": "Icons",
+   "tile": "xs",
+   "order": [
+    "access.svg",
+    "arrow.svg",
+    "bag.svg",
+    "band.svg",
+    "blood.svg",
+    "bp.svg",
+    "cal.svg",
+    "card.svg",
+    "care.svg",
+    "careers.svg",
+    "check.svg",
+    "checkup.svg",
+    "chiro.svg",
+    "chronic.svg",
+    "clinic.svg",
+    "concern.svg",
+    "contact.svg",
+    "cycle.svg",
+    "drip.svg",
+    "elder.svg",
+    "evening.svg",
+    "face.svg",
+    "faq.svg",
+    "firstvisit.svg",
+    "foot.svg",
+    "forms.svg",
+    "gift.svg",
+    "glass.svg",
+    "hair.svg",
+    "head.svg",
+    "heart.svg",
+    "home.svg",
+    "how.svg",
+    "injector.svg",
+    "iron.svg",
+    "joint.svg",
+    "kids.svg",
+    "kines.svg",
+    "lab.svg",
+    "lang.svg",
+    "laser.svg",
+    "leaf.svg",
+    "lock.svg",
+    "mail.svg",
+    "massage.svg",
+    "men.svg",
+    "molecule.svg",
+    "mva.svg",
+    "nerve.svg",
+    "newpatient.svg",
+    "notes.svg",
+    "parking.svg",
+    "phone.svg",
+    "physio.svg",
+    "pill.svg",
+    "pin.svg",
+    "plan.svg",
+    "pregnancy.svg",
+    "price.svg",
+    "receipt.svg",
+    "referral.svg",
+    "renew.svg",
+    "roller.svg",
+    "sameday.svg",
+    "search.svg",
+    "shot.svg",
+    "skin.svg",
+    "spine.svg",
+    "sports.svg",
+    "standards.svg",
+    "steth.svg",
+    "story.svg",
+    "table.svg",
+    "tape.svg",
+    "team.svg",
+    "thermo.svg",
+    "trigger.svg",
+    "ultrasound.svg",
+    "vial.svg",
+    "women.svg",
+    "wsib.svg"
+   ],
+   "files": {
+    "access.svg": {
+     "name": "access.svg",
+     "blob": "5d21e1c7f0e22bbca43b6429e6545033",
+     "size": 323,
+     "type": "image/svg+xml"
+    },
+    "arrow.svg": {
+     "name": "arrow.svg",
+     "blob": "5dafab7a02f2957c1d8e49c0b3e758ce",
+     "size": 230,
+     "type": "image/svg+xml"
+    },
+    "bag.svg": {
+     "name": "bag.svg",
+     "blob": "54582f125e9c4ad194a9272d89bda8cf",
+     "size": 286,
+     "type": "image/svg+xml"
+    },
+    "band.svg": {
+     "name": "band.svg",
+     "blob": "405a2f205971f40cde8f0e5f4db29c92",
+     "size": 297,
+     "type": "image/svg+xml"
+    },
+    "blood.svg": {
+     "name": "blood.svg",
+     "blob": "af3bc9f0758e028592f3d8fd02fa6c61",
+     "size": 275,
+     "type": "image/svg+xml"
+    },
+    "bp.svg": {
+     "name": "bp.svg",
+     "blob": "9a0444140f733ccf79e3dc67da659b3e",
+     "size": 398,
+     "type": "image/svg+xml"
+    },
+    "cal.svg": {
+     "name": "cal.svg",
+     "blob": "6b022ea30d87260f24135703168b5d58",
+     "size": 339,
+     "type": "image/svg+xml"
+    },
+    "card.svg": {
+     "name": "card.svg",
+     "blob": "1c265f17d812ad541531b9eb0b4d29ff",
+     "size": 353,
+     "type": "image/svg+xml"
+    },
+    "care.svg": {
+     "name": "care.svg",
+     "blob": "240c7772f00aee7fb747b48e9e877ab1",
+     "size": 377,
+     "type": "image/svg+xml"
+    },
+    "careers.svg": {
+     "name": "careers.svg",
+     "blob": "4ea0fc93de45d847be93c3d4fb557701",
+     "size": 316,
+     "type": "image/svg+xml"
+    },
+    "check.svg": {
+     "name": "check.svg",
+     "blob": "8d4afcad05bdb884b2a9357b5237e8b6",
+     "size": 217,
+     "type": "image/svg+xml"
+    },
+    "checkup.svg": {
+     "name": "checkup.svg",
+     "blob": "afdfddf3a05ccccb70f344ffbe415a69",
+     "size": 272,
+     "type": "image/svg+xml"
+    },
+    "chiro.svg": {
+     "name": "chiro.svg",
+     "blob": "224e8a9ecbeb2566cc4a549bb38ba6e1",
+     "size": 421,
+     "type": "image/svg+xml"
+    },
+    "chronic.svg": {
+     "name": "chronic.svg",
+     "blob": "7cd81f6a40987785d0be48933cd044b8",
+     "size": 262,
+     "type": "image/svg+xml"
+    },
+    "clinic.svg": {
+     "name": "clinic.svg",
+     "blob": "832453070045b38fc6b881fa91a61c32",
+     "size": 302,
+     "type": "image/svg+xml"
+    },
+    "concern.svg": {
+     "name": "concern.svg",
+     "blob": "f944adf177de4b355401626439475de0",
+     "size": 337,
+     "type": "image/svg+xml"
+    },
+    "contact.svg": {
+     "name": "contact.svg",
+     "blob": "edd6f01d6a4f63fa0c8351d497ed3e97",
+     "size": 234,
+     "type": "image/svg+xml"
+    },
+    "cycle.svg": {
+     "name": "cycle.svg",
+     "blob": "285fa3ad74213441d3b6f602940cd57d",
+     "size": 319,
+     "type": "image/svg+xml"
+    },
+    "drip.svg": {
+     "name": "drip.svg",
+     "blob": "ff7b84b84a28e5318975ac6334c6c0f4",
+     "size": 302,
+     "type": "image/svg+xml"
+    },
+    "elder.svg": {
+     "name": "elder.svg",
+     "blob": "56fa542b6602551bd3a308e209218571",
+     "size": 407,
+     "type": "image/svg+xml"
+    },
+    "evening.svg": {
+     "name": "evening.svg",
+     "blob": "be57accde92372d599b3b1bff061af47",
+     "size": 292,
+     "type": "image/svg+xml"
+    },
+    "face.svg": {
+     "name": "face.svg",
+     "blob": "a2d01966a63ed1917b983ffe22eca7f1",
+     "size": 358,
+     "type": "image/svg+xml"
+    },
+    "faq.svg": {
+     "name": "faq.svg",
+     "blob": "b7d05fa405984809cfa9a42d2d36a0be",
+     "size": 295,
+     "type": "image/svg+xml"
+    },
+    "firstvisit.svg": {
+     "name": "firstvisit.svg",
+     "blob": "b928552b4538f262436910b501c7101f",
+     "size": 286,
+     "type": "image/svg+xml"
+    },
+    "foot.svg": {
+     "name": "foot.svg",
+     "blob": "417bc38fcf739c63e050eb912a3af72f",
+     "size": 345,
+     "type": "image/svg+xml"
+    },
+    "forms.svg": {
+     "name": "forms.svg",
+     "blob": "1b783dcb044ff9d2c1f229cd0606624a",
+     "size": 306,
+     "type": "image/svg+xml"
+    },
+    "gift.svg": {
+     "name": "gift.svg",
+     "blob": "86bfa71f7b92d798ac66164915e4ed4d",
+     "size": 345,
+     "type": "image/svg+xml"
+    },
+    "glass.svg": {
+     "name": "glass.svg",
+     "blob": "0dc2f6bcc2c8e46cf3520a845c27b391",
+     "size": 290,
+     "type": "image/svg+xml"
+    },
+    "hair.svg": {
+     "name": "hair.svg",
+     "blob": "8c90ea7c92b11bff2a6020ec32cf34cf",
+     "size": 304,
+     "type": "image/svg+xml"
+    },
+    "head.svg": {
+     "name": "head.svg",
+     "blob": "d475904f7e6a0ada6063037ee4573399",
+     "size": 326,
+     "type": "image/svg+xml"
+    },
+    "heart.svg": {
+     "name": "heart.svg",
+     "blob": "436891f8de29869bef28685c520be6cf",
+     "size": 325,
+     "type": "image/svg+xml"
+    },
+    "home.svg": {
+     "name": "home.svg",
+     "blob": "f6702de035ab162d58c2bf65c222f099",
+     "size": 304,
+     "type": "image/svg+xml"
+    },
+    "how.svg": {
+     "name": "how.svg",
+     "blob": "f843010ede1cb175b587af2ba06e4b38",
+     "size": 314,
+     "type": "image/svg+xml"
+    },
+    "injector.svg": {
+     "name": "injector.svg",
+     "blob": "795e1b366e129160c9bc520f3ab33898",
+     "size": 381,
+     "type": "image/svg+xml"
+    },
+    "iron.svg": {
+     "name": "iron.svg",
+     "blob": "9cbeb1ce464f26073b08ca37021f2a50",
+     "size": 358,
+     "type": "image/svg+xml"
+    },
+    "joint.svg": {
+     "name": "joint.svg",
+     "blob": "5768e9e528e6e15013fe744be9b4dfa7",
+     "size": 363,
+     "type": "image/svg+xml"
+    },
+    "kids.svg": {
+     "name": "kids.svg",
+     "blob": "59c8db200f553b222aa1b272a7c43ea2",
+     "size": 326,
+     "type": "image/svg+xml"
+    },
+    "kines.svg": {
+     "name": "kines.svg",
+     "blob": "7d4f53ccfae8f696e39f776d35bb9363",
+     "size": 338,
+     "type": "image/svg+xml"
+    },
+    "lab.svg": {
+     "name": "lab.svg",
+     "blob": "a5d8e11f433c0c69ceeada0c484d3d72",
+     "size": 390,
+     "type": "image/svg+xml"
+    },
+    "lang.svg": {
+     "name": "lang.svg",
+     "blob": "ec434e788ca9c60cfb68269140ba5f63",
+     "size": 300,
+     "type": "image/svg+xml"
+    },
+    "laser.svg": {
+     "name": "laser.svg",
+     "blob": "4e36be31d166002e680561b2257952ec",
+     "size": 323,
+     "type": "image/svg+xml"
+    },
+    "leaf.svg": {
+     "name": "leaf.svg",
+     "blob": "9a7ae1f6214a6d0d18758810cbcb4ada",
+     "size": 337,
+     "type": "image/svg+xml"
+    },
+    "lock.svg": {
+     "name": "lock.svg",
+     "blob": "bbc43d6fe967780cd70b9aa971400a92",
+     "size": 272,
+     "type": "image/svg+xml"
+    },
+    "mail.svg": {
+     "name": "mail.svg",
+     "blob": "884550c8b48ce0dcee463dea28cdeaf2",
+     "size": 234,
+     "type": "image/svg+xml"
+    },
+    "massage.svg": {
+     "name": "massage.svg",
+     "blob": "6ebcd1fb6f08f2079b4944aec062b724",
+     "size": 295,
+     "type": "image/svg+xml"
+    },
+    "men.svg": {
+     "name": "men.svg",
+     "blob": "afffcb0a315f12a35054014ae8ae1348",
+     "size": 282,
+     "type": "image/svg+xml"
+    },
+    "molecule.svg": {
+     "name": "molecule.svg",
+     "blob": "a76b693b4a9409368da106178dee8177",
+     "size": 447,
+     "type": "image/svg+xml"
+    },
+    "mva.svg": {
+     "name": "mva.svg",
+     "blob": "2e332c679951c60df7caaa45c342a20e",
+     "size": 324,
+     "type": "image/svg+xml"
+    },
+    "nerve.svg": {
+     "name": "nerve.svg",
+     "blob": "95612f4d4292b5b41ba106251561949b",
+     "size": 383,
+     "type": "image/svg+xml"
+    },
+    "newpatient.svg": {
+     "name": "newpatient.svg",
+     "blob": "a849c63bc32b19138de2219ccbc7400f",
+     "size": 321,
+     "type": "image/svg+xml"
+    },
+    "notes.svg": {
+     "name": "notes.svg",
+     "blob": "b3e0f416c76280e0ba0f988b88fd770f",
+     "size": 294,
+     "type": "image/svg+xml"
+    },
+    "parking.svg": {
+     "name": "parking.svg",
+     "blob": "ff9138fce51352c5984f9f08846d818e",
+     "size": 249,
+     "type": "image/svg+xml"
+    },
+    "phone.svg": {
+     "name": "phone.svg",
+     "blob": "d54a72a860955b24f044ef223626f589",
+     "size": 287,
+     "type": "image/svg+xml"
+    },
+    "physio.svg": {
+     "name": "physio.svg",
+     "blob": "c70f61e563c765ca7aec1ecac9a757c9",
+     "size": 346,
+     "type": "image/svg+xml"
+    },
+    "pill.svg": {
+     "name": "pill.svg",
+     "blob": "2a02940c32f78449b9dd06c683a668f5",
+     "size": 320,
+     "type": "image/svg+xml"
+    },
+    "pin.svg": {
+     "name": "pin.svg",
+     "blob": "a6b63d95864e00016f07c77af3415a55",
+     "size": 304,
+     "type": "image/svg+xml"
+    },
+    "plan.svg": {
+     "name": "plan.svg",
+     "blob": "96f648ab519b3a5a806c4b0385634bac",
+     "size": 285,
+     "type": "image/svg+xml"
+    },
+    "pregnancy.svg": {
+     "name": "pregnancy.svg",
+     "blob": "8538d234c860dd64730428d38f3aa370",
+     "size": 348,
+     "type": "image/svg+xml"
+    },
+    "price.svg": {
+     "name": "price.svg",
+     "blob": "d990c56c3a6894a78a20b0ea9f42164b",
+     "size": 297,
+     "type": "image/svg+xml"
+    },
+    "receipt.svg": {
+     "name": "receipt.svg",
+     "blob": "da986b4fff590869eed6c3dda8b5e718",
+     "size": 302,
+     "type": "image/svg+xml"
+    },
+    "referral.svg": {
+     "name": "referral.svg",
+     "blob": "f5302aa6bb215eb73c4c4b3a5d09a38e",
+     "size": 306,
+     "type": "image/svg+xml"
+    },
+    "renew.svg": {
+     "name": "renew.svg",
+     "blob": "f5dc52b1efc683bc4ed3548d9c59a1bc",
+     "size": 251,
+     "type": "image/svg+xml"
+    },
+    "roller.svg": {
+     "name": "roller.svg",
+     "blob": "ab648c06e4b1cd7095e4c26164fa4f82",
+     "size": 378,
+     "type": "image/svg+xml"
+    },
+    "sameday.svg": {
+     "name": "sameday.svg",
+     "blob": "ed2e6a6ff4a863c5ba4fc575c8d07c9b",
+     "size": 282,
+     "type": "image/svg+xml"
+    },
+    "search.svg": {
+     "name": "search.svg",
+     "blob": "9922a9a145d390286c87a4fb42b0257e",
+     "size": 259,
+     "type": "image/svg+xml"
+    },
+    "shot.svg": {
+     "name": "shot.svg",
+     "blob": "dca7f4146029a28c9ce25445f283323c",
+     "size": 375,
+     "type": "image/svg+xml"
+    },
+    "skin.svg": {
+     "name": "skin.svg",
+     "blob": "67c30218af61a52947ee838ee139f011",
+     "size": 295,
+     "type": "image/svg+xml"
+    },
+    "spine.svg": {
+     "name": "spine.svg",
+     "blob": "cff36db7948a6462cf500dd0037c3f6d",
+     "size": 361,
+     "type": "image/svg+xml"
+    },
+    "sports.svg": {
+     "name": "sports.svg",
+     "blob": "cd9580a48ea61ae037f6de918e7c911c",
+     "size": 332,
+     "type": "image/svg+xml"
+    },
+    "standards.svg": {
+     "name": "standards.svg",
+     "blob": "588b70be522f6ef9d21230ce0c9d4c29",
+     "size": 281,
+     "type": "image/svg+xml"
+    },
+    "steth.svg": {
+     "name": "steth.svg",
+     "blob": "16b5bc8255abed130169a1a89e1f6c11",
+     "size": 358,
+     "type": "image/svg+xml"
+    },
+    "story.svg": {
+     "name": "story.svg",
+     "blob": "6beb68fa685104ba2fd3999d0a11bea0",
+     "size": 356,
+     "type": "image/svg+xml"
+    },
+    "table.svg": {
+     "name": "table.svg",
+     "blob": "40c77ade9f1e695cb7dc099bd22044c2",
+     "size": 318,
+     "type": "image/svg+xml"
+    },
+    "tape.svg": {
+     "name": "tape.svg",
+     "blob": "cf1c84aa5ce238f6dd09b7c0ca3f9745",
+     "size": 398,
+     "type": "image/svg+xml"
+    },
+    "team.svg": {
+     "name": "team.svg",
+     "blob": "28bbab2e4ce03faea78867e813b87f6e",
+     "size": 370,
+     "type": "image/svg+xml"
+    },
+    "thermo.svg": {
+     "name": "thermo.svg",
+     "blob": "7113fa8a380a86907c64b6acc62f24ec",
+     "size": 294,
+     "type": "image/svg+xml"
+    },
+    "trigger.svg": {
+     "name": "trigger.svg",
+     "blob": "c6a2be0ae4826e94d315fbd06034fc5a",
+     "size": 422,
+     "type": "image/svg+xml"
+    },
+    "ultrasound.svg": {
+     "name": "ultrasound.svg",
+     "blob": "0e3f6ba6707c867c4e62632fbaaac7af",
+     "size": 483,
+     "type": "image/svg+xml"
+    },
+    "vial.svg": {
+     "name": "vial.svg",
+     "blob": "1b167929fe345de562c2d518bb149bf2",
+     "size": 299,
+     "type": "image/svg+xml"
+    },
+    "women.svg": {
+     "name": "women.svg",
+     "blob": "8959a77297dda0dd9f9c9238fc557334",
+     "size": 280,
+     "type": "image/svg+xml"
+    },
+    "wsib.svg": {
+     "name": "wsib.svg",
+     "blob": "4cd7dccded21011d8bbebea55e7fbb6b",
+     "size": 284,
+     "type": "image/svg+xml"
+    }
+   }
+  },
+  "Logos": {
+   "name": "Logos",
+   "tile": "l",
+   "order": [
+    "rm-full-logo-blue.png",
+    "rm-mark-blue.png",
+    "rm-mark-white-on-blue.png"
+   ],
+   "files": {
+    "rm-full-logo-blue.png": {
+     "name": "rm-full-logo-blue.png",
+     "blob": "b03eb5d37fe6d8caeffca4f0699b669b",
+     "size": 125018,
+     "type": "image/png"
+    },
+    "rm-mark-blue.png": {
+     "name": "rm-mark-blue.png",
+     "blob": "6808a6588b1f38410f2d34c259107c4a",
+     "size": 19652,
+     "type": "image/png"
+    },
+    "rm-mark-white-on-blue.png": {
+     "name": "rm-mark-white-on-blue.png",
+     "blob": "550a5ff2ba2883700c3a7c20a7aa9d1d",
+     "size": 27253,
+     "type": "image/png"
+    }
+   }
+  }
+ },
+ "blobs": {},
+ "docs": {
+  "sections": []
+ },
+ "lastChange": {
+  "by": "Claude",
+  "at": "2026-11-26T19:20:00Z",
+  "via": "Claude Code · sho-design/rm5",
+  "note": "Added the clinic's logo files; handout templates now use the real logo."
+ }
+}

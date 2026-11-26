@@ -1,0 +1,29 @@
+<!-- @dsCard height=300 -->
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0}
+.cover{position:relative;width:960px;height:300px;background:var(--bg-page);overflow:hidden}
+.cover svg{position:absolute;left:0;top:0}
+.ink{fill:var(--surface-inverse)}.cut{fill:var(--bg-page)}.sun{fill:var(--rm-sun)}.sky{fill:var(--rm-sky)}.sage{fill:var(--rm-sage)}.terra{fill:var(--rm-terracotta)}
+.blk{rx:var(--radius-block)}.crd{rx:var(--radius-card)}
+.txt{position:absolute;left:var(--page-gutter);bottom:var(--page-gutter)}
+.name{font-family:var(--font-display);font-weight:500;font-size:60px;line-height:.95;letter-spacing:-.025em;color:var(--text-primary);margin:0;white-space:nowrap}
+.tag{font-family:var(--font-ui);font-size:14px;line-height:1.4;color:var(--text-muted);margin:var(--space-5) 0 0;max-width:440px}
+</style></head><body><div class="cover">
+<svg width="960" height="160" viewBox="0 0 960 160" aria-hidden="true">
+<!-- blocks: surface-inverse 360x112 (radius-block), rm-sun 240x112 pill, rm-sky 112x112, rm-sage 96x112, rm-terracotta 104x112 bleeding off the right (radius-card); all 112 tall, card-gap 12 apart, page-gutter 24 from the top and left
+     arrangement: one strip of unequal blocks across the top, the way the site stacks rounded blocks; name beneath because "Restoration Medical Website" is too wide for the 440px zone
+     pattern: chip pills cut out of the navy block in bg-page. "Pills: buttons, tags, chips" at radius-chip and large 24 to 28px radii pick the soft, rounded row; the cut-outs are the site's chip rows
+     steps and radii: card-gap 12, space-5 12 and space-9 24 offsets, pill height 28 with rx 14 (half the short side), radius-block 28, radius-card 24 -->
+<rect class="ink blk" x="24" y="24" width="360" height="112"/>
+<rect class="cut" x="48" y="48" width="96" height="28" rx="14"/>
+<rect class="cut" x="156" y="48" width="132" height="28" rx="14"/>
+<rect class="cut" x="300" y="48" width="60" height="28" rx="14"/>
+<rect class="cut" x="48" y="88" width="148" height="28" rx="14"/>
+<rect class="cut" x="208" y="88" width="84" height="28" rx="14"/>
+<rect class="sun" x="396" y="24" width="240" height="112" rx="56"/>
+<rect class="sky crd" x="648" y="24" width="112" height="112"/>
+<rect class="sage crd" x="772" y="24" width="96" height="112"/>
+<rect class="terra crd" x="880" y="24" width="104" height="112"/>
+</svg>
+<div class="txt"><p class="name">Restoration Medical Website</p><p class="tag">The system behind restorationmedical.ca. Refined by Medicine.</p></div>
+</div></body></html>

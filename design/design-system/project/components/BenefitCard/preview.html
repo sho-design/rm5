@@ -1,0 +1,9 @@
+<!-- @dsCard group="Content" height=230 -->
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;padding:16px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.navy{background:var(--rm-ink);border-radius:16px;padding:14px}.stack{display:flex;flex-direction:column;gap:12px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}</style></head><body><div id="root"></div><script>
+(function(){var h=React.createElement,F=React.Fragment,RM=window.RM;
+function Demo(){return h("div",{className:"g3"},
+ h(RM.BenefitCard,{big:"MD",title:"A physician on site",tone:"family"},"Every visit is with, or reviewed by, one of our physicians."),
+ h(RM.BenefitCard,{big:"20",title:"Minute appointments",tone:"pain"},"Bloodwork and an ECG each take about 20 minutes too."),
+ h(RM.BenefitCard,{big:"3",title:"Visits in a usual iron course",tone:"infusion"},"Sometimes 1 or 2, as your physician directs."));}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));})();
+</script></body></html>

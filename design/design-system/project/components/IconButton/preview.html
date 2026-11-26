@@ -1,0 +1,8 @@
+<!-- @dsCard group="Actions" height=130 -->
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;padding:16px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.navy{background:var(--rm-ink);border-radius:16px;padding:14px}.stack{display:flex;flex-direction:column;gap:12px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}</style></head><body><div id="root"></div><script>
+(function(){var h=React.createElement,F=React.Fragment,RM=window.RM;
+function Demo(){var s=React.useState(1),t=s[0],set=s[1];return h("div",{className:"stack"},
+ h("div",{className:"row"},h(RM.IconButton,{label:"Search"},"⌕"),h(RM.IconButton,{label:"Menu"},"☰"),h(RM.IconButton,{label:"Close",active:true},"×")),
+ h("div",{className:"row navy"},["A−","A","A+"].map(function(l,i){return h(RM.IconButton,{key:l,label:["Smaller text","Default text","Larger text"][i],inverse:true,size:26,active:t===i,onClick:function(){set(i)}},l)})));}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));})();
+</script></body></html>

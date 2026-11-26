@@ -1,0 +1,11 @@
+<!-- @dsCard group="Content" height=520 -->
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;padding:16px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.navy{background:var(--rm-ink);border-radius:16px;padding:14px}.stack{display:flex;flex-direction:column;gap:12px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}</style></head><body><div id="root"></div><script>
+(function(){var h=React.createElement,F=React.Fragment,RM=window.RM;
+function Demo(){return h(RM.Chooser,{tone:"pain",eyebrow:"Where does it hurt?",title:"Start with the spot.",intro:"Pick the area to see how we assess it.",
+ options:[{label:"Low back",sub:"Sciatica, disc, arthritis"},{label:"Neck and shoulder",sub:"Stiffness, pinched nerve"},{label:"Knee and hip",sub:"Arthritis, tendons"}],
+ results:[{title:"Low back pain",body:"Your physician assesses the area and reviews any imaging, then explains your options, including doing nothing.",tags:["OHIP-insured"],facts:[{k:"Visit",v:"About 20 minutes"},{k:"Coverage",v:"OHIP, with a physician referral"},{k:"Imaging",v:"Ultrasound guidance in clinic"},{k:"Bring",v:"Health card and imaging reports"}]},
+  {title:"Neck and shoulder pain",body:"An assessment of how your neck and shoulder move, and where the pain starts.",tags:["OHIP-insured"],facts:[{k:"Visit",v:"About 20 minutes"},{k:"Coverage",v:"OHIP, with a physician referral"}]},
+  {title:"Knee and hip pain",body:"We look at the joint and any imaging, then talk through your options.",tags:["OHIP-insured"],facts:[{k:"Visit",v:"About 20 minutes"},{k:"Coverage",v:"OHIP, with a physician referral"}]}],
+ cta:h(RM.Button,null,"Book a pain assessment")});}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));})();
+</script></body></html>

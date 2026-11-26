@@ -1,0 +1,8 @@
+<!-- @dsCard group="Forms" height=120 -->
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;padding:16px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.navy{background:var(--rm-ink);border-radius:16px;padding:14px}.stack{display:flex;flex-direction:column;gap:12px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}</style></head><body><div id="root"></div><script>
+(function(){var h=React.createElement,F=React.Fragment,RM=window.RM;
+function Demo(){var a=React.useState("All"),b=React.useState([1]);return h("div",{className:"stack"},
+ h("div",{className:"row"},["All","Family Medicine","Pain Centre","Infusion Therapy"].map(function(l){return h(RM.Chip,{key:l,size:"sm",selected:a[0]===l,onClick:function(){a[1](l)}},l)})),
+ h("div",{className:"row"},["Always cold","Brain fog","Restless legs"].map(function(l,i){var on=b[0].indexOf(i)>-1;return h(RM.Chip,{key:l,tone:"sage",check:true,selected:on,onClick:function(){b[1](on?b[0].filter(function(x){return x!==i}):b[0].concat([i]))}},l)})));}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));})();
+</script></body></html>

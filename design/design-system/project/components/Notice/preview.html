@@ -1,0 +1,10 @@
+<!-- @dsCard group="Feedback" height=230 -->
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;padding:16px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.navy{background:var(--rm-ink);border-radius:16px;padding:14px}.stack{display:flex;flex-direction:column;gap:12px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}</style></head><body><div id="root"></div><script>
+(function(){var h=React.createElement,F=React.Fragment,RM=window.RM;
+function Demo(){return h("div",{className:"g2"},
+ h(RM.Notice,{tone:"warning",title:"Nothing that works?",action:{label:"Join the waitlist",onClick:function(){}}},"We call in order when a cancellation opens."),
+ h(RM.Notice,{tone:"success",title:"Reminder set",onDismiss:function(){}},"We will text you the day before."),
+ h(RM.Notice,{tone:"info"},"Your assessment and bloodwork are OHIP-insured. The infusion visit is not."),
+ h(RM.Notice,{tone:"error",title:"Could not send"},"Check your connection and try again, or call 905-709-3222."));}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));})();
+</script></body></html>

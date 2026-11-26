@@ -1,0 +1,9 @@
+<!-- @dsCard group="Actions" height=190 -->
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;padding:16px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.navy{background:var(--rm-ink);border-radius:16px;padding:14px}.stack{display:flex;flex-direction:column;gap:12px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}</style></head><body><div id="root"></div><script>
+(function(){var h=React.createElement,F=React.Fragment,RM=window.RM;
+function Demo(){return h("div",{className:"stack"},
+ h("div",{className:"row"},h(RM.Button,null,"Book a doctor visit"),h(RM.Button,{variant:"secondary"},"Continue"),h(RM.Button,{variant:"outline"},"‹ Back"),h(RM.Button,{variant:"ghost",trailing:true},"Read about iron therapy"),h(RM.Button,{disabled:true},"Choose a time")),
+ h("div",{className:"row navy"},h(RM.Button,{variant:"accent"},"Book an iron assessment"),h(RM.Button,{variant:"inverse"},"Book")),
+ h("div",{className:"row"},h(RM.Button,{size:"sm"},"Book"),h(RM.Button,{size:"md"},"Book"),h(RM.Button,{size:"lg"},"Book an iron assessment")));}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));})();
+</script></body></html>

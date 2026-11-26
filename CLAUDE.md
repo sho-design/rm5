@@ -4,6 +4,7 @@ Public website for Restoration Medical, a physician-led multi-service clinic in 
 
 ## Where things live
 - `design/handoff/` is the design reference: `README.md` (tech decisions, routes, CMS model, form destinations, caveats), `Restoration Medical.dc.html` (single-file prototype, the source of truth for copy and layout), `design-system/` (tokens, component specs, guidelines, `readme.md` with clinic facts and visual rules). Do not ship anything from this folder.
+- `design/design-system/` holds the exact files of the "Restoration Medical Website" design system (claude.ai Design System artifact), with `REBUILD.md` for recreating it in another account. Keep it in step when tokens, the logo or components change. Not shipped.
 - `src/styles/tokens/*.css` are the design tokens, copied verbatim from the handoff. Import them, never restate hex values in components; use the CSS variables or the Tailwind theme names in `src/app/globals.css`.
 - `public/logos/rm-mark.png` is the clinic's RM monogram, cut from the supplied full logo (navy #2C326D). `src/components/chrome/Wordmark.tsx` shows it beside "Restoration Medical" set in Fraunces 500 (clinic decision); the favicon and app icon (`src/app/(site)/icon.png`, `apple-icon.png`, `src/app/favicon.ico`) use the monogram. Never redraw the monogram.
 - `src/fonts/` self-hosted Fraunces and Instrument Sans (OFL), loaded with `next/font/local` in `src/app/(site)/layout.tsx` as WOFF2 subsets built from the variable TTFs by `scripts/build-fonts.py`.
