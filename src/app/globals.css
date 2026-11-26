@@ -229,7 +229,7 @@
 
 /* Larger text: the booking date strip wraps instead of cutting off the last days. */
 /* Larger text on a small phone: the zoomed name, search and menu buttons do not fit
-   in about 260px, and the menu button was pushed off screen. Keep the R tile only
+   in about 260px, and the menu button was pushed off screen. Keep the RM monogram only
    (the link keeps its "Restoration Medical home" label). */
 @media (max-width: 479px) {
   :root[data-text] .rm-wordmark-text { display: none; }
@@ -575,3 +575,7 @@
 
 /* Partner logos drawn in dark ink get a white tile in dark mode (footer teaching partners). */
 :root[data-theme="dark"] .rm-logo-tile { background: #FFFFFF; padding: 6px 10px; }
+
+/* Logo lettering: navy on light surfaces, white in the dark theme (the header and footer turn navy). */
+:root[data-theme="dark"] .rm-logo-light { display: none; }
+:root[data-theme="dark"] .rm-logo-dark { display: block; }

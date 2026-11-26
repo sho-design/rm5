@@ -234,9 +234,9 @@ export function WayBar({
           aria-label="Restoration Medical home"
           className="flex h-11 w-11 shrink-0 items-center justify-center"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-ink font-display text-[16px] font-medium text-white">
-            R
-          </span>
+          {/* The clinic's monogram (public/logos/rm-mark.png). */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logos/rm-mark.png" alt="" width={32} height={32} className="block" />
         </Link>
         <nav
           aria-label="You are here"

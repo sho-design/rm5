@@ -15,12 +15,17 @@ export async function GET() {
   // Static instances: the image renderer cannot read variable fonts.
   const dir = path.join(process.cwd(), "src/fonts/static");
   const [fraunces, regular, semibold] = await Promise.all(["Fraunces-Regular.ttf", "InstrumentSans-Regular.ttf", "InstrumentSans-SemiBold.ttf"].map((f) => readFile(path.join(dir, f))));
+  // The clinic's logo files (public/logos): the monogram tile and the lettering in white for the navy ground.
+  const logo = path.join(process.cwd(), "public/logos");
+  const [mark, name] = await Promise.all(["rm-mark.png", "rm-name-white.png"].map(async (f) => `data:image/png;base64,${(await readFile(path.join(logo, f))).toString("base64")}`));
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#0F1F2E", color: "#FFFFFF", padding: "72px 80px", fontFamily: "Instrument Sans" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div style={{ width: 64, height: 64, borderRadius: 18, background: "#FFFFFF", color: "#0F1F2E", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "Fraunces", fontSize: 40, paddingBottom: 4 }}>R</div>
-          <div style={{ fontSize: 34, fontWeight: 600, letterSpacing: -0.6 }}>Restoration Medical</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 13 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={mark} width={64} height={64} alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={name} width={416} height={64} alt="" />
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <div style={{ display: "flex", alignSelf: "flex-start", background: "#FFD84D", color: "#0F1F2E", borderRadius: 999, padding: "10px 22px", fontSize: 24, fontWeight: 600 }}>Thornhill, Ontario</div>
