@@ -4,15 +4,16 @@ These are the exact files of the "Restoration Medical Website" design system (a 
 
 ## What is here
 
+- This zip unpacks to `REBUILD.md`, `blob-map.json` and `project/`.
 - `project/`: every file of the design system at the path it has inside the artifact (`README.md`, `handouts.md`, `tokens.json`, `fonts/`, `components/` with the `RM` React bundle, previews and guidelines, and `assets/` with the Logos, Photography and Icons files and their notes).
 - `project/design-system.json`: the index as it was in the original artifact. Its `assetGroups` record asset ids (`blob`) from the original account; those ids do not exist in a new account.
 - `blob-map.json`: each original asset id mapped to the file in `project/assets/` it stands for. Three previews (`components/HandoutCareSheet`, `components/HandoutTopicSheet`, `components/Wordmark`) load assets by `/_blob/<id>`.
 
 ## Rebuild in a new account
 
-Start a Claude Code session in the target account with this repository, and ask:
+No GitHub connection is needed. In the target account (for example the clinic's Team account), open a new Claude chat, attach this zip file, and ask:
 
-> Rebuild the design system in `design/design-system/` as a new Design System artifact named "Restoration Medical Website". Follow `design/design-system/REBUILD.md`.
+> Rebuild the design system in this zip as a new Design System artifact named "Restoration Medical Website". Follow REBUILD.md inside it.
 
 The steps, for that session:
 
