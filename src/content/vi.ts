@@ -287,7 +287,7 @@ export const viAesthetics = {
   bandSub: draft("Miễn phí. Nếu một phương pháp không phù hợp với bạn, chúng tôi sẽ nói thẳng và gợi ý cách khác."),
 };
 
-/** Rehab and Recovery in Vietnamese. Prices from the clinic (plus HST); draft. */
+/** Rehab and Recovery in Vietnamese. Prices from the clinic (no HST on physio or chiro); draft. */
 export const viRehab = {
   title: draft("Phục hồi chức năng tại Thornhill"),
   description: draft("Vật lý trị liệu, nắn chỉnh cột sống, xoa bóp trị liệu và vận động trị liệu tại Restoration Medical, Thornhill. Thanh toán trực tiếp với hầu hết các hãng bảo hiểm."),
@@ -306,8 +306,8 @@ export const viRehab = {
   ],
   priceTitle: draft("Chi phí"),
   prices: [
-    { k: draft("Đánh giá vật lý trị liệu hoặc nắn chỉnh"), v: draft("$135 cộng HST ($152.55)") },
-    { k: draft("Điều trị vật lý trị liệu hoặc nắn chỉnh"), v: draft("$100 cộng HST ($113)") },
+    { k: draft("Đánh giá vật lý trị liệu hoặc nắn chỉnh"), v: draft("$135, không tính HST") },
+    { k: draft("Điều trị vật lý trị liệu hoặc nắn chỉnh"), v: draft("$100, không tính HST") },
     { k: draft("Xoa bóp trị liệu"), v: draft("Từ $95, buổi 25 hoặc 55 phút") },
     { k: draft("Bảo hiểm"), v: draft("Thanh toán trực tiếp với hầu hết các hãng bảo hiểm lớn, có biên lai") },
   ],

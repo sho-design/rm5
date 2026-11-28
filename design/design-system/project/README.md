@@ -11,7 +11,7 @@ Copy on the site is compliance-reviewed under the clinic's communications handbo
 - No exclamation marks, no emoji, no em dashes, no middots. Use commas, full stops or "and".
 - Write ranges as "8am to 4pm", "4 to 8 weeks", "Unit 105 to 107".
 - State facts the clinic can stand behind: "A physician is on site", "HST included". Never outcomes, immunity or weight-loss claims, superlatives ("best") or urgency ("limited spots"). No testimonials, ratings or before-and-after pictures.
-- Write money as "$250", "HST included" (infusions) or "plus HST" (aesthetics, physio, chiro). Say "OHIP-insured", or "uninsured fee, receipt provided".
+- Write money as "$250", "HST included" (infusions), "plus HST" (aesthetics and skincare) or "no HST" (physio and chiro, which are HST-exempt). Say "OHIP-insured", or "uninsured fee, receipt provided".
 - Write calls to action as a verb plus an object: "Book an iron assessment", "Register your family", "Refer a patient". End text links in " ›": "Read about iron therapy ›".
 - Write headlines as plain statements or questions: "Start with the spot.", "Bring a book. We handle the rest.", "Not sure where to start?"
 - Pain Centre: physician-led, OHIP-covered with a physician referral. Never write "self-referral". Chronic care belongs to Family Medicine; the Pain Centre is procedures for pain.

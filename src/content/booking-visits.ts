@@ -128,8 +128,9 @@ const uninsured = "Uninsured fee, receipt provided";
 const consultCoverage = draft("Complimentary consult. Treatment prices are given in writing before you decide.");
 const formsTitle = deepDives.family.results.find((r) => r.cta === "Book a form visit")?.title ?? "";
 const selfPayFacts = rehabCoverage.find((o) => o.label === "Paying myself")?.facts ?? [];
-/** Self-pay lines from the rehab coverage checker: "$135 plus HST" assessments, "$100 plus HST" treatments. */
-const physioChiroSelfPay = draft(`Self-pay: ${fact(selfPayFacts, "Physio or chiro assessment")} for an assessment, ${fact(selfPayFacts, "Physio or chiro treatment")} per treatment`);
+/** Self-pay lines from the rehab coverage checker: "$135, no HST" assessments, "$100, no HST" treatments. */
+const noHst = (v: string) => v.replace(/, no HST$/, "");
+const physioChiroSelfPay = draft(`Self-pay: ${noHst(fact(selfPayFacts, "Physio or chiro assessment"))} for an assessment, ${noHst(fact(selfPayFacts, "Physio or chiro treatment"))} per treatment, no HST`);
 const massageSelfPay = draft(`Self-pay: massage ${fact(selfPayFacts, "Massage therapy").toLowerCase()}`);
 const painBlurb = divisions.pain.blurb ?? "";
 

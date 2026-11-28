@@ -29,7 +29,7 @@ export const rehabCompare = {
       ],
     },
   ],
-  price: draft("Either one: assessment $135 plus HST ($152.55 total), treatment $100 plus HST ($113 total). We bill most insurers directly."),
+  price: draft("Either one: assessment $135, treatment $100, no HST. We bill most insurers directly."),
   notSure: draft("Not sure which? Tell us what is going on at an initial assessment, and we suggest which to start with."),
   cta: draft("Book an initial assessment"),
   ctaPage: bookFor("rehab", "assessment"),

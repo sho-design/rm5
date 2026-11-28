@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${site.url}${viRoutes.rehab}`, languages: langAlternates(routes.rehab, viRoutes.rehab) },
 };
 
-/** Rehab and Recovery in Vietnamese: the four services, prices (plus HST), and car accident and WSIB claims. */
+/** Rehab and Recovery in Vietnamese: the four services, prices (no HST on physio or chiro), and car accident and WSIB claims. */
 export default function ViRehabPage() {
   const book = `${bookFor("rehab", "assessment")}&lang=vi`;
   return (
